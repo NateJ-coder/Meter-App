@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meter Reading Submission</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<main class="container">
+  <header class="page-header">
+    <h1>Meter Reading</h1>
+    <p id="context-info" class="subtitle"></p>
+  </header>
+
+  <section class="card">
+    <form id="reader-form">
+
+      <div class="form-group">
+        <label for="reading-value">Current Reading (kWh) *</label>
+        <input type="number" id="reading-value" required step="0.01">
+      </div>
+
+      <div class="form-group">
+        <label for="photo-ref">Meter Photo *</label>
+        <input type="text" id="photo-ref" placeholder="Photo filename or description" required>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit Reading</button>
+
+    </form>
+  </section>
+
+  <section id="success-message" class="card" style="display:none;">
+    <h2>✅ Submission received</h2>
+    <p>Thank you. The office has received this reading.</p>
+  </section>
+</main>
+
+<script>
+  // --- Helper: get URL params ---
+  const params = new URLSearchParams(window.location.search);
+  const schemeId   = params.get('scheme_id');
+  const buildingId = params.get('building_id');
+  const meterId    = params.get('meter_id');
+
+  // Display context
+  document.getElementById('context-info').textContent =
+    `Scheme: ${schemeId} | Building: ${buildingId} | Meter: ${meterId}`;
+
+  // Handle submit
+  document.getElementById('reader-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const submission = {
+      id: Date.now().toString(),
+      scheme_id: schemeId,
+      building_id: buildingId,
+      meter_id: meterId,
+      reading_value: document.getElementById('reading-value').value,
+      photo_ref: document.getElementById('photo-ref').value,
+      notes: document.getElementById('notes').value,
+      submitted_at: new Date().toISOString(),
+      source: 'QR_READER',
+      status: 'pending'
+    };
+
+    // Save to localStorage
+    const existing = JSON.parse(localStorage.getItem('reader_submissions') || '[]');
+    existing.push(submission);
+    localStorage.setItem('reader_submissions', JSON.stringify(existing));
+
+    // UX feedback
+    document.getElementById('reader-form').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
