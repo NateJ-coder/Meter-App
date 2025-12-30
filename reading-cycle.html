@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Cycle - Fuzio Electricity Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Fuzio Meter Readings</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="meters.html">Meter Register</a></li>
+            <li><a href="reading-cycle.html" class="active">Reading Cycle</a></li>
+            <li><a href="review.html">Review</a></li>
+            <li><a href="export.html">Export</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Reading Cycle</h1>
+            <p class="subtitle">Open/close cycles and capture meter readings</p>
+        </header>
+
+        <!-- Current Cycle Status -->
+        <section class="card">
+            <h2>Current Cycle Status</h2>
+            <div id="cycle-status"></div>
+        </section>
+
+        <!-- Open New Cycle -->
+        <section class="card" id="open-cycle-section">
+            <h2>Open New Reading Cycle</h2>
+            <form id="cycle-form">
+                <div class="form-group">
+                    <label for="cycle-scheme">Scheme *</label>
+                    <select id="cycle-scheme" required></select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cycle-start-date">Start Date *</label>
+                        <input type="date" id="cycle-start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cycle-end-date">End Date *</label>
+                        <input type="date" id="cycle-end-date" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Open Cycle</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Capture Readings -->
+        <section class="card" id="capture-section" style="display: none;">
+            <div class="card-header">
+                <h2>Capture Readings</h2>
+                <button class="btn btn-danger" onclick="closeCycle()">Close Cycle</button>
+            </div>
+            
+            <div class="filter-bar">
+                <div class="form-group">
+                    <label for="filter-building">Filter by Building</label>
+                    <select id="filter-building" onchange="filterReadings()">
+                        <option value="">All Buildings</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="filter-status">Filter by Status</label>
+                    <select id="filter-status" onchange="filterReadings()">
+                        <option value="">All</option>
+                        <option value="not-read">Not Read</option>
+                        <option value="read">Read</option>
+                        <option value="flagged">Flagged</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="readings-list"></div>
+        </section>
+
+        <!-- Reading Form Modal -->
+        <div id="reading-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="reading-modal-title">Capture Reading</h3>
+                    <button class="modal-close" onclick="closeReadingModal()">&times;</button>
+                </div>
+                <form id="reading-form">
+                    <input type="hidden" id="reading-meter-id">
+                    <input type="hidden" id="reading-cycle-id">
+                    
+                    <div class="form-group">
+                        <label>Meter Details</label>
+                        <div id="meter-details" class="info-box"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reading-value">Current Reading (kWh) *</label>
+                        <input type="number" id="reading-value" step="0.01" required placeholder="Enter meter reading">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reading-date">Reading Date & Time *</label>
+                        <input type="datetime-local" id="reading-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reading-photo">Meter Photo</label>
+                        <input type="text" id="reading-photo" placeholder="Photo filename or URL (placeholder for now)">
+                        <small class="form-help">In production: actual photo upload</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reading-notes">Notes</label>
+                        <textarea id="reading-notes" rows="3" placeholder="Any issues, access problems, or observations"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Reading</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeReadingModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="assets/app.js"></script>
+    <script type="module" src="assets/reading-cycle.js"></script>
+</body>
+</html>

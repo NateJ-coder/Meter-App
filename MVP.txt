@@ -1,0 +1,64 @@
+What your app should do (MVP that actually helps)
+1) Meter register (the foundation)
+
+Scheme → blocks → units → meter numbers
+
+Meter type: bulk / unit / common property
+
+Photos of meter + location notes
+
+Multipliers (if any), last reading, status (active/faulty/inaccessible)
+
+2) Mobile readings (Antonio-proof)
+
+Offline-capable capture
+
+Mandatory photo per reading (timestamped)
+
+Auto validation:
+
+reading must be ≥ last reading
+
+flag spikes/drops vs last 3 months
+
+Route list + “meters not read” exceptions
+
+3) Allocation engine (the “math” Zerilda shouldn’t be doing manually)
+
+Support multiple methods:
+
+Metered: unit kWh × tariff
+
+Bulk reconciliation: bulk – sum(units) = common + losses
+
+Apportionment fallback: split by PQ or equal units
+
+Estimations (with rules + auto “true-up” next month)
+
+4) Billing outputs + reporting
+
+Export to their finance system (CSV for now is fine).
+
+Trustee dashboard:
+
+total kWh, cost, variance month-on-month
+
+top 10 consumers
+
+abnormal usage flags
+
+common area consumption trend (often where theft/leaks show up)
+
+5) Dispute pack generator (massive time saver)
+
+One click → PDF pack:
+
+last 6 readings + photos
+
+tariff used + source
+
+calculation steps
+
+contact log
+
+That’s how you make trustees feel safe, and owners calm down.

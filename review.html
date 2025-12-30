@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Exceptions - Fuzio Electricity Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Fuzio Meter Readings</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="meters.html">Meter Register</a></li>
+            <li><a href="reading-cycle.html">Reading Cycle</a></li>
+            <li><a href="review.html" class="active">Review</a></li>
+            <li><a href="export.html">Export</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Review Exceptions</h1>
+            <p class="subtitle">Review flagged readings and missing meters</p>
+        </header>
+
+        <!-- Cycle Selector -->
+        <section class="card">
+            <div class="form-group">
+                <label for="review-cycle">Select Cycle</label>
+                <select id="review-cycle" onchange="loadReviewData()"></select>
+            </div>
+        </section>
+
+        <!-- Summary Stats -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" id="review-total-readings">0</div>
+                <div class="metric-label">Total Readings</div>
+            </div>
+            <div class="metric-card warning">
+                <div class="metric-value" id="review-not-read">0</div>
+                <div class="metric-label">Not Read</div>
+            </div>
+            <div class="metric-card danger">
+                <div class="metric-value" id="review-flagged">0</div>
+                <div class="metric-label">Flagged</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="review-approved">0</div>
+                <div class="metric-label">Approved</div>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="card">
+            <div class="filter-bar">
+                <div class="form-group">
+                    <label for="filter-flag-type">Flag Type</label>
+                    <select id="filter-flag-type" onchange="filterReview()">
+                        <option value="">All Flags</option>
+                        <option value="backward">Backward Reading</option>
+                        <option value="spike">Huge Spike</option>
+                        <option value="missing">Missing Reading</option>
+                        <option value="duplicate">Duplicate Meter</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="filter-review-status">Review Status</label>
+                    <select id="filter-review-status" onchange="filterReview()">
+                        <option value="">All</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="estimated">Estimated</option>
+                        <option value="site-visit">Needs Site Visit</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flagged Readings -->
+        <section class="card">
+            <h2>Flagged Readings</h2>
+            <div id="flagged-readings-list"></div>
+        </section>
+
+        <!-- Missing Readings -->
+        <section class="card">
+            <h2>Missing Readings</h2>
+            <div id="missing-readings-list"></div>
+        </section>
+
+        <!-- Review Action Modal -->
+        <div id="review-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Review Reading</h3>
+                    <button class="modal-close" onclick="closeReviewModal()">&times;</button>
+                </div>
+                <div id="review-reading-details"></div>
+                <form id="review-form">
+                    <input type="hidden" id="review-reading-id">
+                    
+                    <div class="form-group">
+                        <label for="review-action">Action *</label>
+                        <select id="review-action" required onchange="toggleEstimateField()">
+                            <option value="">-- Select Action --</option>
+                            <option value="approved">Approve (reading is correct)</option>
+                            <option value="estimated">Estimate (use calculated value)</option>
+                            <option value="site-visit">Needs Site Visit</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="estimate-field" style="display: none;">
+                        <label for="estimated-value">Estimated Value (kWh)</label>
+                        <input type="number" id="estimated-value" step="0.01">
+                        <small class="form-help">Enter estimated consumption based on history/policy</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review-notes">Admin Notes</label>
+                        <textarea id="review-notes" rows="3" placeholder="Reason for action, follow-up required, etc."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Review</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeReviewModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="assets/app.js"></script>
+    <script type="module" src="assets/review.js"></script>
+</body>
+</html>

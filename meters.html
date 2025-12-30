@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meter Register - Fuzio Electricity Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Fuzio Meter Readings</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="meters.html" class="active">Meter Register</a></li>
+            <li><a href="reading-cycle.html">Reading Cycle</a></li>
+            <li><a href="review.html">Review</a></li>
+            <li><a href="export.html">Export</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Meter Register</h1>
+            <p class="subtitle">Manage schemes, buildings, units, and meters</p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="schemes">Schemes</button>
+            <button class="tab-btn" data-tab="buildings">Buildings</button>
+            <button class="tab-btn" data-tab="units">Units</button>
+            <button class="tab-btn" data-tab="meters">Meters</button>
+        </div>
+
+        <!-- Schemes Tab -->
+        <section class="tab-content active" id="tab-schemes">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Schemes</h2>
+                    <button class="btn btn-primary" onclick="showSchemeForm()">+ Add Scheme</button>
+                </div>
+                <div id="schemes-list"></div>
+            </div>
+            <div id="scheme-form" class="card" style="display: none;">
+                <h3 id="scheme-form-title">Add Scheme</h3>
+                <form id="scheme-form-element">
+                    <input type="hidden" id="scheme-id">
+                    <div class="form-group">
+                        <label for="scheme-name">Scheme Name *</label>
+                        <input type="text" id="scheme-name" required placeholder="e.g., Fuzio Gardens">
+                    </div>
+                    <div class="form-group">
+                        <label for="scheme-address">Address</label>
+                        <textarea id="scheme-address" rows="2" placeholder="Physical address"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Scheme</button>
+                        <button type="button" class="btn btn-secondary" onclick="cancelSchemeForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Buildings Tab -->
+        <section class="tab-content" id="tab-buildings">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Buildings</h2>
+                    <button class="btn btn-primary" onclick="showBuildingForm()">+ Add Building</button>
+                </div>
+                <div id="buildings-list"></div>
+            </div>
+            <div id="building-form" class="card" style="display: none;">
+                <h3 id="building-form-title">Add Building</h3>
+                <form id="building-form-element">
+                    <input type="hidden" id="building-id">
+                    <div class="form-group">
+                        <label for="building-scheme">Scheme *</label>
+                        <select id="building-scheme" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="building-name">Building Name *</label>
+                        <input type="text" id="building-name" required placeholder="e.g., Block A">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Building</button>
+                        <button type="button" class="btn btn-secondary" onclick="cancelBuildingForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Units Tab -->
+        <section class="tab-content" id="tab-units">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Units</h2>
+                    <button class="btn btn-primary" onclick="showUnitForm()">+ Add Unit</button>
+                </div>
+                <div id="units-list"></div>
+            </div>
+            <div id="unit-form" class="card" style="display: none;">
+                <h3 id="unit-form-title">Add Unit</h3>
+                <form id="unit-form-element">
+                    <input type="hidden" id="unit-id">
+                    <div class="form-group">
+                        <label for="unit-building">Building *</label>
+                        <select id="unit-building" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="unit-number">Unit Number *</label>
+                        <input type="text" id="unit-number" required placeholder="e.g., A101">
+                    </div>
+                    <div class="form-group">
+                        <label for="unit-owner">Owner Name</label>
+                        <input type="text" id="unit-owner" placeholder="Optional">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Unit</button>
+                        <button type="button" class="btn btn-secondary" onclick="cancelUnitForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Meters Tab -->
+        <section class="tab-content" id="tab-meters">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Meters</h2>
+                    <button class="btn btn-primary" onclick="showMeterForm()">+ Add Meter</button>
+                </div>
+                <div id="meters-list"></div>
+            </div>
+            <div id="meter-form" class="card" style="display: none;">
+                <h3 id="meter-form-title">Add Meter</h3>
+                <form id="meter-form-element">
+                    <input type="hidden" id="meter-id">
+                    <div class="form-group">
+                        <label for="meter-scheme">Scheme *</label>
+                        <select id="meter-scheme" required onchange="updateMeterUnitOptions()"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="meter-type">Meter Type *</label>
+                        <select id="meter-type" required onchange="toggleUnitField()">
+                            <option value="UNIT">UNIT (Per-unit submeter)</option>
+                            <option value="BULK">BULK (Main supply)</option>
+                            <option value="COMMON">COMMON (Common areas)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="meter-unit-group">
+                        <label for="meter-unit">Unit *</label>
+                        <select id="meter-unit"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="meter-number">Meter Number *</label>
+                        <input type="text" id="meter-number" required placeholder="e.g., 12345678">
+                    </div>
+                    <div class="form-group">
+                        <label for="meter-last-reading">Last Reading (kWh)</label>
+                        <input type="number" id="meter-last-reading" step="0.01" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="meter-status">Status</label>
+                        <select id="meter-status">
+                            <option value="active">Active</option>
+                            <option value="faulty">Faulty</option>
+                            <option value="inaccessible">Inaccessible</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Meter</button>
+                        <button type="button" class="btn btn-secondary" onclick="cancelMeterForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="assets/app.js"></script>
+    <script type="module" src="assets/meters.js"></script>
+</body>
+</html>

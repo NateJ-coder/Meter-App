@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Data - Fuzio Electricity Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Fuzio Meter Readings</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="meters.html">Meter Register</a></li>
+            <li><a href="reading-cycle.html">Reading Cycle</a></li>
+            <li><a href="review.html">Review</a></li>
+            <li><a href="export.html" class="active">Export</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Export Data</h1>
+            <p class="subtitle">Download CSV reports for billing and trustee reporting</p>
+        </header>
+
+        <!-- Cycle Selector -->
+        <section class="card">
+            <div class="form-group">
+                <label for="export-cycle">Select Cycle to Export</label>
+                <select id="export-cycle" onchange="loadExportPreview()"></select>
+            </div>
+        </section>
+
+        <!-- Export Summary -->
+        <section class="card" id="export-summary-section" style="display: none;">
+            <h2>Cycle Summary</h2>
+            <div id="export-summary"></div>
+        </section>
+
+        <!-- Export Options -->
+        <section class="card" id="export-options-section" style="display: none;">
+            <h2>Export Options</h2>
+            <div class="export-buttons">
+                <button class="btn btn-primary" onclick="exportUnitReadings()">
+                    📊 Export Unit Readings CSV
+                </button>
+                <button class="btn btn-primary" onclick="exportSchemeSummary()">
+                    📈 Export Scheme Summary CSV
+                </button>
+                <button class="btn btn-secondary" onclick="exportAllData()">
+                    📦 Export All Data (Combined)
+                </button>
+            </div>
+            <p class="text-muted" style="margin-top: 1rem;">
+                <strong>Unit Readings CSV:</strong> Per-unit consumption, flags, notes, readings<br>
+                <strong>Scheme Summary CSV:</strong> Bulk kWh, sum units kWh, common kWh, losses %
+            </p>
+        </section>
+
+        <!-- Preview Tables -->
+        <section class="card" id="preview-section" style="display: none;">
+            <h2>Preview: Unit Readings</h2>
+            <div id="unit-readings-preview" class="table-wrapper"></div>
+        </section>
+
+        <section class="card" id="summary-preview-section" style="display: none;">
+            <h2>Preview: Scheme Summary</h2>
+            <div id="scheme-summary-preview" class="table-wrapper"></div>
+        </section>
+    </main>
+
+    <script type="module" src="assets/app.js"></script>
+    <script type="module" src="assets/export-page.js"></script>
+</body>
+</html>

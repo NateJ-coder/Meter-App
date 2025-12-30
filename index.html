@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuzio Electricity Readings - Dashboard</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Fuzio Meter Readings</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Dashboard</a></li>
+            <li><a href="meters.html">Meter Register</a></li>
+            <li><a href="reading-cycle.html">Reading Cycle</a></li>
+            <li><a href="review.html">Review</a></li>
+            <li><a href="export.html">Export</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Dashboard</h1>
+            <p class="subtitle">Monthly electricity meter reading workflow</p>
+        </header>
+
+        <!-- Current Cycle Summary -->
+        <section class="card">
+            <h2>Current Reading Cycle</h2>
+            <div id="cycle-status-container">
+                <p class="text-muted">Loading cycle information...</p>
+            </div>
+        </section>
+
+        <!-- Key Metrics -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" id="total-meters">0</div>
+                <div class="metric-label">Total Meters</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="meters-read">0</div>
+                <div class="metric-label">Meters Read</div>
+            </div>
+            <div class="metric-card warning">
+                <div class="metric-value" id="meters-not-read">0</div>
+                <div class="metric-label">Not Read</div>
+            </div>
+            <div class="metric-card danger">
+                <div class="metric-value" id="flagged-readings">0</div>
+                <div class="metric-label">Flagged</div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="card">
+            <h2>Quick Actions</h2>
+            <div class="action-buttons">
+                <a href="reading-cycle.html" class="btn btn-primary">Open New Cycle</a>
+                <a href="reading-cycle.html#capture" class="btn btn-secondary">Capture Readings</a>
+                <a href="review.html" class="btn btn-secondary">Review Exceptions</a>
+                <a href="export.html" class="btn btn-secondary">Export Data</a>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="card">
+            <h2>Recent Cycles</h2>
+            <div id="recent-cycles-container">
+                <p class="text-muted">Loading recent cycles...</p>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="assets/app.js"></script>
+    <script type="module">
+        import { storage } from './assets/storage.js';
+        import { initializeSeedData } from './assets/app.js';
+
+        // Initialize seed data on first run
+        initializeSeedData();
+
+        // Load dashboard data
+        function loadDashboard() {
+            const cycles = storage.getAll('cycles');
+            const readings = storage.getAll('readings');
+            const meters = storage.getAll('meters');
+            
+            // Find open cycle
+            const openCycle = cycles.find(c => c.status === 'OPEN');
+            
+            // Update cycle status
+            const cycleStatusContainer = document.getElementById('cycle-status-container');
+            if (openCycle) {
+                const scheme = storage.get('schemes', openCycle.scheme_id);
+                cycleStatusContainer.innerHTML = `
+                    <div class="cycle-status open">
+                        <div class="status-badge">OPEN</div>
+                        <div>
+                            <strong>${scheme ? scheme.name : 'Unknown Scheme'}</strong>
+                            <br>
+                            <span class="text-muted">${openCycle.start_date} to ${openCycle.end_date}</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                cycleStatusContainer.innerHTML = `
+                    <div class="cycle-status closed">
+                        <div class="status-badge">NO OPEN CYCLE</div>
+                        <p class="text-muted">Open a new reading cycle to start capturing readings.</p>
+                        <a href="reading-cycle.html" class="btn btn-primary">Open Cycle</a>
+                    </div>
+                `;
+            }
+
+            // Calculate metrics
+            const unitMeters = meters.filter(m => m.meter_type === 'UNIT');
+            const totalMeters = unitMeters.length;
+            
+            let metersRead = 0;
+            let flaggedCount = 0;
+            
+            if (openCycle) {
+                const cycleReadings = readings.filter(r => r.cycle_id === openCycle.id);
+                metersRead = new Set(cycleReadings.map(r => r.meter_id)).size;
+                flaggedCount = cycleReadings.filter(r => r.flags && r.flags.length > 0).length;
+            }
+
+            document.getElementById('total-meters').textContent = totalMeters;
+            document.getElementById('meters-read').textContent = metersRead;
+            document.getElementById('meters-not-read').textContent = totalMeters - metersRead;
+            document.getElementById('flagged-readings').textContent = flaggedCount;
+
+            // Load recent cycles
+            const recentCycles = cycles
+                .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
+                .slice(0, 5);
+
+            const recentCyclesContainer = document.getElementById('recent-cycles-container');
+            if (recentCycles.length === 0) {
+                recentCyclesContainer.innerHTML = '<p class="text-muted">No cycles found. Create your first cycle.</p>';
+            } else {
+                recentCyclesContainer.innerHTML = `
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Scheme</th>
+                                <th>Period</th>
+                                <th>Status</th>
+                                <th>Readings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${recentCycles.map(cycle => {
+                                const scheme = storage.get('schemes', cycle.scheme_id);
+                                const cycleReadings = readings.filter(r => r.cycle_id === cycle.id);
+                                const statusClass = cycle.status === 'OPEN' ? 'badge-success' : 'badge-secondary';
+                                return `
+                                    <tr>
+                                        <td>${scheme ? scheme.name : 'Unknown'}</td>
+                                        <td>${cycle.start_date} to ${cycle.end_date}</td>
+                                        <td><span class="badge ${statusClass}">${cycle.status}</span></td>
+                                        <td>${cycleReadings.length} readings</td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+        }
+
+        loadDashboard();
+    </script>
+</body>
+</html>
