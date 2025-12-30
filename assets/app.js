@@ -7,64 +7,16 @@ import { storage } from './storage.js';
 import { router } from './router.js';
 
 /**
- * Initialize seed data on first run
+ * Initialize seed data on first run (OPTIONAL - for demo purposes)
+ * To enable: uncomment the function call in index.html
  */
 export function initializeSeedData() {
     // Check if data already exists
     if (storage.getAll('schemes').length > 0) {
-        return; // Data already seeded
+        return; // Data already exists
     }
 
-    console.log('Initializing seed data...');
-
-    // Create scheme
-    const scheme = storage.create('schemes', {
-        name: 'Fuzio Gardens',
-        address: '123 Main Street, Cape Town, 8001'
-    });
-
-    // Create building
-    const building = storage.create('buildings', {
-        scheme_id: scheme.id,
-        name: 'Block A'
-    });
-
-    // Create 6 units
-    const units = [];
-    const unitNumbers = ['A101', 'A102', 'A103', 'A201', 'A202', 'A203'];
-    const owners = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia'];
-
-    unitNumbers.forEach((unitNumber, index) => {
-        const unit = storage.create('units', {
-            building_id: building.id,
-            unit_number: unitNumber,
-            owner_name: owners[index]
-        });
-        units.push(unit);
-    });
-
-    // Create 1 BULK meter
-    storage.create('meters', {
-        scheme_id: scheme.id,
-        meter_type: 'BULK',
-        meter_number: 'BULK-001',
-        last_reading: 12500,
-        status: 'active'
-    });
-
-    // Create 6 UNIT meters (one per unit)
-    units.forEach((unit, index) => {
-        storage.create('meters', {
-            scheme_id: scheme.id,
-            unit_id: unit.id,
-            meter_type: 'UNIT',
-            meter_number: `UNIT-${String(index + 1).padStart(3, '0')}`,
-            last_reading: 1000 + (index * 100), // Staggered readings
-            status: 'active'
-        });
-    });
-
-    console.log('Seed data initialized successfully!');
+    console.log('No seed data - start by creating your first scheme in Meter Register');
 }
 
 /**

@@ -105,6 +105,18 @@ window.deleteScheme = function(id) {
     if (!confirmAction('Delete this scheme? This will also delete all related buildings, units, and meters.')) {
         return;
     }
+    
+    // Cascade delete: meters -> units -> buildings -> scheme
+    const meters = storage.getMeters(id);
+    meters.forEach(meter => storage.delete('meters', meter.id));
+    
+    const buildings = storage.getBuildings(id);
+    buildings.forEach(building => {
+        const units = storage.getUnits(building.id);
+        units.forEach(unit => storage.delete('units', unit.id));
+        storage.delete('buildings', building.id);
+    });
+    
     storage.delete('schemes', id);
     loadSchemes();
     showNotification('Scheme deleted successfully');
@@ -192,7 +204,16 @@ window.editBuilding = function(id) {
 };
 
 window.deleteBuilding = function(id) {
-    if (!confirmAction('Delete this building?')) return;
+    if (!confirmAction('Delete this building? This will also delete all units and meters in this building.')) return;
+    
+    // Cascade delete: meters in units -> units -> building
+    const units = storage.getUnits(id);
+    units.forEach(unit => {
+        const meters = storage.getAll('meters').filter(m => m.unit_id === unit.id);
+        meters.forEach(meter => storage.delete('meters', meter.id));
+        storage.delete('units', unit.id);
+    });
+    
     storage.delete('buildings', id);
     loadBuildings();
     showNotification('Building deleted');
@@ -283,7 +304,12 @@ window.editUnit = function(id) {
 };
 
 window.deleteUnit = function(id) {
-    if (!confirmAction('Delete this unit?')) return;
+    if (!confirmAction('Delete this unit? This will also delete associated meters.')) return;
+    
+    // Cascade delete: meters -> unit
+    const meters = storage.getAll('meters').filter(m => m.unit_id === id);
+    meters.forEach(meter => storage.delete('meters', meter.id));
+    
     storage.delete('units', id);
     loadUnits();
     showNotification('Unit deleted');

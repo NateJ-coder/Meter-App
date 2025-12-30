@@ -320,6 +320,44 @@ python -m http.server 5500
 
 ---
 
+## Getting Started (First Time Setup)
+
+1. **Open the app** - Navigate to `index.html` in your browser
+2. **Go to Meter Register** - Click "Meter Register" in the navigation
+3. **Create your first scheme:**
+   - Click "+ Add Scheme"
+   - Enter scheme name (e.g., "Sunset Gardens")
+   - Enter address
+   - Click "Save Scheme"
+4. **Add a building:**
+   - Switch to "Buildings" tab
+   - Click "+ Add Building"
+   - Select your scheme
+   - Enter building name (e.g., "Block A")
+   - Click "Save Building"
+5. **Add units:**
+   - Switch to "Units" tab
+   - Click "+ Add Unit" for each unit
+   - Select building
+   - Enter unit number (e.g., "A101")
+   - Optionally add owner name
+6. **Add meters:**
+   - Switch to "Meters" tab
+   - Add a **BULK** meter for the scheme
+   - Add **UNIT** meters for each unit
+   - Enter meter numbers and last readings
+7. **Generate QR codes:**
+   - Go to "QR Codes" page
+   - Select each meter
+   - Download/print QR codes
+   - Attach near physical meters
+
+**Note:** The app starts empty - no seed data. This ensures you can test with your real schemes without confusion.
+
+To clear all data and start over: Use the "Clear All Data" button on the dashboard.
+
+---
+
 ## File Structure (Current)
 
 ```

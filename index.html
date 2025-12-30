@@ -61,6 +61,7 @@
                 <a href="reading-cycle.html#capture" class="btn btn-secondary">Capture Readings</a>
                 <a href="review.html" class="btn btn-secondary">Review Exceptions</a>
                 <a href="export.html" class="btn btn-secondary">Export Data</a>
+                <button class="btn btn-danger" onclick="clearAllData()" style="margin-left: auto;">Clear All Data</button>
             </div>
         </section>
 
@@ -78,8 +79,20 @@
         import { storage } from './assets/storage.js';
         import { initializeSeedData } from './assets/app.js';
 
-        // Initialize seed data on first run
-        initializeSeedData();
+        // Initialize seed data on first run (disabled by default)
+        // Uncomment the line below to enable seed data:
+        // initializeSeedData();
+
+        // Clear all data function
+        window.clearAllData = function() {
+            if (confirm('⚠️ WARNING: This will delete ALL data (schemes, buildings, units, meters, readings, cycles). This cannot be undone. Are you sure?')) {
+                if (confirm('Really sure? This action is permanent.')) {
+                    storage.clearAll();
+                    alert('All data cleared. Refreshing page...');
+                    location.reload();
+                }
+            }
+        };
 
         // Load dashboard data
         function loadDashboard() {
