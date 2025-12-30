@@ -104,7 +104,7 @@
                 const units = storage.getAll('units').filter(u => u.building_id === building.id);
                 const unitIds = units.map(u => u.id);
                 const bulkMeter = storage.getAll('meters').find(m => 
-                    m.type === 'bulk' && unitIds.includes(m.unit_id)
+                    m.meter_type === 'BULK' && unitIds.includes(m.unit_id)
                 );
                 return !!bulkMeter;
             });
@@ -121,7 +121,7 @@
                 const scheme = storage.get('schemes', building.scheme_id);
                 const units = storage.getAll('units').filter(u => u.building_id === building.id);
                 const submeters = storage.getAll('meters').filter(m => 
-                    m.type === 'submeter' && units.map(u => u.id).includes(m.unit_id)
+                    m.meter_type === 'UNIT' && units.map(u => u.id).includes(m.unit_id)
                 );
                 
                 let label = building.name;
@@ -149,7 +149,7 @@
             const units = storage.getAll('units').filter(u => u.building_id === buildingId);
             const unitIds = units.map(u => u.id);
             const bulkMeter = storage.getAll('meters').find(m => 
-                m.type === 'bulk' && unitIds.includes(m.unit_id)
+                m.meter_type === 'BULK' && unitIds.includes(m.unit_id)
             );buildingId = document.getElementById('building-select').value;
             const building = storage.get('buildings', buildingId);
             const link = document.createElement('a');
@@ -161,7 +161,7 @@
 
             // Count submeters
             const submeters = storage.getAll('meters').filter(m => 
-                m.type === 'submeter' && unitIds.includes(m.unit_id)
+                m.meter_type === 'UNIT' && unitIds.includes(m.unit_id)
             );
             
             // Build reader URL with bulk_meter_id

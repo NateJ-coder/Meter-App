@@ -83,7 +83,7 @@
         return null;
       }
 
-      if (bulkMeter.type !== 'bulk') {
+      if (bulkMeter.meter_type !== 'BULK') {
         showError('This QR code is not for a bulk meter. Please scan the building\'s bulk meter QR code.');
         return null;
       }
@@ -110,7 +110,7 @@
       const buildingUnits = storage.getAll('units').filter(u => u.building_id === building.id);
       const unitIds = buildingUnits.map(u => u.id);
       const submeters = allMeters
-        .filter(m => m.type === 'submeter' && unitIds.includes(m.unit_id))
+        .filter(m => m.meter_type === 'UNIT' && unitIds.includes(m.unit_id))
         .sort((a, b) => {
           const unitA = storage.get('units', a.unit_id);
           const unitB = storage.get('units', b.unit_id);
@@ -140,7 +140,7 @@
       const buildingUnits = storage.getAll('units').filter(u => u.building_id === building.id);
       const unitIds = buildingUnits.map(u => u.id);
       const submeters = allMeters
-        .filter(m => m.type === 'submeter' && unitIds.includes(m.unit_id))
+        .filter(m => m.meter_type === 'UNIT' && unitIds.includes(m.unit_id))
         .sort((a, b) => {
           const unitA = storage.get('units', a.unit_id);
           const unitB = storage.get('units', b.unit_id);
