@@ -1,309 +1,342 @@
-# Fuzio Electricity Readings App (Bulk + Submeters)
+# Fuzio Electricity Readings App
 
-A lightweight, audit-friendly web app to standardise monthly electricity meter readings for sectional title schemes using a **bulk supply meter** plus **unit submeters**.  
-It replaces "WhatsApp + spreadsheets + site runs" with a clean workflow: **meter register → reading cycle → photo-verified capture → automated validation/flagging → admin review → export for billing + trustee reporting**.
+**Bulk + Submeter Readings | Role-Separated | Audit-Friendly**
 
-This repo starts as a **no-backend skeleton** (HTML + CSS + vanilla JS + localStorage) so we can prove the workflow fast, then harden it into a production system.
+A lightweight, audit-friendly web app to standardise monthly electricity meter readings for sectional title schemes using a **bulk supply meter** plus **unit submeters**.
+
+It replaces *"WhatsApp + spreadsheets + site runs"* with a clean, controlled workflow:
+
+**Meter Register → Reading Cycle → On-Site Capture (QR) → Automated Validation → Admin Review → Export for Billing & Trustees**
+
+This repo currently runs as a **no-backend skeleton** (HTML + CSS + vanilla JS + localStorage) to prove the workflow quickly. It is designed to harden cleanly into a production system.
 
 ---
 
 ## Why this exists
 
-Most schemes don't have automated meter telemetry. The pain is operational, not theoretical:
+Most schemes do **not** have automated meter telemetry. The problem is operational:
 
-- Staff drive to buildings to read meters (time + cost + access issues).
-- Admin captures numbers manually into spreadsheets (errors happen).
-- Owners dispute charges; trustees want proof; staff waste time rechecking.
-- There's no consistent audit trail (who read what, when, with what evidence).
+* Staff drive to sites to read meters (time, access, cost).
+* Admin captures readings manually into spreadsheets (errors happen).
+* Owners dispute charges; trustees want proof.
+* There is no consistent audit trail (who read what, when, and where).
 
-This app solves the real problem: **accurate capture and allocation with evidence, exceptions, and exports**.
-
----
-
-## Primary users (roles)
-
-### 1) On-site Reader (Caretaker / Security / Trustee / Nominee)
-- Captures unit meter readings each month (mobile-friendly).
-- Takes a **photo of the meter face** for proof.
-- Adds notes for access issues / broken meters / anomalies.
-
-### 2) Admin (Fuzio – e.g., Zerilda)
-- Manages meter registers and reading cycles.
-- Reviews exceptions/flags.
-- Marks readings as Approved / Estimated / Needs Site Visit.
-- Exports billing inputs and trustee summaries.
-
-### 3) Trustee (Body Corporate oversight)
-- Views monthly scheme summary (usage, common area consumption, losses, anomalies).
-- Uses reports for AGM packs / governance / queries.
-
-> In later phases: Portfolio Manager view, Auditor pack exports, and optional owner-facing statements.
+This app solves the real problem:
+**accurate capture + evidence + exception handling + clean exports.**
 
 ---
 
-## How the monthly workflow runs (end-to-end)
+## Primary user roles (intentional separation)
 
-### Step 0 — Meter Register (once-off + maintenance)
-- Capture a scheme's structure: Scheme → Buildings → Units.
-- Register meters:
-  - **BULK** meter (supply point for scheme)
-  - **UNIT** meters (per unit submeter)
-  - Optional **COMMON** meter(s) (if separately measured)
+This app is designed around **two distinct roles** with different responsibilities and access paths.
+
+### 1. On-Site Meter Reader
+
+*(Caretaker / Security / Trustee / Nominee)*
+
+**Purpose:** Mechanical capture, not decision-making.
+
+**Can do:**
+
+* Access assigned meters via QR code
+* Capture current reading
+* Attach meter photo (proof)
+* Add brief notes (access issues, faults)
+* Submit reading
+
+**Cannot do:**
+
+* Manage schemes, meters, or units
+* Open/close cycles
+* Review or approve readings
+* Export data
+* See other buildings or schemes
+
+> The reader's job is simple, fast, and mistake-resistant.
+
+---
+
+### 2. Admin (Fuzio Office – e.g. Zerilda)
+
+**Purpose:** Control, validation, reconciliation, and reporting.
+
+**Can do:**
+
+* Manage meter registers (schemes, buildings, units, meters)
+* Open and close reading cycles
+* Review flagged and missing readings
+* Approve, estimate, or escalate to site visit
+* Reconcile bulk vs unit consumption
+* Export billing and trustee reports
+
+Admins work in **exceptions and outcomes**, not raw capture.
+
+---
+
+## QR-based Reader Access (Next Build Step)
+
+To enforce role separation without training friction, the system introduces **QR-based entry for on-site readers**.
+
+### Why QR codes?
+
+* No usernames or passwords for field staff
+* No navigation confusion
+* Physical meter ↔ digital record linkage
+* Scan → capture → done
+
+---
+
+### QR Code Structure
+
+Each QR code encodes a direct link to a reader-only capture page:
+
+```
+/reader.html?scheme=SCHEME_ID&meter=METER_ID
+```
+
+Examples:
+
+* Bulk meter QR (electrical room)
+* Unit meter QR (inside meter cupboard)
+* Laminated fallback QR per building
+
+---
+
+### Reader Page (`reader.html`) – Scope & Behaviour
+
+This page is **not linked** in the main navigation.
+
+**What it does:**
+
+1. Reads `scheme_id` and `meter_id` from the URL
+2. Checks if there is an **OPEN reading cycle**
+3. Loads meter details (read-only)
+4. Displays:
+
+   * Last reading
+   * Capture form
+   * Photo upload field
+   * Notes
+5. Submits reading into the active cycle
+
+**If no open cycle exists:**
+
+> "No open reading cycle. Please contact the managing agent."
+
+No menus. No dashboards. No admin controls.
+
+---
+
+## Monthly Workflow (End-to-End)
+
+### Step 0 — Meter Register (Admin)
+
+Once-off and maintained as needed.
+
+* Scheme → Buildings → Units
+* Register meters:
+
+  * **BULK** (main supply)
+  * **UNIT** (per-unit submeter)
+  * Optional **COMMON** meters
 
 Each meter stores:
-- meter_number / meter_id
-- meter_type (BULK | UNIT | COMMON)
-- unit linkage (for UNIT meters)
-- last reading, status (active/faulty/inaccessible), notes, photos
 
-### Step 1 — Open a Reading Cycle (monthly)
+* Meter number
+* Meter type
+* Linked unit (if applicable)
+* Last reading
+* Status (active / faulty / inaccessible)
+* Notes
+
+---
+
+### Step 1 — Open Reading Cycle (Admin)
+
 Admin opens a cycle:
-- Scheme
-- Start date / end date
-- Status: **OPEN**
 
-This creates the "work order" for the month.
+* Scheme
+* Start date / end date
+* Status = **OPEN**
 
-### Step 2 — Capture Readings (on-site, mobile-friendly)
-For each UNIT meter:
-- reading value
-- reading date/time
-- meter photo
-- notes (optional)
+This creates the official monthly work order.
 
-### Step 3 — Auto-calc + Auto-flag
-The app calculates consumption and flags problems:
-- `unit_kWh = current_reading - previous_reading`
+---
 
-Flags generated automatically:
-- Backward reading (current < previous)
-- Huge spike (e.g., > 3× average of last 3 cycles)
-- Missing reading (no capture in cycle)
-- Duplicate meter number (data hygiene issue)
-- Optional: suspicious "exact same as last month" (if desired)
+### Step 2 — Capture Readings (On-Site via QR)
 
-### Step 4 — Admin Review (exceptions first)
-Admin views:
-- "Meters not read"
-- "Flagged readings"
-- Filters by building/unit/flag type
+On-site reader:
+
+* Scans QR code
+* Enters reading
+* Takes photo
+* Adds notes
+* Submits
+
+Readings are timestamped and linked to the meter and cycle.
+
+---
+
+### Step 3 — Auto-Calculation & Auto-Flagging
+
+The system calculates:
+
+```
+consumption = current_reading − previous_reading
+```
+
+Automatic flags:
+
+* Backward reading
+* Huge spike vs last 3 cycles
+* Zero / unchanged consumption
+* Missing meters
+
+No admin judgement required at capture time.
+
+---
+
+### Step 4 — Admin Review (Exceptions First)
+
+Admin reviews:
+
+* Flagged readings
+* Missing readings
 
 Admin actions:
-- **Approve** (valid)
-- **Estimate** (use policy; note it for true-up next month)
-- **Needs Site Visit** (Antonio / staff intervention required)
-- Mark meter as **faulty** if needed (escalation workflow)
 
-### Step 5 — Close Cycle (locks the month)
-When ready:
-- Status becomes **CLOSED**
-- Data is locked for audit consistency
-- Exports become the official "month pack"
+* **Approve** (valid)
+* **Estimate** (policy-based, marked for true-up)
+* **Needs Site Visit**
+* Mark meter faulty/inaccessible if required
 
-### Step 6 — Export (billing + trustees)
+---
+
+### Step 5 — Close Cycle (Admin)
+
+Once satisfied:
+
+* Cycle status → **CLOSED**
+* Data is locked
+* Exports become official audit records
+
+---
+
+### Step 6 — Export (Billing + Trustees)
+
 Exports include:
-- Per-unit consumption + flags + notes (CSV)
-- Scheme-level summary CSV:
-  - bulk_kWh
-  - sum_units_kWh
-  - common_kWh (bulk - sum units)
-  - losses_percent
+
+* **Unit Readings CSV**
+
+  * Per-unit consumption
+  * Flags
+  * Notes
+* **Scheme Summary CSV**
+
+  * Bulk kWh
+  * Sum of unit kWh
+  * Common area kWh
+  * Losses %
 
 ---
 
-## How bulk + submeters are handled (the core math)
+## Bulk + Submeter Reconciliation (Core Logic)
 
-This app is built around the common "bulk + submeter" scheme model:
+* `unit_kWh = current − previous`
+* `sum_units_kWh = Σ(unit_kWh)`
+* `bulk_kWh = bulk_current − bulk_previous`
+* `common_kWh = bulk_kWh − sum_units_kWh`
+* `losses_% = (common_kWh / bulk_kWh) × 100`
 
-### Unit consumption
-For each unit meter in a cycle:
-- **unit_kWh** = `current_reading - previous_reading`
+Common kWh represents:
 
-### Scheme totals
-- **sum_units_kWh** = `Σ(unit_kWh)` across all unit meters captured/approved
-
-### Bulk consumption
-If the scheme bulk meter is captured for the same cycle:
-- **bulk_kWh** = `bulk_current - bulk_previous`
-
-### Common area + losses (reconciliation)
-- **common_kWh** = `bulk_kWh - sum_units_kWh`
-
-Depending on scheme layout, `common_kWh` typically represents:
-- common property consumption (lights, gates, pumps, lift)
-- electrical losses
-- meter drift / timing differences
-- missing/estimated reads
-
-### Losses %
-- **losses_%** = `(common_kWh / bulk_kWh) * 100` (when bulk_kWh > 0)
-
-### When meters are missing / estimated
-Reality happens. The app supports:
-- **Missing**: meter not read → flagged
-- **Estimated**: admin can estimate, mark it, and keep it visible for true-up
-- **Faulty**: meter flagged faulty → escalated
-- **Access issue**: meter marked inaccessible → "site visit required"
-
-This is why the app includes an exception queue: **the workflow is designed for imperfect inputs**.
+* Common property consumption
+* Electrical losses
+* Meter drift
+* Missing / estimated reads
 
 ---
 
-## Validation, audit trail & dispute-proofing
+## Validation, Audit Trail & Dispute-Proofing
 
-To reduce disputes and rework:
-- **Photo per reading** (proof of captured value)
-- Timestamped captures (when it was taken)
-- Role-based actions (who approved/estimated)
-- Cycle lock on close (prevents "silent edits")
+* Photo per reading (proof)
+* Timestamped capture
+* Cycle locking
+* Flag history
+* Admin review actions stored
 
-Planned "Dispute Pack" export (Phase 2+):
-- last 6 cycles of readings for a unit
-- photos
-- flag history
-- calculation steps + notes
-- admin actions audit trail
+**Planned Dispute Pack (Phase 2):**
 
----
-
-## What the skeleton includes today (this repo)
-
-This repo is intentionally simple and fast to run:
-- Plain HTML/CSS/vanilla JS UI (mobile-friendly)
-- localStorage persistence (no backend yet)
-- Meter register CRUD
-- Open/close reading cycles
-- Reading capture with photo placeholder field
-- Validation + flagging rules
-- Review queue (approve/estimate/site visit)
-- CSV exports (unit-level + scheme summary)
-- Seed demo data on first run (1 scheme, 1 building, 6 units, 1 bulk meter, 6 unit meters)
+* Last 6 readings + photos
+* Tariff source
+* Calculation steps
+* Admin actions log
 
 ---
 
-## Roadmap (realistic build plan)
+## Current Skeleton Includes
 
-### Phase 0 — Skeleton (1–2 days)
-**Goal:** a working demo that shows the full workflow end-to-end.
-- Meter register + reading cycle + capture + flags + review + export
-
-### Phase 1 — Pilot in one live scheme (Week 1)
-**Goal:** match the current spreadsheet workflow exactly, but faster and safer.
-- Import/export mapping to current Zerilda sheet
-- Field capture tested with on-site reader
-- Exception handling policy agreed with trustees/admin
-
-### Phase 2 — "Steam engine" (Weeks 2–4)
-**Goal:** reduce disputes, reduce manual work, and make trustee reporting automatic.
-- Full bulk reconciliation + losses reporting
-- Better estimation rules + true-up logic
-- Dispute pack generator
-- Role permissions + audit trail
-- Training + SOPs + rollout checklist
-
-### Phase 3 — Scale across all schemes (Week 4–6+ depending on scope)
-- Bulk import of meter registers
-- Portfolio dashboards (multi-scheme)
-- Integrations (accounting exports, vendor imports where applicable)
+* HTML/CSS/vanilla JS UI
+* localStorage persistence
+* Meter register CRUD
+* Reading cycle open/close
+* Reading capture
+* Validation & flags
+* Admin review queue
+* CSV exports
+* Seed demo data
 
 ---
 
-## Success metrics (what "working" means)
+## Immediate Next Build Steps
 
-- 70–90% reduction in routine site visits (Antonio becomes exception-based auditor)
-- >95% of meters captured on time each cycle
-- Clear audit trail for disputes (photo + history + approval actions)
-- Admin export time reduced from hours/days → minutes
-- Trustees get consistent monthly reporting (common kWh, losses %, anomalies)
+**Phase 0.5 — Role Separation**
 
----
+* Add `reader.html`
+* Implement QR-based entry
+* Restrict reader to capture-only flow
 
-## Future integrations (optional, but planned)
+**Phase 1 — Pilot Scheme**
 
-- CSV templates tailored to finance/accounting system imports
-- Notifications/reminders (email/WhatsApp) for on-site readers
-- Vendor imports (prepaid platforms if ever needed)
-- OCR support (meter photo → suggested reading)
-- Backend + database + authentication (multi-user, role-based access)
-- Offline-first mobile capture with background sync
+* Test with one live building
+* Validate on-site capture
+* Align admin review workflow
 
 ---
 
-## How to run this skeleton (localhost)
+## How to Run (Localhost)
 
-This is a pure client-side app — no backend, no database, no dependencies. Everything runs in your browser with localStorage.
+### VS Code Live Server (recommended)
 
-### Option A: VS Code Live Server (recommended)
-1. Open the project folder in VS Code
-2. Install the "Live Server" extension (if not already installed)
-3. Right-click `index.html` and select "Open with Live Server"
-4. App opens at `http://127.0.0.1:5500/`
+1. Open project folder
+2. Right-click `index.html`
+3. Open with Live Server
 
-### Option B: Python HTTP server
-```powershell
-cd "c:\Projects\Meter App"
+### Python HTTP Server
+
+```bash
 python -m http.server 5500
 ```
-Then open `http://localhost:5500/` in your browser.
-
-### Option C: Any other local server
-Any static file server works. Just serve the root folder.
 
 ---
 
-## Demo data
-
-On first run, the app seeds demo data:
-- **Scheme**: Fuzio Gardens
-- **Building**: Block A
-- **Units**: A101, A102, A103, A201, A202, A203
-- **Meters**: 1 BULK meter + 6 UNIT meters (one per unit)
-
-You can immediately:
-1. View the meter register (`meters.html`)
-2. Open a reading cycle (`reading-cycle.html`)
-3. Capture readings for all 6 units
-4. See auto-generated flags (try entering a backward reading!)
-5. Review exceptions (`review.html`)
-6. Export CSVs (`export.html`)
-
----
-
-## File structure
+## File Structure (Current)
 
 ```
-Meter App/
-├── index.html              # Dashboard (overview + quick links)
-├── meters.html             # Meter register CRUD
-├── reading-cycle.html      # Open/close cycle + capture readings
-├── review.html             # Exceptions/flags review queue
-├── export.html             # CSV download page
-├── assets/
-│   ├── styles.css          # Shared styling (mobile-friendly)
-│   ├── app.js              # Shared helpers + nav
-│   ├── storage.js          # localStorage data layer (CRUD)
-│   ├── validation.js       # Validation + flag rules
-│   ├── csv.js              # CSV export logic
-│   └── router.js           # Simple client-side nav helpers
-├── README.md               # This file
-└── .gitignore              # Git ignore rules
+/index.html            # Admin dashboard
+/meters.html           # Meter register
+/reading-cycle.html    # Cycle management & capture (admin)
+/review.html           # Exception review
+/export.html           # CSV exports
+/reader.html           # QR-based on-site capture (next step)
+assets/
+  app.js
+  storage.js
+  validation.js
+  csv.js
+  router.js
+  styles.css
 ```
-
----
-
-## Notes for production hardening (Phase 2+)
-
-When moving from skeleton → production:
-- Replace localStorage with backend API + database (PostgreSQL recommended)
-- Add authentication + role-based permissions
-- Implement photo upload + storage (S3 / blob storage)
-- Add proper form validation + error handling
-- Lock closed cycles at database level
-- Add audit trail table (who did what, when)
-- Implement proper estimation policies + true-up logic
-- Add notifications (email/SMS for on-site readers)
-- Offline-first mobile PWA for field capture
-- Export templates tailored to accounting system imports
 
 ---
 
@@ -313,7 +346,5 @@ Proprietary — Fuzio Properties internal use only.
 
 ---
 
-## Contact
-
-For questions, escalations, or deployment support:  
-**Fuzio Properties IT Team**
+If you paste this in, the **code now has a clear north star**.
+Next, we turn this into `reader.html` without disturbing anything else.
