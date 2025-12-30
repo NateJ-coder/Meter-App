@@ -150,11 +150,9 @@
             const unitIds = units.map(u => u.id);
             const bulkMeter = storage.getAll('meters').find(m => 
                 m.meter_type === 'BULK' && unitIds.includes(m.unit_id)
-            );buildingId = document.getElementById('building-select').value;
-            const building = storage.get('buildings', buildingId);
-            const link = document.createElement('a');
-            link.href = qrImage.src;
-            link.download = `building-qr-${building.name.replace(/\s+/g, '-')
+            );
+
+            if (!bulkMeter) {
                 alert('No bulk meter found for this building');
                 return;
             }
@@ -186,19 +184,21 @@
 
         window.downloadQR = function() {
             const qrImage = document.getElementById('qr-image');
+            const buildingId = document.getElementById('building-select').value;
+            const building = storage.get('buildings', buildingId);
             const link = document.createElement('a');
             link.href = qrImage.src;
-            link.download = `meter-qr-${document.getElementById('meter-select').value}.png`;
+            link.download = `building-qr-${building.name.replace(/\s+/g, '-')}.png`;
             link.click();
         };
 
         window.testReaderLink = function() {
-            Buildings();
-        
-        // Refresh buildings when page becomes visible (catches updates from other tabs)
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) {
-                loadBuilding
+            const readerUrl = document.getElementById('reader-url').value;
+            if (readerUrl) {
+                window.open(readerUrl, '_blank');
+            }
+        };
+
         window.printQR = function() {
             const qrImage = document.getElementById('qr-image').src;
             const meterInfo = document.getElementById('meter-info').innerHTML;
@@ -229,12 +229,12 @@
         };
 
         // Initial load
-        loadMeters();
+        loadBuildings();
         
-        // Refresh meters when page becomes visible (catches updates from other tabs)
+        // Refresh buildings when page becomes visible (catches updates from other tabs)
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
-                loadMeters();
+                loadBuildings();
             }
         });
     </script>
