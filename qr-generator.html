@@ -24,18 +24,18 @@
 
         <section class="card">
             <div class="card-header">
-                <h2>Select Building (Bulk Meter)</h2>
-                <button class="btn btn-secondary" onclick="loadBuildings()">🔄 Refresh Buildings</button>
+                <h2>Select Scheme</h2>
+                <button class="btn btn-secondary" onclick="loadSchemes()">🔄 Refresh Schemes</button>
             </div>
             <div class="form-group">
-                <label for="building-select">Building</label>
-                <select id="building-select" onchange="generateQR()">
-                    <option value="">-- Select a building --</option>
+                <label for="scheme-select">Scheme</label>
+                <select id="scheme-select" onchange="generateQR()">
+                    <option value="">-- Select a scheme --</option>
                 </select>
             </div>
             <div class="info-box" style="background: #e7f3ff; border-left-color: #2196F3;">
-                <strong>ℹ️ One QR code per building</strong><br>
-                Only the bulk meter gets a QR code. When scanned, it will walk the reader through capturing the bulk meter reading, then automatically proceed through all submeters in sequence.
+                <strong>ℹ️ One QR code per scheme</strong><br>
+                The bulk meter serves the entire scheme. When scanned, the reader will capture the bulk meter reading first, then walk through all submeters across all buildings in the scheme.
             </div>
         </section>
 
@@ -60,14 +60,14 @@
         <section class="card">
             <h2>Instructions</h2>
             <ol>
-                <li>Select a building from the dropdown</li>
-                <li>A QR code will be generated for that building's bulk meter</li>
+                <li>Select a scheme from the dropdown</li>
+                <li>A QR code will be generated for that scheme's bulk meter</li>
                 <li><strong>For testing:</strong> Click "Test Reader Link" button to open in a new tab</li>
                 <li>Download or print the QR code</li>
-                <li>Attach the QR code to the building's bulk meter</li>
+                <li>Attach the QR code to the scheme's bulk meter location</li>
             </ol>
             <p class="text-muted mt-2">
-                <strong>Workflow:</strong> When a reader scans the QR code, they'll capture the bulk meter reading first, then the app will automatically walk them through all submeters in sequence (based on unit numbers).
+                <strong>Workflow:</strong> When a reader scans the QR code, they'll capture the bulk meter reading first, then the app will automatically walk them through all submeters across all buildings in the scheme (organized by building and unit number).
             </p>
             <div class="info-box" style="background: #fff3cd; border-left-color: #ffc107; margin-top: 1rem;">
                 <strong>⚠️ Current Limitation (localStorage skeleton):</strong><br>
@@ -83,95 +83,99 @@
     <script type="module">
         import { storage } from './assets/storage.js';
 
-        // Load buildings into dropdown (only buildings with bulk meters)
-        window.loadBuildings = function() {
-            const buildings = storage.getAll('buildings');
-            const select = document.getElementById('building-select');
+        // Load schemes into dropdown (only schemes with bulk meters)
+        window.loadSchemes = function() {
+            const schemes = storage.getAll('schemes');
+            const select = document.getElementById('scheme-select');
             
             // Clear existing options except the first placeholder
-            select.innerHTML = '<option value="">-- Select a building --</option>';
+            select.innerHTML = '<option value="">-- Select a scheme --</option>';
             
-            if (buildings.length === 0) {
+            if (schemes.length === 0) {
                 const option = document.createElement('option');
                 option.disabled = true;
-                option.textContent = 'No buildings found. Create buildings in Meter Register first.';
+                option.textContent = 'No schemes found. Create schemes in Meter Register first.';
                 select.appendChild(option);
                 return;
             }
             
-            // Find buildings that have a bulk meter
-            const buildingsWithBulk = buildings.filter(building => {
-                const units = storage.getAll('units').filter(u => u.building_id === building.id);
-                const unitIds = units.map(u => u.id);
+            // Find schemes that have a bulk meter
+            const schemesWithBulk = schemes.filter(scheme => {
                 const bulkMeter = storage.getAll('meters').find(m => 
-                    m.meter_type === 'BULK' && unitIds.includes(m.unit_id)
+                    m.meter_type === 'BULK' && m.scheme_id === scheme.id
                 );
                 return !!bulkMeter;
             });
 
-            if (buildingsWithBulk.length === 0) {
+            if (schemesWithBulk.length === 0) {
                 const option = document.createElement('option');
                 option.disabled = true;
-                option.textContent = 'No buildings with bulk meters found.';
+                option.textContent = 'No schemes with bulk meters found.';
                 select.appendChild(option);
                 return;
             }
             
-            buildingsWithBulk.forEach(building => {
-                const scheme = storage.get('schemes', building.scheme_id);
-                const units = storage.getAll('units').filter(u => u.building_id === building.id);
+            schemesWithBulk.forEach(scheme => {
+                const buildings = storage.getBuildings(scheme.id);
+                const allUnits = [];
+                buildings.forEach(b => {
+                    allUnits.push(...storage.getUnits(b.id));
+                });
+                const unitIds = allUnits.map(u => u.id);
                 const submeters = storage.getAll('meters').filter(m => 
-                    m.meter_type === 'UNIT' && units.map(u => u.id).includes(m.unit_id)
+                    m.meter_type === 'UNIT' && unitIds.includes(m.unit_id)
                 );
                 
-                let label = building.name;
-                if (scheme) label = `${scheme.name} - ${label}`;
-                label += ` (${submeters.length} submeters)`;
+                let label = scheme.name;
+                label += ` (${buildings.length} buildings, ${submeters.length} submeters)`;
                 
                 const option = document.createElement('option');
-                option.value = building.id;
+                option.value = scheme.id;
                 option.textContent = label;
                 select.appendChild(option);
             });
         };
 
         window.generateQR = function() {
-            const buildingId = document.getElementById('building-select').value;
-            if (!buildingId) {
+            const schemeId = document.getElementById('scheme-select').value;
+            if (!schemeId) {
                 document.getElementById('qr-output').style.display = 'none';
                 return;
             }
 
-            const building = storage.get('buildings', buildingId);
-            const scheme = storage.get('schemes', building.scheme_id);
+            const scheme = storage.get('schemes', schemeId);
             
-            // Find the bulk meter for this building
-            const units = storage.getAll('units').filter(u => u.building_id === buildingId);
-            const unitIds = units.map(u => u.id);
+            // Find the bulk meter for this scheme
             const bulkMeter = storage.getAll('meters').find(m => 
-                m.meter_type === 'BULK' && unitIds.includes(m.unit_id)
+                m.meter_type === 'BULK' && m.scheme_id === schemeId
             );
 
             if (!bulkMeter) {
-                alert('No bulk meter found for this building');
+                alert('No bulk meter found for this scheme');
                 return;
             }
 
-            // Count submeters
+            // Count buildings and submeters
+            const buildings = storage.getBuildings(schemeId);
+            const allUnits = [];
+            buildings.forEach(b => {
+                allUnits.push(...storage.getUnits(b.id));
+            });
+            const unitIds = allUnits.map(u => u.id);
             const submeters = storage.getAll('meters').filter(m => 
                 m.meter_type === 'UNIT' && unitIds.includes(m.unit_id)
             );
             
-            // Build reader URL with bulk_meter_id
+            // Build reader URL with scheme_id
             const baseUrl = window.location.origin + window.location.pathname.replace('qr-generator.html', '');
-            const readerUrl = `${baseUrl}reader.html?bulk_meter_id=${bulkMeter.id}`;
+            const readerUrl = `${baseUrl}reader.html?scheme_id=${schemeId}`;
             
             // Generate QR code using API
             const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(readerUrl)}`;
             
-            // Display building info
-            let infoHtml = `<strong>Scheme:</strong> ${scheme ? scheme.name : 'Unknown'}<br>`;
-            infoHtml += `<strong>Building:</strong> ${building.name}<br>`;
+            // Display scheme info
+            let infoHtml = `<strong>Scheme:</strong> ${scheme.name}<br>`;
+            infoHtml += `<strong>Buildings:</strong> ${buildings.length}<br>`;
             infoHtml += `<strong>Bulk Meter:</strong> ${bulkMeter.meter_number}<br>`;
             infoHtml += `<strong>Submeters:</strong> ${submeters.length} units<br>`;
             infoHtml += `<strong>Total Steps:</strong> ${submeters.length + 1} (bulk + all submeters)`;
@@ -184,11 +188,11 @@
 
         window.downloadQR = function() {
             const qrImage = document.getElementById('qr-image');
-            const buildingId = document.getElementById('building-select').value;
-            const building = storage.get('buildings', buildingId);
+            const schemeId = document.getElementById('scheme-select').value;
+            const scheme = storage.get('schemes', schemeId);
             const link = document.createElement('a');
             link.href = qrImage.src;
-            link.download = `building-qr-${building.name.replace(/\s+/g, '-')}.png`;
+            link.download = `scheme-qr-${scheme.name.replace(/\s+/g, '-')}.png`;
             link.click();
         };
 
@@ -225,12 +229,12 @@
                 </body>
                 </html>
             `);
-            printWindow.document.close();
-        };
-
-        // Initial load
-        loadBuildings();
+            Schemes();
         
+        // Refresh schemes when page becomes visible (catches updates from other tabs)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                loadScheme
         // Refresh buildings when page becomes visible (catches updates from other tabs)
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
