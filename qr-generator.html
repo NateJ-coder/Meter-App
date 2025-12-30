@@ -229,16 +229,16 @@
                 </body>
                 </html>
             `);
-            Schemes();
+            printWindow.document.close();
+        };
+
+        // Initial load
+        loadSchemes();
         
         // Refresh schemes when page becomes visible (catches updates from other tabs)
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
-                loadScheme
-        // Refresh buildings when page becomes visible (catches updates from other tabs)
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) {
-                loadBuildings();
+                loadSchemes();
             }
         });
     </script>
