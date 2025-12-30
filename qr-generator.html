@@ -24,14 +24,18 @@
 
         <section class="card">
             <div class="card-header">
-                <h2>Select Meter</h2>
-                <button class="btn btn-secondary" onclick="loadMeters()">🔄 Refresh Meters</button>
+                <h2>Select Building (Bulk Meter)</h2>
+                <button class="btn btn-secondary" onclick="loadBuildings()">🔄 Refresh Buildings</button>
             </div>
             <div class="form-group">
-                <label for="meter-select">Meter</label>
-                <select id="meter-select" onchange="generateQR()">
-                    <option value="">-- Select a meter --</option>
+                <label for="building-select">Building</label>
+                <select id="building-select" onchange="generateQR()">
+                    <option value="">-- Select a building --</option>
                 </select>
+            </div>
+            <div class="info-box" style="background: #e7f3ff; border-left-color: #2196F3;">
+                <strong>ℹ️ One QR code per building</strong><br>
+                Only the bulk meter gets a QR code. When scanned, it will walk the reader through capturing the bulk meter reading, then automatically proceed through all submeters in sequence.
             </div>
         </section>
 
@@ -56,14 +60,14 @@
         <section class="card">
             <h2>Instructions</h2>
             <ol>
-                <li>Select a meter from the dropdown</li>
-                <li>A QR code will be generated automatically</li>
+                <li>Select a building from the dropdown</li>
+                <li>A QR code will be generated for that building's bulk meter</li>
                 <li><strong>For testing:</strong> Click "Test Reader Link" button to open in a new tab</li>
                 <li>Download or print the QR code</li>
-                <li>Attach the QR code near the physical meter</li>
+                <li>Attach the QR code to the building's bulk meter</li>
             </ol>
             <p class="text-muted mt-2">
-                <strong>Note:</strong> Each QR code is unique to a specific meter. The reader will only be able to submit readings for that meter when they scan it.
+                <strong>Workflow:</strong> When a reader scans the QR code, they'll capture the bulk meter reading first, then the app will automatically walk them through all submeters in sequence (based on unit numbers).
             </p>
             <div class="info-box" style="background: #fff3cd; border-left-color: #ffc107; margin-top: 1rem;">
                 <strong>⚠️ Current Limitation (localStorage skeleton):</strong><br>
@@ -79,64 +83,100 @@
     <script type="module">
         import { storage } from './assets/storage.js';
 
-        // Load meters into dropdown
-        window.loadMeters = function() {
-            const meters = storage.getAll('meters');
-            const select = document.getElementById('meter-select');
+        // Load buildings into dropdown (only buildings with bulk meters)
+        window.loadBuildings = function() {
+            const buildings = storage.getAll('buildings');
+            const select = document.getElementById('building-select');
             
             // Clear existing options except the first placeholder
-            select.innerHTML = '<option value="">-- Select a meter --</option>';
+            select.innerHTML = '<option value="">-- Select a building --</option>';
             
-            if (meters.length === 0) {
+            if (buildings.length === 0) {
                 const option = document.createElement('option');
                 option.disabled = true;
-                option.textContent = 'No meters found. Create meters in Meter Register first.';
+                option.textContent = 'No buildings found. Create buildings in Meter Register first.';
                 select.appendChild(option);
                 return;
             }
             
-            meters.forEach(meter => {
-                const meterDetails = storage.getMeterWithDetails(meter.id);
-                let label = `${meter.meter_type}: ${meter.meter_number}`;
+            // Find buildings that have a bulk meter
+            const buildingsWithBulk = buildings.filter(building => {
+                const units = storage.getAll('units').filter(u => u.building_id === building.id);
+                const unitIds = units.map(u => u.id);
+                const bulkMeter = storage.getAll('meters').find(m => 
+                    m.type === 'bulk' && unitIds.includes(m.unit_id)
+                );
+                return !!bulkMeter;
+            });
+
+            if (buildingsWithBulk.length === 0) {
+                const option = document.createElement('option');
+                option.disabled = true;
+                option.textContent = 'No buildings with bulk meters found.';
+                select.appendChild(option);
+                return;
+            }
+            
+            buildingsWithBulk.forEach(building => {
+                const scheme = storage.get('schemes', building.scheme_id);
+                const units = storage.getAll('units').filter(u => u.building_id === building.id);
+                const submeters = storage.getAll('meters').filter(m => 
+                    m.type === 'submeter' && units.map(u => u.id).includes(m.unit_id)
+                );
                 
-                if (meterDetails.unit_name) {
-                    label += ` - ${meterDetails.building_name} ${meterDetails.unit_name}`;
-                } else if (meter.meter_type === 'BULK') {
-                    const scheme = storage.get('schemes', meter.scheme_id);
-                    label += ` - ${scheme ? scheme.name : 'Unknown'}`;
-                }
+                let label = building.name;
+                if (scheme) label = `${scheme.name} - ${label}`;
+                label += ` (${submeters.length} submeters)`;
                 
                 const option = document.createElement('option');
-                option.value = meter.id;
+                option.value = building.id;
                 option.textContent = label;
                 select.appendChild(option);
             });
         };
 
         window.generateQR = function() {
-            const meterId = document.getElementById('meter-select').value;
-            if (!meterId) {
+            const buildingId = document.getElementById('building-select').value;
+            if (!buildingId) {
                 document.getElementById('qr-output').style.display = 'none';
                 return;
             }
 
-            const meter = storage.getMeterWithDetails(meterId);
-            const scheme = storage.get('schemes', meter.scheme_id);
+            const building = storage.get('buildings', buildingId);
+            const scheme = storage.get('schemes', building.scheme_id);
             
-            // Build reader URL
+            // Find the bulk meter for this building
+            const units = storage.getAll('units').filter(u => u.building_id === buildingId);
+            const unitIds = units.map(u => u.id);
+            const bulkMeter = storage.getAll('meters').find(m => 
+                m.type === 'bulk' && unitIds.includes(m.unit_id)
+            );buildingId = document.getElementById('building-select').value;
+            const building = storage.get('buildings', buildingId);
+            const link = document.createElement('a');
+            link.href = qrImage.src;
+            link.download = `building-qr-${building.name.replace(/\s+/g, '-')
+                alert('No bulk meter found for this building');
+                return;
+            }
+
+            // Count submeters
+            const submeters = storage.getAll('meters').filter(m => 
+                m.type === 'submeter' && unitIds.includes(m.unit_id)
+            );
+            
+            // Build reader URL with bulk_meter_id
             const baseUrl = window.location.origin + window.location.pathname.replace('qr-generator.html', '');
-            const readerUrl = `${baseUrl}reader.html?meter_id=${meterId}`;
+            const readerUrl = `${baseUrl}reader.html?bulk_meter_id=${bulkMeter.id}`;
             
             // Generate QR code using API
             const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(readerUrl)}`;
             
-            // Display meter info
+            // Display building info
             let infoHtml = `<strong>Scheme:</strong> ${scheme ? scheme.name : 'Unknown'}<br>`;
-            if (meter.building_name) infoHtml += `<strong>Building:</strong> ${meter.building_name}<br>`;
-            if (meter.unit_name) infoHtml += `<strong>Unit:</strong> ${meter.unit_name}<br>`;
-            infoHtml += `<strong>Meter Type:</strong> ${meter.meter_type}<br>`;
-            infoHtml += `<strong>Meter Number:</strong> ${meter.meter_number}<br>`;
-            infoHtml += `<strong>Last Reading:</strong> ${meter.last_reading || 0} kWh`;
+            infoHtml += `<strong>Building:</strong> ${building.name}<br>`;
+            infoHtml += `<strong>Bulk Meter:</strong> ${bulkMeter.meter_number}<br>`;
+            infoHtml += `<strong>Submeters:</strong> ${submeters.length} units<br>`;
+            infoHtml += `<strong>Total Steps:</strong> ${submeters.length + 1} (bulk + all submeters)`;
             
             document.getElementById('meter-info').innerHTML = infoHtml;
             document.getElementById('qr-image').src = qrApiUrl;
@@ -153,12 +193,12 @@
         };
 
         window.testReaderLink = function() {
-            const readerUrl = document.getElementById('reader-url').value;
-            if (readerUrl) {
-                window.open(readerUrl, '_blank');
-            }
-        };
-
+            Buildings();
+        
+        // Refresh buildings when page becomes visible (catches updates from other tabs)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                loadBuilding
         window.printQR = function() {
             const qrImage = document.getElementById('qr-image').src;
             const meterInfo = document.getElementById('meter-info').innerHTML;

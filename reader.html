@@ -12,6 +12,7 @@
   <header class="page-header">
     <h1>Meter Reading</h1>
     <p id="context-info" class="subtitle"></p>
+    <div id="progress-info" class="badge" style="display:none; font-size: 0.9rem; margin-top: 0.5rem;"></div>
   </header>
 
   <section class="card">
@@ -53,8 +54,9 @@
   </section>
 
   <section id="success-message" class="card" style="display:none;">
-    <h2>✅ Submission received</h2>
-    <p>Thank you. The office has received this reading.</p>
+    <h2>✅ All readings captured!</h2>
+    <p>Thank you. The office has received all readings for this building.</p>
+    <a href="index.html" class="btn btn-secondary mt-2">Return to Dashboard</a>
   </section>
 </main>
 
@@ -65,57 +67,136 @@
 
   // --- Get URL params ---
   const params = new URLSearchParams(window.location.search);
-  const meterId = params.get('meter_id');
+  const bulkMeterId = params.get('bulk_meter_id');
+  const buildingId = params.get('building_id');
+  const currentIndex = parseInt(params.get('index') || '0');
 
-  // --- Load meter details from storage ---
-  function loadMeterContext() {
-    if (!meterId) {
-      showError('No meter ID provided in QR code.');
-      return null;
-    }
+  let workflowContext = null;
 
-    // Debug: Log what we're looking for
-    console.log('Looking for meter ID:', meterId);
-    console.log('Available meters:', storage.getAll('meters'));
-
-    const meter = storage.get('meters', meterId);
-    if (!meter) {
-      showError(`Meter not found (ID: ${meterId}). Please ensure you're on the same device/browser where the meter was created, or contact the office.`);
-      return null;
-    }
-
-    // Get scheme details
-    const scheme = storage.get('schemes', meter.scheme_id);
-    
-    // Get building and unit details (if UNIT meter)
-    let buildingName = '';
-    let unitName = '';
-    if (meter.unit_id) {
-      const unit = storage.get('units', meter.unit_id);
-      if (unit) {
-        unitName = unit.unit_number;
-        const building = storage.get('buildings', unit.building_id);
-        if (building) buildingName = building.name;
+  // --- Load workflow context ---
+  function loadWorkflowContext() {
+    // Starting from bulk meter QR scan
+    if (bulkMeterId && !buildingId) {
+      const bulkMeter = storage.get('meters', bulkMeterId);
+      if (!bulkMeter) {
+        showError(`Bulk meter not found (ID: ${bulkMeterId}). Please ensure you're on the same device/browser where the meter was created.`);
+        return null;
       }
+
+      if (bulkMeter.type !== 'bulk') {
+        showError('This QR code is not for a bulk meter. Please scan the building\'s bulk meter QR code.');
+        return null;
+      }
+
+      // Get building from bulk meter's unit
+      const unit = storage.get('units', bulkMeter.unit_id);
+      if (!unit) {
+        showError('Building information not found for this bulk meter.');
+        return null;
+      }
+
+      const building = storage.get('buildings', unit.building_id);
+      const scheme = storage.get('schemes', building.scheme_id);
+      
+      // Check open cycle
+      const openCycle = storage.getOpenCycle(scheme.id);
+      if (!openCycle) {
+        showError('No reading cycle is currently open. The admin must open a new cycle before readings can be captured.');
+        return null;
+      }
+
+      // Get all submeters for this building
+      const allMeters = storage.getAll('meters');
+      const buildingUnits = storage.getAll('units').filter(u => u.building_id === building.id);
+      const unitIds = buildingUnits.map(u => u.id);
+      const submeters = allMeters
+        .filter(m => m.type === 'submeter' && unitIds.includes(m.unit_id))
+        .sort((a, b) => {
+          const unitA = storage.get('units', a.unit_id);
+          const unitB = storage.get('units', b.unit_id);
+          return unitA.unit_number.localeCompare(unitB.unit_number, undefined, { numeric: true });
+        });
+
+      return {
+        bulkMeter,
+        building,
+        scheme,
+        openCycle,
+        submeters,
+        currentIndex: 0,
+        currentMeter: bulkMeter,
+        totalMeters: submeters.length + 1 // bulk + all submeters
+      };
     }
 
-    // Check if there's an open cycle for this scheme
-    const openCycle = storage.getOpenCycle(meter.scheme_id);
-    if (!openCycle) {
-      showError('No open reading cycle. Please contact the managing agent.');
-      return null;
+    // Continuing with submeters
+    if (buildingId) {
+      const building = storage.get('buildings', buildingId);
+      const scheme = storage.get('schemes', building.scheme_id);
+      const openCycle = storage.getOpenCycle(scheme.id);
+
+      // Get all submeters again
+      const allMeters = storage.getAll('meters');
+      const buildingUnits = storage.getAll('units').filter(u => u.building_id === building.id);
+      const unitIds = buildingUnits.map(u => u.id);
+      const submeters = allMeters
+        .filter(m => m.type === 'submeter' && unitIds.includes(m.unit_id))
+        .sort((a, b) => {
+          const unitA = storage.get('units', a.unit_id);
+          const unitB = storage.get('units', b.unit_id);
+          return unitA.unit_number.localeCompare(unitB.unit_number, undefined, { numeric: true });
+        });
+
+      // Determine which submeter we're on (index 1 = first submeter, 2 = second, etc.)
+      const submeterIndex = currentIndex - 1;
+      if (submeterIndex >= submeters.length) {
+        // All done!
+        showSuccess();
+        return null;
+      }
+
+      const currentMeter = submeters[submeterIndex];
+
+      return {
+        bulkMeter: null,
+        building,
+        scheme,
+        openCycle,
+        submeters,
+        currentIndex,
+        currentMeter,
+        totalMeters: submeters.length + 1
+      };
     }
 
-    // Display context
-    let contextText = `${scheme ? scheme.name : 'Unknown Scheme'}`;
-    if (buildingName) contextText += ` - ${buildingName}`;
-    if (unitName) contextText += ` - Unit ${unitName}`;
-    contextText += ` | Meter: ${meter.meter_number}`;
-    if (meter.last_reading) contextText += ` | Last Reading: ${meter.last_reading} kWh`;
+    showError('Invalid QR code. Please scan a bulk meter QR code to start.');
+    return null;
+  }
+
+  // --- Display current meter context ---
+  function displayMeterContext(context) {
+    const meter = context.currentMeter;
+    const unit = storage.get('units', meter.unit_id);
+    
+    let contextText = `${context.scheme.name} - ${context.building.name}`;
+    
+    if (context.currentIndex === 0) {
+      // Bulk meter
+      contextText += ` | BULK METER: ${meter.meter_number}`;
+      document.getElementById('progress-info').textContent = `Step 1 of ${context.totalMeters}: Bulk Meter`;
+    } else {
+      // Submeter
+      contextText += ` - Unit ${unit.unit_number} | Submeter: ${meter.meter_number}`;
+      document.getElementById('progress-info').textContent = `Step ${context.currentIndex + 1} of ${context.totalMeters}: Submeter ${context.currentIndex}`;
+    }
+    
+    if (meter.last_reading) {
+      contextText += ` | Last: ${meter.last_reading} kWh`;
+    }
 
     document.getElementById('context-info').textContent = contextText;
-
-    return { meter, scheme, openCycle };
+    document.getElementById('progress-info').style.display = 'inline-block';
+    document.getElementById('progress-info').className = context.currentIndex === 0 ? 'badge badge-primary' : 'badge badge-info';
   }
 
   function showError(message) {
@@ -124,11 +205,17 @@
     document.getElementById('error-message').style.display = 'block';
   }
 
+  function showSuccess() {
+    document.getElementById('reader-form').parentElement.style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+  }
+
   // --- Initialize page ---
-  const context = loadMeterContext();
-  if (!context) {
-    // Error already shown
-  } else {
+  workflowContext = loadWorkflowContext();
+  
+  if (workflowContext) {
+    displayMeterContext(workflowContext);
+
     // Handle submit
     document.getElementById('reader-form').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -137,16 +224,15 @@
       const photoRef = document.getElementById('photo-ref').value;
       const notes = document.getElementById('notes').value;
 
+      const meter = workflowContext.currentMeter;
+
       // Calculate consumption
-      const consumption = validation.calculateConsumption(
-        readingValue, 
-        context.meter.last_reading
-      );
+      const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
 
       // Create reading record
       const readingData = {
-        meter_id: meterId,
-        cycle_id: context.openCycle.id,
+        meter_id: meter.id,
+        cycle_id: workflowContext.openCycle.id,
         reading_value: readingValue,
         reading_date: getCurrentDateTime(),
         photo: photoRef,
@@ -160,15 +246,23 @@
       // Validate and generate flags
       readingData.flags = validation.validateReading(readingData);
 
-      // Save to readings (using existing storage system)
+      // Save to readings
       storage.create('readings', readingData);
 
       // Update meter's last reading
-      storage.update('meters', meterId, { last_reading: readingValue });
+      storage.update('meters', meter.id, { last_reading: readingValue });
 
-      // UX feedback
-      document.getElementById('reader-form').style.display = 'none';
-      document.getElementById('success-message').style.display = 'block';
+      // Move to next meter or finish
+      const nextIndex = workflowContext.currentIndex + 1;
+      
+      if (nextIndex < workflowContext.totalMeters) {
+        // Continue to next submeter
+        const nextUrl = `reader.html?building_id=${workflowContext.building.id}&index=${nextIndex}`;
+        window.location.href = nextUrl;
+      } else {
+        // All done!
+        showSuccess();
+      }
     });
   }
 </script>
