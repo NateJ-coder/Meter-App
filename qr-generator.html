@@ -23,7 +23,10 @@
         </header>
 
         <section class="card">
-            <h2>Select Meter</h2>
+            <div class="card-header">
+                <h2>Select Meter</h2>
+                <button class="btn btn-secondary" onclick="loadMeters()">🔄 Refresh Meters</button>
+            </div>
             <div class="form-group">
                 <label for="meter-select">Meter</label>
                 <select id="meter-select" onchange="generateQR()">
@@ -68,9 +71,20 @@
         import { storage } from './assets/storage.js';
 
         // Load meters into dropdown
-        function loadMeters() {
+        window.loadMeters = function() {
             const meters = storage.getAll('meters');
             const select = document.getElementById('meter-select');
+            
+            // Clear existing options except the first placeholder
+            select.innerHTML = '<option value="">-- Select a meter --</option>';
+            
+            if (meters.length === 0) {
+                const option = document.createElement('option');
+                option.disabled = true;
+                option.textContent = 'No meters found. Create meters in Meter Register first.';
+                select.appendChild(option);
+                return;
+            }
             
             meters.forEach(meter => {
                 const meterDetails = storage.getMeterWithDetails(meter.id);
@@ -88,7 +102,7 @@
                 option.textContent = label;
                 select.appendChild(option);
             });
-        }
+        };
 
         window.generateQR = function() {
             const meterId = document.getElementById('meter-select').value;
@@ -149,16 +163,24 @@
                     <div class="info">${meterInfo}</div>
                     <img src="${qrImage}" alt="QR Code">
                     <p>Scan this QR code to submit meter readings</p>
-                    <script>
+                    <script type="text/javascript">
                         window.onload = function() { window.print(); }
-                    </script>
+                    <\/script>
                 </body>
                 </html>
             `);
             printWindow.document.close();
         };
 
+        // Initial load
         loadMeters();
+        
+        // Refresh meters when page becomes visible (catches updates from other tabs)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                loadMeters();
+            }
+        });
     </script>
 </body>
 </html>
