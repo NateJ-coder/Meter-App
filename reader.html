@@ -37,49 +37,126 @@
     </form>
   </section>
 
+  <section id="error-message" class="card" style="display:none;">
+    <h2>⚠️ Unable to load meter</h2>
+    <p id="error-text"></p>
+  </section>
+
   <section id="success-message" class="card" style="display:none;">
     <h2>✅ Submission received</h2>
     <p>Thank you. The office has received this reading.</p>
   </section>
 </main>
 
-<script>
-  // --- Helper: get URL params ---
+<script type="module">
+  import { storage } from './assets/storage.js';
+  import { validation } from './assets/validation.js';
+  import { getCurrentDateTime } from './assets/app.js';
+
+  // --- Get URL params ---
   const params = new URLSearchParams(window.location.search);
-  const schemeId   = params.get('scheme_id');
-  const buildingId = params.get('building_id');
-  const meterId    = params.get('meter_id');
+  const meterId = params.get('meter_id');
 
-  // Display context
-  document.getElementById('context-info').textContent =
-    `Scheme: ${schemeId} | Building: ${buildingId} | Meter: ${meterId}`;
+  // --- Load meter details from storage ---
+  function loadMeterContext() {
+    if (!meterId) {
+      showError('No meter ID provided in QR code.');
+      return null;
+    }
 
-  // Handle submit
-  document.getElementById('reader-form').addEventListener('submit', function (e) {
-    e.preventDefault();
+    const meter = storage.get('meters', meterId);
+    if (!meter) {
+      showError('Meter not found. Please contact the office.');
+      return null;
+    }
 
-    const submission = {
-      id: Date.now().toString(),
-      scheme_id: schemeId,
-      building_id: buildingId,
-      meter_id: meterId,
-      reading_value: document.getElementById('reading-value').value,
-      photo_ref: document.getElementById('photo-ref').value,
-      notes: document.getElementById('notes').value,
-      submitted_at: new Date().toISOString(),
-      source: 'QR_READER',
-      status: 'pending'
-    };
+    // Get scheme details
+    const scheme = storage.get('schemes', meter.scheme_id);
+    
+    // Get building and unit details (if UNIT meter)
+    let buildingName = '';
+    let unitName = '';
+    if (meter.unit_id) {
+      const unit = storage.get('units', meter.unit_id);
+      if (unit) {
+        unitName = unit.unit_number;
+        const building = storage.get('buildings', unit.building_id);
+        if (building) buildingName = building.name;
+      }
+    }
 
-    // Save to localStorage
-    const existing = JSON.parse(localStorage.getItem('reader_submissions') || '[]');
-    existing.push(submission);
-    localStorage.setItem('reader_submissions', JSON.stringify(existing));
+    // Check if there's an open cycle for this scheme
+    const openCycle = storage.getOpenCycle(meter.scheme_id);
+    if (!openCycle) {
+      showError('No open reading cycle. Please contact the managing agent.');
+      return null;
+    }
 
-    // UX feedback
-    document.getElementById('reader-form').style.display = 'none';
-    document.getElementById('success-message').style.display = 'block';
-  });
+    // Display context
+    let contextText = `${scheme ? scheme.name : 'Unknown Scheme'}`;
+    if (buildingName) contextText += ` - ${buildingName}`;
+    if (unitName) contextText += ` - Unit ${unitName}`;
+    contextText += ` | Meter: ${meter.meter_number}`;
+    if (meter.last_reading) contextText += ` | Last Reading: ${meter.last_reading} kWh`;
+
+    document.getElementById('context-info').textContent = contextText;
+
+    return { meter, scheme, openCycle };
+  }
+
+  function showError(message) {
+    document.getElementById('error-text').textContent = message;
+    document.getElementById('reader-form').parentElement.style.display = 'none';
+    document.getElementById('error-message').style.display = 'block';
+  }
+
+  // --- Initialize page ---
+  const context = loadMeterContext();
+  if (!context) {
+    // Error already shown
+  } else {
+    // Handle submit
+    document.getElementById('reader-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const readingValue = parseFloat(document.getElementById('reading-value').value);
+      const photoRef = document.getElementById('photo-ref').value;
+      const notes = document.getElementById('notes').value;
+
+      // Calculate consumption
+      const consumption = validation.calculateConsumption(
+        readingValue, 
+        context.meter.last_reading
+      );
+
+      // Create reading record
+      const readingData = {
+        meter_id: meterId,
+        cycle_id: context.openCycle.id,
+        reading_value: readingValue,
+        reading_date: getCurrentDateTime(),
+        photo: photoRef,
+        notes: notes,
+        consumption: consumption,
+        captured_by: 'QR Reader',
+        flags: [],
+        review_status: 'pending'
+      };
+
+      // Validate and generate flags
+      readingData.flags = validation.validateReading(readingData);
+
+      // Save to readings (using existing storage system)
+      storage.create('readings', readingData);
+
+      // Update meter's last reading
+      storage.update('meters', meterId, { last_reading: readingValue });
+
+      // UX feedback
+      document.getElementById('reader-form').style.display = 'none';
+      document.getElementById('success-message').style.display = 'block';
+    });
+  }
 </script>
 
 </body>

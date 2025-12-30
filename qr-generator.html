@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - Fuzio Meter Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Fuzio Meter Readings</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="meters.html">Meter Register</a></li>
+            <li><a href="qr-generator.html" class="active">QR Codes</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>QR Code Generator</h1>
+            <p class="subtitle">Generate QR codes for meter reading access</p>
+        </header>
+
+        <section class="card">
+            <h2>Select Meter</h2>
+            <div class="form-group">
+                <label for="meter-select">Meter</label>
+                <select id="meter-select" onchange="generateQR()">
+                    <option value="">-- Select a meter --</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="card" id="qr-output" style="display: none;">
+            <h2>QR Code</h2>
+            <div id="meter-info" class="info-box mb-2"></div>
+            <div style="text-align: center; margin: 2rem 0;">
+                <img id="qr-image" alt="QR Code" style="max-width: 300px; border: 1px solid #ccc; padding: 10px; background: white;">
+            </div>
+            <div class="form-group">
+                <label>Reader URL</label>
+                <input type="text" id="reader-url" readonly onclick="this.select()">
+                <small class="form-help">Click to select and copy</small>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="downloadQR()">Download QR Code</button>
+                <button class="btn btn-secondary" onclick="printQR()">Print QR Code</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Instructions</h2>
+            <ol>
+                <li>Select a meter from the dropdown</li>
+                <li>A QR code will be generated automatically</li>
+                <li>Download or print the QR code</li>
+                <li>Attach the QR code near the physical meter</li>
+                <li>On-site readers can scan the QR code to submit readings directly</li>
+            </ol>
+            <p class="text-muted mt-2">
+                <strong>Note:</strong> Each QR code is unique to a specific meter. The reader will only be able to submit readings for that meter when they scan it.
+            </p>
+        </section>
+    </main>
+
+    <script type="module">
+        import { storage } from './assets/storage.js';
+        import { initializeSeedData } from './assets/app.js';
+
+        // Initialize seed data
+        initializeSeedData();
+
+        // Load meters into dropdown
+        function loadMeters() {
+            const meters = storage.getAll('meters');
+            const select = document.getElementById('meter-select');
+            
+            meters.forEach(meter => {
+                const meterDetails = storage.getMeterWithDetails(meter.id);
+                let label = `${meter.meter_type}: ${meter.meter_number}`;
+                
+                if (meterDetails.unit_name) {
+                    label += ` - ${meterDetails.building_name} ${meterDetails.unit_name}`;
+                } else if (meter.meter_type === 'BULK') {
+                    const scheme = storage.get('schemes', meter.scheme_id);
+                    label += ` - ${scheme ? scheme.name : 'Unknown'}`;
+                }
+                
+                const option = document.createElement('option');
+                option.value = meter.id;
+                option.textContent = label;
+                select.appendChild(option);
+            });
+        }
+
+        window.generateQR = function() {
+            const meterId = document.getElementById('meter-select').value;
+            if (!meterId) {
+                document.getElementById('qr-output').style.display = 'none';
+                return;
+            }
+
+            const meter = storage.getMeterWithDetails(meterId);
+            const scheme = storage.get('schemes', meter.scheme_id);
+            
+            // Build reader URL
+            const baseUrl = window.location.origin + window.location.pathname.replace('qr-generator.html', '');
+            const readerUrl = `${baseUrl}reader.html?meter_id=${meterId}`;
+            
+            // Generate QR code using API
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(readerUrl)}`;
+            
+            // Display meter info
+            let infoHtml = `<strong>Scheme:</strong> ${scheme ? scheme.name : 'Unknown'}<br>`;
+            if (meter.building_name) infoHtml += `<strong>Building:</strong> ${meter.building_name}<br>`;
+            if (meter.unit_name) infoHtml += `<strong>Unit:</strong> ${meter.unit_name}<br>`;
+            infoHtml += `<strong>Meter Type:</strong> ${meter.meter_type}<br>`;
+            infoHtml += `<strong>Meter Number:</strong> ${meter.meter_number}<br>`;
+            infoHtml += `<strong>Last Reading:</strong> ${meter.last_reading || 0} kWh`;
+            
+            document.getElementById('meter-info').innerHTML = infoHtml;
+            document.getElementById('qr-image').src = qrApiUrl;
+            document.getElementById('reader-url').value = readerUrl;
+            document.getElementById('qr-output').style.display = 'block';
+        };
+
+        window.downloadQR = function() {
+            const qrImage = document.getElementById('qr-image');
+            const link = document.createElement('a');
+            link.href = qrImage.src;
+            link.download = `meter-qr-${document.getElementById('meter-select').value}.png`;
+            link.click();
+        };
+
+        window.printQR = function() {
+            const qrImage = document.getElementById('qr-image').src;
+            const meterInfo = document.getElementById('meter-info').innerHTML;
+            
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Print QR Code</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; text-align: center; padding: 2rem; }
+                        .info { text-align: left; margin: 1rem auto; max-width: 400px; }
+                        img { max-width: 300px; margin: 1rem 0; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Meter Reading QR Code</h1>
+                    <div class="info">${meterInfo}</div>
+                    <img src="${qrImage}" alt="QR Code">
+                    <p>Scan this QR code to submit meter readings</p>
+                    <script>
+                        window.onload = function() { window.print(); }
+                    </script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        };
+
+        loadMeters();
+    </script>
+</body>
+</html>
