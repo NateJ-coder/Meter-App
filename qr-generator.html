@@ -44,9 +44,10 @@
             <div class="form-group">
                 <label>Reader URL</label>
                 <input type="text" id="reader-url" readonly onclick="this.select()">
-                <small class="form-help">Click to select and copy</small>
+                <small class="form-help">Click to select and copy, or click the button below to test</small>
             </div>
             <div class="action-buttons">
+                <button class="btn btn-success" onclick="testReaderLink()">🔗 Test Reader Link</button>
                 <button class="btn btn-primary" onclick="downloadQR()">Download QR Code</button>
                 <button class="btn btn-secondary" onclick="printQR()">Print QR Code</button>
             </div>
@@ -57,13 +58,21 @@
             <ol>
                 <li>Select a meter from the dropdown</li>
                 <li>A QR code will be generated automatically</li>
+                <li><strong>For testing:</strong> Click "Test Reader Link" button to open in a new tab</li>
                 <li>Download or print the QR code</li>
                 <li>Attach the QR code near the physical meter</li>
-                <li>On-site readers can scan the QR code to submit readings directly</li>
             </ol>
             <p class="text-muted mt-2">
                 <strong>Note:</strong> Each QR code is unique to a specific meter. The reader will only be able to submit readings for that meter when they scan it.
             </p>
+            <div class="info-box" style="background: #fff3cd; border-left-color: #ffc107; margin-top: 1rem;">
+                <strong>⚠️ Current Limitation (localStorage skeleton):</strong><br>
+                This skeleton uses browser localStorage, so QR codes only work when scanned <strong>on the same device and browser</strong> where meters were created.
+                <br><br>
+                <strong>For production:</strong> Add a backend (Phase 2) so data is accessible from any device. Then QR codes will work on field readers' phones.
+                <br><br>
+                <strong>For now:</strong> Use the "Test Reader Link" button to test the workflow on this computer.
+            </div>
         </section>
     </main>
 
@@ -141,6 +150,13 @@
             link.href = qrImage.src;
             link.download = `meter-qr-${document.getElementById('meter-select').value}.png`;
             link.click();
+        };
+
+        window.testReaderLink = function() {
+            const readerUrl = document.getElementById('reader-url').value;
+            if (readerUrl) {
+                window.open(readerUrl, '_blank');
+            }
         };
 
         window.printQR = function() {

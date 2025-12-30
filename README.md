@@ -286,6 +286,8 @@ Common kWh represents:
 * CSV exports
 * Seed demo data
 
+**⚠️ Known Limitation:** This skeleton uses **localStorage** (browser-only storage). QR codes will only work when scanned on the **same device/browser** where meters were created. Use the "Test Reader Link" button in QR Generator to test the workflow. For production, a backend + database is required so QR codes work on any device.
+
 ---
 
 ## Immediate Next Build Steps
