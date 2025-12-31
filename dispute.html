@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispute Pack - Fuzio Meter Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Fuzio Meter Readings</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="meters.html">Meter Register</a></li>
+            <li><a href="dispute.html" class="active">Dispute Pack</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Dispute Pack</h1>
+            <p class="subtitle">Diagnostic view of unit reading history</p>
+        </header>
+
+        <div id="error-container" class="card" style="display: none;">
+            <h2>⚠️ Unable to load dispute pack</h2>
+            <p id="error-message"></p>
+        </div>
+
+        <div id="pack-container" style="display: none;">
+            <!-- Header Info -->
+            <section class="card">
+                <h2>Unit Information</h2>
+                <div class="info-box">
+                    <strong>Unit:</strong> <span id="unit-number"></span><br>
+                    <strong>Owner:</strong> <span id="owner-name"></span><br>
+                    <strong>Building:</strong> <span id="building-name"></span><br>
+                    <strong>Scheme:</strong> <span id="scheme-name"></span><br>
+                    <strong>Generated:</strong> <span id="generated-at"></span>
+                </div>
+            </section>
+
+            <!-- Meter Info -->
+            <section class="card">
+                <h2>Meter Details</h2>
+                <div id="meter-info"></div>
+            </section>
+
+            <!-- Summary -->
+            <section class="card">
+                <h2>Summary</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="total-cycles">0</div>
+                        <div class="metric-label">Total Cycles</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="total-consumption">0</div>
+                        <div class="metric-label">Total Consumption (kWh)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="average-consumption">0</div>
+                        <div class="metric-label">Average Consumption (kWh)</div>
+                    </div>
+                    <div class="metric-card warning">
+                        <div class="metric-value" id="flagged-cycles">0</div>
+                        <div class="metric-label">Flagged Cycles</div>
+                    </div>
+                    <div class="metric-card warning">
+                        <div class="metric-value" id="estimated-cycles">0</div>
+                        <div class="metric-label">Estimated Cycles</div>
+                    </div>
+                    <div class="metric-card danger">
+                        <div class="metric-value" id="missing-readings">0</div>
+                        <div class="metric-label">Missing Readings</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reading History -->
+            <section class="card">
+                <h2>Reading History (Last 6 Closed Cycles)</h2>
+                <div id="cycles-table"></div>
+            </section>
+
+            <!-- Raw Data (for debugging) -->
+            <section class="card">
+                <h2>Raw Data (Debug)</h2>
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold; padding: 0.5rem;">Click to expand raw JSON</summary>
+                    <pre id="raw-data" style="background: #f5f5f5; padding: 1rem; overflow: auto; max-height: 400px; font-size: 0.85rem;"></pre>
+                </details>
+            </section>
+        </div>
+    </main>
+
+    <script type="module">
+        import { getDisputePack } from './assets/dispute-pack.js';
+
+        // Get unit_id from URL
+        const params = new URLSearchParams(window.location.search);
+        const unitId = params.get('unit_id');
+
+        if (!unitId) {
+            showError('No unit ID provided in URL');
+        } else {
+            loadDisputePack(unitId);
+        }
+
+        function showError(message) {
+            document.getElementById('error-container').style.display = 'block';
+            document.getElementById('error-message').textContent = message;
+        }
+
+        function loadDisputePack(unitId) {
+            const pack = getDisputePack(unitId);
+
+            if (!pack) {
+                showError(`Unit not found (ID: ${unitId})`);
+                return;
+            }
+
+            // Show the container
+            document.getElementById('pack-container').style.display = 'block';
+
+            // Populate header
+            document.getElementById('unit-number').textContent = pack.unit.unit_number;
+            document.getElementById('owner-name').textContent = pack.unit.owner_name || 'N/A';
+            document.getElementById('building-name').textContent = pack.building.name;
+            document.getElementById('scheme-name').textContent = pack.scheme.name;
+            document.getElementById('generated-at').textContent = new Date(pack.generated_at).toLocaleString();
+
+            // Populate meter info
+            const meterInfo = document.getElementById('meter-info');
+            if (pack.meter) {
+                meterInfo.innerHTML = `
+                    <div class="info-box">
+                        <strong>Meter Number:</strong> ${pack.meter.meter_number}<br>
+                        <strong>Type:</strong> ${pack.meter.meter_type}<br>
+                        <strong>Status:</strong> <span class="badge badge-secondary">${pack.meter.status}</span>
+                    </div>
+                `;
+            } else {
+                meterInfo.innerHTML = '<p class="text-muted">No meter assigned to this unit.</p>';
+            }
+
+            // Populate summary
+            document.getElementById('total-cycles').textContent = pack.summary.total_cycles;
+            document.getElementById('total-consumption').textContent = pack.summary.total_consumption.toFixed(2);
+            document.getElementById('average-consumption').textContent = pack.summary.average_consumption.toFixed(2);
+            document.getElementById('flagged-cycles').textContent = pack.summary.flagged_cycles_count;
+            document.getElementById('estimated-cycles').textContent = pack.summary.estimated_cycles_count;
+            document.getElementById('missing-readings').textContent = pack.summary.missing_readings_count;
+
+            // Populate cycles table
+            const cyclesTable = document.getElementById('cycles-table');
+            if (pack.cycles.length === 0) {
+                cyclesTable.innerHTML = '<p class="text-muted">No closed cycles found.</p>';
+            } else {
+                cyclesTable.innerHTML = `
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Period</th>
+                                <th>Status</th>
+                                <th>Previous</th>
+                                <th>Current</th>
+                                <th>Consumption</th>
+                                <th>Flags</th>
+                                <th>Review</th>
+                                <th>Quality</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${pack.cycles.map(cycle => {
+                                const reading = cycle.reading;
+                                const quality = cycle.data_quality;
+                                
+                                let readingDisplay = '';
+                                if (reading.missing) {
+                                    readingDisplay = '<td colspan="3" class="text-muted">MISSING</td>';
+                                } else {
+                                    readingDisplay = `
+                                        <td>${reading.previous !== null ? reading.previous.toFixed(2) : 'N/A'}</td>
+                                        <td>${reading.current !== null ? reading.current.toFixed(2) : 'N/A'}</td>
+                                        <td>${reading.consumption !== null ? reading.consumption.toFixed(2) : 'N/A'}</td>
+                                    `;
+                                }
+
+                                const flagsDisplay = cycle.flags.length > 0 
+                                    ? cycle.flags.map(f => `<span class="badge badge-danger" title="${f.message}">${f.type}</span>`).join(' ')
+                                    : '-';
+
+                                const reviewDisplay = cycle.review 
+                                    ? `<span class="badge badge-${cycle.review.status === 'APPROVED' ? 'success' : 'warning'}">${cycle.review.status}</span>`
+                                    : '-';
+
+                                const qualityIcons = [
+                                    quality.has_reading ? '✅ Reading' : '❌ No reading',
+                                    quality.has_photo ? '📷 Photo' : '⚠️ No photo',
+                                    quality.is_estimated ? '📊 Estimated' : '',
+                                    quality.has_flags ? '🚩 Flagged' : ''
+                                ].filter(Boolean).join('<br>');
+
+                                return `
+                                    <tr>
+                                        <td>${cycle.period.start_date} to ${cycle.period.end_date}</td>
+                                        <td><span class="badge badge-${cycle.cycle_status === 'OPEN' ? 'warning' : 'secondary'}">${cycle.cycle_status}</span></td>
+                                        ${readingDisplay}
+                                        <td>${flagsDisplay}</td>
+                                        <td>${reviewDisplay}</td>
+                                        <td style="font-size: 0.85rem;">${qualityIcons}</td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+
+            // Populate raw data
+            document.getElementById('raw-data').textContent = JSON.stringify(pack, null, 2);
+        }
+    </script>
+</body>
+</html>

@@ -271,6 +271,7 @@ function loadUnits() {
                             <td>
                                 <button class="btn btn-secondary" onclick="editUnit('${unit.id}')">Edit</button>
                                 <button class="btn btn-danger" onclick="deleteUnit('${unit.id}')">Delete</button>
+                                <button class="btn btn-primary" onclick="window.location.href='dispute.html?unit_id=${unit.id}'">📋 Dispute Pack</button>
                             </td>
                         </tr>
                     `;
