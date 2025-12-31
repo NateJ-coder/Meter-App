@@ -101,15 +101,30 @@ export function getDisputePack(unitId, options = {}) {
     // Step 6: For each cycle, assemble the full picture
     const cycleData = cycles.map(cycle => {
         // Find reading for this meter in this cycle
-        const readings = storage.getAll('readings').filter(r => 
+        let readings = storage.getAll('readings').filter(r => 
             r.cycle_id === cycle.id && r.meter_id === meter.id
         );
 
+        // Sort by reading_date DESC to get the most recent (handles corrections/re-captures)
+        readings.sort((a, b) => {
+            const dateA = new Date(a.reading_date || 0);
+            const dateB = new Date(b.reading_date || 0);
+            return dateB - dateA;
+        });
+
         const reading = readings[0] || null;
+
+        // Derive previous reading (from meter's state before this reading)
+        let previousReading = null;
+        if (reading && reading.consumption !== null && reading.reading_value !== null) {
+            // Calculate backwards: current - consumption = previous
+            previousReading = reading.reading_value - reading.consumption;
+        }
 
         // Build cycle entry
         const cycleEntry = {
             cycle_id: cycle.id,
+            cycle_status: cycle.status,  // Include cycle status for context
             period: {
                 start_date: cycle.start_date,
                 end_date: cycle.end_date
@@ -117,25 +132,36 @@ export function getDisputePack(unitId, options = {}) {
             reading: null,
             capture: null,
             flags: [],
-            review: null
+            review: null,
+            data_quality: {
+                has_reading: false,
+                has_photo: false,
+                is_estimated: false,
+                has_flags: false
+            }
         };
 
         if (reading) {
             // Reading exists
             cycleEntry.reading = {
-                previous: reading.previous_reading,
-                current: reading.current_reading,
+                previous: previousReading,
+                current: reading.reading_value,
                 consumption: reading.consumption
             };
 
             cycleEntry.capture = {
-                captured_at: reading.captured_at || null,
+                captured_at: reading.reading_date || null,
                 captured_by: reading.captured_by || null,
                 photo: reading.photo || null,
                 notes: reading.notes || null
             };
 
-            cycleEntry.flags = reading.flags || [];
+            // Normalize flags defensively
+            cycleEntry.flags = (reading.flags || []).map(f => ({
+                type: f.type,
+                severity: f.severity,
+                message: f.message
+            }));
 
             cycleEntry.review = {
                 status: reading.review_status || 'NOT_REVIEWED',
@@ -143,6 +169,14 @@ export function getDisputePack(unitId, options = {}) {
                 reviewed_by: reading.reviewed_by || null,
                 admin_notes: reading.admin_notes || null,
                 estimated_value: reading.estimated_value || null
+            };
+
+            // Update data quality indicators
+            cycleEntry.data_quality = {
+                has_reading: true,
+                has_photo: !!reading.photo,
+                is_estimated: reading.review_status === 'ESTIMATED',
+                has_flags: cycleEntry.flags.length > 0
             };
         } else {
             // Reading is missing - make this explicit
@@ -163,7 +197,8 @@ export function getDisputePack(unitId, options = {}) {
         total_consumption: 0,
         average_consumption: 0,
         flagged_cycles_count: 0,
-        estimated_cycles_count: 0
+        estimated_cycles_count: 0,
+        missing_readings_count: 0
     };
 
     let consumptionCount = 0;
@@ -174,11 +209,15 @@ export function getDisputePack(unitId, options = {}) {
             consumptionCount++;
         }
 
-        if (cycle.flags && cycle.flags.length > 0) {
+        if (cycle.reading && cycle.reading.missing) {
+            summary.missing_readings_count++;
+        }
+
+        if (cycle.data_quality.has_flags) {
             summary.flagged_cycles_count++;
         }
 
-        if (cycle.review && cycle.review.status === 'ESTIMATED') {
+        if (cycle.data_quality.is_estimated) {
             summary.estimated_cycles_count++;
         }
     });
