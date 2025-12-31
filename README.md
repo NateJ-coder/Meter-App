@@ -2,6 +2,8 @@
 
 **Bulk + Submeter Readings | Role-Separated | Audit-Friendly**
 
+**31/12/2025 update: We need cloud based storage, and we need to ensure that we aquire all records of meters, and update our system accordingly (from Zerilda).**
+
 A lightweight, audit-friendly web app to standardise monthly electricity meter readings for sectional title schemes using a **bulk supply meter** plus **unit submeters**.
 
 It replaces *"WhatsApp + spreadsheets + site runs"* with a clean, controlled workflow:
@@ -274,35 +276,191 @@ Common kWh represents:
 
 ---
 
-## Current Skeleton Includes
+## Current Implementation Status
 
-* HTML/CSS/vanilla JS UI
-* localStorage persistence
-* Meter register CRUD
-* Reading cycle open/close
-* Reading capture
-* Validation & flags
-* Admin review queue
-* CSV exports
-* Seed demo data
+### ✅ Completed Features
 
-**⚠️ Known Limitation:** This skeleton uses **localStorage** (browser-only storage). QR codes will only work when scanned on the **same device/browser** where meters were created. Use the "Test Reader Link" button in QR Generator to test the workflow. For production, a backend + database is required so QR codes work on any device.
+* **Admin Dashboard** - Cycle status overview, metrics, quick actions
+* **Meter Register** - Full CRUD for schemes, buildings, units, and meters
+* **Reading Cycle Management** - Open/close cycles, capture readings, filtering
+* **QR Code Generation** - Generate scheme-level QR codes with test links
+* **Reader Workflow** - QR-based capture page with auto-advancement through meters
+* **Validation Engine** - Automatic flagging (backward readings, spikes, zero consumption)
+* **Admin Review Queue** - Review flagged/missing readings, approve/estimate/escalate
+* **CSV Exports** - Unit readings and scheme summaries
+* **localStorage persistence** - Browser-based data storage
+
+### 📋 HTML Pages
+
+* `index.html` - Admin dashboard with cycle metrics
+* `meters.html` - Meter register (4 tabs: schemes, buildings, units, meters)
+* `reading-cycle.html` - Cycle management and admin reading capture
+* `review.html` - Exception review (flagged & missing readings)
+* `export.html` - CSV export generation
+* `qr-generator.html` - QR code generation per scheme ✅ **IMPLEMENTED**
+* `reader.html` - QR-based field capture (no navigation) ✅ **IMPLEMENTED**
+
+### ⚠️ Known Limitation (localStorage)
+
+This skeleton uses **localStorage** (browser-only storage). QR codes will only work when scanned on the **same device/browser** where meters were created. Use the "Test Reader Link" button in QR Generator to test the workflow. For production, a backend + database is required so QR codes work on any device.
 
 ---
 
-## Immediate Next Build Steps
+## What's Missing / Still to Be Built
 
-**Phase 0.5 — Role Separation**
+The README is honest about what this *is not yet*. The gaps are deliberate.
 
-* Add `reader.html`
-* Implement QR-based entry
-* Restrict reader to capture-only flow
+### 🚫 Backend (explicitly missing)
 
-**Phase 1 — Pilot Scheme**
+Currently:
+
+* Data lives in `localStorage`
+* QR codes only work on the same device/browser
+* No cross-device access
+* No authentication
+* No multi-user concurrency
+
+Planned (Phase 1):
+
+* Backend API
+* Shared database
+* True mobile reader support
+* Real photo uploads instead of text placeholders
+
+This limitation is clearly documented as intentional.
+
+---
+
+### 🚧 Hard role enforcement
+
+Right now:
+
+* Role separation is by **navigation discipline**, not security
+* Admin pages are accessible if you know the URL
+* Reader is "soft-locked" by design, not auth
+
+Planned:
+
+* Reader-only access tokens
+* Admin authentication
+* Permission enforcement server-side
+
+---
+
+### 🚧 Dispute packs (Phase 2)
+
+README calls this out as planned, not implemented:
+
+* Historical readings bundle
+* Photos per cycle
+* Tariff references
+* Calculation breakdown
+* Admin action audit log export
+
+You already store 80% of the required data — this is mostly a **presentation/export problem**, not a data problem.
+
+---
+
+## Plan for Reports & Records (Excel / Spreadsheets)
+
+This is actually one of the strongest parts of the design.
+
+### The philosophy
+
+The app is **not trying to replace accounting or billing software**.
+
+Instead:
+
+* It produces **clean, authoritative source records**
+* Excel is treated as:
+
+  * A downstream consumer
+  * A reconciliation surface
+  * A trustee-friendly format
+
+That's a smart boundary.
+
+---
+
+### What the current plan already supports
+
+Per cycle, you generate **official, repeatable datasets**:
+
+#### 1. Unit Readings CSV
+
+Purpose:
+
+* Import into billing system
+* Archive as audit evidence
+* Resolve owner disputes
+
+Structure already aligns with:
+
+* Excel pivot tables
+* Month-on-month comparisons
+* Unit-level billing
+
+#### 2. Scheme Summary CSV
+
+Purpose:
+
+* Trustee reporting
+* Bulk vs submeter reconciliation
+* Loss tracking
+
+This file is essentially:
+
+* One worksheet
+* One reconciliation snapshot
+* One audit artefact per month
+
+#### 3. Combined Export
+
+Purpose:
+
+* Long-term record keeping
+* "Single file per cycle" storage
+* Easy email attachment
+
+---
+
+### What's *not* planned (and that's good)
+
+The README very deliberately avoids:
+
+* In-app Excel-style editing
+* Formula duplication
+* Billing logic
+* Tariff management (for now)
+
+Those stay where they belong: accounting systems or Excel models.
+
+---
+
+## Next Build Phases
+
+**Phase 1 — Backend & Cloud Storage** 🎯 **PRIORITY (Zerilda requirement)**
+
+* Replace localStorage with cloud database (Firebase, Supabase, or custom API)
+* Enable cross-device QR code access
+* Implement user authentication (admin vs reader roles)
+* Add data backup and recovery
+* Enable multi-user concurrent access
+
+**Phase 2 — Pilot Scheme**
 
 * Test with one live building
-* Validate on-site capture
-* Align admin review workflow
+* Validate on-site capture workflow
+* Refine admin review process
+* Train field staff
+
+**Phase 3 — Production Hardening**
+
+* Photo storage (actual image uploads)
+* Dispute pack generation
+* Email notifications
+* Audit trail reports
+* Mobile app considerations
 
 ---
 
@@ -360,22 +518,84 @@ To clear all data and start over: Use the "Clear All Data" button on the dashboa
 
 ---
 
+## Current Implementation Status
+
+### ✅ Completed Features
+
+* **Admin Dashboard** - Cycle status overview, metrics, quick actions
+* **Meter Register** - Full CRUD for schemes, buildings, units, and meters
+* **Reading Cycle Management** - Open/close cycles, capture readings, filtering
+* **QR Code Generation** - Generate scheme-level QR codes with test links
+* **Reader Workflow** - QR-based capture page with auto-advancement through meters
+* **Validation Engine** - Automatic flagging (backward readings, spikes, zero consumption)
+* **Admin Review Queue** - Review flagged/missing readings, approve/estimate/escalate
+* **CSV Exports** - Unit readings and scheme summaries
+* **localStorage persistence** - Browser-based data storage
+
+### 📋 HTML Pages
+
+* `index.html` - Admin dashboard with cycle metrics
+* `meters.html` - Meter register (4 tabs: schemes, buildings, units, meters)
+* `reading-cycle.html` - Cycle management and admin reading capture
+* `review.html` - Exception review (flagged & missing readings)
+* `export.html` - CSV export generation
+* `qr-generator.html` - QR code generation per scheme ✅ **IMPLEMENTED**
+* `reader.html` - QR-based field capture (no navigation) ✅ **IMPLEMENTED**
+
+### ⚠️ Known Limitation (localStorage)
+
+This skeleton uses **localStorage** (browser-only storage). QR codes will only work when scanned on the **same device/browser** where meters were created. Use the "Test Reader Link" button in QR Generator to test the workflow. For production, a backend + database is required so QR codes work on any device.
+
+---
+
+## Next Build Phases
+
+**Phase 1 — Backend & Cloud Storage** 🎯 **PRIORITY (Zerilda requirement)**
+
+* Replace localStorage with cloud database (Firebase, Supabase, or custom API)
+* Enable cross-device QR code access
+* Implement user authentication (admin vs reader roles)
+* Add data backup and recovery
+* Enable multi-user concurrent access
+
+**Phase 2 — Pilot Scheme**
+
+* Test with one live building
+* Validate on-site capture workflow
+* Refine admin review process
+* Train field staff
+
+**Phase 3 — Production Hardening**
+
+* Photo storage (actual image uploads)
+* Dispute pack generation
+* Email notifications
+* Audit trail reports
+* Mobile app considerations
+
+---
+
 ## File Structure (Current)
 
 ```
 /index.html            # Admin dashboard
-/meters.html           # Meter register
+/meters.html           # Meter register (schemes/buildings/units/meters)
 /reading-cycle.html    # Cycle management & capture (admin)
-/review.html           # Exception review
+/review.html           # Exception review (flagged & missing readings)
 /export.html           # CSV exports
-/reader.html           # QR-based on-site capture (next step)
+/qr-generator.html     # QR code generation ✅ IMPLEMENTED
+/reader.html           # QR-based on-site capture ✅ IMPLEMENTED
 assets/
-  app.js
-  storage.js
-  validation.js
-  csv.js
-  router.js
-  styles.css
+  app.js               # Dashboard logic and utilities
+  storage.js           # localStorage wrapper (CRUD operations)
+  validation.js        # Reading validation & flagging rules
+  csv.js               # CSV export generation
+  router.js            # Client-side routing helpers
+  meters.js            # Meter register CRUD operations
+  reading-cycle.js     # Cycle management and reading capture
+  review.js            # Exception review workflow
+  export-page.js       # Export page logic
+  styles.css           # Application styling
 ```
 
 ---
@@ -383,8 +603,3 @@ assets/
 ## License
 
 Proprietary — Fuzio Properties internal use only.
-
----
-
-If you paste this in, the **code now has a clear north star**.
-Next, we turn this into `reader.html` without disturbing anything else.
