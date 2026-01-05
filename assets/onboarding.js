@@ -626,14 +626,12 @@ export const onboarding = {
         event.preventDefault();
         
         const scheme = {
-            id: Date.now().toString(),
             name: document.getElementById('scheme-name').value,
             address: document.getElementById('scheme-address').value,
-            notes: document.getElementById('scheme-notes').value,
-            created_at: new Date().toISOString()
+            notes: document.getElementById('scheme-notes').value
         };
 
-        storage.save('schemes', scheme);
+        storage.create('schemes', scheme);
         
         const state = this.getState();
         state.schemeCreated = true;
@@ -648,13 +646,11 @@ export const onboarding = {
         
         const schemeId = storage.getAll('schemes')[0].id;
         const building = {
-            id: Date.now().toString(),
             scheme_id: schemeId,
-            name: document.getElementById('building-name').value,
-            created_at: new Date().toISOString()
+            name: document.getElementById('building-name').value
         };
 
-        storage.save('buildings', building);
+        storage.create('buildings', building);
         
         const state = this.getState();
         state.buildingsAdded = true;
@@ -673,13 +669,11 @@ export const onboarding = {
         event.preventDefault();
         
         const unit = {
-            id: Date.now().toString(),
             building_id: document.getElementById('unit-building').value,
-            unit_number: document.getElementById('unit-number').value,
-            created_at: new Date().toISOString()
+            unit_number: document.getElementById('unit-number').value
         };
 
-        storage.save('units', unit);
+        storage.create('units', unit);
         
         const state = this.getState();
         state.unitsAdded = true;
@@ -699,15 +693,13 @@ export const onboarding = {
         
         const schemeId = storage.getAll('schemes')[0].id;
         const meter = {
-            id: Date.now().toString(),
             scheme_id: schemeId,
             meter_number: document.getElementById('bulk-meter-number').value,
             meter_type: 'BULK',
-            last_reading: parseFloat(document.getElementById('bulk-meter-reading').value) || 0,
-            created_at: new Date().toISOString()
+            last_reading: parseFloat(document.getElementById('bulk-meter-reading').value) || 0
         };
 
-        storage.save('meters', meter);
+        storage.create('meters', meter);
         
         const state = this.getState();
         state.metersRegistered = true;
@@ -728,16 +720,14 @@ export const onboarding = {
         
         const schemeId = storage.getAll('schemes')[0].id;
         const meter = {
-            id: Date.now().toString(),
             scheme_id: schemeId,
             unit_id: document.getElementById('meter-unit').value,
             meter_number: document.getElementById('meter-number').value,
             meter_type: 'UNIT',
-            last_reading: parseFloat(document.getElementById('meter-reading').value) || 0,
-            created_at: new Date().toISOString()
+            last_reading: parseFloat(document.getElementById('meter-reading').value) || 0
         };
 
-        storage.save('meters', meter);
+        storage.create('meters', meter);
         
         const state = this.getState();
         state.metersRegistered = true;
@@ -758,15 +748,13 @@ export const onboarding = {
         
         const schemeId = storage.getAll('schemes')[0].id;
         const cycle = {
-            id: Date.now().toString(),
             scheme_id: schemeId,
             start_date: document.getElementById('cycle-start').value,
             end_date: document.getElementById('cycle-end').value,
-            status: 'OPEN',
-            created_at: new Date().toISOString()
+            status: 'OPEN'
         };
 
-        storage.save('cycles', cycle);
+        storage.create('cycles', cycle);
         
         const state = this.getState();
         state.firstCycleOpened = true;
