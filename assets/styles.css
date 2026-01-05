@@ -1946,6 +1946,204 @@ body {
     }
 }
 
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-user span {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* ===================================
+   LOGIN PAGE
+   =================================== */
+.login-body {
+    background: linear-gradient(135deg, var(--fuzio-blue), var(--fuzio-blue-dark));
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.login-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 3rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-logo {
+    height: 80px;
+    margin-bottom: 1.5rem;
+}
+
+.login-header h1 {
+    color: var(--fuzio-blue);
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-header .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.login-footer {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.login-footer .text-muted {
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* ===================================
+   DEV CONSOLE
+   =================================== */
+.health-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.health-metric {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+}
+
+.health-metric.health-good {
+    border-color: var(--success);
+    background: #f0fdf4;
+}
+
+.health-metric.health-issues {
+    border-color: var(--warning);
+    background: #fef3c7;
+}
+
+.health-icon {
+    font-size: 2rem;
+}
+
+.health-info {
+    flex: 1;
+}
+
+.health-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.health-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.health-issues-list {
+    margin-top: 2rem;
+}
+
+.health-issues-list h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.activity-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-time {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.activity-details {
+    font-size: 0.95rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.danger-zone {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.danger-zone .btn {
+    flex: 1;
+    min-width: 150px;
+}
+
 /* ===================================
    PRINT STYLES
    =================================== */

@@ -109,10 +109,12 @@
   import { validation } from './assets/validation.js';
   import { onSiteMode } from './assets/on-site-mode.js';
   import { getCurrentDateTime } from './assets/app.js';
+  import { auth } from './assets/auth.js';
 
   // Make globally available
   window.storage = storage;
   window.onSiteMode = onSiteMode;
+  window.auth = auth;
 
   // Get URL params
   const params = new URLSearchParams(window.location.search);
@@ -354,6 +356,10 @@
       // Calculate consumption
       const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
 
+      // Get current user
+      const currentUser = window.auth ? window.auth.getCurrentUser() : null;
+      const capturedBy = currentUser ? `${currentUser.name} (QR)` : 'QR Reader';
+
       // Create reading record
       const readingData = {
         meter_id: meter.id,
@@ -363,7 +369,8 @@
         photo: photoRef,
         notes: notes,
         consumption: consumption,
-        captured_by: 'QR Reader',
+        captured_by: capturedBy,
+        captured_by_id: currentUser ? currentUser.id : null,
         flags: [],
         review_status: 'pending'
       };

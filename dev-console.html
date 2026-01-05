@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Console - Fuzio Meter Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="assets/images/Fuzio logo.jpg" alt="Fuzio" class="nav-logo">
+            <span>🔧 Developer Console</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">← Back to Dashboard</a></li>
+        </ul>
+        <div class="nav-user">
+            <span id="user-name"></span>
+            <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Logout</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Developer Console</h1>
+            <p class="subtitle">Monitor app health, manage users, and configure settings</p>
+        </header>
+
+        <!-- Health Dashboard -->
+        <section class="card">
+            <h2>App Health Status</h2>
+            <div id="health-dashboard"></div>
+        </section>
+
+        <!-- User Management -->
+        <section class="card">
+            <div class="card-header">
+                <h2>User Management</h2>
+                <button class="btn btn-primary" onclick="showAddUserModal()">+ Add User</button>
+            </div>
+            <div id="users-list"></div>
+        </section>
+
+        <!-- Activity Log -->
+        <section class="card">
+            <h2>Recent Activity</h2>
+            <div id="activity-log"></div>
+        </section>
+
+        <!-- Data Statistics -->
+        <section class="card">
+            <h2>Data Statistics</h2>
+            <div id="data-stats"></div>
+        </section>
+
+        <!-- System Actions -->
+        <section class="card">
+            <h2>⚠️ System Actions</h2>
+            <div class="danger-zone">
+                <button class="btn btn-warning" onclick="resetOnboarding()">Reset Onboarding</button>
+                <button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
+                <button class="btn btn-secondary" onclick="exportAllData()">Export All Data</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add User Modal -->
+    <div id="add-user-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New User</h3>
+                <button class="modal-close" onclick="closeAddUserModal()">&times;</button>
+            </div>
+            <form id="add-user-form">
+                <div class="form-group">
+                    <label for="user-name">Full Name *</label>
+                    <input type="text" id="user-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email Address *</label>
+                    <input type="email" id="user-email" required placeholder="john@fuzio.com">
+                </div>
+                <div class="form-group">
+                    <label for="user-password">Password *</label>
+                    <input type="password" id="user-password" required placeholder="Min 6 characters" minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="user-role">Role *</label>
+                    <select id="user-role" required>
+                        <option value="viewer">Viewer (Read-only)</option>
+                        <option value="field_worker">Field Worker (Capture readings)</option>
+                        <option value="admin">Admin (Full access)</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddUserModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { storage } from './assets/storage.js';
+        import { auth } from './assets/auth.js';
+        import { validation } from './assets/validation.js';
+
+        // Check authentication and admin permission
+        if (!auth.isAuthenticated() || !auth.hasPermission('admin')) {
+            alert('Access denied. Admin permissions required.');
+            window.location.href = 'index.html';
+        }
+
+        // Display user info
+        const currentUser = auth.getCurrentUser();
+        document.getElementById('user-name').textContent = currentUser.name;
+
+        // Logout handler
+        window.handleLogout = function() {
+            if (confirm('Are you sure you want to logout?')) {
+                auth.logout();
+            }
+        };
+
+        // Initialize dashboard
+        function initializeDashboard() {
+            renderHealthDashboard();
+            renderUsersList();
+            renderActivityLog();
+            renderDataStats();
+        }
+
+        // Health Dashboard
+        function renderHealthDashboard() {
+            const schemes = storage.getAll('schemes');
+            const buildings = storage.getAll('buildings');
+            const units = storage.getAll('units');
+            const meters = storage.getAll('meters');
+            const readings = storage.getAll('readings');
+            const cycles = storage.getAll('cycles');
+
+            // Data integrity checks
+            const issues = [];
+
+            // Check for duplicate meter numbers
+            const meterNumbers = meters.map(m => m.meter_number);
+            const duplicates = meterNumbers.filter((num, index) => meterNumbers.indexOf(num) !== index);
+            if (duplicates.length > 0) {
+                issues.push({ severity: 'error', message: `${duplicates.length} duplicate meter numbers found` });
+            }
+
+            // Check for units without meters
+            const unitsWithoutMeters = units.filter(unit => 
+                !meters.some(m => m.unit_id === unit.id)
+            );
+            if (unitsWithoutMeters.length > 0) {
+                issues.push({ severity: 'warning', message: `${unitsWithoutMeters.length} units without meters` });
+            }
+
+            // Check for open cycles
+            const openCycles = cycles.filter(c => c.status === 'OPEN');
+            if (openCycles.length > 1) {
+                issues.push({ severity: 'error', message: `${openCycles.length} open cycles (should be max 1 per scheme)` });
+            } else if (openCycles.length === 0) {
+                issues.push({ severity: 'info', message: 'No open reading cycles' });
+            }
+
+            // Check localStorage usage
+            const storageUsed = new Blob([JSON.stringify(localStorage)]).size;
+            const storageUsedKB = (storageUsed / 1024).toFixed(2);
+            const storagePercent = (storageUsed / (5 * 1024 * 1024) * 100).toFixed(1); // Assume 5MB limit
+
+            const container = document.getElementById('health-dashboard');
+            container.innerHTML = `
+                <div class="health-metrics">
+                    <div class="health-metric ${issues.length === 0 ? 'health-good' : 'health-issues'}">
+                        <div class="health-icon">${issues.length === 0 ? '✓' : '⚠'}</div>
+                        <div class="health-info">
+                            <div class="health-label">System Health</div>
+                            <div class="health-value">${issues.length === 0 ? 'Good' : `${issues.length} Issues`}</div>
+                        </div>
+                    </div>
+                    <div class="health-metric">
+                        <div class="health-icon">💾</div>
+                        <div class="health-info">
+                            <div class="health-label">Storage Usage</div>
+                            <div class="health-value">${storageUsedKB} KB (${storagePercent}%)</div>
+                        </div>
+                    </div>
+                    <div class="health-metric">
+                        <div class="health-icon">👥</div>
+                        <div class="health-info">
+                            <div class="health-label">Registered Users</div>
+                            <div class="health-value">${auth.getUsers().length}</div>
+                        </div>
+                    </div>
+                    <div class="health-metric">
+                        <div class="health-icon">🏢</div>
+                        <div class="health-info">
+                            <div class="health-label">Active Schemes</div>
+                            <div class="health-value">${schemes.length}</div>
+                        </div>
+                    </div>
+                </div>
+
+                ${issues.length > 0 ? `
+                    <div class="health-issues-list">
+                        <h3>Issues Detected</h3>
+                        ${issues.map(issue => `
+                            <div class="alert alert-${issue.severity === 'error' ? 'danger' : issue.severity === 'warning' ? 'warning' : 'info'}">
+                                ${issue.message}
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        // Users List
+        function renderUsersList() {
+            const users = auth.getUsers();
+            const container = document.getElementById('users-list');
+
+            if (users.length === 0) {
+                container.innerHTML = '<p class="text-muted">No users registered yet.</p>';
+                return;
+            }
+
+            container.innerHTML = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${users.map(user => `
+                            <tr>
+                                <td>${user.name}</td>
+                                <td>${user.email}</td>
+                                <td><span class="badge badge-${getRoleBadgeClass(user.role)}">${user.role}</span></td>
+                                <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.id}', '${user.email}')">Delete</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function getRoleBadgeClass(role) {
+            switch(role) {
+                case 'admin': return 'primary';
+                case 'field_worker': return 'success';
+                case 'viewer': return 'secondary';
+                default: return 'secondary';
+            }
+        }
+
+        // Activity Log
+        function renderActivityLog() {
+            const activities = auth.getActivities().reverse().slice(0, 20); // Last 20 activities
+            const container = document.getElementById('activity-log');
+
+            if (activities.length === 0) {
+                container.innerHTML = '<p class="text-muted">No recent activity.</p>';
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="activity-list">
+                    ${activities.map(activity => `
+                        <div class="activity-item">
+                            <div class="activity-time">${new Date(activity.timestamp).toLocaleString()}</div>
+                            <div class="activity-details">
+                                <strong>${activity.userName}</strong> - ${getActivityDescription(activity)}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function getActivityDescription(activity) {
+            const descriptions = {
+                'user_login': 'logged in',
+                'reading_captured': `captured reading for meter ${activity.details.meterNumber || 'unknown'}`,
+                'cycle_opened': 'opened a new reading cycle',
+                'cycle_closed': 'closed a reading cycle',
+                'scheme_created': 'created a new scheme',
+                'user_created': 'created a new user account'
+            };
+
+            return descriptions[activity.action] || activity.action;
+        }
+
+        // Data Statistics
+        function renderDataStats() {
+            const schemes = storage.getAll('schemes');
+            const buildings = storage.getAll('buildings');
+            const units = storage.getAll('units');
+            const meters = storage.getAll('meters');
+            const readings = storage.getAll('readings');
+            const cycles = storage.getAll('cycles');
+
+            const container = document.getElementById('data-stats');
+            container.innerHTML = `
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">${schemes.length}</div>
+                        <div class="stat-label">Schemes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${buildings.length}</div>
+                        <div class="stat-label">Buildings</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${units.length}</div>
+                        <div class="stat-label">Units</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${meters.length}</div>
+                        <div class="stat-label">Meters</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${readings.length}</div>
+                        <div class="stat-label">Readings</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${cycles.length}</div>
+                        <div class="stat-label">Cycles</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Add User Modal
+        window.showAddUserModal = function() {
+            document.getElementById('add-user-modal').style.display = 'flex';
+        };
+
+        window.closeAddUserModal = function() {
+            document.getElementById('add-user-modal').style.display = 'none';
+            document.getElementById('add-user-form').reset();
+        };
+
+        document.getElementById('add-user-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const userData = {
+                name: document.getElementById('user-name').value,
+                email: document.getElementById('user-email').value,
+                password: document.getElementById('user-password').value,
+                role: document.getElementById('user-role').value
+            };
+
+            const result = auth.register(userData);
+
+            if (result.success) {
+                auth.recordActivity('user_created', { email: userData.email });
+                alert('User added successfully!');
+                closeAddUserModal();
+                renderUsersList();
+                renderHealthDashboard();
+            } else {
+                alert('Error: ' + result.error);
+            }
+        });
+
+        // Delete User
+        window.deleteUser = function(userId, email) {
+            if (!confirm(`Delete user ${email}? This cannot be undone.`)) {
+                return;
+            }
+
+            // Prevent deleting yourself
+            if (userId === currentUser.id) {
+                alert('Cannot delete your own account while logged in.');
+                return;
+            }
+
+            auth.deleteUser(userId);
+            alert('User deleted successfully.');
+            renderUsersList();
+            renderHealthDashboard();
+        };
+
+        // System Actions
+        window.resetOnboarding = function() {
+            if (!confirm('Reset onboarding state? Users will see the setup wizard again.')) {
+                return;
+            }
+
+            localStorage.removeItem('fuzio_onboarding_state');
+            alert('Onboarding state reset successfully.');
+        };
+
+        window.clearAllData = function() {
+            const confirmation = prompt('Type "DELETE ALL DATA" to confirm complete data wipe:');
+            
+            if (confirmation !== 'DELETE ALL DATA') {
+                alert('Cancelled.');
+                return;
+            }
+
+            // Clear all data except users and sessions
+            localStorage.removeItem('schemes');
+            localStorage.removeItem('buildings');
+            localStorage.removeItem('units');
+            localStorage.removeItem('meters');
+            localStorage.removeItem('readings');
+            localStorage.removeItem('cycles');
+            localStorage.removeItem('fuzio_onboarding_state');
+            localStorage.removeItem('fuzio_first_time_checklist');
+
+            alert('All data cleared. Users and sessions preserved.');
+            location.reload();
+        };
+
+        window.exportAllData = function() {
+            const data = {
+                schemes: storage.getAll('schemes'),
+                buildings: storage.getAll('buildings'),
+                units: storage.getAll('units'),
+                meters: storage.getAll('meters'),
+                readings: storage.getAll('readings'),
+                cycles: storage.getAll('cycles'),
+                users: auth.getUsers(),
+                activities: auth.getActivities(),
+                exported_at: new Date().toISOString(),
+                exported_by: currentUser.email
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `fuzio-backup-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert('Data exported successfully!');
+        };
+
+        // Initialize on load
+        initializeDashboard();
+    </script>
+</body>
+</html>

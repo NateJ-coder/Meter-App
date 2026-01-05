@@ -172,6 +172,7 @@ window.openReviewModal = function(readingId) {
             <strong>Current Reading:</strong> ${reading.reading_value} kWh<br>
             <strong>Consumption:</strong> ${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'} kWh<br>
             <strong>Reading Date:</strong> ${formatDateTime(reading.reading_date)}<br>
+            <strong>Captured By:</strong> ${reading.captured_by || 'Unknown'}<br>
             <strong>Flags:</strong> ${flags.length > 0 ? flags.map(f => `<span class="badge badge-danger">${f.type}: ${f.message}</span>`).join(' ') : 'None'}<br>
             ${reading.notes ? `<strong>Notes:</strong> ${reading.notes}` : ''}
         </div>

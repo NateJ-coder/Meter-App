@@ -19,7 +19,12 @@
             <li><a href="review.html">Review</a></li>
             <li><a href="export.html">Export</a></li>
             <li><a href="qr-generator.html">QR Codes</a></li>
+            <li id="dev-console-link" style="display:none;"><a href="dev-console.html">🔧 Dev</a></li>
         </ul>
+        <div class="nav-user">
+            <span id="user-name"></span>
+            <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Logout</button>
+        </div>
     </nav>
 
     <main class="container">
@@ -92,10 +97,32 @@
     <script type="module" src="assets/app.js"></script>
     <script type="module">
         import { storage } from './assets/storage.js';
+        import { auth } from './assets/auth.js';
         import { onboarding } from './assets/onboarding.js';
         import { setupHealth } from './assets/setup-health.js';
         import { firstTimeChecklist } from './assets/first-time-checklist.js';
         import { initializeSeedData } from './assets/app.js';
+
+        // Check authentication
+        if (!auth.isAuthenticated()) {
+            window.location.href = 'login.html';
+        }
+
+        // Display user info
+        const currentUser = auth.getCurrentUser();
+        document.getElementById('user-name').textContent = currentUser.name;
+
+        // Show dev console link for admins
+        if (currentUser.role === 'admin') {
+            document.getElementById('dev-console-link').style.display = 'block';
+        }
+
+        // Logout handler
+        window.handleLogout = function() {
+            if (confirm('Are you sure you want to logout?')) {
+                auth.logout();
+            }
+        };
 
         // Initialize seed data on first run (disabled by default)
         // Uncomment the line below to enable seed data:
@@ -103,6 +130,7 @@
 
         // Make storage globally available
         window.storage = storage;
+        window.auth = auth;
 
         // Check if onboarding should be shown
         function initializePage() {

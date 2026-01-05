@@ -227,6 +227,10 @@ document.getElementById('reading-form').addEventListener('submit', (e) => {
     const meter = storage.get('meters', meterId);
     const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
     
+    // Get current user from auth
+    const currentUser = window.auth ? window.auth.getCurrentUser() : null;
+    const capturedBy = currentUser ? currentUser.name : 'Unknown User';
+    
     const readingData = {
         meter_id: meterId,
         cycle_id: cycleId,
@@ -235,7 +239,8 @@ document.getElementById('reading-form').addEventListener('submit', (e) => {
         photo: document.getElementById('reading-photo').value,
         notes: document.getElementById('reading-notes').value,
         consumption: consumption,
-        captured_by: 'Admin', // In production: actual user
+        captured_by: capturedBy,
+        captured_by_id: currentUser ? currentUser.id : null,
         flags: [],
         review_status: 'pending'
     };

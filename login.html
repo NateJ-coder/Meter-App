@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Fuzio Meter Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="login-body">
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <img src="assets/images/Fuzio logo.jpg" alt="Fuzio Properties" class="login-logo">
+            <h1>Fuzio Meter Readings</h1>
+            <p class="subtitle">Sign in to continue</p>
+        </div>
+
+        <div id="login-error" class="alert alert-danger" style="display: none;"></div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="admin@fuzio.com" autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="Enter password">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large btn-block">
+                Sign In
+            </button>
+        </form>
+
+        <div class="login-footer">
+            <p class="text-muted">
+                <strong>Default Admin:</strong> admin@fuzio.com / admin123
+            </p>
+            <p class="text-muted">
+                Need help? Contact your system administrator.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { auth } from './assets/auth.js';
+
+    // Initialize default admin on first load
+    auth.initializeDefaultAdmin();
+
+    // Handle login form
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const result = auth.login(email, password);
+
+        if (result.success) {
+            // Record login activity
+            auth.recordActivity('user_login', { email });
+
+            // Redirect to dashboard
+            window.location.href = 'index.html';
+        } else {
+            // Show error
+            const errorDiv = document.getElementById('login-error');
+            errorDiv.textContent = result.error;
+            errorDiv.style.display = 'block';
+
+            // Shake animation
+            errorDiv.classList.add('shake');
+            setTimeout(() => errorDiv.classList.remove('shake'), 500);
+        }
+    });
+
+    // Check if already logged in
+    if (auth.isAuthenticated()) {
+        window.location.href = 'index.html';
+    }
+</script>
+
+</body>
+</html>

@@ -6,6 +6,7 @@
 
 import { storage } from './storage.js';
 import { validation } from './validation.js';
+import { auth } from './auth.js';
 
 export const onSiteMode = {
     /**
@@ -409,9 +410,12 @@ export const onSiteMode = {
             return;
         }
 
+        // Get current user
+        const currentUser = window.auth ? window.auth.getCurrentUser() : null;
+        const capturedBy = currentUser ? currentUser.name : 'Unknown User';
+
         // Create reading
         const reading = {
-            id: Date.now().toString(),
             cycle_id: cycleId,
             meter_id: meterId,
             reading_value: readingValue,
@@ -419,29 +423,24 @@ export const onSiteMode = {
             previous_reading: meter.last_reading,
             consumption: readingValue - (meter.last_reading || 0),
             notes: notes,
+            captured_by: capturedBy,
+            captured_by_id: currentUser ? currentUser.id : null,
+            photo: 'On-site capture',
             captured_at: new Date().toISOString(),
-            review_status: 'PENDING'
+            review_status: 'pending'
         };
 
         // Validate and add flags
         reading.flags = validation.validateReading(reading);
 
-        // Determine review status
-        if (reading.flags.some(f => f.severity === 'high')) {
-            reading.review_status = 'ATTENTION';
-        } else if (reading.flags.length > 0) {
-            reading.review_status = 'REVIEW';
-        } else {
-            reading.review_status = 'OK';
-        }
-
         // Save reading
-        storage.save('readings', reading);
+        storage.create('readings', reading);
 
         // Update meter
-        meter.last_reading = readingValue;
-        meter.last_reading_date = reading.reading_date;
-        storage.save('meters', meter);
+        storage.update('meters', meter.id, {
+            last_reading: readingValue,
+            last_reading_date: reading.reading_date
+        });
 
         // Move to next meter
         const nextMeter = this.advanceQueue(cycleId);
