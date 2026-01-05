@@ -167,6 +167,22 @@ window.filterReadings = function() {
 };
 
 window.openReadingModal = function(meterId, cycleId) {
+    // Use enhanced reading capture modal
+    if (window.readingCaptureEnhanced) {
+        const modalHTML = window.readingCaptureEnhanced.renderCaptureModal(meterId, cycleId);
+        if (modalHTML) {
+            // Remove existing modal if any
+            const existingModal = document.querySelector('.modal-overlay');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            // Insert new modal
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+        return;
+    }
+    
+    // Fallback to original modal (if enhanced module not loaded)
     const meter = storage.getMeterWithDetails(meterId);
     const readings = storage.getReadings(cycleId);
     const existingReading = readings.find(r => r.meter_id === meterId);

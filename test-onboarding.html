@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Test Page - Fuzio</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .test-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .test-result {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            font-family: monospace;
+            font-size: 0.875rem;
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .info { color: #3b82f6; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Fuzio - Onboarding Tests</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Back to Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>🧪 Onboarding System Tests</h1>
+            <p class="subtitle">Verify all new components are working correctly</p>
+        </header>
+
+        <!-- Test 1: Onboarding State -->
+        <section class="test-section">
+            <h2>1. Onboarding State Management</h2>
+            <p>Test the onboarding state persistence and detection.</p>
+            <button class="btn btn-primary test-button" onclick="testOnboardingState()">Check State</button>
+            <button class="btn btn-secondary test-button" onclick="resetOnboarding()">Reset Onboarding</button>
+            <button class="btn btn-secondary test-button" onclick="completeOnboarding()">Mark Complete</button>
+            <div id="onboarding-result" class="test-result" style="display:none;"></div>
+        </section>
+
+        <!-- Test 2: Setup Health -->
+        <section class="test-section">
+            <h2>2. Setup Health Detection</h2>
+            <p>Test the setup health panel and issue detection.</p>
+            <button class="btn btn-primary test-button" onclick="testSetupHealth()">Check Health</button>
+            <button class="btn btn-secondary test-button" onclick="renderHealthPanel()">Render Panel</button>
+            <div id="health-result" class="test-result" style="display:none;"></div>
+            <div id="health-panel-container"></div>
+        </section>
+
+        <!-- Test 3: Expected Ranges -->
+        <section class="test-section">
+            <h2>3. Expected Range Calculation</h2>
+            <p>Test consumption history and range calculation.</p>
+            <button class="btn btn-primary test-button" onclick="testExpectedRanges()">Calculate Ranges</button>
+            <div id="range-result" class="test-result" style="display:none;"></div>
+        </section>
+
+        <!-- Test 4: Real-time Validation -->
+        <section class="test-section">
+            <h2>4. Real-time Reading Validation</h2>
+            <p>Test the enhanced reading validation.</p>
+            <div class="form-group">
+                <label for="test-meter">Select Meter</label>
+                <select id="test-meter"></select>
+            </div>
+            <div class="form-group">
+                <label for="test-reading">Test Reading Value</label>
+                <input type="number" id="test-reading" step="0.01" placeholder="Enter test value">
+            </div>
+            <button class="btn btn-primary test-button" onclick="testValidation()">Validate</button>
+            <div id="validation-result" class="test-result" style="display:none;"></div>
+        </section>
+
+        <!-- Test 5: Cycle Closure Readiness -->
+        <section class="test-section">
+            <h2>5. Cycle Closure Readiness</h2>
+            <p>Test the cycle close ritual data.</p>
+            <button class="btn btn-primary test-button" onclick="testClosureReadiness()">Check Readiness</button>
+            <button class="btn btn-secondary test-button" onclick="showClosureModal()">Show Modal</button>
+            <div id="closure-result" class="test-result" style="display:none;"></div>
+        </section>
+
+        <!-- Test 6: First-Time Checklist -->
+        <section class="test-section">
+            <h2>6. First-Time Checklist</h2>
+            <p>Test the progress checklist.</p>
+            <button class="btn btn-primary test-button" onclick="testChecklist()">Check Progress</button>
+            <button class="btn btn-secondary test-button" onclick="renderChecklist()">Render Checklist</button>
+            <div id="checklist-result" class="test-result" style="display:none;"></div>
+            <div id="checklist-container"></div>
+        </section>
+
+        <!-- Test 7: Module Loading -->
+        <section class="test-section">
+            <h2>7. Module Loading Status</h2>
+            <p>Verify all new modules loaded correctly.</p>
+            <button class="btn btn-primary test-button" onclick="testModuleLoading()">Check Modules</button>
+            <div id="modules-result" class="test-result" style="display:none;"></div>
+        </section>
+
+        <!-- Data Operations -->
+        <section class="test-section">
+            <h2>🛠 Data Operations</h2>
+            <p><strong>⚠ Warning:</strong> These operations modify data.</p>
+            <button class="btn btn-danger test-button" onclick="clearOnboardingData()">Clear Onboarding State Only</button>
+            <button class="btn btn-danger test-button" onclick="clearAllDataTest()">Clear All Data</button>
+        </section>
+    </main>
+
+    <script type="module">
+        import { storage } from './assets/storage.js';
+        import { onboarding } from './assets/onboarding.js';
+        import { setupHealth } from './assets/setup-health.js';
+        import { readingCaptureEnhanced } from './assets/reading-capture-enhanced.js';
+        import { cycleCloseRitual } from './assets/cycle-close-ritual.js';
+        import { firstTimeChecklist } from './assets/first-time-checklist.js';
+        import { validation } from './assets/validation.js';
+
+        // Make modules globally available for tests
+        window.storage = storage;
+        window.onboarding = onboarding;
+        window.setupHealth = setupHealth;
+        window.readingCaptureEnhanced = readingCaptureEnhanced;
+        window.cycleCloseRitual = cycleCloseRitual;
+        window.firstTimeChecklist = firstTimeChecklist;
+        window.validation = validation;
+
+        // Populate meter select
+        const meters = storage.getAll('meters');
+        const meterSelect = document.getElementById('test-meter');
+        meterSelect.innerHTML = '<option value="">Select a meter...</option>' +
+            meters.map(m => `<option value="${m.id}">${m.meter_number}</option>`).join('');
+
+        // Test functions
+        window.testOnboardingState = function() {
+            const result = document.getElementById('onboarding-result');
+            const state = onboarding.getState();
+            const shouldShow = onboarding.shouldShowOnboarding();
+            const progress = onboarding.getProgress();
+            const percentage = onboarding.getCompletionPercentage();
+
+            result.style.display = 'block';
+            result.innerHTML = `
+                <div class="info">✓ Onboarding module loaded</div>
+                <pre>${JSON.stringify(state, null, 2)}</pre>
+                <div class="${shouldShow ? 'info' : 'success'}">
+                    Should show wizard: ${shouldShow}
+                </div>
+                <div class="info">Progress: ${percentage}%</div>
+                <pre>${JSON.stringify(progress, null, 2)}</pre>
+            `;
+        };
+
+        window.resetOnboarding = function() {
+            localStorage.removeItem('fuzio_onboarding_state');
+            alert('Onboarding state reset. Refresh page to see wizard.');
+        };
+
+        window.completeOnboarding = function() {
+            onboarding.markComplete();
+            alert('Onboarding marked complete.');
+            testOnboardingState();
+        };
+
+        window.testSetupHealth = function() {
+            const result = document.getElementById('health-result');
+            const health = setupHealth.getHealthStatus();
+
+            result.style.display = 'block';
+            result.innerHTML = `
+                <div class="${health.overall === 'healthy' ? 'success' : 'error'}">
+                    Overall Status: ${health.overall.toUpperCase()}
+                </div>
+                <div class="info">Issues: ${health.issues.length}</div>
+                <div class="info">Warnings: ${health.warnings.length}</div>
+                <div class="success">Successes: ${health.successes.length}</div>
+                <pre>${JSON.stringify(health, null, 2)}</pre>
+            `;
+        };
+
+        window.renderHealthPanel = function() {
+            setupHealth.renderHealthPanel('health-panel-container');
+        };
+
+        window.testExpectedRanges = function() {
+            const result = document.getElementById('range-result');
+            const meters = storage.getAll('meters').filter(m => m.meter_type === 'UNIT').slice(0, 5);
+
+            let output = '<div class="info">Testing first 5 unit meters:</div>';
+            
+            meters.forEach(meter => {
+                const range = readingCaptureEnhanced.getExpectedRange(meter.id);
+                const expectedReading = readingCaptureEnhanced.getExpectedReading(meter.id);
+                
+                output += `
+                    <div style="margin-top: 1rem; padding: 0.5rem; background: white; border-radius: 4px;">
+                        <strong>${meter.meter_number}</strong><br>
+                        Range: ${range.hasHistory ? 
+                            \`\${range.typicalLow}-\${range.typicalHigh} kWh\` : 
+                            'No history'}<br>
+                        Expected: ${expectedReading ? 
+                            \`\${expectedReading.expectedLow}-\${expectedReading.expectedHigh}\` : 
+                            'N/A'}
+                    </div>
+                `;
+            });
+
+            result.style.display = 'block';
+            result.innerHTML = output;
+        };
+
+        window.testValidation = function() {
+            const meterId = document.getElementById('test-meter').value;
+            const value = document.getElementById('test-reading').value;
+            const result = document.getElementById('validation-result');
+
+            if (!meterId || !value) {
+                result.style.display = 'block';
+                result.innerHTML = '<div class="error">Please select a meter and enter a value</div>';
+                return;
+            }
+
+            const validationResult = readingCaptureEnhanced.validateInRealTime(meterId, value);
+
+            result.style.display = 'block';
+            result.innerHTML = `
+                <div class="${validationResult.valid ? 'success' : 'error'}">
+                    Valid: ${validationResult.valid}
+                </div>
+                <div class="info">Severity: ${validationResult.severity}</div>
+                <div class="info">Message: ${validationResult.message}</div>
+                ${validationResult.context ? \`<div class="info">Context: \${validationResult.context}</div>\` : ''}
+                <pre>${JSON.stringify(validationResult, null, 2)}</pre>
+            `;
+        };
+
+        window.testClosureReadiness = function() {
+            const result = document.getElementById('closure-result');
+            const cycles = storage.getAll('cycles');
+            const openCycle = cycles.find(c => c.status === 'OPEN');
+
+            if (!openCycle) {
+                result.style.display = 'block';
+                result.innerHTML = '<div class="error">No open cycle found</div>';
+                return;
+            }
+
+            const readiness = cycleCloseRitual.getClosureReadiness(openCycle.id);
+
+            result.style.display = 'block';
+            result.innerHTML = `
+                <div class="${readiness.isComplete ? 'success' : 'info'}">
+                    Complete: ${readiness.isComplete}
+                </div>
+                <div class="info">Units Read: ${readiness.unitsRead}/${readiness.totalUnits}</div>
+                <div class="info">Flagged: ${readiness.flaggedReadings}</div>
+                <div class="info">Unreviewed: ${readiness.unreviewedFlags}</div>
+                <pre>${JSON.stringify(readiness, null, 2)}</pre>
+            `;
+        };
+
+        window.showClosureModal = function() {
+            const cycles = storage.getAll('cycles');
+            const openCycle = cycles.find(c => c.status === 'OPEN');
+
+            if (!openCycle) {
+                alert('No open cycle found');
+                return;
+            }
+
+            cycleCloseRitual.showClosureModal(openCycle.id);
+        };
+
+        window.testChecklist = function() {
+            const result = document.getElementById('checklist-result');
+            const shouldShow = firstTimeChecklist.shouldShow();
+            const progress = firstTimeChecklist.getProgress();
+
+            result.style.display = 'block';
+            result.innerHTML = `
+                <div class="${shouldShow ? 'info' : 'success'}">
+                    Should show: ${shouldShow}
+                </div>
+                <pre>${JSON.stringify(progress, null, 2)}</pre>
+            `;
+        };
+
+        window.renderChecklist = function() {
+            firstTimeChecklist.renderChecklist('checklist-container');
+        };
+
+        window.testModuleLoading = function() {
+            const result = document.getElementById('modules-result');
+            
+            const modules = [
+                { name: 'storage', loaded: typeof window.storage !== 'undefined' },
+                { name: 'onboarding', loaded: typeof window.onboarding !== 'undefined' },
+                { name: 'setupHealth', loaded: typeof window.setupHealth !== 'undefined' },
+                { name: 'readingCaptureEnhanced', loaded: typeof window.readingCaptureEnhanced !== 'undefined' },
+                { name: 'cycleCloseRitual', loaded: typeof window.cycleCloseRitual !== 'undefined' },
+                { name: 'firstTimeChecklist', loaded: typeof window.firstTimeChecklist !== 'undefined' },
+                { name: 'validation', loaded: typeof window.validation !== 'undefined' }
+            ];
+
+            let output = '';
+            modules.forEach(mod => {
+                output += \`<div class="\${mod.loaded ? 'success' : 'error'}">\`;
+                output += \`\${mod.loaded ? '✓' : '✗'} \${mod.name}\`;
+                output += '</div>';
+            });
+
+            result.style.display = 'block';
+            result.innerHTML = output;
+        };
+
+        window.clearOnboardingData = function() {
+            if (confirm('Clear onboarding state only?')) {
+                localStorage.removeItem('fuzio_onboarding_state');
+                alert('Onboarding state cleared. Page will reload.');
+                location.reload();
+            }
+        };
+
+        window.clearAllDataTest = function() {
+            if (confirm('⚠️ WARNING: Clear ALL data including onboarding state?')) {
+                if (confirm('Really sure? This cannot be undone.')) {
+                    storage.clearAll();
+                    localStorage.removeItem('fuzio_onboarding_state');
+                    alert('All data cleared. Page will reload.');
+                    location.reload();
+                }
+            }
+        };
+
+        // Auto-test modules on load
+        window.testModuleLoading();
+    </script>
+</body>
+</html>

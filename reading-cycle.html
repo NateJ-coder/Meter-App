@@ -59,7 +59,7 @@
         <section class="card" id="capture-section" style="display: none;">
             <div class="card-header">
                 <h2>Capture Readings</h2>
-                <button class="btn btn-danger" onclick="closeCycle()">Close Cycle</button>
+                <button class="btn btn-danger" onclick="showCloseCycleRitual()">Close Cycle</button>
             </div>
             
             <div class="filter-bar">
@@ -131,5 +131,21 @@
 
     <script type="module" src="assets/app.js"></script>
     <script type="module" src="assets/reading-cycle.js"></script>
+    <script type="module">
+        import { cycleCloseRitual } from './assets/cycle-close-ritual.js';
+        import { readingCaptureEnhanced } from './assets/reading-capture-enhanced.js';
+        
+        // Make functions globally available
+        window.cycleCloseRitual = cycleCloseRitual;
+        window.readingCaptureEnhanced = readingCaptureEnhanced;
+        
+        // Show close cycle ritual instead of direct close
+        window.showCloseCycleRitual = function() {
+            const openCycle = storage.getAll('cycles').find(c => c.status === 'OPEN');
+            if (openCycle) {
+                cycleCloseRitual.showClosureModal(openCycle.id);
+            }
+        };
+    </script>
 </body>
 </html>

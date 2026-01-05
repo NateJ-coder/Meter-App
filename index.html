@@ -20,18 +20,29 @@
     </nav>
 
     <main class="container">
-        <header class="page-header">
-            <h1>Dashboard</h1>
-            <p class="subtitle">Monthly electricity meter reading workflow</p>
-        </header>
+        <!-- Onboarding Container (shown on first run) -->
+        <div id="onboarding-container"></div>
 
-        <!-- Current Cycle Summary -->
-        <section class="card">
-            <h2>Current Reading Cycle</h2>
-            <div id="cycle-status-container">
-                <p class="text-muted">Loading cycle information...</p>
-            </div>
-        </section>
+        <!-- Dashboard Content (shown after onboarding or if data exists) -->
+        <div id="dashboard-content">
+            <header class="page-header">
+                <h1>Dashboard</h1>
+                <p class="subtitle">Monthly electricity meter reading workflow</p>
+            </header>
+
+            <!-- First-Time Checklist (shown until complete) -->
+            <div id="first-time-checklist-container"></div>
+
+            <!-- Setup Health Panel -->
+            <section id="setup-health-container"></section>
+
+            <!-- Current Cycle Summary -->
+            <section class="card">
+                <h2>Current Reading Cycle</h2>
+                <div id="cycle-status-container">
+                    <p class="text-muted">Loading cycle information...</p>
+                </div>
+            </section>
 
         <!-- Key Metrics -->
         <section class="metrics-grid">
@@ -72,22 +83,56 @@
                 <p class="text-muted">Loading recent cycles...</p>
             </div>
         </section>
+        </div>
     </main>
 
     <script type="module" src="assets/app.js"></script>
     <script type="module">
         import { storage } from './assets/storage.js';
+        import { onboarding } from './assets/onboarding.js';
+        import { setupHealth } from './assets/setup-health.js';
+        import { firstTimeChecklist } from './assets/first-time-checklist.js';
         import { initializeSeedData } from './assets/app.js';
 
         // Initialize seed data on first run (disabled by default)
         // Uncomment the line below to enable seed data:
         // initializeSeedData();
 
+        // Make storage globally available
+        window.storage = storage;
+
+        // Check if onboarding should be shown
+        function initializePage() {
+            const dashboardContent = document.getElementById('dashboard-content');
+            const onboardingContainer = document.getElementById('onboarding-container');
+
+            if (onboarding.shouldShowOnboarding()) {
+                // First run - show onboarding wizard
+                dashboardContent.style.display = 'none';
+                onboarding.renderWizard('onboarding-container');
+            } else {
+                // Normal dashboard
+                dashboardContent.style.display = 'block';
+                onboardingContainer.style.display = 'none';
+
+                // Show first-time checklist if not completed
+                firstTimeChecklist.renderChecklist('first-time-checklist-container');
+
+                // Show setup health panel
+                setupHealth.renderHealthPanel('setup-health-container');
+
+                // Load dashboard data
+                loadDashboard();
+            }
+        }
+
         // Clear all data function
         window.clearAllData = function() {
             if (confirm('⚠️ WARNING: This will delete ALL data (schemes, buildings, units, meters, readings, cycles). This cannot be undone. Are you sure?')) {
                 if (confirm('Really sure? This action is permanent.')) {
                     storage.clearAll();
+                    // Also clear onboarding state
+                    localStorage.removeItem('fuzio_onboarding_state');
                     alert('All data cleared. Refreshing page...');
                     location.reload();
                 }
@@ -184,7 +229,8 @@
             }
         }
 
-        loadDashboard();
+        // Initialize page on load
+        initializePage();
     </script>
 </body>
 </html>
