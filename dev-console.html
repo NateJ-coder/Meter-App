@@ -145,9 +145,13 @@
 
             // Check for duplicate meter numbers
             const meterNumbers = meters.map(m => m.meter_number);
-            const duplicates = meterNumbers.filter((num, index) => meterNumbers.indexOf(num) !== index);
+            const duplicates = [...new Set(meterNumbers.filter((num, index) => meterNumbers.indexOf(num) !== index))];
             if (duplicates.length > 0) {
-                issues.push({ severity: 'error', message: `${duplicates.length} duplicate meter numbers found` });
+                issues.push({ 
+                    severity: 'error', 
+                    message: `${duplicates.length} duplicate meter number(s) found`,
+                    details: `Duplicate numbers: ${duplicates.join(', ')}. Each meter must have a unique identifier.`
+                });
             }
 
             // Check for units without meters
@@ -155,23 +159,73 @@
                 !meters.some(m => m.unit_id === unit.id)
             );
             if (unitsWithoutMeters.length > 0) {
-                issues.push({ severity: 'warning', message: `${unitsWithoutMeters.length} units without meters` });
+                const unitNames = unitsWithoutMeters.slice(0, 5).map(u => u.unit_number).join(', ');
+                const remaining = unitsWithoutMeters.length > 5 ? ` (and ${unitsWithoutMeters.length - 5} more)` : '';
+                issues.push({ 
+                    severity: 'warning', 
+                    message: `${unitsWithoutMeters.length} unit(s) without meters`,
+                    details: `Affected units: ${unitNames}${remaining}. Consider adding meters or removing unused units.`
+                });
             }
 
             // Check for open cycles
             const openCycles = cycles.filter(c => c.status === 'OPEN');
             if (openCycles.length > 1) {
-                issues.push({ severity: 'error', message: `${openCycles.length} open cycles (should be max 1 per scheme)` });
+                const cycleDetails = openCycles.map(c => {
+                    const scheme = schemes.find(s => s.id === c.scheme_id);
+                    return scheme ? scheme.name : `Cycle ${c.id}`;
+                }).join(', ');
+                issues.push({ 
+                    severity: 'error', 
+                    message: `${openCycles.length} open cycles detected (should be max 1 per scheme)`,
+                    details: `Open cycles for: ${cycleDetails}. Close completed cycles before starting new ones.`
+                });
             } else if (openCycles.length === 0) {
-                issues.push({ severity: 'info', message: 'No open reading cycles' });
+                issues.push({ 
+                    severity: 'info', 
+                    message: 'No open reading cycles',
+                    details: 'This is normal when readings are not in progress. Start a new cycle from the Reading Cycle page when ready.'
+                });
             }
 
-            // Check localStorage usage
+            // Check for meters without readings (stale data)
+            const metersWithNoReadings = meters.filter(m => 
+                !readings.some(r => r.meter_id === m.id)
+            );
+            if (metersWithNoReadings.length > 10) {
+                issues.push({
+                    severity: 'warning',
+                    message: `${metersWithNoReadings.length} meter(s) have never been read`,
+                    details: 'Consider starting a reading cycle to capture initial readings for all meters.'
+                });
+            }
+
+            // Check localStorage usage and warn if approaching limit
             const storageUsed = new Blob([JSON.stringify(localStorage)]).size;
             const storageUsedKB = (storageUsed / 1024).toFixed(2);
             const storagePercent = (storageUsed / (5 * 1024 * 1024) * 100).toFixed(1); // Assume 5MB limit
+            
+            if (storagePercent > 80) {
+                issues.push({
+                    severity: 'error',
+                    message: `Storage usage critically high (${storagePercent}%)`,
+                    details: 'Consider exporting and archiving old data, or migrating to cloud storage. See STORAGE_ARCHITECTURE.md for guidance.'
+                });
+            } else if (storagePercent > 60) {
+                issues.push({
+                    severity: 'warning',
+                    message: `Storage usage elevated (${storagePercent}%)`,
+                    details: 'Monitor storage usage regularly. Export backups and consider data cleanup.'
+                });
+            }
 
             const container = document.getElementById('health-dashboard');
+            
+            // Separate issues by severity
+            const errorIssues = issues.filter(i => i.severity === 'error');
+            const warningIssues = issues.filter(i => i.severity === 'warning');
+            const infoIssues = issues.filter(i => i.severity === 'info');
+            
             container.innerHTML = `
                 <div class="health-metrics">
                     <div class="health-metric ${issues.length === 0 ? 'health-good' : 'health-issues'}">
@@ -206,14 +260,53 @@
 
                 ${issues.length > 0 ? `
                     <div class="health-issues-list">
-                        <h3>Issues Detected</h3>
-                        ${issues.map(issue => `
-                            <div class="alert alert-${issue.severity === 'error' ? 'danger' : issue.severity === 'warning' ? 'warning' : 'info'}">
-                                ${issue.message}
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>Issues Detected (${issues.length})</h3>
+                            <button class="btn btn-sm btn-secondary" onclick="exportIssuesReport()">📄 Export Issues Report</button>
+                        </div>
+                        
+                        ${errorIssues.length > 0 ? `
+                            <div class="issue-section">
+                                <h4 style="color: #dc3545; margin-bottom: 0.5rem;">🔴 Critical Errors (${errorIssues.length})</h4>
+                                ${errorIssues.map((issue, index) => `
+                                    <div class="alert alert-danger">
+                                        <strong>Error #${index + 1}:</strong> ${issue.message}
+                                        ${issue.details ? `<br><small class="text-muted">${issue.details}</small>` : ''}
+                                    </div>
+                                `).join('')}
                             </div>
-                        `).join('')}
+                        ` : ''}
+                        
+                        ${warningIssues.length > 0 ? `
+                            <div class="issue-section">
+                                <h4 style="color: #ffc107; margin-bottom: 0.5rem;">⚠️ Warnings (${warningIssues.length})</h4>
+                                ${warningIssues.map((issue, index) => `
+                                    <div class="alert alert-warning">
+                                        <strong>Warning #${index + 1}:</strong> ${issue.message}
+                                        ${issue.details ? `<br><small class="text-muted">${issue.details}</small>` : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        ${infoIssues.length > 0 ? `
+                            <div class="issue-section">
+                                <h4 style="color: #17a2b8; margin-bottom: 0.5rem;">ℹ️ Information (${infoIssues.length})</h4>
+                                ${infoIssues.map((issue, index) => `
+                                    <div class="alert alert-info">
+                                        <strong>Info #${index + 1}:</strong> ${issue.message}
+                                        ${issue.details ? `<br><small class="text-muted">${issue.details}</small>` : ''}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
                     </div>
-                ` : ''}
+                ` : '<div class="alert alert-success">✓ No issues detected. System is healthy.</div>'}
+                
+                <script>
+                    // Store issues for export
+                    window.currentIssues = ${JSON.stringify(issues)};
+                <\/script>
             `;
         }
 
@@ -448,6 +541,106 @@
 
             alert('Data exported successfully!');
         };
+
+        // Export Issues Report
+        window.exportIssuesReport = function() {
+            const issues = window.currentIssues || [];
+            
+            // Gather system info
+            const schemes = storage.getAll('schemes');
+            const meters = storage.getAll('meters');
+            const readings = storage.getAll('readings');
+            const cycles = storage.getAll('cycles');
+            const users = auth.getUsers();
+            
+            const report = {
+                report_title: 'Fuzio System Health Report',
+                generated_at: new Date().toISOString(),
+                generated_by: currentUser.email,
+                summary: {
+                    total_issues: issues.length,
+                    critical_errors: issues.filter(i => i.severity === 'error').length,
+                    warnings: issues.filter(i => i.severity === 'warning').length,
+                    informational: issues.filter(i => i.severity === 'info').length
+                },
+                system_stats: {
+                    schemes: schemes.length,
+                    meters: meters.length,
+                    readings: readings.length,
+                    cycles: cycles.length,
+                    users: users.length,
+                    storage_usage_kb: (new Blob([JSON.stringify(localStorage)]).size / 1024).toFixed(2)
+                },
+                issues_detail: issues.map((issue, index) => ({
+                    issue_number: index + 1,
+                    severity: issue.severity.toUpperCase(),
+                    message: issue.message,
+                    details: issue.details || 'N/A',
+                    detected_at: new Date().toISOString()
+                })),
+                recommendations: generateRecommendations(issues)
+            };
+
+            // Export as JSON
+            const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `fuzio-issues-report-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert(`Issues report exported!\n\nTotal Issues: ${issues.length}\n- Errors: ${report.summary.critical_errors}\n- Warnings: ${report.summary.warnings}\n- Info: ${report.summary.informational}`);
+        };
+
+        // Generate recommendations based on issues
+        function generateRecommendations(issues) {
+            const recommendations = [];
+
+            issues.forEach(issue => {
+                if (issue.message.includes('duplicate meter numbers')) {
+                    recommendations.push({
+                        for_issue: issue.message,
+                        recommendation: 'Review meter setup and ensure each meter has a unique number. Navigate to Meters page to identify duplicates.',
+                        action: 'Update duplicate meter numbers'
+                    });
+                }
+                
+                if (issue.message.includes('units without meters')) {
+                    recommendations.push({
+                        for_issue: issue.message,
+                        recommendation: 'Some units are not assigned any meters. Consider adding meters or removing unused units.',
+                        action: 'Assign meters to units or archive empty units'
+                    });
+                }
+                
+                if (issue.message.includes('No open reading cycles')) {
+                    recommendations.push({
+                        for_issue: issue.message,
+                        recommendation: 'This is normal if readings are not currently in progress. Start a new cycle when ready to capture readings.',
+                        action: 'Navigate to Reading Cycle page to start a new cycle'
+                    });
+                }
+                
+                if (issue.message.includes('open cycles')) {
+                    recommendations.push({
+                        for_issue: issue.message,
+                        recommendation: 'Multiple schemes have open cycles simultaneously. Close completed cycles before starting new ones.',
+                        action: 'Review and close completed cycles'
+                    });
+                }
+            });
+
+            if (recommendations.length === 0) {
+                recommendations.push({
+                    for_issue: 'General',
+                    recommendation: 'System is healthy. Continue monitoring regularly.',
+                    action: 'No action required'
+                });
+            }
+
+            return recommendations;
+        }
 
         // Initialize on load
         initializeDashboard();

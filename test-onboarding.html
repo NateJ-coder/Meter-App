@@ -213,10 +213,10 @@
                     <div style="margin-top: 1rem; padding: 0.5rem; background: white; border-radius: 4px;">
                         <strong>${meter.meter_number}</strong><br>
                         Range: ${range.hasHistory ? 
-                            \`\${range.typicalLow}-\${range.typicalHigh} kWh\` : 
+                            `${range.typicalLow}-${range.typicalHigh} kWh` : 
                             'No history'}<br>
                         Expected: ${expectedReading ? 
-                            \`\${expectedReading.expectedLow}-\${expectedReading.expectedHigh}\` : 
+                            `${expectedReading.expectedLow}-${expectedReading.expectedHigh}` : 
                             'N/A'}
                     </div>
                 `;
@@ -246,7 +246,7 @@
                 </div>
                 <div class="info">Severity: ${validationResult.severity}</div>
                 <div class="info">Message: ${validationResult.message}</div>
-                ${validationResult.context ? \`<div class="info">Context: \${validationResult.context}</div>\` : ''}
+                ${validationResult.context ? `<div class="info">Context: ${validationResult.context}</div>` : ''}
                 <pre>${JSON.stringify(validationResult, null, 2)}</pre>
             `;
         };
@@ -321,8 +321,8 @@
 
             let output = '';
             modules.forEach(mod => {
-                output += \`<div class="\${mod.loaded ? 'success' : 'error'}">\`;
-                output += \`\${mod.loaded ? '✓' : '✗'} \${mod.name}\`;
+                output += `<div class="${mod.loaded ? 'success' : 'error'}">`;
+                output += `${mod.loaded ? '✓' : '✗'} ${mod.name}`;
                 output += '</div>';
             });
 
