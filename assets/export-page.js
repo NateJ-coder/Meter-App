@@ -4,6 +4,7 @@
 
 import { storage } from './storage.js';
 import { csv } from './csv.js';
+import { xlsxExport } from './xlsx-export.js';
 
 // Load page
 populateCycleSelect();
@@ -215,4 +216,23 @@ window.exportAllData = function() {
         return;
     }
     csv.exportAllData(cycleId);
+};
+
+// === XLSX EXPORTS ===
+
+window.exportSchemeReportXLSX = function() {
+    const cycleId = document.getElementById('export-cycle').value;
+    if (!cycleId) {
+        alert('Please select a cycle first');
+        return;
+    }
+    xlsxExport.exportSchemeReport(cycleId);
+};
+
+window.exportMeterReportXLSX = function(meterId, cycleId) {
+    if (!meterId || !cycleId) {
+        alert('Invalid meter or cycle');
+        return;
+    }
+    xlsxExport.exportMeterReport(meterId, cycleId);
 };

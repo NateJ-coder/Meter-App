@@ -79,7 +79,12 @@
 
             <!-- Reading History -->
             <section class="card">
-                <h2>Reading History (Last 6 Closed Cycles)</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2>Reading History (Last 6 Closed Cycles)</h2>
+                    <button class="btn btn-primary" onclick="exportDisputePack()" id="export-dispute-btn" style="display: none;">
+                        📄 Download Dispute Pack (Excel)
+                    </button>
+                </div>
                 <div id="cycles-table"></div>
             </section>
 
@@ -220,7 +225,36 @@
 
             // Populate raw data
             document.getElementById('raw-data').textContent = JSON.stringify(pack, null, 2);
+
+            // Show export button if meter exists
+            if (pack.meter) {
+                document.getElementById('export-dispute-btn').style.display = 'inline-block';
+                // Store pack data for export
+                window.currentDisputePack = pack;
+            }
         }
+
+        // Export dispute pack as Excel
+        window.exportDisputePack = async function() {
+            const pack = window.currentDisputePack;
+            if (!pack || !pack.meter) {
+                alert('No dispute pack data available');
+                return;
+            }
+
+            // Dynamically import xlsx-export
+            const { xlsxExport } = await import('./assets/xlsx-export.js');
+            
+            // Find the most recent cycle with a reading
+            const cycleWithReading = pack.cycles.find(c => c.reading && !c.reading.missing);
+            if (!cycleWithReading) {
+                alert('No readings found in dispute pack');
+                return;
+            }
+
+            // Export meter report for the most recent cycle
+            await xlsxExport.exportDisputePackReport(pack);
+        };
     </script>
 </body>
 </html>

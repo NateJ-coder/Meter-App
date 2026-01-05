@@ -176,6 +176,9 @@ window.openReviewModal = function(readingId) {
             <strong>Flags:</strong> ${flags.length > 0 ? flags.map(f => `<span class="badge badge-danger">${f.type}: ${f.message}</span>`).join(' ') : 'None'}<br>
             ${reading.notes ? `<strong>Notes:</strong> ${reading.notes}` : ''}
         </div>
+        <button class="btn btn-secondary btn-sm mt-1" onclick="exportMeterReportFromReview('${meter.id}', '${reading.cycle_id}')">
+            📄 Export Meter Report (Excel)
+        </button>
     `;
     
     document.getElementById('review-action').value = reading.review_status || '';
@@ -233,3 +236,8 @@ document.getElementById('review-form').addEventListener('submit', (e) => {
     closeReviewModal();
     loadReviewData();
 });
+// Export individual meter report from review modal
+window.exportMeterReportFromReview = async function(meterId, cycleId) {
+    const { xlsxExport } = await import('./xlsx-export.js');
+    await xlsxExport.exportMeterReport(meterId, cycleId);
+};
