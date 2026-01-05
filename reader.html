@@ -3,88 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meter Reading Submission</title>
+  <title>Fuzio Meter Reading</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
+<body class="reader-body">
 
-<main class="container">
-  <header class="page-header">
-    <h1>Meter Reading</h1>
-    <p id="context-info" class="subtitle"></p>
-    <div id="progress-info" class="badge" style="display:none; font-size: 0.9rem; margin-top: 0.5rem;"></div>
-  </header>
-
-  <section class="card" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
-    <h3 style="margin-top: 0; color: #2e7d32;">📋 Instructions</h3>
-    <ol style="margin: 0.5rem 0; padding-left: 1.5rem; line-height: 1.8;">
-      <li><strong>Find the meter</strong> - Look for the meter number shown above</li>
-      <li><strong>Read the display</strong> - Write down the current reading from the meter (the number shown in kWh)</li>
-      <li><strong>Take a photo</strong> - Take a clear photo of the meter display showing the reading</li>
-      <li><strong>Enter the details below</strong> - Type in the reading and photo reference</li>
-      <li><strong>Click Submit</strong> - The app will automatically move to the next meter</li>
-    </ol>
-    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #555;">
-      <strong>💡 Tip:</strong> If the meter is damaged, not accessible, or you see anything unusual, make a note in the "Notes" field below.
-    </p>
-  </section>
-
-  <section class="card">
-    <form id="reader-form">
-
-      <div class="form-group">
-        <label for="reading-value">Current Reading (kWh) *</label>
-        <input type="number" id="reading-value" required step="0.01">
-      </div>
-
-      <div class="form-group">
-        <label for="photo-ref">Meter Photo *</label>
-        <input type="text" id="photo-ref" placeholder="Photo filename or description" required>
-      </div>
-
-      <div class="form-group">
-        <label for="notes">Notes (optional)</label>
-        <textarea id="notes" rows="3"></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Submit Reading</button>
-
-    </form>
-  </section>
-
-  <section id="error-message" class="card" style="display:none;">
-    <h2>⚠️ Unable to load meter</h2>
-    <p id="error-text"></p>
-    <div class="info-box mt-2" style="background: #fff3cd; border-left-color: #ffc107;">
-      <strong>Note for testing:</strong> This app currently uses localStorage (browser storage on this device only). 
-      <br><br>
-      <strong>To test the QR reader:</strong>
-      <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-        <li>Open the QR code on the same device/browser where you created the meters</li>
-        <li>OR: Right-click the QR code → Copy link → Paste in the same browser</li>
-      </ul>
-      <strong>For production use:</strong> This system needs a backend server so data is accessible from any device.
+<!-- Branded Header -->
+<header class="reader-header">
+  <div class="reader-header-content">
+    <img src="assets/images/Fuzio logo.jpg" alt="Fuzio Properties" class="reader-logo">
+    <div>
+      <h1>Meter Reading</h1>
+      <p class="subtitle">Fuzio Properties – Official Meter Capture</p>
     </div>
+  </div>
+</header>
+
+<main class="container reader-container">
+  <!-- On-Site Mode Container -->
+  <div id="onsite-container"></div>
+
+  <!-- Fallback: Traditional Reader (if on-site mode not activated) -->
+  <div id="traditional-reader" style="display:none;">
+    <div id="context-card" class="card reader-context-card">
+      <p id="context-info" class="context-text"></p>
+      <div id="progress-info" class="reader-progress"></div>
+    </div>
+
+    <section class="card instructions-card">
+      <h3>📋 What to do</h3>
+      <ol>
+        <li>Confirm the meter number matches the one shown above</li>
+        <li>Read the number displayed on the meter</li>
+        <li>Take a clear photo of the meter display</li>
+        <li>Enter the reading below</li>
+        <li>Tap <strong>Submit</strong> to continue</li>
+      </ol>
+      <p class="instruction-tip">
+        💡 <strong>Tip:</strong> If the meter is inaccessible, damaged, or unclear, make a note in the "Notes" field.
+      </p>
+    </section>
+
+    <section class="card">
+      <form id="reader-form">
+        <div class="form-group">
+          <label for="reading-value">Current Reading (kWh) *</label>
+          <input 
+            type="number" 
+            id="reading-value" 
+            required 
+            step="0.01"
+            inputmode="decimal"
+            class="reader-input-large"
+            placeholder="Enter meter reading..."
+          >
+          <div id="reading-feedback" class="input-feedback"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="photo-ref">Meter Photo Reference *</label>
+          <input 
+            type="text" 
+            id="photo-ref" 
+            placeholder="Photo filename or description" 
+            required
+            class="reader-input"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Notes (optional)</label>
+          <textarea id="notes" rows="2" placeholder="Any observations or issues..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-large reader-submit">
+          Submit & Continue
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <!-- Error Message -->
+  <section id="error-message" class="card error-card" style="display:none;">
+    <div class="error-icon">⚠</div>
+    <h2>Unable to load meter</h2>
+    <p id="error-text"></p>
+    <div class="info-box">
+      <strong>Note:</strong> This app uses localStorage (browser storage). 
+      Make sure you're accessing from the same device/browser where meters were created.
+    </div>
+    <a href="index.html" class="btn btn-secondary mt-2">Return to Dashboard</a>
   </section>
 
-  <section id="success-message" class="card" style="display:none;">
-    <h2>✅ All readings captured!</h2>
-    <p>Thank you. The office has received all readings for this scheme.</p>
-    <a href="index.html" class="btn btn-secondary mt-2">Return to Dashboard</a>
+  <!-- Success Message -->
+  <section id="success-message" class="card success-card" style="display:none;">
+    <div class="completion-icon">✓</div>
+    <h2>All Readings Captured!</h2>
+    <p>Thank you. All meter readings have been submitted successfully.</p>
+    <a href="index.html" class="btn btn-primary btn-large mt-2">Return to Dashboard</a>
   </section>
 </main>
 
 <script type="module">
   import { storage } from './assets/storage.js';
   import { validation } from './assets/validation.js';
+  import { onSiteMode } from './assets/on-site-mode.js';
   import { getCurrentDateTime } from './assets/app.js';
 
-  // --- Get URL params ---
+  // Make globally available
+  window.storage = storage;
+  window.onSiteMode = onSiteMode;
+
+  // Get URL params
   const params = new URLSearchParams(window.location.search);
   const schemeId = params.get('scheme_id');
   const currentIndex = parseInt(params.get('index') || '0');
+  const mode = params.get('mode'); // 'onsite' for on-site mode
 
   let workflowContext = null;
+
+  // Check if we should use on-site mode
+  if (mode === 'onsite' || onSiteMode.isActive()) {
+    initializeOnsiteMode();
+  } else {
+    initializeTraditionalReader();
+  }
+
+  function initializeOnsiteMode() {
+    console.log('Initializing On-Site Mode...');
+    
+    // Activate on-site mode
+    onSiteMode.activate();
+
+    // Find open cycle
+    const cycles = storage.getAll('cycles');
+    const openCycle = cycles.find(c => c.status === 'OPEN');
+
+    if (!openCycle) {
+      showError('No open reading cycle found. Please open a cycle first.');
+      return;
+    }
+
+    // Render on-site capture
+    document.getElementById('traditional-reader').style.display = 'none';
+    onSiteMode.renderOnSiteCapture('onsite-container', openCycle.id);
+  }
+
+  function initializeTraditionalReader() {
+    console.log('Initializing Traditional Reader...');
+    document.getElementById('traditional-reader').style.display = 'block';
+    workflowContext = loadWorkflowContext();
+    
+    if (workflowContext) {
+      displayMeterContext(workflowContext);
+      setupFormHandlers();
+    }
+  }
 
   // --- Load workflow context ---
   function loadWorkflowContext() {
@@ -208,53 +282,74 @@
     const meter = context.currentMeter;
     
     let contextText = `${context.scheme.name}`;
+    let progressText = '';
     
     if (context.currentIndex === 0) {
       // Bulk meter
       contextText += ` | BULK METER: ${meter.meter_number}`;
-      document.getElementById('progress-info').textContent = `Step 1 of ${context.totalMeters}: Bulk Meter`;
-      document.getElementById('progress-info').className = 'badge badge-primary';
+      progressText = `Step 1 of ${context.totalMeters}: Bulk Meter`;
+      document.getElementById('progress-info').className = 'reader-progress bulk';
     } else {
       // Submeter
-      contextText += ` - ${meter.unit_info.building_name} - Unit ${meter.unit_info.unit_number} | Submeter: ${meter.meter_number}`;
-      document.getElementById('progress-info').textContent = `Step ${context.currentIndex + 1} of ${context.totalMeters}: ${meter.unit_info.building_name} - Unit ${meter.unit_info.unit_number}`;
-      document.getElementById('progress-info').className = 'badge badge-info';
-    }
-    
-    if (meter.last_reading) {
-      contextText += ` | Last: ${meter.last_reading} kWh`;
+      contextText += ` - ${meter.unit_info.building_name} - Unit ${meter.unit_info.unit_number}`;
+      progressText = `Meter ${context.currentIndex + 1} of ${context.totalMeters}`;
+      document.getElementById('progress-info').className = 'reader-progress unit';
+      
+      // Add last reading info
+      if (meter.last_reading) {
+        contextText += ` | Meter: ${meter.meter_number} | Last: ${meter.last_reading} kWh`;
+      } else {
+        contextText += ` | Meter: ${meter.meter_number}`;
+      }
     }
 
     document.getElementById('context-info').textContent = contextText;
-    document.getElementById('progress-info').style.display = 'inline-block';
+    document.getElementById('progress-info').textContent = progressText;
+    document.getElementById('context-card').style.display = 'block';
   }
 
-  function showError(message) {
-    document.getElementById('error-text').textContent = message;
-    document.getElementById('reader-form').parentElement.style.display = 'none';
-    document.getElementById('error-message').style.display = 'block';
-  }
+  // --- Setup form handlers ---
+  function setupFormHandlers() {
+    const meter = workflowContext.currentMeter;
+    
+    // Real-time validation feedback
+    const readingInput = document.getElementById('reading-value');
+    const feedbackDiv = document.getElementById('reading-feedback');
+    
+    readingInput.addEventListener('input', function() {
+      const value = parseFloat(this.value);
+      
+      if (isNaN(value) || value === 0) {
+        feedbackDiv.textContent = '';
+        return;
+      }
+      
+      if (meter.last_reading) {
+        const consumption = value - meter.last_reading;
+        
+        if (consumption < 0) {
+          feedbackDiv.textContent = `⚠ Reading is lower than last reading (${meter.last_reading} kWh)`;
+          feedbackDiv.className = 'input-feedback warning';
+        } else if (consumption === 0) {
+          feedbackDiv.textContent = `ℹ No consumption since last reading`;
+          feedbackDiv.className = 'input-feedback info';
+        } else {
+          feedbackDiv.textContent = `✓ Consumption: ${consumption.toFixed(2)} kWh`;
+          feedbackDiv.className = 'input-feedback success';
+        }
+      } else {
+        feedbackDiv.textContent = `ℹ First reading for this meter`;
+        feedbackDiv.className = 'input-feedback info';
+      }
+    });
 
-  function showSuccess() {
-    document.getElementById('reader-form').parentElement.style.display = 'none';
-    document.getElementById('success-message').style.display = 'block';
-  }
-
-  // --- Initialize page ---
-  workflowContext = loadWorkflowContext();
-  
-  if (workflowContext) {
-    displayMeterContext(workflowContext);
-
-    // Handle submit
+    // Handle form submission
     document.getElementById('reader-form').addEventListener('submit', function (e) {
       e.preventDefault();
 
       const readingValue = parseFloat(document.getElementById('reading-value').value);
       const photoRef = document.getElementById('photo-ref').value;
       const notes = document.getElementById('notes').value;
-
-      const meter = workflowContext.currentMeter;
 
       // Calculate consumption
       const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
@@ -294,6 +389,17 @@
         showSuccess();
       }
     });
+  }
+
+  function showError(message) {
+    document.getElementById('error-text').textContent = message;
+    document.getElementById('traditional-reader').style.display = 'none';
+    document.getElementById('error-message').style.display = 'block';
+  }
+
+  function showSuccess() {
+    document.getElementById('traditional-reader').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
   }
 </script>
 

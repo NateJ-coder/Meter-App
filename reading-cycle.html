@@ -8,7 +8,10 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-brand">⚡ Fuzio Meter Readings</div>
+        <div class="nav-brand">
+            <img src="assets/images/Fuzio logo.jpg" alt="Fuzio" class="nav-logo">
+            <span>Fuzio Meter Readings</span>
+        </div>
         <ul class="nav-links">
             <li><a href="index.html">Dashboard</a></li>
             <li><a href="meters.html">Meter Register</a></li>
@@ -59,9 +62,16 @@
         <section class="card" id="capture-section" style="display: none;">
             <div class="card-header">
                 <h2>Capture Readings</h2>
-                <button class="btn btn-danger" onclick="showCloseCycleRitual()">Close Cycle</button>
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="startOnsiteMode()">📱 Start On-Site Readings</button>
+                    <button class="btn btn-danger" onclick="showCloseCycleRitual()">Close Cycle</button>
+                </div>
             </div>
             
+            <div class="info-box" style="margin-bottom: 1rem;">
+                <strong>💡 Tip:</strong> Use <strong>On-Site Mode</strong> for field readings. It shows one meter at a time with clear instructions and progress tracking.
+            </div>
+
             <div class="filter-bar">
                 <div class="form-group">
                     <label for="filter-building">Filter by Building</label>
@@ -134,10 +144,12 @@
     <script type="module">
         import { cycleCloseRitual } from './assets/cycle-close-ritual.js';
         import { readingCaptureEnhanced } from './assets/reading-capture-enhanced.js';
+        import { onSiteMode } from './assets/on-site-mode.js';
         
         // Make functions globally available
         window.cycleCloseRitual = cycleCloseRitual;
         window.readingCaptureEnhanced = readingCaptureEnhanced;
+        window.onSiteMode = onSiteMode;
         
         // Show close cycle ritual instead of direct close
         window.showCloseCycleRitual = function() {
@@ -145,6 +157,18 @@
             if (openCycle) {
                 cycleCloseRitual.showClosureModal(openCycle.id);
             }
+        };
+
+        // Start on-site reading mode
+        window.startOnsiteMode = function() {
+            const openCycle = storage.getAll('cycles').find(c => c.status === 'OPEN');
+            if (!openCycle) {
+                alert('No open reading cycle found. Please open a cycle first.');
+                return;
+            }
+
+            // Redirect to reader.html in on-site mode
+            window.location.href = 'reader.html?mode=onsite';
         };
     </script>
 </body>
