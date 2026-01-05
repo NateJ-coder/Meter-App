@@ -101,7 +101,7 @@ export const onboarding = {
 
                 <div class="onboarding-navigation">
                     ${state.currentStep > 0 ? '<button class="btn btn-secondary" onclick="onboarding.previousStep()">← Previous</button>' : ''}
-                    <button class="btn btn-primary" onclick="onboarding.nextStep()" id="next-step-btn">Next →</button>
+                    <button class="btn btn-primary" onclick="onboarding.handleNextClick()" id="next-step-btn">Next →</button>
                 </div>
             </div>
         `;
@@ -493,6 +493,37 @@ export const onboarding = {
     },
 
     // Navigation
+    handleNextClick() {
+        const state = this.getState();
+        
+        // For steps with forms that need submission, trigger the form submit
+        // The form handlers (handleSchemeSubmit, etc.) will call nextStep() after saving
+        const formSelectors = {
+            1: '#scheme-form',      // Create Scheme step
+            2: null,                // Buildings - uses separate add form, Next just navigates
+            3: null,                // Units - uses separate add form, Next just navigates
+            4: null,                // Meters - uses separate add form, Next just navigates
+        };
+        
+        const formSelector = formSelectors[state.currentStep];
+        
+        if (formSelector) {
+            const form = document.querySelector(formSelector);
+            if (form) {
+                // Check if form is valid before submitting
+                if (form.checkValidity()) {
+                    form.requestSubmit(); // Trigger form submission
+                } else {
+                    form.reportValidity(); // Show validation errors
+                }
+                return; // Form handler will call nextStep()
+            }
+        }
+        
+        // For steps without forms, just navigate
+        this.nextStep();
+    },
+
     nextStep() {
         const state = this.getState();
         
