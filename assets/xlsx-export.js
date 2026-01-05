@@ -28,7 +28,7 @@ export const xlsxExport = {
         const wb = XLSX.utils.book_new();
 
         // Sheet 1: Meter Details & Current Reading
-        const detailsData = [
+        const summaryData = [
             ['FUZIO PROPERTIES - METER READING REPORT'],
             [''],
             ['Report Generated:', new Date().toLocaleString()],
@@ -37,7 +37,7 @@ export const xlsxExport = {
             ['=== PROPERTY DETAILS ==='],
             ['Scheme:', scheme.name],
             ['Building:', meter.building_name || 'N/A'],
-            ['Unit:', meter.unit_name || 'N/A'],
+            ['Unit Number:', meter.unit_name || 'N/A'],
             [''],
             ['=== METER DETAILS ==='],
             ['Meter Number:', meter.meter_number],
@@ -45,13 +45,17 @@ export const xlsxExport = {
             ['Meter Location:', meter.meter_location || 'N/A'],
             ['Installation Date:', meter.installation_date || 'N/A'],
             [''],
-            ['=== CURRENT READING ==='],
+            ['=== CURRENT READING DETAILS ==='],
             ['Reading Period:', `${cycle.start_date} to ${cycle.end_date}`],
             ['Reading Date:', reading.reading_date],
             ['Captured By:', reading.captured_by || 'Unknown'],
-            ['Previous Reading:', meter.last_reading || 0],
-            ['Current Reading:', reading.reading_value],
-            ['Consumption (kWh):', reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'],
+            [''],
+            ['PREVIOUS READING:', meter.last_reading || 0],
+            ['CURRENT READING:', reading.reading_value],
+            ['DIFFERENCE (Consumption):', reading.consumption != null ? reading.consumption.toFixed(2) + ' kWh' : 'N/A'],
+            [''],
+            ['Note:', 'Consumption = Current Reading - Previous Reading'],
+            [''],
             ['Reading Method:', reading.captured_by?.includes('QR') ? 'QR Code' : 'Manual Entry'],
             [''],
             ['=== FLAGS & ISSUES ==='],
@@ -59,19 +63,19 @@ export const xlsxExport = {
 
         if (reading.flags && reading.flags.length > 0) {
             reading.flags.forEach((flag, idx) => {
-                detailsData.push([`Flag ${idx + 1}:`, flag.type]);
-                detailsData.push(['Description:', flag.description || 'N/A']);
+                summaryData.push([`Flag ${idx + 1}:`, flag.type]);
+                summaryData.push(['Description:', flag.description || 'N/A']);
             });
         } else {
-            detailsData.push(['Status:', 'No issues detected']);
+            summaryData.push(['Status:', 'No issues detected']);
         }
 
-        detailsData.push(['']);
-        detailsData.push(['=== REVIEW STATUS ===']);
-        detailsData.push(['Status:', reading.review_status || 'Pending']);
-        detailsData.push(['Reviewed By:', reading.reviewed_by || 'Not reviewed']);
-        detailsData.push(['Review Date:', reading.review_date || 'N/A']);
-        detailsData.push(['Notes:', reading.notes || 'None']);
+        summaryData.push(['']);
+        summaryData.push(['=== REVIEW STATUS ===']);
+        summaryData.push(['Status:', reading.review_status || 'Pending']);
+        summaryData.push(['Reviewed By:', reading.reviewed_by || 'Not reviewed']);
+        summaryData.push(['Review Date:', reading.review_date || 'N/A']);
+        summaryData.push(['Notes:', reading.notes || 'None']);
 
         // Get reading history for this meter (last 6 readings)
         const allCycles = storage.getAll('cycles')
@@ -82,16 +86,18 @@ export const xlsxExport = {
         const historyData = [
             ['=== READING HISTORY (Last 6 Cycles) ==='],
             [''],
-            ['Period', 'Reading Date', 'Reading Value', 'Consumption (kWh)', 'Flags']
+            ['Period', 'Reading Date', 'Previous Reading', 'Current Reading', 'Difference (kWh)', 'Flags']
         ];
 
         allCycles.forEach(c => {
             const historicalReading = storage.getReadings(c.id).find(r => r.meter_id === meterId);
             if (historicalReading) {
                 const flags = historicalReading.flags ? historicalReading.flags.map(f => f.type).join(', ') : 'None';
+                const historicalMeter = storage.get('meters', meterId);
                 historyData.push([
                     `${c.start_date} to ${c.end_date}`,
                     historicalReading.reading_date,
+                    historicalMeter.last_reading || 0,
                     historicalReading.reading_value,
                     historicalReading.consumption != null ? historicalReading.consumption.toFixed(2) : 'N/A',
                     flags
@@ -99,18 +105,18 @@ export const xlsxExport = {
             }
         });
 
-        detailsData.push(['']);
-        detailsData.push(...historyData);
+        summaryData.push(['']);
+        summaryData.push(...historyData);
 
         // Add photo reference if exists
         if (reading.photo) {
-            detailsData.push(['']);
-            detailsData.push(['=== PHOTO EVIDENCE ===']);
-            detailsData.push(['Photo Captured:', 'Yes']);
-            detailsData.push(['Note:', 'Photo is stored in dispute pack and can be viewed in the app']);
+            summaryData.push(['']);
+            summaryData.push(['=== PHOTO EVIDENCE ===']);
+            summaryData.push(['Photo Captured:', 'Yes']);
+            summaryData.push(['Note:', 'Photo is stored in dispute pack and can be viewed in the app']);
         }
 
-        const ws = XLSX.utils.aoa_to_sheet(detailsData);
+        const ws = XLSX.utils.aoa_to_sheet(summaryData);
 
         // Set column widths
         ws['!cols'] = [

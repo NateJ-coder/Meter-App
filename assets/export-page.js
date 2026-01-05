@@ -1,61 +1,304 @@
 /**
- * export-page.js - Export Page Logic
+ * export-page.js - Export Page Logic with Cascading Filters
  */
 
 import { storage } from './storage.js';
 import { csv } from './csv.js';
 import { xlsxExport } from './xlsx-export.js';
 
-// Load page
-populateCycleSelect();
+// State management
+let currentFilters = {
+    schemeId: null,
+    cycleId: null,
+    meterType: null,
+    unitId: null
+};
 
-function populateCycleSelect() {
-    const cycles = storage.getAll('cycles').sort((a, b) => 
-        new Date(b.start_date) - new Date(a.start_date)
-    );
+// Initialize page
+initializeExportPage();
+
+function initializeExportPage() {
+    populateSchemeFilter();
+    updateFilterSummary();
+}
+
+// === FILTER CASCADE ===
+
+function populateSchemeFilter() {
+    const schemes = storage.getAll('schemes');
+    const select = document.getElementById('filter-scheme');
     
-    const select = document.getElementById('export-cycle');
+    select.innerHTML = '<option value="">-- All Schemes --</option>' +
+        schemes.map(scheme => 
+            `<option value="${scheme.id}">${scheme.name}</option>`
+        ).join('');
+}
+
+window.onSchemeChange = function() {
+    const schemeId = document.getElementById('filter-scheme').value;
+    currentFilters.schemeId = schemeId || null;
+    currentFilters.cycleId = null;
+    currentFilters.meterType = null;
+    currentFilters.unitId = null;
+    
+    // Reset dependent filters
+    document.getElementById('filter-cycle').value = '';
+    document.getElementById('filter-meter-type').value = '';
+    document.getElementById('filter-unit').value = '';
+    
+    if (schemeId) {
+        populateCycleFilter(schemeId);
+        populateUnitFilter(schemeId);
+        document.getElementById('filter-cycle').disabled = false;
+        document.getElementById('filter-meter-type').disabled = false;
+        document.getElementById('filter-unit').disabled = false;
+    } else {
+        document.getElementById('filter-cycle').disabled = true;
+        document.getElementById('filter-cycle').innerHTML = '<option value="">-- Select scheme first --</option>';
+        document.getElementById('filter-meter-type').disabled = true;
+        document.getElementById('filter-unit').disabled = true;
+        document.getElementById('filter-unit').innerHTML = '<option value="">-- Select scheme first --</option>';
+        hideExportOptions();
+    }
+    
+    updateFilterSummary();
+};
+
+function populateCycleFilter(schemeId) {
+    const cycles = storage.getAll('cycles')
+        .filter(c => c.scheme_id === schemeId)
+        .sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+    
+    const select = document.getElementById('filter-cycle');
     select.innerHTML = '<option value="">-- Select Cycle --</option>' +
         cycles.map(cycle => {
-            const scheme = storage.get('schemes', cycle.scheme_id);
-            return `<option value="${cycle.id}">${scheme ? scheme.name : 'Unknown'} - ${cycle.start_date} to ${cycle.end_date} (${cycle.status})</option>`;
+            const statusBadge = cycle.status === 'OPEN' ? '🟢' : '🔵';
+            return `<option value="${cycle.id}">${statusBadge} ${cycle.start_date} to ${cycle.end_date} (${cycle.status})</option>`;
         }).join('');
     
-    // Auto-select first closed cycle or first cycle
+    // Auto-select first closed cycle
     const closedCycle = cycles.find(c => c.status === 'CLOSED');
     if (closedCycle) {
         select.value = closedCycle.id;
-        loadExportPreview();
-    } else if (cycles.length > 0) {
-        select.value = cycles[0].id;
-        loadExportPreview();
+        currentFilters.cycleId = closedCycle.id;
+        loadExportOptions();
     }
 }
 
-window.loadExportPreview = function() {
-    const cycleId = document.getElementById('export-cycle').value;
-    if (!cycleId) {
-        document.getElementById('export-summary-section').style.display = 'none';
-        document.getElementById('export-options-section').style.display = 'none';
-        document.getElementById('preview-section').style.display = 'none';
-        document.getElementById('summary-preview-section').style.display = 'none';
+function populateUnitFilter(schemeId) {
+    const buildings = storage.getAll('buildings').filter(b => b.scheme_id === schemeId);
+    const units = storage.getAll('units').filter(u => {
+        const building = buildings.find(b => b.id === u.building_id);
+        return building !== undefined;
+    });
+    
+    // Sort units by building and unit number
+    units.sort((a, b) => {
+        const buildingA = buildings.find(bld => bld.id === a.building_id);
+        const buildingB = buildings.find(bld => bld.id === b.building_id);
+        if (buildingA.name !== buildingB.name) {
+            return buildingA.name.localeCompare(buildingB.name);
+        }
+        return a.unit_number.localeCompare(b.unit_number);
+    });
+    
+    const select = document.getElementById('filter-unit');
+    select.innerHTML = '<option value="">-- All Units --</option>' +
+        units.map(unit => {
+            const building = buildings.find(b => b.id === unit.building_id);
+            return `<option value="${unit.id}">${building?.name} - ${unit.unit_number}</option>`;
+        }).join('');
+}
+
+window.onCycleChange = function() {
+    const cycleId = document.getElementById('filter-cycle').value;
+    currentFilters.cycleId = cycleId || null;
+    
+    if (cycleId) {
+        loadExportOptions();
+    } else {
+        hideExportOptions();
+    }
+    
+    updateFilterSummary();
+};
+
+window.onMeterTypeChange = function() {
+    const meterType = document.getElementById('filter-meter-type').value;
+    currentFilters.meterType = meterType || null;
+    
+    if (currentFilters.cycleId) {
+        loadExportOptions();
+    }
+    
+    updateFilterSummary();
+};
+
+window.onUnitChange = function() {
+    const unitId = document.getElementById('filter-unit').value;
+    currentFilters.unitId = unitId || null;
+    
+    if (currentFilters.cycleId) {
+        loadExportOptions();
+    }
+    
+    updateFilterSummary();
+};
+
+window.resetFilters = function() {
+    document.getElementById('filter-scheme').value = '';
+    document.getElementById('filter-cycle').value = '';
+    document.getElementById('filter-meter-type').value = '';
+    document.getElementById('filter-unit').value = '';
+    
+    currentFilters = {
+        schemeId: null,
+        cycleId: null,
+        meterType: null,
+        unitId: null
+    };
+    
+    document.getElementById('filter-cycle').disabled = true;
+    document.getElementById('filter-meter-type').disabled = true;
+    document.getElementById('filter-unit').disabled = true;
+    
+    hideExportOptions();
+    updateFilterSummary();
+};
+
+function updateFilterSummary() {
+    const summary = document.getElementById('filter-summary');
+    
+    if (!currentFilters.schemeId) {
+        summary.textContent = 'Select a scheme to begin';
         return;
     }
     
-    loadExportSummary(cycleId);
-    loadUnitReadingsPreview(cycleId);
-    loadSchemeSummaryPreview(cycleId);
+    const scheme = storage.get('schemes', currentFilters.schemeId);
+    let text = `📍 ${scheme.name}`;
     
-    document.getElementById('export-summary-section').style.display = 'block';
-    document.getElementById('export-options-section').style.display = 'block';
-    document.getElementById('preview-section').style.display = 'block';
-    document.getElementById('summary-preview-section').style.display = 'block';
-};
+    if (currentFilters.cycleId) {
+        const cycle = storage.get('cycles', currentFilters.cycleId);
+        text += ` → 📅 ${cycle.start_date} to ${cycle.end_date}`;
+    }
+    
+    if (currentFilters.meterType) {
+        text += ` → 🔌 ${currentFilters.meterType} meters`;
+    }
+    
+    if (currentFilters.unitId) {
+        const unit = storage.get('units', currentFilters.unitId);
+        text += ` → 🏠 Unit ${unit.unit_number}`;
+    }
+    
+    summary.textContent = text;
+}
 
-function loadExportSummary(cycleId) {
-    const cycle = storage.get('cycles', cycleId);
+// === EXPORT OPTIONS DISPLAY ===
+
+function loadExportOptions() {
+    if (!currentFilters.cycleId) {
+        hideExportOptions();
+        return;
+    }
+    
+    const cycle = storage.get('cycles', currentFilters.cycleId);
     const scheme = storage.get('schemes', cycle.scheme_id);
-    const readings = storage.getReadings(cycleId);
+    
+    // Show export section
+    document.getElementById('export-options-section').style.display = 'block';
+    document.getElementById('export-summary-section').style.display = 'block';
+    
+    // Load summary
+    loadExportSummary();
+    
+    // Load preview (if needed)
+    loadPreviewTables();
+    
+    // Show/hide individual meter exports based on filters
+    if (currentFilters.unitId || currentFilters.meterType === 'UNIT') {
+        loadIndividualMeterList();
+        document.getElementById('meter-exports').style.display = 'block';
+    } else {
+        document.getElementById('meter-exports').style.display = 'none';
+    }
+}
+
+function hideExportOptions() {
+    document.getElementById('export-options-section').style.display = 'none';
+    document.getElementById('export-summary-section').style.display = 'none';
+    document.getElementById('preview-section').style.display = 'none';
+    document.getElementById('summary-preview-section').style.display = 'none';
+}
+
+function loadIndividualMeterList() {
+    const cycle = storage.get('cycles', currentFilters.cycleId);
+    const readings = storage.getReadings(currentFilters.cycleId);
+    
+    // Filter meters based on current filters
+    let meters = storage.getMeters(cycle.scheme_id);
+    
+    if (currentFilters.meterType) {
+        meters = meters.filter(m => m.meter_type === currentFilters.meterType);
+    }
+    
+    if (currentFilters.unitId) {
+        meters = meters.filter(m => m.unit_id === currentFilters.unitId);
+    }
+    
+    // Only show UNIT meters for individual reports
+    meters = meters.filter(m => m.meter_type === 'UNIT');
+    
+    const container = document.getElementById('meter-list');
+    
+    if (meters.length === 0) {
+        container.innerHTML = '<p class="text-muted">No unit meters match your filters.</p>';
+        return;
+    }
+    
+    container.innerHTML = `
+        <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Unit</th>
+                        <th>Meter Number</th>
+                        <th>Consumption</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${meters.map(meter => {
+                        const meterDetails = storage.getMeterWithDetails(meter.id);
+                        const reading = readings.find(r => r.meter_id === meter.id);
+                        const consumption = reading?.consumption != null ? reading.consumption.toFixed(2) + ' kWh' : 'Not read';
+                        
+                        return `
+                            <tr>
+                                <td>${meterDetails.unit_name || 'N/A'}</td>
+                                <td>${meter.meter_number}</td>
+                                <td>${consumption}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="exportSingleMeterReport('${meter.id}', '${currentFilters.cycleId}')">
+                                        📄 Export
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('')}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-secondary mt-1" onclick="exportAllFilteredMeters()">
+            📦 Export All ${meters.length} Meter Reports (Batch)
+        </button>
+    `;
+}
+
+function loadExportSummary() {
+    const cycle = storage.get('cycles', currentFilters.cycleId);
+    const scheme = storage.get('schemes', cycle.scheme_id);
+    const readings = storage.getReadings(currentFilters.cycleId);
     const meters = storage.getMeters(cycle.scheme_id).filter(m => m.meter_type === 'UNIT');
     
     const flaggedCount = readings.filter(r => r.flags && r.flags.length > 0).length;
@@ -75,10 +318,17 @@ function loadExportSummary(cycleId) {
     `;
 }
 
-function loadUnitReadingsPreview(cycleId) {
-    const cycle = storage.get('cycles', cycleId);
-    const scheme = storage.get('schemes', cycle.scheme_id);
-    const readings = storage.getReadings(cycleId);
+function loadPreviewTables() {
+    document.getElementById('preview-section').style.display = 'block';
+    document.getElementById('summary-preview-section').style.display = 'block';
+    
+    loadUnitReadingsPreview();
+    loadSchemeSummaryPreview();
+}
+
+function loadUnitReadingsPreview() {
+    const cycle = storage.get('cycles', currentFilters.cycleId);
+    const readings = storage.getReadings(currentFilters.cycleId);
     
     if (readings.length === 0) {
         document.getElementById('unit-readings-preview').innerHTML = '<p class="text-muted">No readings captured yet.</p>';
@@ -127,10 +377,10 @@ function loadUnitReadingsPreview(cycleId) {
     `;
 }
 
-function loadSchemeSummaryPreview(cycleId) {
-    const cycle = storage.get('cycles', cycleId);
+function loadSchemeSummaryPreview() {
+    const cycle = storage.get('cycles', currentFilters.cycleId);
     const scheme = storage.get('schemes', cycle.scheme_id);
-    const readings = storage.getReadings(cycleId);
+    const readings = storage.getReadings(currentFilters.cycleId);
     const meters = storage.getMeters(cycle.scheme_id);
     
     // Calculate totals
@@ -191,48 +441,82 @@ function loadSchemeSummaryPreview(cycleId) {
     `;
 }
 
+// === EXPORT FUNCTIONS ===
+
 window.exportUnitReadings = function() {
-    const cycleId = document.getElementById('export-cycle').value;
-    if (!cycleId) {
+    if (!currentFilters.cycleId) {
         alert('Please select a cycle first');
         return;
     }
-    csv.exportUnitReadings(cycleId);
+    csv.exportUnitReadings(currentFilters.cycleId);
 };
 
 window.exportSchemeSummary = function() {
-    const cycleId = document.getElementById('export-cycle').value;
-    if (!cycleId) {
+    if (!currentFilters.cycleId) {
         alert('Please select a cycle first');
         return;
     }
-    csv.exportSchemeSummary(cycleId);
+    csv.exportSchemeSummary(currentFilters.cycleId);
 };
 
 window.exportAllData = function() {
-    const cycleId = document.getElementById('export-cycle').value;
-    if (!cycleId) {
+    if (!currentFilters.cycleId) {
         alert('Please select a cycle first');
         return;
     }
-    csv.exportAllData(cycleId);
+    csv.exportAllData(currentFilters.cycleId);
 };
 
 // === XLSX EXPORTS ===
 
 window.exportSchemeReportXLSX = function() {
-    const cycleId = document.getElementById('export-cycle').value;
-    if (!cycleId) {
+    if (!currentFilters.cycleId) {
         alert('Please select a cycle first');
         return;
     }
-    xlsxExport.exportSchemeReport(cycleId);
+    xlsxExport.exportSchemeReport(currentFilters.cycleId);
 };
 
-window.exportMeterReportXLSX = function(meterId, cycleId) {
+window.exportSingleMeterReport = function(meterId, cycleId) {
     if (!meterId || !cycleId) {
         alert('Invalid meter or cycle');
         return;
     }
     xlsxExport.exportMeterReport(meterId, cycleId);
+};
+
+window.exportAllFilteredMeters = async function() {
+    if (!currentFilters.cycleId) {
+        alert('Please select a cycle first');
+        return;
+    }
+    
+    const cycle = storage.get('cycles', currentFilters.cycleId);
+    let meters = storage.getMeters(cycle.scheme_id);
+    
+    if (currentFilters.meterType) {
+        meters = meters.filter(m => m.meter_type === currentFilters.meterType);
+    }
+    
+    if (currentFilters.unitId) {
+        meters = meters.filter(m => m.unit_id === currentFilters.unitId);
+    }
+    
+    meters = meters.filter(m => m.meter_type === 'UNIT');
+    
+    if (meters.length === 0) {
+        alert('No meters to export');
+        return;
+    }
+    
+    const confirm_export = confirm(`Export ${meters.length} individual meter reports?\n\nThis will download ${meters.length} Excel files.`);
+    if (!confirm_export) return;
+    
+    for (let i = 0; i < meters.length; i++) {
+        await xlsxExport.exportMeterReport(meters[i].id, currentFilters.cycleId);
+        // Small delay to prevent browser blocking
+        await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    
+    alert(`✅ Exported ${meters.length} meter reports successfully!`);
 };

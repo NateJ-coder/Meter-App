@@ -25,14 +25,54 @@
     <main class="container">
         <header class="page-header">
             <h1>Export Data</h1>
-            <p class="subtitle">Download CSV reports for billing and trustee reporting</p>
+            <p class="subtitle">Download Excel reports for AGM, trustees meetings, and dispute resolution</p>
         </header>
 
-        <!-- Cycle Selector -->
+        <!-- Advanced Filter System -->
         <section class="card">
-            <div class="form-group">
-                <label for="export-cycle">Select Cycle to Export</label>
-                <select id="export-cycle" onchange="loadExportPreview()"></select>
+            <h2>🔍 Filter Reports</h2>
+            <p class="text-muted" style="margin-bottom: 1rem;">Narrow down to find the exact report you need</p>
+            
+            <div class="filter-grid">
+                <!-- Step 1: Select Scheme -->
+                <div class="form-group">
+                    <label for="filter-scheme">1. Select Scheme</label>
+                    <select id="filter-scheme" onchange="onSchemeChange()">
+                        <option value="">-- All Schemes --</option>
+                    </select>
+                </div>
+
+                <!-- Step 2: Select Date Range or Specific Cycle -->
+                <div class="form-group">
+                    <label for="filter-cycle">2. Select Reading Cycle</label>
+                    <select id="filter-cycle" onchange="onCycleChange()" disabled>
+                        <option value="">-- Select scheme first --</option>
+                    </select>
+                </div>
+
+                <!-- Step 3: Select Meter Type (for individual reports) -->
+                <div class="form-group">
+                    <label for="filter-meter-type">3. Meter Type (Optional)</label>
+                    <select id="filter-meter-type" onchange="onMeterTypeChange()" disabled>
+                        <option value="">-- All Meters --</option>
+                        <option value="UNIT">Unit Meters Only</option>
+                        <option value="BULK">Bulk Meters Only</option>
+                    </select>
+                </div>
+
+                <!-- Step 4: Select Unit (for individual meter reports) -->
+                <div class="form-group">
+                    <label for="filter-unit">4. Select Unit (Optional)</label>
+                    <select id="filter-unit" onchange="onUnitChange()" disabled>
+                        <option value="">-- All Units --</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                <button class="btn btn-secondary btn-sm" onclick="resetFilters()">🔄 Reset Filters</button>
+                <span class="text-muted" style="margin-left: 1rem;" id="filter-summary">Select a scheme to begin</span>
             </div>
         </section>
 
@@ -44,35 +84,46 @@
 
         <!-- Export Options -->
         <section class="card" id="export-options-section" style="display: none;">
-            <h2>📊 Excel Reports (XLSX)</h2>
-            <div class="export-buttons">
-                <button class="btn btn-primary btn-large" onclick="exportSchemeReportXLSX()">
-                    📈 Export Complete Scheme Report
-                </button>
+            <h2>📊 Export Options</h2>
+            
+            <!-- Scheme-Level Exports -->
+            <div id="scheme-exports" style="margin-bottom: 2rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">📈 Scheme Reports (Full Cycle)</h3>
+                <p class="text-muted" style="margin-bottom: 1rem;">Complete report for AGM and trustee meetings</p>
+                <div class="export-buttons">
+                    <button class="btn btn-primary btn-large" onclick="exportSchemeReportXLSX()">
+                        📊 Export Complete Scheme Report (Excel)
+                    </button>
+                </div>
+                <p class="text-muted" style="margin-top: 0.5rem; font-size: 0.9rem;">
+                    Includes: Summary, All Unit Readings, Analytics, Flags & Issues
+                </p>
             </div>
-            <p class="text-muted" style="margin-top: 0.5rem; margin-bottom: 2rem;">
-                <strong>Professional multi-sheet Excel report with:</strong><br>
-                • Executive Summary (bulk reconciliation, common property usage)<br>
-                • Unit Readings (all meters with flags and review status)<br>
-                • Analytics (top 10 consumers, consumption distribution)<br>
-                • Flags & Issues (detailed problem report)
-            </p>
 
-            <h2>📄 CSV Reports (Legacy)</h2>
-            <div class="export-buttons">
-                <button class="btn btn-secondary" onclick="exportUnitReadings()">
-                    📊 Export Unit Readings CSV
-                </button>
-                <button class="btn btn-secondary" onclick="exportSchemeSummary()">
-                    📈 Export Scheme Summary CSV
-                </button>
-                <button class="btn btn-secondary" onclick="exportAllData()">
-                    📦 Export All Data (Combined)
-                </button>
+            <!-- Individual Meter Exports -->
+            <div id="meter-exports" style="display: none; margin-bottom: 2rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">📄 Individual Meter Reports</h3>
+                <p class="text-muted" style="margin-bottom: 1rem;">For disputes or unit-specific queries</p>
+                <div id="meter-list"></div>
             </div>
-            <p class="text-muted" style="margin-top: 1rem;">
-                <strong>CSV files:</strong> Simple text format for importing into other systems
-            </p>
+
+            <!-- Legacy CSV Exports -->
+            <details style="margin-top: 2rem;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 0.5rem 0;">
+                    📁 Legacy CSV Exports (for system imports)
+                </summary>
+                <div class="export-buttons" style="margin-top: 1rem;">
+                    <button class="btn btn-secondary" onclick="exportUnitReadings()">
+                        📊 Unit Readings CSV
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportSchemeSummary()">
+                        📈 Scheme Summary CSV
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportAllData()">
+                        📦 Combined CSV
+                    </button>
+                </div>
+            </details>
         </section>
 
         <!-- Preview Tables -->
