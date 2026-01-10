@@ -19,6 +19,9 @@ export const cycleCloseRitual = {
         const readings = storage.getReadings(cycleId);
         const missingReadings = validation.getMissingReadings(cycleId);
         const flagsSummary = validation.getCycleFlagsSummary(cycleId);
+        
+        // PHASE 4: Check bulk reconciliation
+        const bulkFlag = validation.checkBulkReconciliation(cycleId);
 
         // Calculate readiness
         const totalUnits = meters.length;
@@ -46,10 +49,12 @@ export const cycleCloseRitual = {
             missingReadings,
             flaggedReadings: flagsSummary.flagged,
             flagsByType: flagsSummary.by_type,
+            flagsBySeverity: flagsSummary.by_severity,
             hasHighFlags,
             unreviewedFlags: unreviewedFlags.length,
+            bulkFlag,  // Add bulk reconciliation flag
             canClose: true, // Can always close, but with warnings
-            shouldWarn: !isComplete || hasHighFlags || unreviewedFlags.length > 0
+            shouldWarn: !isComplete || hasHighFlags || unreviewedFlags.length > 0 || (bulkFlag && bulkFlag.severity === 'high')
         };
     },
 
@@ -191,6 +196,35 @@ export const cycleCloseRitual = {
                                     <div class="summary-content">
                                         <div class="summary-label">Flagged Readings</div>
                                         <div class="summary-value">None</div>
+                                    </div>
+                                </div>
+                            `}
+
+                            <!-- PHASE 4: Bulk Reconciliation Status -->
+                            ${readiness.bulkFlag ? `
+                                <div class="summary-item ${readiness.bulkFlag.severity === 'high' ? 'warning' : readiness.bulkFlag.severity === 'medium' ? 'info' : 'success'}">
+                                    <div class="summary-icon">
+                                        ${readiness.bulkFlag.severity === 'high' ? '⚠' : readiness.bulkFlag.severity === 'medium' ? 'ℹ' : '✓'}
+                                    </div>
+                                    <div class="summary-content">
+                                        <div class="summary-label">Bulk Reconciliation</div>
+                                        <div class="summary-value">${readiness.bulkFlag.message}</div>
+                                        <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.5rem;">
+                                            ${readiness.bulkFlag.description}
+                                        </p>
+                                        ${readiness.bulkFlag.severity === 'high' ? `
+                                            <p class="text-warning" style="font-size: 0.85rem; margin-top: 0.5rem;">
+                                                <strong>Recommendation:</strong> Review readings for missing or incorrect values before closing.
+                                            </p>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            ` : `
+                                <div class="summary-item success">
+                                    <div class="summary-icon">✓</div>
+                                    <div class="summary-content">
+                                        <div class="summary-label">Bulk Reconciliation</div>
+                                        <div class="summary-value">Within acceptable range</div>
                                     </div>
                                 </div>
                             `}

@@ -58,7 +58,11 @@ function loadMetrics(cycleId) {
 
 function loadFlaggedReadings(cycleId) {
     const readings = storage.getReadings(cycleId);
-    const flaggedReadings = readings.filter(r => r.flags && r.flags.length > 0);
+    
+    // PHASE 3: Include readings with either auto flags or manual flags
+    const flaggedReadings = readings.filter(r => 
+        (r.flags && r.flags.length > 0) || (r.manual_flags && r.manual_flags.length > 0)
+    );
     
     const container = document.getElementById('flagged-readings-list');
     
@@ -83,9 +87,16 @@ function loadFlaggedReadings(cycleId) {
             <tbody>
                 ${flaggedReadings.map(reading => {
                     const meter = storage.getMeterWithDetails(reading.meter_id);
-                    const flags = reading.flags.map(f => `
-                        <span class="badge badge-danger" title="${f.message}">${f.type}</span>
-                    `).join(' ');
+                    
+                    // PHASE 3: Show both auto and manual flags
+                    const allFlags = validation.getAllFlags(reading);
+                    const autoFlags = allFlags.filter(f => f.source === 'auto');
+                    const manualFlags = allFlags.filter(f => f.source === 'manual');
+                    
+                    const flagsHtml = [
+                        ...autoFlags.map(f => `<span class="badge badge-danger" title="${f.description}">🤖 ${f.type}</span>`),
+                        ...manualFlags.map(f => `<span class="badge badge-warning" title="${f.description}">👤 ${f.type}</span>`)
+                    ].join(' ');
                     
                     let statusBadge = 'badge-warning';
                     let statusText = reading.review_status || 'pending';
@@ -98,7 +109,7 @@ function loadFlaggedReadings(cycleId) {
                             <td>${meter.meter_number}</td>
                             <td>${reading.reading_value} kWh</td>
                             <td>${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'} kWh</td>
-                            <td>${flags}</td>
+                            <td>${flagsHtml}</td>
                             <td><span class="badge ${statusBadge}">${statusText}</span></td>
                             <td>
                                 <button class="btn btn-primary" onclick="openReviewModal('${reading.id}')">Review</button>
@@ -159,7 +170,11 @@ window.openReviewModal = function(readingId) {
     if (!reading) return;
     
     const meter = reading.meter;
-    const flags = reading.flags || [];
+    
+    // PHASE 3: Combine auto flags and manual flags
+    const allFlags = validation.getAllFlags(reading);
+    const autoFlags = allFlags.filter(f => f.source === 'auto');
+    const manualFlags = allFlags.filter(f => f.source === 'manual');
     
     document.getElementById('review-reading-id').value = readingId;
     
@@ -173,13 +188,17 @@ window.openReviewModal = function(readingId) {
             <strong>Consumption:</strong> ${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'} kWh<br>
             <strong>Reading Date:</strong> ${formatDateTime(reading.reading_date)}<br>
             <strong>Captured By:</strong> ${reading.captured_by || 'Unknown'}<br>
-            <strong>Flags:</strong> ${flags.length > 0 ? flags.map(f => `<span class="badge badge-danger">${f.type}: ${f.message}</span>`).join(' ') : 'None'}<br>
+            <strong>Auto Flags:</strong> ${autoFlags.length > 0 ? autoFlags.map(f => `<span class="badge badge-danger" title="${f.description}">🤖 ${f.type}: ${f.message}</span>`).join(' ') : 'None'}<br>
+            <strong>Manual Flags:</strong> ${manualFlags.length > 0 ? manualFlags.map(f => `<span class="badge badge-warning" title="${f.description}">👤 ${f.type}: ${f.message}</span>`).join(' ') : 'None'}<br>
             ${reading.notes ? `<strong>Notes:</strong> ${reading.notes}` : ''}
         </div>
         <button class="btn btn-secondary btn-sm mt-1" onclick="exportMeterReportFromReview('${meter.id}', '${reading.cycle_id}')">
             📄 Export Meter Report (Excel)
         </button>
     `;
+    
+    // PHASE 3: Load manual flags into UI
+    loadManualFlagsUI(reading);
     
     document.getElementById('review-action').value = reading.review_status || '';
     document.getElementById('review-notes').value = reading.admin_notes || '';
@@ -190,6 +209,90 @@ window.openReviewModal = function(readingId) {
     
     toggleEstimateField();
     document.getElementById('review-modal').style.display = 'flex';
+};
+
+// PHASE 3: Load manual flags UI
+function loadManualFlagsUI(reading) {
+    const manualFlags = reading.manual_flags || [];
+    const container = document.getElementById('manual-flags-list');
+    
+    if (manualFlags.length === 0) {
+        container.innerHTML = '<p class="text-muted" style="font-size: 0.85rem; margin: 0;">No manual flags added.</p>';
+    } else {
+        container.innerHTML = manualFlags.map((flag, index) => `
+            <div style="padding: 0.5rem; background: #fff3cd; border-left: 3px solid #ffc107; margin-bottom: 0.5rem; border-radius: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <strong>${flag.type}</strong>
+                        <span class="badge badge-${flag.severity === 'high' ? 'danger' : flag.severity === 'medium' ? 'warning' : 'info'}" style="margin-left: 0.5rem;">
+                            ${flag.severity}
+                        </span>
+                        <p style="margin: 0.25rem 0; font-size: 0.9rem;">${flag.message}</p>
+                        ${flag.description ? `<p style="margin: 0.25rem 0; font-size: 0.85rem; color: #666;">${flag.description}</p>` : ''}
+                        <p style="margin: 0.25rem 0; font-size: 0.75rem; color: #999;">
+                            Added by ${flag.added_by} on ${new Date(flag.added_at).toLocaleString()}
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removeManualFlagFromUI('${reading.id}', ${index})" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">
+                        ✕
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+
+window.showAddManualFlagForm = function() {
+    document.getElementById('add-manual-flag-form').style.display = 'block';
+};
+
+window.cancelAddManualFlag = function() {
+    document.getElementById('add-manual-flag-form').style.display = 'none';
+    document.getElementById('manual-flag-type').value = '';
+    document.getElementById('manual-flag-severity').value = '';
+    document.getElementById('manual-flag-message').value = '';
+    document.getElementById('manual-flag-description').value = '';
+};
+
+window.saveManualFlag = function() {
+    const readingId = document.getElementById('review-reading-id').value;
+    const type = document.getElementById('manual-flag-type').value;
+    const severity = document.getElementById('manual-flag-severity').value;
+    const message = document.getElementById('manual-flag-message').value;
+    const description = document.getElementById('manual-flag-description').value;
+    
+    if (!type || !severity || !message) {
+        showNotification('Please fill all required fields', 'error');
+        return;
+    }
+    
+    // Add manual flag using validation module
+    validation.addManualFlag(readingId, {
+        type,
+        severity,
+        message,
+        description
+    });
+    
+    showNotification('Manual flag added successfully', 'success');
+    
+    // Reload manual flags UI
+    const reading = storage.getReadingWithDetails(readingId);
+    loadManualFlagsUI(reading);
+    
+    // Reset form
+    cancelAddManualFlag();
+};
+
+window.removeManualFlagFromUI = function(readingId, flagIndex) {
+    if (!confirm('Remove this manual flag?')) return;
+    
+    validation.removeManualFlag(readingId, flagIndex);
+    showNotification('Manual flag removed', 'success');
+    
+    // Reload manual flags UI
+    const reading = storage.getReadingWithDetails(readingId);
+    loadManualFlagsUI(reading);
 };
 
 window.closeReviewModal = function() {

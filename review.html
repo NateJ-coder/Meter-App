@@ -126,6 +126,54 @@
                         <textarea id="review-notes" rows="3" placeholder="Reason for action, follow-up required, etc."></textarea>
                     </div>
 
+                    <!-- PHASE 3: Manual Flag Section -->
+                    <div class="form-group">
+                        <label>Manual Flags</label>
+                        <div id="manual-flags-list" style="margin-bottom: 0.5rem;"></div>
+                        <button type="button" class="btn btn-secondary" onclick="showAddManualFlagForm()" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">
+                            ➕ Add Manual Flag
+                        </button>
+                        <div id="add-manual-flag-form" style="display: none; margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+                            <div class="form-group">
+                                <label for="manual-flag-type">Flag Type *</label>
+                                <select id="manual-flag-type" required>
+                                    <option value="">-- Select Type --</option>
+                                    <option value="tamper">Tamper Suspected</option>
+                                    <option value="meter-fault">Meter Fault</option>
+                                    <option value="wiring-issue">Wiring Issue</option>
+                                    <option value="billing-dispute">Billing Dispute</option>
+                                    <option value="follow-up">Follow-up Required</option>
+                                    <option value="investigation">Under Investigation</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="manual-flag-severity">Severity *</label>
+                                <select id="manual-flag-severity" required>
+                                    <option value="high">High (Requires Immediate Action)</option>
+                                    <option value="medium">Medium (Follow-up Needed)</option>
+                                    <option value="low">Low (For Awareness)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="manual-flag-message">Short Message *</label>
+                                <input type="text" id="manual-flag-message" required placeholder="e.g., Meter seal broken">
+                            </div>
+                            <div class="form-group">
+                                <label for="manual-flag-description">Description</label>
+                                <textarea id="manual-flag-description" rows="2" placeholder="Additional context, findings, or next steps"></textarea>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button type="button" class="btn btn-primary" onclick="saveManualFlag()" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">
+                                    Save Flag
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelAddManualFlag()" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary">Save Review</button>
                         <button type="button" class="btn btn-secondary" onclick="closeReviewModal()">Cancel</button>
