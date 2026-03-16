@@ -121,8 +121,8 @@
 
                     <div class="form-group">
                         <label for="reading-photo">Meter Photo</label>
-                        <input type="text" id="reading-photo" placeholder="Photo filename or URL (placeholder for now)">
-                        <small class="form-help">In production: actual photo upload</small>
+                        <input type="file" id="reading-photo" accept="image/*" capture="environment">
+                        <small class="form-help">A compressed image is stored locally on this device for review evidence.</small>
                     </div>
 
                     <div class="form-group">
@@ -139,6 +139,7 @@
         </div>
     </main>
 
+    <script type="module" src="assets/page-auth.js"></script>
     <script type="module" src="assets/app.js"></script>
     <script type="module" src="assets/reading-cycle.js"></script>
     <script type="module">

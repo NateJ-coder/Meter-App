@@ -48,6 +48,8 @@
 <script type="module">
     import { auth } from './assets/auth.js';
 
+    const redirectTarget = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
+
     // Initialize default admin on first load
     auth.initializeDefaultAdmin();
 
@@ -65,7 +67,7 @@
             auth.recordActivity('user_login', { email });
 
             // Redirect to dashboard
-            window.location.href = 'index.html';
+            window.location.href = redirectTarget;
         } else {
             // Show error
             const errorDiv = document.getElementById('login-error');
@@ -80,7 +82,7 @@
 
     // Check if already logged in
     if (auth.isAuthenticated()) {
-        window.location.href = 'index.html';
+        window.location.href = redirectTarget;
     }
 </script>
 

@@ -257,6 +257,21 @@ body {
     flex-wrap: wrap;
 }
 
+.reading-photo-preview {
+    display: block;
+    max-width: 100%;
+    max-height: 240px;
+    margin-top: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    object-fit: contain;
+    background: var(--bg-secondary);
+}
+
+.existing-photo-evidence {
+    margin-top: 0.75rem;
+}
+
 /* ===================================
    FORMS
    =================================== */

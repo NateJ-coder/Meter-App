@@ -4,6 +4,7 @@
 
 import { storage } from './storage.js';
 import { validation } from './validation.js';
+import { preparePhotoForStorage } from './photo-utils.js';
 import { showNotification, confirmAction, getTodayDate, getCurrentDateTime, formatDateTime } from './app.js';
 
 // Load page
@@ -201,7 +202,6 @@ window.openReadingModal = function(meterId, cycleId) {
         document.getElementById('reading-modal-title').textContent = 'Edit Reading';
         document.getElementById('reading-value').value = existingReading.reading_value;
         document.getElementById('reading-date').value = existingReading.reading_date.substring(0, 16);
-        document.getElementById('reading-photo').value = existingReading.photo || '';
         document.getElementById('reading-notes').value = existingReading.notes || '';
     } else {
         document.getElementById('reading-modal-title').textContent = 'Capture Reading';
@@ -217,15 +217,21 @@ window.closeReadingModal = function() {
     document.getElementById('reading-form').reset();
 };
 
-document.getElementById('reading-form').addEventListener('submit', (e) => {
+document.getElementById('reading-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const meterId = document.getElementById('reading-meter-id').value;
     const cycleId = document.getElementById('reading-cycle-id').value;
     const readingValue = parseFloat(document.getElementById('reading-value').value);
+    const readings = storage.getReadings(cycleId);
+    const existingReading = readings.find(r => r.meter_id === meterId);
     
     const meter = storage.get('meters', meterId);
     const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
+    const photoInput = document.getElementById('reading-photo');
+    const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
+        ? await preparePhotoForStorage(photoInput.files[0])
+        : null;
     
     // Get current user from auth
     const currentUser = window.auth ? window.auth.getCurrentUser() : null;
@@ -236,7 +242,8 @@ document.getElementById('reading-form').addEventListener('submit', (e) => {
         cycle_id: cycleId,
         reading_value: readingValue,
         reading_date: document.getElementById('reading-date').value,
-        photo: document.getElementById('reading-photo').value,
+        photo: preparedPhoto ? preparedPhoto.dataUrl : (existingReading?.photo || ''),
+        photo_name: preparedPhoto ? preparedPhoto.name : (existingReading?.photo_name || ''),
         notes: document.getElementById('reading-notes').value,
         consumption: consumption,
         captured_by: capturedBy,
@@ -247,10 +254,6 @@ document.getElementById('reading-form').addEventListener('submit', (e) => {
     
     // Validate and generate flags
     readingData.flags = validation.validateReading(readingData);
-    
-    // Check if reading already exists
-    const readings = storage.getReadings(cycleId);
-    const existingReading = readings.find(r => r.meter_id === meterId);
     
     if (existingReading) {
         storage.update('readings', existingReading.id, readingData);

@@ -5,6 +5,8 @@
 
 import { storage } from './storage.js';
 import { validation } from './validation.js';
+import { auth } from './auth.js';
+import { preparePhotoForStorage } from './photo-utils.js';
 
 export const readingCaptureEnhanced = {
     /**
@@ -181,6 +183,13 @@ export const readingCaptureEnhanced = {
         const existingReading = storage.getReadings(cycleId)
             .find(r => r.meter_id === meterId);
 
+        const existingPhotoHtml = existingReading && existingReading.photo ? `
+            <div class="existing-photo-evidence">
+                <div class="form-help">Existing photo evidence on file</div>
+                <img src="${existingReading.photo}" alt="Meter evidence" class="reading-photo-preview">
+            </div>
+        ` : '';
+
         return `
             <div class="modal-overlay" onclick="closeReadingModal(event)">
                 <div class="modal-content reading-modal" onclick="event.stopPropagation()">
@@ -268,6 +277,18 @@ export const readingCaptureEnhanced = {
                                     rows="2" 
                                     placeholder="Any observations..."
                                 >${existingReading ? (existingReading.notes || '') : ''}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reading-photo">Meter Photo</label>
+                                <input 
+                                    type="file"
+                                    id="reading-photo"
+                                    accept="image/*"
+                                    capture="environment"
+                                >
+                                <small class="form-help">A compressed image is stored locally on this device for review and export evidence.</small>
+                                ${existingPhotoHtml}
                             </div>
 
                             <div class="form-actions">
@@ -379,24 +400,30 @@ window.validateReadingInRealTime = function(meterId) {
     `;
 };
 
-window.submitEnhancedReading = function(event, meterId, cycleId) {
+window.submitEnhancedReading = async function(event, meterId, cycleId) {
     event.preventDefault();
     
     const readingValue = parseFloat(document.getElementById('reading-value').value);
     const readingDate = document.getElementById('reading-date').value;
     const notes = document.getElementById('reading-notes').value;
+    const photoInput = document.getElementById('reading-photo');
 
     // Validate
-    const validation = readingCaptureEnhanced.validateInRealTime(meterId, readingValue);
-    if (!validation.valid) {
-        alert(validation.message);
+    const validationResult = readingCaptureEnhanced.validateInRealTime(meterId, readingValue);
+    if (!validationResult.valid) {
+        alert(validationResult.message);
         return false;
     }
 
     // Create reading object
     const meter = storage.get('meters', meterId);
+    const existingReading = storage.getReadings(cycleId).find(r => r.meter_id === meterId);
+    const currentUser = auth.getCurrentUser();
+    const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
+        ? await preparePhotoForStorage(photoInput.files[0])
+        : null;
+
     const reading = {
-        id: Date.now().toString(),
         cycle_id: cycleId,
         meter_id: meterId,
         reading_value: readingValue,
@@ -404,33 +431,31 @@ window.submitEnhancedReading = function(event, meterId, cycleId) {
         previous_reading: meter.last_reading,
         consumption: readingValue - (meter.last_reading || 0),
         notes: notes,
+        captured_by: currentUser ? currentUser.name : 'Unknown User',
+        captured_by_id: currentUser ? currentUser.id : null,
+        photo: preparedPhoto ? preparedPhoto.dataUrl : (existingReading?.photo || ''),
+        photo_name: preparedPhoto ? preparedPhoto.name : (existingReading?.photo_name || ''),
         captured_at: new Date().toISOString(),
-        review_status: 'PENDING'
+        review_status: 'pending'
     };
 
     // Add flags based on validation
     reading.flags = [];
     
     // Run full validation
-    const fullFlags = window.validation.validateReading(reading);
+    const fullFlags = validation.validateReading(reading);
     reading.flags = fullFlags;
 
-    // Determine review status
-    if (fullFlags.some(f => f.severity === 'high')) {
-        reading.review_status = 'ATTENTION';
-    } else if (fullFlags.length > 0) {
-        reading.review_status = 'REVIEW';
+    if (existingReading) {
+        storage.update('readings', existingReading.id, reading);
     } else {
-        reading.review_status = 'OK';
+        storage.create('readings', reading);
     }
 
-    // Save reading
-    storage.save('readings', reading);
-
-    // Update meter's last reading
-    meter.last_reading = readingValue;
-    meter.last_reading_date = readingDate;
-    storage.save('meters', meter);
+    storage.update('meters', meter.id, {
+        last_reading: readingValue,
+        last_reading_date: readingDate
+    });
 
     // Close modal and reload page
     window.closeReadingModal();

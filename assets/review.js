@@ -192,6 +192,13 @@ window.openReviewModal = function(readingId) {
             <strong>Manual Flags:</strong> ${manualFlags.length > 0 ? manualFlags.map(f => `<span class="badge badge-warning" title="${f.description}">👤 ${f.type}: ${f.message}</span>`).join(' ') : 'None'}<br>
             ${reading.notes ? `<strong>Notes:</strong> ${reading.notes}` : ''}
         </div>
+        ${reading.photo ? `
+            <div class="info-box mt-1">
+                <strong>Photo Evidence:</strong><br>
+                <img src="${reading.photo}" alt="Meter evidence" class="reading-photo-preview">
+                ${reading.photo_name ? `<div class="text-muted">${reading.photo_name}</div>` : ''}
+            </div>
+        ` : ''}
         <button class="btn btn-secondary btn-sm mt-1" onclick="exportMeterReportFromReview('${meter.id}', '${reading.cycle_id}')">
             📄 Export Meter Report (Excel)
         </button>

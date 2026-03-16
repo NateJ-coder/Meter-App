@@ -61,14 +61,16 @@
         </div>
 
         <div class="form-group">
-          <label for="photo-ref">Meter Photo Reference *</label>
+          <label for="photo-ref">Meter Photo *</label>
           <input 
-            type="text" 
-            id="photo-ref" 
-            placeholder="Photo filename or description" 
+            type="file"
+            id="photo-ref"
+            accept="image/*"
+            capture="environment"
             required
             class="reader-input"
           >
+          <small class="form-help">A compressed image is stored locally on this device as supporting evidence.</small>
         </div>
 
         <div class="form-group">
@@ -104,12 +106,14 @@
   </section>
 </main>
 
+<script type="module" src="assets/page-auth.js"></script>
 <script type="module">
   import { storage } from './assets/storage.js';
   import { validation } from './assets/validation.js';
   import { onSiteMode } from './assets/on-site-mode.js';
   import { getCurrentDateTime } from './assets/app.js';
   import { auth } from './assets/auth.js';
+  import { preparePhotoForStorage } from './assets/photo-utils.js';
 
   // Make globally available
   window.storage = storage;
@@ -346,12 +350,20 @@
     });
 
     // Handle form submission
-    document.getElementById('reader-form').addEventListener('submit', function (e) {
+    document.getElementById('reader-form').addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const readingValue = parseFloat(document.getElementById('reading-value').value);
-      const photoRef = document.getElementById('photo-ref').value;
+      const photoInput = document.getElementById('photo-ref');
       const notes = document.getElementById('notes').value;
+      const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
+        ? await preparePhotoForStorage(photoInput.files[0])
+        : null;
+
+      if (!preparedPhoto) {
+        alert('Please capture a meter photo before submitting.');
+        return;
+      }
 
       // Calculate consumption
       const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
@@ -366,7 +378,8 @@
         cycle_id: workflowContext.openCycle.id,
         reading_value: readingValue,
         reading_date: getCurrentDateTime(),
-        photo: photoRef,
+        photo: preparedPhoto.dataUrl,
+        photo_name: preparedPhoto.name,
         notes: notes,
         consumption: consumption,
         captured_by: capturedBy,

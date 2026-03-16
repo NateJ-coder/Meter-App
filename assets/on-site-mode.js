@@ -7,6 +7,7 @@
 import { storage } from './storage.js';
 import { validation } from './validation.js';
 import { auth } from './auth.js';
+import { preparePhotoForStorage } from './photo-utils.js';
 
 export const onSiteMode = {
     /**
@@ -199,8 +200,8 @@ export const onSiteMode = {
         if (!meter) return null;
 
         // Create a special reading with issue flag
+        const currentUser = auth.getCurrentUser();
         const reading = {
-            id: Date.now().toString(),
             cycle_id: cycleId,
             meter_id: meterId,
             reading_value: meter.last_reading || 0, // Use last reading as placeholder
@@ -209,7 +210,9 @@ export const onSiteMode = {
             consumption: 0,
             notes: notes || '',
             captured_at: new Date().toISOString(),
-            review_status: 'ATTENTION',
+            captured_by: currentUser ? currentUser.name : 'Unknown User',
+            captured_by_id: currentUser ? currentUser.id : null,
+            review_status: 'pending',
             is_issue: true,
             issue_type: issueType,
             flags: [{
@@ -219,7 +222,7 @@ export const onSiteMode = {
             }]
         };
 
-        storage.save('readings', reading);
+        storage.create('readings', reading);
         return reading;
     },
 
@@ -314,6 +317,17 @@ export const onSiteMode = {
                         ></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <label for="onsite-photo">Meter Photo (optional)</label>
+                        <input 
+                            type="file"
+                            id="onsite-photo"
+                            accept="image/*"
+                            capture="environment"
+                            class="reader-input"
+                        >
+                    </div>
+
                     <!-- Primary Actions -->
                     <div class="onsite-actions-primary">
                         <button type="submit" class="btn btn-primary btn-large onsite-submit">
@@ -400,9 +414,10 @@ export const onSiteMode = {
     /**
      * Handle on-site reading submission
      */
-    handleOnsiteSubmit(meterId, cycleId) {
+    async handleOnsiteSubmit(meterId, cycleId) {
         const readingValue = parseFloat(document.getElementById('onsite-reading').value);
         const notes = document.getElementById('onsite-notes').value;
+        const photoInput = document.getElementById('onsite-photo');
 
         const meter = storage.get('meters', meterId);
         if (!meter) {
@@ -413,6 +428,9 @@ export const onSiteMode = {
         // Get current user
         const currentUser = window.auth ? window.auth.getCurrentUser() : null;
         const capturedBy = currentUser ? currentUser.name : 'Unknown User';
+        const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
+            ? await preparePhotoForStorage(photoInput.files[0])
+            : null;
 
         // Create reading
         const reading = {
@@ -425,7 +443,8 @@ export const onSiteMode = {
             notes: notes,
             captured_by: capturedBy,
             captured_by_id: currentUser ? currentUser.id : null,
-            photo: 'On-site capture',
+            photo: preparedPhoto ? preparedPhoto.dataUrl : '',
+            photo_name: preparedPhoto ? preparedPhoto.name : '',
             captured_at: new Date().toISOString(),
             review_status: 'pending'
         };

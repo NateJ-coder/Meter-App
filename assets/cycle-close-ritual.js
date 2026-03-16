@@ -35,7 +35,7 @@ export const cycleCloseRitual = {
         );
 
         const unreviewedFlags = readings.filter(r => 
-            r.flags && r.flags.length > 0 && r.review_status === 'PENDING'
+            r.flags && r.flags.length > 0 && String(r.review_status || '').toLowerCase() === 'pending'
         );
 
         return {
@@ -327,7 +327,9 @@ window.closeCycleModal = function(event) {
 
 window.toggleMissingReadings = function() {
     const list = document.getElementById('missing-readings-list');
-    const btn = event.target;
+    const btn = window.event ? window.event.target : null;
+
+    if (!list || !btn) return;
     
     if (list.style.display === 'none') {
         list.style.display = 'block';
@@ -340,7 +342,9 @@ window.toggleMissingReadings = function() {
 
 window.toggleFlaggedReadings = function() {
     const list = document.getElementById('flagged-readings-list');
-    const btn = event.target;
+    const btn = window.event ? window.event.target : null;
+
+    if (!list || !btn) return;
     
     if (list.style.display === 'none') {
         list.style.display = 'block';
@@ -377,10 +381,10 @@ window.confirmCloseCycle = function(cycleId) {
     
     if (confirm(confirmMessage)) {
         // Close the cycle
-        const cycle = storage.get('cycles', cycleId);
-        cycle.status = 'CLOSED';
-        cycle.closed_at = new Date().toISOString();
-        storage.save('cycles', cycle);
+        storage.update('cycles', cycleId, {
+            status: 'CLOSED',
+            closed_at: new Date().toISOString()
+        });
         
         // Update onboarding state if this is first cycle
         if (window.onboarding) {
