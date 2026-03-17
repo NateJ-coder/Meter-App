@@ -11,13 +11,22 @@ export const auth = {
         
         const user = JSON.parse(session);
         // Check if session is still valid (optional: add expiry)
-        return user && user.email;
+        return Boolean(user && user.id && user.role);
     },
 
     // Get current user
     getCurrentUser() {
         const session = localStorage.getItem('fuzio_user_session');
         return session ? JSON.parse(session) : null;
+    },
+
+    isGuestUser() {
+        const user = this.getCurrentUser();
+        return user?.role === 'guest_reader';
+    },
+
+    clearSession() {
+        localStorage.removeItem('fuzio_user_session');
     },
 
     // Login user
@@ -38,6 +47,9 @@ export const auth = {
             email: user.email,
             name: user.name,
             role: user.role,
+            phone: user.phone || '',
+            contact_details: user.contact_details || '',
+            user_type: 'registered',
             loginTime: new Date().toISOString()
         };
 
@@ -61,6 +73,8 @@ export const auth = {
             email: userData.email,
             password: userData.password,
             name: userData.name,
+            phone: userData.phone || '',
+            contact_details: userData.contact_details || '',
             role: userData.role || 'viewer',
             createdAt: new Date().toISOString()
         };
@@ -73,8 +87,24 @@ export const auth = {
 
     // Logout
     logout() {
-        localStorage.removeItem('fuzio_user_session');
+        this.clearSession();
         window.location.href = 'login.html';
+    },
+
+    startGuestSession() {
+        const session = {
+            id: `guest_${this.generateId()}`,
+            email: '',
+            name: 'Guest Reader',
+            role: 'guest_reader',
+            phone: '',
+            contact_details: '',
+            user_type: 'guest',
+            loginTime: new Date().toISOString()
+        };
+
+        localStorage.setItem('fuzio_user_session', JSON.stringify(session));
+        return session;
     },
 
     // Get all users
@@ -131,6 +161,7 @@ export const auth = {
         if (!user) return false;
 
         const roles = {
+            'guest_reader': 0,
             'viewer': 1,
             'field_worker': 2,
             'admin': 3

@@ -1709,6 +1709,16 @@ body.modal-open {
     padding: 3rem 2rem;
 }
 
+.submission-identity-panel {
+    max-width: 620px;
+    margin: 1.5rem auto 0;
+    text-align: left;
+}
+
+.submission-identity-panel .info-box {
+    text-align: left;
+}
+
 .error-icon,
 .completion-icon {
     font-size: 4rem;
@@ -2099,6 +2109,29 @@ body.modal-open {
 .login-container {
     width: 100%;
     max-width: 450px;
+}
+
+.guest-access-panel {
+    margin-top: 1.5rem;
+}
+
+.guest-access-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.guest-access-divider::before,
+.guest-access-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
 }
 
 .login-card {

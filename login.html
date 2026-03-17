@@ -13,7 +13,7 @@
         <div class="login-header">
             <img src="assets/images/Fuzio logo.jpg" alt="Fuzio Properties" class="login-logo">
             <h1>Fuzio Meter Readings</h1>
-            <p class="subtitle">Sign in to continue</p>
+            <p class="subtitle">Sign in as a registered user or continue as a guest reader</p>
         </div>
 
         <div id="login-error" class="alert alert-danger" style="display: none;"></div>
@@ -34,6 +34,16 @@
             </button>
         </form>
 
+        <div id="guest-access-panel" class="guest-access-panel" style="display: none;">
+            <div class="guest-access-divider"><span>QR reader access</span></div>
+            <div class="info-box mb-2">
+                Continue as a guest if you scanned a QR code and do not have a registered account. You will be asked for your name and contact details before publishing the readings.
+            </div>
+            <button id="guest-login-button" type="button" class="btn btn-secondary btn-large btn-block">
+                Continue As Guest
+            </button>
+        </div>
+
         <div class="login-footer">
             <p class="text-muted">
                 <strong>Default Admin:</strong> admin@fuzio.com / admin123
@@ -49,9 +59,14 @@
     import { auth } from './assets/auth.js';
 
     const redirectTarget = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
+    const isReaderRedirect = redirectTarget.startsWith('reader.html') || redirectTarget.startsWith('reader-old.html');
 
     // Initialize default admin on first load
     auth.initializeDefaultAdmin();
+
+    if (isReaderRedirect) {
+        document.getElementById('guest-access-panel').style.display = 'block';
+    }
 
     // Handle login form
     document.getElementById('login-form').addEventListener('submit', function(e) {
@@ -80,8 +95,13 @@
         }
     });
 
+    document.getElementById('guest-login-button').addEventListener('click', function() {
+        auth.startGuestSession();
+        window.location.href = redirectTarget;
+    });
+
     // Check if already logged in
-    if (auth.isAuthenticated()) {
+    if (auth.isAuthenticated() && !auth.isGuestUser()) {
         window.location.href = redirectTarget;
     }
 </script>

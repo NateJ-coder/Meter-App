@@ -189,6 +189,7 @@ window.openReviewModal = function(readingId) {
             <strong>Consumption:</strong> ${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'} kWh<br>
             <strong>Reading Date:</strong> ${formatDateTime(reading.reading_date)}<br>
             <strong>Captured By:</strong> ${reading.captured_by || 'Unknown'}<br>
+            <strong>Contact Details:</strong> ${reading.captured_by_contact_details || reading.submitted_by_contact_details || 'Not provided'}<br>
             <strong>Auto Flags:</strong> ${autoFlags.length > 0 ? autoFlags.map(f => `<span class="badge badge-danger" title="${f.description}">🤖 ${f.type}: ${f.message}</span>`).join(' ') : 'None'}<br>
             <strong>Manual Flags:</strong> ${manualFlags.length > 0 ? manualFlags.map(f => `<span class="badge badge-warning" title="${f.description}">👤 ${f.type}: ${f.message}</span>`).join(' ') : 'None'}<br>
             ${reading.notes ? `<strong>Notes:</strong> ${reading.notes}` : ''}

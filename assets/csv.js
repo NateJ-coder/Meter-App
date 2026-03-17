@@ -17,7 +17,7 @@ export const csv = {
 
         // Build CSV rows
         const rows = [
-            ['Scheme', 'Building', 'Unit', 'Meter Number', 'Previous Reading', 'Current Reading', 'Consumption (kWh)', 'Reading Date', 'Flags', 'Review Status', 'Notes']
+            ['Scheme', 'Building', 'Unit', 'Meter Number', 'Previous Reading', 'Current Reading', 'Consumption (kWh)', 'Reading Date', 'Captured By', 'Contact Details', 'Flags', 'Review Status', 'Notes']
         ];
 
         readings.forEach(reading => {
@@ -36,6 +36,8 @@ export const csv = {
                 reading.reading_value,
                 consumption,
                 reading.reading_date,
+                reading.captured_by || 'Unknown',
+                reading.captured_by_contact_details || reading.submitted_by_contact_details || '',
                 flags,
                 getEffectiveReviewStatus(reading, cycle),
                 reading.notes || ''

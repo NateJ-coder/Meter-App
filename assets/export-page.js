@@ -346,6 +346,7 @@ function loadUnitReadingsPreview() {
                     <th>Previous</th>
                     <th>Current</th>
                     <th>Consumption</th>
+                    <th>Captured By</th>
                     <th>Flags</th>
                     <th>Review</th>
                 </tr>
@@ -368,6 +369,7 @@ function loadUnitReadingsPreview() {
                             <td>${getPreviousReadingDisplayValue(reading, meter)}</td>
                             <td>${reading.reading_value}</td>
                             <td>${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'}</td>
+                            <td>${reading.captured_by || 'Unknown'}${reading.captured_by_contact_details ? `<br><span class="text-muted">${reading.captured_by_contact_details}</span>` : ''}</td>
                             <td>${flags}</td>
                             <td><span class="badge ${effectiveStatus === 'approved' ? 'badge-success' : effectiveStatus === 'site-visit' ? 'badge-danger' : 'badge-secondary'}">${effectiveStatus}</span></td>
                         </tr>

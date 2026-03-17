@@ -36,8 +36,11 @@
         <!-- User Management -->
         <section class="card">
             <div class="card-header">
-                <h2>User Management</h2>
+                <h2>User Management & Contact Directory</h2>
                 <button class="btn btn-primary" onclick="showAddUserModal()">+ Add User</button>
+            </div>
+            <div class="info-box mb-2">
+                Registered readers and employees should be created here so their contact details are available on reading summaries and activity records.
             </div>
             <div id="users-list"></div>
         </section>
@@ -80,6 +83,14 @@
                 <div class="form-group">
                     <label for="user-email">Email Address *</label>
                     <input type="email" id="user-email" required placeholder="john@fuzio.com">
+                </div>
+                <div class="form-group">
+                    <label for="user-phone">Phone Number</label>
+                    <input type="text" id="user-phone" placeholder="e.g. +27 82 000 0000">
+                </div>
+                <div class="form-group">
+                    <label for="user-contact-details">Additional Contact Details</label>
+                    <textarea id="user-contact-details" rows="2" placeholder="Alternative number, office line, notes, etc."></textarea>
                 </div>
                 <div class="form-group">
                     <label for="user-password">Password *</label>
@@ -326,6 +337,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Phone</th>
+                            <th>Contact Details</th>
                             <th>Role</th>
                             <th>Created</th>
                             <th>Actions</th>
@@ -336,6 +349,8 @@
                             <tr>
                                 <td>${user.name}</td>
                                 <td>${user.email}</td>
+                                <td>${user.phone || '-'}</td>
+                                <td>${user.contact_details || '-'}</td>
                                 <td><span class="badge badge-${getRoleBadgeClass(user.role)}">${user.role}</span></td>
                                 <td>${new Date(user.createdAt).toLocaleDateString()}</td>
                                 <td>
@@ -450,6 +465,8 @@
             const userData = {
                 name: document.getElementById('user-name').value,
                 email: document.getElementById('user-email').value,
+                phone: document.getElementById('user-phone').value.trim(),
+                contact_details: document.getElementById('user-contact-details').value.trim(),
                 password: document.getElementById('user-password').value,
                 role: document.getElementById('user-role').value
             };

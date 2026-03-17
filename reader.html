@@ -106,9 +106,16 @@
   <section id="success-message" class="card success-card" style="display:none;">
     <div class="completion-icon">✓</div>
     <h2>All Readings Captured!</h2>
-    <p>Thank you. All meter readings have been submitted successfully.</p>
+    <p>Review the readings below, confirm who captured them, and publish the record set.</p>
     <div id="reading-summary" class="mt-2"></div>
-    <a href="index.html" class="btn btn-primary btn-large mt-2">Return to Dashboard</a>
+    <div id="submission-identity-panel" class="submission-identity-panel mt-2"></div>
+    <div class="form-actions" style="justify-content: center;">
+      <button type="button" id="publish-readings-button" class="btn btn-primary btn-large" onclick="publishWorkflowReadings()">
+        Publish Records
+      </button>
+      <a id="reader-finish-link" href="index.html" class="btn btn-secondary btn-large" style="display: none;">Finish</a>
+    </div>
+    <p id="publish-status-message" class="text-muted mt-2"></p>
   </section>
 </main>
 
@@ -134,6 +141,28 @@
   const onsiteCycleId = params.get('cycle_id');
 
   let workflowContext = null;
+
+  function getSessionReaderProfile() {
+    const currentUser = auth.getCurrentUser();
+    if (!currentUser) {
+      return null;
+    }
+
+    const contactParts = [currentUser.email, currentUser.phone, currentUser.contact_details]
+      .filter(Boolean)
+      .join(' | ');
+
+    return {
+      id: currentUser.id,
+      name: currentUser.name || '',
+      email: currentUser.email || '',
+      phone: currentUser.phone || '',
+      contactDetails: currentUser.contact_details || '',
+      combinedContact: contactParts,
+      isGuest: currentUser.role === 'guest_reader',
+      role: currentUser.role
+    };
+  }
 
   // Check if we should use on-site mode
   if (mode === 'onsite' || onSiteMode.isActive()) {
@@ -546,7 +575,129 @@
         </table>
       </div>
     `;
+
+    renderSubmissionIdentityPanel(workflowMeters, readings);
   }
+
+  function renderSubmissionIdentityPanel(workflowMeters, readings) {
+    const panel = document.getElementById('submission-identity-panel');
+    const profile = getSessionReaderProfile();
+    const relevantReadings = workflowMeters
+      .map(meter => readings.find(entry => entry.meter_id === meter.id))
+      .filter(Boolean);
+    const existingSubmission = relevantReadings.find(reading => reading.submitted_at);
+    const publishButton = document.getElementById('publish-readings-button');
+    const finishLink = document.getElementById('reader-finish-link');
+    const statusMessage = document.getElementById('publish-status-message');
+
+    if (!profile) {
+      panel.innerHTML = '<div class="info-box">Unable to determine the current reader profile.</div>';
+      publishButton.style.display = 'none';
+      finishLink.style.display = 'inline-block';
+      finishLink.href = 'login.html';
+      statusMessage.textContent = '';
+      return;
+    }
+
+    if (profile.isGuest) {
+      const guestName = existingSubmission?.submitted_by_name || '';
+      const guestContact = existingSubmission?.submitted_by_contact_details || '';
+
+      panel.innerHTML = `
+        <div class="info-box mb-2">
+          <strong>Guest reader details required</strong><br>
+          Enter the name and contact details for the person who captured these readings before publishing.
+        </div>
+        <div class="form-group">
+          <label for="guest-reader-name">Guest Reader Name *</label>
+          <input type="text" id="guest-reader-name" value="${guestName}" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label for="guest-reader-contact">Contact Details *</label>
+          <input type="text" id="guest-reader-contact" value="${guestContact}" placeholder="Phone number, email, or both">
+        </div>
+      `;
+      finishLink.href = 'login.html';
+    } else {
+      panel.innerHTML = `
+        <div class="info-box text-left">
+          <strong>Registered reader</strong><br>
+          <strong>Name:</strong> ${profile.name}<br>
+          <strong>Email:</strong> ${profile.email || 'Not set'}<br>
+          <strong>Phone:</strong> ${profile.phone || 'Not set'}<br>
+          <strong>Contact Details:</strong> ${profile.contactDetails || 'Not set'}
+        </div>
+      `;
+      finishLink.href = 'index.html';
+    }
+
+    if (existingSubmission) {
+      publishButton.style.display = 'none';
+      finishLink.style.display = 'inline-block';
+      statusMessage.textContent = `Published on ${new Date(existingSubmission.submitted_at).toLocaleString()} by ${existingSubmission.submitted_by_name || profile.name}.`;
+    } else {
+      publishButton.style.display = 'inline-block';
+      finishLink.style.display = 'none';
+      statusMessage.textContent = profile.isGuest
+        ? 'Publish after confirming your name and contact details.'
+        : 'Publish to attach the registered reader details to this record set.';
+    }
+  }
+
+  function getWorkflowReadings() {
+    const workflowMeters = getWorkflowMetersForSummary();
+    if (workflowMeters.length === 0) {
+      return [];
+    }
+
+    const cycleId = workflowMeters[0].cycle_id;
+    const readings = storage.getReadings(cycleId);
+    return workflowMeters
+      .map(meter => readings.find(entry => entry.meter_id === meter.id))
+      .filter(Boolean);
+  }
+
+  window.publishWorkflowReadings = function() {
+    const profile = getSessionReaderProfile();
+    const readings = getWorkflowReadings();
+
+    if (!profile || readings.length === 0) {
+      return;
+    }
+
+    let submitterName = profile.name;
+    let submitterContact = profile.combinedContact;
+
+    if (profile.isGuest) {
+      const guestNameInput = document.getElementById('guest-reader-name');
+      const guestContactInput = document.getElementById('guest-reader-contact');
+      submitterName = guestNameInput.value.trim();
+      submitterContact = guestContactInput.value.trim();
+
+      if (!submitterName || !submitterContact) {
+        alert('Please enter the guest reader name and contact details before publishing.');
+        return;
+      }
+    }
+
+    const submittedAt = new Date().toISOString();
+    readings.forEach(reading => {
+      storage.update('readings', reading.id, {
+        submitted_at: submittedAt,
+        submitted_by_name: submitterName,
+        submitted_by_contact_details: submitterContact,
+        submitted_by_email: profile.email || '',
+        submitted_by_phone: profile.phone || '',
+        submission_type: profile.isGuest ? 'guest' : 'registered',
+        captured_by: submitterName,
+        captured_by_contact_details: submitterContact,
+        captured_by_email: profile.email || '',
+        captured_by_id: profile.isGuest ? null : profile.id
+      });
+    });
+
+    renderWorkflowSummary();
+  };
 
   window.editWorkflowMeter = function(index) {
     if (!schemeId && workflowContext?.scheme?.id) {

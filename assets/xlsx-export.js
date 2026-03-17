@@ -74,6 +74,8 @@ export const xlsxExport = {
         summaryData.push(['']);
         summaryData.push(['=== REVIEW STATUS ===']);
         summaryData.push(['Status:', getEffectiveReviewStatus(reading, cycle)]);
+        summaryData.push(['Captured By:', reading.captured_by || 'Unknown']);
+        summaryData.push(['Contact Details:', reading.captured_by_contact_details || reading.submitted_by_contact_details || '']);
         summaryData.push(['Reviewed By:', reading.reviewed_by || 'Not reviewed']);
         summaryData.push(['Review Date:', reading.review_date || 'N/A']);
         summaryData.push(['Notes:', reading.notes || 'None']);
@@ -271,7 +273,7 @@ export const xlsxExport = {
             ['Scheme:', scheme.name],
             ['Period:', `${cycle.start_date} to ${cycle.end_date}`],
             [''],
-            ['Building', 'Unit', 'Meter Number', 'Previous', 'Current', 'Consumption (kWh)', 'Reading Date', 'Captured By', 'Flags', 'Review Status']
+            ['Building', 'Unit', 'Meter Number', 'Previous', 'Current', 'Consumption (kWh)', 'Reading Date', 'Captured By', 'Contact Details', 'Flags', 'Review Status']
         ];
 
         readings.forEach(reading => {
@@ -290,6 +292,7 @@ export const xlsxExport = {
                 consumption,
                 reading.reading_date,
                 reading.captured_by || 'Unknown',
+                reading.captured_by_contact_details || reading.submitted_by_contact_details || '',
                 flags,
                 getEffectiveReviewStatus(reading, cycle)
             ]);
