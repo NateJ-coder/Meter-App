@@ -31,8 +31,6 @@ const GUEST_SESSION_KEY = 'fuzio_guest_session';
 const USERS_CACHE_KEY = 'fuzio_users';
 const ACTIVITIES_CACHE_KEY = 'fuzio_activities';
 const LEGACY_DEFAULT_ADMIN_EMAIL = 'admin@fuzio.com';
-const DEFAULT_ADMIN_EMAIL = 'admin@fuzio.co';
-const DEFAULT_ADMIN_PASSWORD = 'admin123';
 
 let currentSession = readJson(SESSION_KEY, null);
 let initializationPromise = null;
@@ -412,33 +410,14 @@ export const auth = {
     },
 
     initializeDefaultAdmin() {
-        const users = getCachedUsers()
-            .filter((user) => normalizeEmail(user.email) !== LEGACY_DEFAULT_ADMIN_EMAIL);
+        const users = getCachedUsers().filter((user) => {
+            const normalizedEmail = normalizeEmail(user.email);
+            const isLegacySeed = normalizedEmail === LEGACY_DEFAULT_ADMIN_EMAIL;
+            const isTemporarySeed = normalizedEmail === 'admin@fuzio.co' && user.password === 'admin123';
+            return !isLegacySeed && !isTemporarySeed;
+        });
 
-        if (users.some((user) => normalizeEmail(user.email) === DEFAULT_ADMIN_EMAIL && user.role === 'admin' && user.status !== 'disabled')) {
-            setCachedUsers(users);
-            return;
-        }
-
-        if (users.some((user) => user.role === 'admin' && user.status !== 'disabled')) {
-            setCachedUsers(users);
-            return;
-        }
-
-        const legacyAdmin = {
-            id: this.generateId(),
-            email: DEFAULT_ADMIN_EMAIL,
-            password: DEFAULT_ADMIN_PASSWORD,
-            name: 'Administrator',
-            phone: '',
-            contact_details: '',
-            role: 'admin',
-            status: 'active',
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-        };
-
-        setCachedUsers([...users, legacyAdmin]);
+        setCachedUsers(users);
     },
 
     hasPermission(requiredRole) {

@@ -4,8 +4,8 @@
 
 ### Default Login Credentials
 ```
-Email: admin@fuzio.co
-Password: admin123
+Email: Use your configured Firebase admin account
+Password: Managed in Firebase Authentication
 ```
 
 ## 1. Login System
@@ -155,7 +155,7 @@ Add, view, and delete users:
 // Admin
 { 
    email: 'admin@fuzio.co', 
-  password: 'admin123', 
+   // Password is managed in Firebase Authentication
   name: 'Administrator', 
   role: 'admin' 
 }
@@ -465,7 +465,7 @@ auth.register({
 
 ### "Cannot access dev console"
 - **Cause:** Not logged in as admin
-- **Fix:** Login with admin@fuzio.co / admin123
+- **Fix:** Login with your configured Firebase admin account
 
 ### "User already registered"
 - **Cause:** Email already in use
