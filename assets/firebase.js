@@ -11,7 +11,7 @@ import { getFirestore, serverTimestamp } from 'https://www.gstatic.com/firebasej
 import { getStorage } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js';
 
 export const firebaseConfig = {
-    apiKey: 'AIzaSyA941skpjU_EqGdwY-saDZb1vqkY5maHf0',
+    apiKey: 'AIzaSyBz89GtOjx7c__t1pu9yD2ata9-4ITZilk',
     authDomain: 'meter-app-36307.firebaseapp.com',
     projectId: 'meter-app-36307',
     storageBucket: 'meter-app-36307.firebasestorage.app',
