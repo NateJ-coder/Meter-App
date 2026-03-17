@@ -380,6 +380,21 @@ window.confirmCloseCycle = function(cycleId) {
     }
     
     if (confirm(confirmMessage)) {
+        const readings = storage.getReadings(cycleId);
+
+        readings.forEach(reading => {
+            const hasFlags = Boolean(reading.flags?.length) || Boolean(reading.manual_flags?.length);
+            const currentStatus = String(reading.review_status || '').toLowerCase();
+
+            if (!hasFlags && (!currentStatus || currentStatus === 'pending')) {
+                storage.update('readings', reading.id, {
+                    review_status: 'approved',
+                    reviewed_at: new Date().toISOString(),
+                    reviewed_by: 'System'
+                });
+            }
+        });
+
         // Close the cycle
         storage.update('cycles', cycleId, {
             status: 'CLOSED',

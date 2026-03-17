@@ -168,5 +168,39 @@ export function parseDecimalInput(value) {
     return Number.isFinite(parsed) ? parsed : NaN;
 }
 
+/**
+ * Determine the effective review status for display and exports.
+ * Clean readings in a closed cycle are treated as approved.
+ */
+export function getEffectiveReviewStatus(reading, cycle = null) {
+    const explicitStatus = String(reading?.review_status || '').toLowerCase();
+    const hasFlags = Boolean(reading?.flags?.length) || Boolean(reading?.manual_flags?.length);
+
+    if (explicitStatus && explicitStatus !== 'pending') {
+        return explicitStatus;
+    }
+
+    if (hasFlags) {
+        return 'pending';
+    }
+
+    if (cycle?.status === 'CLOSED') {
+        return 'approved';
+    }
+
+    return explicitStatus || 'pending';
+}
+
+/**
+ * Prefer the reading snapshot for previous reading display when available.
+ */
+export function getPreviousReadingDisplayValue(reading, meter = null) {
+    if (reading?.previous_reading != null) {
+        return reading.previous_reading;
+    }
+
+    return meter?.last_reading ?? 0;
+}
+
 // Export router for convenience
 export { router };

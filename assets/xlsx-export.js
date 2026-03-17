@@ -4,6 +4,7 @@
  */
 
 import { storage } from './storage.js';
+import { getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
 import { auth } from './auth.js';
 
 export const xlsxExport = {
@@ -72,7 +73,7 @@ export const xlsxExport = {
 
         summaryData.push(['']);
         summaryData.push(['=== REVIEW STATUS ===']);
-        summaryData.push(['Status:', reading.review_status || 'Pending']);
+        summaryData.push(['Status:', getEffectiveReviewStatus(reading, cycle)]);
         summaryData.push(['Reviewed By:', reading.reviewed_by || 'Not reviewed']);
         summaryData.push(['Review Date:', reading.review_date || 'N/A']);
         summaryData.push(['Notes:', reading.notes || 'None']);
@@ -256,8 +257,8 @@ export const xlsxExport = {
             [''],
             ['=== DATA QUALITY ==='],
             ['Readings with Flags:', flaggedCount],
-            ['Readings Pending Review:', readings.filter(r => !r.review_status || r.review_status === 'pending').length],
-            ['Readings Approved:', readings.filter(r => r.review_status === 'approved').length],
+            ['Readings Pending Review:', readings.filter(r => getEffectiveReviewStatus(r, cycle) === 'pending').length],
+            ['Readings Approved:', readings.filter(r => getEffectiveReviewStatus(r, cycle) === 'approved').length],
         ];
     },
 
@@ -284,13 +285,13 @@ export const xlsxExport = {
                 meter.building_name || 'N/A',
                 meter.unit_name || 'N/A',
                 meter.meter_number,
-                meter.last_reading || 0,
+                getPreviousReadingDisplayValue(reading, meter),
                 reading.reading_value,
                 consumption,
                 reading.reading_date,
                 reading.captured_by || 'Unknown',
                 flags,
-                reading.review_status || 'Pending'
+                getEffectiveReviewStatus(reading, cycle)
             ]);
         });
 

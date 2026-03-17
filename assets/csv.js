@@ -4,6 +4,7 @@
  */
 
 import { storage } from './storage.js';
+import { getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
 
 export const csv = {
     /**
@@ -31,12 +32,12 @@ export const csv = {
                 meter.building_name || 'N/A',
                 meter.unit_name || 'N/A',
                 meter.meter_number,
-                meter.last_reading || 0,
+                getPreviousReadingDisplayValue(reading, meter),
                 reading.reading_value,
                 consumption,
                 reading.reading_date,
                 flags,
-                reading.review_status || 'pending',
+                getEffectiveReviewStatus(reading, cycle),
                 reading.notes || ''
             ]);
         });
@@ -128,11 +129,11 @@ export const csv = {
                 meter.building_name || 'N/A',
                 meter.unit_name || 'N/A',
                 meter.meter_number,
-                meter.last_reading || 0,
+                getPreviousReadingDisplayValue(reading, meter),
                 reading.reading_value,
                 reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A',
                 flags,
-                reading.review_status || 'pending'
+                getEffectiveReviewStatus(reading, cycle)
             ]);
         });
 

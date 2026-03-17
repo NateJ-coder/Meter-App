@@ -4,7 +4,7 @@
 
 import { storage } from './storage.js';
 import { validation } from './validation.js';
-import { showNotification, formatDateTime, parseDecimalInput } from './app.js';
+import { showNotification, formatDateTime, parseDecimalInput, getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
 
 // Load page
 populateCycleSelect();
@@ -47,7 +47,7 @@ function loadMetrics(cycleId) {
     const readings = storage.getReadings(cycleId);
     
     const flaggedCount = readings.filter(r => r.flags && r.flags.length > 0).length;
-    const approvedCount = readings.filter(r => r.review_status === 'approved').length;
+    const approvedCount = readings.filter(r => getEffectiveReviewStatus(r, cycle) === 'approved').length;
     const notReadCount = meters.length - readings.length;
     
     document.getElementById('review-total-readings').textContent = readings.length;
@@ -87,6 +87,7 @@ function loadFlaggedReadings(cycleId) {
             <tbody>
                 ${flaggedReadings.map(reading => {
                     const meter = storage.getMeterWithDetails(reading.meter_id);
+                    const effectiveStatus = getEffectiveReviewStatus(reading, storage.get('cycles', cycleId));
                     
                     // PHASE 3: Show both auto and manual flags
                     const allFlags = validation.getAllFlags(reading);
@@ -99,7 +100,7 @@ function loadFlaggedReadings(cycleId) {
                     ].join(' ');
                     
                     let statusBadge = 'badge-warning';
-                    let statusText = reading.review_status || 'pending';
+                    let statusText = effectiveStatus;
                     if (statusText === 'approved') statusBadge = 'badge-success';
                     if (statusText === 'site-visit') statusBadge = 'badge-danger';
                     
@@ -183,7 +184,7 @@ window.openReviewModal = function(readingId) {
             <strong>Unit:</strong> ${meter.unit_name || 'N/A'}<br>
             <strong>Building:</strong> ${meter.building_name || 'N/A'}<br>
             <strong>Meter:</strong> ${meter.meter_number}<br>
-            <strong>Previous Reading:</strong> ${meter.last_reading || 0} kWh<br>
+            <strong>Previous Reading:</strong> ${getPreviousReadingDisplayValue(reading, meter)} kWh<br>
             <strong>Current Reading:</strong> ${reading.reading_value} kWh<br>
             <strong>Consumption:</strong> ${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'} kWh<br>
             <strong>Reading Date:</strong> ${formatDateTime(reading.reading_date)}<br>

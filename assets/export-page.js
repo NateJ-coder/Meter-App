@@ -5,6 +5,7 @@
 import { storage } from './storage.js';
 import { csv } from './csv.js';
 import { xlsxExport } from './xlsx-export.js';
+import { getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
 
 // State management
 let currentFilters = {
@@ -357,17 +358,18 @@ function loadUnitReadingsPreview() {
                     const flags = reading.flags && reading.flags.length > 0 
                         ? reading.flags.map(f => f.type).join(', ')
                         : '-';
+                    const effectiveStatus = getEffectiveReviewStatus(reading, cycle);
                     
                     return `
                         <tr>
                             <td>${meter.building_name || 'N/A'}</td>
                             <td>${meter.unit_name || 'N/A'}</td>
                             <td>${meter.meter_number}</td>
-                            <td>${meter.last_reading || 0}</td>
+                            <td>${getPreviousReadingDisplayValue(reading, meter)}</td>
                             <td>${reading.reading_value}</td>
                             <td>${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'}</td>
                             <td>${flags}</td>
-                            <td><span class="badge badge-secondary">${reading.review_status || 'pending'}</span></td>
+                            <td><span class="badge ${effectiveStatus === 'approved' ? 'badge-success' : effectiveStatus === 'site-visit' ? 'badge-danger' : 'badge-secondary'}">${effectiveStatus}</span></td>
                         </tr>
                     `;
                 }).join('')}
