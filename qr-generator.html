@@ -155,6 +155,7 @@
             const bulkMeter = storage.getAll('meters').find(m => 
                 m.meter_type === 'BULK' && m.scheme_id === schemeId
             );
+            const openCycle = storage.getOpenCycle(schemeId);
 
             if (!bulkMeter) {
                 alert('No bulk meter found for this scheme');
@@ -183,6 +184,7 @@
             let infoHtml = `<strong>Scheme:</strong> ${scheme.name}<br>`;
             infoHtml += `<strong>Buildings:</strong> ${buildings.length}<br>`;
             infoHtml += `<strong>Bulk Meter:</strong> ${bulkMeter.meter_number}<br>`;
+            infoHtml += `<strong>Reader Status:</strong> ${openCycle ? 'Active for capture' : 'Dormant until cycle is opened'}<br>`;
             infoHtml += `<strong>Submeters:</strong> ${submeters.length} units<br>`;
             infoHtml += `<strong>Total Steps:</strong> ${submeters.length + 1} (bulk + all submeters)`;
             

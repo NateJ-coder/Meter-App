@@ -630,7 +630,7 @@
           <input type="text" id="guest-reader-contact" value="${guestContact}" placeholder="Phone number, email, or both">
         </div>
       `;
-      finishLink.href = 'login.html';
+      finishLink.href = 'login.html?reader_only=1';
     } else {
       panel.innerHTML = `
         <div class="info-box text-left">
@@ -641,7 +641,7 @@
           <strong>Contact Details:</strong> ${profile.contactDetails || 'Not set'}
         </div>
       `;
-      finishLink.href = 'index.html';
+      finishLink.href = 'login.html?reader_only=1';
     }
 
     if (existingSubmission) {

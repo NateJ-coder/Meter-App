@@ -132,6 +132,11 @@
 
         // Display user info
         const currentUser = auth.getCurrentUser();
+
+        if (currentUser.role === 'guest_reader' || currentUser.role === 'field_worker') {
+            window.location.href = 'login.html?reader_only=1';
+        }
+
         document.getElementById('user-name').textContent = currentUser.name;
 
         // Show dev console link for admins
