@@ -5,6 +5,7 @@
 
 import { storage } from './storage.js';
 import { validation } from './validation.js';
+import { parseDecimalInput } from './app.js';
 
 export const onboarding = {
     // Onboarding state management
@@ -319,7 +320,7 @@ export const onboarding = {
                             </div>
                             <div class="form-group">
                                 <label for="bulk-meter-reading">Initial Reading</label>
-                                <input type="number" id="bulk-meter-reading" step="0.01" placeholder="0">
+                                <input type="text" id="bulk-meter-reading" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="0 or 1450.5">
                             </div>
                             <button type="submit" class="btn btn-secondary">+ Add Bulk Meter</button>
                         </form>
@@ -347,7 +348,7 @@ export const onboarding = {
                             </div>
                             <div class="form-group">
                                 <label for="meter-reading">Initial Reading</label>
-                                <input type="number" id="meter-reading" step="0.01" placeholder="0">
+                                <input type="text" id="meter-reading" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="0 or 1450.5">
                             </div>
                             <button type="submit" class="btn btn-secondary">+ Add Unit Meter</button>
                         </form>
@@ -690,13 +691,22 @@ export const onboarding = {
 
     handleBulkMeterSubmit(event) {
         event.preventDefault();
+
+        const bulkReadingInput = document.getElementById('bulk-meter-reading');
+        const bulkReading = bulkReadingInput.value.trim() === '' ? 0 : parseDecimalInput(bulkReadingInput.value);
+
+        if (Number.isNaN(bulkReading)) {
+            alert('Please enter a valid bulk meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
+            bulkReadingInput.focus();
+            return false;
+        }
         
         const schemeId = storage.getAll('schemes')[0].id;
         const meter = {
             scheme_id: schemeId,
             meter_number: document.getElementById('bulk-meter-number').value,
             meter_type: 'BULK',
-            last_reading: parseFloat(document.getElementById('bulk-meter-reading').value) || 0
+            last_reading: bulkReading
         };
 
         storage.create('meters', meter);
@@ -717,6 +727,15 @@ export const onboarding = {
 
     handleUnitMeterSubmit(event) {
         event.preventDefault();
+
+        const meterReadingInput = document.getElementById('meter-reading');
+        const meterReading = meterReadingInput.value.trim() === '' ? 0 : parseDecimalInput(meterReadingInput.value);
+
+        if (Number.isNaN(meterReading)) {
+            alert('Please enter a valid unit meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
+            meterReadingInput.focus();
+            return false;
+        }
         
         const schemeId = storage.getAll('schemes')[0].id;
         const meter = {
@@ -724,7 +743,7 @@ export const onboarding = {
             unit_id: document.getElementById('meter-unit').value,
             meter_number: document.getElementById('meter-number').value,
             meter_type: 'UNIT',
-            last_reading: parseFloat(document.getElementById('meter-reading').value) || 0
+            last_reading: meterReading
         };
 
         storage.create('meters', meter);

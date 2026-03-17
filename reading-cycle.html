@@ -28,69 +28,134 @@
             <p class="subtitle">Open/close cycles and capture meter readings</p>
         </header>
 
-        <!-- Current Cycle Status -->
-        <section class="card">
-            <h2>Current Cycle Status</h2>
-            <div id="cycle-status"></div>
-        </section>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchCycleTab('cycle-control-tab', event)">Cycle Control</button>
+            <button class="tab-btn" onclick="switchCycleTab('schedule-tab', event)">Schedule Reading Cycles</button>
+        </div>
 
-        <!-- Open New Cycle -->
-        <section class="card" id="open-cycle-section">
-            <h2>Open New Reading Cycle</h2>
-            <form id="cycle-form">
-                <div class="form-group">
-                    <label for="cycle-scheme">Scheme *</label>
-                    <select id="cycle-scheme" required></select>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cycle-start-date">Start Date *</label>
-                        <input type="date" id="cycle-start-date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cycle-end-date">End Date *</label>
-                        <input type="date" id="cycle-end-date" required>
-                    </div>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Open Cycle</button>
-                </div>
-            </form>
-        </section>
+        <section id="cycle-control-tab" class="tab-content active">
+            <!-- Open Cycle Status -->
+            <section class="card">
+                <h2>Open Reading Cycles</h2>
+                <div id="cycle-status"></div>
+            </section>
 
-        <!-- Capture Readings -->
-        <section class="card" id="capture-section" style="display: none;">
-            <div class="card-header">
-                <h2>Capture Readings</h2>
-                <div class="action-buttons">
+            <!-- Open New Cycle -->
+            <section class="card" id="open-cycle-section">
+                <h2>Open Reading Cycle Manually</h2>
+                <div class="info-box mb-2">
+                    You can keep one live cycle open per scheme. This lets multiple schemes be active on the same day without blocking each other.
+                </div>
+                <form id="cycle-form">
+                    <div class="form-group">
+                        <label for="cycle-scheme">Scheme *</label>
+                        <select id="cycle-scheme" required></select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cycle-start-date">Start Date *</label>
+                            <input type="date" id="cycle-start-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cycle-end-date">End Date *</label>
+                            <input type="date" id="cycle-end-date" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Open Cycle</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Capture Readings -->
+            <section class="card" id="capture-section" style="display: none;">
+                <div class="card-header">
+                    <div>
+                        <h2>Capture Readings</h2>
+                        <p class="text-muted">Select which open scheme cycle you want to manage.</p>
+                    </div>
+                    <div class="capture-cycle-selector">
+                        <label for="active-cycle-select">Active Cycle</label>
+                        <select id="active-cycle-select" onchange="selectActiveCycle()"></select>
+                    </div>
+                </div>
+                
+                <div class="action-buttons mb-2">
                     <button class="btn btn-secondary" onclick="startOnsiteMode()">📱 Start On-Site Readings</button>
-                    <button class="btn btn-danger" onclick="showCloseCycleRitual()">Close Cycle</button>
+                    <button class="btn btn-danger" onclick="showCloseCycleRitual()">Close Selected Cycle</button>
                 </div>
-            </div>
-            
-            <div class="info-box" style="margin-bottom: 1rem;">
-                <strong>💡 Tip:</strong> Use <strong>On-Site Mode</strong> for field readings. It shows one meter at a time with clear instructions and progress tracking.
-            </div>
 
-            <div class="filter-bar">
-                <div class="form-group">
-                    <label for="filter-building">Filter by Building</label>
-                    <select id="filter-building" onchange="filterReadings()">
-                        <option value="">All Buildings</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="filter-status">Filter by Status</label>
-                    <select id="filter-status" onchange="filterReadings()">
-                        <option value="">All</option>
-                        <option value="not-read">Not Read</option>
-                        <option value="read">Read</option>
-                        <option value="flagged">Flagged</option>
-                    </select>
-                </div>
-            </div>
+                <div id="active-cycle-summary" class="info-box" style="margin-bottom: 1rem;"></div>
 
-            <div id="readings-list"></div>
+                <div class="info-box" style="margin-bottom: 1rem;">
+                    <strong>💡 Tip:</strong> Use <strong>On-Site Mode</strong> for field readings. It shows one meter at a time with clear instructions and progress tracking.
+                </div>
+
+                <div class="filter-bar">
+                    <div class="form-group">
+                        <label for="filter-building">Filter by Building</label>
+                        <select id="filter-building" onchange="filterReadings()">
+                            <option value="">All Buildings</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-status">Filter by Status</label>
+                        <select id="filter-status" onchange="filterReadings()">
+                            <option value="">All</option>
+                            <option value="not-read">Not Read</option>
+                            <option value="read">Read</option>
+                            <option value="flagged">Flagged</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="readings-list"></div>
+            </section>
+        </section>
+
+        <section id="schedule-tab" class="tab-content">
+            <section class="card">
+                <h2>Schedule Reading Cycles</h2>
+                <div class="info-box mb-2">
+                    Use schedules if you want a cycle to auto-open and auto-close for a scheme. Scheduled cycles are applied when the app is opened, so they work without a backend job runner.
+                </div>
+                <form id="schedule-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="schedule-scheme">Scheme *</label>
+                            <select id="schedule-scheme" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="schedule-name">Schedule Name</label>
+                            <input type="text" id="schedule-name" placeholder="Optional label, e.g. March billing run">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="schedule-start-date">Auto-Open Date *</label>
+                            <input type="date" id="schedule-start-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="schedule-end-date">Auto-Close Date *</label>
+                            <input type="date" id="schedule-end-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="schedule-enabled" checked>
+                            Enable this schedule immediately
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Schedule</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card">
+                <h2>Saved Schedules</h2>
+                <div id="schedule-list"></div>
+            </section>
         </section>
 
         <!-- Reading Form Modal -->
@@ -111,7 +176,7 @@
 
                     <div class="form-group">
                         <label for="reading-value">Current Reading (kWh) *</label>
-                        <input type="number" id="reading-value" step="0.01" required placeholder="Enter meter reading">
+                        <input type="text" id="reading-value" required inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="Enter meter reading, e.g. 1450.5">
                     </div>
 
                     <div class="form-group">
@@ -154,22 +219,21 @@
         
         // Show close cycle ritual instead of direct close
         window.showCloseCycleRitual = function() {
-            const openCycle = storage.getAll('cycles').find(c => c.status === 'OPEN');
-            if (openCycle) {
-                cycleCloseRitual.showClosureModal(openCycle.id);
+            const cycleId = window.getSelectedCycleId ? window.getSelectedCycleId() : null;
+            if (cycleId) {
+                cycleCloseRitual.showClosureModal(cycleId);
             }
         };
 
         // Start on-site reading mode
         window.startOnsiteMode = function() {
-            const openCycle = storage.getAll('cycles').find(c => c.status === 'OPEN');
-            if (!openCycle) {
-                alert('No open reading cycle found. Please open a cycle first.');
+            const cycleId = window.getSelectedCycleId ? window.getSelectedCycleId() : null;
+            if (!cycleId) {
+                alert('No open reading cycle is selected. Please open or select a cycle first.');
                 return;
             }
 
-            // Redirect to reader.html in on-site mode
-            window.location.href = 'reader.html?mode=onsite';
+            window.location.href = `reader.html?mode=onsite&cycle_id=${encodeURIComponent(cycleId)}`;
         };
     </script>
 </body>

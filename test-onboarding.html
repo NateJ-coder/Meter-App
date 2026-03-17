@@ -82,7 +82,7 @@
             </div>
             <div class="form-group">
                 <label for="test-reading">Test Reading Value</label>
-                <input type="number" id="test-reading" step="0.01" placeholder="Enter test value">
+                <input type="text" id="test-reading" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="Enter test value">
             </div>
             <button class="btn btn-primary test-button" onclick="testValidation()">Validate</button>
             <div id="validation-result" class="test-result" style="display:none;"></div>
@@ -132,6 +132,7 @@
         import { cycleCloseRitual } from './assets/cycle-close-ritual.js';
         import { firstTimeChecklist } from './assets/first-time-checklist.js';
         import { validation } from './assets/validation.js';
+        import { parseDecimalInput } from './assets/app.js';
 
         // Make modules globally available for tests
         window.storage = storage;
@@ -228,12 +229,20 @@
 
         window.testValidation = function() {
             const meterId = document.getElementById('test-meter').value;
-            const value = document.getElementById('test-reading').value;
+            const valueInput = document.getElementById('test-reading');
+            const value = valueInput.value;
             const result = document.getElementById('validation-result');
 
             if (!meterId || !value) {
                 result.style.display = 'block';
                 result.innerHTML = '<div class="error">Please select a meter and enter a value</div>';
+                return;
+            }
+
+            if (Number.isNaN(parseDecimalInput(value))) {
+                result.style.display = 'block';
+                result.innerHTML = '<div class="error">Please enter a valid meter reading</div>';
+                valueInput.focus();
                 return;
             }
 

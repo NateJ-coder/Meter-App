@@ -3,7 +3,7 @@
  */
 
 import { storage } from './storage.js';
-import { showNotification, confirmAction } from './app.js';
+import { showNotification, confirmAction, parseDecimalInput } from './app.js';
 
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -459,12 +459,20 @@ document.getElementById('meter-form-element').addEventListener('submit', (e) => 
     
     const id = document.getElementById('meter-id').value;
     const meterType = document.getElementById('meter-type').value;
+    const lastReadingInput = document.getElementById('meter-last-reading');
+    const lastReading = lastReadingInput.value.trim() === '' ? 0 : parseDecimalInput(lastReadingInput.value);
+
+    if (Number.isNaN(lastReading)) {
+        showNotification('Please enter a valid last reading. Decimals like 1450.5 or 1450,5 are accepted.');
+        lastReadingInput.focus();
+        return;
+    }
     
     const data = {
         scheme_id: document.getElementById('meter-scheme').value,
         meter_type: meterType,
         meter_number: document.getElementById('meter-number').value,
-        last_reading: parseFloat(document.getElementById('meter-last-reading').value) || 0,
+        last_reading: lastReading,
         status: document.getElementById('meter-status').value
     };
     

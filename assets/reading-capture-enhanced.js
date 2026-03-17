@@ -7,6 +7,7 @@ import { storage } from './storage.js';
 import { validation } from './validation.js';
 import { auth } from './auth.js';
 import { preparePhotoForStorage } from './photo-utils.js';
+import { parseDecimalInput } from './app.js';
 
 export const readingCaptureEnhanced = {
     /**
@@ -66,12 +67,12 @@ export const readingCaptureEnhanced = {
         const meter = storage.get('meters', meterId);
         if (!meter) return { valid: false, message: 'Meter not found' };
 
-        const reading = parseFloat(readingValue);
+        const reading = parseDecimalInput(readingValue);
         if (isNaN(reading)) {
             return { 
                 valid: false, 
                 severity: 'error',
-                message: 'Please enter a valid number' 
+                message: 'Please enter a valid meter reading' 
             };
         }
 
@@ -246,11 +247,13 @@ export const readingCaptureEnhanced = {
                             <div class="form-group">
                                 <label for="reading-value">Meter Reading (kWh) *</label>
                                 <input 
-                                    type="number" 
+                                    type="text" 
                                     id="reading-value" 
-                                    step="0.01" 
                                     required 
                                     autofocus
+                                    inputmode="decimal"
+                                    autocomplete="off"
+                                    spellcheck="false"
                                     ${existingReading ? `value="${existingReading.reading_value}"` : ''}
                                     oninput="validateReadingInRealTime('${meterId}')"
                                     placeholder="${meter.last_reading != null ? `> ${meter.last_reading.toFixed(2)}` : 'Enter reading'}"
@@ -403,10 +406,17 @@ window.validateReadingInRealTime = function(meterId) {
 window.submitEnhancedReading = async function(event, meterId, cycleId) {
     event.preventDefault();
     
-    const readingValue = parseFloat(document.getElementById('reading-value').value);
+    const readingInput = document.getElementById('reading-value');
+    const readingValue = parseDecimalInput(readingInput.value);
     const readingDate = document.getElementById('reading-date').value;
     const notes = document.getElementById('reading-notes').value;
     const photoInput = document.getElementById('reading-photo');
+
+    if (Number.isNaN(readingValue)) {
+        alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
+        readingInput.focus();
+        return false;
+    }
 
     // Validate
     const validationResult = readingCaptureEnhanced.validateInRealTime(meterId, readingValue);

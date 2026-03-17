@@ -90,5 +90,83 @@ export function formatNumber(num) {
     return Number(num).toFixed(2);
 }
 
+/**
+ * Parse a human-entered decimal value in a forgiving way.
+ * Accepts decimal dots or commas and strips common thousands separators.
+ */
+export function parseDecimalInput(value) {
+    if (typeof value === 'number') {
+        return Number.isFinite(value) ? value : NaN;
+    }
+
+    if (value == null) {
+        return NaN;
+    }
+
+    const trimmedValue = String(value).trim();
+    if (!trimmedValue) {
+        return NaN;
+    }
+
+    let normalized = trimmedValue
+        .replace(/[\s\u00A0]/g, '')
+        .replace(/'/g, '');
+
+    if (/[^\d,.-+]/.test(normalized)) {
+        return NaN;
+    }
+
+    const sign = normalized.startsWith('-') ? '-' : normalized.startsWith('+') ? '+' : '';
+    normalized = normalized.replace(/^[+-]/, '');
+
+    if (!normalized || /[+-]/.test(normalized)) {
+        return NaN;
+    }
+
+    const normalizeSeparator = (input, separator) => {
+        const parts = input.split(separator);
+
+        if (parts.length === 1) {
+            return input;
+        }
+
+        if (parts.length === 2) {
+            return separator === ',' ? `${parts[0]}.${parts[1]}` : input;
+        }
+
+        const tailParts = parts.slice(1);
+        const looksLikeThousandsGrouping = tailParts.every(part => part.length === 3);
+
+        if (looksLikeThousandsGrouping) {
+            return parts.join('');
+        }
+
+        const wholePart = parts.slice(0, -1).join('');
+        const decimalPart = parts[parts.length - 1];
+        return `${wholePart}.${decimalPart}`;
+    };
+
+    const hasDot = normalized.includes('.');
+    const hasComma = normalized.includes(',');
+
+    if (hasDot && hasComma) {
+        const decimalSeparator = normalized.lastIndexOf('.') > normalized.lastIndexOf(',') ? '.' : ',';
+        const thousandsSeparator = decimalSeparator === '.' ? ',' : '.';
+        normalized = normalized.split(thousandsSeparator).join('');
+        normalized = normalizeSeparator(normalized, decimalSeparator);
+    } else if (hasComma) {
+        normalized = normalizeSeparator(normalized, ',');
+    } else if (hasDot) {
+        normalized = normalizeSeparator(normalized, '.');
+    }
+
+    if (!/^\d*\.?\d+$/.test(normalized)) {
+        return NaN;
+    }
+
+    const parsed = Number(`${sign}${normalized}`);
+    return Number.isFinite(parsed) ? parsed : NaN;
+}
+
 // Export router for convenience
 export { router };

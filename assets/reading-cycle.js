@@ -5,166 +5,498 @@
 import { storage } from './storage.js';
 import { validation } from './validation.js';
 import { preparePhotoForStorage } from './photo-utils.js';
-import { showNotification, confirmAction, getTodayDate, getCurrentDateTime, formatDateTime } from './app.js';
+import { showNotification, confirmAction, getCurrentDateTime, parseDecimalInput } from './app.js';
 
-// Load page
-loadCycleStatus();
-populateSchemeSelect();
+const cyclePageState = {
+    selectedCycleId: null,
+    activeTabId: 'cycle-control-tab'
+};
 
-// Set default dates (current month)
-const today = new Date();
-const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
-const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-document.getElementById('cycle-start-date').value = firstDay.toISOString().split('T')[0];
-document.getElementById('cycle-end-date').value = lastDay.toISOString().split('T')[0];
+initializePage();
 
-// Cycle form submission
-document.getElementById('cycle-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    
+function initializePage() {
+    setDefaultDates();
+    populateSchemeSelect('cycle-scheme');
+    populateSchemeSelect('schedule-scheme');
+
+    document.getElementById('cycle-form').addEventListener('submit', handleCycleSubmit);
+    document.getElementById('schedule-form').addEventListener('submit', handleScheduleSubmit);
+
+    loadCyclePage();
+}
+
+function setDefaultDates() {
+    const today = new Date();
+    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    const firstDayValue = formatDateForInput(firstDay);
+    const lastDayValue = formatDateForInput(lastDay);
+
+    document.getElementById('cycle-start-date').value = firstDayValue;
+    document.getElementById('cycle-end-date').value = lastDayValue;
+    document.getElementById('schedule-start-date').value = firstDayValue;
+    document.getElementById('schedule-end-date').value = lastDayValue;
+}
+
+function formatDateForInput(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function getTodayDateKey() {
+    return formatDateForInput(new Date());
+}
+
+function getOpenCycles() {
+    return storage.getAll('cycles')
+        .filter(cycle => cycle.status === 'OPEN')
+        .sort((cycleA, cycleB) => {
+            const schemeA = storage.get('schemes', cycleA.scheme_id)?.name || '';
+            const schemeB = storage.get('schemes', cycleB.scheme_id)?.name || '';
+
+            if (schemeA !== schemeB) {
+                return schemeA.localeCompare(schemeB);
+            }
+
+            return String(cycleA.start_date).localeCompare(String(cycleB.start_date));
+        });
+}
+
+function getSchedules() {
+    return storage.getAll('cycle_schedules')
+        .sort((scheduleA, scheduleB) => String(scheduleA.start_date).localeCompare(String(scheduleB.start_date)));
+}
+
+function handleCycleSubmit(event) {
+    event.preventDefault();
+
     const schemeId = document.getElementById('cycle-scheme').value;
-    
-    // Check if there's already an open cycle
+    const startDate = document.getElementById('cycle-start-date').value;
+    const endDate = document.getElementById('cycle-end-date').value;
+
+    if (endDate < startDate) {
+        showNotification('The end date cannot be earlier than the start date.');
+        return;
+    }
+
     const existingCycle = storage.getOpenCycle(schemeId);
     if (existingCycle) {
-        showNotification('There is already an open cycle for this scheme. Close it first.');
+        showNotification('This scheme already has an open cycle. Close it first or select another scheme.');
         return;
     }
-    
+
     const cycle = storage.create('cycles', {
         scheme_id: schemeId,
-        start_date: document.getElementById('cycle-start-date').value,
-        end_date: document.getElementById('cycle-end-date').value,
-        status: 'OPEN'
+        start_date: startDate,
+        end_date: endDate,
+        status: 'OPEN',
+        opened_via: 'manual'
     });
-    
-    showNotification('Reading cycle opened successfully!');
-    loadCycleStatus();
-});
 
-function loadCycleStatus() {
-    const cycles = storage.getAll('cycles');
-    const openCycle = cycles.find(c => c.status === 'OPEN');
-    
-    if (!openCycle) {
-        document.getElementById('cycle-status').innerHTML = `
-            <div class="cycle-status closed">
-                <div class="status-badge">NO OPEN CYCLE</div>
-                <p class="text-muted">Open a new reading cycle to start capturing readings.</p>
-            </div>
-        `;
-        document.getElementById('open-cycle-section').style.display = 'block';
-        document.getElementById('capture-section').style.display = 'none';
+    cyclePageState.selectedCycleId = cycle.id;
+    showNotification('Reading cycle opened successfully.');
+    loadCyclePage();
+}
+
+function handleScheduleSubmit(event) {
+    event.preventDefault();
+
+    const scheduleData = {
+        scheme_id: document.getElementById('schedule-scheme').value,
+        name: document.getElementById('schedule-name').value.trim(),
+        start_date: document.getElementById('schedule-start-date').value,
+        end_date: document.getElementById('schedule-end-date').value,
+        enabled: document.getElementById('schedule-enabled').checked
+    };
+
+    if (scheduleData.end_date < scheduleData.start_date) {
+        showNotification('The auto-close date cannot be earlier than the auto-open date.');
         return;
     }
-    
-    const scheme = storage.get('schemes', openCycle.scheme_id);
-    document.getElementById('cycle-status').innerHTML = `
-        <div class="cycle-status open">
-            <div class="status-badge">OPEN</div>
-            <div>
-                <strong>${scheme ? scheme.name : 'Unknown Scheme'}</strong>
-                <br>
-                <span class="text-muted">${openCycle.start_date} to ${openCycle.end_date}</span>
+
+    storage.create('cycle_schedules', scheduleData);
+    document.getElementById('schedule-form').reset();
+    document.getElementById('schedule-enabled').checked = true;
+    setDefaultDates();
+
+    applyScheduledCycles();
+    showNotification('Reading cycle schedule saved.');
+    loadCyclePage();
+}
+
+function applyScheduledCycles() {
+    const today = getTodayDateKey();
+    const schedules = getSchedules();
+
+    schedules.forEach(schedule => {
+        if (!schedule.enabled) {
+            return;
+        }
+
+        const existingCyclesForSchedule = storage.getCycles(schedule.scheme_id)
+            .filter(cycle => cycle.schedule_id === schedule.id);
+        const openCyclesForSchedule = storage.getCycles(schedule.scheme_id)
+            .filter(cycle => cycle.status === 'OPEN' && cycle.schedule_id === schedule.id);
+
+        if (today > schedule.end_date) {
+            openCyclesForSchedule.forEach(cycle => {
+                storage.update('cycles', cycle.id, {
+                    status: 'CLOSED',
+                    closed_at: new Date().toISOString(),
+                    closed_via: 'schedule'
+                });
+            });
+            return;
+        }
+
+        if (today < schedule.start_date || today > schedule.end_date) {
+            return;
+        }
+
+        if (existingCyclesForSchedule.length > 0) {
+            return;
+        }
+
+        if (storage.getOpenCycle(schedule.scheme_id)) {
+            return;
+        }
+
+        storage.create('cycles', {
+            scheme_id: schedule.scheme_id,
+            start_date: schedule.start_date,
+            end_date: schedule.end_date,
+            status: 'OPEN',
+            schedule_id: schedule.id,
+            opened_via: 'schedule'
+        });
+    });
+}
+
+function loadCyclePage() {
+    applyScheduledCycles();
+    renderOpenCycles();
+    renderSchedules();
+}
+
+function renderOpenCycles() {
+    const openCycles = getOpenCycles();
+    const cycleStatus = document.getElementById('cycle-status');
+
+    if (!openCycles.some(cycle => cycle.id === cyclePageState.selectedCycleId)) {
+        cyclePageState.selectedCycleId = openCycles[0]?.id || null;
+    }
+
+    if (openCycles.length === 0) {
+        cycleStatus.innerHTML = `
+            <div class="cycle-status closed">
+                <div class="status-badge">NO OPEN CYCLE</div>
+                <p class="text-muted">Open a manual cycle or create a schedule to start capturing readings.</p>
             </div>
+        `;
+        document.getElementById('capture-section').style.display = 'none';
+        document.getElementById('active-cycle-summary').innerHTML = '';
+        document.getElementById('readings-list').innerHTML = '';
+        document.getElementById('active-cycle-select').innerHTML = '';
+        populateBuildingFilter(null);
+        return;
+    }
+
+    cycleStatus.innerHTML = `
+        <div class="cycle-list">
+            ${openCycles.map(cycle => {
+                const scheme = storage.get('schemes', cycle.scheme_id);
+                const isSelected = cycle.id === cyclePageState.selectedCycleId;
+                const sourceBadge = cycle.opened_via === 'schedule'
+                    ? '<span class="badge badge-secondary">Scheduled</span>'
+                    : '<span class="badge badge-success">Manual</span>';
+
+                return `
+                    <div class="cycle-list-item ${isSelected ? 'selected' : ''}">
+                        <div>
+                            <div class="cycle-list-title">
+                                <strong>${scheme?.name || 'Unknown Scheme'}</strong>
+                                <span class="status-badge-inline">OPEN</span>
+                                ${sourceBadge}
+                            </div>
+                            <div class="text-muted">${cycle.start_date} to ${cycle.end_date}</div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary" onclick="selectCycle('${cycle.id}')">Manage</button>
+                            <button class="btn btn-danger" onclick="closeCycleFromList('${cycle.id}')">Close</button>
+                        </div>
+                    </div>
+                `;
+            }).join('')}
         </div>
     `;
-    
-    document.getElementById('open-cycle-section').style.display = 'none';
-    document.getElementById('capture-section').style.display = 'block';
-    
-    loadReadingsList(openCycle.id);
-    populateBuildingFilter(openCycle.scheme_id);
+
+    updateActiveCycleSelect(openCycles);
+    renderSelectedCycle();
+}
+
+function updateActiveCycleSelect(openCycles) {
+    const select = document.getElementById('active-cycle-select');
+    select.innerHTML = openCycles.map(cycle => {
+        const scheme = storage.get('schemes', cycle.scheme_id);
+        const sourceLabel = cycle.opened_via === 'schedule' ? 'scheduled' : 'manual';
+        return `<option value="${cycle.id}">${scheme?.name || 'Unknown Scheme'} • ${cycle.start_date} to ${cycle.end_date} • ${sourceLabel}</option>`;
+    }).join('');
+
+    if (cyclePageState.selectedCycleId) {
+        select.value = cyclePageState.selectedCycleId;
+    }
+}
+
+function renderSelectedCycle() {
+    const cycleId = cyclePageState.selectedCycleId;
+    const captureSection = document.getElementById('capture-section');
+
+    if (!cycleId) {
+        captureSection.style.display = 'none';
+        return;
+    }
+
+    const cycle = storage.get('cycles', cycleId);
+    if (!cycle || cycle.status !== 'OPEN') {
+        captureSection.style.display = 'none';
+        return;
+    }
+
+    captureSection.style.display = 'block';
+
+    const scheme = storage.get('schemes', cycle.scheme_id);
+    const sourceLabel = cycle.opened_via === 'schedule' ? 'Scheduled cycle' : 'Manual cycle';
+    document.getElementById('active-cycle-summary').innerHTML = `
+        <strong>${scheme?.name || 'Unknown Scheme'}</strong><br>
+        ${sourceLabel} • ${cycle.start_date} to ${cycle.end_date}<br>
+        Only this scheme's meters are shown below. Use the selector above to switch cycles.
+    `;
+
+    populateBuildingFilter(cycle.scheme_id);
+    loadReadingsList(cycle.id);
 }
 
 function populateBuildingFilter(schemeId) {
-    const buildings = storage.getBuildings(schemeId);
     const select = document.getElementById('filter-building');
+
+    if (!schemeId) {
+        select.innerHTML = '<option value="">All Buildings</option>';
+        return;
+    }
+
+    const previousValue = select.value;
+    const buildings = storage.getBuildings(schemeId);
     select.innerHTML = '<option value="">All Buildings</option>' +
-        buildings.map(b => `<option value="${b.id}">${b.name}</option>`).join('');
+        buildings.map(building => `<option value="${building.id}">${building.name}</option>`).join('');
+
+    if (buildings.some(building => building.id === previousValue)) {
+        select.value = previousValue;
+    }
 }
 
 function loadReadingsList(cycleId) {
     const cycle = storage.get('cycles', cycleId);
-    const meters = storage.getMeters(cycle.scheme_id).filter(m => m.meter_type === 'UNIT');
-    const readings = storage.getReadings(cycleId);
-    
-    const readingsMap = {};
-    readings.forEach(r => {
-        readingsMap[r.meter_id] = r;
-    });
-    
     const container = document.getElementById('readings-list');
-    
+
+    if (!cycle) {
+        container.innerHTML = '<p class="text-muted">Select an open cycle to manage readings.</p>';
+        return;
+    }
+
+    const buildingFilter = document.getElementById('filter-building').value;
+    const statusFilter = document.getElementById('filter-status').value;
+    const meters = storage.getMeters(cycle.scheme_id).filter(meter => meter.meter_type === 'UNIT');
+    const readings = storage.getReadings(cycleId);
+    const readingsMap = new Map(readings.map(reading => [reading.meter_id, reading]));
+
+    const filteredMeters = meters.filter(meter => {
+        const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
+        const reading = readingsMap.get(meter.id);
+        const hasFlags = Boolean(reading?.flags?.length);
+
+        if (buildingFilter && unit?.building_id !== buildingFilter) {
+            return false;
+        }
+
+        if (statusFilter === 'not-read' && reading) {
+            return false;
+        }
+
+        if (statusFilter === 'read' && !reading) {
+            return false;
+        }
+
+        if (statusFilter === 'flagged' && !hasFlags) {
+            return false;
+        }
+
+        return true;
+    });
+
     if (meters.length === 0) {
         container.innerHTML = '<p class="text-muted">No unit meters found for this scheme.</p>';
         return;
     }
-    
+
+    if (filteredMeters.length === 0) {
+        container.innerHTML = '<p class="text-muted">No meters match the current filters.</p>';
+        return;
+    }
+
     container.innerHTML = `
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Building</th>
-                    <th>Unit</th>
-                    <th>Meter Number</th>
-                    <th>Previous</th>
-                    <th>Current</th>
-                    <th>Consumption</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${meters.map(meter => {
-                    const meterDetails = storage.getMeterWithDetails(meter.id);
-                    const reading = readingsMap[meter.id];
-                    const hasFlags = reading && reading.flags && reading.flags.length > 0;
-                    
-                    let statusBadge = '<span class="badge badge-warning">NOT READ</span>';
-                    let currentReading = '-';
-                    let consumption = '-';
-                    
-                    if (reading) {
-                        currentReading = reading.reading_value;
-                        consumption = reading.consumption != null ? reading.consumption.toFixed(2) + ' kWh' : 'N/A';
-                        statusBadge = hasFlags ? 
-                            '<span class="badge badge-danger">FLAGGED</span>' :
-                            '<span class="badge badge-success">READ</span>';
-                    }
-                    
-                    return `
-                        <tr>
-                            <td>${meterDetails.building_name || 'N/A'}</td>
-                            <td><strong>${meterDetails.unit_name || 'N/A'}</strong></td>
-                            <td>${meter.meter_number}</td>
-                            <td>${meter.last_reading || 0}</td>
-                            <td>${currentReading}</td>
-                            <td>${consumption}</td>
-                            <td>${statusBadge}</td>
-                            <td>
-                                <button class="btn btn-primary" onclick="openReadingModal('${meter.id}', '${cycleId}')">
-                                    ${reading ? 'Edit' : 'Capture'}
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                }).join('')}
-            </tbody>
-        </table>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Building</th>
+                        <th>Unit</th>
+                        <th>Meter Number</th>
+                        <th>Previous</th>
+                        <th>Current</th>
+                        <th>Consumption</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${filteredMeters.map(meter => {
+                        const meterDetails = storage.getMeterWithDetails(meter.id);
+                        const reading = readingsMap.get(meter.id);
+                        const hasFlags = Boolean(reading?.flags?.length);
+
+                        let statusBadge = '<span class="badge badge-warning">NOT READ</span>';
+                        let currentReading = '-';
+                        let consumption = '-';
+
+                        if (reading) {
+                            currentReading = reading.reading_value;
+                            consumption = reading.consumption != null ? `${reading.consumption.toFixed(2)} kWh` : 'N/A';
+                            statusBadge = hasFlags
+                                ? '<span class="badge badge-danger">FLAGGED</span>'
+                                : '<span class="badge badge-success">READ</span>';
+                        }
+
+                        return `
+                            <tr>
+                                <td>${meterDetails.building_name || 'N/A'}</td>
+                                <td><strong>${meterDetails.unit_name || 'N/A'}</strong></td>
+                                <td>${meter.meter_number}</td>
+                                <td>${meter.last_reading || 0}</td>
+                                <td>${currentReading}</td>
+                                <td>${consumption}</td>
+                                <td>${statusBadge}</td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="openReadingModal('${meter.id}', '${cycleId}')">
+                                        ${reading ? 'Edit' : 'Capture'}
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('')}
+                </tbody>
+            </table>
+        </div>
     `;
 }
 
-window.filterReadings = function() {
-    // Simple filter implementation
-    const buildingId = document.getElementById('filter-building').value;
-    const status = document.getElementById('filter-status').value;
-    
-    // For now, just reload (in production, filter the table rows)
-    const openCycle = storage.getAll('cycles').find(c => c.status === 'OPEN');
-    if (openCycle) {
-        loadReadingsList(openCycle.id);
+function renderSchedules() {
+    const scheduleList = document.getElementById('schedule-list');
+    const schedules = getSchedules();
+
+    if (schedules.length === 0) {
+        scheduleList.innerHTML = '<p class="text-muted">No schedules created yet.</p>';
+        return;
     }
+
+    scheduleList.innerHTML = `
+        <div class="schedule-list">
+            ${schedules.map(schedule => {
+                const scheme = storage.get('schemes', schedule.scheme_id);
+                const isLive = getTodayDateKey() >= schedule.start_date && getTodayDateKey() <= schedule.end_date;
+                return `
+                    <div class="schedule-list-item">
+                        <div>
+                            <div class="cycle-list-title">
+                                <strong>${schedule.name || scheme?.name || 'Unnamed Schedule'}</strong>
+                                <span class="badge ${schedule.enabled ? 'badge-success' : 'badge-secondary'}">${schedule.enabled ? 'Enabled' : 'Disabled'}</span>
+                                ${isLive && schedule.enabled ? '<span class="badge badge-warning">Active Window</span>' : ''}
+                            </div>
+                            <div class="text-muted">${scheme?.name || 'Unknown Scheme'} • ${schedule.start_date} to ${schedule.end_date}</div>
+                        </div>
+                        <div class="schedule-actions">
+                            <label class="schedule-toggle">
+                                <input type="checkbox" id="schedule-enabled-${schedule.id}" ${schedule.enabled ? 'checked' : ''} onchange="toggleScheduleEnabled('${schedule.id}')">
+                                Enabled
+                            </label>
+                            <button class="btn btn-danger" onclick="deleteSchedule('${schedule.id}')">Delete</button>
+                        </div>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `;
+}
+
+window.switchCycleTab = function(tabId, event) {
+    cyclePageState.activeTabId = tabId;
+
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.toggle('active', tab.id === tabId);
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.classList.remove('active');
+    });
+
+    if (event?.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
+};
+
+window.selectActiveCycle = function() {
+    cyclePageState.selectedCycleId = document.getElementById('active-cycle-select').value || null;
+    renderOpenCycles();
+};
+
+window.selectCycle = function(cycleId) {
+    cyclePageState.selectedCycleId = cycleId;
+    renderOpenCycles();
+};
+
+window.closeCycleFromList = function(cycleId) {
+    cyclePageState.selectedCycleId = cycleId;
+    renderOpenCycles();
+    if (window.showCloseCycleRitual) {
+        window.showCloseCycleRitual();
+    }
+};
+
+window.filterReadings = function() {
+    if (cyclePageState.selectedCycleId) {
+        loadReadingsList(cyclePageState.selectedCycleId);
+    }
+};
+
+window.deleteSchedule = function(scheduleId) {
+    if (!confirmAction('Delete this schedule? Existing cycles will stay as they are.')) {
+        return;
+    }
+
+    storage.delete('cycle_schedules', scheduleId);
+    showNotification('Schedule deleted.');
+    loadCyclePage();
+};
+
+window.toggleScheduleEnabled = function(scheduleId) {
+    const checkbox = document.getElementById(`schedule-enabled-${scheduleId}`);
+    storage.update('cycle_schedules', scheduleId, { enabled: checkbox.checked });
+    loadCyclePage();
+};
+
+window.getSelectedCycleId = function() {
+    return cyclePageState.selectedCycleId;
 };
 
 window.openReadingModal = function(meterId, cycleId) {
@@ -222,7 +554,15 @@ document.getElementById('reading-form').addEventListener('submit', async (e) => 
     
     const meterId = document.getElementById('reading-meter-id').value;
     const cycleId = document.getElementById('reading-cycle-id').value;
-    const readingValue = parseFloat(document.getElementById('reading-value').value);
+    const readingValueInput = document.getElementById('reading-value');
+    const readingValue = parseDecimalInput(readingValueInput.value);
+
+    if (Number.isNaN(readingValue)) {
+        showNotification('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
+        readingValueInput.focus();
+        return;
+    }
+
     const readings = storage.getReadings(cycleId);
     const existingReading = readings.find(r => r.meter_id === meterId);
     
@@ -270,22 +610,9 @@ document.getElementById('reading-form').addEventListener('submit', async (e) => 
     loadReadingsList(cycleId);
 });
 
-window.closeCycle = function() {
-    if (!confirmAction('Close this reading cycle? This will lock all readings for this period.')) {
-        return;
-    }
-    
-    const openCycle = storage.getAll('cycles').find(c => c.status === 'OPEN');
-    if (!openCycle) return;
-    
-    storage.update('cycles', openCycle.id, { status: 'CLOSED' });
-    showNotification('Cycle closed successfully');
-    loadCycleStatus();
-};
-
-function populateSchemeSelect() {
+function populateSchemeSelect(selectId) {
     const schemes = storage.getSchemes();
-    const select = document.getElementById('cycle-scheme');
+    const select = document.getElementById(selectId);
     select.innerHTML = '<option value="">-- Select Scheme --</option>' +
         schemes.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
 }

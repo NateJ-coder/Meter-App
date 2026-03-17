@@ -4,7 +4,7 @@
 
 import { storage } from './storage.js';
 import { validation } from './validation.js';
-import { showNotification, formatDateTime } from './app.js';
+import { showNotification, formatDateTime, parseDecimalInput } from './app.js';
 
 // Load page
 populateCycleSelect();
@@ -335,7 +335,15 @@ document.getElementById('review-form').addEventListener('submit', (e) => {
     };
     
     if (action === 'estimated') {
-        const estimatedValue = parseFloat(document.getElementById('estimated-value').value);
+        const estimatedValueInput = document.getElementById('estimated-value');
+        const estimatedValue = parseDecimalInput(estimatedValueInput.value);
+
+        if (Number.isNaN(estimatedValue)) {
+            showNotification('Please enter a valid estimated value. Decimals like 1450.5 or 1450,5 are accepted.');
+            estimatedValueInput.focus();
+            return;
+        }
+
         updateData.estimated_value = estimatedValue;
         updateData.consumption = estimatedValue; // Override consumption
     }

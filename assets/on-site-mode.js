@@ -8,6 +8,7 @@ import { storage } from './storage.js';
 import { validation } from './validation.js';
 import { auth } from './auth.js';
 import { preparePhotoForStorage } from './photo-utils.js';
+import { parseDecimalInput } from './app.js';
 
 export const onSiteMode = {
     /**
@@ -293,12 +294,13 @@ export const onSiteMode = {
                     <div class="form-group">
                         <label for="onsite-reading">Meter Reading (kWh) *</label>
                         <input 
-                            type="number" 
+                            type="text" 
                             id="onsite-reading" 
-                            step="0.01" 
                             required 
                             autofocus
                             inputmode="decimal"
+                            autocomplete="off"
+                            spellcheck="false"
                             placeholder="${meter.last_reading ? `Greater than ${meter.last_reading.toFixed(2)}` : 'Enter reading'}"
                             class="onsite-input-large"
                         >
@@ -373,7 +375,7 @@ export const onSiteMode = {
         }
 
         const meter = storage.get('meters', meterId);
-        const reading = parseFloat(value);
+        const reading = parseDecimalInput(value);
         
         if (isNaN(reading)) {
             feedback.innerHTML = '';
@@ -415,9 +417,16 @@ export const onSiteMode = {
      * Handle on-site reading submission
      */
     async handleOnsiteSubmit(meterId, cycleId) {
-        const readingValue = parseFloat(document.getElementById('onsite-reading').value);
+        const readingInput = document.getElementById('onsite-reading');
+        const readingValue = parseDecimalInput(readingInput.value);
         const notes = document.getElementById('onsite-notes').value;
         const photoInput = document.getElementById('onsite-photo');
+
+        if (Number.isNaN(readingValue)) {
+            alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
+            readingInput.focus();
+            return;
+        }
 
         const meter = storage.get('meters', meterId);
         if (!meter) {
@@ -540,6 +549,8 @@ export const onSiteMode = {
         const progress = this.getProgress(cycleId);
         const cycle = storage.get('cycles', cycleId);
         const scheme = cycle ? storage.get('schemes', cycle.scheme_id) : null;
+        const queue = this.getReadingQueue(cycleId);
+        const readings = storage.getReadings(cycleId);
 
         container.innerHTML = `
             <div class="onsite-completion-screen">
@@ -568,10 +579,40 @@ export const onSiteMode = {
                     `).join('')}
                 </div>
 
+                <div class="completion-buildings">
+                    <h3>Reading Summary</h3>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Meter Number</th>
+                                    <th>Meter Name</th>
+                                    <th>Reading</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${queue.map(meter => {
+                                    const reading = readings.find(entry => entry.meter_id === meter.id);
+                                    return `
+                                        <tr>
+                                            <td>${meter.meter_number}</td>
+                                            <td>${meter.building_name} - Unit ${meter.unit_number}</td>
+                                            <td>${reading ? reading.reading_value : '-'}</td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <div class="completion-actions">
                     <button class="btn btn-primary btn-large" onclick="onSiteMode.exitOnsiteMode()">
                         Exit On-Site Mode
                     </button>
+                    <a href="reading-cycle.html" class="btn btn-secondary">
+                        Edit Captured Readings
+                    </a>
                     <a href="review.html" class="btn btn-secondary">
                         Review Flagged Readings
                     </a>

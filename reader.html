@@ -49,16 +49,19 @@
         <div class="form-group">
           <label for="reading-value">Current Reading (kWh) *</label>
           <input 
-            type="number" 
+            type="text" 
             id="reading-value" 
             required 
-            step="0.01"
             inputmode="decimal"
+            autocomplete="off"
+            spellcheck="false"
             class="reader-input-large"
             placeholder="Enter meter reading..."
           >
           <div id="reading-feedback" class="input-feedback"></div>
         </div>
+
+        <div id="existing-reading-note" class="info-box" style="display:none; margin-bottom: 1rem;"></div>
 
         <div class="form-group">
           <label for="photo-ref">Meter Photo *</label>
@@ -67,7 +70,6 @@
             id="photo-ref"
             accept="image/*"
             capture="environment"
-            required
             class="reader-input"
           >
           <small class="form-help">A compressed image is stored locally on this device as supporting evidence.</small>
@@ -78,9 +80,12 @@
           <textarea id="notes" rows="2" placeholder="Any observations or issues..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-large reader-submit">
-          Submit & Continue
-        </button>
+        <div class="form-actions">
+          <button type="button" id="reader-back-btn" class="btn btn-secondary">Back</button>
+          <button type="submit" id="reader-submit-btn" class="btn btn-primary btn-large reader-submit">
+            Submit & Continue
+          </button>
+        </div>
       </form>
     </section>
   </div>
@@ -102,6 +107,7 @@
     <div class="completion-icon">✓</div>
     <h2>All Readings Captured!</h2>
     <p>Thank you. All meter readings have been submitted successfully.</p>
+    <div id="reading-summary" class="mt-2"></div>
     <a href="index.html" class="btn btn-primary btn-large mt-2">Return to Dashboard</a>
   </section>
 </main>
@@ -111,7 +117,7 @@
   import { storage } from './assets/storage.js';
   import { validation } from './assets/validation.js';
   import { onSiteMode } from './assets/on-site-mode.js';
-  import { getCurrentDateTime } from './assets/app.js';
+  import { getCurrentDateTime, parseDecimalInput } from './assets/app.js';
   import { auth } from './assets/auth.js';
   import { preparePhotoForStorage } from './assets/photo-utils.js';
 
@@ -125,6 +131,7 @@
   const schemeId = params.get('scheme_id');
   const currentIndex = parseInt(params.get('index') || '0');
   const mode = params.get('mode'); // 'onsite' for on-site mode
+  const onsiteCycleId = params.get('cycle_id');
 
   let workflowContext = null;
 
@@ -142,10 +149,11 @@
     onSiteMode.activate();
 
     // Find open cycle
-    const cycles = storage.getAll('cycles');
-    const openCycle = cycles.find(c => c.status === 'OPEN');
+    const openCycle = onsiteCycleId
+      ? storage.get('cycles', onsiteCycleId)
+      : storage.getAll('cycles').find(c => c.status === 'OPEN');
 
-    if (!openCycle) {
+    if (!openCycle || openCycle.status !== 'OPEN') {
       showError('No open reading cycle found. Please open a cycle first.');
       return;
     }
@@ -317,13 +325,45 @@
   // --- Setup form handlers ---
   function setupFormHandlers() {
     const meter = workflowContext.currentMeter;
+    const existingReading = storage.getReadings(workflowContext.openCycle.id)
+      .find(reading => reading.meter_id === meter.id);
     
     // Real-time validation feedback
     const readingInput = document.getElementById('reading-value');
     const feedbackDiv = document.getElementById('reading-feedback');
+    const photoInput = document.getElementById('photo-ref');
+    const notesInput = document.getElementById('notes');
+    const existingNote = document.getElementById('existing-reading-note');
+    const submitButton = document.getElementById('reader-submit-btn');
+    const backButton = document.getElementById('reader-back-btn');
+
+    if (existingReading) {
+      readingInput.value = existingReading.reading_value;
+      notesInput.value = existingReading.notes || '';
+      photoInput.required = !existingReading.photo;
+      existingNote.style.display = 'block';
+      existingNote.textContent = 'An existing reading was found for this meter. You can update it here without re-entering the photo unless you want to replace it.';
+      submitButton.textContent = workflowContext.currentIndex === workflowContext.totalMeters - 1 ? 'Update & Finish' : 'Update & Continue';
+    } else {
+      photoInput.required = true;
+      existingNote.style.display = 'none';
+    }
+
+    if (workflowContext.currentIndex === 0) {
+      backButton.disabled = true;
+    }
+
+    backButton.addEventListener('click', () => {
+      if (workflowContext.currentIndex === 0) {
+        return;
+      }
+
+      const previousUrl = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${workflowContext.currentIndex - 1}`;
+      window.location.href = previousUrl;
+    });
     
     readingInput.addEventListener('input', function() {
-      const value = parseFloat(this.value);
+      const value = parseDecimalInput(this.value);
       
       if (isNaN(value) || value === 0) {
         feedbackDiv.textContent = '';
@@ -353,14 +393,20 @@
     document.getElementById('reader-form').addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const readingValue = parseFloat(document.getElementById('reading-value').value);
-      const photoInput = document.getElementById('photo-ref');
+      const readingInput = document.getElementById('reading-value');
+      const readingValue = parseDecimalInput(readingInput.value);
       const notes = document.getElementById('notes').value;
       const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
         ? await preparePhotoForStorage(photoInput.files[0])
         : null;
 
-      if (!preparedPhoto) {
+      if (Number.isNaN(readingValue)) {
+        alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
+        readingInput.focus();
+        return;
+      }
+
+      if (!preparedPhoto && !existingReading?.photo) {
         alert('Please capture a meter photo before submitting.');
         return;
       }
@@ -378,8 +424,8 @@
         cycle_id: workflowContext.openCycle.id,
         reading_value: readingValue,
         reading_date: getCurrentDateTime(),
-        photo: preparedPhoto.dataUrl,
-        photo_name: preparedPhoto.name,
+        photo: preparedPhoto ? preparedPhoto.dataUrl : (existingReading?.photo || ''),
+        photo_name: preparedPhoto ? preparedPhoto.name : (existingReading?.photo_name || ''),
         notes: notes,
         consumption: consumption,
         captured_by: capturedBy,
@@ -392,7 +438,11 @@
       readingData.flags = validation.validateReading(readingData);
 
       // Save to readings
-      storage.create('readings', readingData);
+      if (existingReading) {
+        storage.update('readings', existingReading.id, readingData);
+      } else {
+        storage.create('readings', readingData);
+      }
 
       // Update meter's last reading
       storage.update('meters', meter.id, { last_reading: readingValue });
@@ -411,6 +461,102 @@
     });
   }
 
+  function getWorkflowMetersForSummary() {
+    if (!schemeId) {
+      return [];
+    }
+
+    const scheme = storage.get('schemes', schemeId);
+    const openCycle = storage.getOpenCycle(schemeId);
+    if (!scheme || !openCycle) {
+      return [];
+    }
+
+    const bulkMeter = storage.getAll('meters').find(m => m.meter_type === 'BULK' && m.scheme_id === schemeId);
+    const buildings = storage.getBuildings(schemeId);
+    const allUnits = [];
+
+    buildings.forEach(building => {
+      storage.getUnits(building.id).forEach(unit => {
+        allUnits.push({ ...unit, building_name: building.name });
+      });
+    });
+
+    const submeters = storage.getAll('meters')
+      .filter(meter => meter.meter_type === 'UNIT' && allUnits.some(unit => unit.id === meter.unit_id))
+      .map(meter => {
+        const unitInfo = allUnits.find(unit => unit.id === meter.unit_id);
+        return { ...meter, unit_info: unitInfo };
+      })
+      .sort((meterA, meterB) => {
+        if (meterA.unit_info.building_name !== meterB.unit_info.building_name) {
+          return meterA.unit_info.building_name.localeCompare(meterB.unit_info.building_name);
+        }
+
+        return meterA.unit_info.unit_number.localeCompare(meterB.unit_info.unit_number, undefined, { numeric: true });
+      });
+
+    return [
+      ...(bulkMeter ? [{ ...bulkMeter, meter_name: 'Bulk Meter' }] : []),
+      ...submeters.map(meter => ({
+        ...meter,
+        meter_name: `${meter.unit_info.building_name} - Unit ${meter.unit_info.unit_number}`
+      }))
+    ].map((meter, index) => ({ ...meter, workflow_index: index, cycle_id: openCycle.id }));
+  }
+
+  function renderWorkflowSummary() {
+    const summaryContainer = document.getElementById('reading-summary');
+    const workflowMeters = getWorkflowMetersForSummary();
+
+    if (workflowMeters.length === 0) {
+      summaryContainer.innerHTML = '';
+      return;
+    }
+
+    const cycleId = workflowMeters[0].cycle_id;
+    const readings = storage.getReadings(cycleId);
+
+    summaryContainer.innerHTML = `
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Meter Number</th>
+              <th>Meter Name</th>
+              <th>Reading</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${workflowMeters.map(meter => {
+              const reading = readings.find(entry => entry.meter_id === meter.id);
+              return `
+                <tr>
+                  <td>${meter.meter_number}</td>
+                  <td>${meter.meter_name}</td>
+                  <td>${reading ? reading.reading_value : '-'}</td>
+                  <td>
+                    <button class="btn btn-secondary" onclick="editWorkflowMeter(${meter.workflow_index})">Edit</button>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  window.editWorkflowMeter = function(index) {
+    if (!schemeId && workflowContext?.scheme?.id) {
+      return;
+    }
+
+    const targetSchemeId = schemeId || workflowContext.scheme.id;
+    window.location.href = `reader.html?scheme_id=${targetSchemeId}&index=${index}`;
+  };
+
   function showError(message) {
     document.getElementById('error-text').textContent = message;
     document.getElementById('traditional-reader').style.display = 'none';
@@ -419,6 +565,7 @@
 
   function showSuccess() {
     document.getElementById('traditional-reader').style.display = 'none';
+    renderWorkflowSummary();
     document.getElementById('success-message').style.display = 'block';
   }
 </script>
