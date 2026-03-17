@@ -117,6 +117,9 @@
         import { auth } from './assets/auth.js';
         import { validation } from './assets/validation.js';
 
+        auth.initializeDefaultAdmin();
+        await auth.initialize();
+
         // Check authentication and admin permission
         if (!auth.isAuthenticated() || !auth.hasPermission('admin')) {
             alert('Access denied. Admin permissions required.');
@@ -130,12 +133,13 @@
         // Logout handler
         window.handleLogout = function() {
             if (confirm('Are you sure you want to logout?')) {
-                auth.logout();
+                void auth.logout();
             }
         };
 
         // Initialize dashboard
-        function initializeDashboard() {
+        async function initializeDashboard() {
+            await Promise.allSettled([auth.refreshUsers(), auth.refreshActivities()]);
             renderHealthDashboard();
             renderUsersList();
             renderActivityLog();
@@ -354,7 +358,7 @@
                                 <td><span class="badge badge-${getRoleBadgeClass(user.role)}">${user.role}</span></td>
                                 <td>${new Date(user.createdAt).toLocaleDateString()}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.id}', '${user.email}')">Delete</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.id}', '${user.email}')">Disable</button>
                                 </td>
                             </tr>
                         `).join('')}
@@ -460,7 +464,7 @@
             document.getElementById('add-user-form').reset();
         };
 
-        document.getElementById('add-user-form').addEventListener('submit', function(e) {
+        document.getElementById('add-user-form').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const userData = {
@@ -472,12 +476,13 @@
                 role: document.getElementById('user-role').value
             };
 
-            const result = auth.register(userData);
+            const result = await auth.register(userData);
 
             if (result.success) {
                 auth.recordActivity('user_created', { email: userData.email });
                 alert('User added successfully!');
                 closeAddUserModal();
+                await auth.refreshUsers();
                 renderUsersList();
                 renderHealthDashboard();
             } else {
@@ -486,7 +491,7 @@
         });
 
         // Delete User
-        window.deleteUser = function(userId, email) {
+        window.deleteUser = async function(userId, email) {
             if (!confirm(`Delete user ${email}? This cannot be undone.`)) {
                 return;
             }
@@ -497,8 +502,9 @@
                 return;
             }
 
-            auth.deleteUser(userId);
-            alert('User deleted successfully.');
+            await auth.deleteUser(userId);
+            await auth.refreshUsers();
+            alert('User disabled successfully.');
             renderUsersList();
             renderHealthDashboard();
         };
@@ -661,7 +667,7 @@
         }
 
         // Initialize on load
-        initializeDashboard();
+        await initializeDashboard();
     </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 ### Default Login Credentials
 ```
-Email: admin@fuzio.com
+Email: admin@fuzio.co
 Password: admin123
 ```
 
@@ -154,7 +154,7 @@ Add, view, and delete users:
 ```javascript
 // Admin
 { 
-  email: 'admin@fuzio.com', 
+   email: 'admin@fuzio.co', 
   password: 'admin123', 
   name: 'Administrator', 
   role: 'admin' 
@@ -236,7 +236,7 @@ Overview of database entities:
   "users": [...],
   "activities": [...],
   "exported_at": "2026-01-05T10:30:00.000Z",
-  "exported_by": "admin@fuzio.com"
+   "exported_by": "admin@fuzio.co"
 }
 ```
 
@@ -465,7 +465,7 @@ auth.register({
 
 ### "Cannot access dev console"
 - **Cause:** Not logged in as admin
-- **Fix:** Login with admin@fuzio.com / admin123
+- **Fix:** Login with admin@fuzio.co / admin123
 
 ### "User already registered"
 - **Cause:** Email already in use

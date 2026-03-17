@@ -1,0 +1,24 @@
+{
+  "name": "meter-app",
+  "version": "1.0.0",
+  "description": "**Bulk + Submeter Readings | Role-Separated | Audit-Friendly**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NateJ-coder/Meter-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NateJ-coder/Meter-App/issues"
+  },
+  "homepage": "https://github.com/NateJ-coder/Meter-App#readme",
+  "dependencies": {
+    "firebase": "^12.10.0"
+  }
+}

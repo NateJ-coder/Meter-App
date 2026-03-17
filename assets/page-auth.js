@@ -5,6 +5,7 @@
 import { auth } from './auth.js';
 
 auth.initializeDefaultAdmin();
+await auth.initialize();
 window.auth = auth;
 
 const guestAllowedPages = new Set(['reader.html', 'reader-old.html']);

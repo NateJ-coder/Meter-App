@@ -64,7 +64,7 @@ This is **not a problem** - it simply means you don't have any active reading cy
    {
      "report_title": "Fuzio System Health Report",
      "generated_at": "2026-01-05T...",
-     "generated_by": "admin@fuzio.com",
+   "generated_by": "admin@fuzio.co",
      "summary": {
        "total_issues": 1,
        "critical_errors": 0,
@@ -136,7 +136,7 @@ When you click "Export Issues Report", you get:
 {
   "report_title": "Fuzio System Health Report",
   "generated_at": "2026-01-05T14:30:00.000Z",
-  "generated_by": "admin@fuzio.com",
+   "generated_by": "admin@fuzio.co",
   "summary": {
     "total_issues": 1,
     "critical_errors": 0,

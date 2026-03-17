@@ -16,7 +16,7 @@ All three requested features have been implemented:
 1. Open the app in your browser
 2. You should be redirected to **login.html**
 3. Login with default admin credentials:
-   - **Email**: `admin@fuzio.com`
+   - **Email**: `admin@fuzio.co`
    - **Password**: `admin123`
 4. After successful login, you should be redirected to the **dashboard (index.html)**
 5. Check the **top-right navbar**:
@@ -201,7 +201,7 @@ All features working if:
 ## 🔐 Default Credentials
 
 **Admin Account** (auto-created on first load):
-- Email: `admin@fuzio.com`
+- Email: `admin@fuzio.co`
 - Password: `admin123`
 
 **Note**: This is a localStorage-based prototype. Passwords are stored in plain text. For production deployment, implement proper backend authentication with encrypted passwords.

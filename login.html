@@ -21,7 +21,7 @@
         <form id="login-form">
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" required placeholder="admin@fuzio.com" autofocus>
+                <input type="email" id="email" required placeholder="admin@fuzio.co" autofocus>
             </div>
 
             <div class="form-group">
@@ -46,7 +46,7 @@
 
         <div class="login-footer">
             <p class="text-muted">
-                <strong>Default Admin:</strong> admin@fuzio.com / admin123
+                <strong>Admin seed:</strong> `admin@fuzio.co` / `admin123` remains available only as a temporary migration fallback until Firebase-backed admin provisioning is fully in place.
             </p>
             <p class="text-muted">
                 Need help? Contact your system administrator.
@@ -63,19 +63,20 @@
 
     // Initialize default admin on first load
     auth.initializeDefaultAdmin();
+    await auth.initialize();
 
     if (isReaderRedirect) {
         document.getElementById('guest-access-panel').style.display = 'block';
     }
 
     // Handle login form
-    document.getElementById('login-form').addEventListener('submit', function(e) {
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
         e.preventDefault();
 
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        const result = auth.login(email, password);
+        const result = await auth.login(email, password);
 
         if (result.success) {
             // Record login activity

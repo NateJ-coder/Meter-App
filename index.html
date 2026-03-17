@@ -122,6 +122,9 @@
         import { initializeSeedData } from './assets/app.js';
         import { importReadingTransferPackage } from './assets/reading-transfer.js';
 
+        auth.initializeDefaultAdmin();
+        await auth.initialize();
+
         // Check authentication
         if (!auth.isAuthenticated()) {
             window.location.href = 'login.html';
@@ -139,7 +142,7 @@
         // Logout handler
         window.handleLogout = function() {
             if (confirm('Are you sure you want to logout?')) {
-                auth.logout();
+                void auth.logout();
             }
         };
 
