@@ -245,6 +245,28 @@ assets/styles.css
 5. ✅ Test responsive layout
 6. ✅ Test browser compatibility
 
+### Production Launch Checklist
+- [ ] Confirm Firebase Authentication is enabled and the production admin account exists
+- [ ] Confirm Firestore is enabled with the intended `users`, `schemes`, `buildings`, `units`, `meters`, `cycles`, `readings`, and `activities` collections
+- [ ] Apply and verify Firestore security rules from `FIREBASE_SETUP.md`
+- [ ] Migrate the shared data layer away from localStorage so mobile capture writes to the same live datastore as admin review/export
+- [ ] Verify QR reader access is separated from the dashboard/admin surface
+- [ ] Verify QR links remain dormant unless an admin has opened a live cycle
+- [ ] Migrate meter photo storage from local browser data URLs to Firebase Storage
+- [ ] Add and verify Firebase Storage rules before enabling photo uploads in production
+- [ ] Rotate any previously exposed browser API keys and disable old keys in Google Cloud Console
+- [ ] Restrict the live Firebase browser key to the production domain and approved local development origins
+- [ ] Replace GitHub Pages referrer restrictions with the final production domain once the custom domain is live
+- [ ] Verify no temporary fallback credentials remain in UI text, code comments, or documentation
+- [ ] Seed the first production admin Firestore profile and verify role-based access works end-to-end
+- [ ] Test login, logout, admin access, and reader-only access on separate devices
+- [ ] Test one full live reading cycle: admin opens cycle, reader scans QR, captures readings, admin reviews, exports, and closes cycle
+- [ ] Confirm exported reports match the required headings, sections, and billing/trustee layout expectations
+- [ ] Confirm backup and recovery procedure for production data
+- [ ] Confirm monitoring/alerting approach for authentication failures, Firestore permission errors, and failed uploads
+- [ ] Record production environment details: domain, Firebase project ID, storage bucket, admin owner, and rollback steps
+- [ ] Prepare a rollback plan before go-live in case Firebase rules or data migration block capture/review workflows
+
 ### Post-Deployment Monitoring
 - Monitor first-run completion rate
 - Track time-to-first-capture
