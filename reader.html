@@ -109,9 +109,16 @@
     <p>Review the readings below, confirm who captured them, and publish the record set.</p>
     <div id="reading-summary" class="mt-2"></div>
     <div id="submission-identity-panel" class="submission-identity-panel mt-2"></div>
+    <div id="transfer-package-panel" class="info-box mt-2" style="display:none;">
+      <strong>Phone-to-dashboard transfer</strong><br>
+      After publishing, download the reading package on this phone and import it from the dashboard on the office device.
+    </div>
     <div class="form-actions" style="justify-content: center;">
       <button type="button" id="publish-readings-button" class="btn btn-primary btn-large" onclick="publishWorkflowReadings()">
         Publish Records
+      </button>
+      <button type="button" id="download-transfer-button" class="btn btn-secondary btn-large" onclick="downloadWorkflowTransferPackage()" style="display: none;">
+        Download Reading Package
       </button>
       <a id="reader-finish-link" href="index.html" class="btn btn-secondary btn-large" style="display: none;">Finish</a>
     </div>
@@ -127,6 +134,7 @@
   import { getCurrentDateTime, parseDecimalInput } from './assets/app.js';
   import { auth } from './assets/auth.js';
   import { preparePhotoForStorage } from './assets/photo-utils.js';
+  import { buildReadingTransferPackage, downloadReadingTransferPackage } from './assets/reading-transfer.js';
 
   // Make globally available
   window.storage = storage;
@@ -452,6 +460,7 @@
         meter_id: meter.id,
         cycle_id: workflowContext.openCycle.id,
         reading_value: readingValue,
+        previous_reading: meter.last_reading ?? null,
         reading_date: getCurrentDateTime(),
         photo: preparedPhoto ? preparedPhoto.dataUrl : (existingReading?.photo || ''),
         photo_name: preparedPhoto ? preparedPhoto.name : (existingReading?.photo_name || ''),
@@ -587,12 +596,16 @@
       .filter(Boolean);
     const existingSubmission = relevantReadings.find(reading => reading.submitted_at);
     const publishButton = document.getElementById('publish-readings-button');
+    const transferButton = document.getElementById('download-transfer-button');
+    const transferPanel = document.getElementById('transfer-package-panel');
     const finishLink = document.getElementById('reader-finish-link');
     const statusMessage = document.getElementById('publish-status-message');
 
     if (!profile) {
       panel.innerHTML = '<div class="info-box">Unable to determine the current reader profile.</div>';
       publishButton.style.display = 'none';
+      transferButton.style.display = 'none';
+      transferPanel.style.display = 'none';
       finishLink.style.display = 'inline-block';
       finishLink.href = 'login.html';
       statusMessage.textContent = '';
@@ -633,10 +646,14 @@
 
     if (existingSubmission) {
       publishButton.style.display = 'none';
+      transferButton.style.display = 'inline-block';
+      transferPanel.style.display = 'block';
       finishLink.style.display = 'inline-block';
       statusMessage.textContent = `Published on ${new Date(existingSubmission.submitted_at).toLocaleString()} by ${existingSubmission.submitted_by_name || profile.name}.`;
     } else {
       publishButton.style.display = 'inline-block';
+      transferButton.style.display = 'none';
+      transferPanel.style.display = 'none';
       finishLink.style.display = 'none';
       statusMessage.textContent = profile.isGuest
         ? 'Publish after confirming your name and contact details.'
@@ -656,6 +673,32 @@
       .map(meter => readings.find(entry => entry.meter_id === meter.id))
       .filter(Boolean);
   }
+
+  window.downloadWorkflowTransferPackage = function() {
+    const workflowMeters = getWorkflowMetersForSummary();
+    const readings = getWorkflowReadings();
+    const profile = getSessionReaderProfile();
+
+    if (!workflowMeters.length || !readings.length) {
+      alert('No captured readings are available to package yet.');
+      return;
+    }
+
+    if (readings.some(reading => !reading.submitted_at)) {
+      alert('Publish the readings first so the transfer package includes the final submitter details.');
+      return;
+    }
+
+    const packageData = buildReadingTransferPackage({
+      scheme: workflowContext?.scheme || storage.get('schemes', schemeId),
+      cycle: workflowContext?.openCycle || storage.getOpenCycle(schemeId),
+      readerProfile: profile,
+      readings,
+      workflowMeters
+    });
+
+    downloadReadingTransferPackage(packageData);
+  };
 
   window.publishWorkflowReadings = function() {
     const profile = getSessionReaderProfile();

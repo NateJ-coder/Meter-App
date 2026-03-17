@@ -84,6 +84,24 @@
             </div>
         </section>
 
+        <section class="card">
+            <h2>Mobile Reading Transfer</h2>
+            <div class="info-box mb-2">
+                Use this when readings were captured on a phone after scanning a QR code. Download the reading package from the phone, then import it here to record the readings on this dashboard.
+            </div>
+            <div class="transfer-import-grid">
+                <div class="form-group">
+                    <label for="reading-transfer-file">Reading Package</label>
+                    <input type="file" id="reading-transfer-file" accept="application/json,.json">
+                    <small class="form-help">Import the JSON package downloaded from the phone after the reader published the readings.</small>
+                </div>
+                <div class="form-actions transfer-import-actions">
+                    <button type="button" class="btn btn-primary" onclick="importReadingTransfer()">Import Mobile Readings</button>
+                </div>
+            </div>
+            <div id="reading-transfer-result" class="transfer-result text-muted">No reading package imported yet.</div>
+        </section>
+
         <!-- Recent Activity -->
         <section class="card">
             <h2>Recent Cycles</h2>
@@ -102,6 +120,7 @@
         import { setupHealth } from './assets/setup-health.js';
         import { firstTimeChecklist } from './assets/first-time-checklist.js';
         import { initializeSeedData } from './assets/app.js';
+        import { importReadingTransferPackage } from './assets/reading-transfer.js';
 
         // Check authentication
         if (!auth.isAuthenticated()) {
@@ -167,6 +186,49 @@
                     alert('All data cleared. Refreshing page...');
                     location.reload();
                 }
+            }
+        };
+
+        window.importReadingTransfer = async function() {
+            const fileInput = document.getElementById('reading-transfer-file');
+            const resultContainer = document.getElementById('reading-transfer-result');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Select a reading package JSON file first.');
+                return;
+            }
+
+            try {
+                const fileContent = await file.text();
+                const packageData = JSON.parse(fileContent);
+                const importResult = importReadingTransferPackage(packageData);
+
+                resultContainer.className = 'transfer-result success';
+                resultContainer.innerHTML = `
+                    <strong>Import complete.</strong><br>
+                    Scheme: ${importResult.schemeName}<br>
+                    Cycle: ${importResult.cyclePeriod}<br>
+                    Created: ${importResult.created} reading(s)<br>
+                    Updated: ${importResult.updated} reading(s)<br>
+                    Skipped: ${importResult.skipped} reading(s)
+                    ${importResult.issues.length ? `<br><br><strong>Issues:</strong><br>${importResult.issues.join('<br>')}` : ''}
+                `;
+
+                auth.recordActivity('reading_imported', {
+                    schemeName: importResult.schemeName,
+                    created: importResult.created,
+                    updated: importResult.updated,
+                    skipped: importResult.skipped
+                });
+
+                fileInput.value = '';
+                loadDashboard();
+                alert(`Imported mobile readings. Created: ${importResult.created}, Updated: ${importResult.updated}, Skipped: ${importResult.skipped}`);
+            } catch (error) {
+                resultContainer.className = 'transfer-result error';
+                resultContainer.textContent = error.message;
+                alert(`Import failed: ${error.message}`);
             }
         };
 

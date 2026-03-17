@@ -336,6 +336,38 @@ body.modal-open {
     font-size: 0.875rem;
 }
 
+.transfer-import-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: end;
+}
+
+.transfer-import-actions {
+    margin-top: 0;
+}
+
+.transfer-result {
+    margin-top: 1rem;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    font-size: 0.875rem;
+}
+
+.transfer-result.success {
+    background: #f0fdf4;
+    border-color: #86efac;
+    color: #166534;
+}
+
+.transfer-result.error {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #991b1b;
+}
+
 /* ===================================
    TABLES
    =================================== */
@@ -717,6 +749,10 @@ body.modal-open {
     }
 
     .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .transfer-import-grid {
         grid-template-columns: 1fr;
     }
 
