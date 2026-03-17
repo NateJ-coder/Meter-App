@@ -18,11 +18,21 @@ function initializePage() {
     setDefaultDates();
     populateSchemeSelect('cycle-scheme');
     populateSchemeSelect('schedule-scheme');
+    bindTabControls();
 
     document.getElementById('cycle-form').addEventListener('submit', handleCycleSubmit);
     document.getElementById('schedule-form').addEventListener('submit', handleScheduleSubmit);
 
     loadCyclePage();
+}
+
+function bindTabControls() {
+    document.querySelectorAll('.tab-btn[data-tab-target]').forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.dataset.tabTarget;
+            switchCycleTab(tabId);
+        });
+    });
 }
 
 function setDefaultDates() {
@@ -439,7 +449,7 @@ function renderSchedules() {
     `;
 }
 
-window.switchCycleTab = function(tabId, event) {
+function switchCycleTab(tabId) {
     cyclePageState.activeTabId = tabId;
 
     document.querySelectorAll('.tab-content').forEach(tab => {
@@ -447,13 +457,11 @@ window.switchCycleTab = function(tabId, event) {
     });
 
     document.querySelectorAll('.tab-btn').forEach(button => {
-        button.classList.remove('active');
+        button.classList.toggle('active', button.dataset.tabTarget === tabId);
     });
+}
 
-    if (event?.currentTarget) {
-        event.currentTarget.classList.add('active');
-    }
-};
+window.switchCycleTab = switchCycleTab;
 
 window.selectActiveCycle = function() {
     cyclePageState.selectedCycleId = document.getElementById('active-cycle-select').value || null;

@@ -112,7 +112,7 @@ export function parseDecimalInput(value) {
         .replace(/[\s\u00A0]/g, '')
         .replace(/'/g, '');
 
-    if (/[^\d,.-+]/.test(normalized)) {
+    if (/[^\d,.+-]/.test(normalized)) {
         return NaN;
     }
 
