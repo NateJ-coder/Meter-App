@@ -519,6 +519,7 @@ window.openReadingModal = function(meterId, cycleId) {
             }
             // Insert new modal
             document.body.insertAdjacentHTML('beforeend', modalHTML);
+            document.body.classList.add('modal-open');
         }
         return;
     }
@@ -555,6 +556,7 @@ window.openReadingModal = function(meterId, cycleId) {
 window.closeReadingModal = function() {
     document.getElementById('reading-modal').style.display = 'none';
     document.getElementById('reading-form').reset();
+    document.body.classList.remove('modal-open');
 };
 
 document.getElementById('reading-form').addEventListener('submit', async (e) => {

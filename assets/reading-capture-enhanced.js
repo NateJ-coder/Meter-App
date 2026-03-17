@@ -245,10 +245,10 @@ export const readingCaptureEnhanced = {
                         <!-- Reading Input -->
                         <form id="capture-reading-form" onsubmit="return submitEnhancedReading(event, '${meterId}', '${cycleId}')">
                             <div class="form-group">
-                                <label for="reading-value">Meter Reading (kWh) *</label>
+                                <label for="enhanced-reading-value">Meter Reading (kWh) *</label>
                                 <input 
                                     type="text" 
-                                    id="reading-value" 
+                                    id="enhanced-reading-value" 
                                     required 
                                     autofocus
                                     inputmode="decimal"
@@ -261,32 +261,32 @@ export const readingCaptureEnhanced = {
                             </div>
 
                             <!-- Real-time Validation Feedback -->
-                            <div id="validation-feedback" class="validation-feedback"></div>
+                            <div id="enhanced-validation-feedback" class="validation-feedback"></div>
 
                             <div class="form-group">
-                                <label for="reading-date">Reading Date *</label>
+                                <label for="enhanced-reading-date">Reading Date *</label>
                                 <input 
                                     type="date" 
-                                    id="reading-date" 
+                                    id="enhanced-reading-date" 
                                     required
-                                    value="${existingReading ? existingReading.reading_date : new Date().toISOString().split('T')[0]}"
+                                    value="${existingReading ? String(existingReading.reading_date).split('T')[0] : new Date().toISOString().split('T')[0]}"
                                 >
                             </div>
 
                             <div class="form-group">
-                                <label for="reading-notes">Notes (optional)</label>
+                                <label for="enhanced-reading-notes">Notes (optional)</label>
                                 <textarea 
-                                    id="reading-notes" 
+                                    id="enhanced-reading-notes" 
                                     rows="2" 
                                     placeholder="Any observations..."
                                 >${existingReading ? (existingReading.notes || '') : ''}</textarea>
                             </div>
 
                             <div class="form-group">
-                                <label for="reading-photo">Meter Photo</label>
+                                <label for="enhanced-reading-photo">Meter Photo</label>
                                 <input 
                                     type="file"
-                                    id="reading-photo"
+                                    id="enhanced-reading-photo"
                                     accept="image/*"
                                     capture="environment"
                                 >
@@ -366,8 +366,8 @@ export const readingCaptureEnhanced = {
 window.readingCaptureEnhanced = readingCaptureEnhanced;
 
 window.validateReadingInRealTime = function(meterId) {
-    const input = document.getElementById('reading-value');
-    const feedback = document.getElementById('validation-feedback');
+    const input = document.getElementById('enhanced-reading-value');
+    const feedback = document.getElementById('enhanced-validation-feedback');
     
     if (!input || !feedback) return;
 
@@ -406,11 +406,11 @@ window.validateReadingInRealTime = function(meterId) {
 window.submitEnhancedReading = async function(event, meterId, cycleId) {
     event.preventDefault();
     
-    const readingInput = document.getElementById('reading-value');
+    const readingInput = document.getElementById('enhanced-reading-value');
     const readingValue = parseDecimalInput(readingInput.value);
-    const readingDate = document.getElementById('reading-date').value;
-    const notes = document.getElementById('reading-notes').value;
-    const photoInput = document.getElementById('reading-photo');
+    const readingDate = document.getElementById('enhanced-reading-date').value;
+    const notes = document.getElementById('enhanced-reading-notes').value;
+    const photoInput = document.getElementById('enhanced-reading-photo');
 
     if (Number.isNaN(readingValue)) {
         alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
@@ -475,7 +475,7 @@ window.submitEnhancedReading = async function(event, meterId, cycleId) {
 };
 
 window.closeReadingModal = function(event) {
-    if (event && event.target.className !== 'modal-overlay') {
+    if (event && !event.target.classList.contains('modal-overlay')) {
         return;
     }
     
@@ -483,4 +483,6 @@ window.closeReadingModal = function(event) {
     if (modal) {
         modal.remove();
     }
+
+    document.body.classList.remove('modal-open');
 };

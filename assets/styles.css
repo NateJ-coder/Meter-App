@@ -45,6 +45,10 @@ body {
     background: var(--bg-secondary);
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
 /* ===================================
    NAVIGATION
    =================================== */
@@ -554,6 +558,17 @@ body {
     padding: 1rem;
 }
 
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(15, 23, 42, 0.55);
+    z-index: 1100;
+}
+
 .modal-content {
     background: var(--bg-primary);
     border-radius: var(--radius);
@@ -562,6 +577,12 @@ body {
     max-height: 90vh;
     overflow-y: auto;
     box-shadow: var(--shadow-lg);
+}
+
+.reading-modal {
+    width: min(760px, 100%);
+    max-height: min(88vh, 900px);
+    overflow-y: auto;
 }
 
 .modal-header {
