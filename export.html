@@ -82,6 +82,12 @@
             <div id="export-summary"></div>
         </section>
 
+        <section class="card" id="layout-preview-section" style="display: none;">
+            <h2>Prepared Output Layout</h2>
+            <p class="text-muted" style="margin-bottom: 1rem;">Review the planned per-scheme, per-building, and per-unit output structure before the reference files are mapped into the final workbook format.</p>
+            <div id="layout-preview"></div>
+        </section>
+
         <!-- Export Options -->
         <section class="card" id="export-options-section" style="display: none;">
             <h2>📊 Export Options</h2>
@@ -94,17 +100,27 @@
                     <button class="btn btn-primary btn-large" onclick="exportSchemeReportXLSX()">
                         📊 Export Complete Scheme Report (Excel)
                     </button>
+                    <button class="btn btn-secondary" onclick="exportOutputManifest()">
+                        🧭 Download Output Manifest (JSON)
+                    </button>
                 </div>
                 <p class="text-muted" style="margin-top: 0.5rem; font-size: 0.9rem;">
                     Includes: Summary, All Unit Readings, Analytics, Flags & Issues
                 </p>
             </div>
 
-            <!-- Individual Meter Exports -->
-            <div id="meter-exports" style="display: none; margin-bottom: 2rem;">
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">📄 Individual Meter Reports</h3>
-                <p class="text-muted" style="margin-bottom: 1rem;">For disputes or unit-specific queries</p>
-                <div id="meter-list"></div>
+            <!-- Building Exports -->
+            <div id="building-exports" style="display: none; margin-bottom: 2rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">🏢 Building Reports</h3>
+                <p class="text-muted" style="margin-bottom: 1rem;">One workbook per building for operational and trustee review</p>
+                <div id="building-list"></div>
+            </div>
+
+            <!-- Unit Exports -->
+            <div id="unit-exports" style="display: none; margin-bottom: 2rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">📄 Unit Reports</h3>
+                <p class="text-muted" style="margin-bottom: 1rem;">One workbook per unit for account queries, handover, and disputes</p>
+                <div id="unit-list"></div>
             </div>
 
             <!-- Legacy CSV Exports -->

@@ -5,7 +5,7 @@
 import { storage } from './storage.js';
 import { csv } from './csv.js';
 import { xlsxExport } from './xlsx-export.js';
-import { getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
+import { getCycleExportLayout } from './export-layout.js';
 
 // State management
 let currentFilters = {
@@ -202,120 +202,205 @@ function loadExportOptions() {
         hideExportOptions();
         return;
     }
-    
-    const cycle = storage.get('cycles', currentFilters.cycleId);
-    const scheme = storage.get('schemes', cycle.scheme_id);
+
+    const layout = getVisibleExportLayout();
+    if (!layout) {
+        hideExportOptions();
+        return;
+    }
     
     // Show export section
     document.getElementById('export-options-section').style.display = 'block';
     document.getElementById('export-summary-section').style.display = 'block';
+    document.getElementById('layout-preview-section').style.display = 'block';
     
     // Load summary
     loadExportSummary();
+    loadOutputLayoutPreview();
     
     // Load preview (if needed)
     loadPreviewTables();
-    
-    // Show/hide individual meter exports based on filters
-    if (currentFilters.unitId || currentFilters.meterType === 'UNIT') {
-        loadIndividualMeterList();
-        document.getElementById('meter-exports').style.display = 'block';
-    } else {
-        document.getElementById('meter-exports').style.display = 'none';
-    }
+
+    loadBuildingReportList();
+    loadUnitReportList();
+
+    document.getElementById('building-exports').style.display = layout.buildings.length > 0 ? 'block' : 'none';
+    document.getElementById('unit-exports').style.display = layout.units.length > 0 ? 'block' : 'none';
 }
 
 function hideExportOptions() {
     document.getElementById('export-options-section').style.display = 'none';
     document.getElementById('export-summary-section').style.display = 'none';
+    document.getElementById('layout-preview-section').style.display = 'none';
     document.getElementById('preview-section').style.display = 'none';
     document.getElementById('summary-preview-section').style.display = 'none';
 }
 
-function loadIndividualMeterList() {
-    const cycle = storage.get('cycles', currentFilters.cycleId);
-    const readings = storage.getReadings(currentFilters.cycleId);
-    
-    // Filter meters based on current filters
-    let meters = storage.getMeters(cycle.scheme_id);
-    
-    if (currentFilters.meterType) {
-        meters = meters.filter(m => m.meter_type === currentFilters.meterType);
+function getVisibleExportLayout() {
+    if (!currentFilters.cycleId) {
+        return null;
     }
-    
-    if (currentFilters.unitId) {
-        meters = meters.filter(m => m.unit_id === currentFilters.unitId);
-    }
-    
-    // Only show UNIT meters for individual reports
-    meters = meters.filter(m => m.meter_type === 'UNIT');
-    
-    const container = document.getElementById('meter-list');
-    
-    if (meters.length === 0) {
-        container.innerHTML = '<p class="text-muted">No unit meters match your filters.</p>';
+
+    return getCycleExportLayout(currentFilters.cycleId, {
+        meterType: currentFilters.meterType,
+        unitId: currentFilters.unitId
+    });
+}
+
+function loadBuildingReportList() {
+    const layout = getVisibleExportLayout();
+    const container = document.getElementById('building-list');
+
+    if (!layout || layout.buildings.length === 0) {
+        container.innerHTML = '<p class="text-muted">No building outputs match the current filters.</p>';
         return;
     }
-    
+
     container.innerHTML = `
         <div style="max-height: 400px; overflow-y: auto;">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Unit</th>
-                        <th>Meter Number</th>
+                        <th>Building</th>
+                        <th>Units</th>
+                        <th>Readings</th>
+                        <th>Flags</th>
                         <th>Consumption</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    ${meters.map(meter => {
-                        const meterDetails = storage.getMeterWithDetails(meter.id);
-                        const reading = readings.find(r => r.meter_id === meter.id);
-                        const consumption = reading?.consumption != null ? reading.consumption.toFixed(2) + ' kWh' : 'Not read';
-                        
-                        return `
-                            <tr>
-                                <td>${meterDetails.unit_name || 'N/A'}</td>
-                                <td>${meter.meter_number}</td>
-                                <td>${consumption}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary" onclick="exportSingleMeterReport('${meter.id}', '${currentFilters.cycleId}')">
-                                        📄 Export
-                                    </button>
-                                </td>
-                            </tr>
-                        `;
-                    }).join('')}
+                    ${layout.buildings.map(building => `
+                        <tr>
+                            <td>${building.buildingName}</td>
+                            <td>${building.unitCount}</td>
+                            <td>${building.readCount} / ${building.meterCount}</td>
+                            <td>${building.flaggedCount}</td>
+                            <td>${building.totalConsumption.toFixed(2)} kWh</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="exportBuildingReport('${building.buildingId}')">
+                                    📄 Export
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('')}
                 </tbody>
             </table>
         </div>
-        <button class="btn btn-secondary mt-1" onclick="exportAllFilteredMeters()">
-            📦 Export All ${meters.length} Meter Reports (Batch)
+        <button class="btn btn-secondary mt-1" onclick="exportAllBuildingReports()">
+            🏢 Export All ${layout.buildings.length} Building Reports
+        </button>
+    `;
+}
+
+function loadUnitReportList() {
+    const layout = getVisibleExportLayout();
+    const container = document.getElementById('unit-list');
+
+    if (!layout || layout.units.length === 0) {
+        container.innerHTML = '<p class="text-muted">No unit outputs match the current filters.</p>';
+        return;
+    }
+
+    container.innerHTML = `
+        <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Building</th>
+                        <th>Unit</th>
+                        <th>Meters</th>
+                        <th>Consumption</th>
+                        <th>Review</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${layout.units.map(unit => `
+                        <tr>
+                            <td>${unit.buildingName}</td>
+                            <td>${unit.unitNumber}</td>
+                            <td>${unit.meterCount}</td>
+                            <td>${unit.totalConsumption.toFixed(2)} kWh</td>
+                            <td>${unit.reviewStatuses.length > 0 ? unit.reviewStatuses.join(', ') : 'missing'}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="exportUnitReport('${unit.unitId}')">
+                                    📄 Export
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-secondary mt-1" onclick="exportAllUnitReports()">
+            📦 Export All ${layout.units.length} Unit Reports
         </button>
     `;
 }
 
 function loadExportSummary() {
-    const cycle = storage.get('cycles', currentFilters.cycleId);
-    const scheme = storage.get('schemes', cycle.scheme_id);
-    const readings = storage.getReadings(currentFilters.cycleId);
-    const meters = storage.getMeters(cycle.scheme_id).filter(m => m.meter_type === 'UNIT');
-    
-    const flaggedCount = readings.filter(r => r.flags && r.flags.length > 0).length;
-    const notReadCount = meters.length - readings.length;
+    const layout = getVisibleExportLayout();
+    if (!layout) {
+        return;
+    }
+
+    const { cycle, scheme, schemeStats } = layout;
     
     document.getElementById('export-summary').innerHTML = `
         <div class="info-box">
             <strong>Scheme:</strong> ${scheme.name}<br>
             <strong>Period:</strong> ${cycle.start_date} to ${cycle.end_date}<br>
             <strong>Status:</strong> <span class="badge badge-${cycle.status === 'CLOSED' ? 'secondary' : 'success'}">${cycle.status}</span><br>
-            <strong>Total Unit Meters:</strong> ${meters.length}<br>
-            <strong>Readings Captured:</strong> ${readings.length}<br>
-            <strong>Not Read:</strong> ${notReadCount}<br>
-            <strong>Flagged Readings:</strong> ${flaggedCount}
+            <strong>Total Buildings:</strong> ${schemeStats.totalBuildings}<br>
+            <strong>Total Units:</strong> ${schemeStats.totalUnits}<br>
+            <strong>Total Unit Meters:</strong> ${schemeStats.totalUnitMeters}<br>
+            <strong>Readings Captured:</strong> ${schemeStats.readingsCaptured}<br>
+            <strong>Not Read:</strong> ${schemeStats.notRead}<br>
+            <strong>Flagged Readings:</strong> ${schemeStats.flaggedReadings}
         </div>
         ${cycle.status === 'OPEN' ? '<p class="text-muted mt-2"><strong>Note:</strong> This cycle is still OPEN. Consider closing it before exporting final data.</p>' : ''}
+    `;
+}
+
+function loadOutputLayoutPreview() {
+    const layout = getVisibleExportLayout();
+    const container = document.getElementById('layout-preview');
+
+    if (!layout) {
+        container.innerHTML = '<p class="text-muted">Select a cycle to prepare the output layout.</p>';
+        return;
+    }
+
+    const fileRows = layout.outputFiles.map(file => `
+        <tr>
+            <td>${file.scope}</td>
+            <td>${file.entityName}</td>
+            <td><span class="text-muted">${file.relativePath}</span></td>
+            <td>${file.readCount} / ${file.totalCount}</td>
+            <td>${file.flaggedCount}</td>
+        </tr>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="info-box" style="margin-bottom: 1rem;">
+            <strong>Layout version:</strong> ${layout.layoutVersion}<br>
+            <strong>Output root:</strong> ${layout.outputRoot}<br>
+            <strong>Prepared files:</strong> ${layout.outputFiles.length}
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Scope</th>
+                    <th>Report</th>
+                    <th>Planned Path</th>
+                    <th>Coverage</th>
+                    <th>Flags</th>
+                </tr>
+            </thead>
+            <tbody>${fileRows}</tbody>
+        </table>
+        <p class="text-muted mt-2">This manifest locks the per-scheme, per-building, and per-unit output structure before the reference workbook styling is applied.</p>
     `;
 }
 
@@ -328,13 +413,15 @@ function loadPreviewTables() {
 }
 
 function loadUnitReadingsPreview() {
-    const cycle = storage.get('cycles', currentFilters.cycleId);
-    const readings = storage.getReadings(currentFilters.cycleId);
-    
-    if (readings.length === 0) {
+    const layout = getVisibleExportLayout();
+    const rows = layout ? layout.units.flatMap(unit => unit.meters.map(meter => ({ unit, meter }))) : [];
+
+    if (rows.length === 0) {
         document.getElementById('unit-readings-preview').innerHTML = '<p class="text-muted">No readings captured yet.</p>';
         return;
     }
+
+    const previewRows = rows.slice(0, 50);
     
     document.getElementById('unit-readings-preview').innerHTML = `
         <table class="data-table">
@@ -352,64 +439,38 @@ function loadUnitReadingsPreview() {
                 </tr>
             </thead>
             <tbody>
-                ${readings.map(reading => {
-                    const meter = storage.getMeterWithDetails(reading.meter_id);
-                    if (!meter || meter.meter_type !== 'UNIT') return '';
-                    
-                    const flags = reading.flags && reading.flags.length > 0 
-                        ? reading.flags.map(f => f.type).join(', ')
+                ${previewRows.map(({ unit, meter }) => {
+                    const flags = meter.flags.length > 0
+                        ? meter.flags.map(flag => flag.type).join(', ')
                         : '-';
-                    const effectiveStatus = getEffectiveReviewStatus(reading, cycle);
                     
                     return `
                         <tr>
-                            <td>${meter.building_name || 'N/A'}</td>
-                            <td>${meter.unit_name || 'N/A'}</td>
-                            <td>${meter.meter_number}</td>
-                            <td>${getPreviousReadingDisplayValue(reading, meter)}</td>
-                            <td>${reading.reading_value}</td>
-                            <td>${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'}</td>
-                            <td>${reading.captured_by || 'Unknown'}${reading.captured_by_contact_details ? `<br><span class="text-muted">${reading.captured_by_contact_details}</span>` : ''}</td>
+                            <td>${unit.buildingName}</td>
+                            <td>${unit.unitNumber}</td>
+                            <td>${meter.meterNumber}</td>
+                            <td>${meter.previousReading}</td>
+                            <td>${meter.currentReading ?? 'Not read'}</td>
+                            <td>${meter.consumption != null ? Number(meter.consumption).toFixed(2) : 'N/A'}</td>
+                            <td>${meter.capturedBy || 'Unknown'}${meter.contactDetails ? `<br><span class="text-muted">${meter.contactDetails}</span>` : ''}</td>
                             <td>${flags}</td>
-                            <td><span class="badge ${effectiveStatus === 'approved' ? 'badge-success' : effectiveStatus === 'site-visit' ? 'badge-danger' : 'badge-secondary'}">${effectiveStatus}</span></td>
+                            <td><span class="badge ${meter.reviewStatus === 'approved' ? 'badge-success' : meter.reviewStatus === 'site-visit' ? 'badge-danger' : 'badge-secondary'}">${meter.reviewStatus}</span></td>
                         </tr>
                     `;
                 }).join('')}
             </tbody>
         </table>
-        <p class="text-muted mt-2">Showing first ${Math.min(readings.length, 50)} readings. Full data will be in CSV export.</p>
+        <p class="text-muted mt-2">Showing first ${previewRows.length} of ${rows.length} unit-meter rows. Full data will be in the Excel and CSV exports.</p>
     `;
 }
 
 function loadSchemeSummaryPreview() {
-    const cycle = storage.get('cycles', currentFilters.cycleId);
-    const scheme = storage.get('schemes', cycle.scheme_id);
-    const readings = storage.getReadings(currentFilters.cycleId);
-    const meters = storage.getMeters(cycle.scheme_id);
-    
-    // Calculate totals
-    let bulk_kWh = 0;
-    let sum_units_kWh = 0;
-    
-    // Get bulk meter reading
-    const bulkMeter = meters.find(m => m.meter_type === 'BULK');
-    if (bulkMeter) {
-        const bulkReading = readings.find(r => r.meter_id === bulkMeter.id);
-        if (bulkReading && bulkReading.consumption != null) {
-            bulk_kWh = bulkReading.consumption;
-        }
+    const layout = getVisibleExportLayout();
+    if (!layout) {
+        document.getElementById('scheme-summary-preview').innerHTML = '<p class="text-muted">No cycle selected.</p>';
+        return;
     }
-    
-    // Sum unit consumptions
-    readings.forEach(reading => {
-        const meter = storage.get('meters', reading.meter_id);
-        if (meter && meter.meter_type === 'UNIT' && reading.consumption != null) {
-            sum_units_kWh += reading.consumption;
-        }
-    });
-    
-    const common_kWh = bulk_kWh - sum_units_kWh;
-    const losses_percent = bulk_kWh > 0 ? (common_kWh / bulk_kWh) * 100 : 0;
+    const { schemeStats } = layout;
     
     document.getElementById('scheme-summary-preview').innerHTML = `
         <table class="data-table">
@@ -422,19 +483,19 @@ function loadSchemeSummaryPreview() {
             <tbody>
                 <tr>
                     <td><strong>Bulk Meter kWh</strong></td>
-                    <td>${bulk_kWh.toFixed(2)} kWh</td>
+                    <td>${schemeStats.bulkKWh.toFixed(2)} kWh</td>
                 </tr>
                 <tr>
                     <td><strong>Sum of Unit Meters kWh</strong></td>
-                    <td>${sum_units_kWh.toFixed(2)} kWh</td>
+                    <td>${schemeStats.sumUnitsKWh.toFixed(2)} kWh</td>
                 </tr>
                 <tr>
                     <td><strong>Common Area kWh</strong></td>
-                    <td>${common_kWh.toFixed(2)} kWh</td>
+                    <td>${schemeStats.commonKWh.toFixed(2)} kWh</td>
                 </tr>
                 <tr>
                     <td><strong>Losses %</strong></td>
-                    <td>${losses_percent.toFixed(2)}%</td>
+                    <td>${schemeStats.lossesPercent.toFixed(2)}%</td>
                 </tr>
             </tbody>
         </table>
@@ -481,6 +542,36 @@ window.exportSchemeReportXLSX = function() {
     xlsxExport.exportSchemeReport(currentFilters.cycleId);
 };
 
+window.exportBuildingReport = function(buildingId) {
+    if (!currentFilters.cycleId || !buildingId) {
+        alert('Please select a cycle and building first');
+        return;
+    }
+
+    xlsxExport.exportBuildingReport(currentFilters.cycleId, buildingId);
+};
+
+window.exportUnitReport = function(unitId) {
+    if (!currentFilters.cycleId || !unitId) {
+        alert('Please select a cycle and unit first');
+        return;
+    }
+
+    xlsxExport.exportUnitReport(currentFilters.cycleId, unitId);
+};
+
+window.exportOutputManifest = function() {
+    if (!currentFilters.cycleId) {
+        alert('Please select a cycle first');
+        return;
+    }
+
+    xlsxExport.exportOutputManifest(currentFilters.cycleId, {
+        meterType: currentFilters.meterType,
+        unitId: currentFilters.unitId
+    });
+};
+
 window.exportSingleMeterReport = function(meterId, cycleId) {
     if (!meterId || !cycleId) {
         alert('Invalid meter or cycle');
@@ -489,38 +580,42 @@ window.exportSingleMeterReport = function(meterId, cycleId) {
     xlsxExport.exportMeterReport(meterId, cycleId);
 };
 
-window.exportAllFilteredMeters = async function() {
-    if (!currentFilters.cycleId) {
-        alert('Please select a cycle first');
+window.exportAllBuildingReports = async function() {
+    const layout = getVisibleExportLayout();
+    if (!layout || layout.buildings.length === 0) {
+        alert('No buildings to export');
         return;
     }
-    
-    const cycle = storage.get('cycles', currentFilters.cycleId);
-    let meters = storage.getMeters(cycle.scheme_id);
-    
-    if (currentFilters.meterType) {
-        meters = meters.filter(m => m.meter_type === currentFilters.meterType);
-    }
-    
-    if (currentFilters.unitId) {
-        meters = meters.filter(m => m.unit_id === currentFilters.unitId);
-    }
-    
-    meters = meters.filter(m => m.meter_type === 'UNIT');
-    
-    if (meters.length === 0) {
-        alert('No meters to export');
+
+    const confirmExport = confirm(`Export ${layout.buildings.length} building reports?\n\nThis will download ${layout.buildings.length} Excel files.`);
+    if (!confirmExport) {
         return;
     }
-    
-    const confirm_export = confirm(`Export ${meters.length} individual meter reports?\n\nThis will download ${meters.length} Excel files.`);
-    if (!confirm_export) return;
-    
-    for (let i = 0; i < meters.length; i++) {
-        await xlsxExport.exportMeterReport(meters[i].id, currentFilters.cycleId);
-        // Small delay to prevent browser blocking
+
+    for (let index = 0; index < layout.buildings.length; index++) {
+        await xlsxExport.exportBuildingReport(currentFilters.cycleId, layout.buildings[index].buildingId);
         await new Promise(resolve => setTimeout(resolve, 500));
     }
-    
-    alert(`✅ Exported ${meters.length} meter reports successfully!`);
+
+    alert(`✅ Exported ${layout.buildings.length} building reports successfully!`);
+};
+
+window.exportAllUnitReports = async function() {
+    const layout = getVisibleExportLayout();
+    if (!layout || layout.units.length === 0) {
+        alert('No units to export');
+        return;
+    }
+
+    const confirmExport = confirm(`Export ${layout.units.length} unit reports?\n\nThis will download ${layout.units.length} Excel files.`);
+    if (!confirmExport) {
+        return;
+    }
+
+    for (let index = 0; index < layout.units.length; index++) {
+        await xlsxExport.exportUnitReport(currentFilters.cycleId, layout.units[index].unitId);
+        await new Promise(resolve => setTimeout(resolve, 500));
+    }
+
+    alert(`✅ Exported ${layout.units.length} unit reports successfully!`);
 };

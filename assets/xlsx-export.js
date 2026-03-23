@@ -6,6 +6,7 @@
 import { storage } from './storage.js';
 import { getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
 import { auth } from './auth.js';
+import { getCycleExportLayout, sanitizeLayoutSegment } from './export-layout.js';
 
 export const xlsxExport = {
     /**
@@ -141,10 +142,14 @@ export const xlsxExport = {
      * Multi-sheet workbook with summary, details, and analytics
      */
     async exportSchemeReport(cycleId) {
-        const cycle = storage.get('cycles', cycleId);
-        const scheme = storage.get('schemes', cycle.scheme_id);
-        const readings = storage.getReadings(cycleId);
-        const meters = storage.getMeters(cycle.scheme_id);
+        const layout = getCycleExportLayout(cycleId);
+        if (!layout) {
+            alert('Unable to prepare the export layout for this cycle.');
+            return null;
+        }
+
+        const cycle = layout.cycle;
+        const scheme = layout.scheme;
         const currentUser = auth.getCurrentUser();
 
         await this.loadSheetJS();
@@ -152,13 +157,13 @@ export const xlsxExport = {
         const wb = XLSX.utils.book_new();
 
         // === SHEET 1: EXECUTIVE SUMMARY ===
-        const summaryData = this.buildSummarySheet(cycle, scheme, readings, meters, currentUser);
+        const summaryData = this.buildSummarySheet(layout, currentUser);
         const wsSummary = XLSX.utils.aoa_to_sheet(summaryData);
         wsSummary['!cols'] = [{ wch: 30 }, { wch: 20 }];
         XLSX.utils.book_append_sheet(wb, wsSummary, 'Summary');
 
         // === SHEET 2: UNIT READINGS (DETAILED) ===
-        const unitData = this.buildUnitReadingsSheet(cycle, scheme, readings);
+        const unitData = this.buildUnitReadingsSheet(layout);
         const wsUnits = XLSX.utils.aoa_to_sheet(unitData);
         wsUnits['!cols'] = [
             { wch: 15 }, // Building
@@ -175,19 +180,20 @@ export const xlsxExport = {
         XLSX.utils.book_append_sheet(wb, wsUnits, 'Unit Readings');
 
         // === SHEET 3: ANALYTICS ===
-        const analyticsData = this.buildAnalyticsSheet(cycle, scheme, readings, meters);
+        const analyticsData = this.buildAnalyticsSheet(layout);
         const wsAnalytics = XLSX.utils.aoa_to_sheet(analyticsData);
         wsAnalytics['!cols'] = [{ wch: 20 }, { wch: 15 }, { wch: 18 }];
         XLSX.utils.book_append_sheet(wb, wsAnalytics, 'Analytics');
 
         // === SHEET 4: FLAGS & ISSUES ===
-        const flagsData = this.buildFlagsSheet(readings);
+        const flagsData = this.buildFlagsSheet(layout.units);
         const wsFlags = XLSX.utils.aoa_to_sheet(flagsData);
-        wsFlags['!cols'] = [{ wch: 15 }, { wch: 12 }, { wch: 15 }, { wch: 20 }, { wch: 30 }];
+        wsFlags['!cols'] = [{ wch: 15 }, { wch: 12 }, { wch: 15 }, { wch: 15 }, { wch: 20 }, { wch: 30 }];
         XLSX.utils.book_append_sheet(wb, wsFlags, 'Flags & Issues');
 
         // Download file
-        const filename = `Scheme-Report-${scheme.name.replace(/\s+/g, '-')}-${cycle.start_date}.xlsx`;
+        const filename = layout.outputFiles.find(file => file.type === 'scheme-report')?.filename
+            || `01-scheme-report-${sanitizeLayoutSegment(scheme.name)}-${cycle.start_date}.xlsx`;
         XLSX.writeFile(wb, filename);
 
         alert(`✅ Scheme report exported successfully!\n\nFilename: ${filename}\n\nIncludes 4 sheets:\n• Summary (bulk reconciliation)\n• Unit Readings (detailed)\n• Analytics (top consumers)\n• Flags & Issues`);
@@ -195,38 +201,107 @@ export const xlsxExport = {
         return filename;
     },
 
+    async exportBuildingReport(cycleId, buildingId) {
+        const layout = getCycleExportLayout(cycleId);
+        const building = layout?.buildings.find(item => item.buildingId === buildingId);
+
+        if (!layout || !building) {
+            alert('Unable to prepare the building export for this cycle.');
+            return null;
+        }
+
+        await this.loadSheetJS();
+
+        const wb = XLSX.utils.book_new();
+        const summarySheet = XLSX.utils.aoa_to_sheet(this.buildBuildingSummarySheet(layout, building));
+        summarySheet['!cols'] = [{ wch: 28 }, { wch: 20 }];
+        XLSX.utils.book_append_sheet(wb, summarySheet, 'Summary');
+
+        const detailsSheet = XLSX.utils.aoa_to_sheet(this.buildBuildingReadingsSheet(layout, building));
+        detailsSheet['!cols'] = [
+            { wch: 12 },
+            { wch: 18 },
+            { wch: 15 },
+            { wch: 12 },
+            { wch: 12 },
+            { wch: 12 },
+            { wch: 15 },
+            { wch: 18 },
+            { wch: 25 },
+            { wch: 14 }
+        ];
+        XLSX.utils.book_append_sheet(wb, detailsSheet, 'Building Readings');
+
+        const flagsSheet = XLSX.utils.aoa_to_sheet(this.buildBuildingFlagsSheet(building));
+        flagsSheet['!cols'] = [{ wch: 12 }, { wch: 15 }, { wch: 15 }, { wch: 12 }, { wch: 18 }, { wch: 30 }];
+        XLSX.utils.book_append_sheet(wb, flagsSheet, 'Flags & Issues');
+
+        const filename = layout.outputFiles.find(file => file.scope === 'building' && file.entityId === buildingId)?.filename
+            || `02-building-report-${sanitizeLayoutSegment(building.buildingName)}-${layout.cycle.start_date}.xlsx`;
+
+        XLSX.writeFile(wb, filename);
+        return filename;
+    },
+
+    async exportUnitReport(cycleId, unitId) {
+        const layout = getCycleExportLayout(cycleId);
+        const unit = layout?.units.find(item => item.unitId === unitId);
+
+        if (!layout || !unit) {
+            alert('Unable to prepare the unit export for this cycle.');
+            return null;
+        }
+
+        await this.loadSheetJS();
+
+        const wb = XLSX.utils.book_new();
+        const summarySheet = XLSX.utils.aoa_to_sheet(this.buildUnitSummarySheet(layout, unit));
+        summarySheet['!cols'] = [{ wch: 28 }, { wch: 22 }];
+        XLSX.utils.book_append_sheet(wb, summarySheet, 'Summary');
+
+        const readingsSheet = XLSX.utils.aoa_to_sheet(this.buildUnitReadingsDetailSheet(layout, unit));
+        readingsSheet['!cols'] = [
+            { wch: 15 },
+            { wch: 15 },
+            { wch: 15 },
+            { wch: 12 },
+            { wch: 12 },
+            { wch: 12 },
+            { wch: 15 },
+            { wch: 18 },
+            { wch: 25 },
+            { wch: 14 }
+        ];
+        XLSX.utils.book_append_sheet(wb, readingsSheet, 'Unit Readings');
+
+        const flagsSheet = XLSX.utils.aoa_to_sheet(this.buildUnitFlagsSheet(unit));
+        flagsSheet['!cols'] = [{ wch: 15 }, { wch: 12 }, { wch: 15 }, { wch: 18 }, { wch: 30 }];
+        XLSX.utils.book_append_sheet(wb, flagsSheet, 'Flags & Issues');
+
+        const filename = layout.outputFiles.find(file => file.scope === 'unit' && file.entityId === unitId)?.filename
+            || `03-unit-report-${sanitizeLayoutSegment(unit.buildingName)}-${sanitizeLayoutSegment(unit.unitNumber)}-${layout.cycle.start_date}.xlsx`;
+
+        XLSX.writeFile(wb, filename);
+        return filename;
+    },
+
+    exportOutputManifest(cycleId, filters = {}) {
+        const layout = getCycleExportLayout(cycleId, filters);
+        if (!layout) {
+            alert('Unable to generate an output manifest for this cycle.');
+            return null;
+        }
+
+        const filename = `output-layout-${layout.scheme.slug}-${layout.cycle.start_date}.json`;
+        this.downloadJson(filename, layout);
+        return filename;
+    },
+
     /**
      * Build summary sheet with bulk reconciliation
      */
-    buildSummarySheet(cycle, scheme, readings, meters, currentUser) {
-        // Calculate bulk reconciliation
-        let bulk_kWh = 0;
-        let sum_units_kWh = 0;
-
-        const bulkMeter = meters.find(m => m.meter_type === 'BULK');
-        if (bulkMeter) {
-            const bulkReading = readings.find(r => r.meter_id === bulkMeter.id);
-            if (bulkReading && bulkReading.consumption != null) {
-                bulk_kWh = bulkReading.consumption;
-            }
-        }
-
-        readings.forEach(reading => {
-            const meter = storage.get('meters', reading.meter_id);
-            if (meter && meter.meter_type === 'UNIT' && reading.consumption != null) {
-                sum_units_kWh += reading.consumption;
-            }
-        });
-
-        const common_kWh = bulk_kWh - sum_units_kWh;
-        const losses_percent = bulk_kWh > 0 ? ((common_kWh / bulk_kWh) * 100) : 0;
-
-        const unitMeters = meters.filter(m => m.meter_type === 'UNIT');
-        const unitReadings = readings.filter(r => {
-            const m = storage.get('meters', r.meter_id);
-            return m && m.meter_type === 'UNIT';
-        });
-        const flaggedCount = readings.filter(r => r.flags && r.flags.length > 0).length;
+    buildSummarySheet(layout, currentUser) {
+        const { cycle, scheme, schemeStats } = layout;
 
         return [
             ['FUZIO PROPERTIES - SCHEME ELECTRICITY REPORT'],
@@ -242,32 +317,35 @@ export const xlsxExport = {
             ['Cycle Status:', cycle.status],
             [''],
             ['=== BULK RECONCILIATION ==='],
-            ['Bulk Meter Reading (kWh):', bulk_kWh.toFixed(2)],
-            ['Sum of Unit Meters (kWh):', sum_units_kWh.toFixed(2)],
-            ['Common Property Usage (kWh):', common_kWh.toFixed(2)],
-            ['Loss Percentage:', losses_percent.toFixed(2) + '%'],
+            ['Bulk Meter Reading (kWh):', schemeStats.bulkKWh.toFixed(2)],
+            ['Sum of Unit Meters (kWh):', schemeStats.sumUnitsKWh.toFixed(2)],
+            ['Common Property Usage (kWh):', schemeStats.commonKWh.toFixed(2)],
+            ['Loss Percentage:', schemeStats.lossesPercent.toFixed(2) + '%'],
             [''],
             ['Explanation:', 'Common Property Usage = Bulk Meter - Sum of Units'],
             ['Note:', 'This represents common area consumption, electrical losses, or unmetered usage'],
             [''],
             ['=== READING STATISTICS ==='],
-            ['Total Unit Meters:', unitMeters.length],
-            ['Readings Captured:', unitReadings.length],
-            ['Not Read:', unitMeters.length - unitReadings.length],
-            ['Flagged Readings:', flaggedCount],
-            ['Completion Rate:', `${((unitReadings.length / unitMeters.length) * 100).toFixed(1)}%`],
+            ['Total Buildings:', schemeStats.totalBuildings],
+            ['Total Units:', schemeStats.totalUnits],
+            ['Total Unit Meters:', schemeStats.totalUnitMeters],
+            ['Readings Captured:', schemeStats.readingsCaptured],
+            ['Not Read:', schemeStats.notRead],
+            ['Flagged Readings:', schemeStats.flaggedReadings],
+            ['Completion Rate:', `${schemeStats.completionRate.toFixed(1)}%`],
             [''],
             ['=== DATA QUALITY ==='],
-            ['Readings with Flags:', flaggedCount],
-            ['Readings Pending Review:', readings.filter(r => getEffectiveReviewStatus(r, cycle) === 'pending').length],
-            ['Readings Approved:', readings.filter(r => getEffectiveReviewStatus(r, cycle) === 'approved').length],
+            ['Readings with Flags:', schemeStats.flaggedReadings],
+            ['Readings Pending Review:', schemeStats.pendingReviews],
+            ['Readings Approved:', schemeStats.approvedReadings],
         ];
     },
 
     /**
      * Build unit readings sheet
      */
-    buildUnitReadingsSheet(cycle, scheme, readings) {
+    buildUnitReadingsSheet(layout) {
+        const { cycle, scheme, units } = layout;
         const data = [
             ['UNIT READINGS - DETAILED'],
             ['Scheme:', scheme.name],
@@ -276,26 +354,27 @@ export const xlsxExport = {
             ['Building', 'Unit', 'Meter Number', 'Previous', 'Current', 'Consumption (kWh)', 'Reading Date', 'Captured By', 'Contact Details', 'Flags', 'Review Status']
         ];
 
-        readings.forEach(reading => {
-            const meter = storage.getMeterWithDetails(reading.meter_id);
-            if (!meter || meter.meter_type !== 'UNIT') return;
+        units.forEach(unit => {
+            unit.meters.forEach(meter => {
+                const flags = meter.flags.length > 0
+                    ? meter.flags.map(flag => flag.type).join(', ')
+                    : 'None';
+                const consumption = meter.consumption != null ? Number(meter.consumption).toFixed(2) : 'N/A';
 
-            const flags = reading.flags ? reading.flags.map(f => f.type).join(', ') : 'None';
-            const consumption = reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A';
-
-            data.push([
-                meter.building_name || 'N/A',
-                meter.unit_name || 'N/A',
-                meter.meter_number,
-                getPreviousReadingDisplayValue(reading, meter),
-                reading.reading_value,
-                consumption,
-                reading.reading_date,
-                reading.captured_by || 'Unknown',
-                reading.captured_by_contact_details || reading.submitted_by_contact_details || '',
-                flags,
-                getEffectiveReviewStatus(reading, cycle)
-            ]);
+                data.push([
+                    unit.buildingName,
+                    unit.unitNumber,
+                    meter.meterNumber,
+                    meter.previousReading,
+                    meter.currentReading ?? 'Not read',
+                    consumption,
+                    meter.readingDate || 'N/A',
+                    meter.capturedBy || 'Unknown',
+                    meter.contactDetails || '',
+                    flags,
+                    meter.reviewStatus
+                ]);
+            });
         });
 
         return data;
@@ -304,21 +383,16 @@ export const xlsxExport = {
     /**
      * Build analytics sheet with top consumers
      */
-    buildAnalyticsSheet(cycle, scheme, readings, meters) {
-        // Calculate consumption per unit
-        const unitConsumption = [];
-
-        readings.forEach(reading => {
-            const meter = storage.getMeterWithDetails(reading.meter_id);
-            if (!meter || meter.meter_type !== 'UNIT' || reading.consumption == null) return;
-
-            unitConsumption.push({
-                building: meter.building_name || 'N/A',
-                unit: meter.unit_name || 'N/A',
-                meter_number: meter.meter_number,
-                consumption: reading.consumption
-            });
-        });
+    buildAnalyticsSheet(layout) {
+        const { cycle, scheme, units } = layout;
+        const unitConsumption = units
+            .map(unit => ({
+                building: unit.buildingName,
+                unit: unit.unitNumber,
+                meter_count: unit.meterCount,
+                consumption: unit.totalConsumption
+            }))
+            .filter(unit => unit.consumption != null);
 
         // Sort by consumption (highest first)
         unitConsumption.sort((a, b) => b.consumption - a.consumption);
@@ -342,7 +416,7 @@ export const xlsxExport = {
             ['Lowest Consumption (kWh):', minConsumption.toFixed(2)],
             [''],
             ['=== TOP 10 CONSUMERS ==='],
-            ['Rank', 'Unit', 'Consumption (kWh)', '% of Total']
+            ['Rank', 'Unit', 'Meters', 'Consumption (kWh)', '% of Total']
         ];
 
         unitConsumption.slice(0, 10).forEach((unit, index) => {
@@ -350,6 +424,7 @@ export const xlsxExport = {
             data.push([
                 index + 1,
                 `${unit.building} - ${unit.unit}`,
+                unit.meter_count,
                 unit.consumption.toFixed(2),
                 percentage + '%'
             ]);
@@ -384,32 +459,214 @@ export const xlsxExport = {
     /**
      * Build flags and issues sheet
      */
-    buildFlagsSheet(readings) {
+    buildFlagsSheet(units) {
         const data = [
             ['FLAGS & ISSUES REPORT'],
             [''],
-            ['Building', 'Unit', 'Meter Number', 'Flag Type', 'Description']
+            ['Building', 'Unit', 'Meter Number', 'Source', 'Flag Type', 'Description']
         ];
 
         let flagCount = 0;
-        readings.forEach(reading => {
-            if (reading.flags && reading.flags.length > 0) {
-                const meter = storage.getMeterWithDetails(reading.meter_id);
-                reading.flags.forEach(flag => {
+        units.forEach(unit => {
+            unit.meters.forEach(meter => {
+                meter.flags.forEach(flag => {
                     data.push([
-                        meter?.building_name || 'N/A',
-                        meter?.unit_name || 'N/A',
-                        meter?.meter_number || 'N/A',
+                        unit.buildingName,
+                        unit.unitNumber,
+                        meter.meterNumber,
+                        flag.source,
                         flag.type,
                         flag.description || 'No description'
                     ]);
                     flagCount++;
                 });
-            }
+            });
         });
 
         if (flagCount === 0) {
             data.push(['No flags or issues detected', '', '', '', '']);
+        }
+
+        return data;
+    },
+
+    buildBuildingSummarySheet(layout, building) {
+        return [
+            ['FUZIO PROPERTIES - BUILDING READING REPORT'],
+            [''],
+            ['Generated:', new Date().toLocaleString()],
+            ['Generated By:', auth.getCurrentUser()?.name || 'System'],
+            [''],
+            ['Scheme:', layout.scheme.name],
+            ['Building:', building.buildingName],
+            ['Period:', `${layout.cycle.start_date} to ${layout.cycle.end_date}`],
+            ['Cycle Status:', layout.cycle.status],
+            [''],
+            ['Units in Building:', building.unitCount],
+            ['Unit Meters:', building.meterCount],
+            ['Readings Captured:', building.readCount],
+            ['Not Read:', building.unreadCount],
+            ['Flagged Readings:', building.flaggedCount],
+            ['Total Consumption (kWh):', building.totalConsumption.toFixed(2)],
+            ['Completion Rate:', building.meterCount > 0 ? `${((building.readCount / building.meterCount) * 100).toFixed(1)}%` : '0.0%']
+        ];
+    },
+
+    buildBuildingReadingsSheet(layout, building) {
+        const data = [
+            ['BUILDING UNIT READINGS'],
+            ['Scheme:', layout.scheme.name],
+            ['Building:', building.buildingName],
+            ['Period:', `${layout.cycle.start_date} to ${layout.cycle.end_date}`],
+            [''],
+            ['Unit', 'Owner', 'Meter Number', 'Previous', 'Current', 'Consumption (kWh)', 'Reading Date', 'Captured By', 'Flags', 'Review Status']
+        ];
+
+        building.units.forEach(unit => {
+            unit.meters.forEach(meter => {
+                data.push([
+                    unit.unitNumber,
+                    unit.ownerName || 'N/A',
+                    meter.meterNumber,
+                    meter.previousReading,
+                    meter.currentReading ?? 'Not read',
+                    meter.consumption != null ? Number(meter.consumption).toFixed(2) : 'N/A',
+                    meter.readingDate || 'N/A',
+                    meter.capturedBy || 'Unknown',
+                    meter.flags.length > 0 ? meter.flags.map(flag => flag.type).join(', ') : 'None',
+                    meter.reviewStatus
+                ]);
+            });
+
+            if (unit.meters.length === 0) {
+                data.push([
+                    unit.unitNumber,
+                    unit.ownerName || 'N/A',
+                    'No meter',
+                    'N/A',
+                    'N/A',
+                    'N/A',
+                    'N/A',
+                    'N/A',
+                    'None',
+                    'missing'
+                ]);
+            }
+        });
+
+        return data;
+    },
+
+    buildBuildingFlagsSheet(building) {
+        const data = [
+            ['BUILDING FLAGS & ISSUES'],
+            [''],
+            ['Unit', 'Meter Number', 'Flag Source', 'Flag Type', 'Review Status', 'Description']
+        ];
+
+        let hasFlags = false;
+        building.units.forEach(unit => {
+            unit.meters.forEach(meter => {
+                meter.flags.forEach(flag => {
+                    data.push([
+                        unit.unitNumber,
+                        meter.meterNumber,
+                        flag.source,
+                        flag.type,
+                        meter.reviewStatus,
+                        flag.description || flag.message || 'No description'
+                    ]);
+                    hasFlags = true;
+                });
+            });
+        });
+
+        if (!hasFlags) {
+            data.push(['No flags detected', '', '', '', '', '']);
+        }
+
+        return data;
+    },
+
+    buildUnitSummarySheet(layout, unit) {
+        return [
+            ['FUZIO PROPERTIES - UNIT CYCLE REPORT'],
+            [''],
+            ['Generated:', new Date().toLocaleString()],
+            ['Generated By:', auth.getCurrentUser()?.name || 'System'],
+            [''],
+            ['Scheme:', layout.scheme.name],
+            ['Building:', unit.buildingName],
+            ['Unit:', unit.unitNumber],
+            ['Owner:', unit.ownerName || 'N/A'],
+            ['Period:', `${layout.cycle.start_date} to ${layout.cycle.end_date}`],
+            ['Cycle Status:', layout.cycle.status],
+            [''],
+            ['Meters Assigned:', unit.meterCount],
+            ['Readings Captured:', unit.readCount],
+            ['Not Read:', unit.unreadCount],
+            ['Flagged Readings:', unit.flaggedCount],
+            ['Total Consumption (kWh):', unit.totalConsumption.toFixed(2)],
+            ['Review Statuses:', unit.reviewStatuses.length > 0 ? unit.reviewStatuses.join(', ') : 'missing']
+        ];
+    },
+
+    buildUnitReadingsDetailSheet(layout, unit) {
+        const data = [
+            ['UNIT READINGS DETAIL'],
+            ['Scheme:', layout.scheme.name],
+            ['Building:', unit.buildingName],
+            ['Unit:', unit.unitNumber],
+            ['Period:', `${layout.cycle.start_date} to ${layout.cycle.end_date}`],
+            [''],
+            ['Meter Number', 'Meter Type', 'Location', 'Previous', 'Current', 'Consumption (kWh)', 'Reading Date', 'Captured By', 'Flags', 'Review Status']
+        ];
+
+        unit.meters.forEach(meter => {
+            data.push([
+                meter.meterNumber,
+                meter.meterType,
+                meter.meterLocation || 'N/A',
+                meter.previousReading,
+                meter.currentReading ?? 'Not read',
+                meter.consumption != null ? Number(meter.consumption).toFixed(2) : 'N/A',
+                meter.readingDate || 'N/A',
+                meter.capturedBy || 'Unknown',
+                meter.flags.length > 0 ? meter.flags.map(flag => flag.type).join(', ') : 'None',
+                meter.reviewStatus
+            ]);
+        });
+
+        if (unit.meters.length === 0) {
+            data.push(['No meter assigned', '', '', '', '', '', '', '', '', '']);
+        }
+
+        return data;
+    },
+
+    buildUnitFlagsSheet(unit) {
+        const data = [
+            ['UNIT FLAGS & ISSUES'],
+            [''],
+            ['Meter Number', 'Flag Source', 'Flag Type', 'Review Status', 'Description']
+        ];
+
+        let hasFlags = false;
+        unit.meters.forEach(meter => {
+            meter.flags.forEach(flag => {
+                data.push([
+                    meter.meterNumber,
+                    flag.source,
+                    flag.type,
+                    meter.reviewStatus,
+                    flag.description || flag.message || 'No description'
+                ]);
+                hasFlags = true;
+            });
+        });
+
+        if (!hasFlags) {
+            data.push(['No flags detected', '', '', '', '']);
         }
 
         return data;
@@ -566,5 +823,19 @@ export const xlsxExport = {
             script.onerror = reject;
             document.head.appendChild(script);
         });
+    },
+
+    downloadJson(filename, payload) {
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        URL.revokeObjectURL(url);
     }
 };
