@@ -681,6 +681,22 @@
                         action: 'Assign meters to units or archive empty units'
                     });
                 }
+
+                if (issue.message.includes('No bulk meter registered')) {
+                    recommendations.push({
+                        for_issue: issue.message,
+                        recommendation: 'Add at least one bulk meter so reconciliation, common usage, and loss checks can run correctly.',
+                        action: 'Create a bulk meter in the Meter Register'
+                    });
+                }
+
+                if (issue.message.includes('no initial reading')) {
+                    recommendations.push({
+                        for_issue: issue.message,
+                        recommendation: 'Meters without an initial reading weaken validation and first-cycle comparisons.',
+                        action: 'Set initial readings for affected meters'
+                    });
+                }
                 
                 if (issue.message.includes('No open reading cycles')) {
                     recommendations.push({
@@ -700,11 +716,19 @@
             });
 
             if (recommendations.length === 0) {
-                recommendations.push({
-                    for_issue: 'General',
-                    recommendation: 'System is healthy. Continue monitoring regularly.',
-                    action: 'No action required'
-                });
+                if (issues.length === 0) {
+                    recommendations.push({
+                        for_issue: 'General',
+                        recommendation: 'System is healthy. Continue monitoring regularly.',
+                        action: 'No action required'
+                    });
+                } else {
+                    recommendations.push({
+                        for_issue: 'General',
+                        recommendation: 'Review the issues listed in this report and resolve the structural setup problems before relying on the data operationally.',
+                        action: 'Work through the reported setup issues'
+                    });
+                }
             }
 
             return recommendations;

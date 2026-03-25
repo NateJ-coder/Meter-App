@@ -1,0 +1,94 @@
+{
+  "report_title": "Fuzio System Health Report",
+  "generated_at": "2026-03-25T13:08:47.438Z",
+  "generated_by": "admin@fuzio.co",
+  "summary": {
+    "total_issues": 3,
+    "critical_errors": 1,
+    "warnings": 1,
+    "informational": 1
+  },
+  "system_stats": {
+    "schemes": 23,
+    "buildings": 23,
+    "units": 1120,
+    "meters": 1047,
+    "bulk_meters": 0,
+    "readings": 6,
+    "cycles": 1,
+    "users": 1,
+    "storage_usage_kb": "1581.01"
+  },
+  "setup_health": {
+    "overall": "critical",
+    "issues": [
+      {
+        "type": "units-without-meters",
+        "severity": "high",
+        "message": "73 units have no meters",
+        "count": 73,
+        "action": "Add meters to these units",
+        "link": "meters.html"
+      }
+    ],
+    "warnings": [
+      {
+        "type": "no-bulk-meter",
+        "severity": "medium",
+        "message": "No bulk meter registered",
+        "action": "Add a bulk meter to track total consumption",
+        "link": "meters.html"
+      },
+      {
+        "type": "meters-without-initial-readings",
+        "severity": "low",
+        "message": "40 meters have no initial reading",
+        "count": 40,
+        "action": "Set initial readings before first cycle",
+        "link": "meters.html"
+      }
+    ],
+    "successes": [
+      {
+        "type": "no-duplicates",
+        "message": "No duplicate meter numbers"
+      }
+    ],
+    "stats": {
+      "schemes": 23,
+      "buildings": 23,
+      "units": 1120,
+      "meters": 1047
+    }
+  },
+  "issues_detail": [
+    {
+      "issue_number": 1,
+      "severity": "ERROR",
+      "message": "73 units have no meters",
+      "details": "Add meters to these units",
+      "detected_at": "2026-03-25T13:08:47.446Z"
+    },
+    {
+      "issue_number": 2,
+      "severity": "WARNING",
+      "message": "No bulk meter registered",
+      "details": "Add a bulk meter to track total consumption",
+      "detected_at": "2026-03-25T13:08:47.446Z"
+    },
+    {
+      "issue_number": 3,
+      "severity": "INFO",
+      "message": "40 meters have no initial reading",
+      "details": "Set initial readings before first cycle",
+      "detected_at": "2026-03-25T13:08:47.446Z"
+    }
+  ],
+  "recommendations": [
+    {
+      "for_issue": "General",
+      "recommendation": "System is healthy. Continue monitoring regularly.",
+      "action": "No action required"
+    }
+  ]
+}
