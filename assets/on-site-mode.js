@@ -8,6 +8,7 @@ import { storage } from './storage.js';
 import { validation } from './validation.js';
 import { auth } from './auth.js';
 import { preparePhotoForStorage } from './photo-utils.js';
+import { persistReadingPhoto } from './firebase-media.js';
 import { parseDecimalInput } from './app.js';
 
 export const onSiteMode = {
@@ -440,6 +441,14 @@ export const onSiteMode = {
         const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
             ? await preparePhotoForStorage(photoInput.files[0])
             : null;
+        const photoPayload = preparedPhoto
+            ? await persistReadingPhoto(preparedPhoto, {
+                cycleId,
+                meterId,
+                readingId: `${cycleId}-${meterId}-${Date.now()}`,
+                capturedAt: new Date().toISOString()
+            })
+            : { photo: '', photo_name: '', photo_storage_mode: '', photo_storage_path: '' };
 
         // Create reading
         const reading = {
@@ -452,8 +461,10 @@ export const onSiteMode = {
             notes: notes,
             captured_by: capturedBy,
             captured_by_id: currentUser ? currentUser.id : null,
-            photo: preparedPhoto ? preparedPhoto.dataUrl : '',
-            photo_name: preparedPhoto ? preparedPhoto.name : '',
+            photo: photoPayload.photo,
+            photo_name: photoPayload.photo_name,
+            photo_storage_mode: photoPayload.photo_storage_mode,
+            photo_storage_path: photoPayload.photo_storage_path,
             captured_at: new Date().toISOString(),
             review_status: 'pending'
         };

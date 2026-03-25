@@ -24,10 +24,13 @@ export const firebaseCollections = {
     buildings: 'buildings',
     units: 'units',
     meters: 'meters',
+    meterHistory: 'meter_history',
     cycles: 'cycles',
+    cycleSchedules: 'cycle_schedules',
     readings: 'readings',
     users: 'users',
-    activities: 'activities'
+    activities: 'activities',
+    imports: 'imports'
 };
 
 export const firebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);

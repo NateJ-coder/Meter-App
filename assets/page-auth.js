@@ -3,10 +3,20 @@
  */
 
 import { auth } from './auth.js';
+import { storage } from './storage.js';
 
 auth.initializeDefaultAdmin();
 await auth.initialize();
 window.auth = auth;
+window.storage = storage;
+
+if (auth.isAuthenticated() && !auth.isGuestUser()) {
+    try {
+        await storage.initializeCloudSync({ preload: true, clearMissing: false });
+    } catch (error) {
+        console.error('Cloud data hydration failed:', error);
+    }
+}
 
 const readerOnlyPages = new Set(['reader.html', 'reader-old.html']);
 

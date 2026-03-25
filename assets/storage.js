@@ -3,7 +3,63 @@
  * Provides CRUD operations for all entities
  */
 
+import {
+    collection,
+    deleteDoc,
+    doc,
+    getDoc,
+    getDocs,
+    setDoc,
+    writeBatch
+} from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+
+import { firebaseCollections, firebaseDb, isFirebaseConfigured } from './firebase.js';
+
+const cloudEntityCollections = {
+    schemes: firebaseCollections.schemes,
+    buildings: firebaseCollections.buildings,
+    units: firebaseCollections.units,
+    meters: firebaseCollections.meters,
+    cycles: firebaseCollections.cycles,
+    readings: firebaseCollections.readings,
+    cycle_schedules: firebaseCollections.cycleSchedules
+};
+
+function sanitizeForFirestore(value) {
+    return JSON.parse(JSON.stringify(value));
+}
+
+function writeEntityToLocalCache(entity, items) {
+    localStorage.setItem(entity, JSON.stringify(items));
+}
+
+async function commitChunkedBatch(operations) {
+    const chunkSize = 350;
+
+    for (let index = 0; index < operations.length; index += chunkSize) {
+        const chunk = operations.slice(index, index + chunkSize);
+        const batch = writeBatch(firebaseDb);
+
+        chunk.forEach((operation) => {
+            const reference = doc(firebaseDb, operation.collectionName, operation.id);
+
+            if (operation.type === 'delete') {
+                batch.delete(reference);
+                return;
+            }
+
+            batch.set(reference, operation.data);
+        });
+
+        await batch.commit();
+    }
+}
+
 export const storage = {
+    operationalEntityKeys: ['schemes', 'buildings', 'units', 'meters', 'readings', 'cycles', 'cycle_schedules'],
+    cloudSyncEnabled: false,
+    cloudSyncPromise: Promise.resolve(),
+
     // Generic CRUD operations
     getAll(entity) {
         const data = localStorage.getItem(entity);
@@ -23,7 +79,8 @@ export const storage = {
             created_at: new Date().toISOString()
         };
         items.push(newItem);
-        localStorage.setItem(entity, JSON.stringify(items));
+        writeEntityToLocalCache(entity, items);
+        this.queueCloudUpsert(entity, newItem);
         return newItem;
     },
 
@@ -37,14 +94,16 @@ export const storage = {
             ...data,
             updated_at: new Date().toISOString()
         };
-        localStorage.setItem(entity, JSON.stringify(items));
+        writeEntityToLocalCache(entity, items);
+        this.queueCloudUpsert(entity, items[index]);
         return items[index];
     },
 
     delete(entity, id) {
         const items = this.getAll(entity);
         const filtered = items.filter(item => item.id !== id);
-        localStorage.setItem(entity, JSON.stringify(filtered));
+        writeEntityToLocalCache(entity, filtered);
+        this.queueCloudDelete(entity, id);
         return true;
     },
 
@@ -56,6 +115,135 @@ export const storage = {
     // Clear all data (for testing)
     clearAll() {
         localStorage.clear();
+    },
+
+    async initializeCloudSync(options = {}) {
+        if (!isFirebaseConfigured()) {
+            this.cloudSyncEnabled = false;
+            return false;
+        }
+
+        this.cloudSyncEnabled = true;
+
+        if (options.preload !== false) {
+            await this.hydrateFromCloud(options);
+        }
+
+        return true;
+    },
+
+    async hydrateFromCloud(options = {}) {
+        if (!isFirebaseConfigured()) {
+            return {};
+        }
+
+        const counts = {};
+
+        for (const [entity, collectionName] of Object.entries(cloudEntityCollections)) {
+            const snapshot = await getDocs(collection(firebaseDb, collectionName));
+            const items = snapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
+            counts[entity] = items.length;
+
+            if (items.length > 0 || options.clearMissing === true) {
+                writeEntityToLocalCache(entity, items);
+            }
+        }
+
+        return counts;
+    },
+
+    async replaceOperationalData(payload, options = {}) {
+        const pushToCloud = options.pushToCloud !== false && isFirebaseConfigured();
+
+        for (const entity of Object.keys(cloudEntityCollections)) {
+            if (!Object.prototype.hasOwnProperty.call(payload, entity)) {
+                continue;
+            }
+
+            const items = Array.isArray(payload[entity]) ? payload[entity] : [];
+            writeEntityToLocalCache(entity, items);
+
+            if (pushToCloud) {
+                await this.replaceCloudEntity(entity, items);
+            }
+        }
+    },
+
+    async replaceCloudEntity(entity, items) {
+        const collectionName = cloudEntityCollections[entity];
+        if (!collectionName || !isFirebaseConfigured()) {
+            return;
+        }
+
+        const snapshot = await getDocs(collection(firebaseDb, collectionName));
+        const existingIds = new Set(snapshot.docs.map((entry) => entry.id));
+        const nextIds = new Set(items.map((entry) => entry.id));
+        const operations = [];
+
+        existingIds.forEach((id) => {
+            if (!nextIds.has(id)) {
+                operations.push({ type: 'delete', collectionName, id });
+            }
+        });
+
+        items.forEach((item) => {
+            operations.push({
+                type: 'set',
+                collectionName,
+                id: item.id,
+                data: sanitizeForFirestore(item)
+            });
+        });
+
+        await commitChunkedBatch(operations);
+    },
+
+    async getMeterHistory(meterId) {
+        if (!isFirebaseConfigured()) {
+            return null;
+        }
+
+        const snapshot = await getDoc(doc(firebaseDb, firebaseCollections.meterHistory, meterId));
+        return snapshot.exists() ? { id: snapshot.id, ...snapshot.data() } : null;
+    },
+
+    queueCloudUpsert(entity, item) {
+        const collectionName = cloudEntityCollections[entity];
+        if (!collectionName || !this.cloudSyncEnabled || !isFirebaseConfigured()) {
+            return;
+        }
+
+        this.cloudSyncPromise = this.cloudSyncPromise
+            .then(() => setDoc(doc(firebaseDb, collectionName, item.id), sanitizeForFirestore(item)))
+            .catch((error) => {
+                console.error(`Cloud upsert failed for ${entity}/${item.id}`, error);
+            });
+    },
+
+    queueCloudDelete(entity, id) {
+        const collectionName = cloudEntityCollections[entity];
+        if (!collectionName || !this.cloudSyncEnabled || !isFirebaseConfigured()) {
+            return;
+        }
+
+        this.cloudSyncPromise = this.cloudSyncPromise
+            .then(() => deleteDoc(doc(firebaseDb, collectionName, id)))
+            .catch((error) => {
+                console.error(`Cloud delete failed for ${entity}/${id}`, error);
+            });
+    },
+
+    clearOperationalData(options = {}) {
+        const preserveKeys = new Set(options.preserveKeys || []);
+
+        this.operationalEntityKeys.forEach((entity) => {
+            if (!preserveKeys.has(entity)) {
+                localStorage.removeItem(entity);
+            }
+        });
+
+        localStorage.removeItem('fuzio_onboarding_state');
+        localStorage.removeItem('fuzio_first_time_checklist');
     },
 
     // Entity-specific helpers

@@ -188,10 +188,8 @@
         window.clearAllData = function() {
             if (confirm('⚠️ WARNING: This will delete ALL data (schemes, buildings, units, meters, readings, cycles). This cannot be undone. Are you sure?')) {
                 if (confirm('Really sure? This action is permanent.')) {
-                    storage.clearAll();
-                    // Also clear onboarding state
-                    localStorage.removeItem('fuzio_onboarding_state');
-                    alert('All data cleared. Refreshing page...');
+                    storage.clearOperationalData();
+                    alert('All operational data cleared. Users and sessions were preserved. Refreshing page...');
                     location.reload();
                 }
             }

@@ -53,6 +53,11 @@ Expected future outputs include:
 - latest-readings-import.csv
 - extraction-notes.md
 - unresolved-items.md
+- utility-dash-import.json
+- utility-dash-summary.csv
+- utility-dash-latest-electricity-readings.csv
+- buildings-archive-inventory.csv
+- buildings-archive-summary.csv
 
 ## Recommended Upload Approach
 
@@ -156,3 +161,16 @@ If the files already have internal business names, that is acceptable. Do not re
 When documents have been uploaded, the next prompt can simply be:
 
 `Analyze the files in source-documents and start the pull operation.`
+
+## Current Automation
+
+Two extraction scripts are now available in `scripts`:
+
+- `export-utility-dash.ps1` opens the password-protected Utility Dash workbook and exports normalized JSON/CSV into `03-extracted-outputs/utility-dash`.
+- `inventory-buildings-archive.ps1` creates a filename-based relevance inventory for the `Buildings` archive in `03-extracted-outputs/buildings-archive`.
+
+Recommended run order:
+
+1. Run the Utility Dash exporter to stage scheme and latest-reading data.
+2. Run the Buildings inventory to isolate high-priority electricity and meter-evidence files.
+3. Review the generated CSV files before deleting or archiving any source material.

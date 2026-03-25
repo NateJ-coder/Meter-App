@@ -4,6 +4,7 @@
 
 import { storage } from './storage.js';
 import { showNotification, confirmAction, parseDecimalInput } from './app.js';
+import { getMeterHistoryForMeter, syncUtilityDashDataset } from './utility-dash-service.js';
 
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -27,6 +28,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // Load initial tab
 loadTabData('schemes');
+renderDataSyncPanel();
 
 function loadTabData(tab) {
     switch(tab) {
@@ -44,6 +46,145 @@ function loadTabData(tab) {
             break;
     }
 }
+
+function renderDataSyncPanel(message = '') {
+    const panel = document.getElementById('data-sync-panel');
+    if (!panel) {
+        return;
+    }
+
+    const schemes = storage.getSchemes().length;
+    const buildings = storage.getBuildings().length;
+    const units = storage.getUnits().length;
+    const meters = storage.getMeters().length;
+
+    panel.innerHTML = `
+        <div class="info-box">
+            <strong>Current cache</strong><br>
+            Schemes: ${schemes} | Buildings: ${buildings} | Units: ${units} | Meters: ${meters}<br>
+            <span class="text-muted">Master data is mirrored locally for fast page loads. Historical meter timelines stay in Firebase and are fetched on demand.</span>
+            ${message ? `<div class="mt-2">${message}</div>` : ''}
+        </div>
+    `;
+}
+
+window.refreshCloudMasterData = async function() {
+    try {
+        const counts = await storage.hydrateFromCloud({ clearMissing: false });
+        loadTabData(document.querySelector('.tab-btn.active')?.dataset.tab || 'schemes');
+        renderDataSyncPanel(`Refreshed from Firebase. Schemes: ${counts.schemes || 0}, Meters: ${counts.meters || 0}.`);
+        showNotification('Master data refreshed from Firebase');
+    } catch (error) {
+        console.error(error);
+        renderDataSyncPanel('Refresh failed. Check Firebase connectivity and permissions.');
+        showNotification(`Refresh failed: ${error.message}`);
+    }
+};
+
+window.syncUtilityDashMasterData = async function() {
+    renderDataSyncPanel('Importing Utility Dash data into Firebase. This can take a minute for the full history set.');
+
+    try {
+        const summary = await syncUtilityDashDataset();
+        loadTabData(document.querySelector('.tab-btn.active')?.dataset.tab || 'meters');
+        renderDataSyncPanel(`Imported Utility Dash to Firebase. Schemes: ${summary.schemes}, Units: ${summary.units}, Meters: ${summary.meters}, History docs: ${summary.histories}.`);
+        showNotification('Utility Dash master data imported to Firebase');
+    } catch (error) {
+        console.error(error);
+        renderDataSyncPanel('Utility Dash import failed. Ensure the app is served from the repo root and Firebase permissions are available.');
+        showNotification(`Import failed: ${error.message}`);
+    }
+};
+
+window.closeMeterHistoryModal = function() {
+    const root = document.getElementById('meter-history-modal-root');
+    if (root) {
+        root.innerHTML = '';
+    }
+};
+
+window.viewMeterHistory = async function(meterId) {
+    const root = document.getElementById('meter-history-modal-root');
+    const meter = storage.get('meters', meterId);
+    if (!root || !meter) {
+        return;
+    }
+
+    root.innerHTML = `
+        <div class="modal-overlay" onclick="closeMeterHistoryModal()">
+            <div class="modal-content reading-modal" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h2>Meter History</h2>
+                    <button class="close-btn" onclick="closeMeterHistoryModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Loading historical data for ${meter.source_unit_label || meter.meter_number}...</p>
+                </div>
+            </div>
+        </div>
+    `;
+
+    try {
+        const history = await getMeterHistoryForMeter(meterId);
+        const rows = Array.isArray(history?.readings) ? history.readings.slice(-24).reverse() : [];
+
+        root.innerHTML = `
+            <div class="modal-overlay" onclick="closeMeterHistoryModal()">
+                <div class="modal-content reading-modal" onclick="event.stopPropagation()">
+                    <div class="modal-header">
+                        <h2>${meter.source_unit_label || meter.meter_number}</h2>
+                        <button class="close-btn" onclick="closeMeterHistoryModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="info-box">
+                            <strong>Meter</strong>: ${meter.meter_number}<br>
+                            <strong>Last reading</strong>: ${meter.last_reading || 0} kWh<br>
+                            <strong>History entries</strong>: ${history?.history_entry_count || meter.history_entry_count || 0}
+                        </div>
+                        ${rows.length === 0 ? '<p class="text-muted mt-2">No remote history was found for this meter yet.</p>' : `
+                            <table class="data-table mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Label</th>
+                                        <th>Reading</th>
+                                        <th>Tariff</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${rows.map((entry) => `
+                                        <tr>
+                                            <td>${entry.reading_date || entry.source_reading_date || 'N/A'}</td>
+                                            <td>${entry.reading_label || 'N/A'}</td>
+                                            <td>${entry.reading_value ?? 'N/A'}</td>
+                                            <td>${entry.tariff_table || 'N/A'}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                            <p class="text-muted mt-2">Showing the latest ${rows.length} historical entries from Firebase.</p>
+                        `}
+                    </div>
+                </div>
+            </div>
+        `;
+    } catch (error) {
+        console.error(error);
+        root.innerHTML = `
+            <div class="modal-overlay" onclick="closeMeterHistoryModal()">
+                <div class="modal-content reading-modal" onclick="event.stopPropagation()">
+                    <div class="modal-header">
+                        <h2>Meter History</h2>
+                        <button class="close-btn" onclick="closeMeterHistoryModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted">Unable to load historical data. Check Firebase connectivity and rules.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+};
 
 // ========== SCHEMES ==========
 function loadSchemes() {
@@ -356,6 +497,7 @@ function loadMeters() {
                     <th>Meter Number</th>
                     <th>Unit</th>
                     <th>Last Reading</th>
+                    <th>Last Reading Date</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -371,8 +513,10 @@ function loadMeters() {
                             <td><strong>${meter.meter_number}</strong></td>
                             <td>${location}</td>
                             <td>${meter.last_reading || 0} kWh</td>
+                            <td>${meter.last_reading_date || 'N/A'}</td>
                             <td><span class="badge badge-secondary">${meter.status}</span></td>
                             <td>
+                                <button class="btn btn-primary" onclick="viewMeterHistory('${meter.id}')">History</button>
                                 <button class="btn btn-secondary" onclick="editMeter('${meter.id}')">Edit</button>
                                 <button class="btn btn-danger" onclick="deleteMeter('${meter.id}')">Delete</button>
                             </td>

@@ -28,6 +28,17 @@
             <p class="subtitle">Manage schemes, buildings, units, and meters</p>
         </header>
 
+        <section class="card">
+            <div class="card-header">
+                <h2>Cloud Master Data</h2>
+                <div class="form-actions" style="margin: 0;">
+                    <button class="btn btn-secondary" type="button" onclick="refreshCloudMasterData()">Refresh From Firebase</button>
+                    <button class="btn btn-primary" type="button" onclick="syncUtilityDashMasterData()">Import Utility Dash To Firebase</button>
+                </div>
+            </div>
+            <div id="data-sync-panel"></div>
+        </section>
+
         <!-- Tabs -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="schemes">Schemes</button>
@@ -180,6 +191,8 @@
             </div>
         </section>
     </main>
+
+    <div id="meter-history-modal-root"></div>
 
     <script type="module" src="assets/page-auth.js"></script>
     <script type="module" src="assets/app.js"></script>

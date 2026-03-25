@@ -7,6 +7,7 @@ import { storage } from './storage.js';
 import { validation } from './validation.js';
 import { auth } from './auth.js';
 import { preparePhotoForStorage } from './photo-utils.js';
+import { persistReadingPhoto } from './firebase-media.js';
 import { parseDecimalInput } from './app.js';
 
 export const readingCaptureEnhanced = {
@@ -290,7 +291,7 @@ export const readingCaptureEnhanced = {
                                     accept="image/*"
                                     capture="environment"
                                 >
-                                <small class="form-help">A compressed image is stored locally on this device for review and export evidence.</small>
+                                <small class="form-help">Photos upload to Firebase Storage when available, with local fallback on this device if the upload fails.</small>
                                 ${existingPhotoHtml}
                             </div>
 
@@ -432,6 +433,19 @@ window.submitEnhancedReading = async function(event, meterId, cycleId) {
     const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
         ? await preparePhotoForStorage(photoInput.files[0])
         : null;
+    const photoPayload = preparedPhoto
+        ? await persistReadingPhoto(preparedPhoto, {
+            cycleId,
+            meterId,
+            readingId: existingReading?.id || `${cycleId}-${meterId}`,
+            capturedAt: readingDate
+        })
+        : {
+            photo: existingReading?.photo || '',
+            photo_name: existingReading?.photo_name || '',
+            photo_storage_mode: existingReading?.photo_storage_mode || '',
+            photo_storage_path: existingReading?.photo_storage_path || ''
+        };
 
     const reading = {
         cycle_id: cycleId,
@@ -443,8 +457,10 @@ window.submitEnhancedReading = async function(event, meterId, cycleId) {
         notes: notes,
         captured_by: currentUser ? currentUser.name : 'Unknown User',
         captured_by_id: currentUser ? currentUser.id : null,
-        photo: preparedPhoto ? preparedPhoto.dataUrl : (existingReading?.photo || ''),
-        photo_name: preparedPhoto ? preparedPhoto.name : (existingReading?.photo_name || ''),
+        photo: photoPayload.photo,
+        photo_name: photoPayload.photo_name,
+        photo_storage_mode: photoPayload.photo_storage_mode,
+        photo_storage_path: photoPayload.photo_storage_path,
         captured_at: new Date().toISOString(),
         review_status: 'pending'
     };

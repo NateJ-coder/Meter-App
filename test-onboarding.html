@@ -350,9 +350,8 @@
         window.clearAllDataTest = function() {
             if (confirm('⚠️ WARNING: Clear ALL data including onboarding state?')) {
                 if (confirm('Really sure? This cannot be undone.')) {
-                    storage.clearAll();
-                    localStorage.removeItem('fuzio_onboarding_state');
-                    alert('All data cleared. Page will reload.');
+                    storage.clearOperationalData();
+                    alert('Operational data cleared. Users and sessions preserved. Page will reload.');
                     location.reload();
                 }
             }

@@ -72,7 +72,7 @@
             capture="environment"
             class="reader-input"
           >
-          <small class="form-help">A compressed image is stored locally on this device as supporting evidence.</small>
+          <small class="form-help">Photos upload to Firebase Storage when available, with local fallback on this device if the upload fails.</small>
         </div>
 
         <div class="form-group">
@@ -134,6 +134,7 @@
   import { getCurrentDateTime, parseDecimalInput } from './assets/app.js';
   import { auth } from './assets/auth.js';
   import { preparePhotoForStorage } from './assets/photo-utils.js';
+  import { persistReadingPhoto } from './assets/firebase-media.js';
   import { buildReadingTransferPackage, downloadReadingTransferPackage } from './assets/reading-transfer.js';
 
   // Make globally available
@@ -436,6 +437,19 @@
       const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
         ? await preparePhotoForStorage(photoInput.files[0])
         : null;
+      const photoPayload = preparedPhoto
+        ? await persistReadingPhoto(preparedPhoto, {
+            cycleId: workflowContext.openCycle.id,
+            meterId: meter.id,
+            readingId: existingReading?.id || `${workflowContext.openCycle.id}-${meter.id}`,
+            capturedAt: getCurrentDateTime()
+          })
+        : {
+            photo: existingReading?.photo || '',
+            photo_name: existingReading?.photo_name || '',
+            photo_storage_mode: existingReading?.photo_storage_mode || '',
+            photo_storage_path: existingReading?.photo_storage_path || ''
+          };
 
       if (Number.isNaN(readingValue)) {
         alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
@@ -462,8 +476,10 @@
         reading_value: readingValue,
         previous_reading: meter.last_reading ?? null,
         reading_date: getCurrentDateTime(),
-        photo: preparedPhoto ? preparedPhoto.dataUrl : (existingReading?.photo || ''),
-        photo_name: preparedPhoto ? preparedPhoto.name : (existingReading?.photo_name || ''),
+        photo: photoPayload.photo,
+        photo_name: photoPayload.photo_name,
+        photo_storage_mode: photoPayload.photo_storage_mode,
+        photo_storage_path: photoPayload.photo_storage_path,
         notes: notes,
         consumption: consumption,
         captured_by: capturedBy,
