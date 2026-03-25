@@ -1,10 +1,31 @@
 param(
     [string]$WorkbookPath = ".\ud\Utility Dash 9 Mar 2026.xlsm",
-    [string]$Password = "ud",
+    [PSCredential]$WorkbookCredential,
     [string]$OutputDir = ".\source-documents\03-extracted-outputs\utility-dash"
 )
 
 $ErrorActionPreference = 'Stop'
+
+function Get-WorkbookPassword {
+    param([PSCredential]$Credential)
+
+    if ($null -eq $Credential) {
+        return $null
+    }
+
+    return $Credential.GetNetworkCredential().Password
+}
+
+if ($null -eq $WorkbookCredential -and -not [string]::IsNullOrWhiteSpace($env:UTILITY_DASH_PASSWORD)) {
+    $securePassword = ConvertTo-SecureString -String $env:UTILITY_DASH_PASSWORD -AsPlainText -Force
+    $WorkbookCredential = New-Object System.Management.Automation.PSCredential ('utility-dash', $securePassword)
+}
+
+if ($null -eq $WorkbookCredential) {
+    throw "Workbook password required. Pass -WorkbookCredential or set UTILITY_DASH_PASSWORD before running this script."
+}
+
+$plainTextPassword = Get-WorkbookPassword -Credential $WorkbookCredential
 
 function Convert-CellValue {
     param(
@@ -235,7 +256,7 @@ try {
     $excel = New-Object -ComObject Excel.Application
     $excel.Visible = $false
     $excel.DisplayAlerts = $false
-    $workbook = $excel.Workbooks.Open($resolvedWorkbook.Path, 0, $true, 5, $Password)
+    $workbook = $excel.Workbooks.Open($resolvedWorkbook.Path, 0, $true, 5, $plainTextPassword)
 
     $buildingSheets = @($workbook.Worksheets | Where-Object { $supportSheetNames -notcontains $_.Name })
     $buildingExports = foreach ($sheet in $buildingSheets) {
@@ -248,7 +269,6 @@ try {
     $chargesPath = Join-Path $resolvedOutputDir 'utility-dash-charge-components.csv'
     $historyPath = Join-Path $resolvedOutputDir 'utility-dash-electricity-history.ndjson'
     $tariffsPath = Join-Path $resolvedOutputDir 'utility-dash-tariffs.json'
-    $settingsPath = Join-Path $resolvedOutputDir 'utility-dash-settings.json'
     $exportsPath = Join-Path $resolvedOutputDir 'utility-dash-export-sheets.json'
 
     $summaryRows = foreach ($building in $buildingExports) {
@@ -326,7 +346,6 @@ try {
     Write-NdjsonFile -Path $historyPath -Records $historyRecords
 
     @(Export-FlatSheet -Sheet $workbook.Worksheets.Item('Tariffs')) | ConvertTo-Json -Depth 4 | Set-Content -Path $tariffsPath -Encoding UTF8
-    @(Export-FlatSheet -Sheet $workbook.Worksheets.Item('Settings')) | ConvertTo-Json -Depth 4 | Set-Content -Path $settingsPath -Encoding UTF8
 
     $exportSheets = [PSCustomObject]@{
         wcu_output_rows = @(Export-FlatSheet -Sheet $workbook.Worksheets.Item('WCU Output'))

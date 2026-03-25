@@ -7,7 +7,6 @@ import {
     collection,
     deleteDoc,
     doc,
-    getDoc,
     getDocs,
     setDoc,
     writeBatch
@@ -140,12 +139,20 @@ export const storage = {
         const counts = {};
 
         for (const [entity, collectionName] of Object.entries(cloudEntityCollections)) {
-            const snapshot = await getDocs(collection(firebaseDb, collectionName));
-            const items = snapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
-            counts[entity] = items.length;
+            try {
+                const snapshot = await getDocs(collection(firebaseDb, collectionName));
+                const items = snapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
+                counts[entity] = items.length;
 
-            if (items.length > 0 || options.clearMissing === true) {
-                writeEntityToLocalCache(entity, items);
+                if (items.length > 0 || options.clearMissing === true) {
+                    writeEntityToLocalCache(entity, items);
+                }
+            } catch (error) {
+                if (error?.code === 'permission-denied') {
+                    throw new Error(`Firestore read denied for ${collectionName}. Ensure the Firestore rules allow access to this collection and that the signed-in user has a users/{uid} profile.`);
+                }
+
+                throw error;
             }
         }
 
@@ -196,15 +203,6 @@ export const storage = {
         });
 
         await commitChunkedBatch(operations);
-    },
-
-    async getMeterHistory(meterId) {
-        if (!isFirebaseConfigured()) {
-            return null;
-        }
-
-        const snapshot = await getDoc(doc(firebaseDb, firebaseCollections.meterHistory, meterId));
-        return snapshot.exists() ? { id: snapshot.id, ...snapshot.data() } : null;
     },
 
     queueCloudUpsert(entity, item) {

@@ -1,0 +1,114 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function userDocPath() {
+      return /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+
+    function userDoc() {
+      return get(userDocPath());
+    }
+
+    function userProfileExists() {
+      return isSignedIn() && exists(userDocPath());
+    }
+
+    function isActiveUser() {
+      return userProfileExists() && userDoc().data.status == 'active';
+    }
+
+    function isAdmin() {
+      return isActiveUser() && userDoc().data.role == 'admin';
+    }
+
+    function isFieldWorker() {
+      return isActiveUser() && (
+        userDoc().data.role == 'field_worker' ||
+        userDoc().data.role == 'admin'
+      );
+    }
+
+    function isViewerOrBetter() {
+      return isActiveUser() && (
+        userDoc().data.role == 'viewer' ||
+        userDoc().data.role == 'field_worker' ||
+        userDoc().data.role == 'admin'
+      );
+    }
+
+    function isOwnUserDoc(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function createsOwnViewerProfile(userId) {
+      return isOwnUserDoc(userId)
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.role == 'viewer'
+        && request.resource.data.status == 'active';
+    }
+
+    match /schemes/{schemeId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
+    match /buildings/{buildingId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
+    match /units/{unitId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
+    match /meters/{meterId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
+    match /cycles/{cycleId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
+    match /cycle_schedules/{scheduleId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
+    match /readings/{readingId} {
+      allow read: if isViewerOrBetter();
+      allow create, update: if isFieldWorker();
+      allow delete: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if isAdmin() || isOwnUserDoc(userId);
+      allow create: if isAdmin() || createsOwnViewerProfile(userId);
+      allow update: if isAdmin() || (
+        isOwnUserDoc(userId)
+        && isActiveUser()
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.status == resource.data.status
+      );
+      allow delete: if false;
+    }
+
+    match /activities/{activityId} {
+      allow read: if isAdmin();
+      allow create: if isActiveUser()
+        && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

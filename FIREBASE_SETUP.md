@@ -143,6 +143,11 @@ service cloud.firestore {
 			allow write: if isAdmin();
 		}
 
+		match /cycle_schedules/{scheduleId} {
+			allow read: if isViewerOrBetter();
+			allow write: if isAdmin();
+		}
+
 		match /readings/{readingId} {
 			allow read: if isViewerOrBetter();
 			allow create, update: if isFieldWorker();

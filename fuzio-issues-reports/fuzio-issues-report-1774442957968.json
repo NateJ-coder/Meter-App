@@ -1,0 +1,27 @@
+{
+  "report_title": "Fuzio System Health Report",
+  "generated_at": "2026-03-25T12:49:17.958Z",
+  "generated_by": "admin@fuzio.co",
+  "summary": {
+    "total_issues": 0,
+    "critical_errors": 0,
+    "warnings": 0,
+    "informational": 0
+  },
+  "system_stats": {
+    "schemes": 23,
+    "meters": 1047,
+    "readings": 6,
+    "cycles": 1,
+    "users": 1,
+    "storage_usage_kb": "1581.01"
+  },
+  "issues_detail": [],
+  "recommendations": [
+    {
+      "for_issue": "General",
+      "recommendation": "System is healthy. Continue monitoring regularly.",
+      "action": "No action required"
+    }
+  ]
+}

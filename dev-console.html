@@ -115,6 +115,7 @@
     <script type="module">
         import { storage } from './assets/storage.js';
         import { auth } from './assets/auth.js';
+        import { setupHealth } from './assets/setup-health.js';
         import { validation } from './assets/validation.js';
 
         auth.initializeDefaultAdmin();
@@ -154,6 +155,7 @@
             const meters = storage.getAll('meters');
             const readings = storage.getAll('readings');
             const cycles = storage.getAll('cycles');
+            const setupStatus = setupHealth.getHealthStatus();
 
             // Data integrity checks
             const issues = [];
@@ -233,6 +235,22 @@
                     details: 'Monitor storage usage regularly. Export backups and consider data cleanup.'
                 });
             }
+
+            setupStatus.issues.forEach(issue => {
+                issues.push({
+                    severity: issue.severity === 'high' ? 'error' : 'warning',
+                    message: issue.message,
+                    details: issue.action || 'Review setup health details on the dashboard.'
+                });
+            });
+
+            setupStatus.warnings.forEach(warning => {
+                issues.push({
+                    severity: warning.severity === 'medium' ? 'warning' : 'info',
+                    message: warning.message,
+                    details: warning.action || 'Review setup health details on the dashboard.'
+                });
+            });
 
             const container = document.getElementById('health-dashboard');
             
@@ -569,9 +587,25 @@
         // Export Issues Report
         window.exportIssuesReport = function() {
             const issues = window.currentIssues || [];
+            const setupStatus = setupHealth.getHealthStatus();
+            const setupIssues = [
+                ...setupStatus.issues.map((issue) => ({
+                    severity: issue.severity === 'high' ? 'error' : 'warning',
+                    message: issue.message,
+                    details: issue.action || 'Review setup data'
+                })),
+                ...setupStatus.warnings.map((warning) => ({
+                    severity: warning.severity === 'medium' ? 'warning' : 'info',
+                    message: warning.message,
+                    details: warning.action || 'Review setup data'
+                }))
+            ];
+            const allIssues = [...issues, ...setupIssues];
             
             // Gather system info
             const schemes = storage.getAll('schemes');
+            const buildings = storage.getAll('buildings');
+            const units = storage.getAll('units');
             const meters = storage.getAll('meters');
             const readings = storage.getAll('readings');
             const cycles = storage.getAll('cycles');
@@ -582,27 +616,37 @@
                 generated_at: new Date().toISOString(),
                 generated_by: currentUser.email,
                 summary: {
-                    total_issues: issues.length,
-                    critical_errors: issues.filter(i => i.severity === 'error').length,
-                    warnings: issues.filter(i => i.severity === 'warning').length,
-                    informational: issues.filter(i => i.severity === 'info').length
+                    total_issues: allIssues.length,
+                    critical_errors: allIssues.filter(i => i.severity === 'error').length,
+                    warnings: allIssues.filter(i => i.severity === 'warning').length,
+                    informational: allIssues.filter(i => i.severity === 'info').length
                 },
                 system_stats: {
                     schemes: schemes.length,
+                    buildings: buildings.length,
+                    units: units.length,
                     meters: meters.length,
+                    bulk_meters: meters.filter(m => m.meter_type === 'BULK').length,
                     readings: readings.length,
                     cycles: cycles.length,
                     users: users.length,
                     storage_usage_kb: (new Blob([JSON.stringify(localStorage)]).size / 1024).toFixed(2)
                 },
-                issues_detail: issues.map((issue, index) => ({
+                setup_health: {
+                    overall: setupStatus.overall,
+                    issues: setupStatus.issues,
+                    warnings: setupStatus.warnings,
+                    successes: setupStatus.successes,
+                    stats: setupStatus.stats
+                },
+                issues_detail: allIssues.map((issue, index) => ({
                     issue_number: index + 1,
                     severity: issue.severity.toUpperCase(),
                     message: issue.message,
                     details: issue.details || 'N/A',
                     detected_at: new Date().toISOString()
                 })),
-                recommendations: generateRecommendations(issues)
+                recommendations: generateRecommendations(allIssues)
             };
 
             // Export as JSON
@@ -614,7 +658,7 @@
             a.click();
             URL.revokeObjectURL(url);
 
-            alert(`Issues report exported!\n\nTotal Issues: ${issues.length}\n- Errors: ${report.summary.critical_errors}\n- Warnings: ${report.summary.warnings}\n- Info: ${report.summary.informational}`);
+            alert(`Issues report exported!\n\nTotal Issues: ${allIssues.length}\n- Errors: ${report.summary.critical_errors}\n- Warnings: ${report.summary.warnings}\n- Info: ${report.summary.informational}`);
         };
 
         // Generate recommendations based on issues

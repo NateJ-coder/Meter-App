@@ -11,32 +11,29 @@ export const setupHealth = {
      * Get comprehensive setup health status
      */
     getHealthStatus(schemeId = null) {
-        // If no schemeId provided, use the first scheme
-        if (!schemeId) {
-            const schemes = storage.getAll('schemes');
-            if (schemes.length === 0) {
-                return {
-                    overall: 'none',
-                    issues: [],
-                    warnings: [],
-                    successes: [],
-                    stats: { schemes: 0, buildings: 0, units: 0, meters: 0 }
-                };
-            }
-            schemeId = schemes[0].id;
+        const schemes = storage.getAll('schemes');
+        if (schemes.length === 0) {
+            return {
+                overall: 'none',
+                issues: [],
+                warnings: [],
+                successes: [],
+                stats: { schemes: 0, buildings: 0, units: 0, meters: 0 }
+            };
         }
+
+        const schemeIds = schemeId ? [schemeId] : schemes.map((scheme) => scheme.id);
 
         const issues = [];
         const warnings = [];
         const successes = [];
 
         // Get all data
-        const scheme = storage.get('schemes', schemeId);
-        const buildings = storage.getAll('buildings').filter(b => b.scheme_id === schemeId);
+        const buildings = storage.getAll('buildings').filter(b => schemeIds.includes(b.scheme_id));
         const units = storage.getAll('units').filter(u => 
             buildings.some(b => b.id === u.building_id)
         );
-        const meters = storage.getAll('meters').filter(m => m.scheme_id === schemeId);
+        const meters = storage.getAll('meters').filter(m => schemeIds.includes(m.scheme_id));
         const bulkMeters = meters.filter(m => m.meter_type === 'BULK');
         const unitMeters = meters.filter(m => m.meter_type === 'UNIT');
 
@@ -62,7 +59,7 @@ export const setupHealth = {
         }
 
         // Check 2: Duplicate meter numbers
-        const duplicates = validation.checkDuplicateMeters(schemeId);
+        const duplicates = schemeIds.flatMap((currentSchemeId) => validation.checkDuplicateMeters(currentSchemeId));
         if (duplicates.length > 0) {
             issues.push({
                 type: 'duplicate-meters',
@@ -114,7 +111,7 @@ export const setupHealth = {
         }
 
         // Check 5: Open cycle readiness
-        const cycles = storage.getAll('cycles').filter(c => c.scheme_id === schemeId);
+        const cycles = storage.getAll('cycles').filter(c => schemeIds.includes(c.scheme_id));
         const openCycle = cycles.find(c => c.status === 'OPEN');
 
         if (openCycle && issues.length > 0) {
@@ -159,7 +156,7 @@ export const setupHealth = {
             warnings,
             successes,
             stats: {
-                schemes: 1,
+                schemes: schemeIds.length,
                 buildings: buildings.length,
                 units: units.length,
                 meters: meters.length

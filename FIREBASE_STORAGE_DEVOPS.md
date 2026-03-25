@@ -4,7 +4,7 @@
 
 - The `Buildings` archive is approximately 8,201 files and about 1.2 GB.
 - The `ud` workbook footprint is about 7.4 MB.
-- Utility Dash structured master data is small enough for Firestore: 23 schemes and 1,123 meter history documents.
+- Utility Dash structured exports remain reference material under `source-documents` and are not part of app storage.
 - New reading photos are now configured to upload to Firebase Storage when the bucket is available, with local fallback if the upload fails.
 
 ## Recommended data placement
@@ -17,11 +17,11 @@
   - cycles
   - readings
   - cycle schedules
-  - meter history documents
-  - import audit records
 - Firebase Storage:
   - meter photo evidence captured from the app
   - future scanned sheets, dispute evidence, and bulk archive uploads
+- Reference files outside app storage:
+  - Utility Dash exports in `source-documents/03-extracted-outputs/utility-dash`
 
 ## Capacity view
 
@@ -44,7 +44,6 @@ Use this logical prefix structure:
 
 - `reading-evidence/{cycleId}/{meterId}/{readingId}-{filename}`
 - `archive/{schemeSlug}/{year}/{month}/{filename}`
-- `imports/utility-dash/{timestamp}/{filename}`
 
 ## Rules guidance
 
@@ -61,6 +60,7 @@ Use this logical prefix structure:
 
 ## Immediate recommendation
 
-- Use Firestore for imported Utility Dash master data and historical meter timelines.
+- Keep Utility Dash outside the app runtime and use it only as a reference source for export design, flags, and historical comparison.
+- Use Firestore for app-native schemes, buildings, units, meters, cycles, and readings.
 - Use Firebase Storage for all new photo evidence from the app.
 - Plan a Blaze-tier upgrade before bulk-loading the full long-term evidence archive or before rolling this out across the full portfolio.

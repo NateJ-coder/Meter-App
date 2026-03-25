@@ -4,7 +4,6 @@
 
 import { storage } from './storage.js';
 import { showNotification, confirmAction, parseDecimalInput } from './app.js';
-import { getMeterHistoryForMeter, syncUtilityDashDataset } from './utility-dash-service.js';
 
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -57,12 +56,21 @@ function renderDataSyncPanel(message = '') {
     const buildings = storage.getBuildings().length;
     const units = storage.getUnits().length;
     const meters = storage.getMeters().length;
+    const importedSchemes = storage.getSchemes().filter((scheme) => scheme.imported_from === 'utility_dash').length;
+    const importedMeters = storage.getMeters().filter((meter) => meter.imported_from === 'utility_dash').length;
 
     panel.innerHTML = `
         <div class="info-box">
             <strong>Current cache</strong><br>
             Schemes: ${schemes} | Buildings: ${buildings} | Units: ${units} | Meters: ${meters}<br>
-            <span class="text-muted">Master data is mirrored locally for fast page loads. Historical meter timelines stay in Firebase and are fetched on demand.</span>
+            <span class="text-muted">App data is mirrored locally for fast page loads and synced with Firebase when available. Utility Dash exports stay in source-documents as reference material and are not imported into app storage.</span>
+            ${importedSchemes > 0 || importedMeters > 0 ? `
+                <div class="mt-2">
+                    <strong>Reference import residue detected</strong><br>
+                    Schemes from Utility Dash: ${importedSchemes} | Meters from Utility Dash: ${importedMeters}<br>
+                    <button class="btn btn-danger mt-2" type="button" onclick="purgeUtilityDashImports()">Remove Utility Dash From App Data</button>
+                </div>
+            ` : ''}
             ${message ? `<div class="mt-2">${message}</div>` : ''}
         </div>
     `;
@@ -76,23 +84,39 @@ window.refreshCloudMasterData = async function() {
         showNotification('Master data refreshed from Firebase');
     } catch (error) {
         console.error(error);
-        renderDataSyncPanel('Refresh failed. Check Firebase connectivity and permissions.');
+        const isPermissionError = String(error?.message || '').toLowerCase().includes('firestore read denied');
+        renderDataSyncPanel(
+            isPermissionError
+                ? 'Refresh failed because Firestore denied collection reads. Check the users/{uid} profile and deploy the Firestore rules that include cycle_schedules.'
+                : 'Refresh failed. Check Firebase connectivity and permissions.'
+        );
         showNotification(`Refresh failed: ${error.message}`);
     }
 };
 
-window.syncUtilityDashMasterData = async function() {
-    renderDataSyncPanel('Importing Utility Dash data into Firebase. This can take a minute for the full history set.');
+window.purgeUtilityDashImports = async function() {
+    if (!confirmAction('Remove all Utility Dash-imported schemes, buildings, units, and meters from app storage and Firebase?')) {
+        return;
+    }
 
     try {
-        const summary = await syncUtilityDashDataset();
-        loadTabData(document.querySelector('.tab-btn.active')?.dataset.tab || 'meters');
-        renderDataSyncPanel(`Imported Utility Dash to Firebase. Schemes: ${summary.schemes}, Units: ${summary.units}, Meters: ${summary.meters}, History docs: ${summary.histories}.`);
-        showNotification('Utility Dash master data imported to Firebase');
+        await storage.replaceOperationalData({
+            schemes: storage.getSchemes().filter((scheme) => scheme.imported_from !== 'utility_dash'),
+            buildings: storage.getBuildings().filter((building) => building.imported_from !== 'utility_dash'),
+            units: storage.getUnits().filter((unit) => unit.imported_from !== 'utility_dash'),
+            meters: storage.getMeters().filter((meter) => meter.imported_from !== 'utility_dash'),
+            cycles: storage.getAll('cycles'),
+            readings: storage.getAll('readings'),
+            cycle_schedules: storage.getAll('cycle_schedules')
+        }, { pushToCloud: true });
+
+        loadTabData(document.querySelector('.tab-btn.active')?.dataset.tab || 'schemes');
+        renderDataSyncPanel('Utility Dash imported records were removed from app storage. Reference files in source-documents were left untouched.');
+        showNotification('Utility Dash app data removed');
     } catch (error) {
         console.error(error);
-        renderDataSyncPanel('Utility Dash import failed. Ensure the app is served from the repo root and Firebase permissions are available.');
-        showNotification(`Import failed: ${error.message}`);
+        renderDataSyncPanel('Failed to remove Utility Dash imported records. Check Firebase permissions and retry.');
+        showNotification(`Cleanup failed: ${error.message}`);
     }
 };
 
@@ -102,6 +126,30 @@ window.closeMeterHistoryModal = function() {
         root.innerHTML = '';
     }
 };
+
+function getCycleHistoryLabel(cycleId) {
+    const cycle = storage.get('cycles', cycleId);
+    if (!cycle) {
+        return 'Ad hoc reading';
+    }
+
+    return cycle.name || `${cycle.start_date || 'Unknown start'} to ${cycle.end_date || 'Unknown end'}`;
+}
+
+function getReadingHistoryForMeter(meterId) {
+    return storage.getAll('readings')
+        .filter((reading) => reading.meter_id === meterId)
+        .sort((readingA, readingB) => {
+            const timestampA = new Date(
+                readingA.reading_date || readingA.updated_at || readingA.created_at || 0
+            ).getTime();
+            const timestampB = new Date(
+                readingB.reading_date || readingB.updated_at || readingB.created_at || 0
+            ).getTime();
+
+            return timestampB - timestampA;
+        });
+}
 
 window.viewMeterHistory = async function(meterId) {
     const root = document.getElementById('meter-history-modal-root');
@@ -118,51 +166,51 @@ window.viewMeterHistory = async function(meterId) {
                     <button class="close-btn" onclick="closeMeterHistoryModal()">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-muted">Loading historical data for ${meter.source_unit_label || meter.meter_number}...</p>
+                    <p class="text-muted">Loading captured app readings for ${meter.meter_number}...</p>
                 </div>
             </div>
         </div>
     `;
 
     try {
-        const history = await getMeterHistoryForMeter(meterId);
-        const rows = Array.isArray(history?.readings) ? history.readings.slice(-24).reverse() : [];
+        const history = getReadingHistoryForMeter(meterId);
+        const rows = history.slice(0, 24);
 
         root.innerHTML = `
             <div class="modal-overlay" onclick="closeMeterHistoryModal()">
                 <div class="modal-content reading-modal" onclick="event.stopPropagation()">
                     <div class="modal-header">
-                        <h2>${meter.source_unit_label || meter.meter_number}</h2>
+                        <h2>${meter.meter_number}</h2>
                         <button class="close-btn" onclick="closeMeterHistoryModal()">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="info-box">
                             <strong>Meter</strong>: ${meter.meter_number}<br>
                             <strong>Last reading</strong>: ${meter.last_reading || 0} kWh<br>
-                            <strong>History entries</strong>: ${history?.history_entry_count || meter.history_entry_count || 0}
+                            <strong>Captured readings</strong>: ${history.length}
                         </div>
-                        ${rows.length === 0 ? '<p class="text-muted mt-2">No remote history was found for this meter yet.</p>' : `
+                        ${rows.length === 0 ? '<p class="text-muted mt-2">No app readings have been captured for this meter yet.</p>' : `
                             <table class="data-table mt-2">
                                 <thead>
                                     <tr>
                                         <th>Date</th>
-                                        <th>Label</th>
+                                        <th>Cycle</th>
                                         <th>Reading</th>
-                                        <th>Tariff</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     ${rows.map((entry) => `
                                         <tr>
-                                            <td>${entry.reading_date || entry.source_reading_date || 'N/A'}</td>
-                                            <td>${entry.reading_label || 'N/A'}</td>
+                                            <td>${entry.reading_date || entry.updated_at || entry.created_at || 'N/A'}</td>
+                                            <td>${getCycleHistoryLabel(entry.cycle_id)}</td>
                                             <td>${entry.reading_value ?? 'N/A'}</td>
-                                            <td>${entry.tariff_table || 'N/A'}</td>
+                                            <td>${entry.review_status || 'pending'}</td>
                                         </tr>
                                     `).join('')}
                                 </tbody>
                             </table>
-                            <p class="text-muted mt-2">Showing the latest ${rows.length} historical entries from Firebase.</p>
+                            <p class="text-muted mt-2">Showing the latest ${rows.length} captured readings stored by this app.</p>
                         `}
                     </div>
                 </div>
@@ -178,7 +226,7 @@ window.viewMeterHistory = async function(meterId) {
                         <button class="close-btn" onclick="closeMeterHistoryModal()">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p class="text-muted">Unable to load historical data. Check Firebase connectivity and rules.</p>
+                        <p class="text-muted">Unable to load meter history from app records.</p>
                     </div>
                 </div>
             </div>

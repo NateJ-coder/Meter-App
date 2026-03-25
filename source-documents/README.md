@@ -169,6 +169,10 @@ Two extraction scripts are now available in `scripts`:
 - `export-utility-dash.ps1` opens the password-protected Utility Dash workbook and exports normalized JSON/CSV into `03-extracted-outputs/utility-dash`.
 - `inventory-buildings-archive.ps1` creates a filename-based relevance inventory for the `Buildings` archive in `03-extracted-outputs/buildings-archive`.
 
+Utility Dash output is reference-only.
+Use it to compare current flags, inspect historical readings, and mirror export formatting in the app.
+Do not import raw Utility Dash structures into app storage or Firebase collections.
+
 Recommended run order:
 
 1. Run the Utility Dash exporter to stage scheme and latest-reading data.
