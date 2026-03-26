@@ -54,6 +54,7 @@ Expected future outputs include:
 - extraction-notes.md
 - unresolved-items.md
 - utility-dash-import.json
+- utility-dash-meter-register.csv
 - utility-dash-summary.csv
 - utility-dash-latest-electricity-readings.csv
 - buildings-archive-inventory.csv
@@ -168,6 +169,8 @@ Two extraction scripts are now available in `scripts`:
 
 - `export-utility-dash.ps1` opens the password-protected Utility Dash workbook and exports normalized JSON/CSV into `03-extracted-outputs/utility-dash`.
 - `inventory-buildings-archive.ps1` creates a filename-based relevance inventory for the `Buildings` archive in `03-extracted-outputs/buildings-archive`.
+
+The Utility Dash export now classifies electricity rows as `UNIT`, `COMMON`, or `BULK` and emits a `utility-dash-meter-register.csv` crosswalk so scheme-level common-property and bulk relationships can be reviewed before any manual capture or mapping work.
 
 Utility Dash output is reference-only.
 Use it to compare current flags, inspect historical readings, and mirror export formatting in the app.

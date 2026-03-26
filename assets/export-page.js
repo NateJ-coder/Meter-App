@@ -490,8 +490,12 @@ function loadSchemeSummaryPreview() {
                     <td>${schemeStats.sumUnitsKWh.toFixed(2)} kWh</td>
                 </tr>
                 <tr>
-                    <td><strong>Common Area kWh</strong></td>
+                    <td><strong>Common Property Meter kWh</strong></td>
                     <td>${schemeStats.commonKWh.toFixed(2)} kWh</td>
+                </tr>
+                <tr>
+                    <td><strong>Unexplained Losses kWh</strong></td>
+                    <td>${schemeStats.unexplainedLossesKWh.toFixed(2)} kWh</td>
                 </tr>
                 <tr>
                     <td><strong>Losses %</strong></td>
@@ -500,8 +504,8 @@ function loadSchemeSummaryPreview() {
             </tbody>
         </table>
         <p class="text-muted mt-2">
-            <strong>Common kWh</strong> = Bulk kWh - Sum of Units kWh<br>
-            Represents common area consumption, electrical losses, meter drift, or missing/estimated reads.
+            <strong>Residual losses</strong> = Bulk kWh - Unit kWh - Common property kWh<br>
+            Common property usage now comes from actual common meters where they exist.
         </p>
     `;
 }

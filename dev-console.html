@@ -690,6 +690,14 @@
                     });
                 }
 
+                if (issue.message.includes('No common property meter registered')) {
+                    recommendations.push({
+                        for_issue: issue.message,
+                        recommendation: 'Register common property meters separately so shared-area usage is measured directly instead of being inferred from the bulk residual.',
+                        action: 'Create common property meters in the Meter Register'
+                    });
+                }
+
                 if (issue.message.includes('no initial reading')) {
                     recommendations.push({
                         for_issue: issue.message,

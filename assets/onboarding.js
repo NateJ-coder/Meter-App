@@ -282,11 +282,12 @@ export const onboarding = {
 
         const bulkMeters = meters.filter(m => m.meter_type === 'BULK');
         const unitMeters = meters.filter(m => m.meter_type === 'UNIT');
+            const commonMeters = meters.filter(m => m.meter_type === 'COMMON');
 
         return `
             <div class="step-content">
                 <h2>Register Meters</h2>
-                <p>Link physical meters to your units. Start with the bulk meter, then add unit meters.</p>
+                <p>Link physical meters to your units. Register bulk supply, common-property, and unit meters so reconciliation works correctly.</p>
 
                 ${meters.length > 0 ? `
                     <div class="existing-items">
@@ -297,6 +298,12 @@ export const onboarding = {
                                 ${bulkMeters.map(m => `<li>✓ ${m.meter_number}</li>`).join('')}
                             </ul>
                         ` : ''}
+                            ${commonMeters.length > 0 ? `
+                                <h4>Common Property Meters (${commonMeters.length})</h4>
+                                <ul>
+                                    ${commonMeters.map(m => `<li>✓ ${m.meter_number}</li>`).join('')}
+                                </ul>
+                            ` : ''}
                         ${unitMeters.length > 0 ? `
                             <h4>Unit Meters (${unitMeters.length})</h4>
                             <ul>
@@ -323,6 +330,21 @@ export const onboarding = {
                                 <input type="text" id="bulk-meter-reading" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="0 or 1450.5">
                             </div>
                             <button type="submit" class="btn btn-secondary">+ Add Bulk Meter</button>
+                        </form>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Common Property Meters</h3>
+                        <form id="common-meter-form" onsubmit="return onboarding.handleCommonMeterSubmit(event)">
+                            <div class="form-group">
+                                <label for="common-meter-number">Meter Number *</label>
+                                <input type="text" id="common-meter-number" required placeholder="e.g., COM-2024-001">
+                            </div>
+                            <div class="form-group">
+                                <label for="common-meter-reading">Initial Reading</label>
+                                <input type="text" id="common-meter-reading" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="0 or 1450.5">
+                            </div>
+                            <button type="submit" class="btn btn-secondary">+ Add Common Property Meter</button>
                         </form>
                     </div>
 
@@ -368,6 +390,7 @@ export const onboarding = {
         
         const bulkMeters = meters.filter(m => m.meter_type === 'BULK');
         const unitMeters = meters.filter(m => m.meter_type === 'UNIT');
+        const commonMeters = meters.filter(m => m.meter_type === 'COMMON');
         
         // Calculate setup health
         const unitsWithoutMeters = units.filter(unit => 
@@ -408,6 +431,10 @@ export const onboarding = {
                             <div class="stat-value">${unitMeters.length}</div>
                             <div class="stat-label">Unit Meters</div>
                         </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">${commonMeters.length}</div>
+                                    <div class="stat-label">Common Property Meters</div>
+                                </div>
                     </div>
 
                     ${unitsWithoutMeters.length > 0 ? `
@@ -453,6 +480,17 @@ export const onboarding = {
                             <strong>✓ Bulk meter registered</strong>
                         </div>
                     `}
+                            ${commonMeters.length === 0 ? `
+                                <div class="readiness-issue warning">
+                                    <strong>⚠ No common property meter registered</strong>
+                                    <p>You need at least one common property meter so shared-area usage is measured directly.</p>
+                                    <button class="btn btn-secondary" onclick="onboarding.goToStep(4)">← Go Back to Add Common Property Meter</button>
+                                </div>
+                            ` : `
+                                <div class="readiness-issue success">
+                                    <strong>✓ Common property meter registered</strong>
+                                </div>
+                            `}
                 </div>
 
                 ${isReady ? '<p class="text-success">✓ Your setup is complete! Ready to open your first reading cycle.</p>' : '<p class="text-warning">⚠ Please resolve the issues above before proceeding.</p>'}
@@ -722,6 +760,39 @@ export const onboarding = {
         document.getElementById('bulk-meter-number').value = '';
         document.getElementById('bulk-meter-reading').value = '';
         
+        return false;
+    },
+    handleCommonMeterSubmit(event) {
+        event.preventDefault();
+
+        const commonReadingInput = document.getElementById('common-meter-reading');
+        const commonReading = commonReadingInput.value.trim() === '' ? 0 : parseDecimalInput(commonReadingInput.value);
+
+        if (Number.isNaN(commonReading)) {
+            alert('Please enter a valid common property meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
+            commonReadingInput.focus();
+            return false;
+        }
+
+        const schemeId = storage.getAll('schemes')[0].id;
+        const meter = {
+            scheme_id: schemeId,
+            meter_number: document.getElementById('common-meter-number').value,
+            meter_type: 'COMMON',
+            last_reading: commonReading
+        };
+
+        storage.create('meters', meter);
+
+        const state = this.getState();
+        state.metersRegistered = true;
+        this.setState(state);
+
+        this.renderWizard('onboarding-container');
+
+        document.getElementById('common-meter-number').value = '';
+        document.getElementById('common-meter-reading').value = '';
+
         return false;
     },
 

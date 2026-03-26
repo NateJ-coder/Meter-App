@@ -35,7 +35,9 @@ export const setupHealth = {
         );
         const meters = storage.getAll('meters').filter(m => schemeIds.includes(m.scheme_id));
         const bulkMeters = meters.filter(m => m.meter_type === 'BULK');
+        const commonMeters = meters.filter(m => m.meter_type === 'COMMON');
         const unitMeters = meters.filter(m => m.meter_type === 'UNIT');
+        const scopedSchemes = schemes.filter(scheme => schemeIds.includes(scheme.id));
 
         // Check 1: Units without meters
         const unitsWithoutMeters = units.filter(unit => 
@@ -77,23 +79,51 @@ export const setupHealth = {
             });
         }
 
-        // Check 3: Bulk meter presence
-        if (bulkMeters.length === 0) {
+        // Check 3: Bulk meter presence per scheme
+        const schemesWithoutBulkMeters = scopedSchemes.filter(scheme =>
+            !bulkMeters.some(meter => meter.scheme_id === scheme.id)
+        );
+
+        if (schemesWithoutBulkMeters.length > 0) {
             warnings.push({
                 type: 'no-bulk-meter',
                 severity: 'medium',
-                message: 'No bulk meter registered',
+                message: `No bulk meter registered for ${schemesWithoutBulkMeters.length} scheme${schemesWithoutBulkMeters.length > 1 ? 's' : ''}`,
+                count: schemesWithoutBulkMeters.length,
+                details: schemesWithoutBulkMeters.map(scheme => scheme.name),
                 action: 'Add a bulk meter to track total consumption',
                 link: 'meters.html'
             });
         } else {
             successes.push({
                 type: 'bulk-meter-exists',
-                message: `${bulkMeters.length} bulk meter${bulkMeters.length > 1 ? 's' : ''} registered`
+                message: `${bulkMeters.length} bulk meter${bulkMeters.length > 1 ? 's' : ''} registered across ${scopedSchemes.length} scheme${scopedSchemes.length > 1 ? 's' : ''}`
             });
         }
 
-        // Check 4: Buildings without units
+        // Check 4: Common property meter presence per scheme
+        const schemesWithoutCommonMeters = scopedSchemes.filter(scheme =>
+            !commonMeters.some(meter => meter.scheme_id === scheme.id)
+        );
+
+        if (schemesWithoutCommonMeters.length > 0) {
+            warnings.push({
+                type: 'no-common-meter',
+                severity: 'medium',
+                message: `No common property meter registered for ${schemesWithoutCommonMeters.length} scheme${schemesWithoutCommonMeters.length > 1 ? 's' : ''}`,
+                count: schemesWithoutCommonMeters.length,
+                details: schemesWithoutCommonMeters.map(scheme => scheme.name),
+                action: 'Add common property meters for shared-area consumption',
+                link: 'meters.html'
+            });
+        } else if (commonMeters.length > 0) {
+            successes.push({
+                type: 'common-meter-exists',
+                message: `${commonMeters.length} common property meter${commonMeters.length > 1 ? 's' : ''} registered`
+            });
+        }
+
+        // Check 5: Buildings without units
         const buildingsWithoutUnits = buildings.filter(building =>
             !units.some(u => u.building_id === building.id)
         );
@@ -110,7 +140,7 @@ export const setupHealth = {
             });
         }
 
-        // Check 5: Open cycle readiness
+        // Check 6: Open cycle readiness
         const cycles = storage.getAll('cycles').filter(c => schemeIds.includes(c.scheme_id));
         const openCycle = cycles.find(c => c.status === 'OPEN');
 
@@ -124,7 +154,7 @@ export const setupHealth = {
             });
         }
 
-        // Check 6: Meters without initial readings
+        // Check 7: Meters without initial readings
         const metersWithoutInitialReadings = meters.filter(m => 
             m.last_reading == null || m.last_reading === 0
         );

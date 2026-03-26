@@ -190,6 +190,7 @@ export function getCycleExportLayout(cycleId, filters = {}) {
         .slice()
         .sort((meterA, meterB) => sortByName(meterA.meter_number, meterB.meter_number));
     const bulkMeters = allMeters.filter(meter => meter.meter_type === 'BULK');
+    const commonMeters = allMeters.filter(meter => meter.meter_type === 'COMMON');
 
     const readings = storage.getReadings(cycle.id);
     const latestReadingsByMeter = buildLatestReadingsMap(readings);
@@ -249,9 +250,17 @@ export function getCycleExportLayout(cycleId, filters = {}) {
         }
     });
 
+    let commonMeterKWh = 0;
+    commonMeters.forEach(commonMeter => {
+        const reading = latestReadingsByMeter.get(commonMeter.id);
+        if (reading?.consumption != null) {
+            commonMeterKWh += Number(reading.consumption) || 0;
+        }
+    });
+
     const sumUnitsKWh = sumConsumptions(unitEntries.flatMap(unit => unit.meters));
-    const commonKWh = bulkKWh - sumUnitsKWh;
-    const lossesPercent = bulkKWh > 0 ? (commonKWh / bulkKWh) * 100 : 0;
+    const unexplainedLossesKWh = bulkKWh - (sumUnitsKWh + commonMeterKWh);
+    const lossesPercent = bulkKWh > 0 ? (unexplainedLossesKWh / bulkKWh) * 100 : 0;
     const totalUnitMeters = unitEntries.reduce((total, unit) => total + unit.meterCount, 0);
     const readingsCaptured = unitEntries.reduce((total, unit) => total + unit.readCount, 0);
     const flaggedReadings = unitEntries.reduce((total, unit) => total + unit.flaggedCount, 0);
@@ -268,7 +277,10 @@ export function getCycleExportLayout(cycleId, filters = {}) {
         totalConsumption: sumUnitsKWh,
         bulkKWh,
         sumUnitsKWh,
-        commonKWh,
+        commonKWh: commonMeterKWh,
+        totalBulkMeters: bulkMeters.length,
+        totalCommonMeters: commonMeters.length,
+        unexplainedLossesKWh,
         lossesPercent,
         completionRate: totalUnitMeters > 0 ? (readingsCaptured / totalUnitMeters) * 100 : 0
     };

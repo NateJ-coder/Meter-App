@@ -355,26 +355,37 @@ export const validation = {
         const meters = storage.getMeters(cycle.scheme_id);
         const readings = storage.getReadings(cycleId);
         
-        // Get bulk meter reading
-        const bulkMeter = meters.find(m => m.meter_type === 'BULK');
-        if (!bulkMeter) return null; // No bulk meter, can't reconcile
-        
-        const bulkReading = readings.find(r => r.meter_id === bulkMeter.id);
-        if (!bulkReading || bulkReading.consumption == null) return null;
-        
-        const bulk_kWh = bulkReading.consumption;
-        
-        // Sum all unit meter consumptions
+        const bulkMeterIds = meters
+            .filter(m => m.meter_type === 'BULK')
+            .map(meter => meter.id);
+        if (bulkMeterIds.length === 0) return null;
+
+        const readingByMeterId = new Map(readings.map(reading => [reading.meter_id, reading]));
+        const bulk_kWh = bulkMeterIds.reduce((total, meterId) => {
+            const reading = readingByMeterId.get(meterId);
+            return total + (reading?.consumption != null ? reading.consumption : 0);
+        }, 0);
+        if (bulk_kWh === 0) return null;
+
         let sum_units_kWh = 0;
+        let common_meter_kWh = 0;
         readings.forEach(reading => {
             const meter = storage.get('meters', reading.meter_id);
-            if (meter && meter.meter_type === 'UNIT' && reading.consumption != null) {
+            if (!meter || reading.consumption == null) {
+                return;
+            }
+
+            if (meter.meter_type === 'UNIT') {
                 sum_units_kWh += reading.consumption;
             }
+
+            if (meter.meter_type === 'COMMON') {
+                common_meter_kWh += reading.consumption;
+            }
         });
-        
-        const common_kWh = bulk_kWh - sum_units_kWh;
-        const mismatchPercent = bulk_kWh > 0 ? Math.abs(common_kWh / bulk_kWh * 100) : 0;
+
+        const unexplained_kWh = bulk_kWh - (sum_units_kWh + common_meter_kWh);
+        const mismatchPercent = bulk_kWh > 0 ? Math.abs(unexplained_kWh / bulk_kWh * 100) : 0;
         
         // Flag if mismatch exceeds threshold
         if (mismatchPercent > config.bulkMismatchThreshold) {
@@ -386,11 +397,12 @@ export const validation = {
                 type: 'bulk-mismatch',
                 severity,
                 message: `Bulk reconciliation issue: ${mismatchPercent.toFixed(1)}% discrepancy`,
-                description: `Bulk meter: ${bulk_kWh.toFixed(2)} kWh, Sum of units: ${sum_units_kWh.toFixed(2)} kWh, Common area: ${common_kWh.toFixed(2)} kWh (${mismatchPercent.toFixed(1)}%)`,
+                description: `Bulk meters: ${bulk_kWh.toFixed(2)} kWh, Sum of units: ${sum_units_kWh.toFixed(2)} kWh, Common property meters: ${common_meter_kWh.toFixed(2)} kWh, Unexplained residual: ${unexplained_kWh.toFixed(2)} kWh (${mismatchPercent.toFixed(1)}%)`,
                 details: {
                     bulk_kWh,
                     sum_units_kWh,
-                    common_kWh,
+                    common_meter_kWh,
+                    unexplained_kWh,
                     mismatchPercent
                 }
             };

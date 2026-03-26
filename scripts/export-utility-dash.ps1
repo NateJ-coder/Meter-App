@@ -116,6 +116,29 @@ function Get-SectionRows {
     return $rows
 }
 
+function Get-MeterTypeFromLabel {
+    param([string]$Label)
+
+    $normalized = ([string]$Label -replace '\*', '').Trim()
+    if ([string]::IsNullOrWhiteSpace($normalized)) {
+        return 'UNIT'
+    }
+
+    if ($normalized -match '(?i)\bbulk\b') {
+        return 'BULK'
+    }
+
+    if ($normalized -match '(?i)\b(com|common|common\s*prop(?:erty)?)\b') {
+        return 'COMMON'
+    }
+
+    if ($normalized -match '(?i)\b(gate|guard|store|pump|pool|lift|booster|borehole|clubhouse|office|laundry|light|lobby|sewer|garden|sprinkler)\b') {
+        return 'COMMON'
+    }
+
+    return 'UNIT'
+}
+
 function Export-BuildingSheet {
     param($Sheet)
 
@@ -130,6 +153,8 @@ function Export-BuildingSheet {
         if ([string]::IsNullOrWhiteSpace($unitLabel)) {
             continue
         }
+
+        $meterType = Get-MeterTypeFromLabel -Label $unitLabel
 
         $history = foreach ($month in $monthColumns) {
             $cell = $Sheet.Cells.Item($rowIndex, $month.ColumnIndex)
@@ -151,7 +176,9 @@ function Export-BuildingSheet {
             scheme_name = $Sheet.Name
             source_sheet = $Sheet.Name
             unit_label = $unitLabel
-            meter_type = 'UNIT'
+            meter_label = $unitLabel
+            linked_unit_label = if ($meterType -eq 'UNIT') { $unitLabel } else { $null }
+            meter_type = $meterType
             prepaid = ([string]$Sheet.Cells.Item($rowIndex, 2).Text).Trim()
             pq_factor = Convert-CellValue -Value $Sheet.Cells.Item($rowIndex, 3).Value2 -Text $Sheet.Cells.Item($rowIndex, 3).Text
             provisional_meter_key = ($unitLabel -replace '[^A-Za-z0-9]+', '_').Trim('_')
@@ -266,16 +293,24 @@ try {
     $jsonPath = Join-Path $resolvedOutputDir 'utility-dash-import.json'
     $summaryPath = Join-Path $resolvedOutputDir 'utility-dash-summary.csv'
     $readingsPath = Join-Path $resolvedOutputDir 'utility-dash-latest-electricity-readings.csv'
+    $meterRegisterPath = Join-Path $resolvedOutputDir 'utility-dash-meter-register.csv'
     $chargesPath = Join-Path $resolvedOutputDir 'utility-dash-charge-components.csv'
     $historyPath = Join-Path $resolvedOutputDir 'utility-dash-electricity-history.ndjson'
     $tariffsPath = Join-Path $resolvedOutputDir 'utility-dash-tariffs.json'
     $exportsPath = Join-Path $resolvedOutputDir 'utility-dash-export-sheets.json'
 
     $summaryRows = foreach ($building in $buildingExports) {
+        $unitMeters = @($building.electricity_meters | Where-Object { $_.meter_type -eq 'UNIT' })
+        $commonMeters = @($building.electricity_meters | Where-Object { $_.meter_type -eq 'COMMON' })
+        $bulkMeters = @($building.electricity_meters | Where-Object { $_.meter_type -eq 'BULK' })
+
         [PSCustomObject]@{
             scheme_name = $building.scheme_name
             months_available = $building.month_columns.Count
             electricity_meter_rows = $building.electricity_meters.Count
+            unit_meter_rows = $unitMeters.Count
+            common_meter_rows = $commonMeters.Count
+            bulk_meter_rows = $bulkMeters.Count
             charge_components = $building.charge_components.Count
             latest_period = ($building.month_columns | Select-Object -Last 1).ReadingDate
         }
@@ -302,6 +337,9 @@ try {
                 scheme_name = $meter.scheme_name
                 source_sheet = $meter.source_sheet
                 unit_label = $meter.unit_label
+                meter_label = $meter.meter_label
+                linked_unit_label = $meter.linked_unit_label
+                meter_type = $meter.meter_type
                 provisional_meter_key = $meter.provisional_meter_key
                 prepaid = $meter.prepaid
                 pq_factor = $meter.pq_factor
@@ -311,6 +349,25 @@ try {
         }
     }
     $latestReadings | Export-Csv -NoTypeInformation -Path $readingsPath -Encoding UTF8
+
+    $meterRegisterRows = foreach ($building in $buildingExports) {
+        foreach ($meter in $building.electricity_meters) {
+            [PSCustomObject]@{
+                scheme_name = $meter.scheme_name
+                source_sheet = $meter.source_sheet
+                meter_label = $meter.meter_label
+                linked_unit_label = $meter.linked_unit_label
+                meter_type = $meter.meter_type
+                provisional_meter_key = $meter.provisional_meter_key
+                prepaid = $meter.prepaid
+                pq_factor = $meter.pq_factor
+                latest_reading = $meter.latest_reading
+                latest_reading_date = $meter.latest_reading_date
+                history_points = @($meter.reading_history).Count
+            }
+        }
+    }
+    $meterRegisterRows | Export-Csv -NoTypeInformation -Path $meterRegisterPath -Encoding UTF8
 
     $chargeRows = foreach ($building in $buildingExports) {
         foreach ($charge in $building.charge_components) {
@@ -334,6 +391,9 @@ try {
                 scheme_name = $meter.scheme_name
                 source_sheet = $meter.source_sheet
                 unit_label = $meter.unit_label
+                meter_label = $meter.meter_label
+                linked_unit_label = $meter.linked_unit_label
+                meter_type = $meter.meter_type
                 provisional_meter_key = $meter.provisional_meter_key
                 prepaid = $meter.prepaid
                 pq_factor = $meter.pq_factor
@@ -357,6 +417,7 @@ try {
     Write-Host "JSON: $jsonPath"
     Write-Host "Summary CSV: $summaryPath"
     Write-Host "Latest readings CSV: $readingsPath"
+    Write-Host "Meter register CSV: $meterRegisterPath"
     Write-Host "Charge CSV: $chargesPath"
     Write-Host "History NDJSON: $historyPath"
 }

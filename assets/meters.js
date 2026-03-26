@@ -553,11 +553,19 @@ function loadMeters() {
             <tbody>
                 ${meters.map(meter => {
                     const meterDetails = storage.getMeterWithDetails(meter.id);
-                    const location = meter.meter_type === 'BULK' ? 'BULK SUPPLY' : 
-                                   (meterDetails.unit_name || 'N/A');
+                    const badgeClass = meter.meter_type === 'BULK'
+                        ? 'danger'
+                        : meter.meter_type === 'COMMON'
+                            ? 'warning'
+                            : 'success';
+                    const location = meter.meter_type === 'BULK'
+                        ? 'BULK SUPPLY'
+                        : meter.meter_type === 'COMMON'
+                            ? 'COMMON PROPERTY'
+                            : (meterDetails.unit_name || 'N/A');
                     return `
                         <tr>
-                            <td><span class="badge badge-${meter.meter_type === 'BULK' ? 'danger' : 'success'}">${meter.meter_type}</span></td>
+                            <td><span class="badge badge-${badgeClass}">${meter.meter_type}</span></td>
                             <td><strong>${meter.meter_number}</strong></td>
                             <td>${location}</td>
                             <td>${meter.last_reading || 0} kWh</td>

@@ -237,7 +237,8 @@ Exports include:
 
   * Bulk kWh
   * Sum of unit kWh
-  * Common area kWh
+   * Common property meter kWh
+   * Unexplained losses kWh
   * Losses %
 
 ---
@@ -247,15 +248,20 @@ Exports include:
 * `unit_kWh = current − previous`
 * `sum_units_kWh = Σ(unit_kWh)`
 * `bulk_kWh = bulk_current − bulk_previous`
-* `common_kWh = bulk_kWh − sum_units_kWh`
-* `losses_% = (common_kWh / bulk_kWh) × 100`
+* `common_kWh = Σ(common_property_meter_kWh)`
+* `unexplained_losses_kWh = bulk_kWh − sum_units_kWh − common_kWh`
+* `losses_% = (unexplained_losses_kWh / bulk_kWh) × 100`
 
-Common kWh represents:
+Common property kWh represents:
 
 * Common property consumption
+
+Residual losses represent:
+
 * Electrical losses
 * Meter drift
 * Missing / estimated reads
+* Unmetered shared consumption
 
 ---
 
