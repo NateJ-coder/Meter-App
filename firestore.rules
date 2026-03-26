@@ -113,18 +113,6 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
 
-    match /import_batches/{batchId} {
-      allow read, write: if isAdmin();
-    }
-
-    match /raw_import_rows/{rowId} {
-      allow read, write: if isAdmin();
-    }
-
-    match /import_review_queue/{itemId} {
-      allow read, write: if isAdmin();
-    }
-
     match /dispute_cases/{caseId} {
       allow read, write: if isAdmin();
     }
@@ -156,4 +144,4 @@ service cloud.firestore {
       allow read, write: if false;
     }
   }
-}
+} 

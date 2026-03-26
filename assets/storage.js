@@ -27,9 +27,6 @@ const cloudEntityCollections = {
     meter_evidence: firebaseCollections.meterEvidence,
     meter_flags: firebaseCollections.meterFlags,
     legacy_meter_map: firebaseCollections.legacyMeterMap,
-    import_batches: firebaseCollections.importBatches,
-    raw_import_rows: firebaseCollections.rawImportRows,
-    import_review_queue: firebaseCollections.importReviewQueue,
     dispute_cases: firebaseCollections.disputeCases,
     dispute_pack_exports: firebaseCollections.disputePackExports
 };
@@ -161,22 +158,6 @@ function normalizeEntityPayload(entity, data) {
                 ...record,
                 mapping_confidence: record.mapping_confidence || 'low',
                 review_status: record.review_status || 'pending'
-            };
-        case 'import_batches':
-            return {
-                ...record,
-                status: record.status || 'staged'
-            };
-        case 'raw_import_rows':
-            return {
-                ...record,
-                review_status: record.review_status || 'pending'
-            };
-        case 'import_review_queue':
-            return {
-                ...record,
-                status: record.status || 'pending',
-                priority: record.priority || 'medium'
             };
         case 'dispute_cases':
             return {
@@ -476,11 +457,6 @@ export const storage = {
     getLegacyMeterMap(reviewStatus = null) {
         const mappings = this.getAll('legacy_meter_map');
         return reviewStatus ? mappings.filter(item => item.review_status === reviewStatus) : mappings;
-    },
-
-    getImportReviewQueue(status = null) {
-        const items = this.getAll('import_review_queue');
-        return status ? items.filter(item => item.status === status) : items;
     },
 
     // Get open cycle for a scheme

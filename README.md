@@ -28,14 +28,26 @@ This app solves the real problem:
 
 ## Data Model Direction
 
-The historical workbook cleanup is now being split into four layers so one messy source row does not define a meter's identity, reading history, billing result, and proof all at once:
+The app keeps the operational model split so one record does not have to carry meter identity, reading history, billing, and proof all at once:
 
 1. Master asset register: `meters` and `meter_relationships`
 2. Reading history: `readings`
 3. Billing and charge history: `meter_charges`
-4. Evidence, flags, disputes, and staged import review: `meter_evidence`, `meter_flags`, `legacy_meter_map`, `raw_import_rows`, `import_review_queue`, `dispute_cases`
+4. Evidence, flags, disputes, and manual review support: `meter_evidence`, `meter_flags`, `legacy_meter_map`, `dispute_cases`
 
-The current UI still runs on the operational `meters` and `readings` collections, but any historical import work should now stage and reconcile against this split model instead of reintroducing a direct workbook-to-runtime import.
+The current direction is manual scheme, unit, and meter registration first, followed by evidence upload against known meters.
+
+## Building Image Intake
+
+Where bulk image upload is needed, keep it constrained to a building-level evidence inbox:
+
+1. Register the scheme, building, units, bulk meters, and common-property meters manually.
+2. Upload a batch of images for one building at a time.
+3. Filter those images against existing meter numbers, unit numbers, and building context.
+4. Present only likely matches for review instead of auto-creating new meters.
+5. Save approved images into `meter_evidence` against the already registered meter.
+
+This keeps meter identity under manual control while still reducing the admin work of attaching photos one by one.
 
 ---
 

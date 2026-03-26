@@ -673,7 +673,8 @@ document.getElementById('meter-form-element').addEventListener('submit', (e) => 
         meter_type: meterType,
         meter_number: document.getElementById('meter-number').value,
         last_reading: lastReading,
-        status: document.getElementById('meter-status').value
+        status: document.getElementById('meter-status').value,
+        unit_id: null
     };
     
     if (meterType === 'UNIT') {

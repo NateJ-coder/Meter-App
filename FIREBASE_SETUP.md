@@ -61,9 +61,6 @@ Recommended collections for this app:
 - `meter_evidence`
 - `meter_flags`
 - `legacy_meter_map`
-- `import_batches`
-- `raw_import_rows`
-- `import_review_queue`
 - `dispute_cases`
 - `dispute_pack_exports`
 - `users`
@@ -189,18 +186,6 @@ service cloud.firestore {
 			allow read, write: if isAdmin();
 		}
 
-		match /import_batches/{batchId} {
-			allow read, write: if isAdmin();
-		}
-
-		match /raw_import_rows/{rowId} {
-			allow read, write: if isAdmin();
-		}
-
-		match /import_review_queue/{itemId} {
-			allow read, write: if isAdmin();
-		}
-
 		match /dispute_cases/{caseId} {
 			allow read, write: if isAdmin();
 		}
@@ -271,7 +256,7 @@ The historical cleanup and import path should now be treated as four linked laye
 1. `meters` and `meter_relationships`: master asset register and hierarchy.
 2. `readings`: reading history tied to one known meter identity.
 3. `meter_charges`: billing and charge history derived from readings.
-4. `meter_evidence`, `meter_flags`, `legacy_meter_map`, `raw_import_rows`, `import_review_queue`: evidence, review, and staged import support.
+4. `meter_evidence`, `meter_flags`, `legacy_meter_map`: evidence and review support for manual uploads and captured readings.
 
 The live app still uses `meters` and `readings` operationally, but the historical import pipeline should post into these split collections rather than treating one workbook row as both identity and billing truth.
 
