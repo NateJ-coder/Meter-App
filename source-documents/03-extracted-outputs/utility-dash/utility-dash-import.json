@@ -1,169 +1,238 @@
-﻿{
-    "source_file":  "C:\\Projects\\Meter App\\ud\\Utility Dash 9 Mar 2026.xlsm",
-    "extracted_at":  "2026-03-25T12:34:22",
-    "sheet_count":  43,
-    "building_sheet_count":  23,
-    "building_summaries":  [
-                               {
-                                   "scheme_name":  "The Azores",
-                                   "months_available":  98,
-                                   "electricity_meter_rows":  73,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/03"
-                               },
-                               {
-                                   "scheme_name":  "Genesis",
-                                   "months_available":  60,
-                                   "electricity_meter_rows":  75,
-                                   "charge_components":  12,
-                                   "latest_period":  "02/03/2026"
-                               },
-                               {
-                                   "scheme_name":  "Carissa Lane",
-                                   "months_available":  99,
-                                   "electricity_meter_rows":  34,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/05"
-                               },
-                               {
-                                   "scheme_name":  "Bonifay Court",
-                                   "months_available":  11,
-                                   "electricity_meter_rows":  24,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/03"
-                               },
-                               {
-                                   "scheme_name":  "Granistar Heights",
-                                   "months_available":  48,
-                                   "electricity_meter_rows":  26,
-                                   "charge_components":  12,
-                                   "latest_period":  "2021/12/30"
-                               },
-                               {
-                                   "scheme_name":  "Mang Court",
-                                   "months_available":  21,
-                                   "electricity_meter_rows":  7,
-                                   "charge_components":  12,
-                                   "latest_period":  "2023/02/28"
-                               },
-                               {
-                                   "scheme_name":  "Vilino Glen",
-                                   "months_available":  100,
-                                   "electricity_meter_rows":  40,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/01"
-                               },
-                               {
-                                   "scheme_name":  "Hazelmere",
-                                   "months_available":  98,
-                                   "electricity_meter_rows":  64,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/03"
-                               },
-                               {
-                                   "scheme_name":  "Akasia",
-                                   "months_available":  13,
-                                   "electricity_meter_rows":  90,
-                                   "charge_components":  12,
-                                   "latest_period":  "2024/10/01"
-                               },
-                               {
-                                   "scheme_name":  "Phanda Lodge",
-                                   "months_available":  31,
-                                   "electricity_meter_rows":  49,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/03"
-                               },
-                               {
-                                   "scheme_name":  "Vista Del Monte",
-                                   "months_available":  20,
-                                   "electricity_meter_rows":  43,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/02/27"
-                               },
-                               {
-                                   "scheme_name":  "L\u0027Montagne",
-                                   "months_available":  98,
-                                   "electricity_meter_rows":  51,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/05"
-                               },
-                               {
-                                   "scheme_name":  "Magnolia Gardens",
-                                   "months_available":  20,
-                                   "electricity_meter_rows":  36,
-                                   "charge_components":  12,
-                                   "latest_period":  "2019-09"
-                               },
-                               {
-                                   "scheme_name":  "Panarama View",
-                                   "months_available":  34,
-                                   "electricity_meter_rows":  85,
-                                   "charge_components":  12,
-                                   "latest_period":  "2020/11/06"
-                               },
-                               {
-                                   "scheme_name":  "Queensgate",
-                                   "months_available":  98,
-                                   "electricity_meter_rows":  54,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/05"
-                               },
-                               {
-                                   "scheme_name":  "Rivonia Gate",
-                                   "months_available":  98,
-                                   "electricity_meter_rows":  17,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/03/01"
-                               },
-                               {
-                                   "scheme_name":  "Riviera Villas",
-                                   "months_available":  24,
-                                   "electricity_meter_rows":  70,
-                                   "charge_components":  12,
-                                   "latest_period":  "2020-10"
-                               },
-                               {
-                                   "scheme_name":  "Stonecrest",
-                                   "months_available":  25,
-                                   "electricity_meter_rows":  171,
-                                   "charge_components":  12,
-                                   "latest_period":  "2020/01/30"
-                               },
-                               {
-                                   "scheme_name":  "Suncrest",
-                                   "months_available":  62,
-                                   "electricity_meter_rows":  31,
-                                   "charge_components":  12,
-                                   "latest_period":  "2023/02/28"
-                               },
-                               {
-                                   "scheme_name":  "Haven Court",
-                                   "months_available":  29,
-                                   "electricity_meter_rows":  16,
-                                   "charge_components":  12,
-                                   "latest_period":  "2023/03/31"
-                               },
-                               {
-                                   "scheme_name":  "Taragona",
-                                   "months_available":  98,
-                                   "electricity_meter_rows":  39,
-                                   "charge_components":  12,
-                                   "latest_period":  "#########"
-                               },
-                               {
-                                   "scheme_name":  "New Poort",
-                                   "months_available":  29,
-                                   "electricity_meter_rows":  7,
-                                   "charge_components":  12,
-                                   "latest_period":  "2023/03/31"
-                               },
-                               {
-                                   "scheme_name":  "Transvalia",
-                                   "months_available":  65,
-                                   "electricity_meter_rows":  21,
-                                   "charge_components":  12,
-                                   "latest_period":  "2026/02/28"
-                               }
-                           ]
+{
+  "source_file": "C:\\Projects\\Meter App\\ud\\Utility Dash 9 Mar 2026.xlsm",
+  "extracted_at": "2026-03-26T09:32:42",
+  "sheet_count": 43,
+  "building_sheet_count": 23,
+  "building_summaries": [
+    {
+      "scheme_name": "The Azores",
+      "months_available": 98,
+      "electricity_meter_rows": 73,
+      "unit_meter_rows": 72,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2026/03/03"
+    },
+    {
+      "scheme_name": "Genesis",
+      "months_available": 60,
+      "electricity_meter_rows": 75,
+      "unit_meter_rows": 63,
+      "common_meter_rows": 11,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "02/03/2026"
+    },
+    {
+      "scheme_name": "Carissa Lane",
+      "months_available": 99,
+      "electricity_meter_rows": 34,
+      "unit_meter_rows": 33,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2026/03/05"
+    },
+    {
+      "scheme_name": "Bonifay Court",
+      "months_available": 11,
+      "electricity_meter_rows": 24,
+      "unit_meter_rows": 24,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 0,
+      "charge_components": 12,
+      "latest_period": "2026/03/03"
+    },
+    {
+      "scheme_name": "Granistar Heights",
+      "months_available": 48,
+      "electricity_meter_rows": 26,
+      "unit_meter_rows": 25,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2021/12/30"
+    },
+    {
+      "scheme_name": "Mang Court",
+      "months_available": 21,
+      "electricity_meter_rows": 7,
+      "unit_meter_rows": 6,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2023/02/28"
+    },
+    {
+      "scheme_name": "Vilino Glen",
+      "months_available": 100,
+      "electricity_meter_rows": 40,
+      "unit_meter_rows": 38,
+      "common_meter_rows": 1,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2026/03/01"
+    },
+    {
+      "scheme_name": "Hazelmere",
+      "months_available": 98,
+      "electricity_meter_rows": 64,
+      "unit_meter_rows": 58,
+      "common_meter_rows": 3,
+      "bulk_meter_rows": 3,
+      "charge_components": 12,
+      "latest_period": "2026/03/03"
+    },
+    {
+      "scheme_name": "Akasia",
+      "months_available": 13,
+      "electricity_meter_rows": 90,
+      "unit_meter_rows": 90,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 0,
+      "charge_components": 12,
+      "latest_period": "2024/10/01"
+    },
+    {
+      "scheme_name": "Phanda Lodge",
+      "months_available": 31,
+      "electricity_meter_rows": 49,
+      "unit_meter_rows": 48,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2026/03/03"
+    },
+    {
+      "scheme_name": "Vista Del Monte",
+      "months_available": 20,
+      "electricity_meter_rows": 43,
+      "unit_meter_rows": 42,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2026/02/27"
+    },
+    {
+      "scheme_name": "L'Montagne",
+      "months_available": 98,
+      "electricity_meter_rows": 51,
+      "unit_meter_rows": 50,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2026/03/05"
+    },
+    {
+      "scheme_name": "Magnolia Gardens",
+      "months_available": 20,
+      "electricity_meter_rows": 36,
+      "unit_meter_rows": 35,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2019-09"
+    },
+    {
+      "scheme_name": "Panarama View",
+      "months_available": 34,
+      "electricity_meter_rows": 85,
+      "unit_meter_rows": 84,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2020/11/06"
+    },
+    {
+      "scheme_name": "Queensgate",
+      "months_available": 98,
+      "electricity_meter_rows": 54,
+      "unit_meter_rows": 53,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2026/03/05"
+    },
+    {
+      "scheme_name": "Rivonia Gate",
+      "months_available": 98,
+      "electricity_meter_rows": 17,
+      "unit_meter_rows": 16,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2026/03/01"
+    },
+    {
+      "scheme_name": "Riviera Villas",
+      "months_available": 24,
+      "electricity_meter_rows": 70,
+      "unit_meter_rows": 67,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 3,
+      "charge_components": 12,
+      "latest_period": "2020-10"
+    },
+    {
+      "scheme_name": "Stonecrest",
+      "months_available": 25,
+      "electricity_meter_rows": 171,
+      "unit_meter_rows": 170,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2020/01/30"
+    },
+    {
+      "scheme_name": "Suncrest",
+      "months_available": 62,
+      "electricity_meter_rows": 31,
+      "unit_meter_rows": 30,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 1,
+      "charge_components": 12,
+      "latest_period": "2023/02/28"
+    },
+    {
+      "scheme_name": "Haven Court",
+      "months_available": 29,
+      "electricity_meter_rows": 16,
+      "unit_meter_rows": 16,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 0,
+      "charge_components": 12,
+      "latest_period": "2023/03/31"
+    },
+    {
+      "scheme_name": "Taragona",
+      "months_available": 98,
+      "electricity_meter_rows": 39,
+      "unit_meter_rows": 38,
+      "common_meter_rows": 1,
+      "bulk_meter_rows": 0,
+      "charge_components": 12,
+      "latest_period": "#########"
+    },
+    {
+      "scheme_name": "New Poort",
+      "months_available": 29,
+      "electricity_meter_rows": 7,
+      "unit_meter_rows": 7,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 0,
+      "charge_components": 12,
+      "latest_period": "2023/03/31"
+    },
+    {
+      "scheme_name": "Transvalia",
+      "months_available": 65,
+      "electricity_meter_rows": 21,
+      "unit_meter_rows": 21,
+      "common_meter_rows": 0,
+      "bulk_meter_rows": 0,
+      "charge_components": 12,
+      "latest_period": "2026/02/28"
+    }
+  ]
 }
