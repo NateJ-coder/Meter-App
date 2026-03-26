@@ -31,6 +31,7 @@ const GUEST_SESSION_KEY = 'fuzio_guest_session';
 const USERS_CACHE_KEY = 'fuzio_users';
 const ACTIVITIES_CACHE_KEY = 'fuzio_activities';
 const LEGACY_DEFAULT_ADMIN_EMAIL = 'admin@fuzio.com';
+const TEMPORARY_SEED_ADMIN_EMAIL = 'admin@fuzio.co';
 
 let currentSession = readJson(SESSION_KEY, null);
 let initializationPromise = null;
@@ -56,12 +57,19 @@ function clearJson(key) {
     localStorage.removeItem(key);
 }
 
+function sanitizeCachedUser(user = {}) {
+    const { password, ...safeUser } = user;
+    return safeUser;
+}
+
 function getCachedUsers() {
-    return readJson(USERS_CACHE_KEY, []);
+    const users = readJson(USERS_CACHE_KEY, []);
+    return Array.isArray(users) ? users.map(sanitizeCachedUser) : [];
 }
 
 function setCachedUsers(users) {
-    writeJson(USERS_CACHE_KEY, users);
+    const sanitizedUsers = Array.isArray(users) ? users.map(sanitizeCachedUser) : [];
+    writeJson(USERS_CACHE_KEY, sanitizedUsers);
 }
 
 function getCachedActivities() {
@@ -274,19 +282,11 @@ export const auth = {
                 const session = await syncSessionFromFirebaseUser(result.user);
                 return { success: true, user: session };
             } catch (error) {
-                const legacyUser = getCachedUsers().find((user) => normalizeEmail(user.email) === normalizedEmail && user.password === password);
-                if (!legacyUser) {
-                    return { success: false, error: mapFirebaseAuthError(error) };
-                }
+                return { success: false, error: mapFirebaseAuthError(error) };
             }
         }
 
-        const legacyUser = getCachedUsers().find((user) => normalizeEmail(user.email) === normalizedEmail && user.password === password);
-        if (!legacyUser) {
-            return { success: false, error: 'Invalid email or password' };
-        }
-
-        return { success: true, user: saveCurrentSession(toSession(legacyUser)) };
+        return { success: false, error: 'Registered login requires Firebase Authentication to be configured.' };
     },
 
     async register(userData) {
@@ -310,13 +310,7 @@ export const auth = {
         };
 
         if (!isFirebaseConfigured()) {
-            const legacyUser = {
-                id: this.generateId(),
-                password: userData.password,
-                ...userProfile
-            };
-            setCachedUsers([...currentUsers, legacyUser]);
-            return { success: true, user: legacyUser };
+            return { success: false, error: 'Registered user creation requires Firebase Authentication to be configured.' };
         }
 
         let secondaryApp;
@@ -413,7 +407,7 @@ export const auth = {
         const users = getCachedUsers().filter((user) => {
             const normalizedEmail = normalizeEmail(user.email);
             const isLegacySeed = normalizedEmail === LEGACY_DEFAULT_ADMIN_EMAIL;
-            const isTemporarySeed = normalizedEmail === 'admin@fuzio.co' && user.password === 'admin123';
+            const isTemporarySeed = normalizedEmail === TEMPORARY_SEED_ADMIN_EMAIL;
             return !isLegacySeed && !isTemporarySeed;
         });
 

@@ -46,7 +46,7 @@ All three requested features have been implemented:
 2. Fill out the form:
    - Name: "John Doe"
    - Email: "john@example.com"
-   - Password: "test123"
+   - Password: use a unique password not reused elsewhere
    - Role: "Field Worker"
 3. Click **"Create User"**
 4. Check if the user appears in the user list
@@ -117,10 +117,10 @@ All three requested features have been implemented:
 1. In dev console, create a **Field Worker** user:
    - Name: "Jane Worker"
    - Email: "jane@example.com"
-   - Password: "worker123"
+   - Password: use a unique password not reused elsewhere
    - Role: "Field Worker"
 2. Logout from admin account
-3. Login as **jane@example.com / worker123**
+3. Login as **jane@example.com** with the password you just created
 4. Check the navbar - **Dev console link should NOT appear**
 5. Try to manually navigate to **dev-console.html**
 6. You should see: "Access Denied. Admins only."

@@ -31,6 +31,9 @@ const cloudEntityCollections = {
     dispute_pack_exports: firebaseCollections.disputePackExports
 };
 
+const LOCAL_BACKUP_KEY = 'fuzio_operational_backup';
+const DESTRUCTIVE_CLEAR_SENTINEL = 'CONFIRM_CLEAR_OPERATIONAL_DATA';
+
 const meterRoleByType = {
     BULK: 'bulk',
     COMMON: 'common_property',
@@ -178,6 +181,19 @@ function writeEntityToLocalCache(entity, items) {
     localStorage.setItem(entity, JSON.stringify(items));
 }
 
+function buildOperationalBackupSnapshot(storageApi) {
+    const snapshot = {};
+
+    storageApi.managedEntityKeys.forEach((entity) => {
+        snapshot[entity] = storageApi.getAll(entity);
+    });
+
+    snapshot.fuzio_onboarding_state = localStorage.getItem('fuzio_onboarding_state');
+    snapshot.fuzio_first_time_checklist = localStorage.getItem('fuzio_first_time_checklist');
+    snapshot.saved_at = new Date().toISOString();
+    return snapshot;
+}
+
 async function commitChunkedBatch(operations) {
     const chunkSize = 350;
 
@@ -226,6 +242,7 @@ export const storage = {
         });
         items.push(newItem);
         writeEntityToLocalCache(entity, items);
+        this.persistOperationalBackup();
         this.queueCloudUpsert(entity, newItem);
         return newItem;
     },
@@ -241,6 +258,7 @@ export const storage = {
             updated_at: new Date().toISOString()
         });
         writeEntityToLocalCache(entity, items);
+        this.persistOperationalBackup();
         this.queueCloudUpsert(entity, items[index]);
         return items[index];
     },
@@ -249,6 +267,7 @@ export const storage = {
         const items = this.getAll(entity);
         const filtered = items.filter(item => item.id !== id);
         writeEntityToLocalCache(entity, filtered);
+        this.persistOperationalBackup();
         this.queueCloudDelete(entity, id);
         return true;
     },
@@ -260,7 +279,48 @@ export const storage = {
 
     // Clear all data (for testing)
     clearAll() {
+        this.persistOperationalBackup();
         localStorage.clear();
+    },
+
+    persistOperationalBackup() {
+        localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(buildOperationalBackupSnapshot(this)));
+    },
+
+    getOperationalBackup() {
+        const rawValue = localStorage.getItem(LOCAL_BACKUP_KEY);
+        if (!rawValue) {
+            return null;
+        }
+
+        try {
+            return JSON.parse(rawValue);
+        } catch {
+            return null;
+        }
+    },
+
+    restoreOperationalBackup() {
+        const backup = this.getOperationalBackup();
+        if (!backup) {
+            return false;
+        }
+
+        this.managedEntityKeys.forEach((entity) => {
+            if (Array.isArray(backup[entity])) {
+                writeEntityToLocalCache(entity, backup[entity]);
+            }
+        });
+
+        if (typeof backup.fuzio_onboarding_state === 'string') {
+            localStorage.setItem('fuzio_onboarding_state', backup.fuzio_onboarding_state);
+        }
+
+        if (typeof backup.fuzio_first_time_checklist === 'string') {
+            localStorage.setItem('fuzio_first_time_checklist', backup.fuzio_first_time_checklist);
+        }
+
+        return true;
     },
 
     async initializeCloudSync(options = {}) {
@@ -309,6 +369,8 @@ export const storage = {
     async replaceOperationalData(payload, options = {}) {
         const pushToCloud = options.pushToCloud !== false && isFirebaseConfigured();
 
+        this.persistOperationalBackup();
+
         for (const entity of Object.keys(cloudEntityCollections)) {
             if (!Object.prototype.hasOwnProperty.call(payload, entity)) {
                 continue;
@@ -321,6 +383,8 @@ export const storage = {
                 await this.replaceCloudEntity(entity, items);
             }
         }
+
+        this.persistOperationalBackup();
     },
 
     async replaceCloudEntity(entity, items) {
@@ -379,7 +443,13 @@ export const storage = {
     },
 
     clearOperationalData(options = {}) {
+        if (options.confirmationToken !== DESTRUCTIVE_CLEAR_SENTINEL) {
+            throw new Error('Destructive clear blocked because confirmation token was not provided.');
+        }
+
         const preserveKeys = new Set(options.preserveKeys || []);
+
+        this.persistOperationalBackup();
 
         this.managedEntityKeys.forEach((entity) => {
             if (!preserveKeys.has(entity)) {

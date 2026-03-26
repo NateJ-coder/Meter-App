@@ -350,7 +350,12 @@
         window.clearAllDataTest = function() {
             if (confirm('⚠️ WARNING: Clear ALL data including onboarding state?')) {
                 if (confirm('Really sure? This cannot be undone.')) {
-                    storage.clearOperationalData();
+                    const typedConfirmation = prompt('Type CONFIRM to permanently clear operational data.');
+                    if (typedConfirmation !== 'CONFIRM') {
+                        alert('Clear cancelled. Data was not removed.');
+                        return;
+                    }
+                    storage.clearOperationalData({ confirmationToken: 'CONFIRM_CLEAR_OPERATIONAL_DATA' });
                     alert('Operational data cleared. Users and sessions preserved. Page will reload.');
                     location.reload();
                 }

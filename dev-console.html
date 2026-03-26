@@ -94,7 +94,8 @@
                 </div>
                 <div class="form-group">
                     <label for="user-password">Password *</label>
-                    <input type="password" id="user-password" required placeholder="Min 6 characters" minlength="6">
+                    <input type="password" id="user-password" required placeholder="Use a unique password" minlength="10" autocomplete="new-password">
+                    <small class="form-help">Use a unique password or passphrase. Avoid demo passwords like test123, admin123, worker123, or password123.</small>
                 </div>
                 <div class="form-group">
                     <label for="user-role">Role *</label>
@@ -485,12 +486,21 @@
         document.getElementById('add-user-form').addEventListener('submit', async function(e) {
             e.preventDefault();
 
+            const password = document.getElementById('user-password').value;
+            const weakPasswords = new Set(['admin123', 'test123', 'worker123', 'field123', 'view123', 'password123']);
+
+            if (password.length < 10 || weakPasswords.has(password.toLowerCase())) {
+                alert('Use a stronger unique password. Avoid common or reused passwords.');
+                document.getElementById('user-password').focus();
+                return;
+            }
+
             const userData = {
                 name: document.getElementById('user-name').value,
                 email: document.getElementById('user-email').value,
                 phone: document.getElementById('user-phone').value.trim(),
                 contact_details: document.getElementById('user-contact-details').value.trim(),
-                password: document.getElementById('user-password').value,
+                password,
                 role: document.getElementById('user-role').value
             };
 

@@ -188,7 +188,12 @@
         window.clearAllData = function() {
             if (confirm('⚠️ WARNING: This will delete ALL data (schemes, buildings, units, meters, readings, cycles). This cannot be undone. Are you sure?')) {
                 if (confirm('Really sure? This action is permanent.')) {
-                    storage.clearOperationalData();
+                    const typedConfirmation = prompt('Type CONFIRM to permanently clear operational data.');
+                    if (typedConfirmation !== 'CONFIRM') {
+                        alert('Clear cancelled. Data was not removed.');
+                        return;
+                    }
+                    storage.clearOperationalData({ confirmationToken: 'CONFIRM_CLEAR_OPERATIONAL_DATA' });
                     alert('All operational data cleared. Users and sessions were preserved. Refreshing page...');
                     location.reload();
                 }

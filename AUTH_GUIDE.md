@@ -12,6 +12,7 @@ Password: Managed in Firebase Authentication
 
 ### Overview
 The app now requires login before access. User sessions are stored in localStorage and persist across browser sessions.
+Registered account passwords are managed by Firebase Authentication and are not stored in app-local user records.
 
 ### Features
 - **Session Management:** Users stay logged in until they explicitly logout
@@ -142,7 +143,7 @@ Add, view, and delete users:
 **Add User Form:**
 - Full Name
 - Email Address (unique)
-- Password (min 6 characters)
+- Password (use a unique password or passphrase, minimum 10 characters)
 - Role (Viewer, Field Worker, Admin)
 
 **Users Table:**
@@ -163,7 +164,7 @@ Add, view, and delete users:
 // Field Worker
 { 
   email: 'john@fuzio.com', 
-  password: 'field123', 
+   // Password is managed in Firebase Authentication
   name: 'John Doe', 
   role: 'field_worker' 
 }
@@ -171,7 +172,7 @@ Add, view, and delete users:
 // Viewer
 { 
   email: 'jane@fuzio.com', 
-  password: 'view123', 
+   // Password is managed in Firebase Authentication
   name: 'Jane Smith', 
   role: 'viewer' 
 }
@@ -322,7 +323,7 @@ auth.logout();
 // Register new user (admin only)
 const result = auth.register({
   email: 'new@fuzio.com',
-  password: 'password123',
+   password: 'Use a unique password managed in Firebase Authentication',
   name: 'New User',
   role: 'viewer'
 });
@@ -362,7 +363,7 @@ auth.deleteUser(userId);
 3. Fills form:
    - Name: "Mike Johnson"
    - Email: "mike@fuzio.com"
-   - Password: "field456"
+   - Password: unique password or passphrase
    - Role: "Field Worker"
 4. Clicks **"Add User"**
 5. Mike can now login and capture readings
@@ -422,14 +423,14 @@ Create these for testing:
 auth.register({
   email: 'field1@fuzio.com',
   name: 'Field Worker 1',
-  password: 'test123',
+   password: 'Use a unique password managed in Firebase Authentication',
   role: 'field_worker'
 });
 
 auth.register({
   email: 'viewer@fuzio.com',
   name: 'Viewer User',
-  password: 'test123',
+   password: 'Use a unique password managed in Firebase Authentication',
   role: 'viewer'
 });
 ```

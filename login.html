@@ -21,12 +21,12 @@
         <form id="login-form">
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" required placeholder="admin@fuzio.co" autofocus>
+                <input type="email" id="email" required placeholder="name@company.com" autocomplete="username" autofocus>
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" required placeholder="Enter password">
+                <input type="password" id="password" required placeholder="Enter password" autocomplete="current-password">
             </div>
 
             <button type="submit" class="btn btn-primary btn-large btn-block">
@@ -47,6 +47,9 @@
         <div class="login-footer">
             <p class="text-muted">
                 <strong>Note:</strong> Registered sign-in now uses Firebase Authentication. Use your configured admin or staff account.
+            </p>
+            <p class="text-muted">
+                Use a unique password that is not reused on other sites. Google password warnings come from breached or reused credentials, not from this page alone.
             </p>
             <p class="text-muted">
                 Need help? Contact your system administrator.
