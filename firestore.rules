@@ -72,6 +72,11 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    match /meter_relationships/{relationshipId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
     match /cycles/{cycleId} {
       allow read: if isViewerOrBetter();
       allow write: if isAdmin();
@@ -86,6 +91,46 @@ service cloud.firestore {
       allow read: if isViewerOrBetter();
       allow create, update: if isFieldWorker();
       allow delete: if isAdmin();
+    }
+
+    match /meter_charges/{chargeId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
+    match /meter_evidence/{evidenceId} {
+      allow read: if isViewerOrBetter();
+      allow create, update: if isFieldWorker();
+      allow delete: if isAdmin();
+    }
+
+    match /meter_flags/{flagId} {
+      allow read: if isViewerOrBetter();
+      allow write: if isAdmin();
+    }
+
+    match /legacy_meter_map/{mappingId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /import_batches/{batchId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /raw_import_rows/{rowId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /import_review_queue/{itemId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /dispute_cases/{caseId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /dispute_pack_exports/{exportId} {
+      allow read, write: if isAdmin();
     }
 
     match /users/{userId} {

@@ -26,6 +26,17 @@ Most schemes do **not** have automated meter telemetry. The problem is operation
 This app solves the real problem:
 **accurate capture + evidence + exception handling + clean exports.**
 
+## Data Model Direction
+
+The historical workbook cleanup is now being split into four layers so one messy source row does not define a meter's identity, reading history, billing result, and proof all at once:
+
+1. Master asset register: `meters` and `meter_relationships`
+2. Reading history: `readings`
+3. Billing and charge history: `meter_charges`
+4. Evidence, flags, disputes, and staged import review: `meter_evidence`, `meter_flags`, `legacy_meter_map`, `raw_import_rows`, `import_review_queue`, `dispute_cases`
+
+The current UI still runs on the operational `meters` and `readings` collections, but any historical import work should now stage and reconcile against this split model instead of reintroducing a direct workbook-to-runtime import.
+
 ---
 
 ## Primary user roles (intentional separation)

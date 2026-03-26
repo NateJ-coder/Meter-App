@@ -54,8 +54,18 @@ Recommended collections for this app:
 - `buildings`
 - `units`
 - `meters`
+- `meter_relationships`
 - `cycles`
 - `readings`
+- `meter_charges`
+- `meter_evidence`
+- `meter_flags`
+- `legacy_meter_map`
+- `import_batches`
+- `raw_import_rows`
+- `import_review_queue`
+- `dispute_cases`
+- `dispute_pack_exports`
 - `users`
 - `activities`
 
@@ -138,6 +148,11 @@ service cloud.firestore {
 			allow write: if isAdmin();
 		}
 
+		match /meter_relationships/{relationshipId} {
+			allow read: if isViewerOrBetter();
+			allow write: if isAdmin();
+		}
+
 		match /cycles/{cycleId} {
 			allow read: if isViewerOrBetter();
 			allow write: if isAdmin();
@@ -152,6 +167,46 @@ service cloud.firestore {
 			allow read: if isViewerOrBetter();
 			allow create, update: if isFieldWorker();
 			allow delete: if isAdmin();
+		}
+
+		match /meter_charges/{chargeId} {
+			allow read: if isViewerOrBetter();
+			allow write: if isAdmin();
+		}
+
+		match /meter_evidence/{evidenceId} {
+			allow read: if isViewerOrBetter();
+			allow create, update: if isFieldWorker();
+			allow delete: if isAdmin();
+		}
+
+		match /meter_flags/{flagId} {
+			allow read: if isViewerOrBetter();
+			allow write: if isAdmin();
+		}
+
+		match /legacy_meter_map/{mappingId} {
+			allow read, write: if isAdmin();
+		}
+
+		match /import_batches/{batchId} {
+			allow read, write: if isAdmin();
+		}
+
+		match /raw_import_rows/{rowId} {
+			allow read, write: if isAdmin();
+		}
+
+		match /import_review_queue/{itemId} {
+			allow read, write: if isAdmin();
+		}
+
+		match /dispute_cases/{caseId} {
+			allow read, write: if isAdmin();
+		}
+
+		match /dispute_pack_exports/{exportId} {
+			allow read, write: if isAdmin();
 		}
 
 		match /users/{userId} {
@@ -208,6 +263,17 @@ And that the profile document contains at least:
 2. These rules do not yet support guest readers writing directly to Firestore.
 3. If you want guest readers to submit directly into Firestore later, use Firebase Anonymous Auth or a Cloud Function / callable endpoint.
 4. These are baseline rules for the current app shape, not the final least-privilege model.
+
+## Four-Layer Data Model Baseline
+
+The historical cleanup and import path should now be treated as four linked layers:
+
+1. `meters` and `meter_relationships`: master asset register and hierarchy.
+2. `readings`: reading history tied to one known meter identity.
+3. `meter_charges`: billing and charge history derived from readings.
+4. `meter_evidence`, `meter_flags`, `legacy_meter_map`, `raw_import_rows`, `import_review_queue`: evidence, review, and staged import support.
+
+The live app still uses `meters` and `readings` operationally, but the historical import pipeline should post into these split collections rather than treating one workbook row as both identity and billing truth.
 
 ### 3. Firebase Storage
 

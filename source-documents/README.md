@@ -51,6 +51,9 @@ Expected future outputs include:
 - export-layout-summary.md
 - scheme-building-unit-meter-register.csv
 - latest-readings-import.csv
+- templates/meter-register-template.csv
+- templates/historical-reading-import-template.csv
+- templates/legacy-meter-map-template.csv
 - extraction-notes.md
 - unresolved-items.md
 - utility-dash-import.json
@@ -143,6 +146,7 @@ After analysis starts, I will prepare:
 - a document-layout summary for the export screens and generated files
 - a clean register of schemes, buildings, units, meters, and meter numbers
 - a latest-reading extract tied to each meter
+- a legacy label-to-meter mapping sheet for ambiguous historic references
 - a list of ambiguous or missing data that needs manual confirmation
 - recommendations for how the app export should map to the historical document structure
 
@@ -171,6 +175,12 @@ Two extraction scripts are now available in `scripts`:
 - `inventory-buildings-archive.ps1` creates a filename-based relevance inventory for the `Buildings` archive in `03-extracted-outputs/buildings-archive`.
 
 The Utility Dash export now classifies electricity rows as `UNIT`, `COMMON`, or `BULK` and emits a `utility-dash-meter-register.csv` crosswalk so scheme-level common-property and bulk relationships can be reviewed before any manual capture or mapping work.
+
+The first three cleanup artifacts for historical import are now:
+
+- `templates/meter-register-template.csv`: one row per known meter identity
+- `templates/historical-reading-import-template.csv`: one row per reading event tied to a known meter
+- `templates/legacy-meter-map-template.csv`: one row per legacy label or source reference mapped to a meter identity
 
 Utility Dash output is reference-only.
 Use it to compare current flags, inspect historical readings, and mirror export formatting in the app.

@@ -19,13 +19,178 @@ const cloudEntityCollections = {
     buildings: firebaseCollections.buildings,
     units: firebaseCollections.units,
     meters: firebaseCollections.meters,
+    meter_relationships: firebaseCollections.meterRelationships,
     cycles: firebaseCollections.cycles,
     readings: firebaseCollections.readings,
-    cycle_schedules: firebaseCollections.cycleSchedules
+    cycle_schedules: firebaseCollections.cycleSchedules,
+    meter_charges: firebaseCollections.meterCharges,
+    meter_evidence: firebaseCollections.meterEvidence,
+    meter_flags: firebaseCollections.meterFlags,
+    legacy_meter_map: firebaseCollections.legacyMeterMap,
+    import_batches: firebaseCollections.importBatches,
+    raw_import_rows: firebaseCollections.rawImportRows,
+    import_review_queue: firebaseCollections.importReviewQueue,
+    dispute_cases: firebaseCollections.disputeCases,
+    dispute_pack_exports: firebaseCollections.disputePackExports
+};
+
+const meterRoleByType = {
+    BULK: 'bulk',
+    COMMON: 'common_property',
+    UNIT: 'unit',
+    SUBMETER: 'submeter',
+    CHECK: 'check_meter',
+    UNKNOWN: 'legacy_unknown'
+};
+
+const meterTypeByRole = {
+    bulk: 'BULK',
+    common_property: 'COMMON',
+    unit: 'UNIT',
+    submeter: 'UNIT',
+    check_meter: 'CHECK',
+    legacy_unknown: 'UNKNOWN'
 };
 
 function sanitizeForFirestore(value) {
     return JSON.parse(JSON.stringify(value));
+}
+
+function inferMeterRole(data = {}) {
+    const explicitRole = String(data.meter_role || '').trim().toLowerCase();
+    if (explicitRole) {
+        return explicitRole;
+    }
+
+    const explicitType = String(data.meter_type || '').trim().toUpperCase();
+    if (explicitType && meterRoleByType[explicitType]) {
+        return meterRoleByType[explicitType];
+    }
+
+    return 'legacy_unknown';
+}
+
+function inferMeterType(data = {}) {
+    const explicitType = String(data.meter_type || '').trim().toUpperCase();
+    if (explicitType) {
+        return explicitType;
+    }
+
+    return meterTypeByRole[inferMeterRole(data)] || 'UNKNOWN';
+}
+
+function inferCaptureMethod(data = {}) {
+    if (data.capture_method) {
+        return data.capture_method;
+    }
+
+    if (data.imported_from === 'utility_dash' || data.source_file) {
+        return 'imported_excel';
+    }
+
+    return 'manual';
+}
+
+function normalizeEntityPayload(entity, data) {
+    const record = { ...data };
+
+    switch (entity) {
+        case 'meters': {
+            const meterRole = inferMeterRole(record);
+            const meterType = inferMeterType(record);
+
+            return {
+                ...record,
+                meter_role: meterRole,
+                meter_type: meterType,
+                service_type: record.service_type || 'electricity',
+                location_description: record.location_description || record.meter_location || '',
+                parent_meter_id: record.parent_meter_id || null,
+                hierarchy_level: record.hierarchy_level ?? (meterRole === 'bulk' ? 0 : 1),
+                reconciliation_group: record.reconciliation_group || record.scheme_id || null,
+                is_active: typeof record.is_active === 'boolean'
+                    ? record.is_active
+                    : String(record.status || '').toLowerCase() !== 'inactive',
+                source_confidence: record.source_confidence || (record.imported_from ? 'medium' : 'high'),
+                verified_by: record.verified_by || null
+            };
+        }
+        case 'readings': {
+            const hasFlags = Boolean(record.flags?.length) || Boolean(record.manual_flags?.length);
+            const validationStatus = record.validation_status
+                || (record.is_validated ? 'validated' : hasFlags ? 'needs_review' : 'pending');
+
+            return {
+                ...record,
+                reading_type: record.reading_type || 'actual',
+                capture_method: inferCaptureMethod(record),
+                evidence_link: record.evidence_link || null,
+                source_file: record.source_file || null,
+                source_row_reference: record.source_row_reference || null,
+                is_validated: typeof record.is_validated === 'boolean' ? record.is_validated : false,
+                validation_status: validationStatus,
+                validation_reason: record.validation_reason || ''
+            };
+        }
+        case 'meter_charges':
+            return {
+                ...record,
+                charge_type: record.charge_type || 'consumption',
+                source: record.source || 'manual',
+                vat: record.vat ?? 0,
+                tariff: record.tariff ?? null,
+                reversal_of_charge_id: record.reversal_of_charge_id || null
+            };
+        case 'meter_evidence':
+            return {
+                ...record,
+                evidence_type: record.evidence_type || 'photo',
+                capture_method: inferCaptureMethod(record),
+                review_status: record.review_status || 'pending',
+                meter_id: record.meter_id || null,
+                related_reading_id: record.related_reading_id || null
+            };
+        case 'meter_flags':
+            return {
+                ...record,
+                status: record.status || 'open',
+                created_by_rule: record.created_by_rule || 'manual'
+            };
+        case 'legacy_meter_map':
+            return {
+                ...record,
+                mapping_confidence: record.mapping_confidence || 'low',
+                review_status: record.review_status || 'pending'
+            };
+        case 'import_batches':
+            return {
+                ...record,
+                status: record.status || 'staged'
+            };
+        case 'raw_import_rows':
+            return {
+                ...record,
+                review_status: record.review_status || 'pending'
+            };
+        case 'import_review_queue':
+            return {
+                ...record,
+                status: record.status || 'pending',
+                priority: record.priority || 'medium'
+            };
+        case 'dispute_cases':
+            return {
+                ...record,
+                status: record.status || 'open'
+            };
+        case 'dispute_pack_exports':
+            return {
+                ...record,
+                status: record.status || 'generated'
+            };
+        default:
+            return record;
+    }
 }
 
 function writeEntityToLocalCache(entity, items) {
@@ -55,6 +220,7 @@ async function commitChunkedBatch(operations) {
 }
 
 export const storage = {
+    managedEntityKeys: Object.keys(cloudEntityCollections),
     operationalEntityKeys: ['schemes', 'buildings', 'units', 'meters', 'readings', 'cycles', 'cycle_schedules'],
     cloudSyncEnabled: false,
     cloudSyncPromise: Promise.resolve(),
@@ -72,11 +238,11 @@ export const storage = {
 
     create(entity, data) {
         const items = this.getAll(entity);
-        const newItem = {
+        const newItem = normalizeEntityPayload(entity, {
             id: this.generateId(),
             ...data,
             created_at: new Date().toISOString()
-        };
+        });
         items.push(newItem);
         writeEntityToLocalCache(entity, items);
         this.queueCloudUpsert(entity, newItem);
@@ -88,11 +254,11 @@ export const storage = {
         const index = items.findIndex(item => item.id === id);
         if (index === -1) return null;
         
-        items[index] = {
+        items[index] = normalizeEntityPayload(entity, {
             ...items[index],
             ...data,
             updated_at: new Date().toISOString()
-        };
+        });
         writeEntityToLocalCache(entity, items);
         this.queueCloudUpsert(entity, items[index]);
         return items[index];
@@ -234,7 +400,7 @@ export const storage = {
     clearOperationalData(options = {}) {
         const preserveKeys = new Set(options.preserveKeys || []);
 
-        this.operationalEntityKeys.forEach((entity) => {
+        this.managedEntityKeys.forEach((entity) => {
             if (!preserveKeys.has(entity)) {
                 localStorage.removeItem(entity);
             }
@@ -262,8 +428,18 @@ export const storage = {
     getMeters(schemeId = null, meterType = null) {
         let meters = this.getAll('meters');
         if (schemeId) meters = meters.filter(m => m.scheme_id === schemeId);
-        if (meterType) meters = meters.filter(m => m.meter_type === meterType);
+        if (meterType) {
+            const normalizedMeterType = String(meterType).toUpperCase();
+            meters = meters.filter(m => String(m.meter_type || '').toUpperCase() === normalizedMeterType);
+        }
         return meters;
+    },
+
+    getMeterRelationships(meterId = null) {
+        const relationships = this.getAll('meter_relationships');
+        return meterId
+            ? relationships.filter(r => r.parent_meter_id === meterId || r.child_meter_id === meterId)
+            : relationships;
     },
 
     getCycles(schemeId = null) {
@@ -274,6 +450,37 @@ export const storage = {
     getReadings(cycleId = null) {
         const readings = this.getAll('readings');
         return cycleId ? readings.filter(r => r.cycle_id === cycleId) : readings;
+    },
+
+    getMeterCharges(meterId = null) {
+        const charges = this.getAll('meter_charges');
+        return meterId ? charges.filter(charge => charge.meter_id === meterId) : charges;
+    },
+
+    getMeterEvidence(filters = {}) {
+        let evidence = this.getAll('meter_evidence');
+        if (filters.meterId) evidence = evidence.filter(item => item.meter_id === filters.meterId);
+        if (filters.readingId) evidence = evidence.filter(item => item.related_reading_id === filters.readingId);
+        if (filters.evidenceType) evidence = evidence.filter(item => item.evidence_type === filters.evidenceType);
+        return evidence;
+    },
+
+    getMeterFlags(filters = {}) {
+        let flags = this.getAll('meter_flags');
+        if (filters.meterId) flags = flags.filter(flag => flag.meter_id === filters.meterId);
+        if (filters.readingId) flags = flags.filter(flag => flag.reading_id === filters.readingId);
+        if (filters.status) flags = flags.filter(flag => flag.status === filters.status);
+        return flags;
+    },
+
+    getLegacyMeterMap(reviewStatus = null) {
+        const mappings = this.getAll('legacy_meter_map');
+        return reviewStatus ? mappings.filter(item => item.review_status === reviewStatus) : mappings;
+    },
+
+    getImportReviewQueue(status = null) {
+        const items = this.getAll('import_review_queue');
+        return status ? items.filter(item => item.status === status) : items;
     },
 
     // Get open cycle for a scheme
@@ -301,6 +508,7 @@ export const storage = {
 
         return {
             ...meter,
+            meter_role: meter.meter_role || inferMeterRole(meter),
             unit_name: unitName,
             building_name: buildingName
         };
