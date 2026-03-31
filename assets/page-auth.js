@@ -3,6 +3,7 @@
  */
 
 import { auth } from './auth.js';
+import { initializeFolderSchemes } from './app.js';
 import { storage } from './storage.js';
 
 auth.initializeDefaultAdmin();
@@ -13,6 +14,9 @@ window.storage = storage;
 if (auth.isAuthenticated() && !auth.isGuestUser()) {
     try {
         await storage.initializeCloudSync({ preload: true, clearMissing: false });
+        if (auth.getCurrentUser()?.role === 'admin') {
+            initializeFolderSchemes();
+        }
     } catch (error) {
         console.error('Cloud data hydration failed:', error);
     }

@@ -6,17 +6,95 @@
 import { storage } from './storage.js';
 import { router } from './router.js';
 
+const DEFAULT_SCHEME_NAMES = [
+    'Akasia',
+    'Azores',
+    'Bonifay',
+    'Carissa Lane',
+    'Colnbrook',
+    'Genisis on Fairmount',
+    'Gosforth Park',
+    'Hazelmere',
+    'La Montagne',
+    'QueensGate',
+    'Rivonia Gates',
+    'Taragona',
+    'Transvalia',
+    'VILLINO GLEN',
+    'Vista Del Monte'
+];
+
+const SCHEME_NAME_ALIASES = new Map([
+    ['the azores', 'azores'],
+    ['bonifay court', 'bonifay'],
+    ['genesis', 'genisis on fairmount'],
+    ['l montagne', 'la montagne'],
+    ['lmontagne', 'la montagne'],
+    ['queensgate', 'queensgate'],
+    ['rivonia gate', 'rivonia gates'],
+    ['vilino glen', 'villino glen'],
+    ['villino glen', 'villino glen']
+]);
+
+function normalizeSchemeName(value) {
+    return String(value || '')
+        .trim()
+        .toLowerCase()
+        .replace(/['’]/g, '')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+}
+
+function canonicalSchemeName(value) {
+    const normalized = normalizeSchemeName(value);
+    return SCHEME_NAME_ALIASES.get(normalized) || normalized;
+}
+
+export function initializeFolderSchemes() {
+    const existingSchemes = storage.getAll('schemes');
+    const created = [];
+    const updated = [];
+
+    DEFAULT_SCHEME_NAMES.forEach((schemeName) => {
+        const normalizedTarget = normalizeSchemeName(schemeName);
+        const canonicalTarget = canonicalSchemeName(schemeName);
+
+        const exactMatch = existingSchemes.find((scheme) => normalizeSchemeName(scheme.name) === normalizedTarget);
+        if (exactMatch) {
+            return;
+        }
+
+        const aliasMatch = existingSchemes.find((scheme) => canonicalSchemeName(scheme.name) === canonicalTarget);
+        if (aliasMatch) {
+            const renamed = storage.update('schemes', aliasMatch.id, {
+                name: schemeName,
+                address: aliasMatch.address || '',
+                initialized_from: aliasMatch.initialized_from || 'buildings_folder'
+            });
+
+            if (renamed) {
+                updated.push(schemeName);
+            }
+            return;
+        }
+
+        storage.create('schemes', {
+            name: schemeName,
+            address: '',
+            initialized_from: 'buildings_folder'
+        });
+        created.push(schemeName);
+    });
+
+    return { created, updated };
+}
+
 /**
  * Initialize seed data on first run (OPTIONAL - for demo purposes)
  * To enable: uncomment the function call in index.html
  */
 export function initializeSeedData() {
-    // Check if data already exists
-    if (storage.getAll('schemes').length > 0) {
-        return; // Data already exists
-    }
-
-    console.log('No seed data - start by creating your first scheme in Meter Register');
+    return initializeFolderSchemes();
 }
 
 /**

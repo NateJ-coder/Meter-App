@@ -51,7 +51,10 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Schemes</h2>
-                    <button class="btn btn-primary" onclick="showSchemeForm()">+ Add Scheme</button>
+                    <div class="form-actions" style="margin: 0;">
+                        <button class="btn btn-secondary" type="button" onclick="startSchemeAddressPass()">Fill Missing Addresses</button>
+                        <button class="btn btn-primary" onclick="showSchemeForm()">+ Add Scheme</button>
+                    </div>
                 </div>
                 <div id="schemes-list"></div>
             </div>

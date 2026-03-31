@@ -119,7 +119,7 @@
         import { onboarding } from './assets/onboarding.js';
         import { setupHealth } from './assets/setup-health.js';
         import { firstTimeChecklist } from './assets/first-time-checklist.js';
-        import { initializeSeedData } from './assets/app.js';
+        import { initializeFolderSchemes } from './assets/app.js';
         import { importReadingTransferPackage } from './assets/reading-transfer.js';
 
         auth.initializeDefaultAdmin();
@@ -137,6 +137,16 @@
             window.location.href = 'login.html?reader_only=1';
         }
 
+        try {
+            await storage.initializeCloudSync({ preload: true, clearMissing: false });
+        } catch (error) {
+            console.error('Cloud data hydration failed:', error);
+        }
+
+        if (currentUser.role === 'admin') {
+            initializeFolderSchemes();
+        }
+
         document.getElementById('user-name').textContent = currentUser.name;
 
         // Show dev console link for admins
@@ -150,10 +160,6 @@
                 void auth.logout();
             }
         };
-
-        // Initialize seed data on first run (disabled by default)
-        // Uncomment the line below to enable seed data:
-        // initializeSeedData();
 
         // Make storage globally available
         window.storage = storage;
