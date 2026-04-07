@@ -235,44 +235,11 @@ window.viewMeterHistory = async function(meterId) {
 };
 
 // ========== SCHEMES ==========
-const schemeAddressPassState = {
-    active: false
-};
-
-function getSchemesMissingAddresses() {
-    return storage.getSchemes()
-        .filter((scheme) => !String(scheme.address || '').trim())
-        .sort((left, right) => left.name.localeCompare(right.name));
-}
-
-function setSchemeFormMode({ addressOnly = false } = {}) {
-    const nameInput = document.getElementById('scheme-name');
-    const title = document.getElementById('scheme-form-title');
-
-    nameInput.readOnly = addressOnly;
-    if (addressOnly) {
-        title.textContent = 'Add Scheme Address';
-        nameInput.title = 'Scheme name is preloaded from the Buildings folder list.';
-    } else {
-        nameInput.title = '';
-    }
-}
-
 function loadSchemes() {
     const schemes = storage.getSchemes()
         .slice()
-        .sort((left, right) => {
-            const leftMissing = !String(left.address || '').trim();
-            const rightMissing = !String(right.address || '').trim();
-
-            if (leftMissing !== rightMissing) {
-                return leftMissing ? -1 : 1;
-            }
-
-            return left.name.localeCompare(right.name);
-        });
+        .sort((left, right) => left.name.localeCompare(right.name));
     const container = document.getElementById('schemes-list');
-    const missingAddresses = getSchemesMissingAddresses();
     
     if (schemes.length === 0) {
         container.innerHTML = '<p class="text-muted">No schemes found. Add your first scheme.</p>';
@@ -280,20 +247,10 @@ function loadSchemes() {
     }
     
     container.innerHTML = `
-        ${missingAddresses.length > 0 ? `
-            <div class="info-box mb-2">
-                <strong>${missingAddresses.length} scheme address${missingAddresses.length === 1 ? '' : 'es'} still need${missingAddresses.length === 1 ? 's' : ''} to be filled in.</strong><br>
-                The scheme names are already preloaded. Complete the physical addresses now so manual onboarding can continue cleanly.
-                <div class="mt-2">
-                    <button class="btn btn-secondary" type="button" onclick="startSchemeAddressPass()">Fill Missing Addresses</button>
-                </div>
-            </div>
-        ` : ''}
         <table class="data-table">
             <thead>
                 <tr>
                     <th>Scheme Name</th>
-                    <th>Address</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -301,7 +258,6 @@ function loadSchemes() {
                 ${schemes.map(scheme => `
                     <tr>
                         <td><strong>${scheme.name}</strong></td>
-                        <td>${scheme.address || 'N/A'}</td>
                         <td>
                             <button class="btn btn-secondary" onclick="editScheme('${scheme.id}')">Edit</button>
                             <button class="btn btn-danger" onclick="deleteScheme('${scheme.id}')">Delete</button>
@@ -314,46 +270,26 @@ function loadSchemes() {
 }
 
 window.showSchemeForm = function() {
-    schemeAddressPassState.active = false;
     document.getElementById('scheme-form').style.display = 'block';
     document.getElementById('scheme-form-title').textContent = 'Add Scheme';
     document.getElementById('scheme-form-element').reset();
     document.getElementById('scheme-id').value = '';
-    setSchemeFormMode({ addressOnly: false });
 };
 
 window.cancelSchemeForm = function() {
     document.getElementById('scheme-form').style.display = 'none';
     document.getElementById('scheme-form-element').reset();
-    setSchemeFormMode({ addressOnly: false });
-    schemeAddressPassState.active = false;
 };
 
-window.editScheme = function(id, options = {}) {
+window.editScheme = function(id) {
     const scheme = storage.get('schemes', id);
     if (!scheme) {
         return;
     }
-
-    const addressOnly = Boolean(options.addressOnly);
-    schemeAddressPassState.active = addressOnly;
     document.getElementById('scheme-id').value = id;
     document.getElementById('scheme-name').value = scheme.name;
-    document.getElementById('scheme-address').value = scheme.address || '';
-    document.getElementById('scheme-form-title').textContent = addressOnly ? 'Add Scheme Address' : 'Edit Scheme';
+    document.getElementById('scheme-form-title').textContent = 'Edit Scheme';
     document.getElementById('scheme-form').style.display = 'block';
-    setSchemeFormMode({ addressOnly });
-    document.getElementById('scheme-address').focus();
-};
-
-window.startSchemeAddressPass = function() {
-    const nextScheme = getSchemesMissingAddresses()[0];
-    if (!nextScheme) {
-        showNotification('All scheme addresses are already filled in.');
-        return;
-    }
-
-    window.editScheme(nextScheme.id, { addressOnly: true });
 };
 
 window.deleteScheme = function(id) {
@@ -381,10 +317,8 @@ document.getElementById('scheme-form-element').addEventListener('submit', (e) =>
     e.preventDefault();
     
     const id = document.getElementById('scheme-id').value;
-    const wasAddressPass = schemeAddressPassState.active;
     const data = {
-        name: document.getElementById('scheme-name').value,
-        address: document.getElementById('scheme-address').value
+        name: document.getElementById('scheme-name').value
     };
     
     if (id) {
@@ -397,17 +331,6 @@ document.getElementById('scheme-form-element').addEventListener('submit', (e) =>
     
     cancelSchemeForm();
     loadSchemes();
-
-    if (wasAddressPass) {
-        const remaining = getSchemesMissingAddresses();
-        if (remaining.length > 0) {
-            showNotification(`${remaining.length} scheme address${remaining.length === 1 ? '' : 'es'} still need to be completed.`);
-            window.editScheme(remaining[0].id, { addressOnly: true });
-            return;
-        }
-
-        showNotification('All preloaded scheme addresses are now complete.');
-    }
 });
 
 // ========== BUILDINGS ==========

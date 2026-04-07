@@ -172,11 +172,6 @@ export const onboarding = {
                         <label for="scheme-name">Scheme Name *</label>
                         <input type="text" id="scheme-name" required placeholder="e.g., Oak Gardens Complex">
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="scheme-address">Physical Address *</label>
-                        <textarea id="scheme-address" required rows="3" placeholder="123 Main Street, City, Postal Code"></textarea>
-                    </div>
 
                     <div class="form-group">
                         <label for="scheme-notes">Notes (optional)</label>
@@ -666,7 +661,6 @@ export const onboarding = {
         
         const scheme = {
             name: document.getElementById('scheme-name').value,
-            address: document.getElementById('scheme-address').value,
             notes: document.getElementById('scheme-notes').value
         };
 

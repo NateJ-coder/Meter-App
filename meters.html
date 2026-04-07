@@ -51,10 +51,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Schemes</h2>
-                    <div class="form-actions" style="margin: 0;">
-                        <button class="btn btn-secondary" type="button" onclick="startSchemeAddressPass()">Fill Missing Addresses</button>
-                        <button class="btn btn-primary" onclick="showSchemeForm()">+ Add Scheme</button>
-                    </div>
+                    <button class="btn btn-primary" onclick="showSchemeForm()">+ Add Scheme</button>
                 </div>
                 <div id="schemes-list"></div>
             </div>
@@ -65,10 +62,6 @@
                     <div class="form-group">
                         <label for="scheme-name">Scheme Name *</label>
                         <input type="text" id="scheme-name" required placeholder="e.g., Fuzio Gardens">
-                    </div>
-                    <div class="form-group">
-                        <label for="scheme-address">Address</label>
-                        <textarea id="scheme-address" rows="2" placeholder="Physical address"></textarea>
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary">Save Scheme</button>

@@ -68,7 +68,6 @@ export function initializeFolderSchemes() {
         if (aliasMatch) {
             const renamed = storage.update('schemes', aliasMatch.id, {
                 name: schemeName,
-                address: aliasMatch.address || '',
                 initialized_from: aliasMatch.initialized_from || 'buildings_folder'
             });
 
@@ -80,7 +79,6 @@ export function initializeFolderSchemes() {
 
         storage.create('schemes', {
             name: schemeName,
-            address: '',
             initialized_from: 'buildings_folder'
         });
         created.push(schemeName);
