@@ -33,6 +33,7 @@ const cloudEntityCollections = {
 
 const LOCAL_BACKUP_KEY = 'fuzio_operational_backup';
 const DESTRUCTIVE_CLEAR_SENTINEL = 'CONFIRM_CLEAR_OPERATIONAL_DATA';
+const supplementalLocalEntities = ['import_batches'];
 
 const meterRoleByType = {
     BULK: 'bulk',
@@ -217,7 +218,7 @@ async function commitChunkedBatch(operations) {
 }
 
 export const storage = {
-    managedEntityKeys: Object.keys(cloudEntityCollections),
+    managedEntityKeys: [...Object.keys(cloudEntityCollections), ...supplementalLocalEntities],
     operationalEntityKeys: ['schemes', 'buildings', 'units', 'meters', 'readings', 'cycles', 'cycle_schedules'],
     cloudSyncEnabled: false,
     cloudSyncPromise: Promise.resolve(),
@@ -239,6 +240,20 @@ export const storage = {
             id: this.generateId(),
             ...data,
             created_at: new Date().toISOString()
+        });
+        items.push(newItem);
+        writeEntityToLocalCache(entity, items);
+        this.persistOperationalBackup();
+        this.queueCloudUpsert(entity, newItem);
+        return newItem;
+    },
+
+    createWithId(entity, data) {
+        const items = this.getAll(entity);
+        const newItem = normalizeEntityPayload(entity, {
+            ...data,
+            id: data.id || this.generateId(),
+            created_at: data.created_at || new Date().toISOString()
         });
         items.push(newItem);
         writeEntityToLocalCache(entity, items);
@@ -527,6 +542,12 @@ export const storage = {
     getLegacyMeterMap(reviewStatus = null) {
         const mappings = this.getAll('legacy_meter_map');
         return reviewStatus ? mappings.filter(item => item.review_status === reviewStatus) : mappings;
+    },
+
+    getImportBatches() {
+        return this.getAll('import_batches')
+            .slice()
+            .sort((left, right) => new Date(right.imported_at || right.created_at || 0) - new Date(left.imported_at || left.created_at || 0));
     },
 
     // Get open cycle for a scheme

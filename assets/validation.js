@@ -21,7 +21,7 @@ const DEFAULT_CONFIG = {
 /**
  * Get validation config for a scheme (or global default)
  */
-function getValidationConfig(schemeId = null) {
+export function getValidationConfig(schemeId = null) {
     if (schemeId) {
         // Try to get scheme-specific config from localStorage
         const schemeConfigKey = `fuzio_validation_config_${schemeId}`;
