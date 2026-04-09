@@ -47,6 +47,18 @@ The current focus is the migration of business logic from the legacy Utility Das
 - electricity filter logic
 - electricity historical-data completeness assessment
 
+## Working Migration Folder
+
+The canonical working folder for sheet-by-sheet JSON migration is now [DataMigration/README.md](../DataMigration/README.md).
+
+Use it for:
+
+- per-sheet workbook JSON inputs
+- migration scripts and transformation logic
+- normalized sheet outputs
+- app-ready payload outputs
+- review and reconciliation artifacts
+
 ## Out of Scope For Now
 
 - Excel formatting

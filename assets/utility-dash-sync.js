@@ -44,6 +44,11 @@ async function loadPayloadFromFile() {
         throw new Error('Choose the generated utility-dash-app-payload.json file first.');
     }
 
+    const fileName = String(file.name || '').toLowerCase();
+    if (fileName.endsWith('.xlsx') || fileName.endsWith('.xlsm') || fileName.endsWith('.xls')) {
+        throw new Error('Raw Excel workbooks are not supported on this page yet. Use the generated utility-dash-app-payload.json file, not the original workbook.');
+    }
+
     const text = await file.text();
     return JSON.parse(text);
 }

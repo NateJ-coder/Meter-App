@@ -1,0 +1,357 @@
+{
+  "workbook_path": "c:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\macro-free\\Utility Dash 9 Mar decrypted working copy (2) 2026.xlsx",
+  "sheet_count": 43,
+  "generated_at": "2026-04-09T13:37:16.851203+00:00",
+  "settings_snapshot": {
+    "vat_percent": 0.15,
+    "ignore_negative_common_property_amounts": true,
+    "tolerance_months": 4,
+    "tolerance_percentage": 1.0
+  },
+  "sheets": [
+    {
+      "sheet_name": "CheckList",
+      "sheet_slug": "checklist",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\checklist.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\checklist.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "ReadableReport",
+      "sheet_slug": "readablereport",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\readablereport.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\readablereport.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "BuildingReport",
+      "sheet_slug": "buildingreport",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\buildingreport.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\buildingreport.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "BuildingReportTemplate",
+      "sheet_slug": "buildingreporttemplate",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\buildingreporttemplate.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\buildingreporttemplate.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Variable_List",
+      "sheet_slug": "variable-list",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\variable-list.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\variable-list.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "ReadableReportTemplate (3)",
+      "sheet_slug": "readablereporttemplate-3",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\readablereporttemplate-3.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\readablereporttemplate-3.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "ReadableReportTemplate (2)",
+      "sheet_slug": "readablereporttemplate-2",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\readablereporttemplate-2.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\readablereporttemplate-2.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Home",
+      "sheet_slug": "home",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\home.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\home.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Help",
+      "sheet_slug": "help",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\help.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\help.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Settings",
+      "sheet_slug": "settings",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\settings.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\settings.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Tariffs",
+      "sheet_slug": "tariffs",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\tariffs.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\tariffs.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "UnitHistory",
+      "sheet_slug": "unithistory",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\unithistory.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\unithistory.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "ElecBreakDown",
+      "sheet_slug": "elecbreakdown",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\elecbreakdown.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\elecbreakdown.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "WaterBreakdown",
+      "sheet_slug": "waterbreakdown",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\waterbreakdown.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\waterbreakdown.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "ReadableReportTemplate Water",
+      "sheet_slug": "readablereporttemplate-water",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\readablereporttemplate-water.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\readablereporttemplate-water.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "ReadableReportTemplate",
+      "sheet_slug": "readablereporttemplate",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\readablereporttemplate.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\readablereporttemplate.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Invoice",
+      "sheet_slug": "invoice",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\invoice.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\invoice.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "WCU Output",
+      "sheet_slug": "wcu-output",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\wcu-output.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\wcu-output.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "BCM Output",
+      "sheet_slug": "bcm-output",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\bcm-output.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\bcm-output.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "The Azores",
+      "sheet_slug": "the-azores",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\the-azores.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\the-azores.normalized.json",
+      "review_flag_count": 3
+    },
+    {
+      "sheet_name": "Genesis",
+      "sheet_slug": "genesis",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\genesis.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\genesis.normalized.json",
+      "review_flag_count": 6
+    },
+    {
+      "sheet_name": "Carissa Lane",
+      "sheet_slug": "carissa-lane",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\carissa-lane.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\carissa-lane.normalized.json",
+      "review_flag_count": 5
+    },
+    {
+      "sheet_name": "Bonifay Court",
+      "sheet_slug": "bonifay-court",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\bonifay-court.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\bonifay-court.normalized.json",
+      "review_flag_count": 6
+    },
+    {
+      "sheet_name": "Granistar Heights",
+      "sheet_slug": "granistar-heights",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\granistar-heights.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\granistar-heights.normalized.json",
+      "review_flag_count": 3
+    },
+    {
+      "sheet_name": "Mang Court",
+      "sheet_slug": "mang-court",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\mang-court.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\mang-court.normalized.json",
+      "review_flag_count": 7
+    },
+    {
+      "sheet_name": "Vilino Glen",
+      "sheet_slug": "vilino-glen",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\vilino-glen.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\vilino-glen.normalized.json",
+      "review_flag_count": 5
+    },
+    {
+      "sheet_name": "Sheet2",
+      "sheet_slug": "sheet2",
+      "sheet_category": "support",
+      "input_json": "inputs\\sheet-json\\sheet2.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\sheet2.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Hazelmere",
+      "sheet_slug": "hazelmere",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\hazelmere.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\hazelmere.normalized.json",
+      "review_flag_count": 6
+    },
+    {
+      "sheet_name": "Akasia",
+      "sheet_slug": "akasia",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\akasia.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\akasia.normalized.json",
+      "review_flag_count": 8
+    },
+    {
+      "sheet_name": "Phanda Lodge",
+      "sheet_slug": "phanda-lodge",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\phanda-lodge.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\phanda-lodge.normalized.json",
+      "review_flag_count": 4
+    },
+    {
+      "sheet_name": "Vista Del Monte",
+      "sheet_slug": "vista-del-monte",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\vista-del-monte.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\vista-del-monte.normalized.json",
+      "review_flag_count": 3
+    },
+    {
+      "sheet_name": "L'Montagne",
+      "sheet_slug": "l-montagne",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\l-montagne.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\l-montagne.normalized.json",
+      "review_flag_count": 4
+    },
+    {
+      "sheet_name": "Magnolia Gardens",
+      "sheet_slug": "magnolia-gardens",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\magnolia-gardens.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\magnolia-gardens.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Panarama View",
+      "sheet_slug": "panarama-view",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\panarama-view.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\panarama-view.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Queensgate",
+      "sheet_slug": "queensgate",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\queensgate.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\queensgate.normalized.json",
+      "review_flag_count": 7
+    },
+    {
+      "sheet_name": "Rivonia Gate",
+      "sheet_slug": "rivonia-gate",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\rivonia-gate.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\rivonia-gate.normalized.json",
+      "review_flag_count": 4
+    },
+    {
+      "sheet_name": "Riviera Villas",
+      "sheet_slug": "riviera-villas",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\riviera-villas.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\riviera-villas.normalized.json",
+      "review_flag_count": 1
+    },
+    {
+      "sheet_name": "Stonecrest",
+      "sheet_slug": "stonecrest",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\stonecrest.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\stonecrest.normalized.json",
+      "review_flag_count": 0
+    },
+    {
+      "sheet_name": "Suncrest",
+      "sheet_slug": "suncrest",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\suncrest.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\suncrest.normalized.json",
+      "review_flag_count": 11
+    },
+    {
+      "sheet_name": "Haven Court",
+      "sheet_slug": "haven-court",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\haven-court.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\haven-court.normalized.json",
+      "review_flag_count": 21
+    },
+    {
+      "sheet_name": "Taragona",
+      "sheet_slug": "taragona",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\taragona.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\taragona.normalized.json",
+      "review_flag_count": 4
+    },
+    {
+      "sheet_name": "New Poort",
+      "sheet_slug": "new-poort",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\new-poort.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\new-poort.normalized.json",
+      "review_flag_count": 13
+    },
+    {
+      "sheet_name": "Transvalia",
+      "sheet_slug": "transvalia",
+      "sheet_category": "building",
+      "input_json": "inputs\\sheet-json\\transvalia.sheet.json",
+      "normalized_json": "outputs\\sheet-normalized\\transvalia.normalized.json",
+      "review_flag_count": 4
+    }
+  ]
+}

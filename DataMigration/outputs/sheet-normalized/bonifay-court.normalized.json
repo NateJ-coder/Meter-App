@@ -1,0 +1,3310 @@
+{
+  "sheet_name": "Bonifay Court",
+  "sheet_slug": "bonifay-court",
+  "sheet_category": "building",
+  "scheme_name": "Bonifay",
+  "settings_snapshot": {
+    "vat_percent": 0.15,
+    "ignore_negative_common_property_amounts": true,
+    "tolerance_months": 4,
+    "tolerance_percentage": 1.0
+  },
+  "month_columns": [
+    {
+      "column_index": 5,
+      "display_label": "2025-04-01 00:00:00",
+      "reading_date_raw": "2025-05-06 00:00:00",
+      "reading_date": "2025-05-06",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2024"
+    },
+    {
+      "column_index": 6,
+      "display_label": "2025-05-01 00:00:00",
+      "reading_date_raw": "2025-06-03 00:00:00",
+      "reading_date": "2025-06-03",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2024"
+    },
+    {
+      "column_index": 7,
+      "display_label": "2025-06-01 00:00:00",
+      "reading_date_raw": "2025-07-04 00:00:00",
+      "reading_date": "2025-07-04",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 8,
+      "display_label": "2025-07-01 00:00:00",
+      "reading_date_raw": "2025-08-05 00:00:00",
+      "reading_date": "2025-08-05",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 9,
+      "display_label": "2025-08-01 00:00:00",
+      "reading_date_raw": "2025-09-04 00:00:00",
+      "reading_date": "2025-09-04",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 10,
+      "display_label": "2025-09-01 00:00:00",
+      "reading_date_raw": "2025-10-03 00:00:00",
+      "reading_date": "2025-10-03",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 11,
+      "display_label": "2025-10-01 00:00:00",
+      "reading_date_raw": "2025-10-31 00:00:00",
+      "reading_date": "2025-10-31",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 12,
+      "display_label": "2025-11-21 00:00:00",
+      "reading_date_raw": "2025-12-03 00:00:00",
+      "reading_date": "2025-12-03",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 13,
+      "display_label": "2025-12-21 00:00:00",
+      "reading_date_raw": "2026-01-07 00:00:00",
+      "reading_date": "2026-01-07",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 14,
+      "display_label": "2026-01-21 00:00:00",
+      "reading_date_raw": "2026-02-05 00:00:00",
+      "reading_date": "2026-02-05",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 15,
+      "display_label": "2026-03-21 00:00:00",
+      "reading_date_raw": "2026-03-03 00:00:00",
+      "reading_date": "2026-03-03",
+      "reading_date_note": null,
+      "tariff_table": "BC Jul 2025"
+    },
+    {
+      "column_index": 16,
+      "display_label": "2026-04-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 17,
+      "display_label": "2026-05-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 18,
+      "display_label": "2026-06-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 19,
+      "display_label": "2026-07-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 20,
+      "display_label": "2026-08-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    }
+  ],
+  "charge_modes": [
+    {
+      "source_row": 4,
+      "charge_name": "Elec Common Prop",
+      "distribution_mode": "None"
+    },
+    {
+      "source_row": 5,
+      "charge_name": "Elec Service Charge",
+      "distribution_mode": "None"
+    },
+    {
+      "source_row": 6,
+      "charge_name": "Elec Network Charge",
+      "distribution_mode": "None"
+    },
+    {
+      "source_row": 7,
+      "charge_name": "Common Property",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 8,
+      "charge_name": "Water Demand Management Levy",
+      "distribution_mode": "None"
+    },
+    {
+      "source_row": 9,
+      "charge_name": "Water Surcharge",
+      "distribution_mode": "None"
+    },
+    {
+      "source_row": 10,
+      "charge_name": "Sanitation",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 11,
+      "charge_name": "Refuse",
+      "distribution_mode": "None"
+    }
+  ],
+  "sections": {
+    "electricity_header_row": 17,
+    "water_header_row": 46
+  },
+  "electricity_rows": [
+    {
+      "source_row": 18,
+      "legacy_label": "BC 01",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 330353,
+          "reading_value": 330353.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 330625,
+          "reading_value": 330625.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 330986,
+          "reading_value": 330986.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 331289,
+          "reading_value": 331289.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 331607,
+          "reading_value": 331607.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 331858,
+          "reading_value": 331858.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 332114,
+          "reading_value": 332114.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 332445,
+          "reading_value": 332445.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 332775,
+          "reading_value": 332775.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 333049,
+          "reading_value": 333049.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 333282,
+          "reading_value": 333282.0
+        }
+      ]
+    },
+    {
+      "source_row": 19,
+      "legacy_label": "BC 02",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 320611,
+          "reading_value": 320611.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 320671,
+          "reading_value": 320671.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 320682,
+          "reading_value": 320682.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 320686,
+          "reading_value": 320686.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 321036,
+          "reading_value": 321036.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 321335,
+          "reading_value": 321335.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 321585,
+          "reading_value": 321585.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 321990,
+          "reading_value": 321990.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 322591,
+          "reading_value": 322591.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 323013,
+          "reading_value": 323013.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 323408,
+          "reading_value": 323408.0
+        }
+      ]
+    },
+    {
+      "source_row": 20,
+      "legacy_label": "BC 03",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 42584,
+          "reading_value": 42584.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 42867,
+          "reading_value": 42867.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 43235,
+          "reading_value": 43235.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 43533,
+          "reading_value": 43533.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 43747,
+          "reading_value": 43747.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 43971,
+          "reading_value": 43971.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 44227,
+          "reading_value": 44227.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 44611,
+          "reading_value": 44611.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 44991,
+          "reading_value": 44991.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 45162,
+          "reading_value": 45162.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 45298,
+          "reading_value": 45298.0
+        }
+      ]
+    },
+    {
+      "source_row": 21,
+      "legacy_label": "BC 04",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 364700,
+          "reading_value": 364700.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 365104,
+          "reading_value": 365104.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 365650,
+          "reading_value": 365650.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 366125,
+          "reading_value": 366125.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 366564,
+          "reading_value": 366564.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 366947,
+          "reading_value": 366947.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 367321,
+          "reading_value": 367321.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 367800,
+          "reading_value": 367800.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 368597,
+          "reading_value": 368597.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 368672,
+          "reading_value": 368672.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 368725,
+          "reading_value": 368725.0
+        }
+      ]
+    },
+    {
+      "source_row": 22,
+      "legacy_label": "BC 05",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 255367,
+          "reading_value": 255367.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 255971,
+          "reading_value": 255971.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 256750,
+          "reading_value": 256750.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 257660,
+          "reading_value": 257660.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 258445,
+          "reading_value": 258445.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 259114,
+          "reading_value": 259114.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 259707,
+          "reading_value": 259707.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 260466,
+          "reading_value": 260466.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 261088,
+          "reading_value": 261088.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 261598,
+          "reading_value": 261598.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 262002,
+          "reading_value": 262002.0
+        }
+      ]
+    },
+    {
+      "source_row": 23,
+      "legacy_label": "BC 06",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514755,
+          "reading_value": 514755.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 514758,
+          "reading_value": 514758.0
+        }
+      ]
+    },
+    {
+      "source_row": 24,
+      "legacy_label": "BC 07",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 548976,
+          "reading_value": 548976.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 550026,
+          "reading_value": 550026.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 551214,
+          "reading_value": 551214.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 552572,
+          "reading_value": 552572.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 553796,
+          "reading_value": 553796.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 554848,
+          "reading_value": 554848.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 555751,
+          "reading_value": 555751.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 556828,
+          "reading_value": 556828.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 557981,
+          "reading_value": 557981.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 558923,
+          "reading_value": 558923.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 559749,
+          "reading_value": 559749.0
+        }
+      ]
+    },
+    {
+      "source_row": 25,
+      "legacy_label": "BC 08",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 50114,
+          "reading_value": 50114.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 50401,
+          "reading_value": 50401.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 50716,
+          "reading_value": 50716.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 51005,
+          "reading_value": 51005.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 51297,
+          "reading_value": 51297.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 51549,
+          "reading_value": 51549.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 51747,
+          "reading_value": 51747.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 52006,
+          "reading_value": 52006.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 52118,
+          "reading_value": 52118.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 52320,
+          "reading_value": 52320.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 52503,
+          "reading_value": 52503.0
+        }
+      ]
+    },
+    {
+      "source_row": 26,
+      "legacy_label": "BC 09",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 324451,
+          "reading_value": 324451.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 324749,
+          "reading_value": 324749.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 325066,
+          "reading_value": 325066.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 325409,
+          "reading_value": 325409.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 325763,
+          "reading_value": 325763.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 326035,
+          "reading_value": 326035.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 326370,
+          "reading_value": 326370.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 326776,
+          "reading_value": 326776.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 327192,
+          "reading_value": 327192.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 327560,
+          "reading_value": 327560.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 327847,
+          "reading_value": 327847.0
+        }
+      ]
+    },
+    {
+      "source_row": 27,
+      "legacy_label": "BC 10",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 433520,
+          "reading_value": 433520.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 434257,
+          "reading_value": 434257.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 435012,
+          "reading_value": 435012.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 435916,
+          "reading_value": 435916.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 436736,
+          "reading_value": 436736.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 437468,
+          "reading_value": 437468.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 438211,
+          "reading_value": 438211.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 439154,
+          "reading_value": 439154.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 439864,
+          "reading_value": 439864.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 440594,
+          "reading_value": 440594.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 441211,
+          "reading_value": 441211.0
+        }
+      ]
+    },
+    {
+      "source_row": 28,
+      "legacy_label": "BC 11",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 362726,
+          "reading_value": 362726.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 362800,
+          "reading_value": 362800.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 363036,
+          "reading_value": 363036.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 363239,
+          "reading_value": 363239.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 363442,
+          "reading_value": 363442.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 363629,
+          "reading_value": 363629.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 363807,
+          "reading_value": 363807.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 364024,
+          "reading_value": 364024.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 364230,
+          "reading_value": 364230.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 364409,
+          "reading_value": 364409.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 364562,
+          "reading_value": 364562.0
+        }
+      ]
+    },
+    {
+      "source_row": 29,
+      "legacy_label": "BC 12",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 27620,
+          "reading_value": 27620.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 27876,
+          "reading_value": 27876.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 28146,
+          "reading_value": 28146.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 28422,
+          "reading_value": 28422.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 28639,
+          "reading_value": 28639.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 28828,
+          "reading_value": 28828.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 29037,
+          "reading_value": 29037.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 29276,
+          "reading_value": 29276.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 29478,
+          "reading_value": 29478.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 29668,
+          "reading_value": 29668.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 29747,
+          "reading_value": 29747.0
+        }
+      ]
+    },
+    {
+      "source_row": 30,
+      "legacy_label": "BC 13",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 340834,
+          "reading_value": 340834.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 341259,
+          "reading_value": 341259.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 341800,
+          "reading_value": 341800.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 342432,
+          "reading_value": 342432.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 342971,
+          "reading_value": 342971.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 343425,
+          "reading_value": 343425.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 343806,
+          "reading_value": 343806.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 344215,
+          "reading_value": 344215.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 344572,
+          "reading_value": 344572.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 344957,
+          "reading_value": 344957.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 345276,
+          "reading_value": 345276.0
+        }
+      ]
+    },
+    {
+      "source_row": 31,
+      "legacy_label": "BC 14",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 409766,
+          "reading_value": 409766.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 410136,
+          "reading_value": 410136.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 410540,
+          "reading_value": 410540.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 410977,
+          "reading_value": 410977.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 411352,
+          "reading_value": 411352.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 411671,
+          "reading_value": 411671.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 411953,
+          "reading_value": 411953.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 412301,
+          "reading_value": 412301.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 412589,
+          "reading_value": 412589.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 412874,
+          "reading_value": 412874.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 413148,
+          "reading_value": 413148.0
+        }
+      ]
+    },
+    {
+      "source_row": 32,
+      "legacy_label": "BC 15",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 334444,
+          "reading_value": 334444.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 334727,
+          "reading_value": 334727.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 335160,
+          "reading_value": 335160.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 335616,
+          "reading_value": 335616.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 335926,
+          "reading_value": 335926.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 336164,
+          "reading_value": 336164.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 336395,
+          "reading_value": 336395.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 336693,
+          "reading_value": 336693.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 336994,
+          "reading_value": 336994.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 337253,
+          "reading_value": 337253.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 337487,
+          "reading_value": 337487.0
+        }
+      ]
+    },
+    {
+      "source_row": 33,
+      "legacy_label": "BC 16",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 48963,
+          "reading_value": 48963.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 49809,
+          "reading_value": 49809.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 50712,
+          "reading_value": 50712.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 51717,
+          "reading_value": 51717.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 52482,
+          "reading_value": 52482.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 53201,
+          "reading_value": 53201.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 53748,
+          "reading_value": 53748.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 54478,
+          "reading_value": 54478.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 55525,
+          "reading_value": 55525.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 56320,
+          "reading_value": 56320.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 57027,
+          "reading_value": 57027.0
+        }
+      ]
+    },
+    {
+      "source_row": 34,
+      "legacy_label": "BC 17",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 350372,
+          "reading_value": 350372.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 350750,
+          "reading_value": 350750.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 351226,
+          "reading_value": 351226.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 351617,
+          "reading_value": 351617.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 352044,
+          "reading_value": 352044.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 352436,
+          "reading_value": 352436.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 352788,
+          "reading_value": 352788.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 353241,
+          "reading_value": 353241.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 353651,
+          "reading_value": 353651.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 353981,
+          "reading_value": 353981.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 354262,
+          "reading_value": 354262.0
+        }
+      ]
+    },
+    {
+      "source_row": 35,
+      "legacy_label": "BC 18",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 315237,
+          "reading_value": 315237.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 315617,
+          "reading_value": 315617.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 316416,
+          "reading_value": 316416.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 317254,
+          "reading_value": 317254.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 317744,
+          "reading_value": 317744.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 318123,
+          "reading_value": 318123.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 318498,
+          "reading_value": 318498.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 318962,
+          "reading_value": 318962.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 319264,
+          "reading_value": 319264.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 319685,
+          "reading_value": 319685.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 320089,
+          "reading_value": 320089.0
+        }
+      ]
+    },
+    {
+      "source_row": 36,
+      "legacy_label": "BC 19",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 384130,
+          "reading_value": 384130.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 384607,
+          "reading_value": 384607.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 385126,
+          "reading_value": 385126.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 385671,
+          "reading_value": 385671.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 386135,
+          "reading_value": 386135.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 386524,
+          "reading_value": 386524.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 386858,
+          "reading_value": 386858.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 387286,
+          "reading_value": 387286.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 387595,
+          "reading_value": 387595.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 387983,
+          "reading_value": 387983.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 388314,
+          "reading_value": 388314.0
+        }
+      ]
+    },
+    {
+      "source_row": 37,
+      "legacy_label": "BC 20",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 475133,
+          "reading_value": 475133.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 475345,
+          "reading_value": 475345.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 475595,
+          "reading_value": 475595.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 475685,
+          "reading_value": 475685.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 476107,
+          "reading_value": 476107.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 476309,
+          "reading_value": 476309.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 476479,
+          "reading_value": 476479.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 476703,
+          "reading_value": 476703.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 476937,
+          "reading_value": 476937.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 477131,
+          "reading_value": 477131.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 477319,
+          "reading_value": 477319.0
+        }
+      ]
+    },
+    {
+      "source_row": 38,
+      "legacy_label": "BC 21",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 183482,
+          "reading_value": 183482.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 183830,
+          "reading_value": 183830.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 184184,
+          "reading_value": 184184.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 184589,
+          "reading_value": 184589.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 184928,
+          "reading_value": 184928.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 185260,
+          "reading_value": 185260.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 185534,
+          "reading_value": 185534.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 185892,
+          "reading_value": 185892.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 186226,
+          "reading_value": 186226.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 186525,
+          "reading_value": 186525.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 186790,
+          "reading_value": 186790.0
+        }
+      ]
+    },
+    {
+      "source_row": 39,
+      "legacy_label": "BC 22",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 396386,
+          "reading_value": 396386.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 396973,
+          "reading_value": 396973.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 398131,
+          "reading_value": 398131.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 398876,
+          "reading_value": 398876.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 399501,
+          "reading_value": 399501.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 400144,
+          "reading_value": 400144.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 400779,
+          "reading_value": 400779.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 401500,
+          "reading_value": 401500.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 401969,
+          "reading_value": 401969.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 402537,
+          "reading_value": 402537.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 403029,
+          "reading_value": 403029.0
+        }
+      ]
+    },
+    {
+      "source_row": 40,
+      "legacy_label": "BC 23",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 440767,
+          "reading_value": 440767.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 441295,
+          "reading_value": 441295.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 441634,
+          "reading_value": 441634.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 442000,
+          "reading_value": 442000.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 442499,
+          "reading_value": 442499.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 443322,
+          "reading_value": 443322.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 443663,
+          "reading_value": 443663.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 444014,
+          "reading_value": 444014.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 444484,
+          "reading_value": 444484.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 444821,
+          "reading_value": 444821.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 445095,
+          "reading_value": 445095.0
+        }
+      ]
+    },
+    {
+      "source_row": 41,
+      "legacy_label": "BC 24",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 0.041666666666666664,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 306755,
+          "reading_value": 306755.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2025-05-01 00:00:00",
+          "reading_date_raw": "2025-06-03 00:00:00",
+          "reading_date": "2025-06-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024",
+          "reading_value_raw": 307283,
+          "reading_value": 307283.0
+        },
+        {
+          "column_index": 7,
+          "reading_label": "2025-06-01 00:00:00",
+          "reading_date_raw": "2025-07-04 00:00:00",
+          "reading_date": "2025-07-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 307870,
+          "reading_value": 307870.0
+        },
+        {
+          "column_index": 8,
+          "reading_label": "2025-07-01 00:00:00",
+          "reading_date_raw": "2025-08-05 00:00:00",
+          "reading_date": "2025-08-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 308388,
+          "reading_value": 308388.0
+        },
+        {
+          "column_index": 9,
+          "reading_label": "2025-08-01 00:00:00",
+          "reading_date_raw": "2025-09-04 00:00:00",
+          "reading_date": "2025-09-04",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 308731,
+          "reading_value": 308731.0
+        },
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 309104,
+          "reading_value": 309104.0
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 309434,
+          "reading_value": 309434.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 309843,
+          "reading_value": 309843.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 310251,
+          "reading_value": 310251.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 310611,
+          "reading_value": 310611.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 310938,
+          "reading_value": 310938.0
+        }
+      ]
+    },
+    {
+      "source_row": 42,
+      "legacy_label": "Com Storeroom",
+      "meter_type": "COMMON",
+      "prepaid_marker": null,
+      "pq_factor": 0.0,
+      "readings": [
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": "Dec'25 est.",
+          "reading_value": null
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 92230,
+          "reading_value": 92230.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 92341,
+          "reading_value": 92341.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": "=L42+111",
+          "reading_value": null
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 92670,
+          "reading_value": 92670.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 92819,
+          "reading_value": 92819.0
+        }
+      ]
+    },
+    {
+      "source_row": 43,
+      "legacy_label": "Com Staff Room 1 (Willie)",
+      "meter_type": "COMMON",
+      "prepaid_marker": null,
+      "pq_factor": 0.0,
+      "readings": [
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": "Dec'25 est.",
+          "reading_value": null
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 16807,
+          "reading_value": 16807.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 16841,
+          "reading_value": 16841.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": "=L43+34",
+          "reading_value": null
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 17006,
+          "reading_value": 17006.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 17072,
+          "reading_value": 17072.0
+        }
+      ]
+    },
+    {
+      "source_row": 44,
+      "legacy_label": "Com Staff Room 2 (unit 16)",
+      "meter_type": "COMMON",
+      "prepaid_marker": null,
+      "pq_factor": 0.0,
+      "readings": [
+        {
+          "column_index": 10,
+          "reading_label": "2025-09-01 00:00:00",
+          "reading_date_raw": "2025-10-03 00:00:00",
+          "reading_date": "2025-10-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": "Dec'25 est.",
+          "reading_value": null
+        },
+        {
+          "column_index": 11,
+          "reading_label": "2025-10-01 00:00:00",
+          "reading_date_raw": "2025-10-31 00:00:00",
+          "reading_date": "2025-10-31",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 68999,
+          "reading_value": 68999.0
+        },
+        {
+          "column_index": 12,
+          "reading_label": "2025-11-21 00:00:00",
+          "reading_date_raw": "2025-12-03 00:00:00",
+          "reading_date": "2025-12-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 68999,
+          "reading_value": 68999.0
+        },
+        {
+          "column_index": 13,
+          "reading_label": "2025-12-21 00:00:00",
+          "reading_date_raw": "2026-01-07 00:00:00",
+          "reading_date": "2026-01-07",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 68999,
+          "reading_value": 68999.0
+        },
+        {
+          "column_index": 14,
+          "reading_label": "2026-01-21 00:00:00",
+          "reading_date_raw": "2026-02-05 00:00:00",
+          "reading_date": "2026-02-05",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 68999,
+          "reading_value": 68999.0
+        },
+        {
+          "column_index": 15,
+          "reading_label": "2026-03-21 00:00:00",
+          "reading_date_raw": "2026-03-03 00:00:00",
+          "reading_date": "2026-03-03",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2025",
+          "reading_value_raw": 68990,
+          "reading_value": 68990.0
+        }
+      ]
+    },
+    {
+      "source_row": 45,
+      "legacy_label": "Bulk 1",
+      "meter_type": "BULK",
+      "prepaid_marker": null,
+      "pq_factor": null,
+      "readings": []
+    }
+  ],
+  "review_flags": [
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 16,
+      "display_label": "2026-04-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 16."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 17,
+      "display_label": "2026-05-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 17."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 18,
+      "display_label": "2026-06-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 18."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 19,
+      "display_label": "2026-07-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 19."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 20,
+      "display_label": "2026-08-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 20."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 45,
+      "legacy_label": "Bulk 1",
+      "message": "Electricity row has no captured reading values."
+    }
+  ]
+}

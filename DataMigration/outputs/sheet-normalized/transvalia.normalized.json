@@ -1,0 +1,1257 @@
+{
+  "sheet_name": "Transvalia",
+  "sheet_slug": "transvalia",
+  "sheet_category": "building",
+  "scheme_name": "Transvalia",
+  "settings_snapshot": {
+    "vat_percent": 0.15,
+    "ignore_negative_common_property_amounts": true,
+    "tolerance_months": 4,
+    "tolerance_percentage": 1.0
+  },
+  "month_columns": [
+    {
+      "column_index": 5,
+      "display_label": "2021-11-20 00:00:00",
+      "reading_date_raw": "2020-11-30 00:00:00",
+      "reading_date": "2020-11-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 6,
+      "display_label": "2021-12-20 00:00:00",
+      "reading_date_raw": "2020-12-31 00:00:00",
+      "reading_date": "2020-12-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 7,
+      "display_label": "2021-01-21 00:00:00",
+      "reading_date_raw": "2021-01-31 00:00:00",
+      "reading_date": "2021-01-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 8,
+      "display_label": "2021-02-21 00:00:00",
+      "reading_date_raw": "2021-02-28 00:00:00",
+      "reading_date": "2021-02-28",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 9,
+      "display_label": "2021-03-21 00:00:00",
+      "reading_date_raw": "2021-03-31 00:00:00",
+      "reading_date": "2021-03-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 10,
+      "display_label": "2021-04-21 00:00:00",
+      "reading_date_raw": "2021-04-30 00:00:00",
+      "reading_date": "2021-04-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 11,
+      "display_label": "2021-05-21 00:00:00",
+      "reading_date_raw": "2021-05-31 00:00:00",
+      "reading_date": "2021-05-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 12,
+      "display_label": "2021-06-21 00:00:00",
+      "reading_date_raw": "2021-06-30 00:00:00",
+      "reading_date": "2021-06-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 13,
+      "display_label": "2021-07-21 00:00:00",
+      "reading_date_raw": "2021-07-31 00:00:00",
+      "reading_date": "2021-07-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 14,
+      "display_label": "2021-08-21 00:00:00",
+      "reading_date_raw": "2021-08-31 00:00:00",
+      "reading_date": "2021-08-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 15,
+      "display_label": "2021-09-21 00:00:00",
+      "reading_date_raw": "2021-09-30 00:00:00",
+      "reading_date": "2021-09-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 16,
+      "display_label": "2021-10-21 00:00:00",
+      "reading_date_raw": "2021-10-30 00:00:00",
+      "reading_date": "2021-10-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 17,
+      "display_label": "2021-11-21 00:00:00",
+      "reading_date_raw": "2021-11-30 00:00:00",
+      "reading_date": "2021-11-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 18,
+      "display_label": "2021-12-21 00:00:00",
+      "reading_date_raw": "2021-12-31 00:00:00",
+      "reading_date": "2021-12-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 19,
+      "display_label": "2022-01-21 00:00:00",
+      "reading_date_raw": "2022-01-31 00:00:00",
+      "reading_date": "2022-01-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 20,
+      "display_label": "2022-02-21 00:00:00",
+      "reading_date_raw": "2022-02-28 00:00:00",
+      "reading_date": "2022-02-28",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 21,
+      "display_label": "2022-03-21 00:00:00",
+      "reading_date_raw": "2022-03-31 00:00:00",
+      "reading_date": "2022-03-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 22,
+      "display_label": "2022-04-21 00:00:00",
+      "reading_date_raw": "2022-04-30 00:00:00",
+      "reading_date": "2022-04-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 23,
+      "display_label": "2022-05-21 00:00:00",
+      "reading_date_raw": "2022-05-31 00:00:00",
+      "reading_date": "2022-05-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 24,
+      "display_label": "2022-06-21 00:00:00",
+      "reading_date_raw": "2022-06-30 00:00:00",
+      "reading_date": "2022-06-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 25,
+      "display_label": "2022-07-21 00:00:00",
+      "reading_date_raw": "2022-07-31 00:00:00",
+      "reading_date": "2022-07-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 26,
+      "display_label": "2022-08-21 00:00:00",
+      "reading_date_raw": "2022-08-31 00:00:00",
+      "reading_date": "2022-08-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 27,
+      "display_label": "2022-09-21 00:00:00",
+      "reading_date_raw": "2022-09-30 00:00:00",
+      "reading_date": "2022-09-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 28,
+      "display_label": "2022-10-21 00:00:00",
+      "reading_date_raw": "2022-10-31 00:00:00",
+      "reading_date": "2022-10-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 29,
+      "display_label": "2022-11-21 00:00:00",
+      "reading_date_raw": "2022-11-30 00:00:00",
+      "reading_date": "2022-11-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 30,
+      "display_label": "2022-12-21 00:00:00",
+      "reading_date_raw": "2022-12-31 00:00:00",
+      "reading_date": "2022-12-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 31,
+      "display_label": "2023-01-21 00:00:00",
+      "reading_date_raw": "2023-01-31 00:00:00",
+      "reading_date": "2023-01-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 32,
+      "display_label": "2023-02-21 00:00:00",
+      "reading_date_raw": "2023-02-28 00:00:00",
+      "reading_date": "2023-02-28",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 33,
+      "display_label": "2023-03-21 00:00:00",
+      "reading_date_raw": "2023-03-31 00:00:00",
+      "reading_date": "2023-03-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 34,
+      "display_label": "2023-04-21 00:00:00",
+      "reading_date_raw": "2023-04-30 00:00:00",
+      "reading_date": "2023-04-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 35,
+      "display_label": "2023-05-21 00:00:00",
+      "reading_date_raw": "2023-05-31 00:00:00",
+      "reading_date": "2023-05-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 36,
+      "display_label": "2023-06-21 00:00:00",
+      "reading_date_raw": "2023-06-30 00:00:00",
+      "reading_date": "2023-06-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 37,
+      "display_label": "2023-06-21 00:00:00",
+      "reading_date_raw": "2023-06-30 00:00:00",
+      "reading_date": "2023-06-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 38,
+      "display_label": "2023-07-21 00:00:00",
+      "reading_date_raw": "2023-07-31 00:00:00",
+      "reading_date": "2023-07-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 39,
+      "display_label": "2023-08-21 00:00:00",
+      "reading_date_raw": "2023-08-31 00:00:00",
+      "reading_date": "2023-08-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 40,
+      "display_label": "2023-09-21 00:00:00",
+      "reading_date_raw": "2023-09-30 00:00:00",
+      "reading_date": "2023-09-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 41,
+      "display_label": "2023-10-21 00:00:00",
+      "reading_date_raw": "2023-10-31 00:00:00",
+      "reading_date": "2023-10-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 42,
+      "display_label": "2023-11-21 00:00:00",
+      "reading_date_raw": "2023-11-30 00:00:00",
+      "reading_date": "2023-11-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 43,
+      "display_label": "2023-12-21 00:00:00",
+      "reading_date_raw": "2023-12-31 00:00:00",
+      "reading_date": "2023-12-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 44,
+      "display_label": "2024-01-21 00:00:00",
+      "reading_date_raw": "2024-01-31 00:00:00",
+      "reading_date": "2024-01-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 45,
+      "display_label": "2024-02-21 00:00:00",
+      "reading_date_raw": "29/2/2024",
+      "reading_date": "2024-02-29",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 46,
+      "display_label": "2024-03-21 00:00:00",
+      "reading_date_raw": "31/3/2024",
+      "reading_date": "2024-03-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 47,
+      "display_label": "2024-04-21 00:00:00",
+      "reading_date_raw": "30/4/2024",
+      "reading_date": "2024-04-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 48,
+      "display_label": "2024-05-21 00:00:00",
+      "reading_date_raw": "30/05/2024",
+      "reading_date": "2024-05-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 49,
+      "display_label": "2024-06-21 00:00:00",
+      "reading_date_raw": "30/06/2024",
+      "reading_date": "2024-06-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 50,
+      "display_label": "2024-07-21 00:00:00",
+      "reading_date_raw": "31/07/2024",
+      "reading_date": "2024-07-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 51,
+      "display_label": "2024-08-21 00:00:00",
+      "reading_date_raw": "2024-08-31 00:00:00",
+      "reading_date": "2024-08-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 52,
+      "display_label": "2024-09-21 00:00:00",
+      "reading_date_raw": "2024-09-30 00:00:00",
+      "reading_date": "2024-09-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 53,
+      "display_label": "2024-10-21 00:00:00",
+      "reading_date_raw": "2024-10-31 00:00:00",
+      "reading_date": "2024-10-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 54,
+      "display_label": "2024-11-21 00:00:00",
+      "reading_date_raw": "2024-11-30 00:00:00",
+      "reading_date": "2024-11-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 55,
+      "display_label": "2024-12-21 00:00:00",
+      "reading_date_raw": "2024-12-31 00:00:00",
+      "reading_date": "2024-12-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 56,
+      "display_label": "2025-01-21 00:00:00",
+      "reading_date_raw": "2025-01-31 00:00:00",
+      "reading_date": "2025-01-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 57,
+      "display_label": "2025-02-21 00:00:00",
+      "reading_date_raw": "2025-02-28 00:00:00",
+      "reading_date": "2025-02-28",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 58,
+      "display_label": "2025-03-21 00:00:00",
+      "reading_date_raw": "2025-03-31 00:00:00",
+      "reading_date": "2025-03-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 59,
+      "display_label": "2025-04-21 00:00:00",
+      "reading_date_raw": "2025-04-30 00:00:00",
+      "reading_date": "2025-04-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 60,
+      "display_label": "2025-05-21 00:00:00",
+      "reading_date_raw": "2025-05-31 00:00:00",
+      "reading_date": "2025-05-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 61,
+      "display_label": "2025-06-21 00:00:00",
+      "reading_date_raw": "2025-06-30 00:00:00",
+      "reading_date": "2025-06-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 62,
+      "display_label": "2025-07-21 00:00:00",
+      "reading_date_raw": "2025-07-31 00:00:00",
+      "reading_date": "2025-07-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 63,
+      "display_label": "2025-08-21 00:00:00",
+      "reading_date_raw": "2025-08-31 00:00:00",
+      "reading_date": "2025-08-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 64,
+      "display_label": "2025-09-21 00:00:00",
+      "reading_date_raw": "2025-09-30 00:00:00",
+      "reading_date": "2025-09-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 65,
+      "display_label": "2025-10-21 00:00:00",
+      "reading_date_raw": "2025-10-31 00:00:00",
+      "reading_date": "2025-10-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 66,
+      "display_label": "2025-11-21 00:00:00",
+      "reading_date_raw": "2025-11-30 00:00:00",
+      "reading_date": "2025-11-30",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 67,
+      "display_label": "2025-12-21 00:00:00",
+      "reading_date_raw": "2025-12-31 00:00:00",
+      "reading_date": "2025-12-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 68,
+      "display_label": "2026-01-21 00:00:00",
+      "reading_date_raw": "2026-01-31 00:00:00",
+      "reading_date": "2026-01-31",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 69,
+      "display_label": "2026-02-21 00:00:00",
+      "reading_date_raw": "2026-02-28 00:00:00",
+      "reading_date": "2026-02-28",
+      "reading_date_note": null,
+      "tariff_table": "TV Dec 2020"
+    },
+    {
+      "column_index": 70,
+      "display_label": "2026-03-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 71,
+      "display_label": "2026-04-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 72,
+      "display_label": "2026-05-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 73,
+      "display_label": "2026-06-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    }
+  ],
+  "charge_modes": [
+    {
+      "source_row": 4,
+      "charge_name": "Elec Common Prop",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 5,
+      "charge_name": "Elec Service Charge",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 6,
+      "charge_name": "Elec Network Charge",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 7,
+      "charge_name": "Water Charge",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 8,
+      "charge_name": "Water Demand Management Levy",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 9,
+      "charge_name": "Water Surcharge",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 10,
+      "charge_name": "Sanitation",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 11,
+      "charge_name": "Refuse",
+      "distribution_mode": "None"
+    }
+  ],
+  "sections": {
+    "electricity_header_row": 17,
+    "water_header_row": 39
+  },
+  "electricity_rows": [
+    {
+      "source_row": 18,
+      "legacy_label": "TV01",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 19,
+      "legacy_label": "TV02A",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 20,
+      "legacy_label": "TV03",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 21,
+      "legacy_label": "TV04A",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 22,
+      "legacy_label": "TV05",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 23,
+      "legacy_label": "TV06",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 24,
+      "legacy_label": "TV07",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 25,
+      "legacy_label": "TV08A",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 26,
+      "legacy_label": "TV09",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 27,
+      "legacy_label": "TV10A",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 28,
+      "legacy_label": "TV11",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 29,
+      "legacy_label": "TV12",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 30,
+      "legacy_label": "TV13",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 31,
+      "legacy_label": "TV14",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 32,
+      "legacy_label": "TV15",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 33,
+      "legacy_label": "TV16",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 34,
+      "legacy_label": "TV17A",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 35,
+      "legacy_label": "TV18",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 36,
+      "legacy_label": "TV19",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 37,
+      "legacy_label": "TV20",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.0,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    },
+    {
+      "source_row": 38,
+      "legacy_label": "BULK01",
+      "meter_type": "BULK",
+      "prepaid_marker": null,
+      "pq_factor": null,
+      "readings": [
+        {
+          "column_index": 5,
+          "reading_label": "2021-11-20 00:00:00",
+          "reading_date_raw": "2020-11-30 00:00:00",
+          "reading_date": "2020-11-30",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        },
+        {
+          "column_index": 6,
+          "reading_label": "2021-12-20 00:00:00",
+          "reading_date_raw": "2020-12-31 00:00:00",
+          "reading_date": "2020-12-31",
+          "reading_date_note": null,
+          "tariff_table": "TV Dec 2020",
+          "reading_value_raw": 0,
+          "reading_value": 0.0
+        }
+      ]
+    }
+  ],
+  "review_flags": [
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 70,
+      "display_label": "2026-03-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 70."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 71,
+      "display_label": "2026-04-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 71."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 72,
+      "display_label": "2026-05-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 72."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 73,
+      "display_label": "2026-06-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 73."
+    }
+  ]
+}

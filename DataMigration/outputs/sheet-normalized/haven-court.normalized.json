@@ -1,0 +1,608 @@
+{
+  "sheet_name": "Haven Court",
+  "sheet_slug": "haven-court",
+  "sheet_category": "building",
+  "scheme_name": "Haven Court",
+  "settings_snapshot": {
+    "vat_percent": 0.15,
+    "ignore_negative_common_property_amounts": true,
+    "tolerance_months": 4,
+    "tolerance_percentage": 1.0
+  },
+  "month_columns": [
+    {
+      "column_index": 5,
+      "display_label": "2021-11-20 00:00:00",
+      "reading_date_raw": "2020-11-30 00:00:00",
+      "reading_date": "2020-11-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 6,
+      "display_label": "2021-12-20 00:00:00",
+      "reading_date_raw": "2020-12-31 00:00:00",
+      "reading_date": "2020-12-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 7,
+      "display_label": "2021-01-21 00:00:00",
+      "reading_date_raw": "2021-01-31 00:00:00",
+      "reading_date": "2021-01-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 8,
+      "display_label": "2021-02-21 00:00:00",
+      "reading_date_raw": "28/28/2021",
+      "reading_date": null,
+      "reading_date_note": "unparseable-date",
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 9,
+      "display_label": "2021-03-21 00:00:00",
+      "reading_date_raw": "2021-03-31 00:00:00",
+      "reading_date": "2021-03-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 10,
+      "display_label": "2021-04-21 00:00:00",
+      "reading_date_raw": "2021-04-30 00:00:00",
+      "reading_date": "2021-04-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 11,
+      "display_label": "2021-05-21 00:00:00",
+      "reading_date_raw": "2021-05-31 00:00:00",
+      "reading_date": "2021-05-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 12,
+      "display_label": "2021-06-21 00:00:00",
+      "reading_date_raw": "2021-06-30 00:00:00",
+      "reading_date": "2021-06-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 13,
+      "display_label": "2021-07-21 00:00:00",
+      "reading_date_raw": "2021-07-31 00:00:00",
+      "reading_date": "2021-07-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 14,
+      "display_label": "2021-08-21 00:00:00",
+      "reading_date_raw": "2021-08-31 00:00:00",
+      "reading_date": "2021-08-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 15,
+      "display_label": "2021-09-21 00:00:00",
+      "reading_date_raw": "2021-09-30 00:00:00",
+      "reading_date": "2021-09-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 16,
+      "display_label": "2021-10-21 00:00:00",
+      "reading_date_raw": "2021-10-31 00:00:00",
+      "reading_date": "2021-10-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 17,
+      "display_label": "2021-11-21 00:00:00",
+      "reading_date_raw": "2021-11-30 00:00:00",
+      "reading_date": "2021-11-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 18,
+      "display_label": "2021-12-21 00:00:00",
+      "reading_date_raw": "2021-12-31 00:00:00",
+      "reading_date": "2021-12-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 19,
+      "display_label": "2022-01-21 00:00:00",
+      "reading_date_raw": "2022-01-31 00:00:00",
+      "reading_date": "2022-01-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 20,
+      "display_label": "2022-02-21 00:00:00",
+      "reading_date_raw": "2022-02-28 00:00:00",
+      "reading_date": "2022-02-28",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 21,
+      "display_label": "2022-03-21 00:00:00",
+      "reading_date_raw": "2022-03-31 00:00:00",
+      "reading_date": "2022-03-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 22,
+      "display_label": "2022-04-21 00:00:00",
+      "reading_date_raw": "2022-04-30 00:00:00",
+      "reading_date": "2022-04-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 23,
+      "display_label": "2022-05-21 00:00:00",
+      "reading_date_raw": "2022-05-31 00:00:00",
+      "reading_date": "2022-05-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 24,
+      "display_label": "2022-06-21 00:00:00",
+      "reading_date_raw": "2022-06-30 00:00:00",
+      "reading_date": "2022-06-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 25,
+      "display_label": "2022-07-21 00:00:00",
+      "reading_date_raw": "2022-07-31 00:00:00",
+      "reading_date": "2022-07-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 26,
+      "display_label": "2022-08-21 00:00:00",
+      "reading_date_raw": "2022-08-31 00:00:00",
+      "reading_date": "2022-08-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 27,
+      "display_label": "2022-09-21 00:00:00",
+      "reading_date_raw": "2022-09-30 00:00:00",
+      "reading_date": "2022-09-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 28,
+      "display_label": "2022-10-21 00:00:00",
+      "reading_date_raw": "2022-10-31 00:00:00",
+      "reading_date": "2022-10-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 29,
+      "display_label": "2022-11-21 00:00:00",
+      "reading_date_raw": "2022-11-30 00:00:00",
+      "reading_date": "2022-11-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 30,
+      "display_label": "2022-12-21 00:00:00",
+      "reading_date_raw": "2022-12-31 00:00:00",
+      "reading_date": "2022-12-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 31,
+      "display_label": "2023-01-21 00:00:00",
+      "reading_date_raw": "2023-01-31 00:00:00",
+      "reading_date": "2023-01-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 32,
+      "display_label": "2023-02-21 00:00:00",
+      "reading_date_raw": "2023-02-28 00:00:00",
+      "reading_date": "2023-02-28",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 33,
+      "display_label": "2023-03-21 00:00:00",
+      "reading_date_raw": "2023-03-31 00:00:00",
+      "reading_date": "2023-03-31",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
+    },
+    {
+      "column_index": 34,
+      "display_label": "2023-04-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 35,
+      "display_label": "2023-05-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 36,
+      "display_label": "2023-06-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    },
+    {
+      "column_index": 37,
+      "display_label": "2023-07-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": null,
+      "reading_date_note": "missing-date",
+      "tariff_table": null
+    }
+  ],
+  "charge_modes": [
+    {
+      "source_row": 4,
+      "charge_name": "Elec Common Prop",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 5,
+      "charge_name": "Elec Service Charge",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 6,
+      "charge_name": "Elec Network Charge",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 7,
+      "charge_name": "Water Charge",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 8,
+      "charge_name": "Water Demand Management Levy",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 9,
+      "charge_name": "Water Surcharge",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 10,
+      "charge_name": "Sanitation",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 11,
+      "charge_name": "Refuse",
+      "distribution_mode": "None"
+    }
+  ],
+  "sections": {
+    "electricity_header_row": 17,
+    "water_header_row": 34
+  },
+  "electricity_rows": [
+    {
+      "source_row": 18,
+      "legacy_label": "HC01",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 5.743243243,
+      "readings": []
+    },
+    {
+      "source_row": 19,
+      "legacy_label": "HC02",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 7.995495495,
+      "readings": []
+    },
+    {
+      "source_row": 20,
+      "legacy_label": "HC03",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 8.445945946,
+      "readings": []
+    },
+    {
+      "source_row": 21,
+      "legacy_label": "HC04",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 8.558558559,
+      "readings": []
+    },
+    {
+      "source_row": 22,
+      "legacy_label": "HC05",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 8.558558559,
+      "readings": []
+    },
+    {
+      "source_row": 23,
+      "legacy_label": "HC06",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 5.855855856,
+      "readings": []
+    },
+    {
+      "source_row": 24,
+      "legacy_label": "HC07",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.126126126,
+      "readings": []
+    },
+    {
+      "source_row": 25,
+      "legacy_label": "HC08",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 6.306306306,
+      "readings": []
+    },
+    {
+      "source_row": 26,
+      "legacy_label": "HC09",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 9.572072072,
+      "readings": []
+    },
+    {
+      "source_row": 27,
+      "legacy_label": "HC10",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 10.13513514,
+      "readings": []
+    },
+    {
+      "source_row": 28,
+      "legacy_label": "HC11",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 10.24774775,
+      "readings": []
+    },
+    {
+      "source_row": 29,
+      "legacy_label": "HC12",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 8.896396396,
+      "readings": []
+    },
+    {
+      "source_row": 30,
+      "legacy_label": "HC13",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 6.193693694,
+      "readings": []
+    },
+    {
+      "source_row": 31,
+      "legacy_label": "HC14",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.238738739,
+      "readings": []
+    },
+    {
+      "source_row": 32,
+      "legacy_label": "HC15",
+      "meter_type": "UNIT",
+      "prepaid_marker": null,
+      "pq_factor": 1.126126126,
+      "readings": []
+    },
+    {
+      "source_row": 33,
+      "legacy_label": "BULK01",
+      "meter_type": "BULK",
+      "prepaid_marker": null,
+      "pq_factor": null,
+      "readings": []
+    }
+  ],
+  "review_flags": [
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 8,
+      "display_label": "2021-02-21 00:00:00",
+      "reading_date_raw": "28/28/2021",
+      "message": "Reading date could not be resolved for month column 8."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 34,
+      "display_label": "2023-04-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 34."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 35,
+      "display_label": "2023-05-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 35."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 36,
+      "display_label": "2023-06-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 36."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 37,
+      "display_label": "2023-07-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 37."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 18,
+      "legacy_label": "HC01",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 19,
+      "legacy_label": "HC02",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 20,
+      "legacy_label": "HC03",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 21,
+      "legacy_label": "HC04",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 22,
+      "legacy_label": "HC05",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 23,
+      "legacy_label": "HC06",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 24,
+      "legacy_label": "HC07",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 25,
+      "legacy_label": "HC08",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 26,
+      "legacy_label": "HC09",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 27,
+      "legacy_label": "HC10",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 28,
+      "legacy_label": "HC11",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 29,
+      "legacy_label": "HC12",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 30,
+      "legacy_label": "HC13",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 31,
+      "legacy_label": "HC14",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 32,
+      "legacy_label": "HC15",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 33,
+      "legacy_label": "BULK01",
+      "message": "Electricity row has no captured reading values."
+    }
+  ]
+}

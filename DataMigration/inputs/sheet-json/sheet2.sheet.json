@@ -1,0 +1,295 @@
+{
+  "workbook_path": "c:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\macro-free\\Utility Dash 9 Mar decrypted working copy (2) 2026.xlsx",
+  "sheet_name": "Sheet2",
+  "sheet_slug": "sheet2",
+  "sheet_category": "support",
+  "scheme_name": null,
+  "sheet_dimensions": {
+    "max_row": 15,
+    "max_column": 2
+  },
+  "merged_ranges": [],
+  "settings_snapshot": {
+    "vat_percent": 0.15,
+    "ignore_negative_common_property_amounts": true,
+    "tolerance_months": 4,
+    "tolerance_percentage": 1.0
+  },
+  "raw_rows": [
+    {
+      "row_index": 1,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "2024-07-21 00:00:00"
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": "2024-08-21 00:00:00"
+        }
+      ]
+    },
+    {
+      "row_index": 2,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "2024-07-31 00:00:00"
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": "2024-08-31 00:00:00"
+        }
+      ]
+    },
+    {
+      "row_index": 3,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "VIL Jul 2024"
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": "VIL Jul 2024"
+        }
+      ]
+    },
+    {
+      "row_index": 4,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "=794.77/1.15"
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": "=772.94/1.15"
+        }
+      ]
+    },
+    {
+      "row_index": 8,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": 163.93
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": 163.93
+        }
+      ]
+    },
+    {
+      "row_index": 10,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": 97
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": 97
+        }
+      ]
+    },
+    {
+      "row_index": 12,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": 35534.71
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": 34353.38
+        }
+      ]
+    },
+    {
+      "row_index": 13,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": 7267.56
+        }
+      ]
+    },
+    {
+      "row_index": 14,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": 4300.33
+        }
+      ]
+    },
+    {
+      "row_index": 15,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": 14122.7
+        }
+      ]
+    }
+  ],
+  "structured": {
+    "rows": [
+      {
+        "row_index": 1,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "2024-07-21 00:00:00"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "2024-08-21 00:00:00"
+          }
+        ]
+      },
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "2024-07-31 00:00:00"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "2024-08-31 00:00:00"
+          }
+        ]
+      },
+      {
+        "row_index": 3,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "VIL Jul 2024"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "VIL Jul 2024"
+          }
+        ]
+      },
+      {
+        "row_index": 4,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "=794.77/1.15"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "=772.94/1.15"
+          }
+        ]
+      },
+      {
+        "row_index": 8,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 163.93
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 163.93
+          }
+        ]
+      },
+      {
+        "row_index": 10,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 97
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 97
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 35534.71
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 34353.38
+          }
+        ]
+      },
+      {
+        "row_index": 13,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 7267.56
+          }
+        ]
+      },
+      {
+        "row_index": 14,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 4300.33
+          }
+        ]
+      },
+      {
+        "row_index": 15,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 14122.7
+          }
+        ]
+      }
+    ]
+  },
+  "review_flags": []
+}

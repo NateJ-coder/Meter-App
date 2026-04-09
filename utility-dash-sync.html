@@ -22,7 +22,7 @@
     <main class="container">
         <header class="page-header">
             <h1>Utility Dash Sync</h1>
-            <p class="subtitle">Load the app-native payload generated from the macro-free workbook and import it into app storage</p>
+            <p class="subtitle">Import the app-native JSON payload generated from the macro-free workbook into app storage</p>
         </header>
 
         <section class="card">
@@ -30,6 +30,10 @@
             <div class="info-box mb-2">
                 Use the generated file: <strong>source-documents/03-extracted-outputs/utility-dash-app/utility-dash-app-payload.json</strong><br>
                 This page imports app-native entities, not raw Utility Dash workbook structures.
+            </div>
+            <div class="info-box mb-2">
+                <strong>Raw Excel is not supported on this page yet.</strong><br>
+                If you select the original <strong>.xlsx</strong> workbook here, it will be rejected. The workbook must first be transformed into the app-native payload JSON by the extractor path.
             </div>
             <div class="form-group">
                 <label for="utility-dash-sync-file">Payload File</label>

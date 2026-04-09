@@ -1,0 +1,5057 @@
+{
+  "workbook_path": "c:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\macro-free\\Utility Dash 9 Mar decrypted working copy (2) 2026.xlsx",
+  "sheet_name": "New Poort",
+  "sheet_slug": "new-poort",
+  "sheet_category": "building",
+  "scheme_name": "New Poort",
+  "sheet_dimensions": {
+    "max_row": 503,
+    "max_column": 120
+  },
+  "merged_ranges": [],
+  "settings_snapshot": {
+    "vat_percent": 0.15,
+    "ignore_negative_common_property_amounts": true,
+    "tolerance_months": 4,
+    "tolerance_percentage": 1.0
+  },
+  "raw_rows": [
+    {
+      "row_index": 1,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "New Poort"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": "2021-11-20 00:00:00"
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": "2021-12-20 00:00:00"
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": "2021-01-21 00:00:00"
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": "2021-02-21 00:00:00"
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": "2021-03-21 00:00:00"
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": "2021-04-21 00:00:00"
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": "2021-05-21 00:00:00"
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": "2021-06-21 00:00:00"
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": "2021-07-21 00:00:00"
+        },
+        {
+          "column_index": 14,
+          "column_letter": "N",
+          "value": "2021-08-21 00:00:00"
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": "2021-09-21 00:00:00"
+        },
+        {
+          "column_index": 16,
+          "column_letter": "P",
+          "value": "2021-10-21 00:00:00"
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": "2021-11-21 00:00:00"
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": "2021-12-21 00:00:00"
+        },
+        {
+          "column_index": 19,
+          "column_letter": "S",
+          "value": "2022-01-21 00:00:00"
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": "2022-02-21 00:00:00"
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": "2022-03-21 00:00:00"
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": "2022-04-21 00:00:00"
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": "2022-05-21 00:00:00"
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": "2022-06-21 00:00:00"
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": "2022-07-21 00:00:00"
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": "2022-08-21 00:00:00"
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": "2022-09-21 00:00:00"
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": "2022-10-21 00:00:00"
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": "2022-11-21 00:00:00"
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": "2022-12-21 00:00:00"
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": "2023-01-21 00:00:00"
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": "2023-02-21 00:00:00"
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": "2023-03-21 00:00:00"
+        },
+        {
+          "column_index": 34,
+          "column_letter": "AH",
+          "value": "2023-04-21 00:00:00"
+        },
+        {
+          "column_index": 35,
+          "column_letter": "AI",
+          "value": "2023-05-21 00:00:00"
+        },
+        {
+          "column_index": 36,
+          "column_letter": "AJ",
+          "value": "2023-06-21 00:00:00"
+        },
+        {
+          "column_index": 37,
+          "column_letter": "AK",
+          "value": "2023-07-21 00:00:00"
+        },
+        {
+          "column_index": 38,
+          "column_letter": "AL",
+          "value": "2023-08-21 00:00:00"
+        },
+        {
+          "column_index": 39,
+          "column_letter": "AM",
+          "value": "2023-09-21 00:00:00"
+        }
+      ]
+    },
+    {
+      "row_index": 2,
+      "cells": [
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "Reading Date"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": "2020-11-30 00:00:00"
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": "2020-12-31 00:00:00"
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": "2021-01-31 00:00:00"
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": "2021-02-28 00:00:00"
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": "2021-03-31 00:00:00"
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": "2021-04-30 00:00:00"
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": "2021-05-31 00:00:00"
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": "2021-06-30 00:00:00"
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": "2021-07-31 00:00:00"
+        },
+        {
+          "column_index": 14,
+          "column_letter": "N",
+          "value": "2021-08-31 00:00:00"
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": "2021-09-30 00:00:00"
+        },
+        {
+          "column_index": 16,
+          "column_letter": "P",
+          "value": "2021-10-31 00:00:00"
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": "2021-11-30 00:00:00"
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": "2021-12-31 00:00:00"
+        },
+        {
+          "column_index": 19,
+          "column_letter": "S",
+          "value": "2022-01-31 00:00:00"
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": "2022-02-28 00:00:00"
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": "2022-03-31 00:00:00"
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": "2022-04-30 00:00:00"
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": "2022-05-31 00:00:00"
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": "2022-06-30 00:00:00"
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": "2022-07-31 00:00:00"
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": "2022-08-31 00:00:00"
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": "2022-09-30 00:00:00"
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": "2022-10-31 00:00:00"
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": "2022-11-30 00:00:00"
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": "2022-12-31 00:00:00"
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": "2023-01-31 00:00:00"
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": "2023-02-28 00:00:00"
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": "2023-03-31 00:00:00"
+        }
+      ]
+    },
+    {
+      "row_index": 3,
+      "cells": [
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "Tariff Table"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 14,
+          "column_letter": "N",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 16,
+          "column_letter": "P",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 19,
+          "column_letter": "S",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": "NP Dec 2020"
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": "NP Dec 2020"
+        }
+      ]
+    },
+    {
+      "row_index": 4,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Elec Common Prop"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "Even"
+        }
+      ]
+    },
+    {
+      "row_index": 5,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Elec Service Charge"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "PQ"
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": "4 000.02"
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": "7 048.90"
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": "3 962.37"
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": "9 009.97"
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": "5 652.84"
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": "8 198.04"
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": "7 688.65"
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": "29 480.88"
+        },
+        {
+          "column_index": 14,
+          "column_letter": "N",
+          "value": "29 480.88"
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 76401.27
+        },
+        {
+          "column_index": 16,
+          "column_letter": "P",
+          "value": 76401.27
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 76401.27
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 76401.27
+        },
+        {
+          "column_index": 19,
+          "column_letter": "S",
+          "value": 76401.27
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 76401.27
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 46035.72
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 46035.72
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 46035.72
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 46035.72
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 46035.72
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 46035.72
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 46035.72
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 46035.72
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 46035.72
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 46035.72
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 46035.72
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 46035.72
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 46035.72
+        }
+      ]
+    },
+    {
+      "row_index": 6,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Elec Network Charge"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "Even"
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": "2 431.66"
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": "2 431.66"
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": "2 431.66"
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": "2 431.66"
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": "2 431.66"
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": "2 796.41"
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": "2 431.66"
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": "2 786.42"
+        },
+        {
+          "column_index": 14,
+          "column_letter": "N",
+          "value": "2 786.42"
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 2786.42
+        },
+        {
+          "column_index": 16,
+          "column_letter": "P",
+          "value": 2786.42
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 2786.42
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 2786.42
+        },
+        {
+          "column_index": 19,
+          "column_letter": "S",
+          "value": 2786.42
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 2786.42
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 2786.42
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 2786.42
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 2786.42
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 2786.42
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 2786.42
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 2786.42
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 2786.42
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 2786.42
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 2786.42
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 2786.42
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 2786.42
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 2786.42
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 2786.42
+        }
+      ]
+    },
+    {
+      "row_index": 7,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Water Charge"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "PQ"
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": "1 519.81"
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": "1 503.17"
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": "1 503.17"
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": "1 561.85"
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": "1 503.17"
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": "1 747.78"
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": "1 100.08"
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": "1 163.90"
+        },
+        {
+          "column_index": 14,
+          "column_letter": "N",
+          "value": "1 163.90"
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 1590.38
+        },
+        {
+          "column_index": 16,
+          "column_letter": "P",
+          "value": 1590.38
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 1590.38
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 1590.38
+        },
+        {
+          "column_index": 19,
+          "column_letter": "S",
+          "value": 1590.38
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 1590.38
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 1590.38
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 1590.38
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 1590.38
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 1590.38
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 1590.38
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 1590.38
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 1590.38
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 1590.38
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 1590.38
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 1590.38
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 1590.38
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 1590.38
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 1590.38
+        }
+      ]
+    },
+    {
+      "row_index": 8,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Water Demand Management Levy"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "Even"
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 283.38
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 283.38
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 283.38
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 283.38
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 283.38
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 325.89
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 283.38
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 299.82
+        },
+        {
+          "column_index": 14,
+          "column_letter": "N",
+          "value": 299.82
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 299.82
+        },
+        {
+          "column_index": 16,
+          "column_letter": "P",
+          "value": 299.82
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 299.82
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 299.82
+        },
+        {
+          "column_index": 19,
+          "column_letter": "S",
+          "value": 299.82
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 299.82
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 299.82
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 299.82
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 299.82
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 299.82
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 299.82
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 299.82
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 299.82
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 299.82
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 299.82
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 299.82
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 299.82
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 299.82
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 299.82
+        }
+      ]
+    },
+    {
+      "row_index": 9,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Water Surcharge"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "Even"
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 110.8
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 110.8
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 110.8
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 110.8
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 110.8
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 127.42
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 110.8
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 117.23
+        },
+        {
+          "column_index": 14,
+          "column_letter": "N",
+          "value": 117.23
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 117.23
+        },
+        {
+          "column_index": 16,
+          "column_letter": "P",
+          "value": 117.23
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 117.23
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 117.23
+        },
+        {
+          "column_index": 19,
+          "column_letter": "S",
+          "value": 117.23
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 117.23
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 117.23
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 117.23
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 117.23
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 117.23
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 117.23
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 117.23
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 117.23
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 117.23
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 117.23
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 117.23
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 117.23
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 117.23
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 117.23
+        }
+      ]
+    },
+    {
+      "row_index": 10,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Sanitation"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "Even"
+        }
+      ]
+    },
+    {
+      "row_index": 11,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Refuse"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "None"
+        }
+      ]
+    },
+    {
+      "row_index": 12,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Council Electricity"
+        }
+      ]
+    },
+    {
+      "row_index": 13,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Council Water"
+        }
+      ]
+    },
+    {
+      "row_index": 14,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Council Sanatation"
+        }
+      ]
+    },
+    {
+      "row_index": 15,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Council Refuse"
+        }
+      ]
+    },
+    {
+      "row_index": 16,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "UNIT"
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": "Prepaid"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": "PQ"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "Graph"
+        }
+      ]
+    },
+    {
+      "row_index": 17,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "ELECTRICITY"
+        },
+        {
+          "column_index": 2,
+          "column_letter": "B",
+          "value": "Final Reading"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 100
+        }
+      ]
+    },
+    {
+      "row_index": 18,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP01"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.344
+        }
+      ]
+    },
+    {
+      "row_index": 19,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP02"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.872
+        }
+      ]
+    },
+    {
+      "row_index": 20,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP03"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.344
+        }
+      ]
+    },
+    {
+      "row_index": 21,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP04"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.696
+        }
+      ]
+    },
+    {
+      "row_index": 22,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP05"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.872
+        }
+      ]
+    },
+    {
+      "row_index": 23,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP06"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.872
+        }
+      ]
+    },
+    {
+      "row_index": 24,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "BULK01"
+        }
+      ]
+    },
+    {
+      "row_index": 25,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "WATER"
+        }
+      ]
+    },
+    {
+      "row_index": 26,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP01"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.344
+        }
+      ]
+    },
+    {
+      "row_index": 27,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP02"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.872
+        }
+      ]
+    },
+    {
+      "row_index": 28,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP03"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.344
+        }
+      ]
+    },
+    {
+      "row_index": 29,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP04"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.696
+        }
+      ]
+    },
+    {
+      "row_index": 30,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP05"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.872
+        }
+      ]
+    },
+    {
+      "row_index": 31,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "NP06"
+        },
+        {
+          "column_index": 3,
+          "column_letter": "C",
+          "value": 16.872
+        }
+      ]
+    },
+    {
+      "row_index": 32,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "BULK01"
+        }
+      ]
+    },
+    {
+      "row_index": 480,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "MONTHLY STATS"
+        }
+      ]
+    },
+    {
+      "row_index": 481,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "ELECTRICITY"
+        }
+      ]
+    },
+    {
+      "row_index": 482,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Number of Bulk Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "ElecBulkCount"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 1
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 1
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 1
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 1
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 1
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 1
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 1
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 1
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 1
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 1
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 1
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 1
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 1
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 1
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 1
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 1
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 1
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 1
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 1
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 1
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 1
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 1
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 1
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 1
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 1
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "row_index": 483,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "KWH Used by Bulk Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "ElecBulkTotCon"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 7126
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 484,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Charge for KWH used by Bulk Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "ElecBulkTotCharge"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 10524.24688
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 485,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Number of Unit Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "ElecUnitCount"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 30
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 6
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 6
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 6
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 6
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 6
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 6
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 6
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 6
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 6
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 6
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 6
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 6
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 6
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 6
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 6
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 6
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 6
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 6
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 6
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 6
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 6
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 6
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 6
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 6
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 6
+        }
+      ]
+    },
+    {
+      "row_index": 486,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "KWH Used by Unit Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "ElecUnitTotCon"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 6387
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 487,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Charge for KWH used by Unit Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "ElecUnitTotCharge"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 9432.83256
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 488,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Difference between Bulk and Units total"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "ElecDifference"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 1091.41432
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 489,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "WATER"
+        }
+      ]
+    },
+    {
+      "row_index": 490,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Number ofBulk Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "WaterBulkCount"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 1
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 1
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 1
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 1
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 1
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 1
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 1
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 1
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 1
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 1
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 1
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 1
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 1
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 1
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 1
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 1
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 1
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 1
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 1
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 1
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 1
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 1
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 1
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 1
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 1
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "row_index": 491,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "KL Used by Bulk Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "WaterBulkTotCon"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 492,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Charge for KL used by Bulk Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "WaterBulkTotCharge"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 493,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Number of Unit Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "WaterUnitCount"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 6
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 6
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 6
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 6
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 6
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 6
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 6
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 6
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 6
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 6
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 6
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 6
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 6
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 6
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 6
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 6
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 6
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 6
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 6
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 6
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 6
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 6
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 6
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 6
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 6
+        }
+      ]
+    },
+    {
+      "row_index": 494,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "KL Used by Unit Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "WaterUnitTotCon"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 495,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Charge for KL used by Unit Meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "WaterUnitTotCharge"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 496,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "Difference between Bulk and Units total"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "WaterDifference"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 497,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "PREPAID METER"
+        }
+      ]
+    },
+    {
+      "row_index": 498,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "The number of prepaid electric meters installed"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "PPNoOfElecInstalled"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 30
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 499,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "The total KWH used by the prepaid meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "PPElecConvMeterTotal"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 6387
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 500,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "The Rand value of KWH used by the prepaid meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "PPTotalElecCost"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 9432.83256
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 501,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "The number of prepaid Water meters installed"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "PPNoOfWaterInstalled"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 502,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "The total KL used by the prepaid meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "PPWaterConvMeterTotal"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "row_index": 503,
+      "cells": [
+        {
+          "column_index": 1,
+          "column_letter": "A",
+          "value": "The Rand value of KL used by the prepaid meters"
+        },
+        {
+          "column_index": 4,
+          "column_letter": "D",
+          "value": "PPTotalWaterCost"
+        },
+        {
+          "column_index": 5,
+          "column_letter": "E",
+          "value": 0
+        },
+        {
+          "column_index": 6,
+          "column_letter": "F",
+          "value": 0
+        },
+        {
+          "column_index": 7,
+          "column_letter": "G",
+          "value": 0
+        },
+        {
+          "column_index": 8,
+          "column_letter": "H",
+          "value": 0
+        },
+        {
+          "column_index": 9,
+          "column_letter": "I",
+          "value": 0
+        },
+        {
+          "column_index": 10,
+          "column_letter": "J",
+          "value": 0
+        },
+        {
+          "column_index": 11,
+          "column_letter": "K",
+          "value": 0
+        },
+        {
+          "column_index": 12,
+          "column_letter": "L",
+          "value": 0
+        },
+        {
+          "column_index": 13,
+          "column_letter": "M",
+          "value": 0
+        },
+        {
+          "column_index": 15,
+          "column_letter": "O",
+          "value": 0
+        },
+        {
+          "column_index": 17,
+          "column_letter": "Q",
+          "value": 0
+        },
+        {
+          "column_index": 18,
+          "column_letter": "R",
+          "value": 0
+        },
+        {
+          "column_index": 20,
+          "column_letter": "T",
+          "value": 0
+        },
+        {
+          "column_index": 21,
+          "column_letter": "U",
+          "value": 0
+        },
+        {
+          "column_index": 22,
+          "column_letter": "V",
+          "value": 0
+        },
+        {
+          "column_index": 23,
+          "column_letter": "W",
+          "value": 0
+        },
+        {
+          "column_index": 24,
+          "column_letter": "X",
+          "value": 0
+        },
+        {
+          "column_index": 25,
+          "column_letter": "Y",
+          "value": 0
+        },
+        {
+          "column_index": 26,
+          "column_letter": "Z",
+          "value": 0
+        },
+        {
+          "column_index": 27,
+          "column_letter": "AA",
+          "value": 0
+        },
+        {
+          "column_index": 28,
+          "column_letter": "AB",
+          "value": 0
+        },
+        {
+          "column_index": 29,
+          "column_letter": "AC",
+          "value": 0
+        },
+        {
+          "column_index": 30,
+          "column_letter": "AD",
+          "value": 0
+        },
+        {
+          "column_index": 31,
+          "column_letter": "AE",
+          "value": 0
+        },
+        {
+          "column_index": 32,
+          "column_letter": "AF",
+          "value": 0
+        },
+        {
+          "column_index": 33,
+          "column_letter": "AG",
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "structured": {
+    "month_columns": [
+      {
+        "column_index": 5,
+        "display_label": "2021-11-20 00:00:00",
+        "reading_date_raw": "2020-11-30 00:00:00",
+        "reading_date": "2020-11-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 6,
+        "display_label": "2021-12-20 00:00:00",
+        "reading_date_raw": "2020-12-31 00:00:00",
+        "reading_date": "2020-12-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 7,
+        "display_label": "2021-01-21 00:00:00",
+        "reading_date_raw": "2021-01-31 00:00:00",
+        "reading_date": "2021-01-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 8,
+        "display_label": "2021-02-21 00:00:00",
+        "reading_date_raw": "2021-02-28 00:00:00",
+        "reading_date": "2021-02-28",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 9,
+        "display_label": "2021-03-21 00:00:00",
+        "reading_date_raw": "2021-03-31 00:00:00",
+        "reading_date": "2021-03-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 10,
+        "display_label": "2021-04-21 00:00:00",
+        "reading_date_raw": "2021-04-30 00:00:00",
+        "reading_date": "2021-04-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 11,
+        "display_label": "2021-05-21 00:00:00",
+        "reading_date_raw": "2021-05-31 00:00:00",
+        "reading_date": "2021-05-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 12,
+        "display_label": "2021-06-21 00:00:00",
+        "reading_date_raw": "2021-06-30 00:00:00",
+        "reading_date": "2021-06-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 13,
+        "display_label": "2021-07-21 00:00:00",
+        "reading_date_raw": "2021-07-31 00:00:00",
+        "reading_date": "2021-07-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 14,
+        "display_label": "2021-08-21 00:00:00",
+        "reading_date_raw": "2021-08-31 00:00:00",
+        "reading_date": "2021-08-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 15,
+        "display_label": "2021-09-21 00:00:00",
+        "reading_date_raw": "2021-09-30 00:00:00",
+        "reading_date": "2021-09-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 16,
+        "display_label": "2021-10-21 00:00:00",
+        "reading_date_raw": "2021-10-31 00:00:00",
+        "reading_date": "2021-10-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 17,
+        "display_label": "2021-11-21 00:00:00",
+        "reading_date_raw": "2021-11-30 00:00:00",
+        "reading_date": "2021-11-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 18,
+        "display_label": "2021-12-21 00:00:00",
+        "reading_date_raw": "2021-12-31 00:00:00",
+        "reading_date": "2021-12-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 19,
+        "display_label": "2022-01-21 00:00:00",
+        "reading_date_raw": "2022-01-31 00:00:00",
+        "reading_date": "2022-01-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 20,
+        "display_label": "2022-02-21 00:00:00",
+        "reading_date_raw": "2022-02-28 00:00:00",
+        "reading_date": "2022-02-28",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 21,
+        "display_label": "2022-03-21 00:00:00",
+        "reading_date_raw": "2022-03-31 00:00:00",
+        "reading_date": "2022-03-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 22,
+        "display_label": "2022-04-21 00:00:00",
+        "reading_date_raw": "2022-04-30 00:00:00",
+        "reading_date": "2022-04-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 23,
+        "display_label": "2022-05-21 00:00:00",
+        "reading_date_raw": "2022-05-31 00:00:00",
+        "reading_date": "2022-05-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 24,
+        "display_label": "2022-06-21 00:00:00",
+        "reading_date_raw": "2022-06-30 00:00:00",
+        "reading_date": "2022-06-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 25,
+        "display_label": "2022-07-21 00:00:00",
+        "reading_date_raw": "2022-07-31 00:00:00",
+        "reading_date": "2022-07-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 26,
+        "display_label": "2022-08-21 00:00:00",
+        "reading_date_raw": "2022-08-31 00:00:00",
+        "reading_date": "2022-08-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 27,
+        "display_label": "2022-09-21 00:00:00",
+        "reading_date_raw": "2022-09-30 00:00:00",
+        "reading_date": "2022-09-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 28,
+        "display_label": "2022-10-21 00:00:00",
+        "reading_date_raw": "2022-10-31 00:00:00",
+        "reading_date": "2022-10-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 29,
+        "display_label": "2022-11-21 00:00:00",
+        "reading_date_raw": "2022-11-30 00:00:00",
+        "reading_date": "2022-11-30",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 30,
+        "display_label": "2022-12-21 00:00:00",
+        "reading_date_raw": "2022-12-31 00:00:00",
+        "reading_date": "2022-12-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 31,
+        "display_label": "2023-01-21 00:00:00",
+        "reading_date_raw": "2023-01-31 00:00:00",
+        "reading_date": "2023-01-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 32,
+        "display_label": "2023-02-21 00:00:00",
+        "reading_date_raw": "2023-02-28 00:00:00",
+        "reading_date": "2023-02-28",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 33,
+        "display_label": "2023-03-21 00:00:00",
+        "reading_date_raw": "2023-03-31 00:00:00",
+        "reading_date": "2023-03-31",
+        "reading_date_note": null,
+        "tariff_table": "NP Dec 2020"
+      },
+      {
+        "column_index": 34,
+        "display_label": "2023-04-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      },
+      {
+        "column_index": 35,
+        "display_label": "2023-05-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      },
+      {
+        "column_index": 36,
+        "display_label": "2023-06-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      },
+      {
+        "column_index": 37,
+        "display_label": "2023-07-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      },
+      {
+        "column_index": 38,
+        "display_label": "2023-08-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      },
+      {
+        "column_index": 39,
+        "display_label": "2023-09-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      }
+    ],
+    "charge_modes": [
+      {
+        "source_row": 4,
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 5,
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "source_row": 6,
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 7,
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "source_row": 8,
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 9,
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 10,
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 11,
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ],
+    "sections": {
+      "electricity_header_row": 17,
+      "water_header_row": 25
+    },
+    "electricity_rows": [
+      {
+        "source_row": 18,
+        "legacy_label": "NP01",
+        "meter_type": "UNIT",
+        "prepaid_marker": null,
+        "pq_factor": 16.344,
+        "readings": []
+      },
+      {
+        "source_row": 19,
+        "legacy_label": "NP02",
+        "meter_type": "UNIT",
+        "prepaid_marker": null,
+        "pq_factor": 16.872,
+        "readings": []
+      },
+      {
+        "source_row": 20,
+        "legacy_label": "NP03",
+        "meter_type": "UNIT",
+        "prepaid_marker": null,
+        "pq_factor": 16.344,
+        "readings": []
+      },
+      {
+        "source_row": 21,
+        "legacy_label": "NP04",
+        "meter_type": "UNIT",
+        "prepaid_marker": null,
+        "pq_factor": 16.696,
+        "readings": []
+      },
+      {
+        "source_row": 22,
+        "legacy_label": "NP05",
+        "meter_type": "UNIT",
+        "prepaid_marker": null,
+        "pq_factor": 16.872,
+        "readings": []
+      },
+      {
+        "source_row": 23,
+        "legacy_label": "NP06",
+        "meter_type": "UNIT",
+        "prepaid_marker": null,
+        "pq_factor": 16.872,
+        "readings": []
+      },
+      {
+        "source_row": 24,
+        "legacy_label": "BULK01",
+        "meter_type": "BULK",
+        "prepaid_marker": null,
+        "pq_factor": null,
+        "readings": []
+      }
+    ]
+  },
+  "review_flags": [
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 34,
+      "display_label": "2023-04-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 34."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 35,
+      "display_label": "2023-05-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 35."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 36,
+      "display_label": "2023-06-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 36."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 37,
+      "display_label": "2023-07-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 37."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 38,
+      "display_label": "2023-08-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 38."
+    },
+    {
+      "severity": "high",
+      "type": "unresolved-reading-date",
+      "column_index": 39,
+      "display_label": "2023-09-21 00:00:00",
+      "reading_date_raw": null,
+      "message": "Reading date could not be resolved for month column 39."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 18,
+      "legacy_label": "NP01",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 19,
+      "legacy_label": "NP02",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 20,
+      "legacy_label": "NP03",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 21,
+      "legacy_label": "NP04",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 22,
+      "legacy_label": "NP05",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 23,
+      "legacy_label": "NP06",
+      "message": "Electricity row has no captured reading values."
+    },
+    {
+      "severity": "medium",
+      "type": "row-with-no-readings",
+      "row_index": 24,
+      "legacy_label": "BULK01",
+      "message": "Electricity row has no captured reading values."
+    }
+  ]
+}

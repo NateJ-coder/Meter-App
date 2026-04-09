@@ -169,6 +169,9 @@ When documents have been uploaded, the next prompt can simply be:
 
 ## Current Automation
 
+For sheet-by-sheet JSON migration work, use the dedicated workspace in [DataMigration/README.md](../DataMigration/README.md).
+That folder is now the canonical place for per-sheet JSON inputs, migration logic, normalized sheet outputs, final app payloads, and review artifacts.
+
 Two extraction scripts are now available in `scripts`:
 
 - `export-utility-dash.ps1` opens the password-protected Utility Dash workbook and exports normalized JSON/CSV into `03-extracted-outputs/utility-dash`.
