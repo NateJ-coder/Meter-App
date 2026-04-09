@@ -4,39 +4,38 @@
 
 All three requested features have been implemented:
 
-1. **Login System** - Prevents re-onboarding for returning users
-2. **User Recording** - Tracks who captured each meter reading
-3. **Developer Console** - Admin dashboard for user management and system health
+1. **Open Access Entry** - Opens directly without login redirects
+2. **User Recording** - Tracks who captured each meter reading or uses the open-access operator label
+3. **Developer Console** - Health and activity dashboard for the open-access app
 
 ---
 
-## ✅ Test 1: Authentication Flow
+## ✅ Test 1: Open Access Flow
 
 ### Steps:
 1. Open the app in your browser
-2. You should be redirected to **login.html**
-3. Login with your configured Firebase admin credentials
-4. After successful login, you should be redirected to the **dashboard (index.html)**
+2. You should land on the **dashboard (index.html)** directly
+3. If you open **login.html**, it should redirect back to the dashboard
 5. Check the **top-right navbar**:
-   - You should see your name: "👤 Administrator"
-   - A "🚪 Logout" button
-   - A "🔧 Dev" link (admin only)
+   - You should see the open-access operator name
+   - A "Reset Session" button
+   - A "🔧 Dev" link
 
 ### Expected Results:
-- ✅ Login redirects to dashboard
-- ✅ Navbar shows user information
-- ✅ Logout button is visible
-- ✅ Dev console link appears for admins
+- ✅ Dashboard opens without login
+- ✅ Legacy login link redirects to dashboard
+- ✅ Navbar shows session information
+- ✅ Dev console link is visible
 
 ---
 
 ## ✅ Test 2: Developer Console
 
 ### Steps:
-1. As an admin, click the **"🔧 Dev"** link in the navbar
-2. Explore the 5 sections:
+1. Click the **"🔧 Dev"** link in the navbar
+2. Explore the main sections:
    - **Health Dashboard** - Shows app metrics and any issues
-   - **User Management** - Add/delete users
+   - **Legacy User Directory** - Retired notice only
    - **Activity Log** - Recent user actions
    - **Data Statistics** - Schemes, meters, readings counts
    - **System Actions** - Reset onboarding, clear data, export backup

@@ -168,7 +168,7 @@
       phone: currentUser.phone || '',
       contactDetails: currentUser.contact_details || '',
       combinedContact: contactParts,
-      isGuest: currentUser.role === 'guest_reader',
+      isGuest: window.auth ? window.auth.isGuestUser() : false,
       role: currentUser.role
     };
   }
@@ -623,7 +623,7 @@
       transferButton.style.display = 'none';
       transferPanel.style.display = 'none';
       finishLink.style.display = 'inline-block';
-      finishLink.href = 'login.html';
+      finishLink.href = 'index.html';
       statusMessage.textContent = '';
       return;
     }
@@ -646,7 +646,7 @@
           <input type="text" id="guest-reader-contact" value="${guestContact}" placeholder="Phone number, email, or both">
         </div>
       `;
-      finishLink.href = 'login.html?reader_only=1';
+      finishLink.href = 'index.html';
     } else {
       panel.innerHTML = `
         <div class="info-box text-left">
@@ -657,7 +657,7 @@
           <strong>Contact Details:</strong> ${profile.contactDetails || 'Not set'}
         </div>
       `;
-      finishLink.href = 'login.html?reader_only=1';
+      finishLink.href = 'index.html';
     }
 
     if (existingSubmission) {

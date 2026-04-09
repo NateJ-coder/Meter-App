@@ -1,52 +1,38 @@
-# Authentication & Dev Console Guide
+# Open Access & Dev Console Guide
 
 ## Quick Reference
 
-### Default Login Credentials
-```
-Email: Use your configured Firebase admin account
-Password: Managed in Firebase Authentication
-```
+### Access Mode
+The app now opens directly in open-access mode. Login, guest access, and role-based permissions are retired.
 
-## 1. Login System
+## 1. Access Model
 
 ### Overview
-The app now requires login before access. User sessions are stored in localStorage and persist across browser sessions.
-Registered account passwords are managed by Firebase Authentication and are not stored in app-local user records.
+The app no longer redirects through a login page before access. A lightweight open-access operator session is stored in localStorage so audit records still have a consistent actor label.
 
 ### Features
-- **Session Management:** Users stay logged in until they explicitly logout
-- **Onboarding Skip:** Returning users skip onboarding if scheme data exists
-- **Role-Based Access:** Different permissions for admin, field_worker, viewer
-- **Activity Tracking:** All user actions are logged
-
-### User Roles
-
-| Role | Permissions |
-|------|-------------|
-| **Admin** | Full access: manage users, configure system, access dev console |
-| **Field Worker** | Capture readings, view assigned schemes |
-| **Viewer** | Read-only access to reports and data |
+- **Open Access Bootstrap:** Pages initialize directly and hydrate cloud data without a sign-in gate
+- **Session Metadata:** A local open-access operator identity is kept for compatibility with existing UI code
+- **Activity Tracking:** App actions are still logged, but not tied to Firebase Auth users
+- **Retired Login Page:** Old links to login.html are redirected back to the dashboard
 
 ### How It Works
 
-**First Time User:**
-1. Navigate to app → Redirected to login.html
-2. Login with credentials → Redirected to index.html
-3. No scheme data exists → Shows onboarding wizard
-4. Complete wizard → Dashboard loads
+**Any Visit:**
+1. Navigate to the app → Opens index.html directly
+2. Cloud data hydrates if Firestore is reachable
+3. If no scheme data exists → Onboarding wizard appears
+4. Otherwise → Dashboard loads immediately
 
-**Returning User:**
-1. Navigate to app → Redirected to login.html
-2. Login with credentials → Redirected to index.html
-3. Scheme data exists → Dashboard loads immediately (onboarding skipped)
+**Legacy Login Link:**
+1. Navigate to login.html
+2. The page immediately redirects to index.html
 
 ### Files
-- [login.html](login.html) - Login page
-- [assets/auth.js](assets/auth.js) - Authentication module
+- [login.html](login.html) - Retired redirect stub
+- [assets/auth.js](assets/auth.js) - Open-access compatibility module
 - localStorage keys:
   - `fuzio_user_session` - Current session
-  - `fuzio_users` - Registered users
   - `fuzio_activities` - Activity log
 
 ---

@@ -49,13 +49,6 @@
     </main>
 
     <script type="module" src="assets/page-auth.js"></script>
-    <script type="module">
-        import { auth } from './assets/auth.js';
-        if (!auth.isAuthenticated() || !auth.hasPermission('admin')) {
-            alert('Access denied. Admin permissions required.');
-            window.location.href = 'index.html';
-        }
-    </script>
     <script type="module" src="assets/utility-dash-sync.js"></script>
 </body>
 </html>

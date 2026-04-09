@@ -48,6 +48,37 @@ async function loadPayloadFromFile() {
     return JSON.parse(text);
 }
 
+function createImportAuditRecord(payload) {
+    const metadata = payload.metadata || {};
+    const readings = payload.readings || [];
+    const flaggedReadings = readings.filter((reading) => Array.isArray(reading.flags) && reading.flags.length > 0);
+    const currentUser = auth.getCurrentUser();
+
+    return storage.create('import_batches', {
+        import_type: 'utility_dash_payload',
+        source_file: metadata.source_file || 'utility-dash-app-payload.json',
+        imported_at: new Date().toISOString(),
+        imported_by: currentUser?.id || null,
+        imported_by_name: currentUser?.name || 'Open Access Operator',
+        rows_processed: readings.length,
+        rows_approved: readings.length - flaggedReadings.length,
+        rows_flagged: flaggedReadings.length,
+        rows_rejected: 0,
+        payload_summary: {
+            generated_at: metadata.generated_at || null,
+            settings: metadata.settings || {},
+            schemes: payload.schemes?.length || 0,
+            buildings: payload.buildings?.length || 0,
+            units: payload.units?.length || 0,
+            meters: payload.meters?.length || 0,
+            cycles: payload.cycles?.length || 0,
+            readings: readings.length,
+            flagged_readings: flaggedReadings.length,
+            notes: metadata.notes || []
+        }
+    });
+}
+
 function upsertEntityCollection(entity, records) {
     return storage.upsertMany(entity, records);
 }
@@ -61,7 +92,10 @@ async function importPayload(payload) {
     await upsertEntityCollection('readings', payload.readings || []);
     await upsertEntityCollection('legacy_meter_map', payload.legacy_meter_map || []);
 
+    const importBatch = createImportAuditRecord(payload);
+
     auth.recordActivity('utility_dash_payload_imported', {
+        batchId: importBatch.id,
         schemes: payload.schemes?.length || 0,
         buildings: payload.buildings?.length || 0,
         units: payload.units?.length || 0,
@@ -69,6 +103,8 @@ async function importPayload(payload) {
         cycles: payload.cycles?.length || 0,
         readings: payload.readings?.length || 0,
     });
+
+    return importBatch;
 }
 
 function setBusyState(isBusy) {
@@ -93,8 +129,8 @@ async function handleImport() {
     setStatus('Importing payload into app storage and waiting for cloud sync to finish. This can take a while for the full reading history.', 'muted');
 
     try {
-        await importPayload(state.payload);
-        setStatus('Utility Dash payload imported into app storage and cloud sync completed. Reload the dashboard or register pages to see the updated inventory.', 'success');
+        const importBatch = await importPayload(state.payload);
+        setStatus(`Utility Dash payload imported into app storage and cloud sync completed. Audit batch ${importBatch.id} was recorded for this import. Reload the dashboard or register pages to see the updated inventory.`, 'success');
     } finally {
         setBusyState(false);
     }

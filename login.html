@@ -3,131 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Fuzio Meter Readings</title>
+    <title>Open Access Redirect - Fuzio Meter Readings</title>
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body class="login-body">
-
 <div class="login-container">
     <div class="login-card">
         <div class="login-header">
             <img src="assets/images/Fuzio logo.jpg" alt="Fuzio Properties" class="login-logo">
             <h1>Fuzio Meter Readings</h1>
-            <p class="subtitle">Sign in as a registered user or continue as a guest reader</p>
+            <p class="subtitle">Login has been retired. The app now opens directly in open-access mode.</p>
         </div>
-
-        <div id="login-error" class="alert alert-danger" style="display: none;"></div>
-
-        <form id="login-form">
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" required placeholder="name@company.com" autocomplete="username" autofocus>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required placeholder="Enter password" autocomplete="current-password">
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-large btn-block">
-                Sign In
-            </button>
-        </form>
-
-        <div id="guest-access-panel" class="guest-access-panel" style="display: none;">
-            <div class="guest-access-divider"><span>QR reader access</span></div>
-            <div class="info-box mb-2">
-                Continue as a guest if you scanned a QR code and do not have a registered account. You will be asked for your name and contact details before publishing the readings.
-            </div>
-            <button id="guest-login-button" type="button" class="btn btn-secondary btn-large btn-block">
-                Continue As Guest
-            </button>
+        <div class="info-box mb-2">
+            Redirecting to the dashboard now. Update any old bookmarks that still point to this page.
         </div>
-
-        <div class="login-footer">
-            <p class="text-muted">
-                <strong>Note:</strong> Registered sign-in now uses Firebase Authentication. Use your configured admin or staff account.
-            </p>
-            <p class="text-muted">
-                Use a unique password that is not reused on other sites. Google password warnings come from breached or reused credentials, not from this page alone.
-            </p>
-            <p class="text-muted">
-                Need help? Contact your system administrator.
-            </p>
-        </div>
+        <p><a href="index.html" class="btn btn-primary btn-large btn-block">Continue to Dashboard</a></p>
     </div>
 </div>
 
-<script type="module">
-    import { auth } from './assets/auth.js';
-
-    const redirectTarget = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
-    const isReaderRedirect = redirectTarget.startsWith('reader.html') || redirectTarget.startsWith('reader-old.html');
-    const readerOnlyNotice = new URLSearchParams(window.location.search).get('reader_only') === '1';
-
-    // Initialize default admin on first load
-    auth.initializeDefaultAdmin();
-    await auth.initialize();
-
-    if (isReaderRedirect) {
-        document.getElementById('guest-access-panel').style.display = 'block';
-    }
-
-    if (readerOnlyNotice) {
-        const errorDiv = document.getElementById('login-error');
-        errorDiv.textContent = 'Reader accounts can only access QR capture pages. Scan the scheme QR code to continue.';
-        errorDiv.style.display = 'block';
-    }
-
-    // Handle login form
-    document.getElementById('login-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        const result = await auth.login(email, password);
-
-        if (result.success) {
-            if (result.user.role === 'field_worker' && !isReaderRedirect) {
-                window.location.href = 'login.html?reader_only=1';
-                return;
-            }
-
-            // Record login activity
-            auth.recordActivity('user_login', { email });
-
-            // Redirect to dashboard
-            window.location.href = redirectTarget;
-        } else {
-            // Show error
-            const errorDiv = document.getElementById('login-error');
-            errorDiv.textContent = result.error;
-            errorDiv.style.display = 'block';
-
-            // Shake animation
-            errorDiv.classList.add('shake');
-            setTimeout(() => errorDiv.classList.remove('shake'), 500);
-        }
-    });
-
-    document.getElementById('guest-login-button').addEventListener('click', function() {
-        auth.startGuestSession();
-        window.location.href = redirectTarget;
-    });
-
-    // Check if already logged in
-    if (auth.isAuthenticated()) {
-        const currentUser = auth.getCurrentUser();
-        if (currentUser.role === 'field_worker' || currentUser.role === 'guest_reader') {
-            if (isReaderRedirect) {
-                window.location.href = redirectTarget;
-            }
-        } else {
-            window.location.href = redirectTarget;
-        }
-    }
+<script>
+    window.location.replace('index.html');
 </script>
-
 </body>
 </html>

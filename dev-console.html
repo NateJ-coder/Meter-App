@@ -17,14 +17,14 @@
         </ul>
         <div class="nav-user">
             <span id="user-name"></span>
-            <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Logout</button>
+            <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Reset Session</button>
         </div>
     </nav>
 
     <main class="container">
         <header class="page-header">
             <h1>Developer Console</h1>
-            <p class="subtitle">Monitor app health, manage users, and configure settings</p>
+            <p class="subtitle">Monitor app health, review activity, and configure settings</p>
         </header>
 
         <!-- Health Dashboard -->
@@ -36,11 +36,11 @@
         <!-- User Management -->
         <section class="card">
             <div class="card-header">
-                <h2>User Management & Contact Directory</h2>
-                <button class="btn btn-primary" onclick="showAddUserModal()">+ Add User</button>
+                <h2>Legacy User Directory</h2>
+                <button class="btn btn-secondary" type="button" disabled>Retired</button>
             </div>
             <div class="info-box mb-2">
-                Registered readers and employees should be created here so their contact details are available on reading summaries and activity records.
+                Login and role-based access have been removed. This legacy user-management surface is retained only as a retirement notice and no longer provisions access.
             </div>
             <div id="users-list"></div>
         </section>
@@ -127,22 +127,15 @@
         import { setupHealth } from './assets/setup-health.js';
         import { validation } from './assets/validation.js';
 
-        auth.initializeDefaultAdmin();
         await auth.initialize();
-
-        // Check authentication and admin permission
-        if (!auth.isAuthenticated() || !auth.hasPermission('admin')) {
-            alert('Access denied. Admin permissions required.');
-            window.location.href = 'index.html';
-        }
 
         // Display user info
         const currentUser = auth.getCurrentUser();
         document.getElementById('user-name').textContent = currentUser.name;
 
-        // Logout handler
+        // Session reset handler
         window.handleLogout = function() {
-            if (confirm('Are you sure you want to logout?')) {
+            if (confirm('Reset the local open-access session metadata?')) {
                 void auth.logout();
             }
         };
@@ -354,53 +347,8 @@
 
         // Users List
         function renderUsersList() {
-            const users = auth.getUsers();
             const container = document.getElementById('users-list');
-
-            if (users.length === 0) {
-                container.innerHTML = '<p class="text-muted">No users registered yet.</p>';
-                return;
-            }
-
-            container.innerHTML = `
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Contact Details</th>
-                            <th>Role</th>
-                            <th>Created</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${users.map(user => `
-                            <tr>
-                                <td>${user.name}</td>
-                                <td>${user.email}</td>
-                                <td>${user.phone || '-'}</td>
-                                <td>${user.contact_details || '-'}</td>
-                                <td><span class="badge badge-${getRoleBadgeClass(user.role)}">${user.role}</span></td>
-                                <td>${new Date(user.createdAt).toLocaleDateString()}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.id}', '${user.email}')">Disable</button>
-                                </td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            `;
-        }
-
-        function getRoleBadgeClass(role) {
-            switch(role) {
-                case 'admin': return 'primary';
-                case 'field_worker': return 'success';
-                case 'viewer': return 'secondary';
-                default: return 'secondary';
-            }
+            container.innerHTML = '<div class="info-box">User provisioning and role management were removed from the app. Activity records now use the open-access operator identity unless a feature supplies its own captured-by details.</div>';
         }
 
         // Activity Log
@@ -483,7 +431,7 @@
 
         // Add User Modal
         window.showAddUserModal = function() {
-            document.getElementById('add-user-modal').style.display = 'flex';
+            alert('User provisioning is retired in open-access mode.');
         };
 
         window.closeAddUserModal = function() {
@@ -493,56 +441,12 @@
 
         document.getElementById('add-user-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-
-            const password = document.getElementById('user-password').value;
-            const weakPasswords = new Set(['admin123', 'test123', 'worker123', 'field123', 'view123', 'password123']);
-
-            if (password.length < 10 || weakPasswords.has(password.toLowerCase())) {
-                alert('Use a stronger unique password. Avoid common or reused passwords.');
-                document.getElementById('user-password').focus();
-                return;
-            }
-
-            const userData = {
-                name: document.getElementById('user-name').value,
-                email: document.getElementById('user-email').value,
-                phone: document.getElementById('user-phone').value.trim(),
-                contact_details: document.getElementById('user-contact-details').value.trim(),
-                password,
-                role: document.getElementById('user-role').value
-            };
-
-            const result = await auth.register(userData);
-
-            if (result.success) {
-                auth.recordActivity('user_created', { email: userData.email });
-                alert('User added successfully!');
-                closeAddUserModal();
-                await auth.refreshUsers();
-                renderUsersList();
-                renderHealthDashboard();
-            } else {
-                alert('Error: ' + result.error);
-            }
+            alert('User provisioning is retired in open-access mode.');
         });
 
         // Delete User
         window.deleteUser = async function(userId, email) {
-            if (!confirm(`Delete user ${email}? This cannot be undone.`)) {
-                return;
-            }
-
-            // Prevent deleting yourself
-            if (userId === currentUser.id) {
-                alert('Cannot delete your own account while logged in.');
-                return;
-            }
-
-            await auth.deleteUser(userId);
-            await auth.refreshUsers();
-            alert('User disabled successfully.');
-            renderUsersList();
-            renderHealthDashboard();
+            alert(`User management is retired in open-access mode. No action was taken for ${email}.`);
         };
 
         // System Actions

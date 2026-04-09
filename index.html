@@ -24,7 +24,7 @@
         </ul>
         <div class="nav-user">
             <span id="user-name"></span>
-            <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Logout</button>
+            <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Reset Session</button>
         </div>
     </nav>
 
@@ -124,20 +124,10 @@
         import { initializeFolderSchemes } from './assets/app.js';
         import { importReadingTransferPackage } from './assets/reading-transfer.js';
 
-        auth.initializeDefaultAdmin();
         await auth.initialize();
-
-        // Check authentication
-        if (!auth.isAuthenticated()) {
-            window.location.href = 'login.html';
-        }
 
         // Display user info
         const currentUser = auth.getCurrentUser();
-
-        if (currentUser.role === 'guest_reader' || currentUser.role === 'field_worker') {
-            window.location.href = 'login.html?reader_only=1';
-        }
 
         try {
             await storage.initializeCloudSync({ preload: true, clearMissing: false });
@@ -145,20 +135,15 @@
             console.error('Cloud data hydration failed:', error);
         }
 
-        if (currentUser.role === 'admin') {
-            initializeFolderSchemes();
-        }
+        initializeFolderSchemes();
 
         document.getElementById('user-name').textContent = currentUser.name;
 
-        // Show dev console link for admins
-        if (currentUser.role === 'admin') {
-            document.getElementById('dev-console-link').style.display = 'block';
-        }
+        document.getElementById('dev-console-link').style.display = 'block';
 
-        // Logout handler
+        // Session reset handler
         window.handleLogout = function() {
-            if (confirm('Are you sure you want to logout?')) {
+            if (confirm('Reset the local open-access session metadata?')) {
                 void auth.logout();
             }
         };
