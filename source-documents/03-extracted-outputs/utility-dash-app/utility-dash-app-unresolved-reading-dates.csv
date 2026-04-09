@@ -1,0 +1,293 @@
+scheme_name,source_sheet,legacy_label,meter_type,reading_label,reading_date_note,reading_value,previous_reading_value,consumption
+VILLINO GLEN,Vilino Glen,VG 01,UNIT,2023-11-21 00:00:00,unparseable-date,5471.0,5226.0,245.0
+VILLINO GLEN,Vilino Glen,VG 02,UNIT,2023-11-21 00:00:00,unparseable-date,9087.0,8667.0,420.0
+VILLINO GLEN,Vilino Glen,VG 03,UNIT,2023-11-21 00:00:00,unparseable-date,5808.0,5643.0,165.0
+VILLINO GLEN,Vilino Glen,VG 04,UNIT,2023-11-21 00:00:00,unparseable-date,6404.0,6161.0,243.0
+VILLINO GLEN,Vilino Glen,VG 05,UNIT,2023-11-21 00:00:00,unparseable-date,5260.0,5032.0,228.0
+VILLINO GLEN,Vilino Glen,VG 06,UNIT,2023-11-21 00:00:00,unparseable-date,4545.0,4323.0,222.0
+VILLINO GLEN,Vilino Glen,VG 07,UNIT,2023-11-21 00:00:00,unparseable-date,6773.0,6502.0,271.0
+VILLINO GLEN,Vilino Glen,VG 08A,UNIT,2023-11-21 00:00:00,unparseable-date,4410.0,4257.0,153.0
+VILLINO GLEN,Vilino Glen,VG 09,UNIT,2023-11-21 00:00:00,unparseable-date,7870.0,7469.0,401.0
+VILLINO GLEN,Vilino Glen,VG 10,UNIT,2023-11-21 00:00:00,unparseable-date,5518.0,5319.0,199.0
+VILLINO GLEN,Vilino Glen,VG 11,UNIT,2023-11-21 00:00:00,unparseable-date,4527.0,4121.0,406.0
+VILLINO GLEN,Vilino Glen,VG 12,UNIT,2023-11-21 00:00:00,unparseable-date,8219.0,8218.0,1.0
+VILLINO GLEN,Vilino Glen,VG 13,UNIT,2023-11-21 00:00:00,unparseable-date,7082.0,6812.0,270.0
+VILLINO GLEN,Vilino Glen,VG 14A,UNIT,2023-11-21 00:00:00,unparseable-date,8430.0,8180.0,250.0
+VILLINO GLEN,Vilino Glen,VG 15,UNIT,2023-11-21 00:00:00,unparseable-date,11991.0,11517.0,474.0
+VILLINO GLEN,Vilino Glen,VG 16,UNIT,2023-11-21 00:00:00,unparseable-date,5367.0,5215.0,152.0
+VILLINO GLEN,Vilino Glen,VG 17,UNIT,2023-11-21 00:00:00,unparseable-date,2262.0,2189.0,73.0
+VILLINO GLEN,Vilino Glen,VG 18,UNIT,2023-11-21 00:00:00,unparseable-date,7178.0,6731.0,447.0
+VILLINO GLEN,Vilino Glen,VG 19 A,UNIT,2023-11-21 00:00:00,unparseable-date,3020.0,2822.0,198.0
+VILLINO GLEN,Vilino Glen,VG 20A,UNIT,2023-11-21 00:00:00,unparseable-date,4421.0,4403.0,18.0
+VILLINO GLEN,Vilino Glen,VG 21,UNIT,2023-11-21 00:00:00,unparseable-date,3925.0,3925.0,0.0
+VILLINO GLEN,Vilino Glen,VG 22,UNIT,2023-11-21 00:00:00,unparseable-date,13436.0,13144.0,292.0
+VILLINO GLEN,Vilino Glen,VG 23,UNIT,2023-11-21 00:00:00,unparseable-date,2692.0,2578.0,114.0
+VILLINO GLEN,Vilino Glen,VG 24,UNIT,2023-11-21 00:00:00,unparseable-date,8268.0,7911.0,357.0
+VILLINO GLEN,Vilino Glen,VG 25,UNIT,2023-11-21 00:00:00,unparseable-date,7463.0,7215.0,248.0
+VILLINO GLEN,Vilino Glen,VG 26,UNIT,2023-11-21 00:00:00,unparseable-date,6553.0,6458.0,95.0
+VILLINO GLEN,Vilino Glen,VG 27,UNIT,2023-11-21 00:00:00,unparseable-date,5423.0,5218.0,205.0
+VILLINO GLEN,Vilino Glen,VG 28,UNIT,2023-11-21 00:00:00,unparseable-date,4412.0,4277.0,135.0
+VILLINO GLEN,Vilino Glen,VG 29,UNIT,2023-11-21 00:00:00,unparseable-date,8450.0,8078.0,372.0
+VILLINO GLEN,Vilino Glen,VG 30,UNIT,2023-11-21 00:00:00,unparseable-date,3339.0,3209.0,130.0
+VILLINO GLEN,Vilino Glen,VG 31,UNIT,2023-11-21 00:00:00,unparseable-date,3036.0,2916.0,120.0
+VILLINO GLEN,Vilino Glen,VG 32,UNIT,2023-11-21 00:00:00,unparseable-date,6751.0,6465.0,286.0
+VILLINO GLEN,Vilino Glen,VG 33,UNIT,2023-11-21 00:00:00,unparseable-date,9695.0,9210.0,485.0
+VILLINO GLEN,Vilino Glen,VG 34,UNIT,2023-11-21 00:00:00,unparseable-date,9191.0,9004.0,187.0
+VILLINO GLEN,Vilino Glen,VG 35,UNIT,2023-11-21 00:00:00,unparseable-date,6035.0,5651.0,384.0
+VILLINO GLEN,Vilino Glen,VG 36,UNIT,2023-11-21 00:00:00,unparseable-date,4461.0,4275.0,186.0
+VILLINO GLEN,Vilino Glen,VG 37,UNIT,2023-11-21 00:00:00,unparseable-date,6172.0,5875.0,297.0
+VILLINO GLEN,Vilino Glen,VG 38,UNIT,2023-11-21 00:00:00,unparseable-date,6292.0,6064.0,228.0
+VILLINO GLEN,Vilino Glen,** Gate,COMMON,2023-11-21 00:00:00,unparseable-date,0.0,0.0,0.0
+VILLINO GLEN,Vilino Glen,Bulk 1,BULK,2023-11-21 00:00:00,unparseable-date,89499.0,89301.0,198.0
+Akasia,Akasia,AK 01 / FL 16,UNIT,2024-05-21 00:00:00,unparseable-date,20.51,33.96,999986.55
+Akasia,Akasia,AK 01 / FL 16,UNIT,2024-10-21 00:00:00,missing-date,0.0,23.37,999976.63
+Akasia,Akasia,AK 02 / FL 15,UNIT,2024-05-21 00:00:00,unparseable-date,11.03,6.42,4.609999999999999
+Akasia,Akasia,AK 02 / FL 15,UNIT,2024-10-21 00:00:00,missing-date,0.0,29.01,999970.99
+Akasia,Akasia,AK 03 / FL 14,UNIT,2024-05-21 00:00:00,unparseable-date,41.42,36.71,4.710000000000001
+Akasia,Akasia,AK 03 / FL 14,UNIT,2024-10-21 00:00:00,missing-date,0.0,22.18,999977.82
+Akasia,Akasia,AK 04 / FL 13,UNIT,2024-05-21 00:00:00,unparseable-date,27.73,34.73,999993.0
+Akasia,Akasia,AK 04 / FL 13,UNIT,2024-10-21 00:00:00,missing-date,0.0,44.74,999955.26
+Akasia,Akasia,AK 05 / FL 12,UNIT,2024-05-21 00:00:00,unparseable-date,18.09,14.79,3.3000000000000007
+Akasia,Akasia,AK 05 / FL 12,UNIT,2024-10-21 00:00:00,missing-date,0.0,18.3,999981.7
+Akasia,Akasia,AK 06 / FL 11,UNIT,2024-05-21 00:00:00,unparseable-date,32.03,49.37,999982.66
+Akasia,Akasia,AK 06 / FL 11,UNIT,2024-10-21 00:00:00,missing-date,0.0,26.2,999973.8
+Akasia,Akasia,AK 07 / FL 116,UNIT,2024-05-21 00:00:00,unparseable-date,6.61,1.61,5.0
+Akasia,Akasia,AK 07 / FL 116,UNIT,2024-10-21 00:00:00,missing-date,0.0,21.29,999978.71
+Akasia,Akasia,AK 08 / FL 117,UNIT,2024-05-21 00:00:00,unparseable-date,0.0,0.0,0.0
+Akasia,Akasia,AK 08 / FL 117,UNIT,2024-10-21 00:00:00,missing-date,0.0,26.18,999973.82
+Akasia,Akasia,AK 09 / FL 118,UNIT,2024-05-21 00:00:00,unparseable-date,11.55,5.46,6.090000000000001
+Akasia,Akasia,AK 09 / FL 118,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 10 / FL 119,UNIT,2024-05-21 00:00:00,unparseable-date,23.08,8.31,14.769999999999998
+Akasia,Akasia,AK 10 / FL 119,UNIT,2024-10-21 00:00:00,missing-date,0.0,6.75,999993.25
+Akasia,Akasia,AK 11 / FL 120,UNIT,2024-05-21 00:00:00,unparseable-date,0.0,0.0,0.0
+Akasia,Akasia,AK 11 / FL 120,UNIT,2024-10-21 00:00:00,missing-date,0.0,2.17,999997.83
+Akasia,Akasia,AK 12 / FL 112,UNIT,2024-05-21 00:00:00,unparseable-date,6.34,3.07,3.27
+Akasia,Akasia,AK 12 / FL 112,UNIT,2024-10-21 00:00:00,missing-date,0.0,38.07,999961.93
+Akasia,Akasia,AK 13 / FL 113,UNIT,2024-05-21 00:00:00,unparseable-date,44.61,36.41,8.200000000000003
+Akasia,Akasia,AK 13 / FL 113,UNIT,2024-10-21 00:00:00,missing-date,0.0,9.17,990.83
+Akasia,Akasia,AK 14 / FL 114,UNIT,2024-05-21 00:00:00,unparseable-date,10.31,8.82,1.4900000000000002
+Akasia,Akasia,AK 14 / FL 114,UNIT,2024-10-21 00:00:00,missing-date,0.0,11.03,999988.97
+Akasia,Akasia,AK 15 / FL 115,UNIT,2024-05-21 00:00:00,unparseable-date,0.0,0.0,0.0
+Akasia,Akasia,AK 15 / FL 115,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 16 / FL 26,UNIT,2024-05-21 00:00:00,unparseable-date,55.98,50.71,5.269999999999996
+Akasia,Akasia,AK 16 / FL 26,UNIT,2024-10-21 00:00:00,missing-date,0.0,19.69,999980.31
+Akasia,Akasia,AK 17 / FL 25,UNIT,2024-05-21 00:00:00,unparseable-date,9.18,6.24,2.9399999999999995
+Akasia,Akasia,AK 17 / FL 25,UNIT,2024-10-21 00:00:00,missing-date,0.0,10.11,999989.89
+Akasia,Akasia,AK 18 / FL 24,UNIT,2024-05-21 00:00:00,unparseable-date,10.47,7.17,3.3000000000000007
+Akasia,Akasia,AK 18 / FL 24,UNIT,2024-10-21 00:00:00,missing-date,0.0,30.37,999969.63
+Akasia,Akasia,AK 19 / FL 23,UNIT,2024-05-21 00:00:00,unparseable-date,26.32,29.63,999996.69
+Akasia,Akasia,AK 19 / FL 23,UNIT,2024-10-21 00:00:00,missing-date,0.0,11.14,999988.86
+Akasia,Akasia,AK 20 / FL 22,UNIT,2024-05-21 00:00:00,unparseable-date,35.27,31.92,3.3500000000000014
+Akasia,Akasia,AK 20 / FL 22,UNIT,2024-10-21 00:00:00,missing-date,0.0,26.02,999973.98
+Akasia,Akasia,AK 21 / FL 21,UNIT,2024-05-21 00:00:00,unparseable-date,11.63,7.82,3.8100000000000005
+Akasia,Akasia,AK 21 / FL 21,UNIT,2024-10-21 00:00:00,missing-date,0.0,15.6,999984.4
+Akasia,Akasia,AK 22 / FL 216,UNIT,2024-05-21 00:00:00,unparseable-date,16.36,12.81,3.549999999999999
+Akasia,Akasia,AK 22 / FL 216,UNIT,2024-10-21 00:00:00,missing-date,0.0,26.56,999973.44
+Akasia,Akasia,AK 23 / FL 217,UNIT,2024-05-21 00:00:00,unparseable-date,4.22,8.36,999995.86
+Akasia,Akasia,AK 23 / FL 217,UNIT,2024-10-21 00:00:00,missing-date,0.0,31.36,999968.64
+Akasia,Akasia,AK 24 / FL 218,UNIT,2024-05-21 00:00:00,unparseable-date,88.45,92.12,999996.33
+Akasia,Akasia,AK 24 / FL 218,UNIT,2024-10-21 00:00:00,missing-date,0.0,24.54,999975.46
+Akasia,Akasia,AK 25 / FL 219,UNIT,2024-05-21 00:00:00,unparseable-date,44.91,39.45,5.459999999999994
+Akasia,Akasia,AK 25 / FL 219,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 26 / FL 220,UNIT,2024-05-21 00:00:00,unparseable-date,35.12,37.59,999997.53
+Akasia,Akasia,AK 26 / FL 220,UNIT,2024-10-21 00:00:00,missing-date,0.0,11.1,999988.9
+Akasia,Akasia,AK 27 / FL 212,UNIT,2024-05-21 00:00:00,unparseable-date,103.34,99.68,3.6599999999999966
+Akasia,Akasia,AK 27 / FL 212,UNIT,2024-10-21 00:00:00,missing-date,0.0,25.18,999974.82
+Akasia,Akasia,AK 28 / FL 213,UNIT,2024-05-21 00:00:00,unparseable-date,74.24,94.24,999980.0
+Akasia,Akasia,AK 28 / FL 213,UNIT,2024-10-21 00:00:00,missing-date,0.0,58.81,999941.19
+Akasia,Akasia,AK 29 / FL 214,UNIT,2024-05-21 00:00:00,unparseable-date,5.26,2.58,2.6799999999999997
+Akasia,Akasia,AK 29 / FL 214,UNIT,2024-10-21 00:00:00,missing-date,0.0,8.56,999991.44
+Akasia,Akasia,AK 30 / FL 215,UNIT,2024-05-21 00:00:00,unparseable-date,28.11,14.0,14.11
+Akasia,Akasia,AK 30 / FL 215,UNIT,2024-10-21 00:00:00,missing-date,0.0,29.84,999970.16
+Akasia,Akasia,AK 31 / FL 36,UNIT,2024-05-21 00:00:00,unparseable-date,21.75,32.98,999988.77
+Akasia,Akasia,AK 31 / FL 36,UNIT,2024-10-21 00:00:00,missing-date,0.0,38.1,999961.9
+Akasia,Akasia,AK 32 / FL 35,UNIT,2024-05-21 00:00:00,unparseable-date,4.2,39.5,999964.7
+Akasia,Akasia,AK 32 / FL 35,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 33 FL 34,UNIT,2024-05-21 00:00:00,unparseable-date,11.56,56.37,999955.19
+Akasia,Akasia,AK 33 FL 34,UNIT,2024-10-21 00:00:00,missing-date,0.0,25.22,999974.78
+Akasia,Akasia,AK 34 / FL 33,UNIT,2024-05-21 00:00:00,unparseable-date,52.37,9.56,42.809999999999995
+Akasia,Akasia,AK 34 / FL 33,UNIT,2024-10-21 00:00:00,missing-date,0.0,46.95,999953.05
+Akasia,Akasia,AK 35 / FL 32,UNIT,2024-05-21 00:00:00,unparseable-date,43.5,6.82,36.68
+Akasia,Akasia,AK 35 / FL 32,UNIT,2024-10-21 00:00:00,missing-date,0.0,15.82,999984.18
+Akasia,Akasia,AK 36 / FL 31,UNIT,2024-05-21 00:00:00,unparseable-date,36.5,18.75,17.75
+Akasia,Akasia,AK 36 / FL 31,UNIT,2024-10-21 00:00:00,missing-date,0.0,38.6,999961.4
+Akasia,Akasia,AK 37 / FL 316,UNIT,2024-05-21 00:00:00,unparseable-date,25.02,13.67,11.35
+Akasia,Akasia,AK 37 / FL 316,UNIT,2024-10-21 00:00:00,missing-date,0.0,4.01,999995.99
+Akasia,Akasia,AK 38 / FL 317,UNIT,2024-05-21 00:00:00,unparseable-date,23.52,16.52,7.0
+Akasia,Akasia,AK 38 / FL 317,UNIT,2024-10-21 00:00:00,missing-date,0.0,20.61,999979.39
+Akasia,Akasia,AK 39 / FL 318,UNIT,2024-05-21 00:00:00,unparseable-date,74.28,89.02,999985.26
+Akasia,Akasia,AK 39 / FL 318,UNIT,2024-10-21 00:00:00,missing-date,0.0,67.18,999932.82
+Akasia,Akasia,AK 40 / FL 319,UNIT,2024-05-21 00:00:00,unparseable-date,35.07,28.97,6.100000000000001
+Akasia,Akasia,AK 40 / FL 319,UNIT,2024-10-21 00:00:00,missing-date,0.0,5.64,999994.36
+Akasia,Akasia,AK 41 / FL 320,UNIT,2024-05-21 00:00:00,unparseable-date,7.11,9.28,999997.83
+Akasia,Akasia,AK 41 / FL 320,UNIT,2024-10-21 00:00:00,missing-date,0.0,38.18,999961.82
+Akasia,Akasia,AK 42 / FL 312,UNIT,2024-05-21 00:00:00,unparseable-date,37.2,23.03,14.170000000000002
+Akasia,Akasia,AK 42 / FL 312,UNIT,2024-10-21 00:00:00,missing-date,0.0,23.33,999976.67
+Akasia,Akasia,AK 43 / FL 313,UNIT,2024-05-21 00:00:00,unparseable-date,21.03,3.54,17.490000000000002
+Akasia,Akasia,AK 43 / FL 313,UNIT,2024-10-21 00:00:00,missing-date,0.0,9.32,990.68
+Akasia,Akasia,AK 44 / FL 314,UNIT,2024-05-21 00:00:00,unparseable-date,148.23,167.94,999980.29
+Akasia,Akasia,AK 44 / FL 314,UNIT,2024-10-21 00:00:00,missing-date,0.0,32.64,999967.36
+Akasia,Akasia,AK 45 / FL 315,UNIT,2024-05-21 00:00:00,unparseable-date,11.45,7.21,4.239999999999999
+Akasia,Akasia,AK 45 / FL 315,UNIT,2024-10-21 00:00:00,missing-date,0.0,25.32,999974.68
+Akasia,Akasia,AK 46 / FL 46,UNIT,2024-05-21 00:00:00,unparseable-date,29.48,36.11,999993.37
+Akasia,Akasia,AK 46 / FL 46,UNIT,2024-10-21 00:00:00,missing-date,0.0,10.6,999989.4
+Akasia,Akasia,AK 47 / FL 45,UNIT,2024-05-21 00:00:00,unparseable-date,24.61,22.52,2.09
+Akasia,Akasia,AK 47 / FL 45,UNIT,2024-10-21 00:00:00,missing-date,0.0,110.2,999889.8
+Akasia,Akasia,AK 48 / FL 44,UNIT,2024-05-21 00:00:00,unparseable-date,110.52,117.92,999992.6
+Akasia,Akasia,AK 48 / FL 44,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 49 / FL 43,UNIT,2024-05-21 00:00:00,unparseable-date,18.51,16.42,2.09
+Akasia,Akasia,AK 49 / FL 43,UNIT,2024-10-21 00:00:00,missing-date,0.0,7.94,999992.06
+Akasia,Akasia,AK 50 / FL 42,UNIT,2024-05-21 00:00:00,unparseable-date,26.3,23.03,3.2699999999999996
+Akasia,Akasia,AK 50 / FL 42,UNIT,2024-10-21 00:00:00,missing-date,0.0,24.34,999975.66
+Akasia,Akasia,AK 51 / FL 41,UNIT,2024-05-21 00:00:00,unparseable-date,152.32,169.32,999983.0
+Akasia,Akasia,AK 51 / FL 41,UNIT,2024-10-21 00:00:00,missing-date,0.0,96.35,9903.65
+Akasia,Akasia,AK 52 / FL 416,UNIT,2024-05-21 00:00:00,unparseable-date,0.0,0.0,0.0
+Akasia,Akasia,AK 52 / FL 416,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 53 / FL 417,UNIT,2024-05-21 00:00:00,unparseable-date,10.02,0.39,9.629999999999999
+Akasia,Akasia,AK 53 / FL 417,UNIT,2024-10-21 00:00:00,missing-date,0.0,52.61,999947.39
+Akasia,Akasia,AK 54 / FL 418,UNIT,2024-05-21 00:00:00,unparseable-date,68.67,74.19,999994.48
+Akasia,Akasia,AK 54 / FL 418,UNIT,2024-10-21 00:00:00,missing-date,0.0,13.15,999986.85
+Akasia,Akasia,AK 55 / FL 419,UNIT,2024-05-21 00:00:00,unparseable-date,16.26,9.57,6.690000000000001
+Akasia,Akasia,AK 55 / FL 419,UNIT,2024-10-21 00:00:00,missing-date,0.0,6.34,999993.66
+Akasia,Akasia,AK 56 / FL 420,UNIT,2024-05-21 00:00:00,unparseable-date,27.12,21.67,5.449999999999999
+Akasia,Akasia,AK 56 / FL 420,UNIT,2024-10-21 00:00:00,missing-date,0.0,20.2,999979.8
+Akasia,Akasia,AK 57 / FL 412,UNIT,2024-05-21 00:00:00,unparseable-date,8.07,4.34,3.7300000000000004
+Akasia,Akasia,AK 57 / FL 412,UNIT,2024-10-21 00:00:00,missing-date,0.0,23.18,999976.82
+Akasia,Akasia,AK 58 / FL 413,UNIT,2024-05-21 00:00:00,unparseable-date,6.31,2.07,4.24
+Akasia,Akasia,AK 58 / FL 413,UNIT,2024-10-21 00:00:00,missing-date,0.0,48.07,999951.93
+Akasia,Akasia,AK 59 / FL 414,UNIT,2024-05-21 00:00:00,unparseable-date,0.0,0.0,0.0
+Akasia,Akasia,AK 59 / FL 414,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 60 / FL 415,UNIT,2024-05-21 00:00:00,unparseable-date,0.0,0.0,0.0
+Akasia,Akasia,AK 60 / FL 415,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 61 / FL 56,UNIT,2024-05-21 00:00:00,unparseable-date,11.48,7.92,3.5600000000000005
+Akasia,Akasia,AK 61 / FL 56,UNIT,2024-10-21 00:00:00,missing-date,0.0,9.3,90.7
+Akasia,Akasia,AK 62 / FL 55,UNIT,2024-05-21 00:00:00,unparseable-date,6.26,12.26,999994.0
+Akasia,Akasia,AK 62 / FL 55,UNIT,2024-10-21 00:00:00,missing-date,0.0,36.1,999963.9
+Akasia,Akasia,AK 63 / FL 54,UNIT,2024-05-21 00:00:00,unparseable-date,28.51,35.5,999993.01
+Akasia,Akasia,AK 63 / FL 54,UNIT,2024-10-21 00:00:00,missing-date,0.0,13.1,999986.9
+Akasia,Akasia,AK 64 / FL 53,UNIT,2024-05-21 00:00:00,unparseable-date,10.26,8.9,1.3599999999999994
+Akasia,Akasia,AK 64 / FL 53,UNIT,2024-10-21 00:00:00,missing-date,0.0,92.41,9907.59
+Akasia,Akasia,AK 65 / FL 52,UNIT,2024-05-21 00:00:00,unparseable-date,6.26,2.48,3.78
+Akasia,Akasia,AK 65 / FL 52,UNIT,2024-10-21 00:00:00,missing-date,0.0,10.1,999989.9
+Akasia,Akasia,AK 66 / FL 51,UNIT,2024-05-21 00:00:00,unparseable-date,11.48,3.52,7.960000000000001
+Akasia,Akasia,AK 66 / FL 51,UNIT,2024-10-21 00:00:00,missing-date,0.0,34.46,999965.54
+Akasia,Akasia,AK 67 / FL 516,UNIT,2024-05-21 00:00:00,unparseable-date,61.3,56.12,5.18
+Akasia,Akasia,AK 67 / FL 516,UNIT,2024-10-21 00:00:00,missing-date,0.0,26.73,999973.27
+Akasia,Akasia,AK 68 / FL 517,UNIT,2024-05-21 00:00:00,unparseable-date,42.61,34.21,8.399999999999999
+Akasia,Akasia,AK 68 / FL 517,UNIT,2024-10-21 00:00:00,missing-date,0.0,65.26,999934.74
+Akasia,Akasia,AK 69 / FL 518,UNIT,2024-05-21 00:00:00,unparseable-date,91.11,88.3,2.8100000000000023
+Akasia,Akasia,AK 69 / FL 518,UNIT,2024-10-21 00:00:00,missing-date,0.0,104.08,999895.92
+Akasia,Akasia,AK 70 / FL 519,UNIT,2024-05-21 00:00:00,unparseable-date,9.12,5.01,4.109999999999999
+Akasia,Akasia,AK 70 / FL 519,UNIT,2024-10-21 00:00:00,missing-date,0.0,9.07,990.93
+Akasia,Akasia,AK 71 / FL 520,UNIT,2024-05-21 00:00:00,unparseable-date,38.01,26.68,11.329999999999998
+Akasia,Akasia,AK 71 / FL 520,UNIT,2024-10-21 00:00:00,missing-date,0.0,55.31,999944.69
+Akasia,Akasia,AK 72 / FL 512,UNIT,2024-05-21 00:00:00,unparseable-date,9.36,6.26,3.0999999999999996
+Akasia,Akasia,AK 72 / FL 512,UNIT,2024-10-21 00:00:00,missing-date,0.0,22.01,999977.99
+Akasia,Akasia,AK 73 / FL 513,UNIT,2024-05-21 00:00:00,unparseable-date,53.75,48.75,5.0
+Akasia,Akasia,AK 73 / FL 513,UNIT,2024-10-21 00:00:00,missing-date,0.0,29.57,999970.43
+Akasia,Akasia,AK 74 / FL 514,UNIT,2024-05-21 00:00:00,unparseable-date,32.13,24.61,7.520000000000003
+Akasia,Akasia,AK 74 / FL 514,UNIT,2024-10-21 00:00:00,missing-date,0.0,31.59,999968.41
+Akasia,Akasia,AK 75 / FL 515,UNIT,2024-05-21 00:00:00,unparseable-date,5.08,9.13,999995.95
+Akasia,Akasia,AK 75 / FL 515,UNIT,2024-10-21 00:00:00,missing-date,0.0,17.49,999982.51
+Akasia,Akasia,AK 76 / FL 66,UNIT,2024-05-21 00:00:00,unparseable-date,8.7,7.18,1.5199999999999996
+Akasia,Akasia,AK 76 / FL 66,UNIT,2024-10-21 00:00:00,missing-date,0.0,26.72,999973.28
+Akasia,Akasia,AK 77 / FL 65,UNIT,2024-05-21 00:00:00,unparseable-date,2.1,5.0,999997.1
+Akasia,Akasia,AK 77 / FL 65,UNIT,2024-10-21 00:00:00,missing-date,0.0,11.03,999988.97
+Akasia,Akasia,AK 78 / FL 64,UNIT,2024-05-21 00:00:00,unparseable-date,9.18,16.27,999992.91
+Akasia,Akasia,AK 78 / FL 64,UNIT,2024-10-21 00:00:00,missing-date,0.0,9.1,90.9
+Akasia,Akasia,AK 79 / FL 63,UNIT,2024-05-21 00:00:00,unparseable-date,21.27,26.32,999994.95
+Akasia,Akasia,AK 79 / FL 63,UNIT,2024-10-21 00:00:00,missing-date,0.0,39.72,999960.28
+Akasia,Akasia,AK 80A / FL 62,UNIT,2024-05-21 00:00:00,unparseable-date,0.0,0.0,0.0
+Akasia,Akasia,AK 80A / FL 62,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 80B / FL 61,UNIT,2024-05-21 00:00:00,unparseable-date,0.0,0.0,0.0
+Akasia,Akasia,AK 80B / FL 61,UNIT,2024-10-21 00:00:00,missing-date,0.0,0.0,0.0
+Akasia,Akasia,AK 81 / FL 616,UNIT,2024-05-21 00:00:00,unparseable-date,5.17,0.32,4.85
+Akasia,Akasia,AK 81 / FL 616,UNIT,2024-10-21 00:00:00,missing-date,0.0,4.32,999995.68
+Akasia,Akasia,AK 82 / FL 617,UNIT,2024-05-21 00:00:00,unparseable-date,36.11,33.95,2.1599999999999966
+Akasia,Akasia,AK 82 / FL 617,UNIT,2024-10-21 00:00:00,missing-date,0.0,27.68,999972.32
+Akasia,Akasia,AK 83 / FL 618,UNIT,2024-05-21 00:00:00,unparseable-date,2.19,4.51,999997.68
+Akasia,Akasia,AK 83 / FL 618,UNIT,2024-10-21 00:00:00,missing-date,0.0,19.38,999980.62
+Akasia,Akasia,AK 84 / FL 619,UNIT,2024-05-21 00:00:00,unparseable-date,5.12,7.8,999997.32
+Akasia,Akasia,AK 84 / FL 619,UNIT,2024-10-21 00:00:00,missing-date,0.0,60.29,999939.71
+Akasia,Akasia,AK 85 / FL 620,UNIT,2024-05-21 00:00:00,unparseable-date,13.55,3.55,10.0
+Akasia,Akasia,AK 85 / FL 620,UNIT,2024-10-21 00:00:00,missing-date,0.0,41.11,999958.89
+Akasia,Akasia,AK 86 / FL 612,UNIT,2024-05-21 00:00:00,unparseable-date,21.55,45.55,999976.0
+Akasia,Akasia,AK 86 / FL 612,UNIT,2024-10-21 00:00:00,missing-date,0.0,31.64,999968.36
+Akasia,Akasia,AK 87 / FL 613,UNIT,2024-05-21 00:00:00,unparseable-date,41.31,35.31,6.0
+Akasia,Akasia,AK 87 / FL 613,UNIT,2024-10-21 00:00:00,missing-date,0.0,21.31,999978.69
+Akasia,Akasia,AK 88 / FL 614,UNIT,2024-05-21 00:00:00,unparseable-date,61.24,56.45,4.789999999999999
+Akasia,Akasia,AK 88 / FL 614,UNIT,2024-10-21 00:00:00,missing-date,0.0,18.34,999981.66
+Akasia,Akasia,AK 89 / FL 615,UNIT,2024-05-21 00:00:00,unparseable-date,16.55,0.24,16.310000000000002
+Akasia,Akasia,AK 89 / FL 615,UNIT,2024-10-21 00:00:00,missing-date,0.0,11.01,999988.99
+Akasia,Akasia,Tower,UNIT,2024-05-21 00:00:00,unparseable-date,11825.0,11660.0,165.0
+Akasia,Akasia,Tower,UNIT,2024-10-21 00:00:00,missing-date,12563.0,12420.0,143.0
+Riviera Villas,Riviera Villas,RV 26A,UNIT,2021-09-19 00:00:00,unparseable-date,76825.0,76611.0,214.0
+Riviera Villas,Riviera Villas,RV 27A,UNIT,2021-09-19 00:00:00,unparseable-date,1097.0,782.0,315.0
+Riviera Villas,Riviera Villas,RV 28A,UNIT,2021-09-19 00:00:00,unparseable-date,30551.0,30518.0,33.0
+Riviera Villas,Riviera Villas,RV 29A,UNIT,2021-09-19 00:00:00,unparseable-date,98135.0,98005.0,130.0
+Riviera Villas,Riviera Villas,RV 30A,UNIT,2021-09-19 00:00:00,unparseable-date,34206.0,34118.0,88.0
+Riviera Villas,Riviera Villas,RV 31A,UNIT,2021-09-19 00:00:00,unparseable-date,50978.0,50895.0,83.0
+Riviera Villas,Riviera Villas,RV 32A,UNIT,2021-09-19 00:00:00,unparseable-date,12835.0,12764.0,71.0
+Riviera Villas,Riviera Villas,RV 33A,UNIT,2021-09-19 00:00:00,unparseable-date,18201.0,18042.0,159.0
+Riviera Villas,Riviera Villas,RV 34A,UNIT,2021-09-19 00:00:00,unparseable-date,20173.0,20104.0,69.0
+Riviera Villas,Riviera Villas,RV 35A,UNIT,2021-09-19 00:00:00,unparseable-date,85545.0,85462.0,83.0
+Riviera Villas,Riviera Villas,RV 35B,UNIT,2021-09-19 00:00:00,unparseable-date,29493.0,29493.0,0.0
+Riviera Villas,Riviera Villas,RV 36A,UNIT,2021-09-19 00:00:00,unparseable-date,79436.0,79362.0,74.0
+Riviera Villas,Riviera Villas,RV 36B,UNIT,2021-09-19 00:00:00,unparseable-date,45991.0,45942.0,49.0
+Riviera Villas,Riviera Villas,RV 37A,UNIT,2021-09-19 00:00:00,unparseable-date,2756.0,2696.0,60.0
+Riviera Villas,Riviera Villas,RV 37B,UNIT,2021-09-19 00:00:00,unparseable-date,28532.0,28320.0,212.0
+Riviera Villas,Riviera Villas,RV 38A,UNIT,2021-09-19 00:00:00,unparseable-date,84423.0,84368.0,55.0
+Riviera Villas,Riviera Villas,RV 38B,UNIT,2021-09-19 00:00:00,unparseable-date,84861.0,84861.0,0.0
+Riviera Villas,Riviera Villas,RV 39A,UNIT,2021-09-19 00:00:00,unparseable-date,31386.0,31344.0,42.0
+Riviera Villas,Riviera Villas,RV 39B,UNIT,2021-09-19 00:00:00,unparseable-date,38864.0,38864.0,0.0
+Riviera Villas,Riviera Villas,RV 40A,UNIT,2021-09-19 00:00:00,unparseable-date,76390.0,76390.0,0.0
+Riviera Villas,Riviera Villas,RV 40B,UNIT,2021-09-19 00:00:00,unparseable-date,18050.0,17930.0,120.0
+Riviera Villas,Riviera Villas,RV 41A,UNIT,2021-09-19 00:00:00,unparseable-date,66251.0,66186.0,65.0
+Riviera Villas,Riviera Villas,RV 41B,UNIT,2021-09-19 00:00:00,unparseable-date,50311.0,50032.0,279.0
+Riviera Villas,Riviera Villas,RV 42A,UNIT,2021-09-19 00:00:00,unparseable-date,79635.0,79507.0,128.0
+Riviera Villas,Riviera Villas,RV 42B,UNIT,2021-09-19 00:00:00,unparseable-date,3247.0,3153.0,94.0
+Riviera Villas,Riviera Villas,RV 43A A,UNIT,2021-09-19 00:00:00,unparseable-date,30082.0,29905.0,177.0
+Riviera Villas,Riviera Villas,RV 43B,UNIT,2021-09-19 00:00:00,unparseable-date,76920.0,76695.0,225.0
+Riviera Villas,Riviera Villas,RV 44A,UNIT,2021-09-19 00:00:00,unparseable-date,87578.0,87497.0,81.0
+Riviera Villas,Riviera Villas,RV 44B,UNIT,2021-09-19 00:00:00,unparseable-date,42790.0,42761.0,29.0
+Riviera Villas,Riviera Villas,RV 45A,UNIT,2021-09-19 00:00:00,unparseable-date,15342.0,15277.0,65.0
+Riviera Villas,Riviera Villas,RV 45B,UNIT,2021-09-19 00:00:00,unparseable-date,51362.0,51242.0,120.0
+Riviera Villas,Riviera Villas,RV 46A,UNIT,2021-09-19 00:00:00,unparseable-date,31960.0,31811.0,149.0
+Riviera Villas,Riviera Villas,RV 46B A,UNIT,2021-09-19 00:00:00,unparseable-date,32065.0,31381.0,684.0
+Riviera Villas,Riviera Villas,RV 47A,UNIT,2021-09-19 00:00:00,unparseable-date,87943.0,87883.0,60.0
+Riviera Villas,Riviera Villas,RV 47B,UNIT,2021-09-19 00:00:00,unparseable-date,94611.0,94554.0,57.0
+Riviera Villas,Riviera Villas,RV 48A,UNIT,2021-09-19 00:00:00,unparseable-date,88906.0,88891.0,15.0
+Riviera Villas,Riviera Villas,RV 48B,UNIT,2021-09-19 00:00:00,unparseable-date,98392.0,98305.0,87.0
+Riviera Villas,Riviera Villas,RV 49A,UNIT,2021-09-19 00:00:00,unparseable-date,75969.0,75776.0,193.0
+Riviera Villas,Riviera Villas,RV 49B,UNIT,2021-09-19 00:00:00,unparseable-date,75400.0,75400.0,0.0
+Riviera Villas,Riviera Villas,RV 50A A,UNIT,2021-09-19 00:00:00,unparseable-date,60778.0,60771.0,7.0
+Riviera Villas,Riviera Villas,RV 50B,UNIT,2021-09-19 00:00:00,unparseable-date,75048.0,75048.0,0.0
+Riviera Villas,Riviera Villas,RV 51A,UNIT,2021-09-19 00:00:00,unparseable-date,28793.0,28694.0,99.0
+Riviera Villas,Riviera Villas,RV 51B,UNIT,2021-09-19 00:00:00,unparseable-date,40137.0,39725.0,412.0
+Riviera Villas,Riviera Villas,RV 52A,UNIT,2021-09-19 00:00:00,unparseable-date,55214.0,54081.0,1133.0
+Riviera Villas,Riviera Villas,RV 52B,UNIT,2021-09-19 00:00:00,unparseable-date,9663.0,9178.0,485.0
+Riviera Villas,Riviera Villas,RV 53A,UNIT,2021-09-19 00:00:00,unparseable-date,10509.0,10482.0,27.0
+Riviera Villas,Riviera Villas,RV 53B,UNIT,2021-09-19 00:00:00,unparseable-date,46101.0,45886.0,215.0
+Riviera Villas,Riviera Villas,RV 54A,UNIT,2021-09-19 00:00:00,unparseable-date,36270.0,36243.0,27.0
+Riviera Villas,Riviera Villas,RV 54B,UNIT,2021-09-19 00:00:00,unparseable-date,32689.0,32299.0,390.0
+Riviera Villas,Riviera Villas,RV 55A,UNIT,2021-09-19 00:00:00,unparseable-date,6052.0,6052.0,0.0
+Riviera Villas,Riviera Villas,RV 55B,UNIT,2021-09-19 00:00:00,unparseable-date,50398.0,50330.0,68.0
+Riviera Villas,Riviera Villas,RV 56A,UNIT,2021-09-19 00:00:00,unparseable-date,6225.0,6224.0,1.0
+Riviera Villas,Riviera Villas,RV 56B,UNIT,2021-09-19 00:00:00,unparseable-date,41787.0,41329.0,458.0
+Riviera Villas,Riviera Villas,RV 57A,UNIT,2021-09-19 00:00:00,unparseable-date,43964.0,43861.0,103.0
+Riviera Villas,Riviera Villas,RV 57B,UNIT,2021-09-19 00:00:00,unparseable-date,98818.0,98263.0,555.0
+Riviera Villas,Riviera Villas,RV 58A,UNIT,2021-09-19 00:00:00,unparseable-date,44168.0,44102.0,66.0
+Riviera Villas,Riviera Villas,RV 58B,UNIT,2021-09-19 00:00:00,unparseable-date,7667.0,7667.0,0.0
+Riviera Villas,Riviera Villas,RV 59A,UNIT,2021-09-19 00:00:00,unparseable-date,65521.0,65381.0,140.0
+Riviera Villas,Riviera Villas,RV 59B,UNIT,2021-09-19 00:00:00,unparseable-date,20699.0,20550.0,149.0
+Riviera Villas,Riviera Villas,RV 60A,UNIT,2021-09-19 00:00:00,unparseable-date,18743.0,18440.0,303.0
+Riviera Villas,Riviera Villas,RV 60B,UNIT,2021-09-19 00:00:00,unparseable-date,27255.0,27064.0,191.0
+Riviera Villas,Riviera Villas,RV 61A,UNIT,2021-09-19 00:00:00,unparseable-date,85622.0,85372.0,250.0
+Riviera Villas,Riviera Villas,RV 62A,UNIT,2021-09-19 00:00:00,unparseable-date,54949.0,54872.0,77.0
+Riviera Villas,Riviera Villas,RV 62B,UNIT,2021-09-19 00:00:00,unparseable-date,63821.0,63802.0,19.0
+Riviera Villas,Riviera Villas,RV 63A A,UNIT,2021-09-19 00:00:00,unparseable-date,49863.0,49777.0,86.0
+Riviera Villas,Riviera Villas,RV 63B,UNIT,2021-09-19 00:00:00,unparseable-date,73627.0,73627.0,0.0
+Riviera Villas,Riviera Villas,RV 64A,UNIT,2021-09-19 00:00:00,unparseable-date,13378.0,13183.0,195.0
+Riviera Villas,Riviera Villas,Bulk 1,BULK,2021-09-19 00:00:00,unparseable-date,2082.0,1905.0,177.0
+Riviera Villas,Riviera Villas,Bulk 2,BULK,2021-09-19 00:00:00,unparseable-date,1648.0,1506.0,142.0
+Riviera Villas,Riviera Villas,Bulk 3,BULK,2021-09-19 00:00:00,unparseable-date,84930.0,77332.0,7598.0

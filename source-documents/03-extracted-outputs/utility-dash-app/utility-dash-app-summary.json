@@ -1,0 +1,968 @@
+[
+  {
+    "scheme_name": "Azores",
+    "source_sheet": "The Azores",
+    "months_available": 101,
+    "inventory_meter_rows": 73,
+    "resolved_readings": 7146,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Genisis on Fairmount",
+    "source_sheet": "Genesis",
+    "months_available": 61,
+    "inventory_meter_rows": 75,
+    "resolved_readings": 3991,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Carissa Lane",
+    "source_sheet": "Carissa Lane",
+    "months_available": 104,
+    "inventory_meter_rows": 34,
+    "resolved_readings": 3184,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Common Property",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Bonifay",
+    "source_sheet": "Bonifay Court",
+    "months_available": 16,
+    "inventory_meter_rows": 28,
+    "resolved_readings": 277,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Common Property",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Granistar Heights",
+    "source_sheet": "Granistar Heights",
+    "months_available": 48,
+    "inventory_meter_rows": 26,
+    "resolved_readings": 1085,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "Fixed"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Mang Court",
+    "source_sheet": "Mang Court",
+    "months_available": 21,
+    "inventory_meter_rows": 7,
+    "resolved_readings": 0,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "VILLINO GLEN",
+    "source_sheet": "Vilino Glen",
+    "months_available": 104,
+    "inventory_meter_rows": 40,
+    "resolved_readings": 3918,
+    "unresolved_date_rows": 40,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Fixed"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "SanWater"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "Fixed"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Hazelmere",
+    "source_sheet": "Hazelmere",
+    "months_available": 104,
+    "inventory_meter_rows": 151,
+    "resolved_readings": 7013,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Fixed"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Fixed"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Akasia",
+    "source_sheet": "Akasia",
+    "months_available": 34,
+    "inventory_meter_rows": 92,
+    "resolved_readings": 2364,
+    "unresolved_date_rows": 182,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Phanda Lodge",
+    "source_sheet": "Phanda Lodge",
+    "months_available": 35,
+    "inventory_meter_rows": 49,
+    "resolved_readings": 1515,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Vista Del Monte",
+    "source_sheet": "Vista Del Monte",
+    "months_available": 23,
+    "inventory_meter_rows": 43,
+    "resolved_readings": 860,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "La Montagne",
+    "source_sheet": "L'Montagne",
+    "months_available": 102,
+    "inventory_meter_rows": 51,
+    "resolved_readings": 4992,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Common Property",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Fixed"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Magnolia Gardens",
+    "source_sheet": "Magnolia Gardens",
+    "months_available": 20,
+    "inventory_meter_rows": 36,
+    "resolved_readings": 720,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Panarama View",
+    "source_sheet": "Panarama View",
+    "months_available": 34,
+    "inventory_meter_rows": 85,
+    "resolved_readings": 2890,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "QueensGate",
+    "source_sheet": "Queensgate",
+    "months_available": 105,
+    "inventory_meter_rows": 54,
+    "resolved_readings": 5287,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Rivonia Gates",
+    "source_sheet": "Rivonia Gate",
+    "months_available": 102,
+    "inventory_meter_rows": 17,
+    "resolved_readings": 1665,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Riviera Villas",
+    "source_sheet": "Riviera Villas",
+    "months_available": 24,
+    "inventory_meter_rows": 70,
+    "resolved_readings": 1610,
+    "unresolved_date_rows": 70,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Fixed"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Fixed"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Fixed"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Stonecrest",
+    "source_sheet": "Stonecrest",
+    "months_available": 25,
+    "inventory_meter_rows": 171,
+    "resolved_readings": 4259,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Fixed"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Suncrest",
+    "source_sheet": "Suncrest",
+    "months_available": 73,
+    "inventory_meter_rows": 31,
+    "resolved_readings": 1922,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Haven Court",
+    "source_sheet": "Haven Court",
+    "months_available": 33,
+    "inventory_meter_rows": 16,
+    "resolved_readings": 0,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Taragona",
+    "source_sheet": "Taragona",
+    "months_available": 102,
+    "inventory_meter_rows": 43,
+    "resolved_readings": 4161,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "None"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "New Poort",
+    "source_sheet": "New Poort",
+    "months_available": 35,
+    "inventory_meter_rows": 7,
+    "resolved_readings": 0,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  {
+    "scheme_name": "Transvalia",
+    "source_sheet": "Transvalia",
+    "months_available": 69,
+    "inventory_meter_rows": 21,
+    "resolved_readings": 42,
+    "unresolved_date_rows": 0,
+    "charge_modes": [
+      {
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  }
+]

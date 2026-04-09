@@ -278,6 +278,61 @@ export const storage = {
         return items[index];
     },
 
+    async upsertMany(entity, records, options = {}) {
+        if (!Array.isArray(records) || records.length === 0) {
+            return [];
+        }
+
+        const items = this.getAll(entity);
+        const itemIndex = new Map(items.map((item) => [item.id, item]));
+        const touchedItems = [];
+
+        records.forEach((record) => {
+            const existingItem = record.id ? itemIndex.get(record.id) : null;
+            const normalizedItem = normalizeEntityPayload(entity, {
+                ...existingItem,
+                ...record,
+                id: record.id || existingItem?.id || this.generateId(),
+                created_at: record.created_at || existingItem?.created_at || new Date().toISOString(),
+                updated_at: existingItem ? new Date().toISOString() : existingItem?.updated_at
+            });
+
+            itemIndex.set(normalizedItem.id, normalizedItem);
+            touchedItems.push(normalizedItem);
+        });
+
+        writeEntityToLocalCache(entity, Array.from(itemIndex.values()));
+        this.persistOperationalBackup();
+
+        const collectionName = cloudEntityCollections[entity];
+        const shouldPushToCloud = options.pushToCloud !== false
+            && collectionName
+            && this.cloudSyncEnabled
+            && isFirebaseConfigured();
+
+        if (shouldPushToCloud) {
+            const operations = touchedItems.map((item) => ({
+                type: 'set',
+                collectionName,
+                id: item.id,
+                data: sanitizeForFirestore(item)
+            }));
+
+            this.cloudSyncPromise = this.cloudSyncPromise
+                .then(() => commitChunkedBatch(operations))
+                .catch((error) => {
+                    console.error(`Cloud bulk upsert failed for ${entity}`, error);
+                    throw error;
+                });
+
+            if (options.awaitCloud !== false) {
+                await this.cloudSyncPromise;
+            }
+        }
+
+        return touchedItems;
+    },
+
     delete(entity, id) {
         const items = this.getAll(entity);
         const filtered = items.filter(item => item.id !== id);
