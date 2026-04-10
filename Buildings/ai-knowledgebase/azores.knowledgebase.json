@@ -1,0 +1,3441 @@
+{
+  "record_type": "building-knowledgebase",
+  "building_slug": "azores",
+  "generated_at": "2026-04-10T11:20:49.937948+00:00",
+  "identity": {
+    "scheme_name": "Azores",
+    "source_sheet_name": "The Azores",
+    "aliases": [
+      "The Azores"
+    ],
+    "building_name": "Azores",
+    "address": null,
+    "address_status": "not found in current extracted sources",
+    "scheme": {
+      "id": "scheme-azores",
+      "name": "Azores",
+      "created_at": "2026-04-08T18:27:33.228271",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores"
+    },
+    "building": {
+      "id": "building-azores-main",
+      "scheme_id": "scheme-azores",
+      "name": "Azores",
+      "created_at": "2026-04-08T18:27:33.228368",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores"
+    }
+  },
+  "source_material": {
+    "normalized_sheet_json": "c:\\Projects\\Meter App\\DataMigration\\outputs\\sheet-normalized\\the-azores.normalized.json",
+    "utility_dash_app_payload_json": "c:\\Projects\\Meter App\\source-documents\\03-extracted-outputs\\utility-dash-app\\utility-dash-app-payload.json",
+    "utility_dash_app_summary_json": "c:\\Projects\\Meter App\\source-documents\\03-extracted-outputs\\utility-dash-app\\utility-dash-app-summary.json",
+    "building_source_folder": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores",
+    "utility_readings_archives": [
+      {
+        "folder_name": "AZ Readings 2020",
+        "path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores\\Utility Readings\\AZ Readings 2020",
+        "children": [
+          "AZ - Azore utility Meter readings Sept 20.pdf",
+          "AZ - Meter readings Nov 2020.pdf",
+          "AZ Readings Aug 2020.pdf"
+        ]
+      },
+      {
+        "folder_name": "AZ Readings 2021",
+        "path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores\\Utility Readings\\AZ Readings 2021",
+        "children": [
+          "AZ - Azore utility Meter readings Feb 21.pdf",
+          "AZ - Azores Meter readings 01.02.2021.pdf",
+          "AZ - Azores Meter readings 05.01.2021.pdf",
+          "AZ - Azores Meter readings 2021.04.03.pdf",
+          "AZ - Azores Meter readings 2021.05.02.pdf",
+          "AZ - Azores Meter readings 2021.05.31.pdf",
+          "AZ - Azores Meter readings 2021.07.02.pdf",
+          "AZ - Azores Meter readings 2021.07.29.pdf",
+          "AZ - Azores Meter readings 2021.09.02.pdf",
+          "AZ - Azores Meter readings 2021.10.29.pdf",
+          "AZ - Azores Meter readings 2021.12.03.pdf",
+          "AZ - Azores Meter readings 2022.01.07.pdf",
+          "AZ - Suncrest Meter readings 2021.10.05.pdf"
+        ]
+      },
+      {
+        "folder_name": "AZ Readings 2022",
+        "path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores\\Utility Readings\\AZ Readings 2022",
+        "children": [
+          "AZ - Azores Meter readings 2022.01.28.pdf",
+          "AZ - Azores Meter readings 2022.02.28.pdf",
+          "AZ - Azores Meter readings 2022.04.01.pdf",
+          "AZ - Azores Meter readings 2022.04.29.pdf",
+          "AZ - Azores Meter readings 2022.06.01.pdf",
+          "AZ - Azores Meter readings 2022.07.01.pdf",
+          "AZ - Azores Meter readings 2022.07.29.pdf",
+          "AZ - Azores Meter readings 2022.08.31.pdf",
+          "AZ - Azores Meter readings 2022.09.28.pdf",
+          "AZ - Azores Meter readings 2022.11.01.pdf",
+          "AZ - Azores Meter readings 2022.12.01.pdf",
+          "AZ - Azores Meter readings 2023.01.05.pdf",
+          "AZ 32 - Meter Reading - 1 July 2022.jpeg",
+          "AZ 32 - Meter Reading - 29 April 2022.jpeg",
+          "AZ 32 - Meter Reading - 29 Jul 2022.jpeg",
+          "AZ 32 - Meter Reading - 31 Aug 2022.jpeg",
+          "AZ 32 - Meter Reading 01.12.2022.jpeg",
+          "AZ 32 - Meter Reading May 2022.jpeg",
+          "AZ 32 - Meter reading 28.09.2022.jpeg",
+          "AZ 32 - Reading 01.11.2022.jpeg"
+        ]
+      },
+      {
+        "folder_name": "AZ Readings 2023",
+        "path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores\\Utility Readings\\AZ Readings 2023",
+        "children": [
+          "AZ - Azores Meter readings 2023.02.02.pdf",
+          "AZ - Azores Meter readings 2023.03.02.pdf",
+          "AZ - Azores Meter readings 2023.03.31.pdf",
+          "AZ - Azores Meter readings 2023.05.04.pdf",
+          "AZ - Azores Meter readings 2023.05.31.pdf",
+          "AZ - Azores Meter readings 2023.07.03.pdf",
+          "AZ - Azores Meter readings 2023.08.03.pdf",
+          "AZ - Azores Meter readings 2023.08.30.pdf",
+          "AZ - Azores Meter readings 2023.09.29.pdf",
+          "AZ - Azores Meter readings 2023.12.01.pdf",
+          "AZ - Azores Meter readings 2024.01.03.pdf",
+          "AZ - Azores readings 2023.11.01.pdf",
+          "AZ - Bulk Water Reading 01.11.2023.jpg",
+          "AZ - Bulk Water Reading 29.09.2023.jpg",
+          "AZ 08 - Elec Reading 29.09.2023.jpg",
+          "AZ 32 - Elec Reading 01.11.2023.jpg",
+          "AZ 32 - Elec Reading 02.02.2023.jpeg",
+          "AZ 32 - Elec Reading 02.03.2023.jpeg",
+          "AZ 32 - Elec Reading 05.10.2023.jpeg",
+          "AZ 32 - Elec Reading 29.09.2023.jpg",
+          "AZ 32 - Elec Reading 30.08.2023.jpg",
+          "AZ 32 - Meter Reading 03.08.2023.jpg",
+          "AZ 32 - Reading 01.12.2023.jpg",
+          "AZ 32 - Reading 03.07.2023.jpg",
+          "AZ 32 Reading 31.03.2023.jpg"
+        ]
+      },
+      {
+        "folder_name": "AZ Readings 2024",
+        "path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores\\Utility Readings\\AZ Readings 2024",
+        "children": [
+          "Photos",
+          "Reading Sheets"
+        ]
+      },
+      {
+        "folder_name": "AZ Readings 2025",
+        "path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores\\Utility Readings\\AZ Readings 2025",
+        "children": [
+          "Reading Photos",
+          "Reading Sheets"
+        ]
+      },
+      {
+        "folder_name": "AZ Readings 2026",
+        "path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores\\Utility Readings\\AZ Readings 2026",
+        "children": [
+          "Reading Photos",
+          "Reading Sheets"
+        ]
+      }
+    ]
+  },
+  "portfolio_summary": {
+    "unit_count": 72,
+    "meter_count": 73,
+    "common_meter_count": 0,
+    "bulk_meter_count": 1,
+    "unit_meter_count": 72,
+    "meter_role_counts": {
+      "unit": 72,
+      "bulk": 1
+    },
+    "historical_reading_count": 7146,
+    "reading_cycle_count": 96,
+    "legacy_meter_map_count": 73,
+    "inventory_meter_rows": 73,
+    "months_available": 101,
+    "resolved_readings": 7146
+  },
+  "billing_configuration": {
+    "settings_snapshot": {
+      "vat_percent": 0.15,
+      "ignore_negative_common_property_amounts": true,
+      "tolerance_months": 4,
+      "tolerance_percentage": 1.0
+    },
+    "charge_modes": [
+      {
+        "source_row": 4,
+        "charge_name": "Elec Common Prop",
+        "distribution_mode": "None"
+      },
+      {
+        "source_row": 5,
+        "charge_name": "Elec Service Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 6,
+        "charge_name": "Elec Network Charge",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 7,
+        "charge_name": "Water Charge",
+        "distribution_mode": "PQ"
+      },
+      {
+        "source_row": 8,
+        "charge_name": "Water Demand Management Levy",
+        "distribution_mode": "None"
+      },
+      {
+        "source_row": 9,
+        "charge_name": "Water Surcharge",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 10,
+        "charge_name": "Sanitation",
+        "distribution_mode": "Even"
+      },
+      {
+        "source_row": 11,
+        "charge_name": "Refuse",
+        "distribution_mode": "None"
+      }
+    ]
+  },
+  "historical_coverage": {
+    "month_columns_total": 101,
+    "resolved_month_columns": 98,
+    "unresolved_month_columns": 3,
+    "first_resolved_month": {
+      "column_index": 5,
+      "display_label": "2018-01-18 00:00:00",
+      "reading_date_raw": "2018-01",
+      "reading_date": "2018-01-01",
+      "reading_date_note": null,
+      "tariff_table": "COJ 2018"
+    },
+    "last_resolved_month": {
+      "column_index": 102,
+      "display_label": "2026-02-18 00:00:00",
+      "reading_date_raw": "2026-03-03 00:00:00",
+      "reading_date": "2026-03-03",
+      "reading_date_note": null,
+      "tariff_table": "AZO Jul 2025"
+    },
+    "unresolved_months": [
+      {
+        "column_index": 103,
+        "display_label": "2026-03-18 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      },
+      {
+        "column_index": 104,
+        "display_label": "2026-04-18 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      },
+      {
+        "column_index": 105,
+        "display_label": "2026-05-18 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": null,
+        "reading_date_note": "missing-date",
+        "tariff_table": null
+      }
+    ]
+  },
+  "data_quality": {
+    "review_flag_count": 3,
+    "review_flag_counts_by_type": {
+      "unresolved-reading-date": 3
+    },
+    "review_flags": [
+      {
+        "severity": "high",
+        "type": "unresolved-reading-date",
+        "column_index": 103,
+        "display_label": "2026-03-18 00:00:00",
+        "reading_date_raw": null,
+        "message": "Reading date could not be resolved for month column 103."
+      },
+      {
+        "severity": "high",
+        "type": "unresolved-reading-date",
+        "column_index": 104,
+        "display_label": "2026-04-18 00:00:00",
+        "reading_date_raw": null,
+        "message": "Reading date could not be resolved for month column 104."
+      },
+      {
+        "severity": "high",
+        "type": "unresolved-reading-date",
+        "column_index": 105,
+        "display_label": "2026-05-18 00:00:00",
+        "reading_date_raw": null,
+        "message": "Reading date could not be resolved for month column 105."
+      }
+    ],
+    "non_numeric_reading_rows": [
+      {
+        "source_row": 38,
+        "legacy_label": "AZ 21",
+        "meter_type": "UNIT",
+        "bad_reading_count": 1,
+        "bad_readings": [
+          {
+            "column_index": 57,
+            "reading_label": "2022-05-18 00:00:00",
+            "reading_date_raw": "2022-06-01 00:00:00",
+            "reading_date": "2022-06-01",
+            "reading_value_raw": "=BD38+590"
+          }
+        ]
+      },
+      {
+        "source_row": 54,
+        "legacy_label": "AZ 37 A",
+        "meter_type": "UNIT",
+        "bad_reading_count": 3,
+        "bad_readings": [
+          {
+            "column_index": 91,
+            "reading_label": "2025-03-18 00:00:00",
+            "reading_date_raw": "2025-03-31 00:00:00",
+            "reading_date": "2025-03-31",
+            "reading_value_raw": "=CL54+150"
+          },
+          {
+            "column_index": 92,
+            "reading_label": "2025-04-18 00:00:00",
+            "reading_date_raw": "2025-04-30 00:00:00",
+            "reading_date": "2025-04-30",
+            "reading_value_raw": "=CM54+194"
+          },
+          {
+            "column_index": 100,
+            "reading_label": "2025-12-18 00:00:00",
+            "reading_date_raw": "2026-01-07 00:00:00",
+            "reading_date": "2026-01-07",
+            "reading_value_raw": "=CU54+94"
+          }
+        ]
+      },
+      {
+        "source_row": 59,
+        "legacy_label": "AZ 42A",
+        "meter_type": "UNIT",
+        "bad_reading_count": 1,
+        "bad_readings": [
+          {
+            "column_index": 57,
+            "reading_label": "2022-05-18 00:00:00",
+            "reading_date_raw": "2022-06-01 00:00:00",
+            "reading_date": "2022-06-01",
+            "reading_value_raw": "=BD59+398"
+          }
+        ]
+      },
+      {
+        "source_row": 90,
+        "legacy_label": "Bulk 1",
+        "meter_type": "BULK",
+        "bad_reading_count": 3,
+        "bad_readings": [
+          {
+            "column_index": 57,
+            "reading_label": "2022-05-18 00:00:00",
+            "reading_date_raw": "2022-06-01 00:00:00",
+            "reading_date": "2022-06-01",
+            "reading_value_raw": "=BD90+17350"
+          },
+          {
+            "column_index": 64,
+            "reading_label": "2022-12-18 00:00:00",
+            "reading_date_raw": "2023-01-05 00:00:00",
+            "reading_date": "2023-01-05",
+            "reading_value_raw": "=BK90+21163"
+          },
+          {
+            "column_index": 68,
+            "reading_label": "2023-04-18 00:00:00",
+            "reading_date_raw": "2023-05-04 00:00:00",
+            "reading_date": "2023-05-04",
+            "reading_value_raw": "=BO90+16341"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "Meter numbers in the extracted app payload currently mirror the legacy meter labels; no separate serial-number source was found for Azores.",
+      "Three future/trailing month columns have unresolved reading dates in the normalized sheet export.",
+      "Four rows contain formula-text reading cells that should be reviewed before relying on them as numeric history."
+    ]
+  },
+  "units": [
+    {
+      "id": "unit-azores-az-01a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 01A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291529",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 01A"
+    },
+    {
+      "id": "unit-azores-az-02",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 02",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291708",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 02"
+    },
+    {
+      "id": "unit-azores-az-03",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 03",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291737",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 03"
+    },
+    {
+      "id": "unit-azores-az-04",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 04",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291758",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 04"
+    },
+    {
+      "id": "unit-azores-az-05b",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 05B",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291780",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 05B"
+    },
+    {
+      "id": "unit-azores-az-06a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 06A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291800",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 06A"
+    },
+    {
+      "id": "unit-azores-az-07",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 07",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291820",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 07"
+    },
+    {
+      "id": "unit-azores-az-08",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 08",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291839",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 08"
+    },
+    {
+      "id": "unit-azores-az-09",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 09",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291859",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 09"
+    },
+    {
+      "id": "unit-azores-az-10",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 10",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291885",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 10"
+    },
+    {
+      "id": "unit-azores-az-11",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 11",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291903",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 11"
+    },
+    {
+      "id": "unit-azores-az-12",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 12",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291922",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 12"
+    },
+    {
+      "id": "unit-azores-az-13",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 13",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291939",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 13"
+    },
+    {
+      "id": "unit-azores-az-14",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 14",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291957",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 14"
+    },
+    {
+      "id": "unit-azores-az-15a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 15A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.291975",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 15A"
+    },
+    {
+      "id": "unit-azores-az-16a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 16A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292007",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 16A"
+    },
+    {
+      "id": "unit-azores-az-17",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 17",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292026",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 17"
+    },
+    {
+      "id": "unit-azores-az-18",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 18",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292044",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 18"
+    },
+    {
+      "id": "unit-azores-az-19a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 19A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292062",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 19A"
+    },
+    {
+      "id": "unit-azores-az-20",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 20",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292084",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 20"
+    },
+    {
+      "id": "unit-azores-az-21",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 21",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292102",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 21"
+    },
+    {
+      "id": "unit-azores-az-22",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 22",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292121",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 22"
+    },
+    {
+      "id": "unit-azores-az-23",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 23",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292139",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 23"
+    },
+    {
+      "id": "unit-azores-az-24",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 24",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292158",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 24"
+    },
+    {
+      "id": "unit-azores-az-25",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 25",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292180",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 25"
+    },
+    {
+      "id": "unit-azores-az-26a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 26A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292218",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 26A"
+    },
+    {
+      "id": "unit-azores-az-27",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 27",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292246",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 27"
+    },
+    {
+      "id": "unit-azores-az-28",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 28",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292275",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 28"
+    },
+    {
+      "id": "unit-azores-az-29a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 29A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292295",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 29A"
+    },
+    {
+      "id": "unit-azores-az-30a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 30A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292318",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 30A"
+    },
+    {
+      "id": "unit-azores-az-31",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 31",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292339",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 31"
+    },
+    {
+      "id": "unit-azores-az-32a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 32A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292359",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 32A"
+    },
+    {
+      "id": "unit-azores-az-33",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 33",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292386",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 33"
+    },
+    {
+      "id": "unit-azores-az-34",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 34",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292416",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 34"
+    },
+    {
+      "id": "unit-azores-az-35a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 35A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292463",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 35A"
+    },
+    {
+      "id": "unit-azores-az-36a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 36A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292502",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 36A"
+    },
+    {
+      "id": "unit-azores-az-37-a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 37 A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292539",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 37 A"
+    },
+    {
+      "id": "unit-azores-az-38",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 38",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292579",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 38"
+    },
+    {
+      "id": "unit-azores-az-39",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 39",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292619",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 39"
+    },
+    {
+      "id": "unit-azores-az-40",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 40",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292659",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 40"
+    },
+    {
+      "id": "unit-azores-az-41a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 41A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292698",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 41A"
+    },
+    {
+      "id": "unit-azores-az-42a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 42A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292738",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 42A"
+    },
+    {
+      "id": "unit-azores-az-43",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 43",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292765",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 43"
+    },
+    {
+      "id": "unit-azores-az-44",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 44",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292789",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 44"
+    },
+    {
+      "id": "unit-azores-az-45",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 45",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292836",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 45"
+    },
+    {
+      "id": "unit-azores-az-46",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 46",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292858",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 46"
+    },
+    {
+      "id": "unit-azores-az-47",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 47",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292878",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 47"
+    },
+    {
+      "id": "unit-azores-az-48",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 48",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292902",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 48"
+    },
+    {
+      "id": "unit-azores-az-49",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 49",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292927",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 49"
+    },
+    {
+      "id": "unit-azores-az-50",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 50",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292952",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 50"
+    },
+    {
+      "id": "unit-azores-az-51",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 51",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292972",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 51"
+    },
+    {
+      "id": "unit-azores-az-52",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 52",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.292992",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 52"
+    },
+    {
+      "id": "unit-azores-az-53",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 53",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293011",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 53"
+    },
+    {
+      "id": "unit-azores-az-54",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 54",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293032",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 54"
+    },
+    {
+      "id": "unit-azores-az-55",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 55",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293052",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 55"
+    },
+    {
+      "id": "unit-azores-az-56",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 56",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293076",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 56"
+    },
+    {
+      "id": "unit-azores-az-57",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 57",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293098",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 57"
+    },
+    {
+      "id": "unit-azores-az-58",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 58",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293118",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 58"
+    },
+    {
+      "id": "unit-azores-az-59",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 59",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293140",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 59"
+    },
+    {
+      "id": "unit-azores-az-60a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 60A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293162",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 60A"
+    },
+    {
+      "id": "unit-azores-az-61",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 61",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293182",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 61"
+    },
+    {
+      "id": "unit-azores-az-62",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 62",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293203",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 62"
+    },
+    {
+      "id": "unit-azores-az-63a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 63A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293222",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 63A"
+    },
+    {
+      "id": "unit-azores-az-64",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 64",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293261",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 64"
+    },
+    {
+      "id": "unit-azores-az-65",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 65",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293281",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 65"
+    },
+    {
+      "id": "unit-azores-az-66",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 66",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293303",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 66"
+    },
+    {
+      "id": "unit-azores-az-67",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 67",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293326",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 67"
+    },
+    {
+      "id": "unit-azores-az-68",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 68",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293349",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 68"
+    },
+    {
+      "id": "unit-azores-az-69",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 69",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293372",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 69"
+    },
+    {
+      "id": "unit-azores-az-70",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 70",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293391",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 70"
+    },
+    {
+      "id": "unit-azores-az-71a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 71A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293410",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 71A"
+    },
+    {
+      "id": "unit-azores-az-72a",
+      "building_id": "building-azores-main",
+      "unit_number": "AZ 72A",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.293443",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "The Azores:AZ 72A"
+    }
+  ],
+  "meters": [
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-01a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-01a",
+        "meter_number": "AZ 01A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 01A",
+        "last_reading": 26859.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291633",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 01A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-01a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 01A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291529",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 01A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 26859.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-02",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-02",
+        "meter_number": "AZ 02",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 02",
+        "last_reading": 21910.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291724",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 02",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-02",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 02",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291708",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 02"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 21910.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-03",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-03",
+        "meter_number": "AZ 03",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 03",
+        "last_reading": 63925.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291745",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 03",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-03",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 03",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291737",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 03"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 63925.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-04",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-04",
+        "meter_number": "AZ 04",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 04",
+        "last_reading": 97179.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291767",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 04",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-04",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 04",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291758",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 04"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 97179.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-05b",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-05b",
+        "meter_number": "AZ 05B",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 05B",
+        "last_reading": 60252.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291788",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 05B",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-05b",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 05B",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291780",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 05B"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 60252.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-06a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-06a",
+        "meter_number": "AZ 06A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 06A",
+        "last_reading": 10429.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2231,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291808",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 06A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-06a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 06A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291800",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 06A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 10429.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-07",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-07",
+        "meter_number": "AZ 07",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 07",
+        "last_reading": 45292.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291827",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 07",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-07",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 07",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291820",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 07"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 45292.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-08",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-08",
+        "meter_number": "AZ 08",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 08",
+        "last_reading": 82697.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2231,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291848",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 08",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-08",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 08",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291839",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 08"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 82697.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-09",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-09",
+        "meter_number": "AZ 09",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 09",
+        "last_reading": 89001.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291873",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 09",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-09",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 09",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291859",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 09"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 89001.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-10",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-10",
+        "meter_number": "AZ 10",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 10",
+        "last_reading": 67830.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291892",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 10",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-10",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 10",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291885",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 10"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 67830.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-11",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-11",
+        "meter_number": "AZ 11",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 11",
+        "last_reading": 33738.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291910",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 11",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-11",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 11",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291903",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 11"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 33738.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-12",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-12",
+        "meter_number": "AZ 12",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 12",
+        "last_reading": 1898.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291929",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 12",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-12",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 12",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291922",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 12"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 1898.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-13",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-13",
+        "meter_number": "AZ 13",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 13",
+        "last_reading": 94977.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291946",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 13",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-13",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 13",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291939",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 13"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 94977.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-14",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-14",
+        "meter_number": "AZ 14",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 14",
+        "last_reading": 87283.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291964",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 14",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-14",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 14",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291957",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 14"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 87283.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-15a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-15a",
+        "meter_number": "AZ 15A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 15A",
+        "last_reading": 41128.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.291983",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 15A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-15a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 15A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.291975",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 15A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 41128.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-16a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-16a",
+        "meter_number": "AZ 16A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 16A",
+        "last_reading": 88770.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292014",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 16A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-16a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 16A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292007",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 16A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 88770.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-17",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-17",
+        "meter_number": "AZ 17",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 17",
+        "last_reading": 40156.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2231,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292033",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 17",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-17",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 17",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292026",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 17"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 40156.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-18",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-18",
+        "meter_number": "AZ 18",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 18",
+        "last_reading": 26483.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292051",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 18",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-18",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 18",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292044",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 18"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 26483.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-19a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-19a",
+        "meter_number": "AZ 19A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 19A",
+        "last_reading": 90785.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2231,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292072",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 19A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-19a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 19A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292062",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 19A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 90785.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-20",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-20",
+        "meter_number": "AZ 20",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 20",
+        "last_reading": 39020.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292091",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 20",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-20",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 20",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292084",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 20"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 39020.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-21",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-21",
+        "meter_number": "AZ 21",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 21",
+        "last_reading": 54028.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292109",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 21",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-21",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 21",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292102",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 21"
+      },
+      "reading_count": 97,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 54028.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-22",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-22",
+        "meter_number": "AZ 22",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 22",
+        "last_reading": 40882.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292128",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 22",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-22",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 22",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292121",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 22"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 40882.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-23",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-23",
+        "meter_number": "AZ 23",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 23",
+        "last_reading": 41774.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292146",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 23",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-23",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 23",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292139",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 23"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 41774.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-24",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-24",
+        "meter_number": "AZ 24",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 24",
+        "last_reading": 47386.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292165",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 24",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-24",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 24",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292158",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 24"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 47386.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-25",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-25",
+        "meter_number": "AZ 25",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 25",
+        "last_reading": 25095.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.7124,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292192",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 25",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-25",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 25",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292180",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 25"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 25095.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-26a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-26a",
+        "meter_number": "AZ 26A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 26A",
+        "last_reading": 6016.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6774,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292229",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 26A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-26a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 26A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292218",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 26A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 6016.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-27",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-27",
+        "meter_number": "AZ 27",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 27",
+        "last_reading": 71161.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292258",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 27",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-27",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 27",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292246",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 27"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 71161.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-28",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-28",
+        "meter_number": "AZ 28",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 28",
+        "last_reading": 14611.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292282",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 28",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-28",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 28",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292275",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 28"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 14611.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-29a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-29a",
+        "meter_number": "AZ 29A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 29A",
+        "last_reading": 59201.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292306",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 29A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-29a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 29A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292295",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 29A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 59201.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-30a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-30a",
+        "meter_number": "AZ 30A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 30A",
+        "last_reading": 14408.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292327",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 30A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-30a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 30A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292318",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 30A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 14408.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-31",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-31",
+        "meter_number": "AZ 31",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 31",
+        "last_reading": 86762.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6425,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292347",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 31",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-31",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 31",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292339",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 31"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 86762.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-32a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-32a",
+        "meter_number": "AZ 32A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 32A",
+        "last_reading": 12511.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2581,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292366",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 32A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-32a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 32A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292359",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 32A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 12511.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-33",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-33",
+        "meter_number": "AZ 33",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 33",
+        "last_reading": 916.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6425,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292399",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 33",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-33",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 33",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292386",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 33"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 916.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-34",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-34",
+        "meter_number": "AZ 34",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 34",
+        "last_reading": 28812.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2581,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292428",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 34",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-34",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 34",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292416",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 34"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 28812.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-35a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-35a",
+        "meter_number": "AZ 35A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 35A",
+        "last_reading": 20710.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6774,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292478",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 35A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-35a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 35A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292463",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 35A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 20710.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-36a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-36a",
+        "meter_number": "AZ 36A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 36A",
+        "last_reading": 56773.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6774,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292516",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 36A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-36a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 36A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292502",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 36A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 56773.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-37-a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-37-a",
+        "meter_number": "AZ 37 A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 37 A",
+        "last_reading": 1452.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6774,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292556",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 37 A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-37-a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 37 A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292539",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 37 A"
+      },
+      "reading_count": 95,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 1452.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-38",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-38",
+        "meter_number": "AZ 38",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 38",
+        "last_reading": 47866.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6774,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292592",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 38",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-38",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 38",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292579",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 38"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 47866.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-39",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-39",
+        "meter_number": "AZ 39",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 39",
+        "last_reading": 63125.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6425,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292639",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 39",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-39",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 39",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292619",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 39"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 63125.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-40",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-40",
+        "meter_number": "AZ 40",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 40",
+        "last_reading": 51813.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.66,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292674",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 40",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-40",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 40",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292659",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 40"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 51813.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-41a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-41a",
+        "meter_number": "AZ 41A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 41A",
+        "last_reading": 4296.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6425,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292716",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 41A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-41a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 41A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292698",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 41A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 4296.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-42a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-42a",
+        "meter_number": "AZ 42A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 42A",
+        "last_reading": 63977.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.66,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292748",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 42A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-42a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 42A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292738",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 42A"
+      },
+      "reading_count": 97,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 63977.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-43",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-43",
+        "meter_number": "AZ 43",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 43",
+        "last_reading": 69.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6774,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292774",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 43",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-43",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 43",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292765",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 43"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 69.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-44",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-44",
+        "meter_number": "AZ 44",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 44",
+        "last_reading": 58768.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2756,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292822",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 44",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-44",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 44",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292789",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 44"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 58768.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-45",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-45",
+        "meter_number": "AZ 45",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 45",
+        "last_reading": 45989.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6774,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292844",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 45",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-45",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 45",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292836",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 45"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 45989.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-46",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-46",
+        "meter_number": "AZ 46",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 46",
+        "last_reading": 52438.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2756,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292866",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 46",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-46",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 46",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292858",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 46"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 52438.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-47",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-47",
+        "meter_number": "AZ 47",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 47",
+        "last_reading": 92541.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 2.2715,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292887",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 47",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-47",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 47",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292878",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 47"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 92541.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-48",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-48",
+        "meter_number": "AZ 48",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 48",
+        "last_reading": 69302.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6949,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292913",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 48",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-48",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 48",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292902",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 48"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 69302.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-49",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-49",
+        "meter_number": "AZ 49",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 49",
+        "last_reading": 70361.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292937",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 49",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-49",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 49",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292927",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 49"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 70361.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-50",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-50",
+        "meter_number": "AZ 50",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 50",
+        "last_reading": 64746.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6425,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292959",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 50",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-50",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 50",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292952",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 50"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 64746.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-51",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-51",
+        "meter_number": "AZ 51",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 51",
+        "last_reading": 53196.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292979",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 51",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-51",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 51",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292972",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 51"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 53196.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-52",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-52",
+        "meter_number": "AZ 52",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 52",
+        "last_reading": 70096.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6425,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.292999",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 52",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-52",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 52",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.292992",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 52"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 70096.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-53",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-53",
+        "meter_number": "AZ 53",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 53",
+        "last_reading": 72681.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293019",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 53",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-53",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 53",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293011",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 53"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 72681.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-54",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-54",
+        "meter_number": "AZ 54",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 54",
+        "last_reading": 68206.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.625,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293040",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 54",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-54",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 54",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293032",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 54"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 68206.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-55",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-55",
+        "meter_number": "AZ 55",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 55",
+        "last_reading": 36953.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293064",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 55",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-55",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 55",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293052",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 55"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 36953.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-56",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-56",
+        "meter_number": "AZ 56",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 56",
+        "last_reading": 30809.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.625,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293085",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 56",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-56",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 56",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293076",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 56"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 30809.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-57",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-57",
+        "meter_number": "AZ 57",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 57",
+        "last_reading": 29317.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2581,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293106",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 57",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-57",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 57",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293098",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 57"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 29317.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-58",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-58",
+        "meter_number": "AZ 58",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 58",
+        "last_reading": 35330.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.625,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293128",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 58",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-58",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 58",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293118",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 58"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 35330.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-59",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-59",
+        "meter_number": "AZ 59",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 59",
+        "last_reading": 82322.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2581,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293149",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 59",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-59",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 59",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293140",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 59"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 82322.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-60a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-60a",
+        "meter_number": "AZ 60A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 60A",
+        "last_reading": 48845.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.625,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293170",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 60A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-60a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 60A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293162",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 60A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 48845.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-61",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-61",
+        "meter_number": "AZ 61",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 61",
+        "last_reading": 10651.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293190",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 61",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-61",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 61",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293182",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 61"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 10651.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-62",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-62",
+        "meter_number": "AZ 62",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 62",
+        "last_reading": 94746.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6425,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293210",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 62",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-62",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 62",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293203",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 62"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 94746.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-63a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-63a",
+        "meter_number": "AZ 63A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 63A",
+        "last_reading": 47799.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293230",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 63A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-63a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 63A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293222",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 63A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 47799.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-64",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-64",
+        "meter_number": "AZ 64",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 64",
+        "last_reading": 72937.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.6425,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293269",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 64",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-64",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 64",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293261",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 64"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 72937.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-65",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-65",
+        "meter_number": "AZ 65",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 65",
+        "last_reading": 55022.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293289",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 65",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-65",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 65",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293281",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 65"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 55022.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-66",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-66",
+        "meter_number": "AZ 66",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 66",
+        "last_reading": 30122.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293311",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 66",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-66",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 66",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293303",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 66"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 30122.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-67",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-67",
+        "meter_number": "AZ 67",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 67",
+        "last_reading": 48986.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293335",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 67",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-67",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 67",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293326",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 67"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 48986.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-68",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-68",
+        "meter_number": "AZ 68",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 68",
+        "last_reading": 10368.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293359",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 68",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-68",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 68",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293349",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 68"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 10368.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-69",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-69",
+        "meter_number": "AZ 69",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 69",
+        "last_reading": 50128.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293380",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 69",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-69",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 69",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293372",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 69"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 50128.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-70",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-70",
+        "meter_number": "AZ 70",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 70",
+        "last_reading": 46791.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293398",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 70",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-70",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 70",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293391",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 70"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 46791.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-71a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-71a",
+        "meter_number": "AZ 71A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 71A",
+        "last_reading": 20177.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293419",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 71A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-71a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 71A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293410",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 71A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 20177.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-unit-az-72a",
+        "scheme_id": "scheme-azores",
+        "unit_id": "unit-azores-az-72a",
+        "meter_number": "AZ 72A",
+        "meter_type": "UNIT",
+        "meter_role": "unit",
+        "service_type": "electricity",
+        "location_description": "AZ 72A",
+        "last_reading": 7874.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": 1.2406,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293453",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 72A",
+        "source_confidence": "medium"
+      },
+      "unit": {
+        "id": "unit-azores-az-72a",
+        "building_id": "building-azores-main",
+        "unit_number": "AZ 72A",
+        "status": "occupied",
+        "created_at": "2026-04-08T18:27:33.293443",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:AZ 72A"
+      },
+      "reading_count": 98,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 7874.0
+    },
+    {
+      "meter": {
+        "id": "meter-azores-bulk-bulk-1",
+        "scheme_id": "scheme-azores",
+        "unit_id": null,
+        "meter_number": "Bulk 1",
+        "meter_type": "BULK",
+        "meter_role": "bulk",
+        "service_type": "electricity",
+        "location_description": "Azores",
+        "last_reading": 98060.0,
+        "last_reading_date": "2026-03-03",
+        "pq_factor": null,
+        "prepaid_marker": "",
+        "created_at": "2026-04-08T18:27:33.293472",
+        "imported_from": "utility_dash_macrofree",
+        "source_reference": "The Azores:Bulk 1",
+        "source_confidence": "medium"
+      },
+      "unit": null,
+      "reading_count": 95,
+      "first_reading_date": "2018-01-01",
+      "last_reading_date": "2026-03-03",
+      "latest_reading_value": 98060.0
+    }
+  ]
+}
