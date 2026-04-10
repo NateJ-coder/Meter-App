@@ -13,6 +13,9 @@ This folder is now split into three areas so the building-by-building migration 
 - `buildings/`
   The organized home for the original building-specific folders and source material that already existed in this repository.
 
+- `non-app-archive/`
+  Files moved out of `buildings/` because they were classified as administrative, financial, legal, council-reconciliation, or other non-core material for the electricity-reading audit-trail app. See `non-app-archive/cleanup-manifest.json` for the move log.
+
 ## Working Rule
 
 When processing a building, keep the original source material under `buildings/`, then create one finalized JSON in `ai-knowledgebase/` and one app-oriented JSON in `app-database/` for that same building.

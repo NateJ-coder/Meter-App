@@ -1,0 +1,561 @@
+{
+  "summary_type": "utility-dash-sheet-summary",
+  "generated_at": "2026-04-10T11:55:04.937660+00:00",
+  "workbook": {
+    "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+    "source_file_is_encrypted": true,
+    "decryption_password_used": true
+  },
+  "sheet": {
+    "sheet_name": "Sheet2",
+    "sheet_slug": "sheet2",
+    "sheet_category": "support",
+    "summary_file_name": "sheet2.summary.json"
+  },
+  "entities_and_meanings": [
+    {
+      "entity_type": "sheet_labels_and_headings",
+      "examples": [
+        "2024-07-21 00:00:00 | 2024-08-21 00:00:00",
+        "2024-07-31 00:00:00 | 2024-08-31 00:00:00",
+        "VIL Jul 2024 | VIL Jul 2024",
+        "=794.77/1.15 | =772.94/1.15"
+      ],
+      "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+    }
+  ],
+  "categories_and_domains": {
+    "sheet_category": "support",
+    "domains": [],
+    "sheet_name": "Sheet2"
+  },
+  "attributes_and_time_series": {
+    "time_series_type": "date_like_values",
+    "date_like_values": [
+      {
+        "row_index": 1,
+        "column_index": 1,
+        "value": "2024-07-21 00:00:00"
+      },
+      {
+        "row_index": 1,
+        "column_index": 2,
+        "value": "2024-08-21 00:00:00"
+      },
+      {
+        "row_index": 2,
+        "column_index": 1,
+        "value": "2024-07-31 00:00:00"
+      },
+      {
+        "row_index": 2,
+        "column_index": 2,
+        "value": "2024-08-31 00:00:00"
+      },
+      {
+        "row_index": 4,
+        "column_index": 1,
+        "value": "=794.77/1.15"
+      },
+      {
+        "row_index": 4,
+        "column_index": 2,
+        "value": "=772.94/1.15"
+      }
+    ],
+    "top_rows": [
+      {
+        "row_index": 1,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "2024-07-21 00:00:00"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "2024-08-21 00:00:00"
+          }
+        ]
+      },
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "2024-07-31 00:00:00"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "2024-08-31 00:00:00"
+          }
+        ]
+      },
+      {
+        "row_index": 3,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "VIL Jul 2024"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "VIL Jul 2024"
+          }
+        ]
+      },
+      {
+        "row_index": 4,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "=794.77/1.15"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "=772.94/1.15"
+          }
+        ]
+      },
+      {
+        "row_index": 8,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 163.93
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 163.93
+          }
+        ]
+      },
+      {
+        "row_index": 10,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 97
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 97
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 35534.71
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 34353.38
+          }
+        ]
+      },
+      {
+        "row_index": 13,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 7267.56
+          }
+        ]
+      },
+      {
+        "row_index": 14,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 4300.33
+          }
+        ]
+      },
+      {
+        "row_index": 15,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 14122.7
+          }
+        ]
+      }
+    ]
+  },
+  "payload": {
+    "sheet_dimensions": {
+      "max_row": 15,
+      "max_column": 2
+    },
+    "merged_ranges": [],
+    "raw_rows": [
+      {
+        "row_index": 1,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "2024-07-21 00:00:00"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "2024-08-21 00:00:00"
+          }
+        ]
+      },
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "2024-07-31 00:00:00"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "2024-08-31 00:00:00"
+          }
+        ]
+      },
+      {
+        "row_index": 3,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "VIL Jul 2024"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "VIL Jul 2024"
+          }
+        ]
+      },
+      {
+        "row_index": 4,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "=794.77/1.15"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "=772.94/1.15"
+          }
+        ]
+      },
+      {
+        "row_index": 8,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 163.93
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 163.93
+          }
+        ]
+      },
+      {
+        "row_index": 10,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 97
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 97
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 35534.71
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 34353.38
+          }
+        ]
+      },
+      {
+        "row_index": 13,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 7267.56
+          }
+        ]
+      },
+      {
+        "row_index": 14,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 4300.33
+          }
+        ]
+      },
+      {
+        "row_index": 15,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": 14122.7
+          }
+        ]
+      }
+    ],
+    "normalized_payload": {
+      "sheet_name": "Sheet2",
+      "sheet_slug": "sheet2",
+      "sheet_category": "support",
+      "scheme_name": null,
+      "settings_snapshot": {
+        "vat_percent": 0.15,
+        "ignore_negative_common_property_amounts": true,
+        "tolerance_months": 4,
+        "tolerance_percentage": 1.0
+      },
+      "rows": [
+        {
+          "row_index": 1,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": "2024-07-21 00:00:00"
+            },
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "2024-08-21 00:00:00"
+            }
+          ]
+        },
+        {
+          "row_index": 2,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": "2024-07-31 00:00:00"
+            },
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "2024-08-31 00:00:00"
+            }
+          ]
+        },
+        {
+          "row_index": 3,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": "VIL Jul 2024"
+            },
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "VIL Jul 2024"
+            }
+          ]
+        },
+        {
+          "row_index": 4,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": "=794.77/1.15"
+            },
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "=772.94/1.15"
+            }
+          ]
+        },
+        {
+          "row_index": 8,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": 163.93
+            },
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": 163.93
+            }
+          ]
+        },
+        {
+          "row_index": 10,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": 97
+            },
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": 97
+            }
+          ]
+        },
+        {
+          "row_index": 12,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": 35534.71
+            },
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": 34353.38
+            }
+          ]
+        },
+        {
+          "row_index": 13,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": 7267.56
+            }
+          ]
+        },
+        {
+          "row_index": 14,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": 4300.33
+            }
+          ]
+        },
+        {
+          "row_index": 15,
+          "cells": [
+            {
+              "column_index": 1,
+              "column_letter": "A",
+              "value": 14122.7
+            }
+          ]
+        }
+      ],
+      "review_flags": []
+    }
+  },
+  "formulas_and_connections": {
+    "formula_cell_count": 2,
+    "formula_patterns": [
+      {
+        "pattern": "=<NUM>/<NUM>",
+        "count": 2
+      }
+    ],
+    "formula_cells": [
+      {
+        "sheet_name": "Sheet2",
+        "cell": "A4",
+        "row_index": 4,
+        "column_index": 1,
+        "row_label": "=794.77/1.15",
+        "heading_primary": "2024-07-21 00:00:00",
+        "heading_secondary": "2024-07-31 00:00:00",
+        "heading_tertiary": "VIL Jul 2024",
+        "formula": "=794.77/1.15",
+        "cached_value": 691.104347826087,
+        "references": []
+      },
+      {
+        "sheet_name": "Sheet2",
+        "cell": "B4",
+        "row_index": 4,
+        "column_index": 2,
+        "row_label": "=794.77/1.15",
+        "heading_primary": "2024-08-21 00:00:00",
+        "heading_secondary": "2024-08-31 00:00:00",
+        "heading_tertiary": "VIL Jul 2024",
+        "formula": "=772.94/1.15",
+        "cached_value": 672.1217391304349,
+        "references": []
+      }
+    ]
+  },
+  "related_vba_sources": [
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\modules\\Other.bas",
+      "procedures": [
+        "UpdateCalcs",
+        "PrepaidCheck",
+        "Difference",
+        "CreateConsumptionComments",
+        "ClearAllChecks",
+        "CheckAllBoxes",
+        "CheckFileIsOpen",
+        "ClearGHTemplate",
+        "CopyGHTemplateData",
+        "GotoGHTemplate",
+        "DeleteSheet",
+        "FindRow",
+        "FindCol",
+        "PlusVAT",
+        "CopyText",
+        "Pause",
+        "SheetExists",
+        "UnHideAll",
+        "ClearImmediate"
+      ]
+    }
+  ]
+}

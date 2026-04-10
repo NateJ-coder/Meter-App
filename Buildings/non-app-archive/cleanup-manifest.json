@@ -1,0 +1,2032 @@
+{
+  "generated_at": "2026-04-10T12:18:29.321686+00:00",
+  "source_root": "c:\\Projects\\Meter App\\Buildings\\buildings",
+  "archive_root": "c:\\Projects\\Meter App\\Buildings\\non-app-archive",
+  "moved_file_count": 483,
+  "kept_review_count": 13,
+  "moved_files_by_building": {
+    "Akasia": 30,
+    "Bonifay": 81,
+    "Carissa Lane": 133,
+    "Colnbrook": 2,
+    "Genisis on Fairmount": 62,
+    "Gosforth Park": 2,
+    "Hazelmere": 1,
+    "La Montagne": 9,
+    "QueensGate": 3,
+    "Rivonia Gates": 18,
+    "Taragona": 42,
+    "Transvalia": 53,
+    "VILLINO GLEN": 35,
+    "Vista Del Monte": 12
+  },
+  "moved_files_by_reason": {
+    "administrative or financial file unrelated to meter-reading audit trail": 317,
+    "administrative disconnection letter; not meter-reading or building reference data": 1,
+    "administrative directory not needed for meter-reading audit trail app": 141,
+    "non-source office or mail artifact without meter-reading/building-data signal": 3,
+    "shortcut file; not source evidence": 1,
+    "utility amount email; not raw meter reading or building master data": 2,
+    "water-only meter reading email; outside electricity-reading app scope": 1,
+    "debt-relief administration; not meter-reading or building master data": 3,
+    "refund/recovery spreadsheet; outside meter-reading audit trail scope": 1,
+    "water-account spreadsheet; outside electricity-reading app scope": 1,
+    "water-expense spreadsheet; outside electricity-reading app scope": 1,
+    "reconciliation/recoup spreadsheet; financial admin rather than meter-reading history": 1,
+    "sanitation debt-rehabilitation document; not electricity meter-reading data": 3,
+    "electricity deposit reconciliation; financial admin rather than reading history": 2,
+    "split-recovery reconciliation spreadsheet; not raw meter-reading history": 1,
+    "meter service invoice; vendor billing rather than reading-history source data": 1,
+    "prepaid-vs-council reconciliation; financial admin rather than reading history": 1,
+    "recurring invoice detail; not building identity or reading-history data": 1,
+    "tenant invoice advice; billing output rather than reading-history source data": 1
+  },
+  "moved_files": [
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2023.10/AK - W&S POP 30.10.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2023.11/AK - Water & Sanitation POP 07.12.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2023.12/AK - W&S POP 10.01.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2024.01/AK - W&S POP 06.02.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2024.02/AK - W&S POP 06.03.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2024.03/AKA - W&S POP 08.04.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2024.04/AKA - W&S POP 21.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2024.05/AKA - W&S POP 10.06.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2023 - Jun 2024/2024.06/AKA - W&S POP 2024.07.12.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/2024.07/AKA - W&S POP 12.08.2024",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/2024.10/AKA - Water & Sanitation POP 12.11.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/2025.01/AKA - W&S POP 2025.02.14.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/2025.02/AKA - Eskom POP 2025.03.20.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/2025.03/AKA - Eskom POP 2025.04.11.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/2025.03/AKA - W&S POP 2025.04.11.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/2025.05/AKA - W&S POP 2025.07.07.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/AKA - Body Corporate Arrears & Request for Negotiation - 2024.10.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Authorization to Disconnect Electricity Supply Letter - Oct 2025.docx",
+      "reason": "administrative disconnection letter; not meter-reading or building reference data"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Emfuleni Payment Arrangement POP 2025.10.29.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Emfuleni Payment Arrangement POP 2025.11.14.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Emfuleni POP 2026.01.14.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Emfuleni POP 2026.02.04.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Emfuleni POP 2026.02.11.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Emfuleni Temporary Reconnection Confirmation 2025.10.29.jpg",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/Rates and Taxes POP/2026.02.12/Absa (1).pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/Rates and Taxes POP/2026.02.12/Absa (2).pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/Rates and Taxes POP/2026.02.12/Absa.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2021-09-13_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2021-10-04_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2021-11-02_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2021-12-03_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-01-04_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-02-03_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-03-02_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-04-05_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-05-05_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-06-03_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-07-03_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-07-08_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-08-03_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-09-02_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-10-04_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-10-04_440103977XXXX.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-11-02_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2022-12-02_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-01-05_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-02-02_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-03-02_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-04-03_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-05-03_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-06-05_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-07-06_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-09-04_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-10-04_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2023-11-02_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/COJ_2025-02-04_440103977.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Electricity.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & sanitasion.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (1).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (10).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (11).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (12).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (13).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & sewer (14).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (15).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & sewer (16).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (2).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (3).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (4).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (5).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (6).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (7).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (8).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer (9).pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water & Sewer.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water and Sewer.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/Historical IMZ/Water.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/MAR 2024 - AUG 2024/BON - Water & Sanitation 2024.03.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/MAR 2024 - AUG 2024/BON - Water & Sanitation 2024.04.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/MAR 2024 - AUG 2024/BON - Water & Sanitation 2024.05.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/MAR 2024 - AUG 2024/BON - Water & Sanitation 2024.06.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/MAR 2024 - AUG 2024/BON - Water & Sanitation 2024.07.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/MAR 2024 - AUG 2024/BON - Water & Sanitation 2024.08.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2024.09.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2024.10.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2024.11.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2024.12.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2025.01.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2025.02.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2025.03.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2025.04.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2025.05.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2025.06.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2025.07.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2024 - AUG 2025/BON - Water & Sanitation 2025.08.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2025.10/Electricity.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2025.10/Water and Sewer.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2025.11/BON - Electricity 2025.11.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2025.11/BON - Water & Sanitation 2025.11.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2025.12/BON - Electricity 2025.12.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2025.12/BON - Water & Sanitation 2025.12.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2026.01/BON - Electricity 2026.01.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2026.01/BON - Water & Sanitation 2026.01.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2026.02/BON - Electricity 2026.02.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2026.02/BON - Water & Sanitation 2026.02.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2026.03/BON - Electricity 2026.03.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/2026.03/BON - Water & Sanitation 2026.03.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Bonifay/COUNCIL & UTILITIES/Council Accounts/SEP 2025 - AUG 2026/BON - Water & Sanitation 2025.09.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/BC vs Council Recon/CL Electricity Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/BC vs Council Recon/CL Sanitation Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/BC vs Council Recon/CL Water Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Apr 2023/CL 01 - Utilities Breakdown Invoice 02.02.2023 to 02.03.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 01 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 02 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 03 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 04 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 05 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 06 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 07 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 08 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 09 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 10 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 11 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 12 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 13 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 14 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 15 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 16 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 17 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 18 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 19 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 20 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 21 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 22 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 23 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 24 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 25 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 26 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 27 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 28 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 29 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Aug 2023/CL 30 - Utilities Breakdown Invoice 01.06.2023 to 29.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 01 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 02 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 03 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 04 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 05 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 06 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 07 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 08 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 09 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 10 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 11 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 12 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 13 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 14 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 15 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 16 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 17 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 18 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 19 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 20 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 21 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 22 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 23 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 24 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 25 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 26 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 27 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 28 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 29 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jul 2023/CL 30 - Utilities Breakdown Invoice 04.05.2023 to 01.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Jun 2023/CL 01 - Utilities Breakdown Invoice 30.032023 to 04.05.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/May 2023/CL 01 - Utilities Breakdown Invoice 02.03.2023 to 30.03.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 01 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 02 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 03 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 04 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 05 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 06 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 07 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 08 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 09 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 10 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 11 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 12 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 13 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 14 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 15 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 16 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 17 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 18 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 19 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 20 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 21 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 22 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 23 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 24 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 25 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 26 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 27 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 28 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 29 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2023/Sept 2023/CL 30 - Utilities Breakdown Invoice 29.06.2023 to 03.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 01 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 02 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 03 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 04 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 05 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 06 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 07 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 08 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 09 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 10 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 11 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 12 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 13 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 14 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 15 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 16 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 17 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 18 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 19 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 20 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 21 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 22 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 23 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 24 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 25 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 26 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 27 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 28 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 29 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CAR 30 - Utilities Breakdown 02.05.2024 to 30.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CL Sanitation Council vs STS.xlsx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07/CL Water Council vs STS.xlsx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.08/CAR 01 - Utilities Breakdown Invoice 30.05.2024 to 27.06.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.08/CAR 02 - Utilities Breakdown Invoice 30.05.2024 to 27.06.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.08/CAR 03 - Utilities Breakdown Invoice 30.05.2024 to 27.06.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.08/CAR 04 - Utilities Breakdown Invoice 30.05.2024 to 27.06.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.08/CAR 05 - Utilities Breakdown Invoice 30.05.2024 to 27.06.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Colnbrook/COUNCIL - UTILITIES/CB - water & sanitation recon.xls",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/Alan and BC recon from 1 November 2023 todate/Main Wsheet.xlsx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/BC vs Council Recon/GEN Utilities Recon - April 2020 to cuurent.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2021 - Feb 2022/Tax Invoice - INV0001187.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2021 - Feb 2022/Tax Invoice - INV0001238.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001199.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001238.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001281.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001318.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001357.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001397.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001436.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001482.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001524.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001567.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001640.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001645.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001685.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2022 - Feb 2023/TEAMCORE March - Feb 2023/Tax Invoice - INV0001722.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0001817.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0001863.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0001905.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0001942.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0002042.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0002084.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0002141.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0002174.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0002210.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax Invoice - INV0002272.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2021-Feb 2024/March 2023 - Feb 2024/Team Core Invoices/Tax_Invoice_-_INV0001997.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax Invoice - INV0001771.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax Invoice - INV0001817.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax Invoice - INV0002355.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax Invoice - INV0002431.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax Invoice - INV0002510.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax Invoice - INV0002719.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax Invoice - INV0002771.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax Invoice - INV0002834.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax_Invoice - INV0002315.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax_Invoice - INV0002390.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax_Invoice_-_INV0002552.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax_Invoice_-_INV0002592.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax_Invoice_-_INV0002629.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Tax_Invoice_-_INV0002682.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Water payments/pop COJ June 2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/2025.08/pop water payment Aug 2025.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/2025.09/pop GEN - Water & Sanitation 2025.09.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/2025.10/POP City Power.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/2025.10/POP City Water.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/2025.11/Pop Water Nov 2025.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/2025.12/pop Water Dec 2025.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/2026.01/pop water 2026.01.02.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/2026.02/pop water Feb 2026.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/Team Core Invoices/Tax Invoice - INV0002870.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/Team Core Invoices/Tax Invoice - INV0002909.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/Team Core Invoices/Tax Invoice - INV0002945.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/Team Core Invoices/Tax Invoice - INV0002985.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/Team Core Invoices/Tax Invoice - INV0003052.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/Team Core Invoices/Tax Invoice - INV0003092.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/Team Core Invoices/Tax Invoice - INV0003215.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2025 - Feb 2026/Team Core Invoices/Tax Invoice - INV0003253.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/OLD COUNCIL & UTILITIES/Vestacor recon.xls",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Gosforth Park/COUNCIL & UTILITIES/2604978445 - OCT 24.txt",
+      "reason": "non-source office or mail artifact without meter-reading/building-data signal"
+    },
+    {
+      "path": "Hazelmere/Utility Readings/HM Readings 2025/Photos/2025.11/WhatsApp Image 2025-12-02 at 13.58.39 - Shortcut.lnk",
+      "reason": "shortcut file; not source evidence"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/BC vs Council Recon/LM Electricity Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/BC vs Council Recon/LM Sanitation Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/BC vs Council Recon/LM Water Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/COUNCIL Statements/April 2019 - March 2024/April  2021 - March  2022/Apr 2021/LM - Sanitation Apr 2021.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/COUNCIL Statements/April 2019 - March 2024/April  2021 - March  2022/Apr 2021/LM - Water Apr 2021.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/COUNCIL Statements/April 2019 - March 2024/April  2021 - March  2022/Aug 2021/LM - Sanitation Aug 2021.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/COUNCIL Statements/April 2019 - March 2024/April  2021 - March  2022/Aug 2021/LM - Water Aug 2021.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/COUNCIL Statements/April 2019 - March 2024/April  2021 - March  2022/Dec 2021/LM - Sanitation Dec 2021.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/COUNCIL Statements/LMO - Application for Tariff Changes Account 440108485 - 10.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "QueensGate/COUNCIL-UTILITIES/BC vs Council Recon/QG Electricity Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "QueensGate/COUNCIL-UTILITIES/BC vs Council Recon/QG Sanitation Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "QueensGate/COUNCIL-UTILITIES/BC vs Council Recon/QG Water Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/PROOFS OF PAYMENT/Payment Notification[8611].pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/PROOFS OF PAYMENT/Rivonia Gate proof of payment.doc",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/2019 - June 2024/6 Jun 2019 Statement run - RG/Re Building utilities for upload to BCM.eml",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2024.05/RIG - W&S POP 05.06.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/BC vs Council Recon/RG Electricity Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/BC vs Council Recon/RG Sanitation Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/BC vs Council Recon/RG Water Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Eskom Application Forms/5477514210 RIVONIA GATE BODY CORPORATE  LPU Resel_1608676154.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Eskom Application Forms/RG - AC Application Form.doc",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Eskom Application Forms/RG - Reseller Application Signed.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Eskom Application Forms/RG - Reseller Application.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2025.05/RIG - Proof Of Payment 14.05.2025.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.09/pop 2025-09-17.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.09/pop 2025-09-18.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.09/pop 2025-09-19.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.09/pop water Sept 2025.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/WhatsApp Video 2023-05-09 at 09.52.56.mp4",
+      "reason": "non-source office or mail artifact without meter-reading/building-data signal"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/BC vs Council Recon/TG Electricity Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/BC vs Council Recon/TG Sanitation Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/BC vs Council Recon/TG Water Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/20210620_181141.jpg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/20210625_152740_resized.jpg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/20210625_152749_resized.jpg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/20210625_152801_resized.jpg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/20210625_152816.jpg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/20210625_152825_resized.jpg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/20210625_152833_resized.jpg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/20210625_152844_resized.jpg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/ADDRESS CHANGE TG.doc",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/Council & BC Reading - Oct 2011 to May 2012.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/Council & BC Reading - Recon Comparison.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/extra info/Do a recon Jun 2012.xls",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2024.12/TAR - Water POP 24.12.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.01/TAR - Sanitation POP 2025.01.31.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.01/TAR - Water POP2025.01.31.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.03/TAR - Sanitation POP 2025.03.13.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.04/TAR - Water POP 2025.04.10.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.06/TAR - Sanitation POP 2025.06.10pdf.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.06/TAR - Water POP 2025.06.10.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.08/TAR - Sanitation POP 2025.09.04.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.08/TAR - Water POP 2025.08.14.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.08/TAR - Water POP 2025.09.04.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.08/TAR - Water POP2 2025.08.14.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2024 - SEPTEMBER 2025/2025.09/TAR - Water POP 2025.09.25.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2025 - SEPTEMBER 2026/2025.11/TAR - Sanitation POP 2025.11.14.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2025 - SEPTEMBER 2026/2025.11/TAR - Water POP 2025.11.14.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2025 - SEPTEMBER 2026/2025.12/TAR - Water POP 2025.12.15.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2025 - SEPTEMBER 2026/2026.01/TAR - Sanitation POP 2026.01.21.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2025 - SEPTEMBER 2026/2026.01/TAR - Water POP 2026.01.21.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2025 - SEPTEMBER 2026/2026.02/TAR - Water POP 2026.02.26.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/OCTOBER 2025 - SEPTEMBER 2026/2026.03/TAR - Water POP 2026.03.08.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Special Levy Balance - 27 JUly 2017.xlsx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/1 Jan 2019/TV - Statement 1 - 20001147 - Jan 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/1 Jan 2019/TV - Statement 2 - 20001149 - Jan 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/10 Oct 2019/TV - Statement 1 - 20001147 - Oct 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/10 Oct 2019/TV - Statement 2 - 20001149 - Oct 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/2 Feb 2019/TV - Statement 1 - 20001147 - Feb 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/2 Feb 2019/TV - Statement 2 - 20001149 - Feb 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/3 Mar 2019/TV - Statement 1 - 20001147 - March 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/3 Mar 2019/TV - Statement 2 - 20001149 - March 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/4 Apr 2019/TV - Statement 1 - 20001147 - April 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/4 Apr 2019/TV - Statement 2 - 20001149 - April 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/5 May 2019/TV - Statement 1 - 20001147 - May 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/5 May 2019/TV - Statement 2 - 20001149 - May 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/6 June 2019/TV - Statement 1 - 20001147 - June 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/6 June 2019/TV - Statement 2 - 20001149 - June 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/7 July 2019/TV - Statement 1 - 20001147 - July 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/7 July 2019/TV - Statement 2 - 20001149 - July 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/8 Aug 2019/TV - Statement 1 - 20001147 - Aug 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/8 Aug 2019/TV - Statement 2 - 20001149 - Aug 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/9 Sept 2019/TV - Statement 1 - 20001147 - Sept 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/9 Sept 2019/TV - Statement 2 - 20001149 - Sept 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/Dec 2019/TV - Statement 1 - 20001147 - Dec 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/Dec 2019/TV - Statement 2 - 20001149 - Dec 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/Nov 2019/TV - Statement 1 - 20001147 - Nov 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2019/Nov 2019/TV - Statement 2 - 20001149 - Nov 2019.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2020/Feb 2020/TV - Statement 1 - 20001147 - Feb 2020.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2020/Feb 2020/TV - Statement 2 - 20001149 - Feb 2020.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2020/Jan 2020/TV - Statement 1 - 20001147 - Jan 2020.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2020/Jan 2020/TV - Statement 2 - 20001149 - Jan 2020.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2020/March 2020/TV - Statement 1 - 20001147 - March 2020.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2020/March 2020/TV - Statement 2 - 20001149 - March 2020.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2022/TV - Letter of Authority Payment Arrangement - June 2022.docx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2024/TRV - Emfuleni Proxy Letter Unsigned - June 2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2024/TRV - Emfuleni Proxy Signed 20.08.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2024/TRV - Proxy Letter - Jun 2024.docx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/2024/TRV - Signed Proxy Letter 03.06.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/BC vs Council Recon/TV Electricity Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/BC vs Council Recon/TV Sanitation Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/BC vs Council Recon/TV Water Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/Thisbe receiving Emfuleni accounts diff no._26Aug2019.eml",
+      "reason": "non-source office or mail artifact without meter-reading/building-data signal"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/Transvalia - Utility acc in arrears.eml",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV - Transvalia council account arrears_16Oct2019.eml",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV - Transvalia Utility account in arrears_3Oct2019.eml",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Council Info/FW_ Emfuleni POP + invoices.msg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Council Info/July PoP_Emfuleni states received (89.6 KB).msg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Council Info/Mzila to update STS records wt Emfuleni account for TV.msg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Council Info/No Emfuleni accounts recd - Thisbe.msg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Council Info/pop 1147+9 - 2018.08.31.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Council Info/POP Emf 1147+49 - 2018.06.04.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Council Info/Re Transvalia council account - 20001148_3 Stands should be 2_28Aug2019 .eml",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Council Info/TVBC - Emfuleni account Mar 2011 to August 2017 (480 KB).msg",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Utilities/TV Utility Calculations/Monthly Utilities Amounts - TV, NP.eml",
+      "reason": "utility amount email; not raw meter reading or building master data"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Utilities/TV Utility Calculations/No TV Utilities - TV, NP.eml",
+      "reason": "utility amount email; not raw meter reading or building master data"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Utilities/TV Water Meter Readings/TV Water METER READINGS MONTHLY_Trustees cannot read.eml",
+      "reason": "water-only meter reading email; outside electricity-reading app scope"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/BC vs Council Recon/VG Electricity Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/BC vs Council Recon/VG Sanitation Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/BC vs Council Recon/VG Water Council vs STS.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/2010 2011 council proposed increase.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/22 April 2009 - Bank statement.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/Book1.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/Council account.xls",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/Council Breakdown.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/Elec,water & Sanitation - Jul 10.pdf",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/VG - Council report Sep 09.doc",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/VG - council report.doc",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/Council Accounts/VG council negotiations.docx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2022 - Feb 2023/Feb 2023/VG - W&S POP 10.02.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2022 - Feb 2023/Jan 2023/VG - POP 11.01.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2022 - Feb 2023/Nov 2022/VG - Water & Sanitation POP - 15.12.2022.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2022 - Feb 2023/Nov 2022/VG - Water & Sanitation POP 02 - 15.12.2022.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Apr 2023/VG - Water & Sanitation POP - 09.05.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Dec 2023/VG - W&S POP 27.12.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Jan 2024/VG - W&S POP 02.02.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Jul 2023/VG - W&S POP 24.08.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Jun 2023/VG - Waste POP 11.07.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Mar 2023/VG - Water & Sanitation POP 20.04.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/May 2023/VG - W&S POP 08.06.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Oct 2023/VG - W&S POP 01 - 17.10.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Oct 2023/VG - W&S POP 02 - 17.10.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Oct 2023/VG - W&S POP 13.09.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2023 - Feb 2024/Sept 2023/VG - W&S POP 16.10.2023.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2024 - Feb 2025/2024.03/VIL - W&S POP 02.04.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2024 - Feb 2025/2024.04/VIL - W&S POP 17.05.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2024 - Feb 2025/2024.04/VIL - W&S POP 26.04.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2024 - Feb 2025/2024.06/VIL - W&S POP 2024.07.12.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/March 2024 - Feb 2025/2024.08/VIL - W&S POP 12.09.2024.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/VG - Letter of Authority Account No. 5017853595 - May 2022.docx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/BC vs Council Recon/VIS - Electricity BC vs Council.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/BC vs Council Recon/VIS - Sanitation BC vs Council.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/BC vs Council Recon/VIS - Water BC vs Council.xlsx",
+      "reason": "administrative directory not needed for meter-reading audit trail app"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/JAN 2024 - FEB 2025/2024.11/VIS - Sanitation POP 2024.11.11.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/JAN 2024 - FEB 2025/2024.11/VIS - Water POP 2024.11.08.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/JAN 2025 - DEC 2025/2025.01/VIS - Water POP 2025.01.24.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/JAN 2025 - DEC 2025/2025.03/VIS - Sanitation POP 2025.03.14.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/JAN 2025 - DEC 2025/2025.03/VIS - Sanitation POP2 14.03.2025.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/JAN 2025 - DEC 2025/2025.04/VIS - Sanitation POP 2025.04.11.pdf",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/WCU Utilities/VIS - Administartive Levy Correction 2025.01.xlsx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/WCU Utilities/VIS - CSOS Levy Correction 2025.01.xlsx",
+      "reason": "administrative or financial file unrelated to meter-reading audit trail"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2024 - Jun 2025/2024.11/13 NOV 2024 DEBT RELIEF PROGRAM.pdf",
+      "reason": "debt-relief administration; not meter-reading or building master data"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Emfuleni Query Sheet Debt Relief Application - 2025.02.10.jpg",
+      "reason": "debt-relief administration; not meter-reading or building master data"
+    },
+    {
+      "path": "Akasia/COUNCIL-UTILITIES/Jul 2025 - Jun 2026/AKA - Emfuleni Query Sheet Debt Relief Application - 2025.08.21.jpg",
+      "reason": "debt-relief administration; not meter-reading or building master data"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Copy of TG refunds utilities.xlsx",
+      "reason": "refund/recovery spreadsheet; outside meter-reading audit trail scope"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/TG - water account.xls",
+      "reason": "water-account spreadsheet; outside electricity-reading app scope"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/TG - water expense.xls",
+      "reason": "water-expense spreadsheet; outside electricity-reading app scope"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Tg elec recon recoup vs council charge.xls",
+      "reason": "reconciliation/recoup spreadsheet; financial admin rather than meter-reading history"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Debt rehabilitation/TG Sanitation - Signed Debt Rehabilitation pg 1 to 15.pdf",
+      "reason": "sanitation debt-rehabilitation document; not electricity meter-reading data"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Debt rehabilitation/TG Sanitation - Signed Debt Rehabilitation pg 16 to 30.pdf",
+      "reason": "sanitation debt-rehabilitation document; not electricity meter-reading data"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Debt rehabilitation/TG Sanitation - Signed Debt Rehabilitation pg 31 - 46.pdf",
+      "reason": "sanitation debt-rehabilitation document; not electricity meter-reading data"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/deposit recons/VG - elec deposits held as at Feb 2014.xls",
+      "reason": "electricity deposit reconciliation; financial admin rather than reading history"
+    },
+    {
+      "path": "VILLINO GLEN/COUNCIL & UTILITIES/deposit recons/VG - elec deposits held as at Feb 2015.xls",
+      "reason": "electricity deposit reconciliation; financial admin rather than reading history"
+    },
+    {
+      "path": "Colnbrook/COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2025/COL - Alpha 80.20 Recon 2025.11.xlsx",
+      "reason": "split-recovery reconciliation spreadsheet; not raw meter-reading history"
+    },
+    {
+      "path": "Genisis on Fairmount/COUNCIL & UTILITIES/March 2024 - Feb 2025/Teamcore Invoices/Meter Invoices BC - Apr 2024.pdf",
+      "reason": "meter service invoice; vendor billing rather than reading-history source data"
+    },
+    {
+      "path": "Gosforth Park/COUNCIL & UTILITIES/GOS - Elctricity Prepaid vs Council Recon.xlsx",
+      "reason": "prepaid-vs-council reconciliation; financial admin rather than reading history"
+    },
+    {
+      "path": "Rivonia Gates/COUNCIL AND UTILITIES/2019 - June 2024/6 Jun 2019 Statement run - RG/Elec_551N95580_RecurringInvoiceDetails (3)_RG_Jun2019.xlsx",
+      "reason": "recurring invoice detail; not building identity or reading-history data"
+    },
+    {
+      "path": "Vista Del Monte/COUNCIL & UTILITIES/Utility Readings/LMS Readings/2024/2024.09.30/LMS Tenant Advise Invoices 2024.09.30.pdf",
+      "reason": "tenant invoice advice; billing output rather than reading-history source data"
+    }
+  ],
+  "kept_review_files": [
+    {
+      "path": "Carissa Lane/COUNCIL & UTILITIES/CL Utilities/CL Elec Meter photo_16Aug18.msg",
+      "reason": "email artifact tied to an electricity meter photo"
+    },
+    {
+      "path": "Hazelmere/Utility Readings/HM Readings 2024/Photos/2024.04.30/WhatsApp Video 2024-04-30 at 12.53.01_e9642bfb.mp4",
+      "reason": "potential meter-reading evidence video"
+    },
+    {
+      "path": "La Montagne/COUNCIL & UTILIES/LM - ELec calcs.doc",
+      "reason": "electricity calculation logic"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Electricity Readings - 7 Dec 2017.docx",
+      "reason": "electricity reading sheet"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Electricity Readings - 7 June 2017.docx",
+      "reason": "electricity reading sheet"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Electricity Readings - 7 Nov 2017.docx",
+      "reason": "electricity reading sheet"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Electricity Readings - 7 Oct 2017.docx",
+      "reason": "electricity reading sheet"
+    },
+    {
+      "path": "Taragona/COUNCIL & UTILITIES/Electricity Readings - BLANK.docx",
+      "reason": "blank electricity reading template"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Utilities/TV Elec Meter Readings/MeterReadings_Transvalia_Dec2018.eml",
+      "reason": "contains electricity meter-reading context"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Utilities/TV Prepaid Elec Meters/Conventional meters and est Prepaid Provider_Transvalia.eml",
+      "reason": "prepaid/conventional meter setup context"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Utilities/TV Prepaid Elec Meters/Emfuleni receiving prepaid elec_5Sep2019.eml",
+      "reason": "prepaid electricity meter context"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Utilities/TV Prepaid Elec Meters/Prepaid installed by council_No need to read_TV.eml",
+      "reason": "meter-state context relevant to future reading workflow"
+    },
+    {
+      "path": "Transvalia/COUNCIL AND UTILITIES/TV Utilities/TV Prepaid Elec Meters/Prepaid Meter Receipt_TV12_2019.eml",
+      "reason": "prepaid meter receipt tied to a unit meter"
+    }
+  ]
+}

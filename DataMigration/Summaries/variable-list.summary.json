@@ -1,0 +1,4691 @@
+{
+  "summary_type": "utility-dash-sheet-summary",
+  "generated_at": "2026-04-10T11:54:58.037018+00:00",
+  "workbook": {
+    "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+    "source_file_is_encrypted": true,
+    "decryption_password_used": true
+  },
+  "sheet": {
+    "sheet_name": "Variable_List",
+    "sheet_slug": "variable-list",
+    "sheet_category": "support",
+    "summary_file_name": "variable-list.summary.json"
+  },
+  "entities_and_meanings": [
+    {
+      "entity_type": "sheet_labels_and_headings",
+      "examples": [
+        "VARIABLE LIST",
+        "Tier | Range | Cost per KWh/Tier",
+        "General info | ERange1 | ET1",
+        "The Building's Name | BuildingName | ERange2",
+        "The Selected Month | SelDate | ERange3",
+        "ERange4 | ET4 | ElecBulkTariffU4",
+        "ELECTRICITY | BULK Meter | ERange5",
+        "BULK METER TOTALS | Range | ERange1",
+        "Number of Bulk Meters | ElecBulkCount | Cost per KWh/Tier",
+        "KWH Used by Bulk Meters | ElecBulkTotCon | KWh Used per Tier",
+        "Charge for KWH used by Bulk Meters | ElecBulkTotCharge | Charge per Tier",
+        "UNIT METERS TOTAL | Unit Meter",
+        "Number of Unit Meters | ElecUnitCount | Range",
+        "KWH Used by Unit Meters | ElecUnitTotCon | Cost per KWh",
+        "Charge for KWH used by Unit Meters | ElecUnitTotCharge | KWh Used per Tier",
+        "Charge per Tier | ElecUnitTariffC1 | ElecUnitTariffC2",
+        "Difference between Bulk and Units total | ElecDifference",
+        "WATER | TOTAL Bulk Meters",
+        "BULK METER TOTALS | Range | WRange1",
+        "Number ofBulk Meters | WaterBulkCount | Cost per KWh"
+      ],
+      "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+    }
+  ],
+  "categories_and_domains": {
+    "sheet_category": "support",
+    "domains": [
+      "electricity",
+      "water",
+      "charges",
+      "settings"
+    ],
+    "sheet_name": "Variable_List"
+  },
+  "attributes_and_time_series": {
+    "time_series_type": "date_like_values",
+    "date_like_values": [],
+    "top_rows": [
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "VARIABLE LIST"
+          }
+        ]
+      },
+      {
+        "row_index": 4,
+        "cells": [
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "Tier"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "Range"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "Cost per KWh/Tier"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "KWh Used per Tier"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "Charge per Tier"
+          }
+        ]
+      },
+      {
+        "row_index": 5,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "General info"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 1
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange1"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET1"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU1"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC1"
+          }
+        ]
+      },
+      {
+        "row_index": 6,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The Building's Name"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "BuildingName"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 2
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange2"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET2"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU2"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC2"
+          }
+        ]
+      },
+      {
+        "row_index": 7,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The Selected Month"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "SelDate"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 3
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange3"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET3"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU3"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC3"
+          }
+        ]
+      },
+      {
+        "row_index": 8,
+        "cells": [
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 4
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange4"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET4"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU4"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC4"
+          }
+        ]
+      },
+      {
+        "row_index": 9,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "ELECTRICITY"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "BULK Meter"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 2
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 3
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 4
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 5
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 6
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 7
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 8
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 5
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange5"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET5"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU5"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC5"
+          }
+        ]
+      },
+      {
+        "row_index": 10,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "BULK METER TOTALS"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Range"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ERange1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ERange2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ERange3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ERange4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ERange5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ERange6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ERange7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ERange8"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 6
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange6"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET6"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU6"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC6"
+          }
+        ]
+      },
+      {
+        "row_index": 11,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Number of Bulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecBulkCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Cost per KWh/Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ET1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ET2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ET3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ET4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ET5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ET6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ET7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ET8"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 7
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange7"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET7"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU7"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC7"
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "KWH Used by Bulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecBulkTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "KWh Used per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ElecBulkTariffU1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ElecBulkTariffU2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ElecBulkTariffU3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ElecBulkTariffU4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ElecBulkTariffU5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ElecBulkTariffU6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ElecBulkTariffU7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ElecBulkTariffU8"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 8
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange8"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET8"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU8"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC8"
+          }
+        ]
+      },
+      {
+        "row_index": 13,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Charge for KWH used by Bulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecBulkTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Charge per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ElecBulkTariffC1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ElecBulkTariffC2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ElecBulkTariffC3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ElecBulkTariffC4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ElecBulkTariffC5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ElecBulkTariffC6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ElecBulkTariffC7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ElecBulkTariffC8"
+          }
+        ]
+      },
+      {
+        "row_index": 15,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "UNIT METERS TOTAL"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Unit Meter"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 2
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 3
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 4
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 5
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 6
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 7
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "row_index": 16,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Number of Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecUnitCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Range"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ERange1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ERange2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ERange3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ERange4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ERange5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ERange6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ERange7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ERange8"
+          }
+        ]
+      },
+      {
+        "row_index": 17,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "KWH Used by Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecUnitTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Cost per KWh"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ET1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ET2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ET3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ET4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ET5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ET6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ET7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ET8"
+          }
+        ]
+      },
+      {
+        "row_index": 18,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Charge for KWH used by Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecUnitTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "KWh Used per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ElecUnitTariffU1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ElecUnitTariffU2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ElecUnitTariffU3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ElecUnitTariffU4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ElecUnitTariffU5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ElecUnitTariffU6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ElecUnitTariffU7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ElecUnitTariffU8"
+          }
+        ]
+      },
+      {
+        "row_index": 19,
+        "cells": [
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Charge per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ElecUnitTariffC1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ElecUnitTariffC2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ElecUnitTariffC3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ElecUnitTariffC4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ElecUnitTariffC5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ElecUnitTariffC6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ElecUnitTariffC7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ElecUnitTariffC8"
+          }
+        ]
+      },
+      {
+        "row_index": 20,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Difference between Bulk and Units total"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecDifference"
+          }
+        ]
+      },
+      {
+        "row_index": 24,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "WATER"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "TOTAL Bulk Meters"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 2
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 3
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 4
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 5
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 6
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 7
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "row_index": 25,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "BULK METER TOTALS"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Range"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WRange1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WRange2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WRange3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WRange4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WRange5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WRange6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WRange7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WRange8"
+          }
+        ]
+      },
+      {
+        "row_index": 26,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Number ofBulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "WaterBulkCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Cost per KWh"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WT1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WT2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WT3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WT4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WT5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WT6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WT7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WT8"
+          }
+        ]
+      }
+    ]
+  },
+  "payload": {
+    "sheet_dimensions": {
+      "max_row": 88,
+      "max_column": 20
+    },
+    "merged_ranges": [
+      "B2:C2"
+    ],
+    "raw_rows": [
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "VARIABLE LIST"
+          }
+        ]
+      },
+      {
+        "row_index": 4,
+        "cells": [
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "Tier"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "Range"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "Cost per KWh/Tier"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "KWh Used per Tier"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "Charge per Tier"
+          }
+        ]
+      },
+      {
+        "row_index": 5,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "General info"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 1
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange1"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET1"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU1"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC1"
+          }
+        ]
+      },
+      {
+        "row_index": 6,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The Building's Name"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "BuildingName"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 2
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange2"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET2"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU2"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC2"
+          }
+        ]
+      },
+      {
+        "row_index": 7,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The Selected Month"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "SelDate"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 3
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange3"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET3"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU3"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC3"
+          }
+        ]
+      },
+      {
+        "row_index": 8,
+        "cells": [
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 4
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange4"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET4"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU4"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC4"
+          }
+        ]
+      },
+      {
+        "row_index": 9,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "ELECTRICITY"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "BULK Meter"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 2
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 3
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 4
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 5
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 6
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 7
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 8
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 5
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange5"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET5"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU5"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC5"
+          }
+        ]
+      },
+      {
+        "row_index": 10,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "BULK METER TOTALS"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Range"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ERange1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ERange2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ERange3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ERange4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ERange5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ERange6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ERange7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ERange8"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 6
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange6"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET6"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU6"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC6"
+          }
+        ]
+      },
+      {
+        "row_index": 11,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Number of Bulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecBulkCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Cost per KWh/Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ET1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ET2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ET3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ET4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ET5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ET6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ET7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ET8"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 7
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange7"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET7"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU7"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC7"
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "KWH Used by Bulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecBulkTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "KWh Used per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ElecBulkTariffU1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ElecBulkTariffU2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ElecBulkTariffU3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ElecBulkTariffU4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ElecBulkTariffU5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ElecBulkTariffU6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ElecBulkTariffU7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ElecBulkTariffU8"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 8
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "ERange8"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "ET8"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "ElecBulkTariffU8"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "ElecBulkTariffC8"
+          }
+        ]
+      },
+      {
+        "row_index": 13,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Charge for KWH used by Bulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecBulkTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Charge per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ElecBulkTariffC1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ElecBulkTariffC2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ElecBulkTariffC3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ElecBulkTariffC4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ElecBulkTariffC5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ElecBulkTariffC6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ElecBulkTariffC7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ElecBulkTariffC8"
+          }
+        ]
+      },
+      {
+        "row_index": 15,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "UNIT METERS TOTAL"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Unit Meter"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 2
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 3
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 4
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 5
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 6
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 7
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "row_index": 16,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Number of Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecUnitCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Range"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ERange1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ERange2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ERange3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ERange4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ERange5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ERange6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ERange7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ERange8"
+          }
+        ]
+      },
+      {
+        "row_index": 17,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "KWH Used by Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecUnitTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Cost per KWh"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ET1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ET2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ET3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ET4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ET5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ET6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ET7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ET8"
+          }
+        ]
+      },
+      {
+        "row_index": 18,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Charge for KWH used by Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecUnitTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "KWh Used per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ElecUnitTariffU1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ElecUnitTariffU2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ElecUnitTariffU3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ElecUnitTariffU4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ElecUnitTariffU5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ElecUnitTariffU6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ElecUnitTariffU7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ElecUnitTariffU8"
+          }
+        ]
+      },
+      {
+        "row_index": 19,
+        "cells": [
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Charge per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "ElecUnitTariffC1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "ElecUnitTariffC2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "ElecUnitTariffC3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "ElecUnitTariffC4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "ElecUnitTariffC5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "ElecUnitTariffC6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "ElecUnitTariffC7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "ElecUnitTariffC8"
+          }
+        ]
+      },
+      {
+        "row_index": 20,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Difference between Bulk and Units total"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "ElecDifference"
+          }
+        ]
+      },
+      {
+        "row_index": 24,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "WATER"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "TOTAL Bulk Meters"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 2
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 3
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 4
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 5
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 6
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 7
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "row_index": 25,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "BULK METER TOTALS"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Range"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WRange1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WRange2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WRange3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WRange4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WRange5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WRange6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WRange7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WRange8"
+          }
+        ]
+      },
+      {
+        "row_index": 26,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Number ofBulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "WaterBulkCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Cost per KWh"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WT1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WT2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WT3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WT4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WT5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WT6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WT7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WT8"
+          }
+        ]
+      },
+      {
+        "row_index": 27,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "KL Used by Bulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "WaterBulkTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "KL Used per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WaterBulkTariffU1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WaterBulkTariffU2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WaterBulkTariffU3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WaterBulkTariffU4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WaterBulkTariffU5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WaterBulkTariffU6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WaterBulkTariffU7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WaterBulkTariffU8"
+          }
+        ]
+      },
+      {
+        "row_index": 28,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Charge for KL used by Bulk Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "WaterBulkTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Charge per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WaterBulkTariffC1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WaterBulkTariffC2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WaterBulkTariffC3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WaterBulkTariffC4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WaterBulkTariffC5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WaterBulkTariffC6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WaterBulkTariffC7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WaterBulkTariffC8"
+          }
+        ]
+      },
+      {
+        "row_index": 30,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "UNIT METERS TOTAL"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "TOTAL UNIT Meters"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 2
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 3
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 4
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 5
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 6
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 7
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "row_index": 31,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Number of Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "WaterUnitCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Range"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WRange1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WRange2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WRange3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WRange4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WRange5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WRange6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WRange7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WRange8"
+          }
+        ]
+      },
+      {
+        "row_index": 32,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "KL Used by Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "WaterUnitTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Cost per KWh"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WT1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WT2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WT3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WT4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WT5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WT6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WT7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WT8"
+          }
+        ]
+      },
+      {
+        "row_index": 33,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Charge for KL used by Unit Meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "WaterUnitTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "KL Used per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WaterUnitTariffU1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WaterUnitTariffU2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WaterUnitTariffU3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WaterUnitTariffU4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WaterUnitTariffU5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WaterUnitTariffU6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WaterUnitTariffU7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WaterUnitTariffU8"
+          }
+        ]
+      },
+      {
+        "row_index": 34,
+        "cells": [
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Charge per Tier"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "WaterUnitTariffC1"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "WaterUnitTariffC2"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "WaterUnitTariffC3"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "WaterUnitTariffC4"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "WaterUnitTariffC5"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "WaterUnitTariffC6"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "WaterUnitTariffC7"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "WaterUnitTariffC8"
+          }
+        ]
+      },
+      {
+        "row_index": 35,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Difference between Bulk and Units total"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "WaterDifference"
+          }
+        ]
+      },
+      {
+        "row_index": 39,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "PREPAID METER"
+          }
+        ]
+      },
+      {
+        "row_index": 40,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The number of prepaid electric meters installed"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PPNoOfElecInstalled"
+          }
+        ]
+      },
+      {
+        "row_index": 41,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The total KWH used by the prepaid meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PPElecConvMeterTotal"
+          }
+        ]
+      },
+      {
+        "row_index": 42,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The Rand value of KWH used by the prepaid meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PPTotalElecCost"
+          }
+        ]
+      },
+      {
+        "row_index": 44,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The number of prepaid Water meters installed"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PPNoOfWaterInstalled"
+          }
+        ]
+      },
+      {
+        "row_index": 45,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The total KL used by the prepaid meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PPWaterConvMeterTotal"
+          }
+        ]
+      },
+      {
+        "row_index": 46,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The Rand value of KL used by the prepaid meters"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PPTotalWaterCost"
+          }
+        ]
+      },
+      {
+        "row_index": 48,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Charges from Municipality & Service Providers"
+          }
+        ]
+      },
+      {
+        "row_index": 49,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Title of the service charge"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "OptionText1"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "OptionText2"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "OptionText3"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "OptionText4"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "OptionText5"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "OptionText6"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "OptionText7"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "OptionText8"
+          }
+        ]
+      },
+      {
+        "row_index": 50,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The full value from the service provider"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "OptionAmount1"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "OptionAmount2"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "OptionAmount3"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "OptionAmount4"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "OptionAmount5"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "OptionAmount6"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "OptionAmount7"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "OptionAmount8"
+          }
+        ]
+      },
+      {
+        "row_index": 51,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The method used to share the charges"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "OptionChoice1"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "OptionChoice2"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "OptionChoice3"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "OptionChoice4"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "OptionChoice5"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "OptionChoice6"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "OptionChoice7"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "OptionChoice8"
+          }
+        ]
+      },
+      {
+        "row_index": 52,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "The charge each unit is allocated"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "OptionValue1"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "OptionValue2"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "OptionValue3"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "OptionValue4"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "OptionValue5"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "OptionValue6"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "OptionValue7"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "OptionValue8"
+          }
+        ]
+      }
+    ],
+    "normalized_payload": {
+      "sheet_name": "Variable_List",
+      "sheet_slug": "variable-list",
+      "sheet_category": "support",
+      "scheme_name": null,
+      "settings_snapshot": {
+        "vat_percent": 0.15,
+        "ignore_negative_common_property_amounts": true,
+        "tolerance_months": 4,
+        "tolerance_percentage": 1.0
+      },
+      "rows": [
+        {
+          "row_index": 2,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "VARIABLE LIST"
+            }
+          ]
+        },
+        {
+          "row_index": 4,
+          "cells": [
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": "Tier"
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "Range"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "Cost per KWh/Tier"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "KWh Used per Tier"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "Charge per Tier"
+            }
+          ]
+        },
+        {
+          "row_index": 5,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "General info"
+            },
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": 1
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "ERange1"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "ET1"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "ElecBulkTariffU1"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "ElecBulkTariffC1"
+            }
+          ]
+        },
+        {
+          "row_index": 6,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The Building's Name"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "BuildingName"
+            },
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": 2
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "ERange2"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "ET2"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "ElecBulkTariffU2"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "ElecBulkTariffC2"
+            }
+          ]
+        },
+        {
+          "row_index": 7,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The Selected Month"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "SelDate"
+            },
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": 3
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "ERange3"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "ET3"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "ElecBulkTariffU3"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "ElecBulkTariffC3"
+            }
+          ]
+        },
+        {
+          "row_index": 8,
+          "cells": [
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": 4
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "ERange4"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "ET4"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "ElecBulkTariffU4"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "ElecBulkTariffC4"
+            }
+          ]
+        },
+        {
+          "row_index": 9,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "ELECTRICITY"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "BULK Meter"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": 1
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": 2
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": 3
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": 4
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": 5
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": 6
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": 7
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": 8
+            },
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": 5
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "ERange5"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "ET5"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "ElecBulkTariffU5"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "ElecBulkTariffC5"
+            }
+          ]
+        },
+        {
+          "row_index": 10,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "BULK METER TOTALS"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Range"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "ERange1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "ERange2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "ERange3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "ERange4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "ERange5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "ERange6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "ERange7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "ERange8"
+            },
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": 6
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "ERange6"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "ET6"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "ElecBulkTariffU6"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "ElecBulkTariffC6"
+            }
+          ]
+        },
+        {
+          "row_index": 11,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Number of Bulk Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "ElecBulkCount"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Cost per KWh/Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "ET1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "ET2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "ET3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "ET4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "ET5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "ET6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "ET7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "ET8"
+            },
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": 7
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "ERange7"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "ET7"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "ElecBulkTariffU7"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "ElecBulkTariffC7"
+            }
+          ]
+        },
+        {
+          "row_index": 12,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "KWH Used by Bulk Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "ElecBulkTotCon"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "KWh Used per Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "ElecBulkTariffU1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "ElecBulkTariffU2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "ElecBulkTariffU3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "ElecBulkTariffU4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "ElecBulkTariffU5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "ElecBulkTariffU6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "ElecBulkTariffU7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "ElecBulkTariffU8"
+            },
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": 8
+            },
+            {
+              "column_index": 17,
+              "column_letter": "Q",
+              "value": "ERange8"
+            },
+            {
+              "column_index": 18,
+              "column_letter": "R",
+              "value": "ET8"
+            },
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "ElecBulkTariffU8"
+            },
+            {
+              "column_index": 20,
+              "column_letter": "T",
+              "value": "ElecBulkTariffC8"
+            }
+          ]
+        },
+        {
+          "row_index": 13,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Charge for KWH used by Bulk Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "ElecBulkTotCharge"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Charge per Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "ElecBulkTariffC1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "ElecBulkTariffC2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "ElecBulkTariffC3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "ElecBulkTariffC4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "ElecBulkTariffC5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "ElecBulkTariffC6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "ElecBulkTariffC7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "ElecBulkTariffC8"
+            }
+          ]
+        },
+        {
+          "row_index": 15,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "UNIT METERS TOTAL"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Unit Meter"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": 1
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": 2
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": 3
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": 4
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": 5
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": 6
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": 7
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": 8
+            }
+          ]
+        },
+        {
+          "row_index": 16,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Number of Unit Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "ElecUnitCount"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Range"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "ERange1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "ERange2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "ERange3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "ERange4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "ERange5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "ERange6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "ERange7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "ERange8"
+            }
+          ]
+        },
+        {
+          "row_index": 17,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "KWH Used by Unit Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "ElecUnitTotCon"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Cost per KWh"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "ET1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "ET2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "ET3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "ET4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "ET5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "ET6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "ET7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "ET8"
+            }
+          ]
+        },
+        {
+          "row_index": 18,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Charge for KWH used by Unit Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "ElecUnitTotCharge"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "KWh Used per Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "ElecUnitTariffU1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "ElecUnitTariffU2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "ElecUnitTariffU3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "ElecUnitTariffU4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "ElecUnitTariffU5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "ElecUnitTariffU6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "ElecUnitTariffU7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "ElecUnitTariffU8"
+            }
+          ]
+        },
+        {
+          "row_index": 19,
+          "cells": [
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Charge per Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "ElecUnitTariffC1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "ElecUnitTariffC2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "ElecUnitTariffC3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "ElecUnitTariffC4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "ElecUnitTariffC5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "ElecUnitTariffC6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "ElecUnitTariffC7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "ElecUnitTariffC8"
+            }
+          ]
+        },
+        {
+          "row_index": 20,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Difference between Bulk and Units total"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "ElecDifference"
+            }
+          ]
+        },
+        {
+          "row_index": 24,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "WATER"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "TOTAL Bulk Meters"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": 1
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": 2
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": 3
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": 4
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": 5
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": 6
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": 7
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": 8
+            }
+          ]
+        },
+        {
+          "row_index": 25,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "BULK METER TOTALS"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Range"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "WRange1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "WRange2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "WRange3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "WRange4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "WRange5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "WRange6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "WRange7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "WRange8"
+            }
+          ]
+        },
+        {
+          "row_index": 26,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Number ofBulk Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "WaterBulkCount"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Cost per KWh"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "WT1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "WT2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "WT3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "WT4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "WT5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "WT6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "WT7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "WT8"
+            }
+          ]
+        },
+        {
+          "row_index": 27,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "KL Used by Bulk Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "WaterBulkTotCon"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "KL Used per Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "WaterBulkTariffU1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "WaterBulkTariffU2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "WaterBulkTariffU3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "WaterBulkTariffU4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "WaterBulkTariffU5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "WaterBulkTariffU6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "WaterBulkTariffU7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "WaterBulkTariffU8"
+            }
+          ]
+        },
+        {
+          "row_index": 28,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Charge for KL used by Bulk Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "WaterBulkTotCharge"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Charge per Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "WaterBulkTariffC1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "WaterBulkTariffC2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "WaterBulkTariffC3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "WaterBulkTariffC4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "WaterBulkTariffC5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "WaterBulkTariffC6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "WaterBulkTariffC7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "WaterBulkTariffC8"
+            }
+          ]
+        },
+        {
+          "row_index": 30,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "UNIT METERS TOTAL"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "TOTAL UNIT Meters"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": 1
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": 2
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": 3
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": 4
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": 5
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": 6
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": 7
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": 8
+            }
+          ]
+        },
+        {
+          "row_index": 31,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Number of Unit Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "WaterUnitCount"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Range"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "WRange1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "WRange2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "WRange3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "WRange4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "WRange5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "WRange6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "WRange7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "WRange8"
+            }
+          ]
+        },
+        {
+          "row_index": 32,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "KL Used by Unit Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "WaterUnitTotCon"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Cost per KWh"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "WT1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "WT2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "WT3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "WT4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "WT5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "WT6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "WT7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "WT8"
+            }
+          ]
+        },
+        {
+          "row_index": 33,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Charge for KL used by Unit Meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "WaterUnitTotCharge"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "KL Used per Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "WaterUnitTariffU1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "WaterUnitTariffU2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "WaterUnitTariffU3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "WaterUnitTariffU4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "WaterUnitTariffU5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "WaterUnitTariffU6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "WaterUnitTariffU7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "WaterUnitTariffU8"
+            }
+          ]
+        },
+        {
+          "row_index": 34,
+          "cells": [
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "Charge per Tier"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "WaterUnitTariffC1"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "WaterUnitTariffC2"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "WaterUnitTariffC3"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "WaterUnitTariffC4"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "WaterUnitTariffC5"
+            },
+            {
+              "column_index": 11,
+              "column_letter": "K",
+              "value": "WaterUnitTariffC6"
+            },
+            {
+              "column_index": 12,
+              "column_letter": "L",
+              "value": "WaterUnitTariffC7"
+            },
+            {
+              "column_index": 13,
+              "column_letter": "M",
+              "value": "WaterUnitTariffC8"
+            }
+          ]
+        },
+        {
+          "row_index": 35,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Difference between Bulk and Units total"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "WaterDifference"
+            }
+          ]
+        },
+        {
+          "row_index": 39,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "PREPAID METER"
+            }
+          ]
+        },
+        {
+          "row_index": 40,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The number of prepaid electric meters installed"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "PPNoOfElecInstalled"
+            }
+          ]
+        },
+        {
+          "row_index": 41,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The total KWH used by the prepaid meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "PPElecConvMeterTotal"
+            }
+          ]
+        },
+        {
+          "row_index": 42,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The Rand value of KWH used by the prepaid meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "PPTotalElecCost"
+            }
+          ]
+        },
+        {
+          "row_index": 44,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The number of prepaid Water meters installed"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "PPNoOfWaterInstalled"
+            }
+          ]
+        },
+        {
+          "row_index": 45,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The total KL used by the prepaid meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "PPWaterConvMeterTotal"
+            }
+          ]
+        },
+        {
+          "row_index": 46,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The Rand value of KL used by the prepaid meters"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "PPTotalWaterCost"
+            }
+          ]
+        },
+        {
+          "row_index": 48,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Charges from Municipality & Service Providers"
+            }
+          ]
+        },
+        {
+          "row_index": 49,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "Title of the service charge"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "OptionText1"
+            },
+            {
+              "column_index": 4,
+              "column_letter": "D",
+              "value": "OptionText2"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "OptionText3"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "OptionText4"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "OptionText5"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "OptionText6"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "OptionText7"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "OptionText8"
+            }
+          ]
+        },
+        {
+          "row_index": 50,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The full value from the service provider"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "OptionAmount1"
+            },
+            {
+              "column_index": 4,
+              "column_letter": "D",
+              "value": "OptionAmount2"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "OptionAmount3"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "OptionAmount4"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "OptionAmount5"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "OptionAmount6"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "OptionAmount7"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "OptionAmount8"
+            }
+          ]
+        },
+        {
+          "row_index": 51,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The method used to share the charges"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "OptionChoice1"
+            },
+            {
+              "column_index": 4,
+              "column_letter": "D",
+              "value": "OptionChoice2"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "OptionChoice3"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "OptionChoice4"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "OptionChoice5"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "OptionChoice6"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "OptionChoice7"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "OptionChoice8"
+            }
+          ]
+        },
+        {
+          "row_index": 52,
+          "cells": [
+            {
+              "column_index": 2,
+              "column_letter": "B",
+              "value": "The charge each unit is allocated"
+            },
+            {
+              "column_index": 3,
+              "column_letter": "C",
+              "value": "OptionValue1"
+            },
+            {
+              "column_index": 4,
+              "column_letter": "D",
+              "value": "OptionValue2"
+            },
+            {
+              "column_index": 5,
+              "column_letter": "E",
+              "value": "OptionValue3"
+            },
+            {
+              "column_index": 6,
+              "column_letter": "F",
+              "value": "OptionValue4"
+            },
+            {
+              "column_index": 7,
+              "column_letter": "G",
+              "value": "OptionValue5"
+            },
+            {
+              "column_index": 8,
+              "column_letter": "H",
+              "value": "OptionValue6"
+            },
+            {
+              "column_index": 9,
+              "column_letter": "I",
+              "value": "OptionValue7"
+            },
+            {
+              "column_index": 10,
+              "column_letter": "J",
+              "value": "OptionValue8"
+            }
+          ]
+        }
+      ],
+      "review_flags": []
+    }
+  },
+  "formulas_and_connections": {
+    "formula_cell_count": 0,
+    "formula_patterns": [],
+    "formula_cells": []
+  },
+  "related_vba_sources": [
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\objects\\ThisWorkbook.cls",
+      "procedures": []
+    }
+  ]
+}

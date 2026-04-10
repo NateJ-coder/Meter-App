@@ -1,0 +1,2548 @@
+{
+  "summary_type": "utility-dash-sheet-summary",
+  "generated_at": "2026-04-10T11:55:03.879914+00:00",
+  "workbook": {
+    "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+    "source_file_is_encrypted": true,
+    "decryption_password_used": true
+  },
+  "sheet": {
+    "sheet_name": "Mang Court",
+    "sheet_slug": "mang-court",
+    "sheet_category": "building",
+    "summary_file_name": "mang-court.summary.json"
+  },
+  "entities_and_meanings": [
+    {
+      "entity_type": "building",
+      "examples": [
+        "Mang Court",
+        "Mang Court"
+      ],
+      "meaning": "Primary scheme/building represented by the worksheet."
+    },
+    {
+      "entity_type": "unit_identifier_pattern",
+      "pattern": "MC <unit number><optional suffix>",
+      "examples": [
+        "MC 01",
+        "MC 02",
+        "MC 03",
+        "MC 04",
+        "MC 05",
+        "MC 06"
+      ],
+      "meaning": "Unit-level meter labels. Prefix MC appears to abbreviate the building or scheme name and is followed by the unit number.",
+      "occurrence_count": 6
+    },
+    {
+      "entity_type": "bulk_meter_pattern",
+      "pattern": "Bulk <number>",
+      "examples": [
+        "Bulk 1"
+      ],
+      "meaning": "Bulk supply meter identifiers used for building-level supply or aggregation."
+    }
+  ],
+  "categories_and_domains": {
+    "sheet_category": "building",
+    "domains": [
+      "electricity",
+      "water",
+      "charges",
+      "settings"
+    ],
+    "meter_types": [
+      "BULK",
+      "UNIT"
+    ],
+    "charge_names": [
+      "Elec Common Prop",
+      "Elec Service Charge",
+      "Elec Network Charge",
+      "Water Charge",
+      "Water Demand Management Levy",
+      "Water Surcharge",
+      "Sanitation",
+      "Refuse"
+    ],
+    "distribution_modes": [
+      "PQ",
+      "PQ",
+      "PQ",
+      "PQ",
+      "PQ",
+      "None",
+      "PQ",
+      "None"
+    ],
+    "sections": {
+      "electricity_header_row": 17,
+      "water_header_row": 25
+    }
+  },
+  "attributes_and_time_series": {
+    "time_series_type": "month_columns",
+    "month_columns": [
+      {
+        "column_index": 5,
+        "display_label": "2021-06-21 00:00:00",
+        "reading_date_raw": "2021-06-30 00:00:00",
+        "reading_date": "2021-06-30",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 6,
+        "display_label": "2021-07-21 00:00:00",
+        "reading_date_raw": "2021-07-31 00:00:00",
+        "reading_date": "2021-07-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 7,
+        "display_label": "2021-08-21 00:00:00",
+        "reading_date_raw": "2021-08-31 00:00:00",
+        "reading_date": "2021-08-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 8,
+        "display_label": "2021-09-21 00:00:00",
+        "reading_date_raw": "2021-09-30 00:00:00",
+        "reading_date": "2021-09-30",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 9,
+        "display_label": "2021-10-21 00:00:00",
+        "reading_date_raw": "2021-10-31 00:00:00",
+        "reading_date": "2021-10-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 10,
+        "display_label": "2021-11-21 00:00:00",
+        "reading_date_raw": "2021-11-30 00:00:00",
+        "reading_date": "2021-11-30",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 11,
+        "display_label": "2021-12-21 00:00:00",
+        "reading_date_raw": "2021-12-31 00:00:00",
+        "reading_date": "2021-12-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 12,
+        "display_label": "2022-01-21 00:00:00",
+        "reading_date_raw": "2022-01-31 00:00:00",
+        "reading_date": "2022-01-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 13,
+        "display_label": "2022-02-21 00:00:00",
+        "reading_date_raw": "2022-02-28 00:00:00",
+        "reading_date": "2022-02-28",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 14,
+        "display_label": "2022-03-21 00:00:00",
+        "reading_date_raw": "2022-03-31 00:00:00",
+        "reading_date": "2022-03-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 15,
+        "display_label": "2022-04-21 00:00:00",
+        "reading_date_raw": "2022-04-30 00:00:00",
+        "reading_date": "2022-04-30",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 16,
+        "display_label": "2022-05-21 00:00:00",
+        "reading_date_raw": "2022-05-31 00:00:00",
+        "reading_date": "2022-05-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 17,
+        "display_label": "2022-06-21 00:00:00",
+        "reading_date_raw": "2022-06-30 00:00:00",
+        "reading_date": "2022-06-30",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 18,
+        "display_label": "2022-07-21 00:00:00",
+        "reading_date_raw": "2022-07-31 00:00:00",
+        "reading_date": "2022-07-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 19,
+        "display_label": "2022-08-21 00:00:00",
+        "reading_date_raw": "2022-08-31 00:00:00",
+        "reading_date": "2022-08-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 20,
+        "display_label": "2022-09-21 00:00:00",
+        "reading_date_raw": "2022-09-30 00:00:00",
+        "reading_date": "2022-09-30",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 21,
+        "display_label": "2022-10-21 00:00:00",
+        "reading_date_raw": "2022-10-31 00:00:00",
+        "reading_date": "2022-10-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 22,
+        "display_label": "2022-11-21 00:00:00",
+        "reading_date_raw": "2022-11-30 00:00:00",
+        "reading_date": "2022-11-30",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 23,
+        "display_label": "2022-12-21 00:00:00",
+        "reading_date_raw": "2023-12-31 00:00:00",
+        "reading_date": "2023-12-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 24,
+        "display_label": "2023-01-21 00:00:00",
+        "reading_date_raw": "2023-01-31 00:00:00",
+        "reading_date": "2023-01-31",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      },
+      {
+        "column_index": 25,
+        "display_label": "2023-02-21 00:00:00",
+        "reading_date_raw": "2023-02-28 00:00:00",
+        "reading_date": "2023-02-28",
+        "reading_date_note": null,
+        "tariff_table": "MC Dec 2020"
+      }
+    ],
+    "resolved_month_count": 21,
+    "unresolved_month_count": 0,
+    "first_resolved_month": {
+      "column_index": 5,
+      "display_label": "2021-06-21 00:00:00",
+      "reading_date_raw": "2021-06-30 00:00:00",
+      "reading_date": "2021-06-30",
+      "reading_date_note": null,
+      "tariff_table": "MC Dec 2020"
+    },
+    "last_resolved_month": {
+      "column_index": 25,
+      "display_label": "2023-02-21 00:00:00",
+      "reading_date_raw": "2023-02-28 00:00:00",
+      "reading_date": "2023-02-28",
+      "reading_date_note": null,
+      "tariff_table": "MC Dec 2020"
+    },
+    "tariff_tables": [
+      "MC Dec 2020"
+    ]
+  },
+  "payload": {
+    "sheet_dimensions": {
+      "max_row": 508,
+      "max_column": 26
+    },
+    "merged_ranges": [],
+    "raw_rows": [
+      {
+        "row_index": 1,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Mang Court"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "2021-06-21 00:00:00"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "2021-07-21 00:00:00"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "2021-08-21 00:00:00"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "2021-09-21 00:00:00"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "2021-10-21 00:00:00"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "2021-11-21 00:00:00"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "2021-12-21 00:00:00"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "2022-01-21 00:00:00"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "2022-02-21 00:00:00"
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": "2022-03-21 00:00:00"
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": "2022-04-21 00:00:00"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "2022-05-21 00:00:00"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "2022-06-21 00:00:00"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "2022-07-21 00:00:00"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "2022-08-21 00:00:00"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "2022-09-21 00:00:00"
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": "2022-10-21 00:00:00"
+          },
+          {
+            "column_index": 22,
+            "column_letter": "V",
+            "value": "2022-11-21 00:00:00"
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": "2022-12-21 00:00:00"
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": "2023-01-21 00:00:00"
+          },
+          {
+            "column_index": 25,
+            "column_letter": "Y",
+            "value": "2023-02-21 00:00:00"
+          }
+        ]
+      },
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "Reading Date"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "2021-06-30 00:00:00"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "2021-07-31 00:00:00"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "2021-08-31 00:00:00"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "2021-09-30 00:00:00"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "2021-10-31 00:00:00"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "2021-11-30 00:00:00"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "2021-12-31 00:00:00"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "2022-01-31 00:00:00"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "2022-02-28 00:00:00"
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": "2022-03-31 00:00:00"
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": "2022-04-30 00:00:00"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "2022-05-31 00:00:00"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "2022-06-30 00:00:00"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "2022-07-31 00:00:00"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "2022-08-31 00:00:00"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "2022-09-30 00:00:00"
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": "2022-10-31 00:00:00"
+          },
+          {
+            "column_index": 22,
+            "column_letter": "V",
+            "value": "2022-11-30 00:00:00"
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": "2023-12-31 00:00:00"
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": "2023-01-31 00:00:00"
+          },
+          {
+            "column_index": 25,
+            "column_letter": "Y",
+            "value": "2023-02-28 00:00:00"
+          }
+        ]
+      },
+      {
+        "row_index": 3,
+        "cells": [
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "Tariff Table"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 22,
+            "column_letter": "V",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": "MC Dec 2020"
+          },
+          {
+            "column_index": 25,
+            "column_letter": "Y",
+            "value": "MC Dec 2020"
+          }
+        ]
+      },
+      {
+        "row_index": 4,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Elec Common Prop"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PQ"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 4635
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "3 808.40"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "3 399.11"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "2 458.80"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "=1106.22/1.15"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "=1106.22/1.15"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "=1060.08/1.15"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "=1060.08/1.15"
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": "=1060.08/1.15"
+          },
+          {
+            "column_index": 22,
+            "column_letter": "V",
+            "value": "=1060.08/1.15"
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": "=1060.08/1.15"
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": "=1060.08/1.15"
+          },
+          {
+            "column_index": 25,
+            "column_letter": "Y",
+            "value": "=1060.08/1.15"
+          }
+        ]
+      },
+      {
+        "row_index": 5,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Elec Service Charge"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PQ"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 169
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 169.29
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 169.29
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 169.29
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 169.29
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 169.29
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 169.29
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 169.29
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 169.29
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 169.29
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 169.29
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 169.29
+          }
+        ]
+      },
+      {
+        "row_index": 6,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Elec Network Charge"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PQ"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 622
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 582.31
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 578.93
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 548.63
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 548.63
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 548.63
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 548.63
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 548.63
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 548.63
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 548.63
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 548.63
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 548.63
+          }
+        ]
+      },
+      {
+        "row_index": 7,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Water Charge"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PQ"
+          }
+        ]
+      },
+      {
+        "row_index": 8,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Water Demand Management Levy"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PQ"
+          }
+        ]
+      },
+      {
+        "row_index": 9,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Water Surcharge"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "None"
+          }
+        ]
+      },
+      {
+        "row_index": 10,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Sanitation"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PQ"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 1461
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "1 461.42"
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "1 461.42"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1 680.63"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 1603.92
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 1603.92
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 1603.92
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 1603.92
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 1603.92
+          },
+          {
+            "column_index": 22,
+            "column_letter": "V",
+            "value": 1603.92
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 1603.92
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 1603.92
+          },
+          {
+            "column_index": 25,
+            "column_letter": "Y",
+            "value": 1603.92
+          }
+        ]
+      },
+      {
+        "row_index": 11,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Refuse"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "None"
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Council Electricity"
+          }
+        ]
+      },
+      {
+        "row_index": 13,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Council Water"
+          }
+        ]
+      },
+      {
+        "row_index": 14,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Council Sanatation"
+          }
+        ]
+      },
+      {
+        "row_index": 15,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Council Refuse"
+          }
+        ]
+      },
+      {
+        "row_index": 16,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "UNIT"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Prepaid"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "PQ"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "Graph"
+          }
+        ]
+      },
+      {
+        "row_index": 17,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "ELECTRICITY"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Final Reading"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 100
+          }
+        ]
+      },
+      {
+        "row_index": 18,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "MC 01"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 16.66666667
+          }
+        ]
+      },
+      {
+        "row_index": 19,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "MC 02"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 16.66666667
+          }
+        ]
+      },
+      {
+        "row_index": 20,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "MC 03"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 16.66666667
+          }
+        ]
+      },
+      {
+        "row_index": 21,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "MC 04"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 16.66666667
+          }
+        ]
+      },
+      {
+        "row_index": 22,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "MC 05"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 16.66666667
+          }
+        ]
+      },
+      {
+        "row_index": 23,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "MC 06"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 16.66666667
+          }
+        ]
+      },
+      {
+        "row_index": 24,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Bulk 1"
+          }
+        ]
+      },
+      {
+        "row_index": 25,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "WATER"
+          }
+        ]
+      },
+      {
+        "row_index": 26,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Bulk 1"
+          }
+        ]
+      },
+      {
+        "row_index": 485,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "MONTHLY STATS"
+          }
+        ]
+      },
+      {
+        "row_index": 486,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "ELECTRICITY"
+          }
+        ]
+      },
+      {
+        "row_index": 487,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Number of Bulk Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "ElecBulkCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 1
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 1
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "row_index": 488,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "KWH Used by Bulk Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "ElecBulkTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 489,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Charge for KWH used by Bulk Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "ElecBulkTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 490,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Number of Unit Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "ElecUnitCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 6
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 6
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 6
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 6
+          }
+        ]
+      },
+      {
+        "row_index": 491,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "KWH Used by Unit Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "ElecUnitTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 492,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Charge for KWH used by Unit Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "ElecUnitTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 493,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Difference between Bulk and Units total"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "ElecDifference"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 494,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "WATER"
+          }
+        ]
+      },
+      {
+        "row_index": 495,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Number ofBulk Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "WaterBulkCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 1
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 1
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "row_index": 496,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "KL Used by Bulk Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "WaterBulkTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 497,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Charge for KL used by Bulk Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "WaterBulkTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 498,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Number of Unit Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "WaterUnitCount"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 499,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "KL Used by Unit Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "WaterUnitTotCon"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 500,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Charge for KL used by Unit Meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "WaterUnitTotCharge"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 501,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Difference between Bulk and Units total"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "WaterDifference"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 502,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "PREPAID METER"
+          }
+        ]
+      },
+      {
+        "row_index": 503,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "The number of prepaid electric meters installed"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "PPNoOfElecInstalled"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 504,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "The total KWH used by the prepaid meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "PPElecConvMeterTotal"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 505,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "The Rand value of KWH used by the prepaid meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "PPTotalElecCost"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 506,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "The number of prepaid Water meters installed"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "PPNoOfWaterInstalled"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 507,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "The total KL used by the prepaid meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "PPWaterConvMeterTotal"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 508,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "The Rand value of KL used by the prepaid meters"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "PPTotalWaterCost"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          }
+        ]
+      }
+    ],
+    "normalized_payload": {
+      "sheet_name": "Mang Court",
+      "sheet_slug": "mang-court",
+      "sheet_category": "building",
+      "scheme_name": "Mang Court",
+      "settings_snapshot": {
+        "vat_percent": 0.15,
+        "ignore_negative_common_property_amounts": true,
+        "tolerance_months": 4,
+        "tolerance_percentage": 1.0
+      },
+      "month_columns": [
+        {
+          "column_index": 5,
+          "display_label": "2021-06-21 00:00:00",
+          "reading_date_raw": "2021-06-30 00:00:00",
+          "reading_date": "2021-06-30",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 6,
+          "display_label": "2021-07-21 00:00:00",
+          "reading_date_raw": "2021-07-31 00:00:00",
+          "reading_date": "2021-07-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 7,
+          "display_label": "2021-08-21 00:00:00",
+          "reading_date_raw": "2021-08-31 00:00:00",
+          "reading_date": "2021-08-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 8,
+          "display_label": "2021-09-21 00:00:00",
+          "reading_date_raw": "2021-09-30 00:00:00",
+          "reading_date": "2021-09-30",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 9,
+          "display_label": "2021-10-21 00:00:00",
+          "reading_date_raw": "2021-10-31 00:00:00",
+          "reading_date": "2021-10-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 10,
+          "display_label": "2021-11-21 00:00:00",
+          "reading_date_raw": "2021-11-30 00:00:00",
+          "reading_date": "2021-11-30",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 11,
+          "display_label": "2021-12-21 00:00:00",
+          "reading_date_raw": "2021-12-31 00:00:00",
+          "reading_date": "2021-12-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 12,
+          "display_label": "2022-01-21 00:00:00",
+          "reading_date_raw": "2022-01-31 00:00:00",
+          "reading_date": "2022-01-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 13,
+          "display_label": "2022-02-21 00:00:00",
+          "reading_date_raw": "2022-02-28 00:00:00",
+          "reading_date": "2022-02-28",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 14,
+          "display_label": "2022-03-21 00:00:00",
+          "reading_date_raw": "2022-03-31 00:00:00",
+          "reading_date": "2022-03-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 15,
+          "display_label": "2022-04-21 00:00:00",
+          "reading_date_raw": "2022-04-30 00:00:00",
+          "reading_date": "2022-04-30",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 16,
+          "display_label": "2022-05-21 00:00:00",
+          "reading_date_raw": "2022-05-31 00:00:00",
+          "reading_date": "2022-05-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 17,
+          "display_label": "2022-06-21 00:00:00",
+          "reading_date_raw": "2022-06-30 00:00:00",
+          "reading_date": "2022-06-30",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 18,
+          "display_label": "2022-07-21 00:00:00",
+          "reading_date_raw": "2022-07-31 00:00:00",
+          "reading_date": "2022-07-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 19,
+          "display_label": "2022-08-21 00:00:00",
+          "reading_date_raw": "2022-08-31 00:00:00",
+          "reading_date": "2022-08-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 20,
+          "display_label": "2022-09-21 00:00:00",
+          "reading_date_raw": "2022-09-30 00:00:00",
+          "reading_date": "2022-09-30",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 21,
+          "display_label": "2022-10-21 00:00:00",
+          "reading_date_raw": "2022-10-31 00:00:00",
+          "reading_date": "2022-10-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 22,
+          "display_label": "2022-11-21 00:00:00",
+          "reading_date_raw": "2022-11-30 00:00:00",
+          "reading_date": "2022-11-30",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 23,
+          "display_label": "2022-12-21 00:00:00",
+          "reading_date_raw": "2023-12-31 00:00:00",
+          "reading_date": "2023-12-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 24,
+          "display_label": "2023-01-21 00:00:00",
+          "reading_date_raw": "2023-01-31 00:00:00",
+          "reading_date": "2023-01-31",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        },
+        {
+          "column_index": 25,
+          "display_label": "2023-02-21 00:00:00",
+          "reading_date_raw": "2023-02-28 00:00:00",
+          "reading_date": "2023-02-28",
+          "reading_date_note": null,
+          "tariff_table": "MC Dec 2020"
+        }
+      ],
+      "charge_modes": [
+        {
+          "source_row": 4,
+          "charge_name": "Elec Common Prop",
+          "distribution_mode": "PQ"
+        },
+        {
+          "source_row": 5,
+          "charge_name": "Elec Service Charge",
+          "distribution_mode": "PQ"
+        },
+        {
+          "source_row": 6,
+          "charge_name": "Elec Network Charge",
+          "distribution_mode": "PQ"
+        },
+        {
+          "source_row": 7,
+          "charge_name": "Water Charge",
+          "distribution_mode": "PQ"
+        },
+        {
+          "source_row": 8,
+          "charge_name": "Water Demand Management Levy",
+          "distribution_mode": "PQ"
+        },
+        {
+          "source_row": 9,
+          "charge_name": "Water Surcharge",
+          "distribution_mode": "None"
+        },
+        {
+          "source_row": 10,
+          "charge_name": "Sanitation",
+          "distribution_mode": "PQ"
+        },
+        {
+          "source_row": 11,
+          "charge_name": "Refuse",
+          "distribution_mode": "None"
+        }
+      ],
+      "sections": {
+        "electricity_header_row": 17,
+        "water_header_row": 25
+      },
+      "electricity_rows": [
+        {
+          "source_row": 18,
+          "legacy_label": "MC 01",
+          "meter_type": "UNIT",
+          "prepaid_marker": null,
+          "pq_factor": 16.66666667,
+          "readings": []
+        },
+        {
+          "source_row": 19,
+          "legacy_label": "MC 02",
+          "meter_type": "UNIT",
+          "prepaid_marker": null,
+          "pq_factor": 16.66666667,
+          "readings": []
+        },
+        {
+          "source_row": 20,
+          "legacy_label": "MC 03",
+          "meter_type": "UNIT",
+          "prepaid_marker": null,
+          "pq_factor": 16.66666667,
+          "readings": []
+        },
+        {
+          "source_row": 21,
+          "legacy_label": "MC 04",
+          "meter_type": "UNIT",
+          "prepaid_marker": null,
+          "pq_factor": 16.66666667,
+          "readings": []
+        },
+        {
+          "source_row": 22,
+          "legacy_label": "MC 05",
+          "meter_type": "UNIT",
+          "prepaid_marker": null,
+          "pq_factor": 16.66666667,
+          "readings": []
+        },
+        {
+          "source_row": 23,
+          "legacy_label": "MC 06",
+          "meter_type": "UNIT",
+          "prepaid_marker": null,
+          "pq_factor": 16.66666667,
+          "readings": []
+        },
+        {
+          "source_row": 24,
+          "legacy_label": "Bulk 1",
+          "meter_type": "BULK",
+          "prepaid_marker": null,
+          "pq_factor": null,
+          "readings": []
+        }
+      ],
+      "review_flags": [
+        {
+          "severity": "medium",
+          "type": "row-with-no-readings",
+          "row_index": 18,
+          "legacy_label": "MC 01",
+          "message": "Electricity row has no captured reading values."
+        },
+        {
+          "severity": "medium",
+          "type": "row-with-no-readings",
+          "row_index": 19,
+          "legacy_label": "MC 02",
+          "message": "Electricity row has no captured reading values."
+        },
+        {
+          "severity": "medium",
+          "type": "row-with-no-readings",
+          "row_index": 20,
+          "legacy_label": "MC 03",
+          "message": "Electricity row has no captured reading values."
+        },
+        {
+          "severity": "medium",
+          "type": "row-with-no-readings",
+          "row_index": 21,
+          "legacy_label": "MC 04",
+          "message": "Electricity row has no captured reading values."
+        },
+        {
+          "severity": "medium",
+          "type": "row-with-no-readings",
+          "row_index": 22,
+          "legacy_label": "MC 05",
+          "message": "Electricity row has no captured reading values."
+        },
+        {
+          "severity": "medium",
+          "type": "row-with-no-readings",
+          "row_index": 23,
+          "legacy_label": "MC 06",
+          "message": "Electricity row has no captured reading values."
+        },
+        {
+          "severity": "medium",
+          "type": "row-with-no-readings",
+          "row_index": 24,
+          "legacy_label": "Bulk 1",
+          "message": "Electricity row has no captured reading values."
+        }
+      ]
+    }
+  },
+  "formulas_and_connections": {
+    "formula_cell_count": 9,
+    "formula_patterns": [
+      {
+        "pattern": "=<NUM>/<NUM>",
+        "count": 9
+      }
+    ],
+    "formula_cells": [
+      {
+        "sheet_name": "Mang Court",
+        "cell": "Q4",
+        "row_index": 4,
+        "column_index": 17,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2022-06-21 00:00:00",
+        "heading_secondary": "2022-06-30 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1106.22/1.15",
+        "cached_value": 961.9304347826088,
+        "references": []
+      },
+      {
+        "sheet_name": "Mang Court",
+        "cell": "R4",
+        "row_index": 4,
+        "column_index": 18,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2022-07-21 00:00:00",
+        "heading_secondary": "2022-07-31 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1106.22/1.15",
+        "cached_value": 961.9304347826088,
+        "references": []
+      },
+      {
+        "sheet_name": "Mang Court",
+        "cell": "S4",
+        "row_index": 4,
+        "column_index": 19,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2022-08-21 00:00:00",
+        "heading_secondary": "2022-08-31 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1060.08/1.15",
+        "cached_value": 921.8086956521739,
+        "references": []
+      },
+      {
+        "sheet_name": "Mang Court",
+        "cell": "T4",
+        "row_index": 4,
+        "column_index": 20,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2022-09-21 00:00:00",
+        "heading_secondary": "2022-09-30 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1060.08/1.15",
+        "cached_value": 921.8086956521739,
+        "references": []
+      },
+      {
+        "sheet_name": "Mang Court",
+        "cell": "U4",
+        "row_index": 4,
+        "column_index": 21,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2022-10-21 00:00:00",
+        "heading_secondary": "2022-10-31 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1060.08/1.15",
+        "cached_value": 921.8086956521739,
+        "references": []
+      },
+      {
+        "sheet_name": "Mang Court",
+        "cell": "V4",
+        "row_index": 4,
+        "column_index": 22,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2022-11-21 00:00:00",
+        "heading_secondary": "2022-11-30 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1060.08/1.15",
+        "cached_value": 921.8086956521739,
+        "references": []
+      },
+      {
+        "sheet_name": "Mang Court",
+        "cell": "W4",
+        "row_index": 4,
+        "column_index": 23,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2022-12-21 00:00:00",
+        "heading_secondary": "2023-12-31 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1060.08/1.15",
+        "cached_value": 921.8086956521739,
+        "references": []
+      },
+      {
+        "sheet_name": "Mang Court",
+        "cell": "X4",
+        "row_index": 4,
+        "column_index": 24,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2023-01-21 00:00:00",
+        "heading_secondary": "2023-01-31 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1060.08/1.15",
+        "cached_value": 921.8086956521739,
+        "references": []
+      },
+      {
+        "sheet_name": "Mang Court",
+        "cell": "Y4",
+        "row_index": 4,
+        "column_index": 25,
+        "row_label": "Elec Common Prop",
+        "heading_primary": "2023-02-21 00:00:00",
+        "heading_secondary": "2023-02-28 00:00:00",
+        "heading_tertiary": "MC Dec 2020",
+        "formula": "=1060.08/1.15",
+        "cached_value": 921.8086956521739,
+        "references": []
+      }
+    ]
+  },
+  "related_vba_sources": [
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\modules\\D_BreakDown_Electricity.bas",
+      "procedures": [
+        "CreateBuildingReport",
+        "GenerateElectricityBreakDown",
+        "CalcTotalforActualUnitElecIncome"
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\modules\\D_Breakdown_Data_Load.bas",
+      "procedures": [
+        "Load_Building_Data",
+        "CalcSharedAmounts",
+        "CalcElecDifferenceBulkVsUnit",
+        "CalcWaterDifferenceBulkVsUnit",
+        "GetConsumption"
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\modules\\I_CSV_Import.bas",
+      "procedures": [
+        "ImportX",
+        "fileExists"
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\modules\\I_Importing.bas",
+      "procedures": [
+        "ImportData",
+        "LoadUnitTitles",
+        "ReadData"
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\modules\\T_Tolorance.bas",
+      "procedures": [
+        "ToloranceCheck"
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\modules\\Z_SAVE_LOAD_DATA.bas",
+      "procedures": [
+        "Save_Data",
+        "Load_Data",
+        "ImportSheetData",
+        "ExportSheetData",
+        "ExportThisSheetOnly",
+        "ImportThisSheetOnly"
+      ]
+    },
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\objects\\ThisWorkbook.cls",
+      "procedures": []
+    }
+  ]
+}

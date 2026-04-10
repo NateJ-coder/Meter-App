@@ -1,0 +1,636 @@
+{
+  "summary_type": "utility-dash-sheet-summary",
+  "generated_at": "2026-04-10T11:54:58.166126+00:00",
+  "workbook": {
+    "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+    "source_file_is_encrypted": true,
+    "decryption_password_used": true
+  },
+  "sheet": {
+    "sheet_name": "Help",
+    "sheet_slug": "help",
+    "sheet_category": "support",
+    "summary_file_name": "help.summary.json"
+  },
+  "entities_and_meanings": [
+    {
+      "entity_type": "sheet_labels_and_headings",
+      "examples": [
+        "HELP - KEYBOARD SHORT-CUTS             CTRL + SHIFT + \"KEY\"",
+        "Water | Electricity | Refuse &",
+        "Readings | Readings | Sanitation",
+        "Show All | Difference of | (System)",
+        "Buildings | 2 Numbers | Font",
+        "Adds Cons. | BCM | Next",
+        "Comments | Export | Building"
+      ],
+      "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+    }
+  ],
+  "categories_and_domains": {
+    "sheet_category": "support",
+    "domains": [
+      "electricity",
+      "water",
+      "reporting",
+      "navigation"
+    ],
+    "sheet_name": "Help"
+  },
+  "attributes_and_time_series": {
+    "time_series_type": "date_like_values",
+    "date_like_values": [],
+    "top_rows": [
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": "HELP - KEYBOARD SHORT-CUTS             CTRL + SHIFT + \"KEY\""
+          }
+        ]
+      },
+      {
+        "row_index": 6,
+        "cells": [
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "Water"
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": "Electricity"
+          },
+          {
+            "column_index": 36,
+            "column_letter": "AJ",
+            "value": "Refuse &"
+          },
+          {
+            "column_index": 66,
+            "column_letter": "BN",
+            "value": "(System)"
+          },
+          {
+            "column_index": 96,
+            "column_letter": "CR",
+            "value": "(System)"
+          }
+        ]
+      },
+      {
+        "row_index": 7,
+        "cells": [
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "Readings"
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": "Readings"
+          },
+          {
+            "column_index": 36,
+            "column_letter": "AJ",
+            "value": "Sanitation"
+          },
+          {
+            "column_index": 46,
+            "column_letter": "AT",
+            "value": "Tariffs"
+          },
+          {
+            "column_index": 76,
+            "column_letter": "BX",
+            "value": "Invoice"
+          },
+          {
+            "column_index": 86,
+            "column_letter": "CH",
+            "value": "Options"
+          },
+          {
+            "column_index": 96,
+            "column_letter": "CR",
+            "value": "Font"
+          }
+        ]
+      },
+      {
+        "row_index": 11,
+        "cells": [
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "Show All"
+          },
+          {
+            "column_index": 29,
+            "column_letter": "AC",
+            "value": "Difference of"
+          },
+          {
+            "column_index": 39,
+            "column_letter": "AM",
+            "value": "(System)"
+          },
+          {
+            "column_index": 89,
+            "column_letter": "CK",
+            "value": "(System)?"
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "Buildings"
+          },
+          {
+            "column_index": 29,
+            "column_letter": "AC",
+            "value": "2 Numbers"
+          },
+          {
+            "column_index": 39,
+            "column_letter": "AM",
+            "value": "Font"
+          },
+          {
+            "column_index": 49,
+            "column_letter": "AW",
+            "value": "GO"
+          },
+          {
+            "column_index": 59,
+            "column_letter": "BG",
+            "value": "HOME"
+          }
+        ]
+      },
+      {
+        "row_index": 16,
+        "cells": [
+          {
+            "column_index": 34,
+            "column_letter": "AH",
+            "value": "Adds Cons."
+          },
+          {
+            "column_index": 54,
+            "column_letter": "BB",
+            "value": "BCM"
+          },
+          {
+            "column_index": 64,
+            "column_letter": "BL",
+            "value": "Next"
+          },
+          {
+            "column_index": 74,
+            "column_letter": "BV",
+            "value": "Previous"
+          }
+        ]
+      },
+      {
+        "row_index": 17,
+        "cells": [
+          {
+            "column_index": 34,
+            "column_letter": "AH",
+            "value": "Comments"
+          },
+          {
+            "column_index": 54,
+            "column_letter": "BB",
+            "value": "Export"
+          },
+          {
+            "column_index": 64,
+            "column_letter": "BL",
+            "value": "Building"
+          },
+          {
+            "column_index": 74,
+            "column_letter": "BV",
+            "value": "Building"
+          }
+        ]
+      }
+    ]
+  },
+  "payload": {
+    "sheet_dimensions": {
+      "max_row": 51,
+      "max_column": 106
+    },
+    "merged_ranges": [],
+    "raw_rows": [
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": "HELP - KEYBOARD SHORT-CUTS             CTRL + SHIFT + \"KEY\""
+          }
+        ]
+      },
+      {
+        "row_index": 6,
+        "cells": [
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "Water"
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": "Electricity"
+          },
+          {
+            "column_index": 36,
+            "column_letter": "AJ",
+            "value": "Refuse &"
+          },
+          {
+            "column_index": 66,
+            "column_letter": "BN",
+            "value": "(System)"
+          },
+          {
+            "column_index": 96,
+            "column_letter": "CR",
+            "value": "(System)"
+          }
+        ]
+      },
+      {
+        "row_index": 7,
+        "cells": [
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "Readings"
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": "Readings"
+          },
+          {
+            "column_index": 36,
+            "column_letter": "AJ",
+            "value": "Sanitation"
+          },
+          {
+            "column_index": 46,
+            "column_letter": "AT",
+            "value": "Tariffs"
+          },
+          {
+            "column_index": 76,
+            "column_letter": "BX",
+            "value": "Invoice"
+          },
+          {
+            "column_index": 86,
+            "column_letter": "CH",
+            "value": "Options"
+          },
+          {
+            "column_index": 96,
+            "column_letter": "CR",
+            "value": "Font"
+          }
+        ]
+      },
+      {
+        "row_index": 11,
+        "cells": [
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "Show All"
+          },
+          {
+            "column_index": 29,
+            "column_letter": "AC",
+            "value": "Difference of"
+          },
+          {
+            "column_index": 39,
+            "column_letter": "AM",
+            "value": "(System)"
+          },
+          {
+            "column_index": 89,
+            "column_letter": "CK",
+            "value": "(System)?"
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "Buildings"
+          },
+          {
+            "column_index": 29,
+            "column_letter": "AC",
+            "value": "2 Numbers"
+          },
+          {
+            "column_index": 39,
+            "column_letter": "AM",
+            "value": "Font"
+          },
+          {
+            "column_index": 49,
+            "column_letter": "AW",
+            "value": "GO"
+          },
+          {
+            "column_index": 59,
+            "column_letter": "BG",
+            "value": "HOME"
+          }
+        ]
+      },
+      {
+        "row_index": 16,
+        "cells": [
+          {
+            "column_index": 34,
+            "column_letter": "AH",
+            "value": "Adds Cons."
+          },
+          {
+            "column_index": 54,
+            "column_letter": "BB",
+            "value": "BCM"
+          },
+          {
+            "column_index": 64,
+            "column_letter": "BL",
+            "value": "Next"
+          },
+          {
+            "column_index": 74,
+            "column_letter": "BV",
+            "value": "Previous"
+          }
+        ]
+      },
+      {
+        "row_index": 17,
+        "cells": [
+          {
+            "column_index": 34,
+            "column_letter": "AH",
+            "value": "Comments"
+          },
+          {
+            "column_index": 54,
+            "column_letter": "BB",
+            "value": "Export"
+          },
+          {
+            "column_index": 64,
+            "column_letter": "BL",
+            "value": "Building"
+          },
+          {
+            "column_index": 74,
+            "column_letter": "BV",
+            "value": "Building"
+          }
+        ]
+      }
+    ],
+    "normalized_payload": {
+      "sheet_name": "Help",
+      "sheet_slug": "help",
+      "sheet_category": "support",
+      "scheme_name": null,
+      "settings_snapshot": {
+        "vat_percent": 0.15,
+        "ignore_negative_common_property_amounts": true,
+        "tolerance_months": 4,
+        "tolerance_percentage": 1.0
+      },
+      "rows": [
+        {
+          "row_index": 2,
+          "cells": [
+            {
+              "column_index": 21,
+              "column_letter": "U",
+              "value": "HELP - KEYBOARD SHORT-CUTS             CTRL + SHIFT + \"KEY\""
+            }
+          ]
+        },
+        {
+          "row_index": 6,
+          "cells": [
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": "Water"
+            },
+            {
+              "column_index": 26,
+              "column_letter": "Z",
+              "value": "Electricity"
+            },
+            {
+              "column_index": 36,
+              "column_letter": "AJ",
+              "value": "Refuse &"
+            },
+            {
+              "column_index": 66,
+              "column_letter": "BN",
+              "value": "(System)"
+            },
+            {
+              "column_index": 96,
+              "column_letter": "CR",
+              "value": "(System)"
+            }
+          ]
+        },
+        {
+          "row_index": 7,
+          "cells": [
+            {
+              "column_index": 16,
+              "column_letter": "P",
+              "value": "Readings"
+            },
+            {
+              "column_index": 26,
+              "column_letter": "Z",
+              "value": "Readings"
+            },
+            {
+              "column_index": 36,
+              "column_letter": "AJ",
+              "value": "Sanitation"
+            },
+            {
+              "column_index": 46,
+              "column_letter": "AT",
+              "value": "Tariffs"
+            },
+            {
+              "column_index": 76,
+              "column_letter": "BX",
+              "value": "Invoice"
+            },
+            {
+              "column_index": 86,
+              "column_letter": "CH",
+              "value": "Options"
+            },
+            {
+              "column_index": 96,
+              "column_letter": "CR",
+              "value": "Font"
+            }
+          ]
+        },
+        {
+          "row_index": 11,
+          "cells": [
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "Show All"
+            },
+            {
+              "column_index": 29,
+              "column_letter": "AC",
+              "value": "Difference of"
+            },
+            {
+              "column_index": 39,
+              "column_letter": "AM",
+              "value": "(System)"
+            },
+            {
+              "column_index": 89,
+              "column_letter": "CK",
+              "value": "(System)?"
+            }
+          ]
+        },
+        {
+          "row_index": 12,
+          "cells": [
+            {
+              "column_index": 19,
+              "column_letter": "S",
+              "value": "Buildings"
+            },
+            {
+              "column_index": 29,
+              "column_letter": "AC",
+              "value": "2 Numbers"
+            },
+            {
+              "column_index": 39,
+              "column_letter": "AM",
+              "value": "Font"
+            },
+            {
+              "column_index": 49,
+              "column_letter": "AW",
+              "value": "GO"
+            },
+            {
+              "column_index": 59,
+              "column_letter": "BG",
+              "value": "HOME"
+            }
+          ]
+        },
+        {
+          "row_index": 16,
+          "cells": [
+            {
+              "column_index": 34,
+              "column_letter": "AH",
+              "value": "Adds Cons."
+            },
+            {
+              "column_index": 54,
+              "column_letter": "BB",
+              "value": "BCM"
+            },
+            {
+              "column_index": 64,
+              "column_letter": "BL",
+              "value": "Next"
+            },
+            {
+              "column_index": 74,
+              "column_letter": "BV",
+              "value": "Previous"
+            }
+          ]
+        },
+        {
+          "row_index": 17,
+          "cells": [
+            {
+              "column_index": 34,
+              "column_letter": "AH",
+              "value": "Comments"
+            },
+            {
+              "column_index": 54,
+              "column_letter": "BB",
+              "value": "Export"
+            },
+            {
+              "column_index": 64,
+              "column_letter": "BL",
+              "value": "Building"
+            },
+            {
+              "column_index": 74,
+              "column_letter": "BV",
+              "value": "Building"
+            }
+          ]
+        }
+      ],
+      "review_flags": []
+    }
+  },
+  "formulas_and_connections": {
+    "formula_cell_count": 0,
+    "formula_patterns": [],
+    "formula_cells": []
+  },
+  "related_vba_sources": [
+    {
+      "path": "C:\\Projects\\Meter App\\legacy-ud\\vba-source\\objects\\ThisWorkbook.cls",
+      "procedures": []
+    }
+  ]
+}
