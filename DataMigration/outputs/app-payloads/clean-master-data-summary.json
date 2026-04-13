@@ -1,0 +1,145 @@
+{
+  "generated_at": "2026-04-13T09:10:16.645314+00:00",
+  "active_buildings": [
+    "Akasia",
+    "Azores",
+    "Bonifay",
+    "Carissa Lane",
+    "Colnbrook",
+    "Genisis on Fairmount",
+    "Gosforth Park",
+    "Hazelmere",
+    "La Montagne",
+    "QueensGate",
+    "Rivonia Gates",
+    "Taragona",
+    "Transvalia",
+    "VILLINO GLEN",
+    "Vista Del Monte"
+  ],
+  "matched_sheets": [
+    "akasia.normalized.json",
+    "bonifay-court.normalized.json",
+    "carissa-lane.normalized.json",
+    "genesis.normalized.json",
+    "hazelmere.normalized.json",
+    "l-montagne.normalized.json",
+    "queensgate.normalized.json",
+    "rivonia-gate.normalized.json",
+    "taragona.normalized.json",
+    "the-azores.normalized.json",
+    "transvalia.normalized.json",
+    "vilino-glen.normalized.json",
+    "vista-del-monte.normalized.json"
+  ],
+  "skipped_sheets": [
+    "granistar-heights.normalized.json",
+    "haven-court.normalized.json",
+    "magnolia-gardens.normalized.json",
+    "mang-court.normalized.json",
+    "new-poort.normalized.json",
+    "panarama-view.normalized.json",
+    "phanda-lodge.normalized.json",
+    "riviera-villas.normalized.json",
+    "stonecrest.normalized.json",
+    "suncrest.normalized.json"
+  ],
+  "counts": {
+    "schemes": 15,
+    "buildings": 15,
+    "units": 677,
+    "meters": 719
+  },
+  "buildings": [
+    {
+      "scheme_name": "Akasia",
+      "source_file": "DataMigration/outputs/sheet-normalized/akasia.normalized.json",
+      "units": 91,
+      "meters": 92
+    },
+    {
+      "scheme_name": "Bonifay",
+      "source_file": "DataMigration/outputs/sheet-normalized/bonifay-court.normalized.json",
+      "units": 24,
+      "meters": 28
+    },
+    {
+      "scheme_name": "Carissa Lane",
+      "source_file": "DataMigration/outputs/sheet-normalized/carissa-lane.normalized.json",
+      "units": 30,
+      "meters": 34
+    },
+    {
+      "scheme_name": "Genisis on Fairmount",
+      "source_file": "DataMigration/outputs/sheet-normalized/genesis.normalized.json",
+      "units": 63,
+      "meters": 75
+    },
+    {
+      "scheme_name": "Hazelmere",
+      "source_file": "DataMigration/outputs/sheet-normalized/hazelmere.normalized.json",
+      "units": 140,
+      "meters": 148
+    },
+    {
+      "scheme_name": "La Montagne",
+      "source_file": "DataMigration/outputs/sheet-normalized/l-montagne.normalized.json",
+      "units": 50,
+      "meters": 51
+    },
+    {
+      "scheme_name": "QueensGate",
+      "source_file": "DataMigration/outputs/sheet-normalized/queensgate.normalized.json",
+      "units": 53,
+      "meters": 54
+    },
+    {
+      "scheme_name": "Rivonia Gates",
+      "source_file": "DataMigration/outputs/sheet-normalized/rivonia-gate.normalized.json",
+      "units": 16,
+      "meters": 17
+    },
+    {
+      "scheme_name": "Taragona",
+      "source_file": "DataMigration/outputs/sheet-normalized/taragona.normalized.json",
+      "units": 38,
+      "meters": 43
+    },
+    {
+      "scheme_name": "Azores",
+      "source_file": "DataMigration/outputs/sheet-normalized/the-azores.normalized.json",
+      "units": 72,
+      "meters": 73
+    },
+    {
+      "scheme_name": "Transvalia",
+      "source_file": "DataMigration/outputs/sheet-normalized/transvalia.normalized.json",
+      "units": 20,
+      "meters": 21
+    },
+    {
+      "scheme_name": "VILLINO GLEN",
+      "source_file": "DataMigration/outputs/sheet-normalized/vilino-glen.normalized.json",
+      "units": 38,
+      "meters": 40
+    },
+    {
+      "scheme_name": "Vista Del Monte",
+      "source_file": "DataMigration/outputs/sheet-normalized/vista-del-monte.normalized.json",
+      "units": 42,
+      "meters": 43
+    },
+    {
+      "scheme_name": "Colnbrook",
+      "source_file": null,
+      "units": 0,
+      "meters": 0
+    },
+    {
+      "scheme_name": "Gosforth Park",
+      "source_file": null,
+      "units": 0,
+      "meters": 0
+    }
+  ]
+}

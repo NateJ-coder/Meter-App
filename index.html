@@ -121,6 +121,7 @@
         import { onboarding } from './assets/onboarding.js';
         import { setupHealth } from './assets/setup-health.js';
         import { firstTimeChecklist } from './assets/first-time-checklist.js';
+        import { ensureBundledMasterData } from './assets/clean-master-data.js';
         import { initializeFolderSchemes } from './assets/app.js';
         import { importReadingTransferPackage } from './assets/reading-transfer.js';
 
@@ -133,6 +134,12 @@
             await storage.initializeCloudSync({ preload: true, clearMissing: false });
         } catch (error) {
             console.error('Cloud data hydration failed:', error);
+        }
+
+        try {
+            await ensureBundledMasterData();
+        } catch (error) {
+            console.error('Bundled master data bootstrap failed:', error);
         }
 
         initializeFolderSchemes();
