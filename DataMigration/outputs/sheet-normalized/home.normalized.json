@@ -676,5 +676,511 @@
       ]
     }
   ],
+  "entities_and_meanings": [
+    {
+      "entity_type": "sheet_labels_and_headings",
+      "examples": [
+        "Utility Dash  -  \u00a9 Copyright J D Greaves | LAST UPDATED 19/11/2025 | Licenced to: Fuzio",
+        "Utility Dash",
+        "No. | Buildings | =SUM(D4:D17) & \" Units\"",
+        "The Azores",
+        "Carissa Lane",
+        "Genesis",
+        "Hazelmere",
+        "L'Montagne",
+        "Queensgate",
+        "Rivonia Gate",
+        "Taragona",
+        "Transvalia",
+        "Vilino Glen",
+        "Akasia",
+        "Phanda Lodge",
+        "Vista Del Monte",
+        "Bonifay Court",
+        "Haven Court",
+        "New Poort",
+        "Mang Court"
+      ],
+      "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+    }
+  ],
+  "categories_and_domains": {
+    "sheet_category": "support",
+    "domains": [
+      "electricity",
+      "navigation"
+    ],
+    "sheet_name": "Home"
+  },
+  "attributes_and_time_series": {
+    "time_series_type": "date_like_values",
+    "date_like_values": [
+      {
+        "row_index": 1,
+        "column_index": 2,
+        "value": "LAST UPDATED 19/11/2025"
+      }
+    ],
+    "top_rows": [
+      {
+        "row_index": 1,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "Utility Dash  -  \u00a9 Copyright J D Greaves"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "LAST UPDATED 19/11/2025"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": "Licenced to: Fuzio"
+          }
+        ]
+      },
+      {
+        "row_index": 2,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Utility Dash"
+          }
+        ]
+      },
+      {
+        "row_index": 3,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "No."
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Buildings"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "=SUM(D4:D17) & \" Units\""
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "=SUM(E4:E17) & \" Meters\""
+          }
+        ]
+      },
+      {
+        "row_index": 4,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 1
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "The Azores"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 72
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 75
+          }
+        ]
+      },
+      {
+        "row_index": 5,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 2
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Carissa Lane"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 30
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 65
+          }
+        ]
+      },
+      {
+        "row_index": 6,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 3
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Genesis"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 63
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 68
+          }
+        ]
+      },
+      {
+        "row_index": 7,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 4
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Hazelmere"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 53
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 120
+          }
+        ]
+      },
+      {
+        "row_index": 8,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 5
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "L'Montagne"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 50
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 103
+          }
+        ]
+      },
+      {
+        "row_index": 9,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 6
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Queensgate"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 53
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 108
+          }
+        ]
+      },
+      {
+        "row_index": 10,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 7
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Rivonia Gate"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 16
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 15
+          }
+        ]
+      },
+      {
+        "row_index": 11,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 8
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Taragona"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 34
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 43
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 9
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Transvalia"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 20
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 13,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 10
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Vilino Glen"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 39
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 78
+          }
+        ]
+      },
+      {
+        "row_index": 14,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 11
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Akasia"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 89
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 178
+          }
+        ]
+      },
+      {
+        "row_index": 15,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 12
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Phanda Lodge"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 48
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 96
+          }
+        ]
+      },
+      {
+        "row_index": 16,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 13
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Vista Del Monte"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 42
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 44
+          }
+        ]
+      },
+      {
+        "row_index": 17,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 14
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Bonifay Court"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 24
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 48
+          }
+        ]
+      },
+      {
+        "row_index": 18,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 15
+          }
+        ]
+      },
+      {
+        "row_index": 19,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 16
+          }
+        ]
+      },
+      {
+        "row_index": 20,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 17
+          }
+        ]
+      }
+    ]
+  },
+  "formulas_and_connections_summary": {
+    "formula_cell_count": 2,
+    "formula_patterns": [
+      {
+        "pattern": "=SUM(<REF>) & \" Units\"",
+        "count": 1
+      },
+      {
+        "pattern": "=SUM(<REF>) & \" Meters\"",
+        "count": 1
+      }
+    ]
+  },
+  "source_evidence": null,
+  "cross_check": {
+    "reconciled_at": "2026-04-10T13:42:21.567262+00:00",
+    "source_workbook": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+    "summary_file": "C:\\Projects\\Meter App\\DataMigration\\Summaries\\home.summary.json",
+    "previous_review_flag_count": 0,
+    "current_review_flag_count": 0,
+    "derived_date_count": 0,
+    "resolved_formula_value_count": 0
+  },
   "review_flags": []
 }

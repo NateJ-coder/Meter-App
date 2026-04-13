@@ -1,0 +1,37 @@
+{
+  "building_name": "Carissa Lane",
+  "generated_at": "2026-04-11T14:44:14.362293+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "summary": {
+    "total_images": 0,
+    "folders_without_images": 5,
+    "images_with_meter_number": 0,
+    "images_with_serial_number": 0,
+    "images_with_meter_reading": 0,
+    "images_with_date": 0,
+    "flags": {}
+  },
+  "folders_without_images": [
+    {
+      "folder": "COUNCIL & UTILITIES",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/CL Utilities",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/CL Utilities/Utilities Breakdown Invoice/2024/2024.07",
+      "reason": "folder-has-no-image-descendants"
+    }
+  ],
+  "images": []
+}

@@ -38,8 +38,8 @@
       "column_index": 8,
       "display_label": "2021-02-21 00:00:00",
       "reading_date_raw": "28/28/2021",
-      "reading_date": null,
-      "reading_date_note": "unparseable-date",
+      "reading_date": "2021-02-21",
+      "reading_date_note": "derived-from-display-label",
       "tariff_table": "HC Dec 2020"
     },
     {
@@ -246,32 +246,32 @@
       "column_index": 34,
       "display_label": "2023-04-21 00:00:00",
       "reading_date_raw": null,
-      "reading_date": null,
-      "reading_date_note": "missing-date",
+      "reading_date": "2023-04-21",
+      "reading_date_note": "derived-from-display-label",
       "tariff_table": null
     },
     {
       "column_index": 35,
       "display_label": "2023-05-21 00:00:00",
       "reading_date_raw": null,
-      "reading_date": null,
-      "reading_date_note": "missing-date",
+      "reading_date": "2023-05-21",
+      "reading_date_note": "derived-from-display-label",
       "tariff_table": null
     },
     {
       "column_index": 36,
       "display_label": "2023-06-21 00:00:00",
       "reading_date_raw": null,
-      "reading_date": null,
-      "reading_date_note": "missing-date",
+      "reading_date": "2023-06-21",
+      "reading_date_note": "derived-from-display-label",
       "tariff_table": null
     },
     {
       "column_index": 37,
       "display_label": "2023-07-21 00:00:00",
       "reading_date_raw": null,
-      "reading_date": null,
-      "reading_date_note": "missing-date",
+      "reading_date": "2023-07-21",
+      "reading_date_note": "derived-from-display-label",
       "tariff_table": null
     }
   ],
@@ -326,6 +326,14 @@
       "source_row": 18,
       "legacy_label": "HC01",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC01",
+        "label_prefix": "HC",
+        "numeric_component": 1,
+        "suffix": null,
+        "canonical_unit_label": "HC 01"
+      },
       "prepaid_marker": null,
       "pq_factor": 5.743243243,
       "readings": []
@@ -334,6 +342,14 @@
       "source_row": 19,
       "legacy_label": "HC02",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC02",
+        "label_prefix": "HC",
+        "numeric_component": 2,
+        "suffix": null,
+        "canonical_unit_label": "HC 02"
+      },
       "prepaid_marker": null,
       "pq_factor": 7.995495495,
       "readings": []
@@ -342,6 +358,14 @@
       "source_row": 20,
       "legacy_label": "HC03",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC03",
+        "label_prefix": "HC",
+        "numeric_component": 3,
+        "suffix": null,
+        "canonical_unit_label": "HC 03"
+      },
       "prepaid_marker": null,
       "pq_factor": 8.445945946,
       "readings": []
@@ -350,6 +374,14 @@
       "source_row": 21,
       "legacy_label": "HC04",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC04",
+        "label_prefix": "HC",
+        "numeric_component": 4,
+        "suffix": null,
+        "canonical_unit_label": "HC 04"
+      },
       "prepaid_marker": null,
       "pq_factor": 8.558558559,
       "readings": []
@@ -358,6 +390,14 @@
       "source_row": 22,
       "legacy_label": "HC05",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC05",
+        "label_prefix": "HC",
+        "numeric_component": 5,
+        "suffix": null,
+        "canonical_unit_label": "HC 05"
+      },
       "prepaid_marker": null,
       "pq_factor": 8.558558559,
       "readings": []
@@ -366,6 +406,14 @@
       "source_row": 23,
       "legacy_label": "HC06",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC06",
+        "label_prefix": "HC",
+        "numeric_component": 6,
+        "suffix": null,
+        "canonical_unit_label": "HC 06"
+      },
       "prepaid_marker": null,
       "pq_factor": 5.855855856,
       "readings": []
@@ -374,6 +422,14 @@
       "source_row": 24,
       "legacy_label": "HC07",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC07",
+        "label_prefix": "HC",
+        "numeric_component": 7,
+        "suffix": null,
+        "canonical_unit_label": "HC 07"
+      },
       "prepaid_marker": null,
       "pq_factor": 1.126126126,
       "readings": []
@@ -382,6 +438,14 @@
       "source_row": 25,
       "legacy_label": "HC08",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC08",
+        "label_prefix": "HC",
+        "numeric_component": 8,
+        "suffix": null,
+        "canonical_unit_label": "HC 08"
+      },
       "prepaid_marker": null,
       "pq_factor": 6.306306306,
       "readings": []
@@ -390,6 +454,14 @@
       "source_row": 26,
       "legacy_label": "HC09",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC09",
+        "label_prefix": "HC",
+        "numeric_component": 9,
+        "suffix": null,
+        "canonical_unit_label": "HC 09"
+      },
       "prepaid_marker": null,
       "pq_factor": 9.572072072,
       "readings": []
@@ -398,6 +470,14 @@
       "source_row": 27,
       "legacy_label": "HC10",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC10",
+        "label_prefix": "HC",
+        "numeric_component": 10,
+        "suffix": null,
+        "canonical_unit_label": "HC 10"
+      },
       "prepaid_marker": null,
       "pq_factor": 10.13513514,
       "readings": []
@@ -406,6 +486,14 @@
       "source_row": 28,
       "legacy_label": "HC11",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC11",
+        "label_prefix": "HC",
+        "numeric_component": 11,
+        "suffix": null,
+        "canonical_unit_label": "HC 11"
+      },
       "prepaid_marker": null,
       "pq_factor": 10.24774775,
       "readings": []
@@ -414,6 +502,14 @@
       "source_row": 29,
       "legacy_label": "HC12",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC12",
+        "label_prefix": "HC",
+        "numeric_component": 12,
+        "suffix": null,
+        "canonical_unit_label": "HC 12"
+      },
       "prepaid_marker": null,
       "pq_factor": 8.896396396,
       "readings": []
@@ -422,6 +518,14 @@
       "source_row": 30,
       "legacy_label": "HC13",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC13",
+        "label_prefix": "HC",
+        "numeric_component": 13,
+        "suffix": null,
+        "canonical_unit_label": "HC 13"
+      },
       "prepaid_marker": null,
       "pq_factor": 6.193693694,
       "readings": []
@@ -430,6 +534,14 @@
       "source_row": 31,
       "legacy_label": "HC14",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC14",
+        "label_prefix": "HC",
+        "numeric_component": 14,
+        "suffix": null,
+        "canonical_unit_label": "HC 14"
+      },
       "prepaid_marker": null,
       "pq_factor": 1.238738739,
       "readings": []
@@ -438,6 +550,14 @@
       "source_row": 32,
       "legacy_label": "HC15",
       "meter_type": "UNIT",
+      "entity_reference": {
+        "entity_kind": "unit",
+        "legacy_label": "HC15",
+        "label_prefix": "HC",
+        "numeric_component": 15,
+        "suffix": null,
+        "canonical_unit_label": "HC 15"
+      },
       "prepaid_marker": null,
       "pq_factor": 1.126126126,
       "readings": []
@@ -446,52 +566,406 @@
       "source_row": 33,
       "legacy_label": "BULK01",
       "meter_type": "BULK",
+      "entity_reference": {
+        "entity_kind": "bulk",
+        "legacy_label": "BULK01"
+      },
       "prepaid_marker": null,
       "pq_factor": null,
       "readings": []
     }
   ],
-  "review_flags": [
+  "entities_and_meanings": [
     {
-      "severity": "high",
-      "type": "unresolved-reading-date",
-      "column_index": 8,
-      "display_label": "2021-02-21 00:00:00",
-      "reading_date_raw": "28/28/2021",
-      "message": "Reading date could not be resolved for month column 8."
+      "entity_type": "building",
+      "examples": [
+        "Haven Court",
+        "Haven Court"
+      ],
+      "meaning": "Primary scheme/building represented by the worksheet."
     },
     {
-      "severity": "high",
-      "type": "unresolved-reading-date",
-      "column_index": 34,
-      "display_label": "2023-04-21 00:00:00",
-      "reading_date_raw": null,
-      "message": "Reading date could not be resolved for month column 34."
+      "entity_type": "unit_identifier_pattern",
+      "pattern": "HC <unit number><optional suffix>",
+      "examples": [
+        "HC01",
+        "HC02",
+        "HC03",
+        "HC04",
+        "HC05",
+        "HC06",
+        "HC07",
+        "HC08",
+        "HC09",
+        "HC10",
+        "HC11",
+        "HC12"
+      ],
+      "meaning": "Unit-level meter labels. Prefix HC appears to abbreviate the building or scheme name and is followed by the unit number.",
+      "occurrence_count": 15
     },
     {
-      "severity": "high",
-      "type": "unresolved-reading-date",
-      "column_index": 35,
-      "display_label": "2023-05-21 00:00:00",
-      "reading_date_raw": null,
-      "message": "Reading date could not be resolved for month column 35."
+      "entity_type": "bulk_meter_pattern",
+      "pattern": "Bulk <number>",
+      "examples": [
+        "BULK01"
+      ],
+      "meaning": "Bulk supply meter identifiers used for building-level supply or aggregation."
+    }
+  ],
+  "categories_and_domains": {
+    "sheet_category": "building",
+    "domains": [
+      "electricity",
+      "water",
+      "charges",
+      "settings"
+    ],
+    "meter_types": [
+      "BULK",
+      "UNIT"
+    ],
+    "charge_names": [
+      "Elec Common Prop",
+      "Elec Service Charge",
+      "Elec Network Charge",
+      "Water Charge",
+      "Water Demand Management Levy",
+      "Water Surcharge",
+      "Sanitation",
+      "Refuse"
+    ],
+    "distribution_modes": [
+      "Even",
+      "PQ",
+      "Even",
+      "PQ",
+      "Even",
+      "Even",
+      "PQ",
+      "None"
+    ],
+    "sections": {
+      "electricity_header_row": 17,
+      "water_header_row": 34
+    }
+  },
+  "attributes_and_time_series": {
+    "time_series_type": "month_columns",
+    "month_columns": [
+      {
+        "column_index": 5,
+        "display_label": "2021-11-20 00:00:00",
+        "reading_date_raw": "2020-11-30 00:00:00",
+        "reading_date": "2020-11-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 6,
+        "display_label": "2021-12-20 00:00:00",
+        "reading_date_raw": "2020-12-31 00:00:00",
+        "reading_date": "2020-12-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 7,
+        "display_label": "2021-01-21 00:00:00",
+        "reading_date_raw": "2021-01-31 00:00:00",
+        "reading_date": "2021-01-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 8,
+        "display_label": "2021-02-21 00:00:00",
+        "reading_date_raw": "28/28/2021",
+        "reading_date": "2021-02-21",
+        "reading_date_note": "derived-from-display-label",
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 9,
+        "display_label": "2021-03-21 00:00:00",
+        "reading_date_raw": "2021-03-31 00:00:00",
+        "reading_date": "2021-03-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 10,
+        "display_label": "2021-04-21 00:00:00",
+        "reading_date_raw": "2021-04-30 00:00:00",
+        "reading_date": "2021-04-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 11,
+        "display_label": "2021-05-21 00:00:00",
+        "reading_date_raw": "2021-05-31 00:00:00",
+        "reading_date": "2021-05-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 12,
+        "display_label": "2021-06-21 00:00:00",
+        "reading_date_raw": "2021-06-30 00:00:00",
+        "reading_date": "2021-06-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 13,
+        "display_label": "2021-07-21 00:00:00",
+        "reading_date_raw": "2021-07-31 00:00:00",
+        "reading_date": "2021-07-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 14,
+        "display_label": "2021-08-21 00:00:00",
+        "reading_date_raw": "2021-08-31 00:00:00",
+        "reading_date": "2021-08-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 15,
+        "display_label": "2021-09-21 00:00:00",
+        "reading_date_raw": "2021-09-30 00:00:00",
+        "reading_date": "2021-09-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 16,
+        "display_label": "2021-10-21 00:00:00",
+        "reading_date_raw": "2021-10-31 00:00:00",
+        "reading_date": "2021-10-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 17,
+        "display_label": "2021-11-21 00:00:00",
+        "reading_date_raw": "2021-11-30 00:00:00",
+        "reading_date": "2021-11-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 18,
+        "display_label": "2021-12-21 00:00:00",
+        "reading_date_raw": "2021-12-31 00:00:00",
+        "reading_date": "2021-12-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 19,
+        "display_label": "2022-01-21 00:00:00",
+        "reading_date_raw": "2022-01-31 00:00:00",
+        "reading_date": "2022-01-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 20,
+        "display_label": "2022-02-21 00:00:00",
+        "reading_date_raw": "2022-02-28 00:00:00",
+        "reading_date": "2022-02-28",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 21,
+        "display_label": "2022-03-21 00:00:00",
+        "reading_date_raw": "2022-03-31 00:00:00",
+        "reading_date": "2022-03-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 22,
+        "display_label": "2022-04-21 00:00:00",
+        "reading_date_raw": "2022-04-30 00:00:00",
+        "reading_date": "2022-04-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 23,
+        "display_label": "2022-05-21 00:00:00",
+        "reading_date_raw": "2022-05-31 00:00:00",
+        "reading_date": "2022-05-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 24,
+        "display_label": "2022-06-21 00:00:00",
+        "reading_date_raw": "2022-06-30 00:00:00",
+        "reading_date": "2022-06-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 25,
+        "display_label": "2022-07-21 00:00:00",
+        "reading_date_raw": "2022-07-31 00:00:00",
+        "reading_date": "2022-07-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 26,
+        "display_label": "2022-08-21 00:00:00",
+        "reading_date_raw": "2022-08-31 00:00:00",
+        "reading_date": "2022-08-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 27,
+        "display_label": "2022-09-21 00:00:00",
+        "reading_date_raw": "2022-09-30 00:00:00",
+        "reading_date": "2022-09-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 28,
+        "display_label": "2022-10-21 00:00:00",
+        "reading_date_raw": "2022-10-31 00:00:00",
+        "reading_date": "2022-10-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 29,
+        "display_label": "2022-11-21 00:00:00",
+        "reading_date_raw": "2022-11-30 00:00:00",
+        "reading_date": "2022-11-30",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 30,
+        "display_label": "2022-12-21 00:00:00",
+        "reading_date_raw": "2022-12-31 00:00:00",
+        "reading_date": "2022-12-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 31,
+        "display_label": "2023-01-21 00:00:00",
+        "reading_date_raw": "2023-01-31 00:00:00",
+        "reading_date": "2023-01-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 32,
+        "display_label": "2023-02-21 00:00:00",
+        "reading_date_raw": "2023-02-28 00:00:00",
+        "reading_date": "2023-02-28",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 33,
+        "display_label": "2023-03-21 00:00:00",
+        "reading_date_raw": "2023-03-31 00:00:00",
+        "reading_date": "2023-03-31",
+        "reading_date_note": null,
+        "tariff_table": "HC Dec 2020"
+      },
+      {
+        "column_index": 34,
+        "display_label": "2023-04-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": "2023-04-21",
+        "reading_date_note": "derived-from-display-label",
+        "tariff_table": null
+      },
+      {
+        "column_index": 35,
+        "display_label": "2023-05-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": "2023-05-21",
+        "reading_date_note": "derived-from-display-label",
+        "tariff_table": null
+      },
+      {
+        "column_index": 36,
+        "display_label": "2023-06-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": "2023-06-21",
+        "reading_date_note": "derived-from-display-label",
+        "tariff_table": null
+      },
+      {
+        "column_index": 37,
+        "display_label": "2023-07-21 00:00:00",
+        "reading_date_raw": null,
+        "reading_date": "2023-07-21",
+        "reading_date_note": "derived-from-display-label",
+        "tariff_table": null
+      }
+    ],
+    "resolved_month_count": 33,
+    "unresolved_month_count": 0,
+    "first_resolved_month": {
+      "column_index": 5,
+      "display_label": "2021-11-20 00:00:00",
+      "reading_date_raw": "2020-11-30 00:00:00",
+      "reading_date": "2020-11-30",
+      "reading_date_note": null,
+      "tariff_table": "HC Dec 2020"
     },
-    {
-      "severity": "high",
-      "type": "unresolved-reading-date",
-      "column_index": 36,
-      "display_label": "2023-06-21 00:00:00",
-      "reading_date_raw": null,
-      "message": "Reading date could not be resolved for month column 36."
-    },
-    {
-      "severity": "high",
-      "type": "unresolved-reading-date",
+    "last_resolved_month": {
       "column_index": 37,
       "display_label": "2023-07-21 00:00:00",
       "reading_date_raw": null,
-      "message": "Reading date could not be resolved for month column 37."
+      "reading_date": "2023-07-21",
+      "reading_date_note": "derived-from-display-label",
+      "tariff_table": null
     },
+    "tariff_tables": [
+      "HC Dec 2020"
+    ]
+  },
+  "formulas_and_connections_summary": {
+    "formula_cell_count": 0,
+    "formula_patterns": []
+  },
+  "source_evidence": {
+    "folder_exists": false,
+    "matched_folder": null,
+    "total_file_count": 0,
+    "relevant_file_count": 0,
+    "file_type_counts": {},
+    "top_level_folders": [],
+    "matched_unit_mentions": [],
+    "notes": [
+      "No retained source folder was found under Buildings/buildings for this scheme."
+    ]
+  },
+  "cross_check": {
+    "reconciled_at": "2026-04-10T13:42:49.695316+00:00",
+    "source_workbook": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+    "summary_file": "C:\\Projects\\Meter App\\DataMigration\\Summaries\\haven-court.summary.json",
+    "previous_review_flag_count": 21,
+    "current_review_flag_count": 16,
+    "derived_date_count": 5,
+    "resolved_formula_value_count": 0
+  },
+  "review_flags": [
     {
       "severity": "medium",
       "type": "row-with-no-readings",

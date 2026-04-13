@@ -1,6 +1,6 @@
 {
   "summary_type": "utility-dash-sheet-summary",
-  "generated_at": "2026-04-10T11:54:58.009061+00:00",
+  "generated_at": "2026-04-10T13:49:21.684684+00:00",
   "workbook": {
     "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
     "source_file_is_encrypted": true,
@@ -2082,6 +2082,500 @@
           ]
         }
       ],
+      "entities_and_meanings": [
+        {
+          "entity_type": "sheet_labels_and_headings",
+          "examples": [
+            "BuildingName Utility Report",
+            "BuildingName | SelDate",
+            "ELECTRICITY  | Electricity Tariffs",
+            "Meters | No of Meters | KWH Used",
+            "Bulk | ElecBulkCount | ElecBulkTotCon",
+            "Units | ElecUnitCount | ElecUnitTotCon",
+            "Common Property | ElecDifference | ERange3",
+            "ERange4 | ET4",
+            "ERange5 | ET5",
+            "ERange6 | ET6",
+            "ERange7 | ET7",
+            "ERange8 | ET8",
+            "WATER | Water Tariffs",
+            "Meters | No of Meters | KWA Used",
+            "Bulk | WaterBulkCount | WaterBulkTotCon",
+            "Units | WaterUnitCount | WaterUnitTotCon",
+            "Common Property | WaterDifference | WRange3",
+            "WRange4 | WT4",
+            "WRange5 | WT5",
+            "WRange6 | WT6"
+          ],
+          "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+        }
+      ],
+      "categories_and_domains": {
+        "sheet_category": "support",
+        "domains": [
+          "electricity",
+          "water",
+          "charges",
+          "reporting",
+          "settings"
+        ],
+        "sheet_name": "BuildingReportTemplate"
+      },
+      "attributes_and_time_series": {
+        "time_series_type": "date_like_values",
+        "date_like_values": [],
+        "top_rows": [
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "BuildingName Utility Report"
+              }
+            ]
+          },
+          {
+            "row_index": 9,
+            "cells": [
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "BuildingName"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "SelDate"
+              }
+            ]
+          },
+          {
+            "row_index": 11,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "ELECTRICITY "
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Electricity Tariffs"
+              }
+            ]
+          },
+          {
+            "row_index": 12,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Meters"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "No of Meters"
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "KWH Used"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "Charge"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Range"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "Per KWA"
+              }
+            ]
+          },
+          {
+            "row_index": 13,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Bulk"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "ElecBulkCount"
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "ElecBulkTotCon"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "ElecBulkTotCharge"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "ERange1"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "ET1"
+              }
+            ]
+          },
+          {
+            "row_index": 14,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Units"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "ElecUnitCount"
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "ElecUnitTotCon"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "ElecUnitTotCharge"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "ERange2"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "ET2"
+              }
+            ]
+          },
+          {
+            "row_index": 15,
+            "cells": [
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "Common Property"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "ElecDifference"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "ERange3"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "ET3"
+              }
+            ]
+          },
+          {
+            "row_index": 16,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "ERange4"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "ET4"
+              }
+            ]
+          },
+          {
+            "row_index": 17,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "ERange5"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "ET5"
+              }
+            ]
+          },
+          {
+            "row_index": 18,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "ERange6"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "ET6"
+              }
+            ]
+          },
+          {
+            "row_index": 19,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "ERange7"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "ET7"
+              }
+            ]
+          },
+          {
+            "row_index": 20,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "ERange8"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "ET8"
+              }
+            ]
+          },
+          {
+            "row_index": 22,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "WATER"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Water Tariffs"
+              }
+            ]
+          },
+          {
+            "row_index": 23,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Meters"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "No of Meters"
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "KWA Used"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "Charge"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Range"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "Per KWA"
+              }
+            ]
+          },
+          {
+            "row_index": 24,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Bulk"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "WaterBulkCount"
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "WaterBulkTotCon"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "WaterBulkTotCharge"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "WRange1"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "WT1"
+              }
+            ]
+          },
+          {
+            "row_index": 25,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Units"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "WaterUnitCount"
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "WaterUnitTotCon"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "WaterUnitTotCharge"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "WRange2"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "WT2"
+              }
+            ]
+          },
+          {
+            "row_index": 26,
+            "cells": [
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "Common Property"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "WaterDifference"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "WRange3"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "WT3"
+              }
+            ]
+          },
+          {
+            "row_index": 27,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "WRange4"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "WT4"
+              }
+            ]
+          },
+          {
+            "row_index": 28,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "WRange5"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "WT5"
+              }
+            ]
+          },
+          {
+            "row_index": 29,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "WRange6"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "WT6"
+              }
+            ]
+          }
+        ]
+      },
+      "formulas_and_connections_summary": {
+        "formula_cell_count": 0,
+        "formula_patterns": []
+      },
+      "source_evidence": null,
+      "cross_check": {
+        "reconciled_at": "2026-04-10T13:42:21.513585+00:00",
+        "source_workbook": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+        "summary_file": "C:\\Projects\\Meter App\\DataMigration\\Summaries\\buildingreporttemplate.summary.json",
+        "previous_review_flag_count": 0,
+        "current_review_flag_count": 0,
+        "derived_date_count": 0,
+        "resolved_formula_value_count": 0
+      },
       "review_flags": []
     }
   },

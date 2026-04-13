@@ -1,0 +1,1784 @@
+{
+  "building_name": "Rivonia Gates",
+  "generated_at": "2026-04-11T15:24:12.689390+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "summary": {
+    "total_images": 28,
+    "folders_without_images": 206,
+    "images_with_meter_number": 9,
+    "images_with_serial_number": 2,
+    "images_with_meter_reading": 3,
+    "images_with_date": 3,
+    "flags": {
+      "low-confidence-meter-reading": 3,
+      "missing-date": 25,
+      "missing-meter-number": 19,
+      "missing-meter-reading": 25,
+      "missing-serial-number": 26
+    }
+  },
+  "folders_without_images": [
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Aug 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Aug 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2012 - June 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/April 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/Aug 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/Dec 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/Feb 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/Jan 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/July'13",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/March 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/May 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/Nov 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/Oct 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2013 - June 2014/Sept'13",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/April 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/Aug 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/Feb 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/Jan 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/July 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/June 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/March 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/May 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/Nov 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/Oct 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2014 - June 2015/Sept 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/july 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/April 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/Aug 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/Dec 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/Feb 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/Jan 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/July 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/June 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/Mar 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/May 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/Nov 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/Oct 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2015 - June 2016/Sept 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/April 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Aug 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Aug 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Dec 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Dec 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Feb 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Feb 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Jan 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Jan 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/July 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/July 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/June 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/March 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/March 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/May 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Nov 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Nov 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Oct 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Oct 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/SEPT 2016",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2016 - June 2017/Sept 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/Aug 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/Dec 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/Feb 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/Jan 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/June 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/March 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/May 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/Nov 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/Oct 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2017 - June 2018/Sept 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/April 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/Aug 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/Dec 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/Feb 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/Jan 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/July 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/June 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/March 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/May 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/Nov 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/Oct 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/July 2018 - June 2019/Sept 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/June 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/May 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/APR 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/Aug 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/Dec 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/Feb 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/Jan 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/July 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/June 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/March 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/May 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/Oct 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2019 - June 2020/Sept 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/2020/Aug 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/2020/Dec 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/2020/July 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/2020/Nov 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/2020/Oct 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/2020/Sept 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/April 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/Feb 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/Jan 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/June 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/Mar 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/Old Council/July 2020 - June 2021/May 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/April 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/Aug 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/Dec 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/Feb 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/Jan 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/July'13",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/March 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/May 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/Nov 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/Oct 2013",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 13 - june '14/Sept'13",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/April 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/Aug 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/Feb 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/Jan 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/July 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/June 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/March 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/May 2015",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/Nov 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/Oct 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - july 14 - june 15/Sept 2014",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/2012-2018/RG - June'12 - July'13",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Apr 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Aug 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Dec 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Feb 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Jan 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Jul 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Jun 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Mar 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/May 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Nov 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Oct 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2021 - June 2022/Sept 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Apr 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Aug 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Dec 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Feb 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Jan 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Jul 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Jun 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Mar 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/May 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Nov 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Oct 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2022 - Jun 2023/Sept 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2023.07",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2023.08",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2023.09",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2023.10",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2023.11",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2023.12",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2024.01",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2024.02",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2024.03",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2024.04",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2024.05",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2019 - June 2024/Jul 2023 - Jun 2024/2024.06",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2024.07",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2024.08",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2024.09",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2024.10",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2024.11",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2024.12",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2025.01",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2025.02",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2025.03",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2025.04",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2025.05",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2024 - Jun 2025/2025.06",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.07",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.08",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.09",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.10",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.11",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2025.12",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2026.01",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2026.02",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/Jul 2025 - Jun 2026/2026.03",
+      "reason": "folder-has-no-image-descendants"
+    }
+  ],
+  "images": [
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020/RG April 2020 Readings.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020",
+      "file_name": "RG April 2020 Readings.jpg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": "5092246569",
+      "meter_number_source": "ocr:meter-region",
+      "meter_number_kind": "serial-number",
+      "meter_number_confidence": "medium",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": "5092246569",
+      "serial_number_source": "ocr:meter-region",
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "ee",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\nDATE OF AE\n\nJf\n\nae\n\n\u2014\n\nJo\n\n4.\n\n&\u00a2\n\n14\n\n2\n\nSs\n\n2\n\n6\n\nGS/s\n\n+t\n\nELECTRICITY METER NO.5092246569\n\na\n\nbond\n\nMain Power Meter ",
+        "label_region": "a",
+        "meter_region": "\u00a2} 6\n3\n\u2018all\n=\ns\u00e9\n2\n= a\n( METER NO.5092246569\nr Meter Reading 1\nTER NO.CRIAI458\n\u2018Meter Reading\nTER NO.CRIA1459\nMeter Reading Larry eve |",
+        "reading_center": "6\n\nMETER NO.5S092246569\n\nAeter Reading 1\n\nSS3FaFS\n\nR NO.CRIA1458\n\nfeter Reading\n\nBys9as4\n\nR.NO.CRIAI459\n\n_\n\nae\n\nOe ee OD. ae",
+        "reading_window": "NO.5092246569\n\nSS FoFS\n\nteading 1",
+        "reading_window_bin": "05092246569"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020/RG July 2020 Readings.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020",
+      "file_name": "RG July 2020 Readings.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": "5092246569",
+      "meter_number_source": "ocr:meter-region",
+      "meter_number_kind": "serial-number",
+      "meter_number_confidence": "medium",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": "5092246569",
+      "serial_number_source": "ocr:meter-region",
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\nDATE OF READING :\n\n2\n\ney Oo\n\n=\n\n[31\n\nauAy\n\n4 |\u00a5\n\n(3\n\n6\n\nts( 9Goc\n\n(SSy\n\n27\n\n10\n\n/\n\n11\n\naS\n\nto\n\n12\n\n13\n\n14\n\n15\n\nC25F / \u00a2\n\n",
+        "label_region": "Main Water Meter Reading [Porte rst",
+        "meter_region": ">i! New?\n\n[GOGSFo\n\n(SSU Za\n\n34269 {\n\nE2FGC\n\nSFO SY\n\nC2S5F / \u00a2\n620995\n\u2018LECTRICITY METER NO.5092246569\nfain Power Meter Reading 1 GL/IG ! 9\nVATER METER NO.CRJA1458\nlain Water Meter Reading",
+        "reading_center": ">\u00bb Tt\n\nS$YU ST\n\nG *7\n\n62%\n\nOrs\n\nStig\n\nots\n\nCTRICITY METER NO.5092246569\n\nOS  \u2014\n\nin Power Meter Reading 1\n\nTER METER NO.CRJA1458\n\nlone ae a ee ee |",
+        "reading_window": "} tf\n\nPX\n\n| $\n\n1S",
+        "reading_window_bin": "7"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020/RG Readings December 2020.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020",
+      "file_name": "RG Readings December 2020.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "ELECTRICITY READINGS\n\nRIVONIA GATE BC\n\nDATE OF READING :\n\n2273853\n\nV7 OrL |\n\n6 | 359053\n\nE3455 |\n\n8 1|Gor! 39\n\n9/587? #45\n\n10|3\u00a2 F709 7\n\naly\n\n#748\n\n>\n\n21s s\u00e9 SF",
+        "label_region": "METER NO.CRJA1458\nC\nster Meter Reading / 4 AC i2A\nMIETER NO.CRJA1459\nter Meter Reading I F#ESC | | }",
+        "meter_region": "F555\n\nhye |\n\n7 #5\n\nOS F\n\n= Sige.\n\nEST\n\nEF 7\n\n1 ee\n\n5 TD\n\n23\n\nTY METER NO.5092246569_\nne eee ek er Lot LAC",
+        "reading_center": "75\n\nSF\n\n. 83\n\nSF\n\n77\n\n#9\n\n2\n\n3",
+        "reading_window": "",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020/RG Readings May 2020.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020",
+      "file_name": "RG Readings May 2020.jpg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "ee",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\n\u2014 |\n\n: ell\n\nBE = 5 Sanath of\n\n6\n\n_|\n\n6\n\n2\n\nwe\n\nELECTRICITY METER NO.5092245569\n\n2\n\nPower Meter Reading 1\n\n[e3e5o4\n\nWATER ",
+        "label_region": "ec",
+        "meter_region": "ER NO.5092246569_\n\nif Reading 1\nO.CRIAIA58\n\n+ Reading\n0.CRIA1459\n\n+ Reading",
+        "reading_center": "NO.5092246569\n\nteading 1\n\nCRIAI458\n\nleading",
+        "reading_window": "",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020/RG Readings Nov 2020.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020",
+      "file_name": "RG Readings Nov 2020.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "a A",
+        "date_full": "<<\n\n+\n\nae\n\ni 5\n\nhie ee\n\n. Ol\n\nDiss\n\nI\n\na\n\nbi\n\nall\n\nyer\n\npel\n\n\u2018=\n\nA\n\nils\n\nse\n\nwe\n\nRee a\n\nre\n\nud\n\nne\n\n\\\"\n\nmt\n\na\n\n4\n\nhe har\n\nBx\n\n1!\n\n7\n\niC\n\n/ 2 |\n\nat\n\npe\n\nos\n\n2269",
+        "label_region": "WE SEN IW Ve\nfater Meter Reading\n\nMETER NO.CRIA1459\n\nfater Meter Reading",
+        "meter_region": "FI\n\n2\n\nLf De\n\nSs 0\n\n2S }.\n\nSs\n\n1 77",
+        "reading_center": "\u00a5Y METER NO.5092246569",
+        "reading_window": "",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020/RG Readings Nov 2021.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020",
+      "file_name": "RG Readings Nov 2021.jpg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "a\n\nRIVONIA GATE BC\n\nELECTRICITY READINGS\n\nDATE OF READING\n\n#50350\n\nOOF3%\n\nGO\n\nZ5o\n\n5 (/\n\nFSF\n\n1764\n\nGF)\n\nCO\n\nLe Saja:\n\n10\n\n35S 6200\n\n11\n\nBq\n\n12\n\nSYU-F4\n\n13\n\n2Yy",
+        "label_region": "C-RJA1459 C-RJA1458\n\u2018Meter Reading",
+        "meter_region": ">i)\nDOD\n=\n\n0\naL\nIO\n8\n=\n)\n\nTT ote EPP Pipa",
+        "reading_center": "",
+        "reading_window": "ill\n\nLe St",
+        "reading_window_bin": "7\n17 7\n1"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020/RG Readings Oct 2020.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020",
+      "file_name": "RG Readings Oct 2020.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "ll",
+        "date_full": "ELECTRICITY READINGS\n\nRIVONIA GATE BC\n\nZz\n\nZ\n\nDATE OF READING\n\n[ sO\n\nQe\n\n1\n\nSnails\n\nfU eS\n\ntie oo\n\nBee\n\n\u2014Z\n\n2366\n\n2\u00a3\n\nCG\n\n6\n\nOZ\n\n2s\n\n\u2014 ira\n\n7\n\nTA AA\n\nfy\n\n10\n\nox",
+        "label_region": "ee nn en _\n\u2014\u2014 ae _? YO\n\u2014_/! \u2014 fof t\n\u2018 , fa . < on 2\nNN bato Lt fj ff fe: te\noe tig. tb",
+        "meter_region": "5:\n\nZ\n\n=)\n\nMeter Reading 1 [Aza |\nMeter Reading (736 4634",
+        "reading_center": "eter Reading 1\n\n[EA zizi |",
+        "reading_window": "",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020/RG Readings Sept 2020.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2020",
+      "file_name": "RG Readings Sept 2020.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "26897",
+      "meter_reading_source": "ocr:reading_center",
+      "meter_reading_confidence": "low",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-date",
+        "low-confidence-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "ot",
+        "date_full": "ELECTRICITY READINGS\n\nRIVONIA GATE BC\n\nDATE OF READING\n\nie\n\nSa\n\nSeptennher Qoro |\n\n.\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\nwiG15/30\n\nELECTRICITY\n\nMain Power Meter Reading 1\n",
+        "label_region": "ELECTRICITY\nMain Power Meter Reading 1\nWATER\nMain Water Meter Reading (sssqey |\n+525 SS |\nVa CASAS A",
+        "meter_region": "S94 25) &\n[SCV as\n\nSUES\n\nCU77) &\n\nCry\n\nJ7IVLY &\n\n626\u00a2\u00b097\n\nNG MRSS",
+        "reading_center": "cout\n\nWe\n\n(as\n\nPLY 6\n\n26897\n\nLit gS",
+        "reading_window": "4\n\n#6\n\n?\n\nq\n\nzo",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021/RG - Readings April 2021.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021",
+      "file_name": "RG - Readings April 2021.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": "I 1",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "I 1",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "659476",
+      "meter_reading_source": "ocr:reading_center",
+      "meter_reading_confidence": "low",
+      "flags": [
+        "missing-serial-number",
+        "missing-date",
+        "low-confidence-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "ro",
+        "date_full": "RIVONIA GATE Bc :\n\nELECTRICITY READINGS\n\nSTE OF Re ADING\n\n>>\n\nC33 Apr\n\n2)\n\nek:\n\nGS\n\nAq\n\n+N\n\nfi\u00a2 :\n\nSR\n\n|\n\nlew\n\nwy\n\n<a\n\n&\n\n=\n\nte ee\n\nSN\n\n~\u2014\n\n\u2014\u201422 i$\n\neam C<s\n\n14",
+        "label_region": "1\nle\nee\nST i _= I | Yr\nom, . | oe\n: me a: \u201c\nr - - .--\nI 1\" * \"",
+        "meter_region": "re\nane (foe) fess)",
+        "reading_center": "a)\n\n659476",
+        "reading_window": "_",
+        "reading_window_bin": "7\n7\n5 1 4 2"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021/RG - Readings Aug 2021.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021",
+      "file_name": "RG - Readings Aug 2021.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": "ZL 63",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "ZL 63",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "RIVONIA GATE BC :\n\nELECTRICITY READINGS\n\nDATE OF READING :\n\nSS\n\nom\n\nOo\n\nBrea Woy fs\n\n)\n\n2e 3 \u00e9 Jo\n\nGo| (FE\n\nria S|\n\nsy\n\n10\n\n11\n\n12\n\n=\n\n13\n\n14\n\n15\n\n16\n\nELECTRICI",
+        "label_region": "ter Meter Reading [ZL 63 2534 9 Bensiet e oe F",
+        "meter_region": "7\n5\n5\noi\nLe\n- Ks\nMeter Reading",
+        "reading_center": "_\n\n}\n\nie\n\n=",
+        "reading_window": "",
+        "reading_window_bin": "1\n1\n2\n1\n7\n7\n1 5"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021/RG - Readings Jan 2021.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021",
+      "file_name": "RG - Readings Jan 2021.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "ee",
+        "date_full": "A\n\n=\n\n=\n\ncy\n\nir\n\nfs\n\nfe\n\na\n\ntl\n\naaa\n\n4.\n\n?|\n\nLy\n\na\n\n(th\n\n[5\n\n(6\n\n=\n\n\u2014=\n\nft\n\nae\n\n=<\n\nMat\n\nLE LT\n\n7\n\n\u00a2|\n\ndah k\n\na\n\n\u2014f\n\nI?\n\nGP &\n\n-\n\n=\n\n=\n\n\u2014\u2014\u2014\u2014\u2014\u2014\n\na)\n\nrm\n\n\u2014\n\ni=\n\nh",
+        "label_region": "",
+        "meter_region": "eSR\n\nneR meter Rend=n9! bargaz |\n\n_pneTeR Ne-5o1aakser\n\nGare Maser RAPT (ZETELS\natcR (MeteR ReppiG #17524\n\nA? (sabe int Z a",
+        "reading_center": "a\n\nern preter ReAD=znYG 1 (452 \u00a2oaF7\n\nmelee Ne-5olaaie\n\nmize R\n\n(hese REP\n\n(UZEZEL\n\n~OQ7cIR\n\nIM\n\nTi\n\nne A AE\n\nER. RERDIE M75 2u \u00a2",
+        "reading_window": "alll\n\ni =.\n\n= of\n\nit\n\nr\n\n| a\n\nei\n\niil |",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021/RG - Readings June 2021.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021",
+      "file_name": "RG - Readings June 2021.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "a",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\n=\n\nI\n\nADING\n\n|\n\ni\n\n|\n\nrt\n\n|\n\nI<\n\n/\n\n\\",
+        "label_region": "",
+        "meter_region": ". * \u2018in =\n# :\ni Lf 5 :\nLl aie s\n+i / \u2014.\nay ies\n<3 . =\n20 96 =\n\u00a9 ; 7: 2\nP > be\nP 4y le\nAg 7.\n\u2019 - \u201calma\ni \u201cee ; ry . = 7 7\u2019\nhont i oT \u2014 ye 4\n. 4",
+        "reading_center": "\u20184\n\nMal\n\n\u20182?\n\n38\n\nNe Far\n\nhy:\n\nlm |\n\ni\n\n\u2014\"\n\noe\n\n\u00a2\n\nie\n\n- AG",
+        "reading_window": "a,\n\n*\n\n+.\n\nM,\n\n..\n\n=",
+        "reading_window_bin": "4\n4"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021/RG - Readings Mar 2021.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021",
+      "file_name": "RG - Readings Mar 2021.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\n,\n\n~\n\n\u2014\n\nDATE OF READING\n\n=\n\n\u2014-\n\n=a\n\nroi\n\nte\n\nWeg\n\n63\n\nELECTRICITY\n\nZ 5 F836\n\nMain Power Meter Reading\n\nC-RUAI458\n\nC-RIAI",
+        "label_region": "",
+        "meter_region": "\u20184\n+\n|\neter Reading\nC-RJAIS59 C-RJA1458\neter Reading (hae 177 |",
+        "reading_center": "= Reading\n\nASFe 36 |",
+        "reading_window": "a",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021/RG - Readings September 2021.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2021",
+      "file_name": "RG - Readings September 2021.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "|",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\nDATE OF READING :\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16 IC ZALSsS\n\nELECTRICITY\n\nMain Power Meter Reading\n\nC-RJA1459\n\nC-RJA1458\n\nWAT",
+        "label_region": "C-RJA1459 C-RJA1456",
+        "meter_region": "ae)\nLea\nSs\nLL\n7G\n9\n5\n)\n5\nater Reading CE6F405",
+        "reading_center": "",
+        "reading_window": "a",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings 30 Nov 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings 30 Nov 2022.jpeg",
+      "date": "2022-11-30",
+      "date_source": "path-backfill",
+      "date_confidence": "medium",
+      "meter_number": "RJA14",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "RJA14",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "C-RJA1458",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\nDATE OF READING :\n\n[SC Wovenmper oul |\n\n29 Sas\n\nSs ->\n\nLoo A\n\n79\n\n41IFHE5 20\n\n> \u2014\n\n64-07\n\nGee\n\nZ\n\nre\n\n10\n\n7c\n\n11\n\n12\n\ncf\n",
+        "label_region": "=LECTRICITY\n\nVain Power Meter Reading\n\nNATER C-RJA1459 C-RJA14\niain Water Meter Reading |",
+        "meter_region": "IFPAL\n\nLG |\n\nIE 4A AA\n\n\u2018Ss 2B/ Zo\n\nHLS 5S?\n\nbobo FEF |",
+        "reading_center": "- &\n\n\u201c4\n\n\u2014 or,\n\n\u2014\n\nZOD\n\nLS5S?\n\nLGU FS\n\nGBF",
+        "reading_window": "oa =\n\noa",
+        "reading_window_bin": "7\n3"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings 30 Sept 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings 30 Sept 2022.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "MEVVINIA GAIC BU\n\n.\n\n*.\n\nELECTRICITY REAVINGS\n\nDATE OF READING :\n\nFEOREL |\n\nBieieia\n\n10\n\n1i\n\n12\n\n13\n\n14\n\n15\n\nE4345\n\n16\n\nELECTRICITY\n\n\u2018Main Power Meter Reading\n\n",
+        "label_region": "",
+        "meter_region": "3\n\n;\n\nfer Reading\nC-RJA1459 C-R.\n\ner Reading IF4LP FIS37E [Ls",
+        "reading_center": "r Reading",
+        "reading_window": "ad",
+        "reading_window_bin": "7\n4\n1"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings 31 Oct 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings 31 Oct 2022.jpeg",
+      "date": "2022-10-31",
+      "date_source": "path-backfill",
+      "date_confidence": "medium",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\n|\n\n)\n\n5\n\nDATE\n\n)\n\n\u00a2\n\nT\n\njer >\n\neee?\n\nc\n\n4\n\nie\n\n1%\n\n1S\n\nOES\n\n>\n\nSs\n\n4]\n\nS\n\n+ars\n\nnye\n\n$48\n\na\n\nOce\n\n)\\\n\nFe\n\n4!\n\nco4\n\n\u201cASo\n\n",
+        "label_region": "",
+        "meter_region": "eter Reading besio# |\nC-RJA1459 C-RIA1458\nWenceetie [7452305 _| __===",
+        "reading_center": "Kesiot |\n\ner Reading\n\nC-RJA1458\n\nC-RIA1459\n\ner Reading\n\n[7452305 _|",
+        "reading_window": "WaPo al Pe |",
+        "reading_window_bin": "7"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings April 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings April 2022.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "RIVONIA GA\n\n| | L\n\n\u2018\n\nrpic\n\nrmMitl\n\nUATE\n\n+\n\n=\n\n10\n\n11\n\n12\n\n13\n\n14\n\n15\n\n16\n\nELECTRICITY\n\nMain Power Meter Reading\n\nWATER\n\nC-RJA1459\n\nC-RJA1458\n\n|\n\ni\n\nbh\u2019\n\nMain ",
+        "label_region": "ain Fowef victer NegOliE {Co ee\nATER C-RJA1459 C-RJA1458\njain Water Meter Reading (43242 ines ye",
+        "meter_region": "i BBs\n$4\nOssd\n2/2\nS43 3\npy.\nJO?\n\u00a5 S64\n9) Sia\naoe\nDOGL",
+        "reading_center": "SS\n\nms\n\n13 3\n\n[\u00a9\n\n7 a\n\n|\n\nOg2",
+        "reading_window": "",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings Aug 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings Aug 2022.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": "RJAI4",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "RJAI4",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "[\\/YH STK FOF |",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\n474922\n\n3S 2504\n\n10| SE4Z4E5\n\n11\n\na _\n\n12\n\naz\n\n13 |Z44-4045 FS\n\n14\n\n15\n\n16/0 62932\n\n\u2014\n\nELECTRICITY\n\nZ\n\nCr\n\n.\n\nMain Power ",
+        "label_region": "Y\u00a5\n1r Meter Reading\n\nC-RJA1459 C-RJAI4\nr Meter Reading [4 FZ.",
+        "meter_region": "L\nb\n5\n7\nZL\nvl\n2",
+        "reading_center": "",
+        "reading_window": ".=\n\n\u2014 ae\n\non\n\nI\n\nat i=\n\n|=\n\neo\n\nPie\n\n+=\n\n| nh\n\nt |\n\n:\n\n_\u2014\n\n~\n\n\u2014",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings July 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings July 2022.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": "B93",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "B93",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "be.\n\nELECTRICITY READINGS\n\nRIVONIA GATE BC\n\na\n\n(O] [LeGua T7220 _|\n\nDATE OF READING :\n\n[73 7 RES\n\n10\n\n11\n\n7.\n\nBS Ogee |\n\n13\n\n14\n\n15\n\n16\n\nELECTRICITY\n\nCw,\n\n{2\n\nM",
+        "label_region": "Aeter Reading Lerng | > TO |\nC-RIA1459 C-RIA1458\njeter Reading [EGE B93",
+        "meter_region": "iy ii) + 5 Tele \" se? +; ae tI\" | pal en ay - \u00a2 OG ihe ry hay ae te D re aren Oo 4 \u2018s = a\nemer snl oa ii lege ae Sing en, i), Atel ae Rewinad Seale Lr, cae eee\nlee re PSE eb Piet e-tees m fotbien. bot",
+        "reading_center": "Fe\n\n\u2018ow\n\npal\n\nae\n\n|\n\n7\n\n4\n\no*\n\n~ *\n\nay.\n\n=f\n\nSites\n\nf= on\n\nat,\n\nAF\n\ni |\n\npeti\n\nte\n\neit id\n\n\"a7. a3\n\n| deed\n\nae\n\nCad sites\n\n$22\n\n\u201c3 Phe\n\nSeer\n\naf\n\nLp abrce\n\name |\n\nnite\n\n1\n\n:\n\nee\n\na\n\nie\n\nrae\n\n> ~ ade!\n",
+        "reading_window": "ve\n\nfs.\n\nCn\n\nrf\n\nO-\n\ney\n\nr\n\n} >\n\n(ess |\n\noe\n\noo\n\n> ae <<\n\net\n\nia,\n\need\n\ncty\n\nfs,\"\u00a2\n\n\u2014-\n\n~\n\ni- t\n\naf\n\ntbe\n\nat\n\nFF el\n\nfn\n\n*4\n\ncat\n\n~*\n\n7 {\\pete\n\n\u201d\n\n43\n\nPY Abd\n\nte\n\n2\n\nae\n\nae\n\n><\n\noe\n\n\u201cwer\n\nak Rod\n\nee\n\n",
+        "reading_window_bin": "3\n9 2\n1 4\n1 4\n4\n4 7\n4\n5\n2\n4 4 4\n4\n8 7\n2\n4 7\n34 4 6\n7 0 8 77\n7\n3\n23\n4 4\n7\n4\n2\n1"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings June 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings June 2022.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\nDATE OF READING :\n\nCos\n\nIZusc9\n\n8 {Oo 'F8 Cs\n\n10\n\n11\n\nas.\n\n12\n\n13\n\n14\n\n15 |GZo5\n\n16 1G\n\n5 OO LE\n\nELECTRICITY\n\nMain Power ",
+        "label_region": "ver Meter Reading 1G, g Oo Gf |\nC-RJA1459 C-RJA1458\nter Meter Reading | (+9 2S",
+        "meter_region": "> s\nG\n\nSCS\n\nS\n\n)\n\nFS\n\n> 3 /",
+        "reading_center": "C$\n\nzS",
+        "reading_window": "il\n\nLy!\n\nre\n\ni}\n\nr=\n\n\u2122\n\ni -\n\noo\n\ni\n\nLs\n\n=\n\nee | ||\n\nii\n\n1 |\n\n= 9\n\ni\n\nr i\n\nil i\n\noa IG\n\na on.\n\ni)\n\nTs\n\nit\n\n- i .",
+        "reading_window_bin": "7\n7"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings Mar 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings Mar 2022.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "\\",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\n)\n\nak\n\nDATE OF RI ADING\n\n[3]\n\nM PriccH\n\n= =\n\nphn\n\n4\n\n9\n\nce\n\n49\n\n10\n\nvideiow f\n\n11\n\nSs Lf Det\n\n12\n\nOg\n\n13\n\n14\n\n15\n\n>>\n\n16\n",
+        "label_region": "",
+        "meter_region": "4 \u00bb&\n\n>-F\n\nof\u201d\n\nY=\n\no4\n\n3\n\nZ\n\noe).\n\neter Reading\n\niam bh me ee an om MPIiARARr SS",
+        "reading_center": "",
+        "reading_window": "T\n\nfe tl\n\nul -\n\n=\n\nil\n\n=\n\n\u2018=\n\n}\n\nie\n\n\u2014\n\n=\n\ni\n\nif |\n\ni\n\na\n\n\u2014\n\n\u2014\n\n\u2014\n\n4\n\n\u201c\n\nfe",
+        "reading_window_bin": "7\n7 1 1\n\n1\n\n4\n\n1\n7\n\n7\n4 5"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG - Readings May 2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG - Readings May 2022.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "3655",
+      "meter_reading_source": "ocr:reading_center",
+      "meter_reading_confidence": "low",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-date",
+        "low-confidence-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "a",
+        "date_full": "RIVONIA GATE BC\n\nELECTRICITY READINGS\n\nDATE OF READING :\n\nSf 'S S220 22\n\n= 692 OL\n\n\u00a2\n\nLAL\n\nLe 5 2. |\n\n26\n\nral\n\na |_|\n\n5 o-\n\n[2 Fc [\n\nTLC\n\n5\n\nTed.\n\n10\n\n11\n\nX LH\n",
+        "label_region": "CC S'E OOO",
+        "meter_region": "as\n)\n5\n\n=\n\u00bb >\n$8\nf\n-G\n8\nMeter Reading [623655]\n\nC-RJA1459 C-RJA1458\n\nVieter Reading 43 63 (| (434 RY: ; ]",
+        "reading_center": "ster Reading\n\n[\u00a33655]",
+        "reading_window": "jer\n\n,\n\n|",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022/RG -Readings 31.12.2022.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS/RG Readings 2022",
+      "file_name": "RG -Readings 31.12.2022.jpeg",
+      "date": "2022-12-31",
+      "date_source": "path:RG -Readings 31.12.2022.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "RJA1",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "RJA1",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "LECTRICITY\n\njain Power Meter Reading\n\nATER C-RJA1459 C-RJA1:\nain Water Meter Reading [",
+        "meter_region": "VETS SS\n6 GIES\nBAD SS\n= 53624\n4hhES\n\u201cLnFAL\n6525F",
+        "reading_center": "\u00a353.\n\n> SF LE\n\nFAL QL EE\n\n5 S624\n\nhUOS\n\nLITLE\n\nLIF",
+        "reading_window": "56",
+        "reading_window_bin": "5\n5\n24"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RIG - Meters Photo 01.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS",
+      "file_name": "RIG - Meters Photo 01.jpg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": ".",
+        "date_full": "\u2018oO we\n\n= es\n\noe\n\n-\n\n== es\n\nc\n\n== en\n\ni\n\n&\n\n4\n\n<=",
+        "label_region": "",
+        "meter_region": "i\nf =",
+        "reading_center": "\u2014\u2014\u2014\u2014\u2014\n\naa\n\na\n\nSt ey eR\n\n2 @",
+        "reading_window": "ole\n\nems\n\nA et eentae,\n\n<>, fa\n\n=",
+        "reading_window_bin": "2"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RIG - Meters Photo 02.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS",
+      "file_name": "RIG - Meters Photo 02.jpg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "ne\n\ni RE eo\n\n\u00a9) \u00a9)\n\nPeover]\n\n4\n\nNe!\n\n|\n\n| |\n\n|\n\na\n\n| a\n\nmal\n\nree,\n\nea",
+        "label_region": "",
+        "meter_region": ") oil =\n\u00bb",
+        "reading_center": "Nd\n\n) \u2122&",
+        "reading_window": "r",
+        "reading_window_bin": "7"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RIG - Meters Photo 03.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS",
+      "file_name": "RIG - Meters Photo 03.jpg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "iam. |\n\nLe |\n\n* \u2014\n\ntm\n\n|\n\na\n\nict\n\ni)",
+        "label_region": "s : :- a a\nred! \u2018 ' -",
+        "meter_region": "| perce et *e\u2019\n\n\u2014 . > -\n\n_ ; &\n\nAl aa ; pou:\ny Ae",
+        "reading_center": "Bae ts\n\n\u00e9\n\n\u2018\n\nmy",
+        "reading_window": "oe\n\ns | :\n\na",
+        "reading_window_bin": "7"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/UTILITY READINGS/RIG - Meters Photo 04.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/UTILITY READINGS",
+      "file_name": "RIG - Meters Photo 04.jpg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": "C4",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "C4",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "Er\n\nFE\n\nel MW\n\n\u2014\n\nFd\n\nLi\n\ni]\n\none\n\npeateae\n\ne |\n\nAi\n\n>\n\n=\n\nfi\n\n=i\n\nI\n\nby\n\nq\n\n\u2014.\n\n]\n\na\n\n\u2014\n\noe\n\nI)\n\ni\n\nih\n\n=\n\ni\n\n- ~an Daa etn ital\n\na\n\na\n\nLEAS\n\neS\n\na\n\neS\n\nlid.\n\n",
+        "label_region": "iad Fe 1\na LJ\n= ~ = \u2122 \u2014 .\n\nr \u2014 ind - 4 a os ~\n\n. \"oF . . ow\u201d a .. 2 oe db\n\n\u201c NN *, ih \u2019 C4 \u201cs\n\n- \" o@ +\n2 * {*!..4 \u201ca : bd Be .\n& \u201cA oe\n\neq e-",
+        "meter_region": "\u2014 : auiee\ne} e > il \u2014 a\n\nj :\n\n=| wd\n\n. : ina ae\n\n: \u2014 - wl\nis\nP\n14% ;\n\n\u2018ae\n\ni ee",
+        "reading_center": "=\n\na\n\n\u2014\n\nee\n\nai\n\n4\n\nwe\n\nea\n\nrs it\n\n<a\n\nle\n\nib a,\n\nTT\n\n-\n\nA ed",
+        "reading_window": "\u2014\u2014\n\nTC\n\nmE\n\n7\n\n&\n\nik",
+        "reading_window_bin": ""
+      }
+    }
+  ]
+}

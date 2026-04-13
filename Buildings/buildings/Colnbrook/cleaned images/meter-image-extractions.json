@@ -1,0 +1,227 @@
+{
+  "building_name": "Colnbrook",
+  "generated_at": "2026-04-11T14:44:18.453187+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "summary": {
+    "total_images": 3,
+    "folders_without_images": 27,
+    "images_with_meter_number": 2,
+    "images_with_serial_number": 0,
+    "images_with_meter_reading": 0,
+    "images_with_date": 3,
+    "flags": {
+      "missing-meter-number": 1,
+      "missing-meter-reading": 3,
+      "missing-serial-number": 3
+    }
+  },
+  "folders_without_images": [
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2025",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2025/2025.08",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2025/2025.09",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2025/2025.10",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2025/2025.11",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2025/2025.12",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2026",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2026/2026.01",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/80-20 Split Recovery Report/2026/2026.02",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Forms & Introduction",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.03",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.04",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.05",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.06",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.07",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.08",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.09",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.10",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.11",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2024/2024.12",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.01",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.02",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.03",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.06",
+      "reason": "folder-has-no-image-descendants"
+    }
+  ],
+  "images": [
+    {
+      "image_path": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.04/Colnbrook Estate - Bulk Electricity Meter - 14 April 2025.jpeg",
+      "containing_folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.04",
+      "file_name": "Colnbrook Estate - Bulk Electricity Meter - 14 April 2025.jpeg",
+      "date": "2025-04-14",
+      "date_source": "path-backfill",
+      "date_confidence": "medium",
+      "meter_number": "HZ 10",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "HZ 10",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "a ~\n\nFe\n\na Cm\n\nal\n\nivy\n\nG\n\nUm)",
+        "label_region": "arr LED kWh _ , \u2018< \u20ac\n\n\u00b0C 62053-22:2003 Ci0a5Ss\n\nC 62053-23:2003 Cl2\n\nype ACE661B044C agims\n\n(57.7/100 V - 3x277/480 Vv 50 HZ\n\n10) A\u2019 oe\n\nctive: LED=10 000 Imp/k",
+        "meter_region": "eT\n*\u00bb\na",
+        "reading_center": "$4\n\n=\n\n-~",
+        "reading_window": "<i 7",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.05/Colnbrook Estate - Bulk Electricity Meter - 14 May 2025.jpeg",
+      "containing_folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.05",
+      "file_name": "Colnbrook Estate - Bulk Electricity Meter - 14 May 2025.jpeg",
+      "date": "2025-05-14",
+      "date_source": "path-backfill",
+      "date_confidence": "medium",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "ae i\n\n\\\n\ncomme (eo\n\ni\n\nzz\n\noon",
+        "label_region": "im 7\no\nww",
+        "meter_region": "\\\na :\nLd\n\u2014\nA",
+        "reading_center": "\u2014\u2014 oor\n\n\\\n\nmn\n\n\u2014\u2014\n\net\n\n, a\n\n\u2014\n\n\u2014\n\n\u2014\u2014\u2014 EE\n\n\u2014_\u2014  ... . \u2122\u201d",
+        "reading_window": "\\\n\nPi \u201c\n\nre\n\ns\n\nce\n\n\\>\n\na\n\nPe\n\n~\n\n23\n\na\n\n\u2014\n\na\n\nal\n\no_O,",
+        "reading_window_bin": "5"
+      }
+    },
+    {
+      "image_path": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.07/Colnbrook Estate - Bulk Electricity Meter - 01 July 2025.jpeg",
+      "containing_folder": "COUNCIL - UTILITIES/ALPHA METERING/Reports/Breakdown Reports/Electricity/2025/2025.07",
+      "file_name": "Colnbrook Estate - Bulk Electricity Meter - 01 July 2025.jpeg",
+      "date": "2025-07-01",
+      "date_source": "path-backfill",
+      "date_confidence": "medium",
+      "meter_number": "V 50",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "V 50",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "a\n\nio\n\nSa gO\n\n=\n\n\u2014\n\n\u2014\n\nki\n\n.\n\npm\n\nam\n\nte\n\nCm\n\n+>\n\n7.\n\n\u00a9\n\nLED kWh\n\nLED kvarh\n\n| Bean\n\nce\n\nCl.0.5S\n\nIEC 62053-22:2003\n\nIEC 620653-23:2003\n\nCl.2\n\nType ACE661B044C\n",
+        "label_region": "arh LED kWh a oa\n\n=C 62053-22:2003 Cl.0.5S\n\n=C 62053-23:2003 \u00b0 Cl.2 lm.\nype ACE661B044C\nx57.7/100 V - 3x277/480 V 50 Hz\n\n(10) A\u2019 :\n\ncttvay | FE N2z10 000 imo/kW",
+        "meter_region": "aa\n\n| ot\nEr\npm om * cm { a R",
+        "reading_center": "4\n\nvy",
+        "reading_window": "we a",
+        "reading_window_bin": ""
+      }
+    }
+  ]
+}

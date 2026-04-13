@@ -1,0 +1,315 @@
+{
+  "building_name": "Transvalia",
+  "generated_at": "2026-04-11T15:26:13.230740+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "summary": {
+    "total_images": 7,
+    "folders_without_images": 17,
+    "images_with_meter_number": 3,
+    "images_with_serial_number": 1,
+    "images_with_meter_reading": 4,
+    "images_with_date": 5,
+    "flags": {
+      "missing-date": 2,
+      "missing-meter-number": 4,
+      "missing-meter-reading": 3,
+      "missing-serial-number": 6
+    }
+  },
+  "folders_without_images": [
+    {
+      "folder": "COUNCIL AND UTILITIES/2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2020/APR 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2022/May 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/2024/2024.07",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/TV Utilities/TV Elec Meter Readings",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/TV Utilities/TV Prepaid Elec Meters",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/TV Utilities/TV Utility Calculations",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities/Electricity",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities/Electricity/2024",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities/Electricity/2025",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities/Electricity/2026",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities/Water",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities/Water/2024",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities/Water/2025",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL AND UTILITIES/WCU Utilities/Water/2026",
+      "reason": "folder-has-no-image-descendants"
+    }
+  ],
+  "images": [
+    {
+      "image_path": "COUNCIL AND UTILITIES/2021/TV - Elec, Water & Sanitation - Aug 2021.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/2021",
+      "file_name": "TV - Elec, Water & Sanitation - Aug 2021.jpg",
+      "date": "2021-06-24",
+      "date_source": "ocr:full-image",
+      "date_confidence": "low",
+      "meter_number": "CUT 4",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "CUT 4",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "1000",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "flags": [
+        "missing-serial-number"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "_\n\na\n\na vet Cid \u201d\n\n~eeeee FO, Bad\n\nSE tele mI sams\n\n\u2014\u2014\n\n\"\n\nVeesertlfipat\n\nSA ver\n\nsae gt Byes bf\n\nEMFULENI\n\nVaal Rover Oy. the Chase od Hamay Rights\n\n2) ANG\n\nIN",
+        "label_region": "cma eretirs | stile * \u2018 0.00 It ~,, DueDate \u2014 . | eUe VUE eee een Sates\ner I I\nName TRANSVALIA BODY CORP DUNLRAL INFORMATION\nPR Trek AL WN ENED ART Der SATE COE",
+        "meter_region": "BODY CORP\nz |}\na Guarana\nla\nANS 000\nte |____trovemens |\nj\nT FORWARD 91260 89\nYOU 0007.00\n83253 89\nARS 432.89\nFLATS/TOWNHOUSES/OTHER(ONCE A WEEK) 1030.70\nCITY\n' FLATS\\TOWNHOUSES 2726.30\nSERVICES\n154 TA",
+        "reading_center": "Guarantees\n\n0 00\n\nme gmat\n\nae\n\nie\n\n_\n\ndeep ivsee bis\n\n\u2014\n\nmo -_\u2014 a _\n\n\u2014_\u2014_\n\n~\n\nPee \u2014_\n\ni eae ae\n\n91260.89\n\nRWARD\n\n10007.00\n\n83253 89\n\n432 89\n\n1030.70\n\nS/TOWNHOUSES/OTHER(ONCE A WEEK)\n\nF\n\n2726.10\n\nTS\\IT",
+        "reading_window": "me\n\n3\n\nsce gi\n\n\u2014 ene\n\na\n\nen\n\n91261\n\n1000\n\n8325\n\n4)\n\n103\n\nES/OTHER(ONCE A WEEK)\n\n2f2\n\nSES\n\n2 OTHER RESIDENTIAL - BULK WATER METER\n\n\u00bb*4 HW)",
+        "reading_window_bin": "3\n04\n1000\n41\n103\n0\n2"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/2021/TV - Emfuleni 50% Write Off Letter - Oct 2021.jpeg",
+      "containing_folder": "COUNCIL AND UTILITIES/2021",
+      "file_name": "TV - Emfuleni 50% Write Off Letter - Oct 2021.jpeg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "0442",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "a",
+        "date_full": "EMFULENI\n\nLOCAL MUNICIPAL\n\nVaal Fever Oty, he Crate of Human Rights\n\nMEDIA STATEMENT\n\nATTENTION: TO ALL MEDIA HOUSES\n\nFOR IMMEDIATE RELEASE\n\n25 October 2021\n\nEx",
+        "label_region": "erane has also encouraged estate agenaes to inform property sellers to take advantage o\n1 this period.\n\n1 behalf of the Emfulen focal municipality\n\nenquines con",
+        "meter_region": "DIATE RELEASE\n\n2021\n\nMayor concerned by a slow response by rate payers regarding the 30- 50% u\n1) Local Municipality during its Council sitting of the 31st August 2021, resolved on a Re\u2019\nheme report t",
+        "reading_center": "0\n\nyor concerned by a slow response by rate payers regarding the 30- 50%\n\nocal Municipality during its Council sitting of the 31st August 2021, resolved on a!\n\nne report that was tabled before the cou",
+        "reading_window": "icipality during its Council sitting of the 31st August 2021, resol,\n\n| that was tabled before the council. The latter is aimed at easin:\n\nyah economic times fueled by the Covid-19 pandemic. Eligible ",
+        "reading_window_bin": "3162021\n19\n230\n\n53\n20\n0442"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/2024/2024.04/TV - Account 20001147 Elec, Water & Sanitation Apr 2024.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/2024/2024.04",
+      "file_name": "TV - Account 20001147 Elec, Water & Sanitation Apr 2024.jpg",
+      "date": null,
+      "date_source": null,
+      "date_confidence": "missing",
+      "meter_number": "Z 9",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "Z 9",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading",
+        "missing-date"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "ey\n\nry\n\nbs\n\nra\n\ner, <\n\not\n\nJ\n\n2\n\nN\n\n2\n\n8\n\n=\n\non\n\nnh\n\n|\n\noe\n\nWy\n\n|\n\nrial\n\n=a\n\nOr\n\n38\n\na\n\n:\n\no\n\na\n\nSet |\n\nfe]\n\n9\n\nee ee\n\nies\n\n4\n\nal\n\n|\n\na\n\n\u201ca\n\naaa\n\na\n\n| o\n\n-\u2014\n\n=\n",
+        "label_region": "Q \u2018 = a.\nx J. a a 8 \u00ab ian\npw 4 = Q ro wy 1\nYt x ba x x cg 2 2\nad ae ou 2 oO > z z <q Ww ro\n=) A \u201c c \u00ab > Ed = % =I\nmn 4. w. ves 2 s o eve a 2 S : ,\n= am eS ees o",
+        "meter_region": "| | ree eee] a| 8\nip a! =\n| | > i\nKate : FE: :\n: i 5\n4 3 ,\n- S\n= oO : :\n: | ' | | |\n8 | ee\noS |\nluis ai \u00a2 ;\n| mes Was a < :\nI : E mean \u00e9 ; :\ni. ; \u00a5 Fa 8",
+        "reading_center": "> Le\n\n| =/s\n\n| \u00a7\n\n\u2014_",
+        "reading_window": "=/s",
+        "reading_window_bin": "4 4\n\n4\n\n2\n3\n1"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/2024/2024.04/TV - Account 20001149 Elec, Water & Sanitation Apr 2024.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/2024/2024.04",
+      "file_name": "TV - Account 20001149 Elec, Water & Sanitation Apr 2024.jpg",
+      "date": "2000-04-13",
+      "date_source": "ocr:full-image",
+      "date_confidence": "low",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "34326",
+      "meter_reading_source": "ocr:reading_window",
+      "meter_reading_confidence": "medium",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number"
+      ],
+      "ocr_samples": {
+        "date_region": "a",
+        "date_full": "cry\n\nfeos\n\nEMFULENI\n\n\u2018toe\n\n\u00a5 anon cta pears\n\n_\n\nLOCAL MUNICIPALITY\n\nah\n\nut\n\nit\n\nn\n\nTRANSVALIA BODY CORP\n\nwe\n\nPOSBUS 1234\n\nVEREENIGING\n\n1930\n\nTAX INVOIC\n\ntnvoiee",
+        "label_region": "a\n$9\na\n014499 ; =\nrer) a4 a\nie Ce heed \u2014\nOue Oete\n, krAt\nNGG), eV",
+        "meter_region": "4 ACCOUNE UTES 1%\nes\n. r \u2014 ~ - = yg Spe =, Par : | \u2018States\n\u2014 Guarantee 202\nes me\nCharge\nBetalts {excluding VAT) VAT\naa = 7\n41 FORWARD 5352 58\n62782 58\nFARS $20 92\nJ e n\n+ LAT IT OWNHOUSESIOTHER(ONCE A",
+        "reading_center": "Cash\n\nGuarantee\n\n0.00\n\na<\n\n_~\n\nCie\n\nbak\n\na i:\n\n7000 60000413\n\nOntalis\n\n[axchiding VAT)\n\nVIARD\n\n543152.58\n\n$49762,58\n\n$20 2\n\n4157.50\n\nTN TOWNHOUSE SIOTHER(ONCE A WEEK)\n\ny\n\nATS TOWNHOUSES\n\n337240\n\nVICES",
+        "reading_window": "=\n\nrs et.\n\n3\n\nArea M2\n\nOstalis\n\n{axchiding VAT)\n\n34326\n\n$426\n\nby\n\n+\n\nFSESNMOTHER(ONCE A WEEK)\n\nUSES\n\n33\n\nLH INTC RN",
+        "reading_window_bin": "7"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/Emfuleni Warning Notice_33 Merriman Ave_28Aug2019.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES",
+      "file_name": "Emfuleni Warning Notice_33 Merriman Ave_28Aug2019.jpg",
+      "date": "2019-08-28",
+      "date_source": "path-backfill",
+      "date_confidence": "medium",
+      "meter_number": "400000000004",
+      "meter_number_source": "ocr:meter-region",
+      "meter_number_kind": "serial-number",
+      "meter_number_confidence": "medium",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": "400000000004",
+      "serial_number_source": "ocr:meter-region",
+      "meter_reading": "1014",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "flags": [],
+      "ocr_samples": {
+        "date_region": "\u2014\u2014\u2014\u2014",
+        "date_full": "EMFULENI\n\nLOCAL MUNICIPALITY\n\n'\n\nWARNING\n\nNOTICE\n\nant Offices\n\n.\n\nx\n\n5\n\nmit\n\nv1 Loc\n\na\n\nfeb Gott Mareor\u2122\n\nTe Ww\n\ns\n\n2\n\nORK\n\n'\n\ni\n\n2\n\n\u00ab\n\nnt Kew\n\nve\n\n.\n\nn\n\nark\n\nC",
+        "label_region": ".. oa -\n: OP aE? OD\nsamp \u00a2 cpm oe \u00a9 samiwws & ecm a ete toon mt",
+        "meter_region": "ween ae Cee SS\n\ncI) SS SHET Eiders Local Municipality _ le\n\nOK Barser Bullding\n\nPresident Kruger Street\n\nVandertijipar\u00ae\n\nContact Centre\n\n= onre: 28 August 2018\n\nME: THUNDERPROPS 1014CC\nnT NO: 40000000",
+        "reading_center": "Preaident K >\n\nContect Centre\n\nGround Fioor\n\ncate: 26 August 20%\n\n>: THUNDERPROPS 1014CC\n\nNO: 400000000004\n\nRESS:\n\n33\n\n\\: VEREENIGING\n\nOUNT NO: 20001146\n\nare hereby notifie\n\ndd that your municipal\n\ncl",
+        "reading_window": "YERPROPS 1014CC\n\n00000004 1\n\nNIGING\n\nD: 20001146\n\nhereby notified that your munich\n\nstomer/account holder you are\n\n, Emfuleni Local Municipality\n\nreflects an outstanding balance.\n\nkindly |\n\nto clear t",
+        "reading_window_bin": "1014\n90400004120000000000000\n33\n020001146"
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/TV Utilities/TV Water Meter Readings/TV bulk water meter reading 1_10Oct2019.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/TV Utilities/TV Water Meter Readings",
+      "file_name": "TV bulk water meter reading 1_10Oct2019.jpg",
+      "date": "2019-10-10",
+      "date_source": "path-backfill",
+      "date_confidence": "medium",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "ve eee",
+        "date_full": "1\n\n\u00bb\n\n~\u201d,\n\nes\n\nbe\n\npra\n\nPa\n\n-\n\nP\n\n.\n\nfr)\n\n~\"\n\n~\n\ne?\n\nne\n\nvw\n\nria\n\n~~\n\ni\n\nra\n\nrs\n\n>\n\n-\n\n\u20182\n\nen\n\n\u2018_\n\nae\n\nte\n\n~~\n\nah.",
+        "label_region": ") \\\nrr ; a .,\n\u00b0 a ret wy n\n. ~\u00a5 *., &\na. a \\ rn\n. a . aan . . . i \u201c \u2018\n~ he 4, \u2018eihe\n. \u2018 . ~@ .\n. sy i\u2019 . Yo",
+        "meter_region": "as\nfw \u201c F\n7 4 *",
+        "reading_center": "",
+        "reading_window": "c wa oll\n\n~*\n\nus",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "COUNCIL AND UTILITIES/TV Utilities/TV Water Meter Readings/TV bulk water meter reading 2_10Oct2019.jpg",
+      "containing_folder": "COUNCIL AND UTILITIES/TV Utilities/TV Water Meter Readings",
+      "file_name": "TV bulk water meter reading 2_10Oct2019.jpg",
+      "date": "2019-10-10",
+      "date_source": "path-backfill",
+      "date_confidence": "medium",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "date_region": "",
+        "date_full": "Ce\n\nSou\n\nie\n\nne %\n\n=\n\nih",
+        "label_region": "ar",
+        "meter_region": "18 Baik\n- DFo. bs\n~ ae\no. Bi 7\n4 fg ay po rat. ee\nwie a. |\n\u2018 s =) ae fo te\n2 Fs = ete (Ss gira\na . eee ,\n, Bue fe A\n, egal (a i ah",
+        "reading_center": "Pn\n\n+\n\n\u2014\n\nvr\n\nxe\n\npar\n\nes\n\nad\n\nad\n\nas\n\non\n\n~\n\nSky\n\n7?\n\nae\n\nie\n\nA",
+        "reading_window": "i\n\n~.\n\nit\n\nbore\n\n~~\n\nee\n\naor",
+        "reading_window_bin": "2\n2\n7"
+      }
+    }
+  ]
+}

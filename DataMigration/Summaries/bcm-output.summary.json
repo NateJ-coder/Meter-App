@@ -1,6 +1,6 @@
 {
   "summary_type": "utility-dash-sheet-summary",
-  "generated_at": "2026-04-10T11:55:00.982526+00:00",
+  "generated_at": "2026-04-10T13:49:24.941137+00:00",
   "workbook": {
     "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
     "source_file_is_encrypted": true,
@@ -12764,6 +12764,1661 @@
           ]
         }
       ],
+      "entities_and_meanings": [
+        {
+          "entity_type": "sheet_labels_and_headings",
+          "examples": [
+            "owerh | BCM EXPORT FORMAT | WHAT TO SHOW",
+            "UNIT | The Azores : 01/07/2026 | Excl VAT",
+            "AZ 01A | Elec:(12/01/2025: 25429)-(01/07/2026: 25917)= 488 ComP: .00 Serv: 3.87 Netw: 15.64 | Unit Water Consumption",
+            "AZ 01A | Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00 | Elec Com Prop",
+            "AZ 01A | Sanitation 12/01/2025 - 01/07/2026 | Elec Service Charge",
+            "AZ 02 | Elec:(12/01/2025: 20539)-(01/07/2026: 21114)= 575 ComP: .00 Serv: 3.87 Netw: 15.64 | Elec Network Charge",
+            "AZ 02 | Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00 | Water Com Prop",
+            "AZ 02 | Sanitation 12/01/2025 - 01/07/2026 | Water Demand Management Levy",
+            "AZ 03 | Elec:(12/01/2025: 62691)-(01/07/2026: 63234)= 543 ComP: .00 Serv: 3.87 Netw: 15.64 | Water Surcharge",
+            "AZ 03 | Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00 | Sanitation",
+            "AZ 03 | Sanitation 12/01/2025 - 01/07/2026 | Refuse",
+            "AZ 04 | Elec:(12/01/2025: 96125)-(01/07/2026: 96585)= 460 ComP: .00 Serv: 3.87 Netw: 15.64",
+            "AZ 04 | Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00",
+            "AZ 04 | Sanitation 12/01/2025 - 01/07/2026",
+            "AZ 05B | Elec:(12/01/2025: 58885)-(01/07/2026: 59376)= 491 ComP: .00 Serv: 3.87 Netw: 15.64",
+            "AZ 05B | Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00",
+            "AZ 05B | Sanitation 12/01/2025 - 01/07/2026",
+            "AZ 06A | Elec:(12/01/2025: 10420)-(01/07/2026: 10421)= 1 ComP: .00 Serv: 3.87 Netw: 15.64",
+            "AZ 06A | Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 63.14 Levy: .00 SurC: .00",
+            "AZ 06A | Sanitation 12/01/2025 - 01/07/2026"
+          ],
+          "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+        }
+      ],
+      "categories_and_domains": {
+        "sheet_category": "support",
+        "domains": [
+          "electricity",
+          "water",
+          "charges",
+          "reporting",
+          "settings"
+        ],
+        "sheet_name": "BCM Output"
+      },
+      "attributes_and_time_series": {
+        "time_series_type": "date_like_values",
+        "date_like_values": [
+          {
+            "row_index": 2,
+            "column_index": 2,
+            "value": "The Azores : 01/07/2026"
+          },
+          {
+            "row_index": 3,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 25429)-(01/07/2026: 25917)= 488 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 4,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 5,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 6,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 20539)-(01/07/2026: 21114)= 575 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 7,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 8,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 9,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 62691)-(01/07/2026: 63234)= 543 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 10,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 11,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 12,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 96125)-(01/07/2026: 96585)= 460 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 13,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 14,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 15,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 58885)-(01/07/2026: 59376)= 491 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 16,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 17,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 18,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 10420)-(01/07/2026: 10421)= 1 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 19,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 63.14 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 20,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 21,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 44222)-(01/07/2026: 44744)= 522 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 22,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 23,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 24,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 81266)-(01/07/2026: 81850)= 584 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 25,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 63.14 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 26,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 27,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 87918)-(01/07/2026: 88354)= 436 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 28,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 29,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 30,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 66118)-(01/07/2026: 66779)= 661 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 31,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 32,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 33,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 32537)-(01/07/2026: 33018)= 481 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 34,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 35,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 36,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 1214)-(01/07/2026: 1491)= 277 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 37,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 38,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 39,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 94584)-(01/07/2026: 94815)= 231 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 40,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 41,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 42,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 86567)-(01/07/2026: 86889)= 322 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 43,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 44,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 45,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 39575)-(01/07/2026: 40189)= 614 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 46,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 47,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 48,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 88024)-(01/07/2026: 88312)= 288 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 49,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 50,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 51,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 38426)-(01/07/2026: 39044)= 618 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 52,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 63.14 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 53,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 54,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 24987)-(01/07/2026: 25566)= 579 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 55,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 56,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 57,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 90601)-(01/07/2026: 90666)= 65 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 58,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 63.14 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 59,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 60,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 37932)-(01/07/2026: 38387)= 455 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 61,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 62,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 63,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 52288)-(01/07/2026: 53007)= 719 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 64,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 65,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 66,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 39903)-(01/07/2026: 40198)= 295 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 67,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 68,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 69,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 41003)-(01/07/2026: 41299)= 296 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 70,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 71,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 72,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 46389)-(01/07/2026: 46698)= 309 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 73,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 74,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 75,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 24750)-(01/07/2026: 24870)= 120 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 76,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 88.40 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 77,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 78,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 4427)-(01/07/2026: 5006)= 579 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 79,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 86.59 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 80,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 81,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 69240)-(01/07/2026: 70022)= 782 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 82,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 83,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 84,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 13869)-(01/07/2026: 14137)= 268 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 85,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 86,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 87,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 56478)-(01/07/2026: 57467)= 989 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 88,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 89,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 90,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 13983)-(01/07/2026: 14108)= 125 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 91,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 92,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 93,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 85702)-(01/07/2026: 86088)= 386 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 94,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 84.79 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 95,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 96,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 12074)-(01/07/2026: 12273)= 199 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 97,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.95 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 98,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 99,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 525)-(01/07/2026: 616)= 91 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 100,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 84.79 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 101,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 102,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 28268)-(01/07/2026: 28514)= 246 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 103,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.95 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 104,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 105,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 19488)-(01/07/2026: 19893)= 405 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 106,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 86.59 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 107,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 108,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 56018)-(01/07/2026: 56363)= 345 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 109,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 86.59 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 110,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 111,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 970)-(01/07/2026: 1064)= 94 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 112,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 86.59 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 113,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 114,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 47286)-(01/07/2026: 47505)= 219 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 115,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 86.59 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 116,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 117,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 61714)-(01/07/2026: 62310)= 596 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 118,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 84.79 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 119,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 120,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 51061)-(01/07/2026: 51129)= 68 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 121,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 85.69 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 122,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 123,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 4295)-(01/07/2026: 4296)= 1 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 124,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 84.79 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 125,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 126,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 63243)-(01/07/2026: 63446)= 203 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 127,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 85.69 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 128,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 129,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 98839)-(01/07/2026: 99332)= 493 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 130,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 86.59 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 131,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 132,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 57422)-(01/07/2026: 57986)= 564 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 133,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 65.85 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 134,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 135,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 44366)-(01/07/2026: 44975)= 609 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 136,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 86.59 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 137,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 138,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 51693)-(01/07/2026: 52021)= 328 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 139,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 65.85 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 140,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 141,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 91652)-(01/07/2026: 92230)= 578 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 142,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 117.26 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 143,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 144,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 68355)-(01/07/2026: 68632)= 277 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 145,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 87.50 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 146,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 147,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 69312)-(01/07/2026: 69587)= 275 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 148,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 149,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 150,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 62920)-(01/07/2026: 63673)= 753 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 151,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 84.79 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 152,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 153,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 52873)-(01/07/2026: 53003)= 130 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 154,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 155,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 156,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 69069)-(01/07/2026: 69525)= 456 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 157,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 84.79 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 158,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 159,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 71596)-(01/07/2026: 72012)= 416 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 160,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 161,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 162,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 67919)-(01/07/2026: 68047)= 128 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 163,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 83.89 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 164,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 165,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 36163)-(01/07/2026: 36445)= 282 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 166,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 167,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 168,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 30052)-(01/07/2026: 30325)= 273 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 169,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 83.89 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 170,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 171,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 28584)-(01/07/2026: 28889)= 305 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 172,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.95 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 173,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 174,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 34673)-(01/07/2026: 34926)= 253 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 175,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 83.89 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 176,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 177,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 81302)-(01/07/2026: 81790)= 488 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 178,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.95 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 179,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 180,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 47714)-(01/07/2026: 48234)= 520 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 181,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 83.89 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 182,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 183,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 9898)-(01/07/2026: 10259)= 361 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 184,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 185,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 186,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 93051)-(01/07/2026: 93725)= 674 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 187,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 84.79 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 188,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 189,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 47103)-(01/07/2026: 47309)= 206 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 190,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 191,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 192,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 71892)-(01/07/2026: 72183)= 291 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 193,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 84.79 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 194,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 195,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 54839)-(01/07/2026: 54916)= 77 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 196,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 197,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 198,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 30104)-(01/07/2026: 30115)= 11 ComP: .00 Serv: 3.87 Netw: 15.64"
+          },
+          {
+            "row_index": 199,
+            "column_index": 2,
+            "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+          },
+          {
+            "row_index": 200,
+            "column_index": 2,
+            "value": "Sanitation 12/01/2025 - 01/07/2026"
+          },
+          {
+            "row_index": 201,
+            "column_index": 2,
+            "value": "Elec:(12/01/2025: 48073)-(01/07/2026: 48364)= 291 ComP: .00 Serv: 3.87 Netw: 15.64"
+          }
+        ],
+        "top_rows": [
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "owerh"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "BCM EXPORT FORMAT"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "WHAT TO SHOW"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "UNIT"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "The Azores : 01/07/2026"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Excl VAT"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "Incl VAT"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Unit Electricity Consumption"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 01A"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Elec:(12/01/2025: 25429)-(01/07/2026: 25917)= 488 ComP: .00 Serv: 3.87 Netw: 15.64"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 1276.35
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 1467.81
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Unit Water Consumption"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 4,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 01A"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 64.04
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 73.65
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Elec Com Prop"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 5,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 01A"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Sanitation 12/01/2025 - 01/07/2026"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 697.73
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 802.39
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Elec Service Charge"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 6,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 02"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Elec:(12/01/2025: 20539)-(01/07/2026: 21114)= 575 ComP: .00 Serv: 3.87 Netw: 15.64"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 1528.95
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 1758.29
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Elec Network Charge"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 7,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 02"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 64.04
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 73.65
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Water Com Prop"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 8,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 02"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Sanitation 12/01/2025 - 01/07/2026"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 697.73
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 802.39
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Water Demand Management Levy"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 9,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 03"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Elec:(12/01/2025: 62691)-(01/07/2026: 63234)= 543 ComP: .00 Serv: 3.87 Netw: 15.64"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 1434.36
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 1649.51
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Water Surcharge"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 10,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 03"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 64.04
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 73.65
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Sanitation"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": true
+              }
+            ]
+          },
+          {
+            "row_index": 11,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 03"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Sanitation 12/01/2025 - 01/07/2026"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 697.73
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 802.39
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Refuse"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": false
+              }
+            ]
+          },
+          {
+            "row_index": 12,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 04"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Elec:(12/01/2025: 96125)-(01/07/2026: 96585)= 460 ComP: .00 Serv: 3.87 Netw: 15.64"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 1204.24
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 1384.88
+              }
+            ]
+          },
+          {
+            "row_index": 13,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 04"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 64.04
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 73.65
+              }
+            ]
+          },
+          {
+            "row_index": 14,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 04"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Sanitation 12/01/2025 - 01/07/2026"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 697.73
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 802.39
+              }
+            ]
+          },
+          {
+            "row_index": 15,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 05B"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Elec:(12/01/2025: 58885)-(01/07/2026: 59376)= 491 ComP: .00 Serv: 3.87 Netw: 15.64"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 1284.08
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 1476.69
+              }
+            ]
+          },
+          {
+            "row_index": 16,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 05B"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 64.04 Levy: .00 SurC: .00"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 64.04
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 73.65
+              }
+            ]
+          },
+          {
+            "row_index": 17,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 05B"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Sanitation 12/01/2025 - 01/07/2026"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 697.73
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 802.39
+              }
+            ]
+          },
+          {
+            "row_index": 18,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 06A"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Elec:(12/01/2025: 10420)-(01/07/2026: 10421)= 1 ComP: .00 Serv: 3.87 Netw: 15.64"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 22.09
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 25.4
+              }
+            ]
+          },
+          {
+            "row_index": 19,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 06A"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Water: (12/01/2025: 0)-(01/07/2026: 0)= 0 Serv: 63.14 Levy: .00 SurC: .00"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 63.14
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 72.61
+              }
+            ]
+          },
+          {
+            "row_index": 20,
+            "cells": [
+              {
+                "column_index": 1,
+                "column_letter": "A",
+                "value": "AZ 06A"
+              },
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "Sanitation 12/01/2025 - 01/07/2026"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": 697.73
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 802.39
+              }
+            ]
+          }
+        ]
+      },
+      "formulas_and_connections_summary": {
+        "formula_cell_count": 0,
+        "formula_patterns": []
+      },
+      "source_evidence": null,
+      "cross_check": {
+        "reconciled_at": "2026-04-10T13:42:21.775223+00:00",
+        "source_workbook": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+        "summary_file": "C:\\Projects\\Meter App\\DataMigration\\Summaries\\bcm-output.summary.json",
+        "previous_review_flag_count": 0,
+        "current_review_flag_count": 0,
+        "derived_date_count": 0,
+        "resolved_formula_value_count": 0
+      },
       "review_flags": []
     }
   },

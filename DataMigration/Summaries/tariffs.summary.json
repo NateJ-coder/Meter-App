@@ -1,6 +1,6 @@
 {
   "summary_type": "utility-dash-sheet-summary",
-  "generated_at": "2026-04-10T11:55:00.522265+00:00",
+  "generated_at": "2026-04-10T13:49:24.369238+00:00",
   "workbook": {
     "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
     "source_file_is_encrypted": true,
@@ -44133,6 +44133,1113 @@
           ]
         }
       ],
+      "entities_and_meanings": [
+        {
+          "entity_type": "sheet_labels_and_headings",
+          "examples": [
+            "TARIFFS TABLES | QUICK CALC | Tariff Ref:",
+            "Units used | Excl VAT | Incl VAT",
+            "TARIFF REF. | WATER | ELECTRICITY",
+            "Kilolitres | R/kl | kWh",
+            "Qty <= | Excl | Qty <=",
+            "CURRENT RATES",
+            "MC Dec 2020 | 0-5.914 | 0<500",
+            "5.915-12 | 501<1000 | << These figures to be set from municipaity account",
+            "13-20 | 1001<2000",
+            "21-30 | 2001<3000",
+            "31-45 | 3001<99999",
+            "46-99999",
+            "HC Dec 2020 | 0-5.914 | 0<500",
+            "5.915-12 | 501<1000",
+            "NP Dec 2020 | 0-5.914 | 0<500",
+            "TV Dec 2020 | 0-5.914 | 0<500",
+            "BC Jul 2025 | 0-6 | 0<500",
+            "7-10 | 501<1000 | Step 2: 10 \u2013 12 KL @ R19.92 per KL (90% Water Discharged)",
+            "11-15 | 1001<2000 | Step 3: 13 \u2013 18 KL @ R19.92 per KL (75% Water Discharged)",
+            "16-20 | 2001<3000 | Step 4: 19 \u2013 24 KL @ R19.92 per KL (60% Water Discharged)"
+          ],
+          "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+        }
+      ],
+      "categories_and_domains": {
+        "sheet_category": "support",
+        "domains": [
+          "electricity",
+          "water",
+          "charges",
+          "settings"
+        ],
+        "sheet_name": "Tariffs"
+      },
+      "attributes_and_time_series": {
+        "time_series_type": "date_like_values",
+        "date_like_values": [
+          {
+            "row_index": 8,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 17,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 26,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 35,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 148,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 150,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 175,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 222,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 224,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 271,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 271,
+            "column_index": 26,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 273,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 273,
+            "column_index": 26,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 280,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 282,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 282,
+            "column_index": 26,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 284,
+            "column_index": 26,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 289,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 291,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 298,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 300,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 300,
+            "column_index": 26,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 302,
+            "column_index": 26,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 307,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 309,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 316,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 317,
+            "column_index": 61,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 317,
+            "column_index": 74,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 318,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 318,
+            "column_index": 40,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 318,
+            "column_index": 47,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 319,
+            "column_index": 54,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 319,
+            "column_index": 61,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 319,
+            "column_index": 74,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 320,
+            "column_index": 40,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 320,
+            "column_index": 47,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 321,
+            "column_index": 54,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 325,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 327,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 334,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 336,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 343,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 345,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 345,
+            "column_index": 40,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 345,
+            "column_index": 47,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 346,
+            "column_index": 54,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 352,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 354,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 355,
+            "column_index": 26,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 357,
+            "column_index": 26,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 361,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 361,
+            "column_index": 14,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 363,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 363,
+            "column_index": 14,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 364,
+            "column_index": 26,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 366,
+            "column_index": 26,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 370,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 372,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 373,
+            "column_index": 26,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 375,
+            "column_index": 26,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 379,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 381,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 388,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 390,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 397,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 399,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 406,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 408,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 415,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 417,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 424,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 426,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 434,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 436,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 443,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 445,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 452,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 454,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 461,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 463,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 470,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 472,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 479,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 481,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 488,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 490,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 497,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 499,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 506,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 515,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 517,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 524,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 526,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 533,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 535,
+            "column_index": 3,
+            "value": "9.8-15"
+          },
+          {
+            "row_index": 542,
+            "column_index": 3,
+            "value": "0-5.914"
+          },
+          {
+            "row_index": 544,
+            "column_index": 3,
+            "value": "9.8-15"
+          }
+        ],
+        "top_rows": [
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "TARIFFS TABLES"
+              },
+              {
+                "column_index": 13,
+                "column_letter": "M",
+                "value": "QUICK CALC"
+              },
+              {
+                "column_index": 14,
+                "column_letter": "N",
+                "value": "Tariff Ref:"
+              },
+              {
+                "column_index": 15,
+                "column_letter": "O",
+                "value": "Test"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "column_index": 14,
+                "column_letter": "N",
+                "value": "Units used"
+              },
+              {
+                "column_index": 16,
+                "column_letter": "P",
+                "value": "Excl VAT"
+              },
+              {
+                "column_index": 17,
+                "column_letter": "Q",
+                "value": "Incl VAT"
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "TARIFF REF."
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "WATER"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "ELECTRICITY"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "SANITATION"
+              },
+              {
+                "column_index": 13,
+                "column_letter": "M",
+                "value": "Electricity"
+              },
+              {
+                "column_index": 14,
+                "column_letter": "N",
+                "value": 355
+              },
+              {
+                "column_index": 16,
+                "column_letter": "P",
+                "value": 3.55
+              },
+              {
+                "column_index": 17,
+                "column_letter": "Q",
+                "value": 4.0825
+              }
+            ]
+          },
+          {
+            "row_index": 4,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Kilolitres"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "R/kl"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "kWh"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": "c/kWh"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "Kilolitres"
+              },
+              {
+                "column_index": 10,
+                "column_letter": "J",
+                "value": "R/kl"
+              },
+              {
+                "column_index": 13,
+                "column_letter": "M",
+                "value": "Water"
+              },
+              {
+                "column_index": 14,
+                "column_letter": "N",
+                "value": 23
+              },
+              {
+                "column_index": 16,
+                "column_letter": "P",
+                "value": 23
+              },
+              {
+                "column_index": 17,
+                "column_letter": "Q",
+                "value": 26.45
+              }
+            ]
+          },
+          {
+            "row_index": 5,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Qty <="
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "Excl"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "Qty <="
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": "Excl"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "Qty <="
+              },
+              {
+                "column_index": 10,
+                "column_letter": "J",
+                "value": "Excl"
+              },
+              {
+                "column_index": 13,
+                "column_letter": "M",
+                "value": "Sanitation"
+              },
+              {
+                "column_index": 14,
+                "column_letter": "N",
+                "value": 23
+              }
+            ]
+          },
+          {
+            "row_index": 6,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "CURRENT RATES"
+              }
+            ]
+          },
+          {
+            "row_index": 8,
+            "cells": [
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "MC Dec 2020"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "0-5.914"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 0
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "0<500"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "row_index": 9,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "5.915-12"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 0
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "501<1000"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 0
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "<< These figures to be set from municipaity account"
+              }
+            ]
+          },
+          {
+            "row_index": 10,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "13-20"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 0
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "1001<2000"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "row_index": 11,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "21-30"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 0
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "2001<3000"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "row_index": 12,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "31-45"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 0
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "3001<99999"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "row_index": 13,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "46-99999"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "row_index": 17,
+            "cells": [
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "HC Dec 2020"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "0-5.914"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 18.67
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "0<500"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 160.93
+              }
+            ]
+          },
+          {
+            "row_index": 18,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "5.915-12"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 27
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "501<1000"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 160.93
+              }
+            ]
+          },
+          {
+            "row_index": 19,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "13-20"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 34.82
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "1001<2000"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 160.93
+              }
+            ]
+          },
+          {
+            "row_index": 20,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "21-30"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 40.39
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "2001<3000"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 160.93
+              }
+            ]
+          },
+          {
+            "row_index": 21,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "31-45"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 44.65
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "3001<99999"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 160.93
+              }
+            ]
+          },
+          {
+            "row_index": 22,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "46-99999"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 50.9
+              }
+            ]
+          },
+          {
+            "row_index": 26,
+            "cells": [
+              {
+                "column_index": 2,
+                "column_letter": "B",
+                "value": "NP Dec 2020"
+              },
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "0-5.914"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 18.67
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "0<500"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 166.6675
+              }
+            ]
+          },
+          {
+            "row_index": 27,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "5.915-12"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 27
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "501<1000"
+              },
+              {
+                "column_index": 7,
+                "column_letter": "G",
+                "value": 166.6675
+              }
+            ]
+          }
+        ]
+      },
+      "formulas_and_connections_summary": {
+        "formula_cell_count": 95,
+        "formula_patterns": [
+          {
+            "pattern": "=<REF>",
+            "count": 64
+          },
+          {
+            "pattern": "=<REF>*<REF>",
+            "count": 21
+          },
+          {
+            "pattern": "=<REF>*<NUM>",
+            "count": 10
+          }
+        ]
+      },
+      "source_evidence": null,
+      "cross_check": {
+        "reconciled_at": "2026-04-10T13:42:21.607139+00:00",
+        "source_workbook": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+        "summary_file": "C:\\Projects\\Meter App\\DataMigration\\Summaries\\tariffs.summary.json",
+        "previous_review_flag_count": 0,
+        "current_review_flag_count": 0,
+        "derived_date_count": 0,
+        "resolved_formula_value_count": 0
+      },
       "review_flags": []
     }
   },

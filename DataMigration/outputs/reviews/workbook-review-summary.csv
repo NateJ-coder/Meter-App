@@ -1,23 +1,12 @@
 sheet_name,severity,type,message,row_index,column_index,legacy_label,display_label,reading_date_raw,count
-The Azores,high,unresolved-reading-date,Reading date could not be resolved for month column 103.,,103,,2026-03-18 00:00:00,,
-The Azores,high,unresolved-reading-date,Reading date could not be resolved for month column 104.,,104,,2026-04-18 00:00:00,,
-The Azores,high,unresolved-reading-date,Reading date could not be resolved for month column 105.,,105,,2026-05-18 00:00:00,,
-Genesis,high,unresolved-reading-date,Reading date could not be resolved for month column 65.,,65,,2026-03-21 00:00:00,,
 Genesis,medium,row-with-no-readings,Electricity row has no captured reading values.,86,,Com 5,,,
 Genesis,medium,row-with-no-readings,Electricity row has no captured reading values.,87,,Com 6,,,
 Genesis,medium,row-with-no-readings,Electricity row has no captured reading values.,90,,Com 9,,,
 Genesis,medium,row-with-no-readings,Electricity row has no captured reading values.,91,,Com 10,,,
 Genesis,medium,row-with-no-readings,Electricity row has no captured reading values.,92,,Com 11,,,
-Carissa Lane,high,unresolved-reading-date,Reading date could not be resolved for month column 104.,,104,,2026-03-21 00:00:00,,
-Carissa Lane,high,unresolved-reading-date,Reading date could not be resolved for month column 105.,,105,,2026-04-21 00:00:00,,
-Carissa Lane,high,unresolved-reading-date,Reading date could not be resolved for month column 106.,,106,,2026-05-21 00:00:00,,
-Carissa Lane,high,unresolved-reading-date,Reading date could not be resolved for month column 107.,,107,,2026-06-21 00:00:00,,
-Carissa Lane,high,unresolved-reading-date,Reading date could not be resolved for month column 108.,,108,,2026-07-21 00:00:00,,
-Bonifay Court,high,unresolved-reading-date,Reading date could not be resolved for month column 16.,,16,,2026-04-21 00:00:00,,
-Bonifay Court,high,unresolved-reading-date,Reading date could not be resolved for month column 17.,,17,,2026-05-21 00:00:00,,
-Bonifay Court,high,unresolved-reading-date,Reading date could not be resolved for month column 18.,,18,,2026-06-21 00:00:00,,
-Bonifay Court,high,unresolved-reading-date,Reading date could not be resolved for month column 19.,,19,,2026-07-21 00:00:00,,
-Bonifay Court,high,unresolved-reading-date,Reading date could not be resolved for month column 20.,,20,,2026-08-21 00:00:00,,
+Bonifay Court,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,42,,Com Storeroom,,,1
+Bonifay Court,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,43,,Com Staff Room 1 (Willie),,,1
+Bonifay Court,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,44,,Com Staff Room 2 (unit 16),,,1
 Bonifay Court,medium,row-with-no-readings,Electricity row has no captured reading values.,45,,Bulk 1,,,
 Granistar Heights,medium,row-with-no-readings,Electricity row has no captured reading values.,26,,GH 09,,,
 Granistar Heights,medium,row-with-no-readings,Electricity row has no captured reading values.,27,,GH 10,,,
@@ -29,64 +18,97 @@ Mang Court,medium,row-with-no-readings,Electricity row has no captured reading v
 Mang Court,medium,row-with-no-readings,Electricity row has no captured reading values.,22,,MC 05,,,
 Mang Court,medium,row-with-no-readings,Electricity row has no captured reading values.,23,,MC 06,,,
 Mang Court,medium,row-with-no-readings,Electricity row has no captured reading values.,24,,Bulk 1,,,
-Vilino Glen,high,unresolved-reading-date,Reading date could not be resolved for month column 77.,,77,,2023-11-21 00:00:00,11/31/2023,
-Vilino Glen,high,unresolved-reading-date,Reading date could not be resolved for month column 105.,,105,,2026-03-21 00:00:00,,
-Vilino Glen,high,unresolved-reading-date,Reading date could not be resolved for month column 106.,,106,,2026-04-21 00:00:00,,
-Vilino Glen,high,unresolved-reading-date,Reading date could not be resolved for month column 107.,,107,,2026-05-21 00:00:00,,
-Vilino Glen,high,unresolved-reading-date,Reading date could not be resolved for month column 108.,,108,,2026-06-21 00:00:00,,
-Hazelmere,high,unresolved-reading-date,Reading date could not be resolved for month column 103.,,103,,2026-03-21 00:00:00,,
-Hazelmere,high,unresolved-reading-date,Reading date could not be resolved for month column 104.,,104,,2026-04-21 00:00:00,,
-Hazelmere,high,unresolved-reading-date,Reading date could not be resolved for month column 105.,,105,,2026-05-21 00:00:00,,
-Hazelmere,high,unresolved-reading-date,Reading date could not be resolved for month column 106.,,106,,2026-06-21 00:00:00,,
-Hazelmere,high,unresolved-reading-date,Reading date could not be resolved for month column 107.,,107,,2026-07-21 00:00:00,,
-Hazelmere,high,unresolved-reading-date,Reading date could not be resolved for month column 108.,,108,,2026-08-21 00:00:00,,
-Akasia,high,unresolved-reading-date,Reading date could not be resolved for month column 13.,,13,,2024-05-21 00:00:00,06/04/20024,
-Akasia,high,unresolved-reading-date,Reading date could not be resolved for month column 18.,,18,,2024-10-21 00:00:00,,
-Akasia,high,unresolved-reading-date,Reading date could not be resolved for month column 34.,,34,,2026-02-21 00:00:00,,
-Akasia,high,unresolved-reading-date,Reading date could not be resolved for month column 35.,,35,,2026-03-21 00:00:00,,
-Akasia,high,unresolved-reading-date,Reading date could not be resolved for month column 36.,,36,,2026-04-21 00:00:00,,
-Akasia,high,unresolved-reading-date,Reading date could not be resolved for month column 37.,,37,,2026-05-21 00:00:00,,
-Akasia,high,unresolved-reading-date,Reading date could not be resolved for month column 38.,,38,,2026-06-21 00:00:00,,
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,18,,AK 01 / FL 16,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,19,,AK 02 / FL 15,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,20,,AK 03 / FL 14,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,21,,AK 04 / FL 13,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,22,,AK 05 / FL 12,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,23,,AK 06 / FL 11,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,24,,AK 07 / FL 116,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,25,,AK 08 / FL 117,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,26,,AK 09 / FL 118,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,27,,AK 10 / FL 119,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,28,,AK 11 / FL 120,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,29,,AK 12 / FL 112,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,30,,AK 13 / FL 113,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,31,,AK 14 / FL 114,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,32,,AK 15 / FL 115,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,33,,AK 16 / FL 26,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,34,,AK 17 / FL 25,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,35,,AK 18 / FL 24,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,36,,AK 19 / FL 23,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,37,,AK 20 / FL 22,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,38,,AK 21 / FL 21,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,39,,AK 22 / FL 216,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,40,,AK 23 / FL 217,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,41,,AK 24 / FL 218,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,42,,AK 25 / FL 219,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,43,,AK 26 / FL 220,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,44,,AK 27 / FL 212,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,45,,AK 28 / FL 213,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,46,,AK 29 / FL 214,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,47,,AK 30 / FL 215,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,48,,AK 31 / FL 36,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,49,,AK 32 / FL 35,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,50,,AK 33 FL 34,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,51,,AK 34 / FL 33,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,52,,AK 35 / FL 32,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,53,,AK 36 / FL 31,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,54,,AK 37 / FL 316,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,55,,AK 38 / FL 317,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,56,,AK 39 / FL 318,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,57,,AK 40 / FL 319,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,58,,AK 41 / FL 320,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,59,,AK 42 / FL 312,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,60,,AK 43 / FL 313,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,61,,AK 44 / FL 314,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,62,,AK 45 / FL 315,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,63,,AK 46 / FL 46,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,64,,AK 47 / FL 45,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,65,,AK 48 / FL 44,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,66,,AK 49 / FL 43,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,67,,AK 50 / FL 42,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,68,,AK 51 / FL 41,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,69,,AK 52 / FL 416,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,70,,AK 53 / FL 417,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,71,,AK 54 / FL 418,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,72,,AK 55 / FL 419,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,73,,AK 56 / FL 420,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,74,,AK 57 / FL 412,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,75,,AK 58 / FL 413,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,76,,AK 59 / FL 414,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,77,,AK 60 / FL 415,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,78,,AK 61 / FL 56,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,79,,AK 62 / FL 55,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,80,,AK 63 / FL 54,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,81,,AK 64 / FL 53,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,82,,AK 65 / FL 52,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,83,,AK 66 / FL 51,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,84,,AK 67 / FL 516,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,85,,AK 68 / FL 517,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,86,,AK 69 / FL 518,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,87,,AK 70 / FL 519,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,88,,AK 71 / FL 520,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,89,,AK 72 / FL 512,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,90,,AK 73 / FL 513,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,91,,AK 74 / FL 514,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,92,,AK 75 / FL 515,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,93,,AK 76 / FL 66,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,94,,AK 77 / FL 65,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,95,,AK 78 / FL 64,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,96,,AK 79 / FL 63,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,97,,AK 80A / FL 62,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,98,,AK 80B / FL 61,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,99,,AK 81 / FL 616,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,100,,AK 82 / FL 617,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,101,,AK 83 / FL 618,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,102,,AK 84 / FL 619,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,103,,AK 85 / FL 620,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,104,,AK 86 / FL 612,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,105,,AK 87 / FL 613,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,106,,AK 88 / FL 614,,,1
+Akasia,medium,non-numeric-reading-values,Electricity row contains non-numeric reading content that could not be resolved.,107,,AK 89 / FL 615,,,1
 Akasia,medium,row-with-no-readings,Electricity row has no captured reading values.,109,,Bulk 1,,,
-Phanda Lodge,high,unresolved-reading-date,Reading date could not be resolved for month column 36.,,36,,2026-03-21 00:00:00,,
-Phanda Lodge,high,unresolved-reading-date,Reading date could not be resolved for month column 37.,,37,,2026-04-21 00:00:00,,
-Phanda Lodge,high,unresolved-reading-date,Reading date could not be resolved for month column 38.,,38,,2026-05-21 00:00:00,,
-Phanda Lodge,high,unresolved-reading-date,Reading date could not be resolved for month column 39.,,39,,2026-06-21 00:00:00,,
-Vista Del Monte,high,unresolved-reading-date,Reading date could not be resolved for month column 25.,,25,,2026-03-01 00:00:00,,
-Vista Del Monte,high,unresolved-reading-date,Reading date could not be resolved for month column 26.,,26,,2026-05-21 00:00:00,,
-Vista Del Monte,high,unresolved-reading-date,Reading date could not be resolved for month column 27.,,27,,2026-06-21 00:00:00,,
-L'Montagne,high,unresolved-reading-date,Reading date could not be resolved for month column 103.,,103,,2026-03-21 00:00:00,,
-L'Montagne,high,unresolved-reading-date,Reading date could not be resolved for month column 104.,,104,,2026-04-21 00:00:00,,
-L'Montagne,high,unresolved-reading-date,Reading date could not be resolved for month column 105.,,105,,2026-05-21 00:00:00,,
-L'Montagne,high,unresolved-reading-date,Reading date could not be resolved for month column 106.,,106,,2026-06-21 00:00:00,,
-Queensgate,high,unresolved-reading-date,Reading date could not be resolved for month column 103.,,103,,2026-03-21 00:00:00,,
-Queensgate,high,unresolved-reading-date,Reading date could not be resolved for month column 104.,,104,,2026-04-21 00:00:00,,
-Queensgate,high,unresolved-reading-date,Reading date could not be resolved for month column 105.,,105,,2026-05-21 00:00:00,,
-Queensgate,high,unresolved-reading-date,Reading date could not be resolved for month column 106.,,106,,2026-06-21 00:00:00,,
-Queensgate,high,unresolved-reading-date,Reading date could not be resolved for month column 107.,,107,,2026-07-21 00:00:00,,
-Queensgate,high,unresolved-reading-date,Reading date could not be resolved for month column 108.,,108,,2026-08-21 00:00:00,,
-Queensgate,high,unresolved-reading-date,Reading date could not be resolved for month column 109.,,109,,2026-09-21 00:00:00,,
-Rivonia Gate,high,unresolved-reading-date,Reading date could not be resolved for month column 103.,,103,,2026-03-21 00:00:00,,
-Rivonia Gate,high,unresolved-reading-date,Reading date could not be resolved for month column 104.,,104,,2026-04-21 00:00:00,,
-Rivonia Gate,high,unresolved-reading-date,Reading date could not be resolved for month column 105.,,105,,2026-05-21 00:00:00,,
-Rivonia Gate,high,unresolved-reading-date,Reading date could not be resolved for month column 106.,,106,,2026-06-21 00:00:00,,
-Riviera Villas,high,unresolved-reading-date,Reading date could not be resolved for month column 15.,,15,,2021-09-19 00:00:00,2019-09-31,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 67.,,67,,2023-03-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 68.,,68,,2023-04-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 69.,,69,,2023-05-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 70.,,70,,2023-06-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 71.,,71,,2023-07-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 72.,,72,,2023-08-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 73.,,73,,2023-09-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 74.,,74,,2023-10-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 75.,,75,,2023-11-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 76.,,76,,2023-12-21 00:00:00,,
-Suncrest,high,unresolved-reading-date,Reading date could not be resolved for month column 77.,,77,,2024-01-21 00:00:00,,
-Haven Court,high,unresolved-reading-date,Reading date could not be resolved for month column 8.,,8,,2021-02-21 00:00:00,28/28/2021,
-Haven Court,high,unresolved-reading-date,Reading date could not be resolved for month column 34.,,34,,2023-04-21 00:00:00,,
-Haven Court,high,unresolved-reading-date,Reading date could not be resolved for month column 35.,,35,,2023-05-21 00:00:00,,
-Haven Court,high,unresolved-reading-date,Reading date could not be resolved for month column 36.,,36,,2023-06-21 00:00:00,,
-Haven Court,high,unresolved-reading-date,Reading date could not be resolved for month column 37.,,37,,2023-07-21 00:00:00,,
 Haven Court,medium,row-with-no-readings,Electricity row has no captured reading values.,18,,HC01,,,
 Haven Court,medium,row-with-no-readings,Electricity row has no captured reading values.,19,,HC02,,,
 Haven Court,medium,row-with-no-readings,Electricity row has no captured reading values.,20,,HC03,,,
@@ -103,16 +125,6 @@ Haven Court,medium,row-with-no-readings,Electricity row has no captured reading 
 Haven Court,medium,row-with-no-readings,Electricity row has no captured reading values.,31,,HC14,,,
 Haven Court,medium,row-with-no-readings,Electricity row has no captured reading values.,32,,HC15,,,
 Haven Court,medium,row-with-no-readings,Electricity row has no captured reading values.,33,,BULK01,,,
-Taragona,high,unresolved-reading-date,Reading date could not be resolved for month column 103.,,103,,2026-03-21 00:00:00,,
-Taragona,high,unresolved-reading-date,Reading date could not be resolved for month column 104.,,104,,2026-04-21 00:00:00,,
-Taragona,high,unresolved-reading-date,Reading date could not be resolved for month column 105.,,105,,2026-05-21 00:00:00,,
-Taragona,high,unresolved-reading-date,Reading date could not be resolved for month column 106.,,106,,2026-06-21 00:00:00,,
-New Poort,high,unresolved-reading-date,Reading date could not be resolved for month column 34.,,34,,2023-04-21 00:00:00,,
-New Poort,high,unresolved-reading-date,Reading date could not be resolved for month column 35.,,35,,2023-05-21 00:00:00,,
-New Poort,high,unresolved-reading-date,Reading date could not be resolved for month column 36.,,36,,2023-06-21 00:00:00,,
-New Poort,high,unresolved-reading-date,Reading date could not be resolved for month column 37.,,37,,2023-07-21 00:00:00,,
-New Poort,high,unresolved-reading-date,Reading date could not be resolved for month column 38.,,38,,2023-08-21 00:00:00,,
-New Poort,high,unresolved-reading-date,Reading date could not be resolved for month column 39.,,39,,2023-09-21 00:00:00,,
 New Poort,medium,row-with-no-readings,Electricity row has no captured reading values.,18,,NP01,,,
 New Poort,medium,row-with-no-readings,Electricity row has no captured reading values.,19,,NP02,,,
 New Poort,medium,row-with-no-readings,Electricity row has no captured reading values.,20,,NP03,,,
@@ -120,7 +132,3 @@ New Poort,medium,row-with-no-readings,Electricity row has no captured reading va
 New Poort,medium,row-with-no-readings,Electricity row has no captured reading values.,22,,NP05,,,
 New Poort,medium,row-with-no-readings,Electricity row has no captured reading values.,23,,NP06,,,
 New Poort,medium,row-with-no-readings,Electricity row has no captured reading values.,24,,BULK01,,,
-Transvalia,high,unresolved-reading-date,Reading date could not be resolved for month column 70.,,70,,2026-03-21 00:00:00,,
-Transvalia,high,unresolved-reading-date,Reading date could not be resolved for month column 71.,,71,,2026-04-21 00:00:00,,
-Transvalia,high,unresolved-reading-date,Reading date could not be resolved for month column 72.,,72,,2026-05-21 00:00:00,,
-Transvalia,high,unresolved-reading-date,Reading date could not be resolved for month column 73.,,73,,2026-06-21 00:00:00,,

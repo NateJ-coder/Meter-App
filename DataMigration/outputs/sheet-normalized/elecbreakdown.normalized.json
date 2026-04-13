@@ -19196,5 +19196,2354 @@
       ]
     }
   ],
+  "entities_and_meanings": [
+    {
+      "entity_type": "sheet_labels_and_headings",
+      "examples": [
+        "hassh | Hazelmere | ELECTRICITY",
+        "TIERED TARIFFS",
+        "Previous Reading 02/02/20226 | Selected Date 2026/03/03 | Kw Used",
+        "Bulk Total | \u03a3 R0,00",
+        "Estimate Muni. Charge | Excl VAT | Incl VAT",
+        "Actual Income from Unit Charges > | PQ Values | Excl VAT",
+        "HM 01 | 1,06%",
+        "HM 02 | 1,68%",
+        "HM 03 | 1,68%",
+        "HM 04 | 1,06%",
+        "HM 05 | 1,68%",
+        "HM 06 | 1,83%",
+        "HM 07 | 1,68%",
+        "HM 08 | 1,03%",
+        "HM 09 | 1,27%",
+        "HM 10 | 1,79%",
+        "HM 11 | 1,06%",
+        "HM 12 | 1,06%",
+        "HM 13 | 1,06%",
+        "HM 14 | 1,83%"
+      ],
+      "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+    }
+  ],
+  "categories_and_domains": {
+    "sheet_category": "support",
+    "domains": [
+      "electricity",
+      "water",
+      "charges",
+      "settings"
+    ],
+    "sheet_name": "ElecBreakDown"
+  },
+  "attributes_and_time_series": {
+    "time_series_type": "date_like_values",
+    "date_like_values": [
+      {
+        "row_index": 4,
+        "column_index": 3,
+        "value": "Selected Date 2026/03/03"
+      }
+    ],
+    "top_rows": [
+      {
+        "row_index": 1,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "hassh"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "Hazelmere"
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": "ELECTRICITY"
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": "SANITATION"
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": "REFUSE"
+          },
+          {
+            "column_index": 29,
+            "column_letter": "AC",
+            "value": "PREPAID"
+          }
+        ]
+      },
+      {
+        "row_index": 3,
+        "cells": [
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "TIERED TARIFFS"
+          }
+        ]
+      },
+      {
+        "row_index": 4,
+        "cells": [
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": "Previous Reading 02/02/20226"
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Selected Date 2026/03/03"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "Kw Used"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": "0 < 500_x000D_\n kWh"
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 295.56
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": "500 < 1000_x000D_\n kWh"
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 295.56
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": "1000 < 2000_x000D_\n kWh"
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 295.56
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": "2000 < 3000_x000D_\n kWh"
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 295.56
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": "3000 < 99999_x000D_\n kWh"
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 295.56
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": "Totals"
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "Bulk Total, less Actual Income"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": "Elec Common Prop: (PQ)"
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": "Elec Service Charge: (None)"
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": "Elec Network Charge: (None)"
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "GRAND TOTAL"
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": "Sanitation: (Fixed)"
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": "Refuse: (None)"
+          },
+          {
+            "column_index": 29,
+            "column_letter": "AC",
+            "value": "0/144 Units\nhave Prepaid Meters\nwhich used \n0Kw"
+          }
+        ]
+      },
+      {
+        "row_index": 5,
+        "cells": [
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Bulk Total"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 17920
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 17920
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 52964.352
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 52964.352
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": 12963.261599999969
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 0
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": "\u03a3 R0,00"
+          }
+        ]
+      },
+      {
+        "row_index": 6,
+        "cells": [
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": "Estimate Muni. Charge"
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 13534
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 13534
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 40001.0904
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 40001.0904
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 12963.261599999969
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": "Excl VAT"
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": "Incl VAT"
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 29,
+            "column_letter": "AC",
+            "value": 0
+          },
+          {
+            "column_index": 30,
+            "column_letter": "AD",
+            "value": "Excl VAT"
+          }
+        ]
+      },
+      {
+        "row_index": 7,
+        "cells": [
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": "Actual Income from Unit Charges >"
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 12329
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 36439.59240000003
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 1205
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 3561.4980000000005
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 40001.09040000003
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "PQ Values"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 12963.261599999969
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 16595.913043478264
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": "Excl VAT"
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": "Incl VAT"
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": "Excl VAT"
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": "Incl VAT"
+          },
+          {
+            "column_index": 29,
+            "column_letter": "AC",
+            "value": 0
+          },
+          {
+            "column_index": 30,
+            "column_letter": "AD",
+            "value": "Incl VAT"
+          }
+        ]
+      },
+      {
+        "row_index": 9,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 01"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 41906
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 42067
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 161
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 161
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 475.8516
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 475.8516
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,06%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 137.37381618215633
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 613.2254161821563
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 705.2092286094797
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 10,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 02"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 17327
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 17912
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 585
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 500
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1477.8
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 85
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 251.226
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 1729.0259999999998
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,68%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 217.19914180151744
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 1946.2251418015173
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 2238.158913071745
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 11,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 03"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 39353
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 39375
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 22
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 22
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 65.0232
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 65.0232
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,68%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 217.19914180151744
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 282.2223418015175
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 324.55569307174505
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 12,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 04"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 87437
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 87793
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 356
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 356
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1052.1936
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 1052.1936
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,06%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 137.37381618215633
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 1189.5674161821564
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 1368.0025286094797
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 13,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 05"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 10730
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 10730
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 0
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 0
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 0
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 0
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,68%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 217.19914180151744
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 217.19914180151744
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 249.77901307174503
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 14,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 06"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 74208
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 74423
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 215
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 215
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 635.4540000000001
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 635.4540000000001
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,83%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 237.61957393670284
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 873.0735739367029
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 1004.0346100272083
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 15,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 07"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 28112
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 28458
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 346
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 346
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1022.6375999999999
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 1022.6375999999999
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,68%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 217.19914180151744
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 1239.8367418015173
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 1425.8122530717449
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 16,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 08"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 75512
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 75651
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 139
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 139
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 410.82840000000004
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 410.82840000000004
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,03%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 133.66101033939535
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 544.4894103393954
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 626.1628218903046
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 17,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 09"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 85833
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 86382
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 549
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 500
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 1477.8
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 49
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 144.8244
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 1622.6244
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,27%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 165.21986000286373
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 1787.8442600028636
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 2056.020899003293
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 18,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 10"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 36321
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 36602
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 281
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 281
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 830.5236
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 830.5236
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,79%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 232.05036517256138
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 1062.5739651725614
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 1221.9600599484456
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 19,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 11"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 15451
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 15588
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 137
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 137
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 404.91720000000004
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 404.91720000000004
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,06%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 137.37381618215633
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 542.2910161821563
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 623.6346686094797
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 20,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 12"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 98289
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 98388
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 99
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 99
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 292.6044
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 292.6044
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,06%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 137.37381618215633
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 429.9782161821563
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 494.4749486094797
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 21,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 13"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 10119
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 10121
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 2
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 2
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 5.9112
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 5.9112
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,06%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 137.37381618215633
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 143.28501618215634
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 164.77776860947978
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "row_index": 22,
+        "cells": [
+          {
+            "column_index": 1,
+            "column_letter": "A",
+            "value": "HM 14"
+          },
+          {
+            "column_index": 2,
+            "column_letter": "B",
+            "value": 27611
+          },
+          {
+            "column_index": 3,
+            "column_letter": "C",
+            "value": 27818
+          },
+          {
+            "column_index": 4,
+            "column_letter": "D",
+            "value": 207
+          },
+          {
+            "column_index": 5,
+            "column_letter": "E",
+            "value": 207
+          },
+          {
+            "column_index": 6,
+            "column_letter": "F",
+            "value": 611.8092
+          },
+          {
+            "column_index": 7,
+            "column_letter": "G",
+            "value": 0
+          },
+          {
+            "column_index": 8,
+            "column_letter": "H",
+            "value": 0
+          },
+          {
+            "column_index": 9,
+            "column_letter": "I",
+            "value": 0
+          },
+          {
+            "column_index": 10,
+            "column_letter": "J",
+            "value": 0
+          },
+          {
+            "column_index": 11,
+            "column_letter": "K",
+            "value": 0
+          },
+          {
+            "column_index": 12,
+            "column_letter": "L",
+            "value": 0
+          },
+          {
+            "column_index": 13,
+            "column_letter": "M",
+            "value": 0
+          },
+          {
+            "column_index": 14,
+            "column_letter": "N",
+            "value": 0
+          },
+          {
+            "column_index": 15,
+            "column_letter": "O",
+            "value": 611.8092
+          },
+          {
+            "column_index": 16,
+            "column_letter": "P",
+            "value": "1,83%"
+          },
+          {
+            "column_index": 17,
+            "column_letter": "Q",
+            "value": 237.61957393670284
+          },
+          {
+            "column_index": 18,
+            "column_letter": "R",
+            "value": 0
+          },
+          {
+            "column_index": 19,
+            "column_letter": "S",
+            "value": 0
+          },
+          {
+            "column_index": 20,
+            "column_letter": "T",
+            "value": 849.4287739367029
+          },
+          {
+            "column_index": 21,
+            "column_letter": "U",
+            "value": 976.8430900272083
+          },
+          {
+            "column_index": 23,
+            "column_letter": "W",
+            "value": 697.7304347826088
+          },
+          {
+            "column_index": 24,
+            "column_letter": "X",
+            "value": 802.3900000000001
+          },
+          {
+            "column_index": 26,
+            "column_letter": "Z",
+            "value": 0
+          },
+          {
+            "column_index": 27,
+            "column_letter": "AA",
+            "value": 0
+          }
+        ]
+      }
+    ]
+  },
+  "formulas_and_connections_summary": {
+    "formula_cell_count": 0,
+    "formula_patterns": []
+  },
+  "source_evidence": null,
+  "cross_check": {
+    "reconciled_at": "2026-04-10T13:42:21.660461+00:00",
+    "source_workbook": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+    "summary_file": "C:\\Projects\\Meter App\\DataMigration\\Summaries\\elecbreakdown.summary.json",
+    "previous_review_flag_count": 0,
+    "current_review_flag_count": 0,
+    "derived_date_count": 0,
+    "resolved_formula_value_count": 0
+  },
   "review_flags": []
 }

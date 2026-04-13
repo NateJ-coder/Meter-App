@@ -1,0 +1,293 @@
+{
+  "building_name": "QueensGate",
+  "generated_at": "2026-04-11T15:23:23.955547+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "summary": {
+    "total_images": 0,
+    "folders_without_images": 69,
+    "images_with_meter_number": 0,
+    "images_with_serial_number": 0,
+    "images_with_meter_reading": 0,
+    "images_with_date": 0,
+    "flags": {}
+  },
+  "folders_without_images": [
+    {
+      "folder": "COUNCIL-UTILITIES",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/April 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/AUG 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/Dec 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/Feb 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/Jan 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/July 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/June 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/March 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/Nov 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/Oct 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2017 - April 2018/Sept 2017",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/April 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/Aug 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/Dec 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/Feb 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/Jan 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/July 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/June 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/March 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/May 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/Nov 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/Oct 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2018 - April 2019/Sept 2018",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/APR 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/Aug 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/Dec 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/Feb 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/Jan 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/July 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/June 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/March 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/MaY 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/Nov 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/Oct 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2019 - April 2020/Sept 2019",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Apr 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Aug 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Dec 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Feb 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Jan 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Jul 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/June 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Mar 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/May 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Nov 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Oct 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2020 - April 2021/Sept 2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Apr 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Aug 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Dec 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Feb 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Jan 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Jul 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Jun 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Mar 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/May 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Nov 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Oct 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2021 - Apr 2022/Sept 2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2022 - Apr 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2022 - Apr 2023/Apr 2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2022 - Apr 2023/Aug 2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL-UTILITIES/May 2022 - Apr 2023/Dec 2022",
+      "reason": "folder-has-no-image-descendants"
+    }
+  ],
+  "images": []
+}

@@ -1,6 +1,6 @@
 {
   "summary_type": "utility-dash-sheet-summary",
-  "generated_at": "2026-04-10T11:54:57.978567+00:00",
+  "generated_at": "2026-04-10T13:49:21.650102+00:00",
   "workbook": {
     "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
     "source_file_is_encrypted": true,
@@ -2023,6 +2023,491 @@
           ]
         }
       ],
+      "entities_and_meanings": [
+        {
+          "entity_type": "sheet_labels_and_headings",
+          "examples": [
+            "Vilino Glen Utility Report",
+            "Vilino Glen | 2024/03/31",
+            "ELECTRICITY  | Electricity Tariffs",
+            "Meters | No of Meters | KWH Used",
+            "Bulk | 0 < 100",
+            "Units | 100 < 400",
+            "Common Property | 400 < 650",
+            "650 < 99999",
+            "99999 < ",
+            " < 0",
+            "WATER | Water Tariffs",
+            "Meters | No of Meters | KWA Used",
+            "Bulk | 0 < 9",
+            "Units | 9 < 18",
+            "Common Property | 18 < 30",
+            "30 < 42",
+            "42 < 60",
+            "60 < 9999",
+            "9999 < 0",
+            "0 < 0"
+          ],
+          "meaning": "Prominent labels/headings captured from the support sheet that define its business purpose and fields."
+        }
+      ],
+      "categories_and_domains": {
+        "sheet_category": "support",
+        "domains": [
+          "electricity",
+          "water",
+          "charges",
+          "reporting",
+          "settings"
+        ],
+        "sheet_name": "BuildingReport"
+      },
+      "attributes_and_time_series": {
+        "time_series_type": "date_like_values",
+        "date_like_values": [
+          {
+            "row_index": 9,
+            "column_index": 8,
+            "value": "2024/03/31"
+          }
+        ],
+        "top_rows": [
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Vilino Glen Utility Report"
+              }
+            ]
+          },
+          {
+            "row_index": 9,
+            "cells": [
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "Vilino Glen"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "2024/03/31"
+              }
+            ]
+          },
+          {
+            "row_index": 11,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "ELECTRICITY "
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Electricity Tariffs"
+              }
+            ]
+          },
+          {
+            "row_index": 12,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Meters"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "No of Meters"
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "KWH Used"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "Charge"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Range"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "Per KWA"
+              }
+            ]
+          },
+          {
+            "row_index": 13,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Bulk"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 1
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": 211
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": 509.2907
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "0 < 100"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 241.37
+              }
+            ]
+          },
+          {
+            "row_index": 14,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Units"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 39
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": 11330
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": 30400.951
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "100 < 400"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 282.47
+              }
+            ]
+          },
+          {
+            "row_index": 15,
+            "cells": [
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "Common Property"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": -30170.7818
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "400 < 650"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 307.74
+              }
+            ]
+          },
+          {
+            "row_index": 16,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "650 < 99999"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 331.76
+              }
+            ]
+          },
+          {
+            "row_index": 17,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "99999 < "
+              }
+            ]
+          },
+          {
+            "row_index": 18,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": " < "
+              }
+            ]
+          },
+          {
+            "row_index": 19,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": " < "
+              }
+            ]
+          },
+          {
+            "row_index": 20,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": " < 0"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "row_index": 22,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "WATER"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Water Tariffs"
+              }
+            ]
+          },
+          {
+            "row_index": 23,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Meters"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": "No of Meters"
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "KWA Used"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": "Charge"
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "Range"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": "Per KWA"
+              }
+            ]
+          },
+          {
+            "row_index": 24,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Bulk"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 2
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": 298
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": 0
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "0 < 9"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "row_index": 25,
+            "cells": [
+              {
+                "column_index": 3,
+                "column_letter": "C",
+                "value": "Units"
+              },
+              {
+                "column_index": 4,
+                "column_letter": "D",
+                "value": 38
+              },
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": 358.488
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": 204.871680000006
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "9 < 18"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 27.36
+              }
+            ]
+          },
+          {
+            "row_index": 26,
+            "cells": [
+              {
+                "column_index": 5,
+                "column_letter": "E",
+                "value": "Common Property"
+              },
+              {
+                "column_index": 6,
+                "column_letter": "F",
+                "value": -2473.20042
+              },
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "18 < 30"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 37.02
+              }
+            ]
+          },
+          {
+            "row_index": 27,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "30 < 42"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 42.62
+              }
+            ]
+          },
+          {
+            "row_index": 28,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "42 < 60"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 45.59
+              }
+            ]
+          },
+          {
+            "row_index": 29,
+            "cells": [
+              {
+                "column_index": 8,
+                "column_letter": "H",
+                "value": "60 < 9999"
+              },
+              {
+                "column_index": 9,
+                "column_letter": "I",
+                "value": 48.82
+              }
+            ]
+          }
+        ]
+      },
+      "formulas_and_connections_summary": {
+        "formula_cell_count": 0,
+        "formula_patterns": []
+      },
+      "source_evidence": null,
+      "cross_check": {
+        "reconciled_at": "2026-04-10T13:42:21.500247+00:00",
+        "source_workbook": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+        "summary_file": "C:\\Projects\\Meter App\\DataMigration\\Summaries\\buildingreport.summary.json",
+        "previous_review_flag_count": 0,
+        "current_review_flag_count": 0,
+        "derived_date_count": 0,
+        "resolved_formula_value_count": 0
+      },
       "review_flags": []
     }
   },

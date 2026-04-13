@@ -1,0 +1,85 @@
+{
+  "building_name": "Gosforth Park",
+  "generated_at": "2026-04-11T14:44:20.106844+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "summary": {
+    "total_images": 1,
+    "folders_without_images": 8,
+    "images_with_meter_number": 0,
+    "images_with_serial_number": 0,
+    "images_with_meter_reading": 0,
+    "images_with_date": 1,
+    "flags": {
+      "missing-meter-number": 1,
+      "missing-meter-reading": 1,
+      "missing-serial-number": 1
+    }
+  },
+  "folders_without_images": [
+    {
+      "folder": "COUNCIL & UTILITIES/Ekurhuleni",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/Ekurhuleni/2020",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/Ekurhuleni/2021",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/Ekurhuleni/2022",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/Ekurhuleni/2023",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/Ekurhuleni/2024",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/Ekurhuleni/JAN 2024 - FEB 2025",
+      "reason": "folder-has-no-image-descendants"
+    },
+    {
+      "folder": "COUNCIL & UTILITIES/Ekurhuleni/MAR 2025 - FEB 2026",
+      "reason": "folder-has-no-image-descendants"
+    }
+  ],
+  "images": [
+    {
+      "image_path": "COUNCIL & UTILITIES/Alpha Metering/IMG-20260121-WA0018.jpg",
+      "containing_folder": "COUNCIL & UTILITIES/Alpha Metering",
+      "file_name": "IMG-20260121-WA0018.jpg",
+      "date": "2026-01-21",
+      "date_source": "path:IMG-20260121-WA0018.jpg",
+      "date_confidence": "medium",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "Friday : 15:00 to 20:00\n\u2018days, Sundays & Public Holidays: 09:00 \u2014 12:00 & 16:00",
+        "meter_region": "Active Monday _ Friday: 08:30 z 16:30\nee\nfilet Youre Emergency (umber\n % 0721384019 _",
+        "reading_center": "7\n\nwi\n\n_'\n\nAlert towns Gmergency [umber\n\nfra 77 4a14nAo AKRrALh",
+        "reading_window": "pum ff) f\n\nf)\n\nLUM",
+        "reading_window_bin": "2 4"
+      }
+    }
+  ]
+}

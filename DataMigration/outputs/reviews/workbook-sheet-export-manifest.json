@@ -1,7 +1,7 @@
 {
   "workbook_path": "c:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\macro-free\\Utility Dash 9 Mar decrypted working copy (2) 2026.xlsx",
   "sheet_count": 43,
-  "generated_at": "2026-04-09T13:37:16.851203+00:00",
+  "generated_at": "2026-04-10T13:42:53.395237+00:00",
   "settings_snapshot": {
     "vat_percent": 0.15,
     "ignore_negative_common_property_amounts": true,
@@ -167,7 +167,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\the-azores.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\the-azores.normalized.json",
-      "review_flag_count": 3
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Genesis",
@@ -175,7 +175,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\genesis.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\genesis.normalized.json",
-      "review_flag_count": 6
+      "review_flag_count": 5
     },
     {
       "sheet_name": "Carissa Lane",
@@ -183,7 +183,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\carissa-lane.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\carissa-lane.normalized.json",
-      "review_flag_count": 5
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Bonifay Court",
@@ -191,7 +191,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\bonifay-court.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\bonifay-court.normalized.json",
-      "review_flag_count": 6
+      "review_flag_count": 4
     },
     {
       "sheet_name": "Granistar Heights",
@@ -215,7 +215,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\vilino-glen.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\vilino-glen.normalized.json",
-      "review_flag_count": 5
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Sheet2",
@@ -231,7 +231,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\hazelmere.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\hazelmere.normalized.json",
-      "review_flag_count": 6
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Akasia",
@@ -239,7 +239,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\akasia.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\akasia.normalized.json",
-      "review_flag_count": 8
+      "review_flag_count": 91
     },
     {
       "sheet_name": "Phanda Lodge",
@@ -247,7 +247,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\phanda-lodge.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\phanda-lodge.normalized.json",
-      "review_flag_count": 4
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Vista Del Monte",
@@ -255,7 +255,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\vista-del-monte.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\vista-del-monte.normalized.json",
-      "review_flag_count": 3
+      "review_flag_count": 0
     },
     {
       "sheet_name": "L'Montagne",
@@ -263,7 +263,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\l-montagne.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\l-montagne.normalized.json",
-      "review_flag_count": 4
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Magnolia Gardens",
@@ -287,7 +287,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\queensgate.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\queensgate.normalized.json",
-      "review_flag_count": 7
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Rivonia Gate",
@@ -295,7 +295,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\rivonia-gate.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\rivonia-gate.normalized.json",
-      "review_flag_count": 4
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Riviera Villas",
@@ -303,7 +303,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\riviera-villas.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\riviera-villas.normalized.json",
-      "review_flag_count": 1
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Stonecrest",
@@ -319,7 +319,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\suncrest.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\suncrest.normalized.json",
-      "review_flag_count": 11
+      "review_flag_count": 0
     },
     {
       "sheet_name": "Haven Court",
@@ -327,7 +327,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\haven-court.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\haven-court.normalized.json",
-      "review_flag_count": 21
+      "review_flag_count": 16
     },
     {
       "sheet_name": "Taragona",
@@ -335,7 +335,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\taragona.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\taragona.normalized.json",
-      "review_flag_count": 4
+      "review_flag_count": 0
     },
     {
       "sheet_name": "New Poort",
@@ -343,7 +343,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\new-poort.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\new-poort.normalized.json",
-      "review_flag_count": 13
+      "review_flag_count": 7
     },
     {
       "sheet_name": "Transvalia",
@@ -351,7 +351,7 @@
       "sheet_category": "building",
       "input_json": "inputs\\sheet-json\\transvalia.sheet.json",
       "normalized_json": "outputs\\sheet-normalized\\transvalia.normalized.json",
-      "review_flag_count": 4
+      "review_flag_count": 0
     }
   ]
 }

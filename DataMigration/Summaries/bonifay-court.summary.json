@@ -1,6 +1,6 @@
 {
   "summary_type": "utility-dash-sheet-summary",
-  "generated_at": "2026-04-10T11:55:03.688140+00:00",
+  "generated_at": "2026-04-10T13:49:27.129691+00:00",
   "workbook": {
     "source_file": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
     "source_file_is_encrypted": true,
@@ -192,45 +192,45 @@
         "column_index": 16,
         "display_label": "2026-04-21 00:00:00",
         "reading_date_raw": null,
-        "reading_date": null,
-        "reading_date_note": "missing-date",
+        "reading_date": "2026-04-21",
+        "reading_date_note": "derived-from-display-label",
         "tariff_table": null
       },
       {
         "column_index": 17,
         "display_label": "2026-05-21 00:00:00",
         "reading_date_raw": null,
-        "reading_date": null,
-        "reading_date_note": "missing-date",
+        "reading_date": "2026-05-21",
+        "reading_date_note": "derived-from-display-label",
         "tariff_table": null
       },
       {
         "column_index": 18,
         "display_label": "2026-06-21 00:00:00",
         "reading_date_raw": null,
-        "reading_date": null,
-        "reading_date_note": "missing-date",
+        "reading_date": "2026-06-21",
+        "reading_date_note": "derived-from-display-label",
         "tariff_table": null
       },
       {
         "column_index": 19,
         "display_label": "2026-07-21 00:00:00",
         "reading_date_raw": null,
-        "reading_date": null,
-        "reading_date_note": "missing-date",
+        "reading_date": "2026-07-21",
+        "reading_date_note": "derived-from-display-label",
         "tariff_table": null
       },
       {
         "column_index": 20,
         "display_label": "2026-08-21 00:00:00",
         "reading_date_raw": null,
-        "reading_date": null,
-        "reading_date_note": "missing-date",
+        "reading_date": "2026-08-21",
+        "reading_date_note": "derived-from-display-label",
         "tariff_table": null
       }
     ],
-    "resolved_month_count": 11,
-    "unresolved_month_count": 5,
+    "resolved_month_count": 16,
+    "unresolved_month_count": 0,
     "first_resolved_month": {
       "column_index": 5,
       "display_label": "2025-04-01 00:00:00",
@@ -240,12 +240,12 @@
       "tariff_table": "BC Jul 2024"
     },
     "last_resolved_month": {
-      "column_index": 15,
-      "display_label": "2026-03-21 00:00:00",
-      "reading_date_raw": "2026-03-03 00:00:00",
-      "reading_date": "2026-03-03",
-      "reading_date_note": null,
-      "tariff_table": "BC Jul 2025"
+      "column_index": 20,
+      "display_label": "2026-08-21 00:00:00",
+      "reading_date_raw": null,
+      "reading_date": "2026-08-21",
+      "reading_date_note": "derived-from-display-label",
+      "tariff_table": null
     },
     "tariff_tables": [
       "BC Jul 2024",
@@ -4004,40 +4004,40 @@
           "column_index": 16,
           "display_label": "2026-04-21 00:00:00",
           "reading_date_raw": null,
-          "reading_date": null,
-          "reading_date_note": "missing-date",
+          "reading_date": "2026-04-21",
+          "reading_date_note": "derived-from-display-label",
           "tariff_table": null
         },
         {
           "column_index": 17,
           "display_label": "2026-05-21 00:00:00",
           "reading_date_raw": null,
-          "reading_date": null,
-          "reading_date_note": "missing-date",
+          "reading_date": "2026-05-21",
+          "reading_date_note": "derived-from-display-label",
           "tariff_table": null
         },
         {
           "column_index": 18,
           "display_label": "2026-06-21 00:00:00",
           "reading_date_raw": null,
-          "reading_date": null,
-          "reading_date_note": "missing-date",
+          "reading_date": "2026-06-21",
+          "reading_date_note": "derived-from-display-label",
           "tariff_table": null
         },
         {
           "column_index": 19,
           "display_label": "2026-07-21 00:00:00",
           "reading_date_raw": null,
-          "reading_date": null,
-          "reading_date_note": "missing-date",
+          "reading_date": "2026-07-21",
+          "reading_date_note": "derived-from-display-label",
           "tariff_table": null
         },
         {
           "column_index": 20,
           "display_label": "2026-08-21 00:00:00",
           "reading_date_raw": null,
-          "reading_date": null,
-          "reading_date_note": "missing-date",
+          "reading_date": "2026-08-21",
+          "reading_date_note": "derived-from-display-label",
           "tariff_table": null
         }
       ],
@@ -4092,6 +4092,14 @@
           "source_row": 18,
           "legacy_label": "BC 01",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 01",
+            "label_prefix": "BC",
+            "numeric_component": 1,
+            "suffix": null,
+            "canonical_unit_label": "BC 01"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -4103,7 +4111,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 330353,
-              "reading_value": 330353.0
+              "reading_value": 330353.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -4113,7 +4124,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 330625,
-              "reading_value": 330625.0
+              "reading_value": 330625.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -4123,7 +4137,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 330986,
-              "reading_value": 330986.0
+              "reading_value": 330986.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -4133,7 +4150,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 331289,
-              "reading_value": 331289.0
+              "reading_value": 331289.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -4143,7 +4163,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 331607,
-              "reading_value": 331607.0
+              "reading_value": 331607.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -4153,7 +4176,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 331858,
-              "reading_value": 331858.0
+              "reading_value": 331858.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -4163,7 +4189,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 332114,
-              "reading_value": 332114.0
+              "reading_value": 332114.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -4173,7 +4202,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 332445,
-              "reading_value": 332445.0
+              "reading_value": 332445.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -4183,7 +4215,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 332775,
-              "reading_value": 332775.0
+              "reading_value": 332775.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -4193,7 +4228,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 333049,
-              "reading_value": 333049.0
+              "reading_value": 333049.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -4203,7 +4241,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 333282,
-              "reading_value": 333282.0
+              "reading_value": 333282.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -4211,6 +4252,14 @@
           "source_row": 19,
           "legacy_label": "BC 02",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 02",
+            "label_prefix": "BC",
+            "numeric_component": 2,
+            "suffix": null,
+            "canonical_unit_label": "BC 02"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -4222,7 +4271,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 320611,
-              "reading_value": 320611.0
+              "reading_value": 320611.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -4232,7 +4284,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 320671,
-              "reading_value": 320671.0
+              "reading_value": 320671.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -4242,7 +4297,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 320682,
-              "reading_value": 320682.0
+              "reading_value": 320682.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -4252,7 +4310,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 320686,
-              "reading_value": 320686.0
+              "reading_value": 320686.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -4262,7 +4323,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 321036,
-              "reading_value": 321036.0
+              "reading_value": 321036.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -4272,7 +4336,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 321335,
-              "reading_value": 321335.0
+              "reading_value": 321335.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -4282,7 +4349,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 321585,
-              "reading_value": 321585.0
+              "reading_value": 321585.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -4292,7 +4362,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 321990,
-              "reading_value": 321990.0
+              "reading_value": 321990.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -4302,7 +4375,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 322591,
-              "reading_value": 322591.0
+              "reading_value": 322591.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -4312,7 +4388,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 323013,
-              "reading_value": 323013.0
+              "reading_value": 323013.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -4322,7 +4401,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 323408,
-              "reading_value": 323408.0
+              "reading_value": 323408.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -4330,6 +4412,14 @@
           "source_row": 20,
           "legacy_label": "BC 03",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 03",
+            "label_prefix": "BC",
+            "numeric_component": 3,
+            "suffix": null,
+            "canonical_unit_label": "BC 03"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -4341,7 +4431,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 42584,
-              "reading_value": 42584.0
+              "reading_value": 42584.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -4351,7 +4444,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 42867,
-              "reading_value": 42867.0
+              "reading_value": 42867.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -4361,7 +4457,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 43235,
-              "reading_value": 43235.0
+              "reading_value": 43235.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -4371,7 +4470,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 43533,
-              "reading_value": 43533.0
+              "reading_value": 43533.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -4381,7 +4483,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 43747,
-              "reading_value": 43747.0
+              "reading_value": 43747.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -4391,7 +4496,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 43971,
-              "reading_value": 43971.0
+              "reading_value": 43971.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -4401,7 +4509,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 44227,
-              "reading_value": 44227.0
+              "reading_value": 44227.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -4411,7 +4522,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 44611,
-              "reading_value": 44611.0
+              "reading_value": 44611.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -4421,7 +4535,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 44991,
-              "reading_value": 44991.0
+              "reading_value": 44991.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -4431,7 +4548,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 45162,
-              "reading_value": 45162.0
+              "reading_value": 45162.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -4441,7 +4561,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 45298,
-              "reading_value": 45298.0
+              "reading_value": 45298.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -4449,6 +4572,14 @@
           "source_row": 21,
           "legacy_label": "BC 04",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 04",
+            "label_prefix": "BC",
+            "numeric_component": 4,
+            "suffix": null,
+            "canonical_unit_label": "BC 04"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -4460,7 +4591,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 364700,
-              "reading_value": 364700.0
+              "reading_value": 364700.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -4470,7 +4604,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 365104,
-              "reading_value": 365104.0
+              "reading_value": 365104.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -4480,7 +4617,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 365650,
-              "reading_value": 365650.0
+              "reading_value": 365650.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -4490,7 +4630,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 366125,
-              "reading_value": 366125.0
+              "reading_value": 366125.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -4500,7 +4643,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 366564,
-              "reading_value": 366564.0
+              "reading_value": 366564.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -4510,7 +4656,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 366947,
-              "reading_value": 366947.0
+              "reading_value": 366947.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -4520,7 +4669,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 367321,
-              "reading_value": 367321.0
+              "reading_value": 367321.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -4530,7 +4682,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 367800,
-              "reading_value": 367800.0
+              "reading_value": 367800.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -4540,7 +4695,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 368597,
-              "reading_value": 368597.0
+              "reading_value": 368597.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -4550,7 +4708,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 368672,
-              "reading_value": 368672.0
+              "reading_value": 368672.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -4560,7 +4721,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 368725,
-              "reading_value": 368725.0
+              "reading_value": 368725.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -4568,6 +4732,14 @@
           "source_row": 22,
           "legacy_label": "BC 05",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 05",
+            "label_prefix": "BC",
+            "numeric_component": 5,
+            "suffix": null,
+            "canonical_unit_label": "BC 05"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -4579,7 +4751,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 255367,
-              "reading_value": 255367.0
+              "reading_value": 255367.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -4589,7 +4764,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 255971,
-              "reading_value": 255971.0
+              "reading_value": 255971.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -4599,7 +4777,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 256750,
-              "reading_value": 256750.0
+              "reading_value": 256750.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -4609,7 +4790,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 257660,
-              "reading_value": 257660.0
+              "reading_value": 257660.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -4619,7 +4803,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 258445,
-              "reading_value": 258445.0
+              "reading_value": 258445.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -4629,7 +4816,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 259114,
-              "reading_value": 259114.0
+              "reading_value": 259114.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -4639,7 +4829,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 259707,
-              "reading_value": 259707.0
+              "reading_value": 259707.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -4649,7 +4842,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 260466,
-              "reading_value": 260466.0
+              "reading_value": 260466.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -4659,7 +4855,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 261088,
-              "reading_value": 261088.0
+              "reading_value": 261088.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -4669,7 +4868,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 261598,
-              "reading_value": 261598.0
+              "reading_value": 261598.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -4679,7 +4881,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 262002,
-              "reading_value": 262002.0
+              "reading_value": 262002.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -4687,6 +4892,14 @@
           "source_row": 23,
           "legacy_label": "BC 06",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 06",
+            "label_prefix": "BC",
+            "numeric_component": 6,
+            "suffix": null,
+            "canonical_unit_label": "BC 06"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -4698,7 +4911,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -4708,7 +4924,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -4718,7 +4937,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -4728,7 +4950,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -4738,7 +4963,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -4748,7 +4976,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -4758,7 +4989,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -4768,7 +5002,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -4778,7 +5015,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -4788,7 +5028,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514755,
-              "reading_value": 514755.0
+              "reading_value": 514755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -4798,7 +5041,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 514758,
-              "reading_value": 514758.0
+              "reading_value": 514758.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -4806,6 +5052,14 @@
           "source_row": 24,
           "legacy_label": "BC 07",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 07",
+            "label_prefix": "BC",
+            "numeric_component": 7,
+            "suffix": null,
+            "canonical_unit_label": "BC 07"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -4817,7 +5071,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 548976,
-              "reading_value": 548976.0
+              "reading_value": 548976.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -4827,7 +5084,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 550026,
-              "reading_value": 550026.0
+              "reading_value": 550026.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -4837,7 +5097,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 551214,
-              "reading_value": 551214.0
+              "reading_value": 551214.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -4847,7 +5110,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 552572,
-              "reading_value": 552572.0
+              "reading_value": 552572.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -4857,7 +5123,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 553796,
-              "reading_value": 553796.0
+              "reading_value": 553796.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -4867,7 +5136,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 554848,
-              "reading_value": 554848.0
+              "reading_value": 554848.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -4877,7 +5149,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 555751,
-              "reading_value": 555751.0
+              "reading_value": 555751.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -4887,7 +5162,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 556828,
-              "reading_value": 556828.0
+              "reading_value": 556828.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -4897,7 +5175,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 557981,
-              "reading_value": 557981.0
+              "reading_value": 557981.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -4907,7 +5188,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 558923,
-              "reading_value": 558923.0
+              "reading_value": 558923.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -4917,7 +5201,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 559749,
-              "reading_value": 559749.0
+              "reading_value": 559749.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -4925,6 +5212,14 @@
           "source_row": 25,
           "legacy_label": "BC 08",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 08",
+            "label_prefix": "BC",
+            "numeric_component": 8,
+            "suffix": null,
+            "canonical_unit_label": "BC 08"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -4936,7 +5231,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 50114,
-              "reading_value": 50114.0
+              "reading_value": 50114.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -4946,7 +5244,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 50401,
-              "reading_value": 50401.0
+              "reading_value": 50401.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -4956,7 +5257,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 50716,
-              "reading_value": 50716.0
+              "reading_value": 50716.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -4966,7 +5270,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 51005,
-              "reading_value": 51005.0
+              "reading_value": 51005.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -4976,7 +5283,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 51297,
-              "reading_value": 51297.0
+              "reading_value": 51297.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -4986,7 +5296,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 51549,
-              "reading_value": 51549.0
+              "reading_value": 51549.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -4996,7 +5309,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 51747,
-              "reading_value": 51747.0
+              "reading_value": 51747.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5006,7 +5322,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 52006,
-              "reading_value": 52006.0
+              "reading_value": 52006.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5016,7 +5335,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 52118,
-              "reading_value": 52118.0
+              "reading_value": 52118.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5026,7 +5348,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 52320,
-              "reading_value": 52320.0
+              "reading_value": 52320.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5036,7 +5361,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 52503,
-              "reading_value": 52503.0
+              "reading_value": 52503.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5044,6 +5372,14 @@
           "source_row": 26,
           "legacy_label": "BC 09",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 09",
+            "label_prefix": "BC",
+            "numeric_component": 9,
+            "suffix": null,
+            "canonical_unit_label": "BC 09"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -5055,7 +5391,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 324451,
-              "reading_value": 324451.0
+              "reading_value": 324451.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -5065,7 +5404,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 324749,
-              "reading_value": 324749.0
+              "reading_value": 324749.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -5075,7 +5417,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 325066,
-              "reading_value": 325066.0
+              "reading_value": 325066.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -5085,7 +5430,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 325409,
-              "reading_value": 325409.0
+              "reading_value": 325409.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -5095,7 +5443,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 325763,
-              "reading_value": 325763.0
+              "reading_value": 325763.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -5105,7 +5456,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 326035,
-              "reading_value": 326035.0
+              "reading_value": 326035.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -5115,7 +5469,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 326370,
-              "reading_value": 326370.0
+              "reading_value": 326370.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5125,7 +5482,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 326776,
-              "reading_value": 326776.0
+              "reading_value": 326776.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5135,7 +5495,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 327192,
-              "reading_value": 327192.0
+              "reading_value": 327192.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5145,7 +5508,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 327560,
-              "reading_value": 327560.0
+              "reading_value": 327560.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5155,7 +5521,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 327847,
-              "reading_value": 327847.0
+              "reading_value": 327847.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5163,6 +5532,14 @@
           "source_row": 27,
           "legacy_label": "BC 10",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 10",
+            "label_prefix": "BC",
+            "numeric_component": 10,
+            "suffix": null,
+            "canonical_unit_label": "BC 10"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -5174,7 +5551,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 433520,
-              "reading_value": 433520.0
+              "reading_value": 433520.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -5184,7 +5564,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 434257,
-              "reading_value": 434257.0
+              "reading_value": 434257.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -5194,7 +5577,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 435012,
-              "reading_value": 435012.0
+              "reading_value": 435012.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -5204,7 +5590,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 435916,
-              "reading_value": 435916.0
+              "reading_value": 435916.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -5214,7 +5603,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 436736,
-              "reading_value": 436736.0
+              "reading_value": 436736.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -5224,7 +5616,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 437468,
-              "reading_value": 437468.0
+              "reading_value": 437468.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -5234,7 +5629,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 438211,
-              "reading_value": 438211.0
+              "reading_value": 438211.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5244,7 +5642,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 439154,
-              "reading_value": 439154.0
+              "reading_value": 439154.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5254,7 +5655,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 439864,
-              "reading_value": 439864.0
+              "reading_value": 439864.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5264,7 +5668,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 440594,
-              "reading_value": 440594.0
+              "reading_value": 440594.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5274,7 +5681,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 441211,
-              "reading_value": 441211.0
+              "reading_value": 441211.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5282,6 +5692,14 @@
           "source_row": 28,
           "legacy_label": "BC 11",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 11",
+            "label_prefix": "BC",
+            "numeric_component": 11,
+            "suffix": null,
+            "canonical_unit_label": "BC 11"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -5293,7 +5711,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 362726,
-              "reading_value": 362726.0
+              "reading_value": 362726.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -5303,7 +5724,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 362800,
-              "reading_value": 362800.0
+              "reading_value": 362800.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -5313,7 +5737,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 363036,
-              "reading_value": 363036.0
+              "reading_value": 363036.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -5323,7 +5750,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 363239,
-              "reading_value": 363239.0
+              "reading_value": 363239.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -5333,7 +5763,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 363442,
-              "reading_value": 363442.0
+              "reading_value": 363442.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -5343,7 +5776,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 363629,
-              "reading_value": 363629.0
+              "reading_value": 363629.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -5353,7 +5789,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 363807,
-              "reading_value": 363807.0
+              "reading_value": 363807.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5363,7 +5802,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 364024,
-              "reading_value": 364024.0
+              "reading_value": 364024.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5373,7 +5815,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 364230,
-              "reading_value": 364230.0
+              "reading_value": 364230.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5383,7 +5828,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 364409,
-              "reading_value": 364409.0
+              "reading_value": 364409.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5393,7 +5841,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 364562,
-              "reading_value": 364562.0
+              "reading_value": 364562.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5401,6 +5852,14 @@
           "source_row": 29,
           "legacy_label": "BC 12",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 12",
+            "label_prefix": "BC",
+            "numeric_component": 12,
+            "suffix": null,
+            "canonical_unit_label": "BC 12"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -5412,7 +5871,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 27620,
-              "reading_value": 27620.0
+              "reading_value": 27620.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -5422,7 +5884,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 27876,
-              "reading_value": 27876.0
+              "reading_value": 27876.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -5432,7 +5897,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 28146,
-              "reading_value": 28146.0
+              "reading_value": 28146.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -5442,7 +5910,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 28422,
-              "reading_value": 28422.0
+              "reading_value": 28422.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -5452,7 +5923,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 28639,
-              "reading_value": 28639.0
+              "reading_value": 28639.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -5462,7 +5936,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 28828,
-              "reading_value": 28828.0
+              "reading_value": 28828.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -5472,7 +5949,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 29037,
-              "reading_value": 29037.0
+              "reading_value": 29037.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5482,7 +5962,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 29276,
-              "reading_value": 29276.0
+              "reading_value": 29276.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5492,7 +5975,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 29478,
-              "reading_value": 29478.0
+              "reading_value": 29478.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5502,7 +5988,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 29668,
-              "reading_value": 29668.0
+              "reading_value": 29668.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5512,7 +6001,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 29747,
-              "reading_value": 29747.0
+              "reading_value": 29747.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5520,6 +6012,14 @@
           "source_row": 30,
           "legacy_label": "BC 13",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 13",
+            "label_prefix": "BC",
+            "numeric_component": 13,
+            "suffix": null,
+            "canonical_unit_label": "BC 13"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -5531,7 +6031,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 340834,
-              "reading_value": 340834.0
+              "reading_value": 340834.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -5541,7 +6044,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 341259,
-              "reading_value": 341259.0
+              "reading_value": 341259.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -5551,7 +6057,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 341800,
-              "reading_value": 341800.0
+              "reading_value": 341800.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -5561,7 +6070,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 342432,
-              "reading_value": 342432.0
+              "reading_value": 342432.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -5571,7 +6083,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 342971,
-              "reading_value": 342971.0
+              "reading_value": 342971.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -5581,7 +6096,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 343425,
-              "reading_value": 343425.0
+              "reading_value": 343425.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -5591,7 +6109,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 343806,
-              "reading_value": 343806.0
+              "reading_value": 343806.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5601,7 +6122,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 344215,
-              "reading_value": 344215.0
+              "reading_value": 344215.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5611,7 +6135,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 344572,
-              "reading_value": 344572.0
+              "reading_value": 344572.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5621,7 +6148,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 344957,
-              "reading_value": 344957.0
+              "reading_value": 344957.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5631,7 +6161,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 345276,
-              "reading_value": 345276.0
+              "reading_value": 345276.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5639,6 +6172,14 @@
           "source_row": 31,
           "legacy_label": "BC 14",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 14",
+            "label_prefix": "BC",
+            "numeric_component": 14,
+            "suffix": null,
+            "canonical_unit_label": "BC 14"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -5650,7 +6191,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 409766,
-              "reading_value": 409766.0
+              "reading_value": 409766.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -5660,7 +6204,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 410136,
-              "reading_value": 410136.0
+              "reading_value": 410136.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -5670,7 +6217,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 410540,
-              "reading_value": 410540.0
+              "reading_value": 410540.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -5680,7 +6230,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 410977,
-              "reading_value": 410977.0
+              "reading_value": 410977.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -5690,7 +6243,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 411352,
-              "reading_value": 411352.0
+              "reading_value": 411352.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -5700,7 +6256,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 411671,
-              "reading_value": 411671.0
+              "reading_value": 411671.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -5710,7 +6269,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 411953,
-              "reading_value": 411953.0
+              "reading_value": 411953.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5720,7 +6282,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 412301,
-              "reading_value": 412301.0
+              "reading_value": 412301.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5730,7 +6295,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 412589,
-              "reading_value": 412589.0
+              "reading_value": 412589.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5740,7 +6308,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 412874,
-              "reading_value": 412874.0
+              "reading_value": 412874.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5750,7 +6321,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 413148,
-              "reading_value": 413148.0
+              "reading_value": 413148.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5758,6 +6332,14 @@
           "source_row": 32,
           "legacy_label": "BC 15",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 15",
+            "label_prefix": "BC",
+            "numeric_component": 15,
+            "suffix": null,
+            "canonical_unit_label": "BC 15"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -5769,7 +6351,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 334444,
-              "reading_value": 334444.0
+              "reading_value": 334444.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -5779,7 +6364,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 334727,
-              "reading_value": 334727.0
+              "reading_value": 334727.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -5789,7 +6377,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 335160,
-              "reading_value": 335160.0
+              "reading_value": 335160.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -5799,7 +6390,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 335616,
-              "reading_value": 335616.0
+              "reading_value": 335616.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -5809,7 +6403,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 335926,
-              "reading_value": 335926.0
+              "reading_value": 335926.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -5819,7 +6416,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 336164,
-              "reading_value": 336164.0
+              "reading_value": 336164.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -5829,7 +6429,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 336395,
-              "reading_value": 336395.0
+              "reading_value": 336395.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5839,7 +6442,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 336693,
-              "reading_value": 336693.0
+              "reading_value": 336693.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5849,7 +6455,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 336994,
-              "reading_value": 336994.0
+              "reading_value": 336994.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5859,7 +6468,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 337253,
-              "reading_value": 337253.0
+              "reading_value": 337253.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5869,7 +6481,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 337487,
-              "reading_value": 337487.0
+              "reading_value": 337487.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5877,6 +6492,14 @@
           "source_row": 33,
           "legacy_label": "BC 16",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 16",
+            "label_prefix": "BC",
+            "numeric_component": 16,
+            "suffix": null,
+            "canonical_unit_label": "BC 16"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -5888,7 +6511,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 48963,
-              "reading_value": 48963.0
+              "reading_value": 48963.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -5898,7 +6524,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 49809,
-              "reading_value": 49809.0
+              "reading_value": 49809.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -5908,7 +6537,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 50712,
-              "reading_value": 50712.0
+              "reading_value": 50712.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -5918,7 +6550,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 51717,
-              "reading_value": 51717.0
+              "reading_value": 51717.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -5928,7 +6563,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 52482,
-              "reading_value": 52482.0
+              "reading_value": 52482.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -5938,7 +6576,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 53201,
-              "reading_value": 53201.0
+              "reading_value": 53201.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -5948,7 +6589,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 53748,
-              "reading_value": 53748.0
+              "reading_value": 53748.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -5958,7 +6602,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 54478,
-              "reading_value": 54478.0
+              "reading_value": 54478.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -5968,7 +6615,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 55525,
-              "reading_value": 55525.0
+              "reading_value": 55525.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -5978,7 +6628,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 56320,
-              "reading_value": 56320.0
+              "reading_value": 56320.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -5988,7 +6641,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 57027,
-              "reading_value": 57027.0
+              "reading_value": 57027.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -5996,6 +6652,14 @@
           "source_row": 34,
           "legacy_label": "BC 17",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 17",
+            "label_prefix": "BC",
+            "numeric_component": 17,
+            "suffix": null,
+            "canonical_unit_label": "BC 17"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -6007,7 +6671,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 350372,
-              "reading_value": 350372.0
+              "reading_value": 350372.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -6017,7 +6684,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 350750,
-              "reading_value": 350750.0
+              "reading_value": 350750.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -6027,7 +6697,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 351226,
-              "reading_value": 351226.0
+              "reading_value": 351226.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -6037,7 +6710,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 351617,
-              "reading_value": 351617.0
+              "reading_value": 351617.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -6047,7 +6723,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 352044,
-              "reading_value": 352044.0
+              "reading_value": 352044.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -6057,7 +6736,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 352436,
-              "reading_value": 352436.0
+              "reading_value": 352436.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -6067,7 +6749,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 352788,
-              "reading_value": 352788.0
+              "reading_value": 352788.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6077,7 +6762,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 353241,
-              "reading_value": 353241.0
+              "reading_value": 353241.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6087,7 +6775,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 353651,
-              "reading_value": 353651.0
+              "reading_value": 353651.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -6097,7 +6788,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 353981,
-              "reading_value": 353981.0
+              "reading_value": 353981.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -6107,7 +6801,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 354262,
-              "reading_value": 354262.0
+              "reading_value": 354262.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -6115,6 +6812,14 @@
           "source_row": 35,
           "legacy_label": "BC 18",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 18",
+            "label_prefix": "BC",
+            "numeric_component": 18,
+            "suffix": null,
+            "canonical_unit_label": "BC 18"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -6126,7 +6831,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 315237,
-              "reading_value": 315237.0
+              "reading_value": 315237.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -6136,7 +6844,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 315617,
-              "reading_value": 315617.0
+              "reading_value": 315617.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -6146,7 +6857,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 316416,
-              "reading_value": 316416.0
+              "reading_value": 316416.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -6156,7 +6870,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 317254,
-              "reading_value": 317254.0
+              "reading_value": 317254.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -6166,7 +6883,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 317744,
-              "reading_value": 317744.0
+              "reading_value": 317744.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -6176,7 +6896,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 318123,
-              "reading_value": 318123.0
+              "reading_value": 318123.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -6186,7 +6909,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 318498,
-              "reading_value": 318498.0
+              "reading_value": 318498.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6196,7 +6922,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 318962,
-              "reading_value": 318962.0
+              "reading_value": 318962.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6206,7 +6935,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 319264,
-              "reading_value": 319264.0
+              "reading_value": 319264.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -6216,7 +6948,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 319685,
-              "reading_value": 319685.0
+              "reading_value": 319685.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -6226,7 +6961,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 320089,
-              "reading_value": 320089.0
+              "reading_value": 320089.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -6234,6 +6972,14 @@
           "source_row": 36,
           "legacy_label": "BC 19",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 19",
+            "label_prefix": "BC",
+            "numeric_component": 19,
+            "suffix": null,
+            "canonical_unit_label": "BC 19"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -6245,7 +6991,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 384130,
-              "reading_value": 384130.0
+              "reading_value": 384130.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -6255,7 +7004,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 384607,
-              "reading_value": 384607.0
+              "reading_value": 384607.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -6265,7 +7017,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 385126,
-              "reading_value": 385126.0
+              "reading_value": 385126.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -6275,7 +7030,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 385671,
-              "reading_value": 385671.0
+              "reading_value": 385671.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -6285,7 +7043,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 386135,
-              "reading_value": 386135.0
+              "reading_value": 386135.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -6295,7 +7056,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 386524,
-              "reading_value": 386524.0
+              "reading_value": 386524.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -6305,7 +7069,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 386858,
-              "reading_value": 386858.0
+              "reading_value": 386858.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6315,7 +7082,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 387286,
-              "reading_value": 387286.0
+              "reading_value": 387286.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6325,7 +7095,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 387595,
-              "reading_value": 387595.0
+              "reading_value": 387595.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -6335,7 +7108,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 387983,
-              "reading_value": 387983.0
+              "reading_value": 387983.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -6345,7 +7121,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 388314,
-              "reading_value": 388314.0
+              "reading_value": 388314.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -6353,6 +7132,14 @@
           "source_row": 37,
           "legacy_label": "BC 20",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 20",
+            "label_prefix": "BC",
+            "numeric_component": 20,
+            "suffix": null,
+            "canonical_unit_label": "BC 20"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -6364,7 +7151,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 475133,
-              "reading_value": 475133.0
+              "reading_value": 475133.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -6374,7 +7164,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 475345,
-              "reading_value": 475345.0
+              "reading_value": 475345.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -6384,7 +7177,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 475595,
-              "reading_value": 475595.0
+              "reading_value": 475595.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -6394,7 +7190,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 475685,
-              "reading_value": 475685.0
+              "reading_value": 475685.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -6404,7 +7203,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 476107,
-              "reading_value": 476107.0
+              "reading_value": 476107.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -6414,7 +7216,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 476309,
-              "reading_value": 476309.0
+              "reading_value": 476309.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -6424,7 +7229,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 476479,
-              "reading_value": 476479.0
+              "reading_value": 476479.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6434,7 +7242,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 476703,
-              "reading_value": 476703.0
+              "reading_value": 476703.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6444,7 +7255,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 476937,
-              "reading_value": 476937.0
+              "reading_value": 476937.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -6454,7 +7268,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 477131,
-              "reading_value": 477131.0
+              "reading_value": 477131.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -6464,7 +7281,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 477319,
-              "reading_value": 477319.0
+              "reading_value": 477319.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -6472,6 +7292,14 @@
           "source_row": 38,
           "legacy_label": "BC 21",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 21",
+            "label_prefix": "BC",
+            "numeric_component": 21,
+            "suffix": null,
+            "canonical_unit_label": "BC 21"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -6483,7 +7311,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 183482,
-              "reading_value": 183482.0
+              "reading_value": 183482.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -6493,7 +7324,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 183830,
-              "reading_value": 183830.0
+              "reading_value": 183830.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -6503,7 +7337,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 184184,
-              "reading_value": 184184.0
+              "reading_value": 184184.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -6513,7 +7350,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 184589,
-              "reading_value": 184589.0
+              "reading_value": 184589.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -6523,7 +7363,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 184928,
-              "reading_value": 184928.0
+              "reading_value": 184928.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -6533,7 +7376,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 185260,
-              "reading_value": 185260.0
+              "reading_value": 185260.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -6543,7 +7389,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 185534,
-              "reading_value": 185534.0
+              "reading_value": 185534.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6553,7 +7402,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 185892,
-              "reading_value": 185892.0
+              "reading_value": 185892.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6563,7 +7415,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 186226,
-              "reading_value": 186226.0
+              "reading_value": 186226.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -6573,7 +7428,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 186525,
-              "reading_value": 186525.0
+              "reading_value": 186525.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -6583,7 +7441,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 186790,
-              "reading_value": 186790.0
+              "reading_value": 186790.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -6591,6 +7452,14 @@
           "source_row": 39,
           "legacy_label": "BC 22",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 22",
+            "label_prefix": "BC",
+            "numeric_component": 22,
+            "suffix": null,
+            "canonical_unit_label": "BC 22"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -6602,7 +7471,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 396386,
-              "reading_value": 396386.0
+              "reading_value": 396386.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -6612,7 +7484,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 396973,
-              "reading_value": 396973.0
+              "reading_value": 396973.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -6622,7 +7497,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 398131,
-              "reading_value": 398131.0
+              "reading_value": 398131.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -6632,7 +7510,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 398876,
-              "reading_value": 398876.0
+              "reading_value": 398876.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -6642,7 +7523,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 399501,
-              "reading_value": 399501.0
+              "reading_value": 399501.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -6652,7 +7536,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 400144,
-              "reading_value": 400144.0
+              "reading_value": 400144.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -6662,7 +7549,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 400779,
-              "reading_value": 400779.0
+              "reading_value": 400779.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6672,7 +7562,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 401500,
-              "reading_value": 401500.0
+              "reading_value": 401500.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6682,7 +7575,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 401969,
-              "reading_value": 401969.0
+              "reading_value": 401969.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -6692,7 +7588,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 402537,
-              "reading_value": 402537.0
+              "reading_value": 402537.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -6702,7 +7601,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 403029,
-              "reading_value": 403029.0
+              "reading_value": 403029.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -6710,6 +7612,14 @@
           "source_row": 40,
           "legacy_label": "BC 23",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 23",
+            "label_prefix": "BC",
+            "numeric_component": 23,
+            "suffix": null,
+            "canonical_unit_label": "BC 23"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -6721,7 +7631,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 440767,
-              "reading_value": 440767.0
+              "reading_value": 440767.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -6731,7 +7644,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 441295,
-              "reading_value": 441295.0
+              "reading_value": 441295.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -6741,7 +7657,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 441634,
-              "reading_value": 441634.0
+              "reading_value": 441634.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -6751,7 +7670,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 442000,
-              "reading_value": 442000.0
+              "reading_value": 442000.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -6761,7 +7683,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 442499,
-              "reading_value": 442499.0
+              "reading_value": 442499.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -6771,7 +7696,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 443322,
-              "reading_value": 443322.0
+              "reading_value": 443322.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -6781,7 +7709,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 443663,
-              "reading_value": 443663.0
+              "reading_value": 443663.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6791,7 +7722,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 444014,
-              "reading_value": 444014.0
+              "reading_value": 444014.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6801,7 +7735,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 444484,
-              "reading_value": 444484.0
+              "reading_value": 444484.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -6811,7 +7748,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 444821,
-              "reading_value": 444821.0
+              "reading_value": 444821.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -6821,7 +7761,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 445095,
-              "reading_value": 445095.0
+              "reading_value": 445095.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -6829,6 +7772,14 @@
           "source_row": 41,
           "legacy_label": "BC 24",
           "meter_type": "UNIT",
+          "entity_reference": {
+            "entity_kind": "unit",
+            "legacy_label": "BC 24",
+            "label_prefix": "BC",
+            "numeric_component": 24,
+            "suffix": null,
+            "canonical_unit_label": "BC 24"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.041666666666666664,
           "readings": [
@@ -6840,7 +7791,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 306755,
-              "reading_value": 306755.0
+              "reading_value": 306755.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 6,
@@ -6850,7 +7804,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2024",
               "reading_value_raw": 307283,
-              "reading_value": 307283.0
+              "reading_value": 307283.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 7,
@@ -6860,7 +7817,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 307870,
-              "reading_value": 307870.0
+              "reading_value": 307870.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 8,
@@ -6870,7 +7830,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 308388,
-              "reading_value": 308388.0
+              "reading_value": 308388.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 9,
@@ -6880,7 +7843,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 308731,
-              "reading_value": 308731.0
+              "reading_value": 308731.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 10,
@@ -6890,7 +7856,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 309104,
-              "reading_value": 309104.0
+              "reading_value": 309104.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 11,
@@ -6900,7 +7869,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 309434,
-              "reading_value": 309434.0
+              "reading_value": 309434.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6910,7 +7882,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 309843,
-              "reading_value": 309843.0
+              "reading_value": 309843.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6920,7 +7895,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 310251,
-              "reading_value": 310251.0
+              "reading_value": 310251.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -6930,7 +7908,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 310611,
-              "reading_value": 310611.0
+              "reading_value": 310611.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -6940,7 +7921,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 310938,
-              "reading_value": 310938.0
+              "reading_value": 310938.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -6948,6 +7932,10 @@
           "source_row": 42,
           "legacy_label": "Com Storeroom",
           "meter_type": "COMMON",
+          "entity_reference": {
+            "entity_kind": "common",
+            "legacy_label": "Com Storeroom"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.0,
           "readings": [
@@ -6959,7 +7947,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": "Dec'25 est.",
-              "reading_value": null
+              "reading_value": null,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "non-numeric-text"
             },
             {
               "column_index": 11,
@@ -6969,7 +7960,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 92230,
-              "reading_value": 92230.0
+              "reading_value": 92230.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -6979,7 +7973,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 92341,
-              "reading_value": 92341.0
+              "reading_value": 92341.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -6989,7 +7986,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": "=L42+111",
-              "reading_value": null
+              "reading_value": 92452.0,
+              "reading_value_formula": "=L42+111",
+              "reading_value_cached": 92452,
+              "reading_value_source": "cached-formula-value"
             },
             {
               "column_index": 14,
@@ -6999,7 +7999,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 92670,
-              "reading_value": 92670.0
+              "reading_value": 92670.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -7009,7 +8012,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 92819,
-              "reading_value": 92819.0
+              "reading_value": 92819.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -7017,6 +8023,10 @@
           "source_row": 43,
           "legacy_label": "Com Staff Room 1 (Willie)",
           "meter_type": "COMMON",
+          "entity_reference": {
+            "entity_kind": "common",
+            "legacy_label": "Com Staff Room 1 (Willie)"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.0,
           "readings": [
@@ -7028,7 +8038,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": "Dec'25 est.",
-              "reading_value": null
+              "reading_value": null,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "non-numeric-text"
             },
             {
               "column_index": 11,
@@ -7038,7 +8051,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 16807,
-              "reading_value": 16807.0
+              "reading_value": 16807.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -7048,7 +8064,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 16841,
-              "reading_value": 16841.0
+              "reading_value": 16841.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -7058,7 +8077,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": "=L43+34",
-              "reading_value": null
+              "reading_value": 16875.0,
+              "reading_value_formula": "=L43+34",
+              "reading_value_cached": 16875,
+              "reading_value_source": "cached-formula-value"
             },
             {
               "column_index": 14,
@@ -7068,7 +8090,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 17006,
-              "reading_value": 17006.0
+              "reading_value": 17006.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -7078,7 +8103,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 17072,
-              "reading_value": 17072.0
+              "reading_value": 17072.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -7086,6 +8114,10 @@
           "source_row": 44,
           "legacy_label": "Com Staff Room 2 (unit 16)",
           "meter_type": "COMMON",
+          "entity_reference": {
+            "entity_kind": "common",
+            "legacy_label": "Com Staff Room 2 (unit 16)"
+          },
           "prepaid_marker": null,
           "pq_factor": 0.0,
           "readings": [
@@ -7097,7 +8129,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": "Dec'25 est.",
-              "reading_value": null
+              "reading_value": null,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "non-numeric-text"
             },
             {
               "column_index": 11,
@@ -7107,7 +8142,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 68999,
-              "reading_value": 68999.0
+              "reading_value": 68999.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 12,
@@ -7117,7 +8155,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 68999,
-              "reading_value": 68999.0
+              "reading_value": 68999.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 13,
@@ -7127,7 +8168,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 68999,
-              "reading_value": 68999.0
+              "reading_value": 68999.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 14,
@@ -7137,7 +8181,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 68999,
-              "reading_value": 68999.0
+              "reading_value": 68999.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             },
             {
               "column_index": 15,
@@ -7147,7 +8194,10 @@
               "reading_date_note": null,
               "tariff_table": "BC Jul 2025",
               "reading_value_raw": 68990,
-              "reading_value": 68990.0
+              "reading_value": 68990.0,
+              "reading_value_formula": null,
+              "reading_value_cached": null,
+              "reading_value_source": "literal"
             }
           ]
         },
@@ -7155,51 +8205,328 @@
           "source_row": 45,
           "legacy_label": "Bulk 1",
           "meter_type": "BULK",
+          "entity_reference": {
+            "entity_kind": "bulk",
+            "legacy_label": "Bulk 1"
+          },
           "prepaid_marker": null,
           "pq_factor": null,
           "readings": []
         }
       ],
-      "review_flags": [
+      "entities_and_meanings": [
         {
-          "severity": "high",
-          "type": "unresolved-reading-date",
-          "column_index": 16,
-          "display_label": "2026-04-21 00:00:00",
-          "reading_date_raw": null,
-          "message": "Reading date could not be resolved for month column 16."
+          "entity_type": "building",
+          "examples": [
+            "Bonifay Court",
+            "Bonifay"
+          ],
+          "meaning": "Primary scheme/building represented by the worksheet."
         },
         {
-          "severity": "high",
-          "type": "unresolved-reading-date",
-          "column_index": 17,
-          "display_label": "2026-05-21 00:00:00",
-          "reading_date_raw": null,
-          "message": "Reading date could not be resolved for month column 17."
+          "entity_type": "unit_identifier_pattern",
+          "pattern": "BC <unit number><optional suffix>",
+          "examples": [
+            "BC 01",
+            "BC 02",
+            "BC 03",
+            "BC 04",
+            "BC 05",
+            "BC 06",
+            "BC 07",
+            "BC 08",
+            "BC 09",
+            "BC 10",
+            "BC 11",
+            "BC 12"
+          ],
+          "meaning": "Unit-level meter labels. Prefix BC appears to abbreviate the building or scheme name and is followed by the unit number.",
+          "occurrence_count": 24
         },
         {
-          "severity": "high",
-          "type": "unresolved-reading-date",
-          "column_index": 18,
-          "display_label": "2026-06-21 00:00:00",
-          "reading_date_raw": null,
-          "message": "Reading date could not be resolved for month column 18."
+          "entity_type": "bulk_meter_pattern",
+          "pattern": "Bulk <number>",
+          "examples": [
+            "Bulk 1"
+          ],
+          "meaning": "Bulk supply meter identifiers used for building-level supply or aggregation."
         },
         {
-          "severity": "high",
-          "type": "unresolved-reading-date",
-          "column_index": 19,
-          "display_label": "2026-07-21 00:00:00",
-          "reading_date_raw": null,
-          "message": "Reading date could not be resolved for month column 19."
+          "entity_type": "common_property_pattern",
+          "pattern": "Common-property/service labels",
+          "examples": [
+            "Com Storeroom",
+            "Com Staff Room 1 (Willie)",
+            "Com Staff Room 2 (unit 16)"
+          ],
+          "meaning": "Meters associated with shared infrastructure, common property, or service areas rather than private units."
+        }
+      ],
+      "categories_and_domains": {
+        "sheet_category": "building",
+        "domains": [
+          "electricity",
+          "water",
+          "charges"
+        ],
+        "meter_types": [
+          "BULK",
+          "COMMON",
+          "UNIT"
+        ],
+        "charge_names": [
+          "Elec Common Prop",
+          "Elec Service Charge",
+          "Elec Network Charge",
+          "Common Property",
+          "Water Demand Management Levy",
+          "Water Surcharge",
+          "Sanitation",
+          "Refuse"
+        ],
+        "distribution_modes": [
+          "None",
+          "None",
+          "None",
+          "PQ",
+          "None",
+          "None",
+          "Even",
+          "None"
+        ],
+        "sections": {
+          "electricity_header_row": 17,
+          "water_header_row": 46
+        }
+      },
+      "attributes_and_time_series": {
+        "time_series_type": "month_columns",
+        "month_columns": [
+          {
+            "column_index": 5,
+            "display_label": "2025-04-01 00:00:00",
+            "reading_date_raw": "2025-05-06 00:00:00",
+            "reading_date": "2025-05-06",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2024"
+          },
+          {
+            "column_index": 6,
+            "display_label": "2025-05-01 00:00:00",
+            "reading_date_raw": "2025-06-03 00:00:00",
+            "reading_date": "2025-06-03",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2024"
+          },
+          {
+            "column_index": 7,
+            "display_label": "2025-06-01 00:00:00",
+            "reading_date_raw": "2025-07-04 00:00:00",
+            "reading_date": "2025-07-04",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 8,
+            "display_label": "2025-07-01 00:00:00",
+            "reading_date_raw": "2025-08-05 00:00:00",
+            "reading_date": "2025-08-05",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 9,
+            "display_label": "2025-08-01 00:00:00",
+            "reading_date_raw": "2025-09-04 00:00:00",
+            "reading_date": "2025-09-04",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 10,
+            "display_label": "2025-09-01 00:00:00",
+            "reading_date_raw": "2025-10-03 00:00:00",
+            "reading_date": "2025-10-03",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 11,
+            "display_label": "2025-10-01 00:00:00",
+            "reading_date_raw": "2025-10-31 00:00:00",
+            "reading_date": "2025-10-31",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 12,
+            "display_label": "2025-11-21 00:00:00",
+            "reading_date_raw": "2025-12-03 00:00:00",
+            "reading_date": "2025-12-03",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 13,
+            "display_label": "2025-12-21 00:00:00",
+            "reading_date_raw": "2026-01-07 00:00:00",
+            "reading_date": "2026-01-07",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 14,
+            "display_label": "2026-01-21 00:00:00",
+            "reading_date_raw": "2026-02-05 00:00:00",
+            "reading_date": "2026-02-05",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 15,
+            "display_label": "2026-03-21 00:00:00",
+            "reading_date_raw": "2026-03-03 00:00:00",
+            "reading_date": "2026-03-03",
+            "reading_date_note": null,
+            "tariff_table": "BC Jul 2025"
+          },
+          {
+            "column_index": 16,
+            "display_label": "2026-04-21 00:00:00",
+            "reading_date_raw": null,
+            "reading_date": "2026-04-21",
+            "reading_date_note": "derived-from-display-label",
+            "tariff_table": null
+          },
+          {
+            "column_index": 17,
+            "display_label": "2026-05-21 00:00:00",
+            "reading_date_raw": null,
+            "reading_date": "2026-05-21",
+            "reading_date_note": "derived-from-display-label",
+            "tariff_table": null
+          },
+          {
+            "column_index": 18,
+            "display_label": "2026-06-21 00:00:00",
+            "reading_date_raw": null,
+            "reading_date": "2026-06-21",
+            "reading_date_note": "derived-from-display-label",
+            "tariff_table": null
+          },
+          {
+            "column_index": 19,
+            "display_label": "2026-07-21 00:00:00",
+            "reading_date_raw": null,
+            "reading_date": "2026-07-21",
+            "reading_date_note": "derived-from-display-label",
+            "tariff_table": null
+          },
+          {
+            "column_index": 20,
+            "display_label": "2026-08-21 00:00:00",
+            "reading_date_raw": null,
+            "reading_date": "2026-08-21",
+            "reading_date_note": "derived-from-display-label",
+            "tariff_table": null
+          }
+        ],
+        "resolved_month_count": 16,
+        "unresolved_month_count": 0,
+        "first_resolved_month": {
+          "column_index": 5,
+          "display_label": "2025-04-01 00:00:00",
+          "reading_date_raw": "2025-05-06 00:00:00",
+          "reading_date": "2025-05-06",
+          "reading_date_note": null,
+          "tariff_table": "BC Jul 2024"
         },
-        {
-          "severity": "high",
-          "type": "unresolved-reading-date",
+        "last_resolved_month": {
           "column_index": 20,
           "display_label": "2026-08-21 00:00:00",
           "reading_date_raw": null,
-          "message": "Reading date could not be resolved for month column 20."
+          "reading_date": "2026-08-21",
+          "reading_date_note": "derived-from-display-label",
+          "tariff_table": null
+        },
+        "tariff_tables": [
+          "BC Jul 2024",
+          "BC Jul 2025"
+        ]
+      },
+      "formulas_and_connections_summary": {
+        "formula_cell_count": 14,
+        "formula_patterns": [
+          {
+            "pattern": "=<NUM>/<NUM>",
+            "count": 6
+          },
+          {
+            "pattern": "=<NUM>+<NUM>",
+            "count": 5
+          },
+          {
+            "pattern": "=<REF>+<NUM>",
+            "count": 2
+          },
+          {
+            "pattern": "=SUM(<REF>)",
+            "count": 1
+          }
+        ]
+      },
+      "source_evidence": {
+        "folder_exists": true,
+        "matched_folder": "C:\\Projects\\Meter App\\Buildings\\buildings\\Bonifay",
+        "total_file_count": 375,
+        "relevant_file_count": 108,
+        "file_type_counts": {
+          ".jpeg": 211,
+          ".jpg": 153,
+          ".pdf": 3,
+          ".xlsx": 8
+        },
+        "top_level_folders": [
+          "COUNCIL & UTILITIES"
+        ],
+        "matched_unit_mentions": [],
+        "notes": [
+          "Cross-reference is based on retained file/folder names only; OCR/text extraction was not performed for PDFs or images."
+        ]
+      },
+      "cross_check": {
+        "reconciled_at": "2026-04-10T13:42:29.307672+00:00",
+        "source_workbook": "C:\\Projects\\Meter App\\legacy-ud\\workbook-exports\\Utility Dash 9 Mar 2026.xlsm",
+        "summary_file": "C:\\Projects\\Meter App\\DataMigration\\Summaries\\bonifay-court.summary.json",
+        "previous_review_flag_count": 6,
+        "current_review_flag_count": 4,
+        "derived_date_count": 5,
+        "resolved_formula_value_count": 2
+      },
+      "review_flags": [
+        {
+          "severity": "medium",
+          "type": "non-numeric-reading-values",
+          "row_index": 42,
+          "legacy_label": "Com Storeroom",
+          "count": 1,
+          "message": "Electricity row contains non-numeric reading content that could not be resolved."
+        },
+        {
+          "severity": "medium",
+          "type": "non-numeric-reading-values",
+          "row_index": 43,
+          "legacy_label": "Com Staff Room 1 (Willie)",
+          "count": 1,
+          "message": "Electricity row contains non-numeric reading content that could not be resolved."
+        },
+        {
+          "severity": "medium",
+          "type": "non-numeric-reading-values",
+          "row_index": 44,
+          "legacy_label": "Com Staff Room 2 (unit 16)",
+          "count": 1,
+          "message": "Electricity row contains non-numeric reading content that could not be resolved."
         },
         {
           "severity": "medium",
