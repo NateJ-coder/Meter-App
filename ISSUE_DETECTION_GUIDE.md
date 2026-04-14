@@ -219,6 +219,45 @@ When you click "Export Issues Report", you get:
 
 ---
 
+## Building Image Validation
+
+The building source parser now validates meter-reading photos against the normalized workbook register for each building. Azores is the reference baseline for this behavior, and the same validation path can resolve other building folders when a normalized sheet exists in `DataMigration/outputs/sheet-normalized`.
+
+### Run the validator
+
+```powershell
+& "c:/Projects/Meter App/.venv/Scripts/python.exe" "c:/Projects/Meter App/scripts/extract-building-image-data.py" --building "Azores - Completed" --workers 4
+```
+
+Per-building output is written to `Buildings/buildings/<Building>/cleaned images/meter-image-extractions.json`.
+
+### What the validator does
+
+1. Extracts date, meter label, and reading candidates from image paths and OCR.
+2. Resolves the building against its normalized workbook register.
+3. Matches extracted labels to canonical meter numbers from the workbook.
+4. Flags files that are unreadable, ambiguous, unsupported, or inconsistent with the last known reading.
+
+### Key review flags
+
+- `missing-reference-meter-match`: The file did not expose a usable meter label, so it could not be tied to a known meter.
+- `unmatched-reference-meter`: A label was extracted, but it does not map to any canonical meter in the building register.
+- `ambiguous-reference-meter-match`: The extracted label could map to more than one canonical meter and should be reviewed manually.
+- `reading-below-last-known`: The OCR reading is lower than the latest reading stored in the workbook register and is likely incorrect.
+- `missing-meter-reading`: No usable numeric reading could be extracted from the image.
+- `low-confidence-meter-reading`: A reading candidate was found, but OCR quality is weak and should be checked.
+- `unsupported-document-file`: A non-image document such as a PDF was found and surfaced for manual review instead of being silently ignored.
+
+### Reference match kinds
+
+- `exact`: The extracted label matched a canonical workbook meter directly.
+- `alias`: The extracted label matched a canonical workbook meter through a safe alias normalization step, for example `AZ 01` resolving to `AZ 01A`.
+- `missing`: No usable label was available for matching.
+- `unmatched`: A label was extracted, but the register has no canonical meter for it.
+- `ambiguous`: More than one canonical meter could satisfy the extracted label.
+
+Treat `missing`, `unmatched`, `ambiguous`, `reading-below-last-known`, and `unsupported-document-file` as manual-review triggers.
+
 ## Testing the New Features
 
 1. **Refresh your Dev Console** (Ctrl+F5 or hard refresh)

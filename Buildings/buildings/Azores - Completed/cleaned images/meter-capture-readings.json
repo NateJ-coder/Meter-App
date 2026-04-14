@@ -1,0 +1,1302 @@
+{
+  "building_name": "Azores - Completed",
+  "generated_at": "2026-04-14T13:27:45.168132+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "source_extraction_file": "C:\\Projects\\Meter App\\Buildings\\buildings\\Azores - Completed\\cleaned images\\meter-image-extractions.json",
+  "reference_register": {
+    "resolved": true,
+    "scheme_name": "Azores",
+    "sheet_name": "The Azores",
+    "sheet_slug": "the-azores",
+    "source_path": "C:\\Projects\\Meter App\\DataMigration\\outputs\\sheet-normalized\\the-azores.normalized.json",
+    "meter_count": 73
+  },
+  "summary": {
+    "total_meter_capture_records": 30,
+    "total_unmatched_captures": 0,
+    "meter_capture_statuses": {
+      "captured": 4,
+      "missing-reading": 15,
+      "needs-review": 11
+    },
+    "documents_requiring_review": 1,
+    "images_with_meter_reading": 15,
+    "images_without_meter_reading": 15,
+    "reference_register_resolved": true
+  },
+  "meter_captures": [
+    {
+      "unit_number": "AZ 01A",
+      "meter_number": "AZ 01A",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 26859.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 01"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 01 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 01 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 01",
+          "extracted_unit_label": "AZ 01",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "alias",
+          "reference_match_inputs": [
+            "AZ 01"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched to canonical meter AZ 01A through alias normalization.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 02",
+      "meter_number": "AZ 02",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 21910.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 02"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 02 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 02 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 02",
+          "extracted_unit_label": "AZ 02",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 02"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 02.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 03",
+      "meter_number": "AZ 03",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 63925.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 03"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 03 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 03 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 03",
+          "extracted_unit_label": "AZ 03",
+          "extracted_serial_number": null,
+          "extracted_reading": "6429",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 03"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 03.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 04",
+      "meter_number": "AZ 04",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 97179.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "Z 80M"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 04 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 04 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "Z 80M",
+          "extracted_unit_label": "Z 80M",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 04",
+            "Z 80M"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 04.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 05B",
+      "meter_number": "AZ 05B",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 60252.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 05"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 05 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 05 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 05",
+          "extracted_unit_label": "AZ 05",
+          "extracted_serial_number": null,
+          "extracted_reading": "1000",
+          "reading_confidence": "medium",
+          "reference_match_kind": "alias",
+          "reference_match_inputs": [
+            "AZ 05"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched to canonical meter AZ 05B through alias normalization.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 06A",
+      "meter_number": "AZ 06A",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 10429.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 06"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 06 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 06 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 06",
+          "extracted_unit_label": "AZ 06",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "alias",
+          "reference_match_inputs": [
+            "AZ 06"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched to canonical meter AZ 06A through alias normalization.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 07",
+      "meter_number": "AZ 07",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 45292.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 07"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 07 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 07 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 07",
+          "extracted_unit_label": "AZ 07",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 07"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 07.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 08",
+      "meter_number": "AZ 08",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 82697.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 08"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 08 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 08 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 08",
+          "extracted_unit_label": "AZ 08",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 08"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 08.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 09",
+      "meter_number": "AZ 09",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 89001.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 09"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 09 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 09 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 09",
+          "extracted_unit_label": "AZ 09",
+          "extracted_serial_number": null,
+          "extracted_reading": "7000",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 09"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 09.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 10",
+      "meter_number": "AZ 10",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 67830.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 10"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 10 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 10 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 10",
+          "extracted_unit_label": "AZ 10",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 10"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 10.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 11",
+      "meter_number": "AZ 11",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 33738.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 11"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 11 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 11 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 11",
+          "extracted_unit_label": "AZ 11",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 11"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 11.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 12",
+      "meter_number": "AZ 12",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 1898.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "REVS 7"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 12 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 12 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "REVS 7",
+          "extracted_unit_label": "REVS 7",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 12",
+            "REVS 7"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 12.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 13",
+      "meter_number": "AZ 13",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 94977.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 13"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 13 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 13 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 13",
+          "extracted_unit_label": "AZ 13",
+          "extracted_serial_number": null,
+          "extracted_reading": "08022",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 13"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 13.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 14",
+      "meter_number": "AZ 14",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 87283.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 14"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 14- Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 14- Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 14",
+          "extracted_unit_label": "AZ 14",
+          "extracted_serial_number": null,
+          "extracted_reading": "0400",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 14"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 14.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 15A",
+      "meter_number": "AZ 15A",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 41128.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 15"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 15 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 15 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 15",
+          "extracted_unit_label": "AZ 15",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "alias",
+          "reference_match_inputs": [
+            "AZ 15"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched to canonical meter AZ 15A through alias normalization.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 16A",
+      "meter_number": "AZ 16A",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 88770.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 1,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "REVS 7"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 16 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 16 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "REVS 7",
+          "extracted_unit_label": "REVS 7",
+          "extracted_serial_number": null,
+          "extracted_reading": "296154",
+          "reading_confidence": "medium",
+          "reference_match_kind": "alias",
+          "reference_match_inputs": [
+            "AZ 16",
+            "REVS 7"
+          ],
+          "capture_status": "captured",
+          "capture_description": "A reading was extracted from the image.",
+          "match_description": "Matched to canonical meter AZ 16A through alias normalization.",
+          "flags": [
+            "missing-serial-number"
+          ]
+        }
+      ],
+      "meter_capture_status": "captured",
+      "meter_capture_description": "At least one reading was captured and no review-only capture blocks it."
+    },
+    {
+      "unit_number": "AZ 17",
+      "meter_number": "AZ 17",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 40156.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 17"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 17 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 17 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 17",
+          "extracted_unit_label": "AZ 17",
+          "extracted_serial_number": null,
+          "extracted_reading": "23050",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 17"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 17.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 18",
+      "meter_number": "AZ 18",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 26483.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 18"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 18 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 18 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 18",
+          "extracted_unit_label": "AZ 18",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 18"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 18.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 19A",
+      "meter_number": "AZ 19A",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 90785.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 19"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 19 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 19 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 19",
+          "extracted_unit_label": "AZ 19",
+          "extracted_serial_number": null,
+          "extracted_reading": "2700",
+          "reading_confidence": "low",
+          "reference_match_kind": "alias",
+          "reference_match_inputs": [
+            "AZ 19"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched to canonical meter AZ 19A through alias normalization.",
+          "flags": [
+            "missing-serial-number",
+            "low-confidence-meter-reading",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 22",
+      "meter_number": "AZ 22",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 40882.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "O1"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 22 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 22 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "O1",
+          "extracted_unit_label": "O1",
+          "extracted_serial_number": null,
+          "extracted_reading": "40000",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 22",
+            "O1"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 22.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 23",
+      "meter_number": "AZ 23",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 41774.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 23"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 23- Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 23- Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 23",
+          "extracted_unit_label": "AZ 23",
+          "extracted_serial_number": null,
+          "extracted_reading": "10000",
+          "reading_confidence": "low",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 23"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 23.",
+          "flags": [
+            "missing-serial-number",
+            "low-confidence-meter-reading",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 24",
+      "meter_number": "AZ 24",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 47386.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 1,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 24"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 24 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 24 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 24",
+          "extracted_unit_label": "AZ 24",
+          "extracted_serial_number": null,
+          "extracted_reading": "478395",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 24"
+          ],
+          "capture_status": "captured",
+          "capture_description": "A reading was extracted from the image.",
+          "match_description": "Matched directly to canonical meter AZ 24.",
+          "flags": [
+            "missing-serial-number"
+          ]
+        }
+      ],
+      "meter_capture_status": "captured",
+      "meter_capture_description": "At least one reading was captured and no review-only capture blocks it."
+    },
+    {
+      "unit_number": "AZ 65",
+      "meter_number": "AZ 65",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 55022.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 65"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 65 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 65 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 65",
+          "extracted_unit_label": "AZ 65",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 65"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 65.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 66",
+      "meter_number": "AZ 66",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 30122.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 66"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 66 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 66 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 66",
+          "extracted_unit_label": "AZ 66",
+          "extracted_serial_number": null,
+          "extracted_reading": "10000",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 66"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 66.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 67",
+      "meter_number": "AZ 67",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 48986.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 1,
+      "observed_labels": [
+        "AZ 67"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 67- Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 67- Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 67",
+          "extracted_unit_label": "AZ 67",
+          "extracted_serial_number": null,
+          "extracted_reading": "10000",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 67"
+          ],
+          "capture_status": "needs-review",
+          "capture_description": "A reading was extracted, but it is lower than the last known reference reading and needs manual review.",
+          "match_description": "Matched directly to canonical meter AZ 67.",
+          "flags": [
+            "missing-serial-number",
+            "reading-below-last-known"
+          ]
+        }
+      ],
+      "meter_capture_status": "needs-review",
+      "meter_capture_description": "One or more captures produced a reading that needs manual review before use."
+    },
+    {
+      "unit_number": "AZ 68",
+      "meter_number": "AZ 68",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 10368.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 68"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 68 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 68 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 68",
+          "extracted_unit_label": "AZ 68",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 68"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 68.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 69",
+      "meter_number": "AZ 69",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 50128.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 69"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 69 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 69 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 69",
+          "extracted_unit_label": "AZ 69",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 69"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched directly to canonical meter AZ 69.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 70",
+      "meter_number": "AZ 70",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 46791.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 1,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 70"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 70 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 70 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 70",
+          "extracted_unit_label": "AZ 70",
+          "extracted_serial_number": null,
+          "extracted_reading": "947214",
+          "reading_confidence": "medium",
+          "reference_match_kind": "exact",
+          "reference_match_inputs": [
+            "AZ 70"
+          ],
+          "capture_status": "captured",
+          "capture_description": "A reading was extracted from the image.",
+          "match_description": "Matched directly to canonical meter AZ 70.",
+          "flags": [
+            "missing-serial-number"
+          ]
+        }
+      ],
+      "meter_capture_status": "captured",
+      "meter_capture_description": "At least one reading was captured and no review-only capture blocks it."
+    },
+    {
+      "unit_number": "AZ 71A",
+      "meter_number": "AZ 71A",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 20177.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 0,
+      "missing_reading_capture_count": 1,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 71"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 71 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 71 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 71",
+          "extracted_unit_label": "AZ 71",
+          "extracted_serial_number": null,
+          "extracted_reading": null,
+          "reading_confidence": "missing",
+          "reference_match_kind": "alias",
+          "reference_match_inputs": [
+            "AZ 71"
+          ],
+          "capture_status": "missing-reading",
+          "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+          "match_description": "Matched to canonical meter AZ 71A through alias normalization.",
+          "flags": [
+            "missing-serial-number",
+            "missing-meter-reading"
+          ]
+        }
+      ],
+      "meter_capture_status": "missing-reading",
+      "meter_capture_description": "A meter image exists, but no usable numeric reading was extracted."
+    },
+    {
+      "unit_number": "AZ 72A",
+      "meter_number": "AZ 72A",
+      "meter_type": "UNIT",
+      "latest_reference_reading": 7874.0,
+      "latest_reference_reading_date": "2026-03-03",
+      "captured_reading_count": 1,
+      "missing_reading_capture_count": 0,
+      "needs_review_capture_count": 0,
+      "observed_labels": [
+        "AZ 72"
+      ],
+      "capture_dates": [
+        "2026-04-02"
+      ],
+      "captures": [
+        {
+          "capture_date": "2026-04-02",
+          "image_path": "April/Images/2_2026-04/AZ 72 - Electricity Reading  2026.04.02.jpeg",
+          "file_name": "AZ 72 - Electricity Reading  2026.04.02.jpeg",
+          "containing_folder": "April/Images/2_2026-04",
+          "extracted_meter_label": "AZ 72",
+          "extracted_unit_label": "AZ 72",
+          "extracted_serial_number": null,
+          "extracted_reading": "13674",
+          "reading_confidence": "medium",
+          "reference_match_kind": "alias",
+          "reference_match_inputs": [
+            "AZ 72"
+          ],
+          "capture_status": "captured",
+          "capture_description": "A reading was extracted from the image.",
+          "match_description": "Matched to canonical meter AZ 72A through alias normalization.",
+          "flags": [
+            "missing-serial-number"
+          ]
+        }
+      ],
+      "meter_capture_status": "captured",
+      "meter_capture_description": "At least one reading was captured and no review-only capture blocks it."
+    }
+  ],
+  "unmatched_captures": [],
+  "documents_requiring_review": [
+    {
+      "document_path": "April/Reading sheets/AZO - Readings 2026.04.02.pdf",
+      "containing_folder": "April/Reading sheets",
+      "file_name": "AZO - Readings 2026.04.02.pdf",
+      "flags": [
+        "unsupported-document-file"
+      ]
+    }
+  ]
+}

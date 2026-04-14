@@ -1,0 +1,1246 @@
+{
+  "building_name": "Azores - Completed",
+  "generated_at": "2026-04-14T13:27:45.168132+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "reference_register": {
+    "resolved": true,
+    "scheme_name": "Azores",
+    "sheet_name": "The Azores",
+    "sheet_slug": "the-azores",
+    "source_path": "C:\\Projects\\Meter App\\DataMigration\\outputs\\sheet-normalized\\the-azores.normalized.json",
+    "meter_count": 73
+  },
+  "summary": {
+    "total_images": 30,
+    "total_documents_requiring_review": 1,
+    "folders_without_images": 0,
+    "images_with_meter_number": 30,
+    "images_with_serial_number": 0,
+    "images_with_meter_reading": 15,
+    "images_with_date": 30,
+    "images_with_reference_match": 30,
+    "reference_register_resolved": true,
+    "reference_register_meter_count": 73,
+    "flags": {
+      "low-confidence-meter-reading": 2,
+      "missing-meter-reading": 15,
+      "missing-serial-number": 30,
+      "reading-below-last-known": 11,
+      "unsupported-document-file": 1
+    }
+  },
+  "folders_without_images": [],
+  "documents_requiring_review": [
+    {
+      "document_path": "April/Reading sheets/AZO - Readings 2026.04.02.pdf",
+      "containing_folder": "April/Reading sheets",
+      "file_name": "AZO - Readings 2026.04.02.pdf",
+      "flags": [
+        "unsupported-document-file"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "image_path": "April/Images/2_2026-04/AZ 01 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 01 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 01 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 01",
+      "meter_number_source": "path:AZ 01 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 01",
+      "unit_label_source": "path:AZ 01 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 01A",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 26859.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "alias",
+      "reference_match_inputs": [
+        "AZ 01"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "oe . .\n~ = Bae \u2014 .\n, and",
+        "meter_region": "Ss fi a\nWATT-HOUR METE!\u2019\n\nINGLE-PHASE TWO-WIRE TYP J\n\n230 | 20(80) FS Ei\n\n150 Fiawus\n\nIo 212115",
+        "reading_center": "fi\n\n}-\n\nWATT-HO\n\nUR METE!\n\nSai =.\n\nNGLE-PHASE TWO-WIRE TYP!\n\n30 Ff\n\n20(30) EA\n\nE\n\nVLA R",
+        "reading_window": "~\n\no\n\n:\n\nWATT-HOUR METE",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 02 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 02 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 02 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 02",
+      "meter_number_source": "path:AZ 02 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 02",
+      "unit_label_source": "path:AZ 02 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 02",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 21910.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 02"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "Beye ie 200\n21 ReVS/uwn 20\ne2-",
+        "meter_region": "10,000 4,000 =~ 100 10 1 Yr\n1p\n= GEC Measurements a\nE/TYPE C11B2 1FASE/PHAS;\nB0A 200/250 Gx 55\niS/CIL Ae Din",
+        "reading_center": "3 /\n\n000\n\n1,000\n\n100\n\n10\n\nkWh\n\nlll\n\nP=\n\nG\n\nCc Mowsir\u00e9inicnt< \u2014\n\n/ryvne\n\nNAT",
+        "reading_window": "1,000\n\n100\n\n10 1\n\nkWh\n\nwl\n\n\u2014",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 03 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 03 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 03 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 03",
+      "meter_number_source": "path:AZ 03 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 03",
+      "unit_label_source": "path:AZ 03 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "6429",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 03",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 63925.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 03"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "_ fem WW VN NS\nOM kWh 1\nLy.",
+        "meter_region": "5] Made in China for\n2 ht 4 b z= oe |\nWATT-HOUR METEI\nSINGLE-PHASE TWO-WIRE YF",
+        "reading_center": "2) (\n\nfe in ate fc\n\n2)\n\n10000 1000\n\n6 4\n\n100\n\ng\n\n10\n\nWATT-HOUR METE",
+        "reading_window": ")o\n\nMade in China fo\n\nkWh.\n\n2)\n\n40000\n\nbags\n\n1000",
+        "reading_window_bin": "4\n6429\n10000100010010 2"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 04 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 04 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 04 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "Z 80M",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "Z 80M",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 04",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 97179.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 04",
+        "Z 80M"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "HAE, PW ASs |\n. a an june Z 80M\n\u2018 = an! ne 7\n| . |\n\u2014\\\n\u2014\u2014",
+        "meter_region": "\u2014\u2014\u2014 4\na o\n\u2018 \u201cd\nI'S a'7\\a\" JZ\nOOo) \u2014\u2014s \u2014 = \u2018\nFeria |\nkWh 4G \u00e9\n. a Stc Measucc a _",
+        "reading_center": "A ae \u2014\u2014\u2014\n\n\u2014s\n\n474\n\nkWh",
+        "reading_window": "lee eeeeeene:\n\n474\n\na\n\n\u2014\n\n\u2014\n\nee\n\n-\u2014\u2014",
+        "reading_window_bin": "4"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 05 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 05 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 05 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 05",
+      "meter_number_source": "path:AZ 05 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 05",
+      "unit_label_source": "path:AZ 05 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "1000",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 05B",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 60252.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "alias",
+      "reference_match_inputs": [
+        "AZ 05"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "=",
+        "meter_region": "60738 4\nthe. Ne . ve \u2014_\n10,000 1,000 100 10 | T\ne > le\n3 -\u2014 og CEES\n= GEC Measurements i\n TIPE/TYPE C11B2 1 FASE/P\n* \u2014 20-80A 200/250 Sr\nKLAS/CLASS 2- = 2 DRAAD/\\\n595079 Omw/ v7\u2019\nDe",
+        "reading_center": ";\n\n6\n\n738\n\nf\n\n1D 000\n\n1,000\n\n100\n\n10\n\nkWh\n\nRs\n\nWw\n\nSoe\n\nWi bcveeneerscoesliveno\n\n5\n\n@R\u2014 GEC Measurements Cet\n\n~ TIPE/TYPE c11B2\n\n20-B80A 200 /9KnV\n\n1 FASE /",
+        "reading_window": "\u2014_\u2014\n\n000 1,000\n\n100\n\n10\n\nkWh\n\nee\n\n\u2014",
+        "reading_window_bin": "1000 100 10"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 06 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 06 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 06 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 06",
+      "meter_number_source": "path:AZ 06 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 06",
+      "unit_label_source": "path:AZ 06 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 06A",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 10429.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "alias",
+      "reference_match_inputs": [
+        "AZ 06"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "\u2014 ,\n\u2014\u2014\n= a adel . 7",
+        "meter_region": "ee\n= GEC measurementaa\nTYPE C11B2\noa 200/250V |",
+        "reading_center": "U4 oO\n\n_\n\nee\n\nGEC Measurement",
+        "reading_window": "",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 07 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 07 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 07 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 07",
+      "meter_number_source": "path:AZ 07 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 07",
+      "unit_label_source": "path:AZ 07 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 07",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 45292.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 07"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": ": \u00bb\n~\n\u201c \u00b0\n+ \u201c \u00b0\n\u00b0 \u2018 \u201coe",
+        "meter_region": "a = \"Ching for .\n\n& FF, |\n\nmE 0 ud VOlte\nseu METER\n\n_ : aay \"YPE ie",
+        "reading_center": "\u2018Js\n\n> i T-\n\nVOlta\n\nE 0 U:\n\n.\n\nVA\n\n| we\n\nOUR ME TE\n\nIRE ty\n\nyy, ay\n\nE My",
+        "reading_window": "E 0 U:\n\nVO\n\n| we\n\nYR MET\n\n~\u2014 ei",
+        "reading_window_bin": "1"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 08 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 08 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 08 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 08",
+      "meter_number_source": "path:AZ 08 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 08",
+      "unit_label_source": "path:AZ 08 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 08",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 82697.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 08"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "hdl we BOS AD\na )63()) IN\nTW, | 50 | Ht\nan Od\nWh",
+        "meter_region": "\u201d near. .\nMade in China for VW\nvoltex F\n\u00a331 6 ie\n/ATT-HOUR METER\nPHASE ay Va",
+        "reading_center": "a\n\nadit thay\n\nnc\n\nMade in China for\n\no 3\n\nvoitex :\n\nATT-HOUR\n\nMETER",
+        "reading_window": "a\n\nfade in China for\n\nvolte:",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 09 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 09 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 09 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 09",
+      "meter_number_source": "path:AZ 09 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 09",
+      "unit_label_source": "path:AZ 09 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "7000",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 09",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 89001.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 09"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "\u2014_\u2014 ee \u2014~ \u00a34414\n> .*\nA ) : ,\nca \u2014T , | \u2018 |\n> | 7",
+        "meter_region": ", HOUR METE\ni) - ,\n: E. TWO-WIRE TYPE Byrn\n: 1 20(80F BA bs\nNN",
+        "reading_center": "ve VO\n\np ane\n\niP ow\n\n1@\n\n100\n\nr(\n\nDUR\n\nME\n\nLA\u2019? = ke\n\n\u2014\u2014\n\nV OW IRE Typc Byres Pail\n\nnr",
+        "reading_window": "vol\n\n\u00a9)\n\nfoe\n\n' ]",
+        "reading_window_bin": "7000 100"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 10 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 10 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 10 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 10",
+      "meter_number_source": "path:AZ 10 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 10",
+      "unit_label_source": "path:AZ 10 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 10",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 67830.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 10"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "\u00b0 . am mye f Lo a\nra , \u201d tai a my i\" \u2018 \u2018 v..\nk i+ \u00bb i \u00ab . .\n. wt ' is \u201ca *\nro oa - ;\n* ~ La 7* :\ntee | . \u00b0.\na. ae 4: \u00a2\n: . ; ' ; \u00ab \u201c\nFY : = * 5\n. \u00a5. ot . :\nae i",
+        "meter_region": ") Pe\n4OUR METER 4\n1 \u201cI t eS\nTWO-WIRE 7yPpE Die \u00ab= ae.\n-20(80) Fa , 50 an",
+        "reading_center": "\u00a5i\u00a2\n\n-)\n\n,\n\n400\n\n10\n\ne\n\nHOUR MEIEN\n\nli\n\n-yo-WIRE TYPE MMi\n\n'20(80) Ta\n\ni Hz",
+        "reading_window": "400\n\n2\\9\n\n10\n\nFr\n\nUR MET EK\n\n;",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 11 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 11 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 11 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 11",
+      "meter_number_source": "path:AZ 11 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 11",
+      "unit_label_source": "path:AZ 11 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 11",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 33738.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 11"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "je 11 ee\n' | {_.-- =",
+        "meter_region": "=. = \u00a9 EC Me asurements \u2014>\nbee TIPE/ TYPE c11B2 \\ FASE/ PHASE\ns  29-80A 900/250V GrBoorr\nKLAS/CLAS\u00ae 270 , oRAAO! We\n668\u00a2 43 ON) KW 2B\n\u2014 a",
+        "reading_center": "a\n\n\u2018\n\nd)\n\n\u2014_\n\n{0\n\nkWh\n\nmia ie A\n\nP EC Mea\n\nsurements ,\n\n\"\n\n\u00bb\n\n1 FASE/ PRASE\n\n~\n\nTIPE/ TY\n\nPE 1B2\n\nsand / WIRE",
+        "reading_window": "&\n\n\\y\n\n\\ we",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 12 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 12 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 12 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "REVS 7",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "REVS 7",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 12",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 1898.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 12",
+        "REVS 7"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "en REVS 7 kWh 299",
+        "meter_region": "eee ee \u201cTeall eee \" q\n= i!\nO2 124/58\n= re :,, Orage ii\nB\u2014 Gre \u201ceasuremeng, \u2014p\n: 80A 2002501 FASE/py ASE }",
+        "reading_center": "\u2014\u2014\n\nZ2!2\n\nyf\n\n100\n\n|\n\n10\n\nkWh\n\na ox\n\n*, 4\n\n} 4\n\n\u2018iid\n\ner i; Cy\n\niTlA\n\nYy~ \u00bb\n\nBZ",
+        "reading_window": "2/24/59\n\n\u00b0 10\n\nKWh",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 13 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 13 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 13 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 13",
+      "meter_number_source": "path:AZ 13 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 13",
+      "unit_label_source": "path:AZ 13 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "08022",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 13",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 94977.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 13"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "~~ \u2014\nee\npoe 7 \u201c -\ni oie ee \u2014",
+        "meter_region": "SERS |\nTT.)\n\n| we GEC Measurements =>\n|PE/TYPE C11B2 1 FASE/PHAS|\n0-80A 200/250V OS\nLAS/CLASS 2-0 _ |. OMW/4Mu 200",
+        "reading_center": "li\n\na\n\n[VS SETELATSATSA A TEE\n\nUBB \u2018iNee rH\n\nw= GEC Measurements =>\n\nE/TYPE Ci1B2\n\n1 FASE/PHA\n\n-80A 200/250V\n\nAS/ CLASS 2- 0.\n\n2 DRAAD, hee\n\nBie.\n\n793264\n\nOMW/k\n\nREVS,/ / kW",
+        "reading_window": "\\ A } \\\\\n\n|\n\nae\n\nPEAT SLSEL EGE TET\n\n|\n\non Hie\n\np= GEC Measurements =>\n\n4rTranrar",
+        "reading_window_bin": "4\n08022"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 14- Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 14- Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 14- Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 14",
+      "meter_number_source": "path:AZ 14- Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 14",
+      "unit_label_source": "path:AZ 14- Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "0400",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 14",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 87283.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 14"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "> en |\n~. ie |\na .",
+        "meter_region": "Y \u00a5 :\n| 7 y\n;\nyo.000 \u00a9\u00ab=\u2014 000-100 10 { ? 4\n{0\nkWh\na \u2014s GEC Measurements >\n. 1 FASE/PHASE\nas. TIPE/TYPE cttB2 Gapsorr BP\n\u00a5~ 10 gpa 200/250\u00a5 2 pnaan/Wite |\nOMW/ ,wh 200 |",
+        "reading_center": "hes\n\n-_\n\nme\n\nes\n\n\u2014\u2014\n\neae og\n\n\u2014\n\nit Seen lie\n\n\u2014a\n\n~\n\n14\n\n\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\n\nae |\n\n87 5\n\nHLS\n\n10,000\n\n1,000\n\n00\n\n10\n\n10\n\nkWh\n\nv-:\n\n\u2014\n\npert\n\naEc Measure\n\n_ enec /PHASE",
+        "reading_window": "00 \u00a9 @\u00a9=\u2014-:1,000 100\n\n{02am\n\na\n\n10\n\n|\n\nkWh",
+        "reading_window_bin": "14\n0400 1\n0"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 15 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 15 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 15 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 15",
+      "meter_number_source": "path:AZ 15 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 15",
+      "unit_label_source": "path:AZ 15 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 15A",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 41128.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "alias",
+      "reference_match_inputs": [
+        "AZ 15"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "| Se PHase\n, SS WS? \u2018Wh 2n0 /\nf\nae = .",
+        "meter_region": "te SW rectitgg _ _ , \u2014 ee\n\u2014 A\n. my ao . 9. \u2014\niu 1 ; 7\n: kWh 10 |\n. 7\nzm\nAon\nat Cas",
+        "reading_center": "ae\n\noe\n\na\n\na\n\nee eel Rabon\n\na...\n\n\u2014\n\n=\n\nes\n\nFP orm\n\n\u2014\n\n: i.\n\nNi\n\n6 9\n\n\u2014\n\niW)\n\n10\n\n10\n\nkWh",
+        "reading_window": "am\n\n[5\n\nLODO\n\n6 9\n\n100\n\n10\n\n\u2018>",
+        "reading_window_bin": "44\n6\n7"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 16 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 16 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 16 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "REVS 7",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "REVS 7",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "296154",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 16A",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 88770.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "alias",
+      "reference_match_inputs": [
+        "AZ 16",
+        "REVS 7"
+      ],
+      "flags": [
+        "missing-serial-number"
+      ],
+      "ocr_samples": {
+        "label_region": "el en 68099 6 REVS 7 kWh 72\u00b0\n|\nnee Snat",
+        "meter_region": "a Md\nS8Sg6! 54\n000 =: 4,000 100 10 { Ae\n\n10\n\u00bb w\u2014 GEC Measurements \u2014\u2014 > Wi\nPE/TYPE C11B2 TFASE/PHASE \u2014\n1-ANnaA INO /7L0V @@hsou- :",
+        "reading_center": "S96 |\n\n, =\n\n\u201c=\n\n004000\n\n100\n\n10\n\n|\n\n10\n\nkWh\n\nitty",
+        "reading_window": "96\n\n000\n\n100\n\n= + -_\n\n10\n\n10\n\nkWh",
+        "reading_window_bin": "296154\n4"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 17 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 17 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 17 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 17",
+      "meter_number_source": "path:AZ 17 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 17",
+      "unit_label_source": "path:AZ 17 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "23050",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 17",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 40156.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 17"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "> a\n- \\ > 8 ?\n| a &\n- 4 oat,\n\u2018= \u2018\u00a5, o-\u00b0 \u00b0",
+        "meter_region": "Oper!\nE\nARE ELECTRONIC KWH METER\n) 3 00 si\n0(80)A 230V 50HZ [800] imp/kWh\n21",
+        "reading_center": "OF SE\n\nE ELECTRONIC KWH METER\n\n300 <i\n\nimp/kWh\n\nBO)A 230V 50HZ\n\n\u2014\n\n70 |\n\nCE\n\not ee\n\nHy\n\n_\u2014 \u2014_,",
+        "reading_window": "TRONIC KWH METER\n\nUse KWh\n\n\u2014\n\n230V 50HZ\n\nimp/kWh\n\n3 |\n\nLe\n\nCO _\n\n_\n\n\u2014_\n\ncE |\n\n7",
+        "reading_window_bin": "04\n23050 800\n7"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 18 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 18 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 18 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 18",
+      "meter_number_source": "path:AZ 18 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 18",
+      "unit_label_source": "path:AZ 18 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 18",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 26483.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 18"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "1 a - . . = .\n=",
+        "meter_region": "* =\nmy\n\n(1 NLL A LL A eT RT\n\nKLAS 3S 2-0 2 DRAA\n\na q feo 9 5 8 6 ey",
+        "reading_center": "KW\n\na\n\negies ui f \u2014 2\n\n\u2014\u2014\n\nMe\n\n| FAS\n\nae\n\nif\n\n2 DRA\n\n7 8 DS 8 6 REVS",
+        "reading_window": "a |\n\naa\n\ni. a\n\n\u2014\n\nMe",
+        "reading_window_bin": "9\n2 4\n22"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 19 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 19 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 19 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 19",
+      "meter_number_source": "path:AZ 19 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 19",
+      "unit_label_source": "path:AZ 19 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "2700",
+      "meter_reading_source": "ocr:reading_center",
+      "meter_reading_confidence": "low",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 19A",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 90785.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "alias",
+      "reference_match_inputs": [
+        "AZ 19"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "low-confidence-meter-reading",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "as 19) an",
+        "meter_region": "30872 cm\n10.000 = 1,000 100 10 1 an\n+ a . \u00a5 7\naj i\n. \" i ensensnensesintaaeiiiemsneal : J\n== GEC Measurements \u2014>\nPE/TYPE C11B2 1 FASE/ ASE\n\u20185K 200/250y ew...\nAS/CLASS 2-0 2 DRAAD/ wire\n. 59144 B87 omw",
+        "reading_center": "U 8\n\n/ 2\u00b055\n\n1.000\n\n1,000\n\n100\n\n10\n\nkWh\n\nSommer\n\n/TYPE C11B2\n\nA 2700/9any\n\n1FASE/puacc",
+        "reading_window": "ee he\n\n1,000\n\n100\n\n10 {\n\nkWh\n\n- =",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 22 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 22 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 22 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "O1",
+      "meter_number_source": "ocr:label-region",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "O1",
+      "unit_label_source": "ocr:label-region",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "40000",
+      "meter_reading_source": "ocr:reading_window",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 22",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 40882.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 22",
+        "O1"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "placed O1 \"40.2019 |",
+        "meter_region": "7 Made in China for Mf\n| voltex\n\u00bb eis\u201d\nWATT-HOUR METER\n5. E-PHASE TWOWIRE \u201cgaz\nmY 90(80) Ea |",
+        "reading_center": "Made in China for VW\n\nvoltex\n\nme\n\n4000 __100\n\nB\n\n\\@\n\n40000\n\nWATT-HOUR METER\n\n= PHASE TwoX",
+        "reading_window": "Made in China for Mi\n\nvoltex\n\nECE\n\n\\@\n\n40000\n\n4000\n\n100\n\n4\n\nATT-HOUR METER",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 23- Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 23- Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 23- Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 23",
+      "meter_number_source": "path:AZ 23- Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 23",
+      "unit_label_source": "path:AZ 23- Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "10000",
+      "meter_reading_source": "ocr:reading_center",
+      "meter_reading_confidence": "low",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 23",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 41774.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 23"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "low-confidence-meter-reading",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "| \u00a2\n\u00ab\npe ;",
+        "meter_region": "ae - a beat ae - \u2014 - \\\n: Made in China fo V7 |\n_\u2014 mp, VOliex \u00a7 F\n30000 A060 ann 10 4 .\n, 'T-HOUR METER |\na\nPHA 5 'WO-WIRE TYPE Byers i\nRv fara",
+        "reading_center": "ite\n\n-\n\n\u2018\n\n~\n\n*-\n\n*\n\nal?\n\nFa at ele\n\n~e\n\nWT,\n\nMat:\n\n~\n\noe\n\n~\n\nLoe\n\nshat\n\nvey\n\nORS:\n\n, =\n\nAwe\n\nWhen\n\nee peg ae\n\n\u2014,\u2019\n\n\u2014\u2014\n\nMade in China feo:\n\na\n\nVoltex\n\n10000\n\n\u201cUj<\u00ab\n\n1000\n\n100\n\n10\n\nTT-HOUR\n\nMETER\n\nee",
+        "reading_window": "r\u00a2\n\n+o =\n\nsks i\n\nte\n\ndow:\n\n\u2014 & pe t\n\n\u2018pe Ae Pins\n\nten Sb\n\n\u2014_\n\nt\n\nats Ait\n\n-,\n\nety! 7\n\n* we\n\noe\n\n<\n\nad\n\nte \u2018\n\nfa\n\nStas Vir ape r\n\n7\n\nYo)\n\nsp hee\n\npy a i\n\nen\n\nee\n\n=\n\n~\u2014s\n\nMade in Ch\n\nIna for\n\n\u2014\n\na\u201d",
+        "reading_window_bin": "1"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 24 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 24 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 24 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 24",
+      "meter_number_source": "path:AZ 24 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 24",
+      "unit_label_source": "path:AZ 24 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "478395",
+      "meter_reading_source": "ocr:reading_window",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 24",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 47386.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 24"
+      ],
+      "flags": [
+        "missing-serial-number"
+      ],
+      "ocr_samples": {
+        "label_region": "laced 14.10.2013 il",
+        "meter_region": "a] Made in China for i an\nie : f\n10000 1000 00 10 ia i i\nWATT-HOUR METE! |\nLE-PHASE TWO-WIRE TYE fifi\nBy \u2018al \u2014o I B",
+        "reading_center": "a ee ek od\n\nrm:\n\nEN oP Palette\n\n\u2014\n\nory\n\nPt ee\n\nMade in China for\n\nre\n\nro\n\nm4ifispg3sg\n\n10000\n\n1000\n\n100\n\n10\n\n1.\n\nWATT-HOUR ME\n\n-PHASE TWO-WIRE Ty!\n\noA",
+        "reading_window": "ES Pe.\n\nMade in China for\n\n\u2014\n\n_\n\n478395\n\n0000 1000\n\n100\n\n10\n\nTT WAIID AAS"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 65 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 65 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 65 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 65",
+      "meter_number_source": "path:AZ 65 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 65",
+      "unit_label_source": "path:AZ 65 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 65",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 55022.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 65"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": ": ,",
+        "meter_region": "ins A\\\n\nA on \u2014\n7PE DD282 1-PHASE 2-WIRE\nLOV 20(80) A\nSS ae\nNS CONGXIA CHINA oa",
+        "reading_center": "KVV \u00abI,\n\n55 t 0\n\nbi\n\nATTHOUR METER\n\n9 DD282 1-PHASE 2-WIRE\n\niV",
+        "reading_window": "INVV ti\n\nIN\n\npn",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 66 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 66 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 66 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 66",
+      "meter_number_source": "path:AZ 66 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 66",
+      "unit_label_source": "path:AZ 66 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "10000",
+      "meter_reading_source": "ocr:reading_window",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 66",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 30122.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 66"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "| 66 fff .\n\u201chae \u201cs orl dfsatac.' . . - a4 \u201csccewetb tas\n\u2014\u2014_\u2014\nj 4",
+        "meter_region": "Ce Mad Chie for\na 4\n| VOITE\nm3 0 3 3 Qi\nWATT-HOUR METER\nNGLE-PHASE TWO-WIRE TYPE [MEW\n30 a 20(80) EA el Hz\nOM kWh\nBe 141174 i 2014",
+        "reading_center": "PNA TOT\n\n h\n\nV\n\n40000 1000\n\n3033 8\n\n100\n\n10\n\n\\e\n\nWATT-HOUR METER\n\nGLE-PHASE TWO-WIRE TYPE MEW\n\nSaal\n\na,\n\n=\n\n| 20(80) FA\n\nEee Hz",
+        "reading_window": "\u2014 \u201c<\n\nV\n\n30334\n\nCS\n\n10000\n\n1000 100\n\nVATT-HOUR METER",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 67- Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 67- Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 67- Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 67",
+      "meter_number_source": "path:AZ 67- Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 67",
+      "unit_label_source": "path:AZ 67- Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "10000",
+      "meter_reading_source": "ocr:reading_window",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 67",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 48986.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 67"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "reading-below-last-known"
+      ],
+      "ocr_samples": {
+        "label_region": "-\u2014\n5\na",
+        "meter_region": "e493 7 27\n0000 1000 109 =\nWATT-HOUR MEREs",
+        "reading_center": "kWh\n\n7\n\n493) 7 <\n\n5\u00b0 ,\n\n40000 4000\n\n100\n\n10\n\nWATT-HOUR ME\n\n= \u2014 es ae\n\nA;\n\nfa &\n\nE TWO- WIRE ~\n\n20(80) va",
+        "reading_window": "49 3 7\n\nony\n\n4000\n\n100\n\n{\n\n10000\n\n\u2014\u2014\n\nit\n\nik)\n\nrh\n\n4\n\nTT-HOUR \u2122\n\n\u2014\u2014\n\na hs\n\nst",
+        "reading_window_bin": "000100010010\n7"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 68 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 68 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 68 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 68",
+      "meter_number_source": "path:AZ 68 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 68",
+      "unit_label_source": "path:AZ 68 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 68",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 10368.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 68"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "_\u2014",
+        "meter_region": "wy, \u2018| *\n\u2014_-\n| eeu\n\n1 FAS\n'\n: 2 DR\n| omM\\\nREV",
+        "reading_center": "> &\n\nure\n\n\\FA\n\nID",
+        "reading_window": "i\"",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 69 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 69 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 69 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 69",
+      "meter_number_source": "path:AZ 69 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 69",
+      "unit_label_source": "path:AZ 69 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 69",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 50128.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 69"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "a EY 734403 ne\n69",
+        "meter_region": "< 0 4 oueuo\nyoooo \u00ab1.000100\nx %\ny alll \u201c\n=\nGEC Measurements a\n\u2014_ an? 1 AS",
+        "reading_center": "58 48\n\n1,000\n\n{00\n\n10,000\n\nk\\\n\nso\n\n\u2014it\n\n7S\n\n\u2014 spo\u2019 gett\n\n\u2014\u2014 - \u00ab",
+        "reading_window": "0 A DES\n\n2\n\n{00\n\nkWh",
+        "reading_window_bin": "0"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 70 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 70 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 70 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 70",
+      "meter_number_source": "path:AZ 70 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 70",
+      "unit_label_source": "path:AZ 70 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "947214",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 70",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 46791.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "exact",
+      "reference_match_inputs": [
+        "AZ 70"
+      ],
+      "flags": [
+        "missing-serial-number"
+      ],
+      "ocr_samples": {
+        "label_region": "Zw 1 a\nae Kn i\nNo. 14iire |\n__\u2014 \u2014 ne : 70",
+        "meter_region": "a P21 oy\nxy 4 T 2 ha. j\nWATT-HOUR\nPHASE TWO-WIRE vee\nINGLE-P awit A 50 | = i",
+        "reading_center": "ee oo eS niet\n\nLO io for\n\nS EL\n\n0000\n\n4000 _ 400\n\nYea. '\n\n10\n\nQt.\n\nWATT-H\n\nOUR METER",
+        "reading_window": "\u2014E\n\n} ae\n\nOi i a for\n\nBAT 2\n\nQi",
+        "reading_window_bin": "10\n947214"
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 71 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 71 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 71 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 71",
+      "meter_number_source": "path:AZ 71 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 71",
+      "unit_label_source": "path:AZ 71 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 71A",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 20177.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "alias",
+      "reference_match_inputs": [
+        "AZ 71"
+      ],
+      "flags": [
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "|",
+        "meter_region": "J \u00ae \u00a9\nPOWER PULSE\nry PHASE 2 WIRE ELECTRONIC KWH METER\nms. yo 4 | OM\n| DEMo11 20(80)A 230V 50H7 [80\n| 1EC62053-21",
+        "reading_center": "Qe\n\na\n\nI\n\n\u201ce \u00a9\n\nBONER PULSE\n\nPHASE 2 WIRE ELECTRONIC KWH METER\n\nZU93 @\n\n1:",
+        "reading_window": "=\n\n1\n\nanandines tee\n\nee\n\n-\n\nle\n\nOWER\n\nei}\n\not",
+        "reading_window_bin": ""
+      }
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 72 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "file_name": "AZ 72 - Electricity Reading  2026.04.02.jpeg",
+      "date": "2026-04-02",
+      "date_source": "path:AZ 72 - Electricity Reading  2026.04.02.jpeg",
+      "date_confidence": "medium",
+      "meter_number": "AZ 72",
+      "meter_number_source": "path:AZ 72 - Electricity Reading  2026.04.02.jpeg",
+      "meter_number_kind": "unit-label",
+      "meter_number_confidence": "medium",
+      "unit_label": "AZ 72",
+      "unit_label_source": "path:AZ 72 - Electricity Reading  2026.04.02.jpeg",
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "13674",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": "Azores",
+      "reference_sheet_slug": "the-azores",
+      "reference_meter_number": "AZ 72A",
+      "reference_meter_type": "UNIT",
+      "reference_last_reading": 7874.0,
+      "reference_last_reading_date": "2026-03-03",
+      "reference_match_kind": "alias",
+      "reference_match_inputs": [
+        "AZ 72"
+      ],
+      "flags": [
+        "missing-serial-number"
+      ],
+      "ocr_samples": {
+        "label_region": "t\n\u2014",
+        "meter_region": "- al > oe j * i ; } oti ne 4\nte x ) :\nee |\n8 156 7:\nn0 \u00ab=: 1,000 100) (0) ' .\nkWh 4\n1\n| |\ned la pa :\n\u00bb nnn cisenennre\u201d , |\nf ments \u2014_ B\n= GC EC Measure ie Ae }\neeype C11B2\u2014 aaag swine j",
+        "reading_center": "813 6 7\n\n100\n\n10\n\n1,000\n\n,\n\nkWh\n\nff\n\nr/\n\nee\n\nccunpnsoes nearer\n\nnV\n\nnT fw",
+        "reading_window": "| 53 6\n\n100\n\n10\n\nkWh",
+        "reading_window_bin": "13674\n01"
+      }
+    }
+  ]
+}

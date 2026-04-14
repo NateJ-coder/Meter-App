@@ -3,7 +3,6 @@
  */
 
 import { storage } from './storage.js';
-import { ensureBundledMasterData, getBundledMasterDataSummary } from './clean-master-data.js';
 import { showNotification, confirmAction, parseDecimalInput } from './app.js';
 
 // Tab switching
@@ -57,92 +56,15 @@ function renderDataSyncPanel(message = '') {
     const buildings = storage.getBuildings().length;
     const units = storage.getUnits().length;
     const meters = storage.getMeters().length;
-    const importedSchemes = storage.getSchemes().filter((scheme) => scheme.imported_from === 'utility_dash').length;
-    const importedMeters = storage.getMeters().filter((meter) => meter.imported_from === 'utility_dash').length;
-    const bundledSummary = getBundledMasterDataSummary();
-    const bundledCounts = bundledSummary?.counts || {};
-
     panel.innerHTML = `
         <div class="info-box">
             <strong>Current cache</strong><br>
             Schemes: ${schemes} | Buildings: ${buildings} | Units: ${units} | Meters: ${meters}<br>
-            <span class="text-muted">App data is mirrored locally for fast page loads and synced with Firebase when available. Utility Dash exports stay in source-documents as reference material and are not imported into app storage.</span>
-            <div class="mt-2">
-                <strong>Bundled clean master data</strong><br>
-                Schemes: ${bundledCounts.schemes || 0} | Buildings: ${bundledCounts.buildings || 0} | Units: ${bundledCounts.units || 0} | Meters: ${bundledCounts.meters || 0}<br>
-                <span class="text-muted">Generated from reconciled normalized files. Loading it will merge master records into local storage and Firebase when available without touching cycles or readings.</span><br>
-                <button class="btn btn-primary mt-2" type="button" onclick="loadBundledMasterData()">Load Clean Master Data</button>
-            </div>
-            ${importedSchemes > 0 || importedMeters > 0 ? `
-                <div class="mt-2">
-                    <strong>Reference import residue detected</strong><br>
-                    Schemes from Utility Dash: ${importedSchemes} | Meters from Utility Dash: ${importedMeters}<br>
-                    <button class="btn btn-danger mt-2" type="button" onclick="purgeUtilityDashImports()">Remove Utility Dash From App Data</button>
-                </div>
-            ` : ''}
+            <span class="text-muted">App data is stored locally in the browser. No cleaned-data bundle or automatic database sync is active in the runtime.</span>
             ${message ? `<div class="mt-2">${message}</div>` : ''}
         </div>
     `;
 }
-
-window.refreshCloudMasterData = async function() {
-    try {
-        const counts = await storage.hydrateFromCloud({ clearMissing: false });
-        loadTabData(document.querySelector('.tab-btn.active')?.dataset.tab || 'schemes');
-        renderDataSyncPanel(`Refreshed from Firebase. Schemes: ${counts.schemes || 0}, Meters: ${counts.meters || 0}.`);
-        showNotification('Master data refreshed from Firebase');
-    } catch (error) {
-        console.error(error);
-        const isPermissionError = String(error?.message || '').toLowerCase().includes('firestore read denied');
-        renderDataSyncPanel(
-            isPermissionError
-                ? 'Refresh failed because Firestore denied collection reads. Check the users/{uid} profile and deploy the Firestore rules that include cycle_schedules.'
-                : 'Refresh failed. Check Firebase connectivity and permissions.'
-        );
-        showNotification(`Refresh failed: ${error.message}`);
-    }
-};
-
-window.loadBundledMasterData = async function() {
-    try {
-        const result = await ensureBundledMasterData({ force: true });
-        loadTabData(document.querySelector('.tab-btn.active')?.dataset.tab || 'schemes');
-        renderDataSyncPanel(
-            `Clean master data loaded. Schemes: ${result.counts.schemes || 0}, Buildings: ${result.counts.buildings || 0}, Units: ${result.counts.units || 0}, Meters: ${result.counts.meters || 0}.`
-        );
-        showNotification('Clean master data loaded');
-    } catch (error) {
-        console.error(error);
-        renderDataSyncPanel('Failed to load the bundled clean master data. Check the console and Firebase permissions, then retry.');
-        showNotification(`Clean master data load failed: ${error.message}`);
-    }
-};
-
-window.purgeUtilityDashImports = async function() {
-    if (!confirmAction('Remove all Utility Dash-imported schemes, buildings, units, and meters from app storage and Firebase?')) {
-        return;
-    }
-
-    try {
-        await storage.replaceOperationalData({
-            schemes: storage.getSchemes().filter((scheme) => scheme.imported_from !== 'utility_dash'),
-            buildings: storage.getBuildings().filter((building) => building.imported_from !== 'utility_dash'),
-            units: storage.getUnits().filter((unit) => unit.imported_from !== 'utility_dash'),
-            meters: storage.getMeters().filter((meter) => meter.imported_from !== 'utility_dash'),
-            cycles: storage.getAll('cycles'),
-            readings: storage.getAll('readings'),
-            cycle_schedules: storage.getAll('cycle_schedules')
-        }, { pushToCloud: true });
-
-        loadTabData(document.querySelector('.tab-btn.active')?.dataset.tab || 'schemes');
-        renderDataSyncPanel('Utility Dash imported records were removed from app storage. Reference files in source-documents were left untouched.');
-        showNotification('Utility Dash app data removed');
-    } catch (error) {
-        console.error(error);
-        renderDataSyncPanel('Failed to remove Utility Dash imported records. Check Firebase permissions and retry.');
-        showNotification(`Cleanup failed: ${error.message}`);
-    }
-};
 
 window.closeMeterHistoryModal = function() {
     const root = document.getElementById('meter-history-modal-root');

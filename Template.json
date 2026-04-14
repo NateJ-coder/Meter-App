@@ -1,0 +1,136 @@
+{
+  "template_name": "meter-app-source-of-truth-template",
+  "template_version": "2026-04-14",
+  "purpose": "Human-verified source of truth for reconciling building data before generating per-building onboarding JSON files.",
+  "authoring_rules": {
+    "omit_field": "Do not override the current project value.",
+    "set_null": "Explicitly unknown or intentionally blank. Use only when you want the generated output to carry a null value.",
+    "set_value": "Treat this as the source of truth and prefer it over OCR, workbook-derived, or existing project data.",
+    "building_key": "Use one building entry per real building.",
+    "meter_key": "meter_number should be the canonical label you want in the app.",
+    "reading_rule": "If you know the latest verified reading for a meter, provide both latest_reading and latest_reading_date.",
+    "notes_rule": "Use notes arrays for anything a human should know that is not represented cleanly by a field."
+  },
+  "global_defaults": {
+    "service_type_default": "electricity",
+    "currency": "ZAR",
+    "date_format": "YYYY-MM-DD",
+    "number_format": "plain decimal number"
+  },
+  "buildings": [
+    {
+      "building_slug": "example-building",
+      "scheme_name": "Example Building",
+      "building_name": "Example Building",
+      "source_folder_name": "Example Building - completed",
+      "aliases": [
+        "Example Building",
+        "The Example Building"
+      ],
+      "status": "active",
+      "address": null,
+      "import_decision": {
+        "include_in_onboarding": true,
+        "reason": "Replace with your human decision."
+      },
+      "settings_snapshot": {
+        "vat_percent": 0.15,
+        "ignore_negative_common_property_amounts": true,
+        "tolerance_months": 4,
+        "tolerance_percentage": 1.0
+      },
+      "charge_modes": [
+        {
+          "charge_name": "Elec Service Charge",
+          "distribution_mode": "Even",
+          "notes": []
+        }
+      ],
+      "building_notes": [
+        "Describe any human-verified context here.",
+        "Examples: meter naming exceptions, building-specific quirks, known OCR failures, or source folder issues."
+      ],
+      "units": [
+        {
+          "unit_number": "EX 01",
+          "status": "occupied",
+          "notes": [],
+          "meters": [
+            {
+              "meter_number": "EX 01",
+              "meter_type": "UNIT",
+              "meter_role": "unit",
+              "service_type": "electricity",
+              "location_description": "EX 01",
+              "serial_number": null,
+              "latest_reading": 12345.0,
+              "latest_reading_date": "2026-04-01",
+              "pq_factor": 1.0,
+              "prepaid_marker": "",
+              "is_active": true,
+              "manual_validation_status": "verified",
+              "evidence": {
+                "image_files": [
+                  "Buildings/buildings/Example Building - completed/Images/EX 01 - Electricity Reading 2026.04.01.jpeg"
+                ],
+                "document_files": [],
+                "human_observation": "Reading confirmed visually from image.",
+                "confidence": "high"
+              },
+              "notes": []
+            }
+          ]
+        }
+      ],
+      "scheme_level_meters": [
+        {
+          "meter_number": "Bulk 1",
+          "meter_type": "BULK",
+          "meter_role": "bulk",
+          "service_type": "electricity",
+          "location_description": "Main bulk supply",
+          "serial_number": null,
+          "latest_reading": 987654.0,
+          "latest_reading_date": "2026-04-01",
+          "pq_factor": 1.0,
+          "prepaid_marker": "",
+          "is_active": true,
+          "manual_validation_status": "verified",
+          "evidence": {
+            "image_files": [],
+            "document_files": [],
+            "human_observation": "Replace with the actual evidence path or note.",
+            "confidence": "high"
+          },
+          "notes": []
+        }
+      ],
+      "cycles": [
+        {
+          "start_date": "2026-04-01",
+          "end_date": "2026-04-01",
+          "status": "CLOSED",
+          "notes": []
+        }
+      ],
+      "manual_conflicts": [
+        {
+          "category": "meter-reading-conflict",
+          "severity": "high",
+          "target": "meter:EX 01",
+          "current_project_value": "12300 on 2026-03-01",
+          "source_of_truth_value": "12345 on 2026-04-01",
+          "resolution": "Use source-of-truth value",
+          "notes": []
+        }
+      ],
+      "excluded_source_records": [
+        {
+          "source_path": "Buildings/buildings/Example Building - completed/Images/bad-image.jpeg",
+          "reason": "Unreadable image",
+          "notes": []
+        }
+      ]
+    }
+  ]
+}

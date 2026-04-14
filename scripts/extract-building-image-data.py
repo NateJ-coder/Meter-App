@@ -4,9 +4,10 @@ import argparse
 import concurrent.futures
 import json
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import UTC, datetime
+from functools import lru_cache
 from pathlib import Path
 from shutil import which
 from typing import Any
@@ -17,13 +18,32 @@ import pytesseract
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 BUILDINGS_DIR = ROOT_DIR / 'Buildings' / 'buildings'
+NORMALIZED_DIR = ROOT_DIR / 'DataMigration' / 'outputs' / 'sheet-normalized'
 OUTPUT_DIR_NAME = 'cleaned images'
 OUTPUT_FILE_NAME = 'meter-image-extractions.json'
+CAPTURE_OUTPUT_FILE_NAME = 'meter-capture-readings.json'
 IMAGE_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.webp', '.bmp', '.tif', '.tiff'}
+DOCUMENT_EXTENSIONS = {'.pdf'}
 COMMON_TESSERACT_PATHS = [
     Path(r'C:\Program Files\Tesseract-OCR\tesseract.exe'),
     Path(r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'),
 ]
+SCHEME_ALIASES = {
+    'the azores': 'Azores',
+    'genesis': 'Genisis on Fairmount',
+    'bonifay court': 'Bonifay',
+    'vilino glen': 'VILLINO GLEN',
+    'l montagne': 'La Montagne',
+    'lmontagne': 'La Montagne',
+    "l'montagne": 'La Montagne',
+    'rivonia gate': 'Rivonia Gates',
+    'queensgate': 'QueensGate',
+}
+FOLDER_NOISE_TOKENS = {
+    'completed', 'complete', 'march', 'april', 'may', 'june', 'july', 'august',
+    'september', 'october', 'november', 'december', 'january', 'february', 'mar',
+    'apr', 'jun', 'jul', 'aug', 'sep', 'sept', 'oct', 'nov', 'dec',
+}
 
 DATE_PATTERNS = [
     re.compile(r'(?P<value>20\d{2}[./-]\d{2}[./-]\d{2}(?:\s+\d{1,2}:\d{2}(?::\d{2})?)?)'),
@@ -50,6 +70,25 @@ class Candidate:
     score: int
 
 
+@dataclass
+class ReferenceMeter:
+    meter_number: str
+    meter_type: str
+    latest_reading: float | None
+    latest_reading_date: str | None
+
+
+@dataclass
+class BuildingReference:
+    scheme_name: str
+    sheet_name: str
+    sheet_slug: str
+    source_path: str
+    meters: dict[str, ReferenceMeter]
+    exact_alias_map: dict[str, tuple[str, ...]]
+    base_alias_map: dict[str, tuple[str, ...]]
+
+
 def configure_tesseract() -> str:
     resolved = which('tesseract')
     if resolved:
@@ -65,6 +104,188 @@ def configure_tesseract() -> str:
 def slugify(value: str) -> str:
     slug = re.sub(r'[^a-z0-9]+', '-', value.strip().lower())
     return slug.strip('-') or 'unknown'
+
+
+def normalize_text(value: Any) -> str:
+    return re.sub(r'[^a-z0-9]+', ' ', str(value or '').strip().lower()).strip()
+
+
+def normalize_compact_text(value: Any) -> str:
+    return re.sub(r'[^a-z0-9]+', '', str(value or '').strip().lower())
+
+
+def canonical_scheme_name(value: str) -> str:
+    normalized = normalize_text(value)
+    return SCHEME_ALIASES.get(normalized, value.strip())
+
+
+def clean_building_folder_name(value: str) -> str:
+    tokens = [token for token in normalize_text(value).split() if token not in FOLDER_NOISE_TOKENS]
+    return ' '.join(tokens).strip()
+
+
+def parse_unit_label_parts(value: str) -> tuple[str, int, str] | None:
+    compact = normalize_compact_text(value)
+    match = re.fullmatch(r'(?P<prefix>[a-z]+)(?P<number>\d+)(?P<suffix>[a-z]?)', compact)
+    if not match:
+        return None
+    prefix = match.group('prefix').upper()
+    number = int(match.group('number'))
+    suffix = match.group('suffix').upper()
+    return prefix, number, suffix
+
+
+def unit_exact_key(value: str) -> str | None:
+    parts = parse_unit_label_parts(value)
+    if parts is None:
+        return None
+    prefix, number, suffix = parts
+    return f'{prefix}|{number}|{suffix}'
+
+
+def unit_base_key(value: str) -> str | None:
+    parts = parse_unit_label_parts(value)
+    if parts is None:
+        return None
+    prefix, number, _suffix = parts
+    return f'{prefix}|{number}'
+
+
+def build_label_aliases(label: str, meter_type: str) -> tuple[set[str], set[str]]:
+    exact_aliases = {
+        f'text:{normalize_text(label)}',
+        f'compact:{normalize_compact_text(label)}',
+    }
+    base_aliases: set[str] = set()
+    if meter_type == 'UNIT':
+        exact_key = unit_exact_key(label)
+        base_key = unit_base_key(label)
+        if exact_key:
+            exact_aliases.add(f'unit:{exact_key}')
+        if base_key:
+            base_aliases.add(f'unit-base:{base_key}')
+    return exact_aliases, base_aliases
+
+
+def latest_reference_reading(readings: list[dict[str, Any]]) -> tuple[float | None, str | None]:
+    latest_value: float | None = None
+    latest_date: str | None = None
+    for reading in readings:
+        value = reading.get('reading_value')
+        date_value = reading.get('reading_date')
+        if value is None:
+            continue
+        latest_value = float(value)
+        latest_date = date_value
+    return latest_value, latest_date
+
+
+@lru_cache(maxsize=1)
+def load_building_references() -> tuple[BuildingReference, ...]:
+    references: list[BuildingReference] = []
+    for path in sorted(NORMALIZED_DIR.glob('*.normalized.json')):
+        payload = json.loads(path.read_text(encoding='utf-8'))
+        if payload.get('sheet_category') != 'building':
+            continue
+
+        electricity_rows = payload.get('electricity_rows') or []
+        if not electricity_rows:
+            continue
+
+        meters: dict[str, ReferenceMeter] = {}
+        exact_alias_map: dict[str, set[str]] = {}
+        base_alias_map: dict[str, set[str]] = {}
+
+        for row in electricity_rows:
+            meter_type = row.get('meter_type') or 'UNIT'
+            entity_reference = row.get('entity_reference') or {}
+            meter_number = entity_reference.get('canonical_unit_label') or row.get('legacy_label')
+            if not meter_number:
+                continue
+
+            latest_reading, latest_reading_date = latest_reference_reading(row.get('readings') or [])
+            meters[meter_number] = ReferenceMeter(
+                meter_number=meter_number,
+                meter_type=meter_type,
+                latest_reading=latest_reading,
+                latest_reading_date=latest_reading_date,
+            )
+
+            exact_aliases, base_aliases = build_label_aliases(meter_number, meter_type)
+            legacy_label = row.get('legacy_label')
+            if legacy_label and legacy_label != meter_number:
+                legacy_exact_aliases, legacy_base_aliases = build_label_aliases(legacy_label, meter_type)
+                exact_aliases.update(legacy_exact_aliases)
+                base_aliases.update(legacy_base_aliases)
+
+            for alias in exact_aliases:
+                exact_alias_map.setdefault(alias, set()).add(meter_number)
+            for alias in base_aliases:
+                base_alias_map.setdefault(alias, set()).add(meter_number)
+
+        if not meters:
+            continue
+
+        references.append(BuildingReference(
+            scheme_name=canonical_scheme_name(str(payload.get('scheme_name') or payload.get('sheet_name') or '')),
+            sheet_name=str(payload.get('sheet_name') or ''),
+            sheet_slug=str(payload.get('sheet_slug') or path.stem.replace('.normalized', '')),
+            source_path=str(path),
+            meters=meters,
+            exact_alias_map={key: tuple(sorted(value)) for key, value in exact_alias_map.items()},
+            base_alias_map={key: tuple(sorted(value)) for key, value in base_alias_map.items()},
+        ))
+
+    return tuple(references)
+
+
+def reference_name_score(candidate_name: str, reference_name: str) -> int:
+    if not candidate_name or not reference_name:
+        return -1
+    if candidate_name == reference_name:
+        return 200 + len(reference_name)
+    if candidate_name in reference_name or reference_name in candidate_name:
+        return 150 + min(len(candidate_name), len(reference_name))
+
+    candidate_tokens = set(candidate_name.split())
+    reference_tokens = set(reference_name.split())
+    overlap = candidate_tokens & reference_tokens
+    if not overlap:
+        return -1
+    return (len(overlap) * 25) - (abs(len(candidate_tokens) - len(reference_tokens)) * 3) + min(len(candidate_name), len(reference_name))
+
+
+def resolve_building_reference(building_dir: Path) -> BuildingReference | None:
+    candidate_names = {
+        normalize_text(building_dir.name),
+        clean_building_folder_name(building_dir.name),
+    }
+    candidate_names = {name for name in candidate_names if name}
+
+    best_reference: BuildingReference | None = None
+    best_score = -1
+    has_tie = False
+    for reference in load_building_references():
+        reference_names = {
+            normalize_text(reference.scheme_name),
+            normalize_text(reference.sheet_name),
+            normalize_text(canonical_scheme_name(reference.sheet_name)),
+        }
+        score = max(
+            reference_name_score(candidate_name, reference_name)
+            for candidate_name in candidate_names
+            for reference_name in reference_names
+        )
+        if score > best_score:
+            best_reference = reference
+            best_score = score
+            has_tie = False
+        elif score == best_score and score > 0:
+            has_tie = True
+
+    if best_score < 40 or has_tie:
+        return None
+    return best_reference
 
 
 def now_iso() -> str:
@@ -104,22 +325,32 @@ def collect_image_files(building_dir: Path) -> list[Path]:
     return sorted(image_files)
 
 
-def collect_flagged_folders(building_dir: Path, image_files: list[Path]) -> list[dict[str, Any]]:
-    folders_with_image_descendants: set[Path] = set()
-    for image_path in image_files:
-        current = image_path.parent
+def collect_document_files(building_dir: Path) -> list[Path]:
+    document_files = []
+    for path in building_dir.rglob('*'):
+        if is_output_path(path):
+            continue
+        if path.is_file() and path.suffix.lower() in DOCUMENT_EXTENSIONS:
+            document_files.append(path)
+    return sorted(document_files)
+
+
+def collect_flagged_folders(building_dir: Path, tracked_files: list[Path]) -> list[dict[str, Any]]:
+    folders_with_tracked_descendants: set[Path] = set()
+    for tracked_path in tracked_files:
+        current = tracked_path.parent
         while True:
-            folders_with_image_descendants.add(current)
+            folders_with_tracked_descendants.add(current)
             if current == building_dir:
                 break
             current = current.parent
 
     flagged = []
     for folder in sorted(path for path in building_dir.rglob('*') if path.is_dir() and not is_output_path(path)):
-        if folder not in folders_with_image_descendants:
+        if folder not in folders_with_tracked_descendants:
             flagged.append({
                 'folder': str(folder.relative_to(building_dir)).replace('\\', '/'),
-                'reason': 'folder-has-no-image-descendants',
+                'reason': 'folder-has-no-reading-file-descendants',
             })
     return flagged
 
@@ -372,7 +603,234 @@ def relative_path(path: Path, root: Path) -> str:
     return str(path.relative_to(root)).replace('\\', '/')
 
 
-def process_image(image_path: Path, building_dir: Path) -> dict[str, Any]:
+def resolve_reference_meter(
+    building_reference: BuildingReference | None,
+    image_path: Path,
+    building_dir: Path,
+    unit_candidate: Candidate | None,
+    meter_number_candidate: Candidate | None,
+) -> tuple[ReferenceMeter | None, str | None, list[str]]:
+    if building_reference is None:
+        return None, None, []
+
+    raw_labels = []
+    for candidate in extract_path_unit_candidates(image_path, building_dir):
+        if candidate.value and candidate.value not in raw_labels:
+            raw_labels.append(candidate.value)
+    for candidate in (unit_candidate, meter_number_candidate):
+        if candidate and candidate.value and candidate.value not in raw_labels:
+            raw_labels.append(candidate.value)
+
+    exact_matches: set[str] = set()
+    base_matches: set[str] = set()
+    for raw_label in raw_labels:
+        exact_aliases, base_aliases = build_label_aliases(raw_label, 'UNIT')
+        for alias in exact_aliases:
+            exact_matches.update(building_reference.exact_alias_map.get(alias, ()))
+        for alias in base_aliases:
+            base_matches.update(building_reference.base_alias_map.get(alias, ()))
+
+    if len(exact_matches) == 1:
+        matched_number = next(iter(exact_matches))
+        return building_reference.meters[matched_number], 'exact', raw_labels
+    if len(exact_matches) > 1:
+        return None, 'ambiguous', raw_labels
+
+    if len(base_matches) == 1:
+        matched_number = next(iter(base_matches))
+        return building_reference.meters[matched_number], 'alias', raw_labels
+    if len(base_matches) > 1:
+        return None, 'ambiguous', raw_labels
+
+    return None, 'missing' if not raw_labels else 'unmatched', raw_labels
+
+
+def validate_reference_reading(reading_candidate: Candidate | None, reference_meter: ReferenceMeter | None) -> list[str]:
+    if reading_candidate is None or reference_meter is None or reference_meter.latest_reading is None:
+        return []
+    try:
+        reading_value = float(reading_candidate.value)
+    except ValueError:
+        return []
+    if reading_value < reference_meter.latest_reading:
+        return ['reading-below-last-known']
+    return []
+
+
+def build_document_review(document_path: Path, building_dir: Path) -> dict[str, Any]:
+    return {
+        'document_path': relative_path(document_path, building_dir),
+        'containing_folder': relative_path(document_path.parent, building_dir),
+        'file_name': document_path.name,
+        'flags': ['unsupported-document-file'],
+    }
+
+
+def describe_match_kind(match_kind: str | None, reference_meter_number: str | None) -> str:
+    if match_kind == 'exact' and reference_meter_number:
+        return f'Matched directly to canonical meter {reference_meter_number}.'
+    if match_kind == 'alias' and reference_meter_number:
+        return f'Matched to canonical meter {reference_meter_number} through alias normalization.'
+    if match_kind == 'ambiguous':
+        return 'Meter label could map to multiple canonical meters and needs review.'
+    if match_kind == 'unmatched':
+        return 'A meter label was extracted but it did not match the canonical register.'
+    if match_kind == 'missing':
+        return 'No usable meter label was extracted for canonical matching.'
+    return 'No canonical meter match description is available.'
+
+
+def describe_capture_flags(flags: list[str], reading_value: str | None) -> str:
+    if 'reading-below-last-known' in flags:
+        return 'A reading was extracted, but it is lower than the last known reference reading and needs manual review.'
+    if 'low-confidence-meter-reading' in flags and reading_value is not None:
+        return 'A reading was extracted with low OCR confidence and should be verified manually.'
+    if 'missing-meter-reading' in flags:
+        return 'The image matched a meter, but no usable numeric reading was extracted.'
+    if reading_value is not None:
+        return 'A reading was extracted from the image.'
+    return 'No reading capture outcome could be determined.'
+
+
+def determine_capture_status(flags: list[str], reading_value: str | None) -> str:
+    if 'reading-below-last-known' in flags or 'low-confidence-meter-reading' in flags:
+        return 'needs-review'
+    if reading_value is not None:
+        return 'captured'
+    if 'missing-meter-reading' in flags:
+        return 'missing-reading'
+    return 'unresolved'
+
+
+def capture_sort_key(capture: dict[str, Any]) -> tuple[str, str]:
+    return (str(capture.get('capture_date') or ''), str(capture.get('image_path') or ''))
+
+
+def build_capture_payload(
+    building_dir: Path,
+    generated_at: str,
+    tesseract_cmd: str,
+    building_reference: BuildingReference | None,
+    summary: dict[str, Any],
+    document_reviews: list[dict[str, Any]],
+    extractions: list[dict[str, Any]],
+) -> dict[str, Any]:
+    grouped: dict[str, dict[str, Any]] = {}
+    unmatched_captures: list[dict[str, Any]] = []
+
+    for extraction in extractions:
+        meter_key = extraction.get('reference_meter_number') or extraction.get('meter_number') or extraction.get('unit_label') or extraction.get('file_name')
+        capture_record = {
+            'capture_date': extraction.get('date'),
+            'image_path': extraction.get('image_path'),
+            'file_name': extraction.get('file_name'),
+            'containing_folder': extraction.get('containing_folder'),
+            'extracted_meter_label': extraction.get('meter_number'),
+            'extracted_unit_label': extraction.get('unit_label'),
+            'extracted_serial_number': extraction.get('serial_number'),
+            'extracted_reading': extraction.get('meter_reading'),
+            'reading_confidence': extraction.get('meter_reading_confidence'),
+            'reference_match_kind': extraction.get('reference_match_kind'),
+            'reference_match_inputs': extraction.get('reference_match_inputs') or [],
+            'capture_status': determine_capture_status(extraction.get('flags') or [], extraction.get('meter_reading')),
+            'capture_description': describe_capture_flags(extraction.get('flags') or [], extraction.get('meter_reading')),
+            'match_description': describe_match_kind(extraction.get('reference_match_kind'), extraction.get('reference_meter_number')),
+            'flags': extraction.get('flags') or [],
+        }
+
+        if extraction.get('reference_meter_number') is None:
+            unmatched_captures.append(capture_record)
+            continue
+
+        if meter_key not in grouped:
+            grouped[meter_key] = {
+                'unit_number': extraction.get('reference_meter_number') if extraction.get('reference_meter_type') == 'UNIT' else None,
+                'meter_number': extraction.get('reference_meter_number'),
+                'meter_type': extraction.get('reference_meter_type'),
+                'latest_reference_reading': extraction.get('reference_last_reading'),
+                'latest_reference_reading_date': extraction.get('reference_last_reading_date'),
+                'captured_reading_count': 0,
+                'missing_reading_capture_count': 0,
+                'needs_review_capture_count': 0,
+                'observed_labels': set(),
+                'capture_dates': set(),
+                'captures': [],
+            }
+
+        record = grouped[meter_key]
+        if extraction.get('meter_number'):
+            record['observed_labels'].add(extraction['meter_number'])
+        if extraction.get('unit_label'):
+            record['observed_labels'].add(extraction['unit_label'])
+        if extraction.get('date'):
+            record['capture_dates'].add(extraction['date'])
+        record['captures'].append(capture_record)
+
+        capture_status = capture_record['capture_status']
+        if capture_status == 'captured':
+            record['captured_reading_count'] += 1
+        elif capture_status == 'missing-reading':
+            record['missing_reading_capture_count'] += 1
+        elif capture_status == 'needs-review':
+            record['needs_review_capture_count'] += 1
+
+    meter_captures = []
+    status_counter = Counter()
+    for meter_number in sorted(grouped):
+        record = grouped[meter_number]
+        record['captures'].sort(key=capture_sort_key)
+        record['observed_labels'] = sorted(record['observed_labels'])
+        record['capture_dates'] = sorted(record['capture_dates'])
+
+        if record['captured_reading_count'] > 0 and record['needs_review_capture_count'] == 0:
+            record['meter_capture_status'] = 'captured'
+            record['meter_capture_description'] = 'At least one reading was captured and no review-only capture blocks it.'
+        elif record['needs_review_capture_count'] > 0:
+            record['meter_capture_status'] = 'needs-review'
+            record['meter_capture_description'] = 'One or more captures produced a reading that needs manual review before use.'
+        elif record['missing_reading_capture_count'] > 0:
+            record['meter_capture_status'] = 'missing-reading'
+            record['meter_capture_description'] = 'A meter image exists, but no usable numeric reading was extracted.'
+        else:
+            record['meter_capture_status'] = 'unresolved'
+            record['meter_capture_description'] = 'The meter capture outcome is unresolved.'
+
+        status_counter.update([record['meter_capture_status']])
+        meter_captures.append(record)
+
+    unmatched_captures.sort(key=capture_sort_key)
+
+    capture_summary = {
+        'total_meter_capture_records': len(meter_captures),
+        'total_unmatched_captures': len(unmatched_captures),
+        'meter_capture_statuses': dict(sorted(status_counter.items())),
+        'documents_requiring_review': len(document_reviews),
+        'images_with_meter_reading': summary.get('images_with_meter_reading', 0),
+        'images_without_meter_reading': summary.get('total_images', 0) - summary.get('images_with_meter_reading', 0),
+        'reference_register_resolved': summary.get('reference_register_resolved', False),
+    }
+
+    return {
+        'building_name': building_dir.name,
+        'generated_at': generated_at,
+        'tesseract_cmd': tesseract_cmd,
+        'source_extraction_file': str((building_dir / OUTPUT_DIR_NAME / OUTPUT_FILE_NAME).resolve()),
+        'reference_register': {
+            'resolved': building_reference is not None,
+            'scheme_name': building_reference.scheme_name if building_reference else None,
+            'sheet_name': building_reference.sheet_name if building_reference else None,
+            'sheet_slug': building_reference.sheet_slug if building_reference else None,
+            'source_path': building_reference.source_path if building_reference else None,
+            'meter_count': len(building_reference.meters) if building_reference else 0,
+        },
+        'summary': capture_summary,
+        'meter_captures': meter_captures,
+        'unmatched_captures': unmatched_captures,
+        'documents_requiring_review': document_reviews,
+    }
+
+
+def process_image(image_path: Path, building_dir: Path, building_reference: BuildingReference | None) -> dict[str, Any]:
     image = Image.open(image_path)
     date_candidate, date_debug = extract_date_value(image, image_path, building_dir)
     meter_number_candidate, unit_candidate, serial_candidate, identity_debug = extract_meter_identity(image, image_path, building_dir)
@@ -403,6 +861,21 @@ def process_image(image_path: Path, building_dir: Path) -> dict[str, Any]:
     if summarize_confidence(serial_candidate) == 'low':
         flags.append('low-confidence-serial-number')
 
+    reference_meter, reference_match_kind, raw_reference_labels = resolve_reference_meter(
+        building_reference,
+        image_path,
+        building_dir,
+        unit_candidate,
+        meter_number_candidate,
+    )
+    if building_reference and reference_match_kind == 'missing':
+        flags.append('missing-reference-meter-match')
+    elif building_reference and reference_match_kind == 'unmatched':
+        flags.append('unmatched-reference-meter')
+    elif building_reference and reference_match_kind == 'ambiguous':
+        flags.append('ambiguous-reference-meter-match')
+    flags.extend(validate_reference_reading(reading_candidate, reference_meter))
+
     return {
         'image_path': relative_path(image_path, building_dir),
         'containing_folder': relative_path(image_path.parent, building_dir),
@@ -421,6 +894,14 @@ def process_image(image_path: Path, building_dir: Path) -> dict[str, Any]:
         'meter_reading': reading_candidate.value if reading_candidate else None,
         'meter_reading_source': reading_candidate.source if reading_candidate else None,
         'meter_reading_confidence': summarize_confidence(reading_candidate),
+        'reference_scheme_name': building_reference.scheme_name if building_reference else None,
+        'reference_sheet_slug': building_reference.sheet_slug if building_reference else None,
+        'reference_meter_number': reference_meter.meter_number if reference_meter else None,
+        'reference_meter_type': reference_meter.meter_type if reference_meter else None,
+        'reference_last_reading': reference_meter.latest_reading if reference_meter else None,
+        'reference_last_reading_date': reference_meter.latest_reading_date if reference_meter else None,
+        'reference_match_kind': reference_match_kind,
+        'reference_match_inputs': raw_reference_labels,
         'flags': flags,
         'ocr_samples': {
             **date_debug,
@@ -431,17 +912,20 @@ def process_image(image_path: Path, building_dir: Path) -> dict[str, Any]:
 
 
 def process_building(building_dir: Path, workers: int, limit_images: int | None) -> dict[str, Any]:
+    building_reference = resolve_building_reference(building_dir)
     all_image_files = collect_image_files(building_dir)
+    document_files = collect_document_files(building_dir)
     image_files = all_image_files
     if limit_images is not None:
         image_files = image_files[:limit_images]
-    flagged_folders = collect_flagged_folders(building_dir, all_image_files)
+    flagged_folders = collect_flagged_folders(building_dir, all_image_files + document_files)
     extractions: list[dict[str, Any]] = []
+    document_reviews = [build_document_review(path, building_dir) for path in document_files]
 
     if image_files:
         with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
             future_map = {
-                executor.submit(process_image, image_path, building_dir): image_path
+                executor.submit(process_image, image_path, building_dir, building_reference): image_path
                 for image_path in image_files
             }
             for future in concurrent.futures.as_completed(future_map):
@@ -458,6 +942,14 @@ def process_building(building_dir: Path, workers: int, limit_images: int | None)
                         'unit_label': None,
                         'serial_number': None,
                         'meter_reading': None,
+                        'reference_scheme_name': building_reference.scheme_name if building_reference else None,
+                        'reference_sheet_slug': building_reference.sheet_slug if building_reference else None,
+                        'reference_meter_number': None,
+                        'reference_meter_type': None,
+                        'reference_last_reading': None,
+                        'reference_last_reading_date': None,
+                        'reference_match_kind': None,
+                        'reference_match_inputs': [],
                         'flags': [f'processing-error:{error}'],
                         'ocr_samples': {},
                     })
@@ -466,14 +958,20 @@ def process_building(building_dir: Path, workers: int, limit_images: int | None)
     flag_counter = Counter()
     for extraction in extractions:
         flag_counter.update(extraction.get('flags', []))
+    for document_review in document_reviews:
+        flag_counter.update(document_review.get('flags', []))
 
     summary = {
         'total_images': len(extractions),
+        'total_documents_requiring_review': len(document_reviews),
         'folders_without_images': len(flagged_folders),
         'images_with_meter_number': sum(1 for item in extractions if item.get('meter_number')),
         'images_with_serial_number': sum(1 for item in extractions if item.get('serial_number')),
         'images_with_meter_reading': sum(1 for item in extractions if item.get('meter_reading')),
         'images_with_date': sum(1 for item in extractions if item.get('date')),
+        'images_with_reference_match': sum(1 for item in extractions if item.get('reference_meter_number')),
+        'reference_register_resolved': building_reference is not None,
+        'reference_register_meter_count': len(building_reference.meters) if building_reference else 0,
         'flags': dict(sorted(flag_counter.items())),
     }
 
@@ -483,22 +981,46 @@ def process_building(building_dir: Path, workers: int, limit_images: int | None)
         'building_name': building_dir.name,
         'generated_at': now_iso(),
         'tesseract_cmd': pytesseract.pytesseract.tesseract_cmd,
+        'reference_register': {
+            'resolved': building_reference is not None,
+            'scheme_name': building_reference.scheme_name if building_reference else None,
+            'sheet_name': building_reference.sheet_name if building_reference else None,
+            'sheet_slug': building_reference.sheet_slug if building_reference else None,
+            'source_path': building_reference.source_path if building_reference else None,
+            'meter_count': len(building_reference.meters) if building_reference else 0,
+        },
         'summary': summary,
         'folders_without_images': flagged_folders,
+        'documents_requiring_review': document_reviews,
         'images': extractions,
     }
     output_path = output_dir / OUTPUT_FILE_NAME
     output_path.write_text(json.dumps(payload, indent=2, ensure_ascii=True), encoding='utf-8')
 
+    capture_payload = build_capture_payload(
+        building_dir=building_dir,
+        generated_at=payload['generated_at'],
+        tesseract_cmd=pytesseract.pytesseract.tesseract_cmd,
+        building_reference=building_reference,
+        summary=summary,
+        document_reviews=document_reviews,
+        extractions=extractions,
+    )
+    capture_output_path = output_dir / CAPTURE_OUTPUT_FILE_NAME
+    capture_output_path.write_text(json.dumps(capture_payload, indent=2, ensure_ascii=True), encoding='utf-8')
+
     print(
         f'Processed {building_dir.name}: {summary["total_images"]} images, '
         f'{summary["images_with_meter_reading"]} readings, '
+        f'{summary["images_with_reference_match"]} reference matches, '
+        f'{summary["total_documents_requiring_review"]} documents to review, '
         f'{summary["folders_without_images"]} flagged folders',
         flush=True,
     )
     return {
         'building_name': building_dir.name,
         'output_path': str(output_path),
+        'capture_output_path': str(capture_output_path),
         'summary': summary,
     }
 

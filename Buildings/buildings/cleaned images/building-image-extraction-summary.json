@@ -1,258 +1,27 @@
 {
-  "generated_at": "2026-04-11T20:07:26.585049+00:00",
+  "generated_at": "2026-04-14T13:27:45.173459+00:00",
   "buildings": [
     {
-      "building_name": "Akasia",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Akasia\\cleaned images\\meter-image-extractions.json",
+      "building_name": "Azores - Completed",
+      "output_path": "C:\\Projects\\Meter App\\Buildings\\buildings\\Azores - Completed\\cleaned images\\meter-image-extractions.json",
+      "capture_output_path": "C:\\Projects\\Meter App\\Buildings\\buildings\\Azores - Completed\\cleaned images\\meter-capture-readings.json",
       "summary": {
-        "total_images": 6,
-        "folders_without_images": 31,
-        "images_with_meter_number": 2,
-        "images_with_serial_number": 2,
-        "images_with_meter_reading": 3,
-        "images_with_date": 5,
-        "flags": {
-          "low-confidence-meter-reading": 1,
-          "missing-date": 1,
-          "missing-meter-number": 4,
-          "missing-meter-reading": 3,
-          "missing-serial-number": 4
-        }
-      }
-    },
-    {
-      "building_name": "Azores",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Azores\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 2028,
-        "folders_without_images": 5,
-        "images_with_meter_number": 1838,
-        "images_with_serial_number": 37,
-        "images_with_meter_reading": 1319,
-        "images_with_date": 2027,
-        "flags": {
-          "low-confidence-meter-reading": 290,
-          "missing-date": 1,
-          "missing-meter-number": 190,
-          "missing-meter-reading": 709,
-          "missing-serial-number": 1991
-        }
-      }
-    },
-    {
-      "building_name": "Bonifay",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Bonifay\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 364,
-        "folders_without_images": 4,
-        "images_with_meter_number": 298,
-        "images_with_serial_number": 6,
-        "images_with_meter_reading": 141,
-        "images_with_date": 230,
-        "flags": {
-          "low-confidence-meter-reading": 35,
-          "missing-date": 134,
-          "missing-meter-number": 66,
-          "missing-meter-reading": 223,
-          "missing-serial-number": 358
-        }
-      }
-    },
-    {
-      "building_name": "Carissa Lane",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Carissa Lane\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 0,
-        "folders_without_images": 5,
-        "images_with_meter_number": 0,
+        "total_images": 30,
+        "total_documents_requiring_review": 1,
+        "folders_without_images": 0,
+        "images_with_meter_number": 30,
         "images_with_serial_number": 0,
-        "images_with_meter_reading": 0,
-        "images_with_date": 0,
-        "flags": {}
-      }
-    },
-    {
-      "building_name": "Colnbrook",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Colnbrook\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 3,
-        "folders_without_images": 27,
-        "images_with_meter_number": 2,
-        "images_with_serial_number": 0,
-        "images_with_meter_reading": 0,
-        "images_with_date": 3,
+        "images_with_meter_reading": 15,
+        "images_with_date": 30,
+        "images_with_reference_match": 30,
+        "reference_register_resolved": true,
+        "reference_register_meter_count": 73,
         "flags": {
-          "missing-meter-number": 1,
-          "missing-meter-reading": 3,
-          "missing-serial-number": 3
-        }
-      }
-    },
-    {
-      "building_name": "Genisis on Fairmount",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Genisis on Fairmount\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 0,
-        "folders_without_images": 180,
-        "images_with_meter_number": 0,
-        "images_with_serial_number": 0,
-        "images_with_meter_reading": 0,
-        "images_with_date": 0,
-        "flags": {}
-      }
-    },
-    {
-      "building_name": "Gosforth Park",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Gosforth Park\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 1,
-        "folders_without_images": 8,
-        "images_with_meter_number": 0,
-        "images_with_serial_number": 0,
-        "images_with_meter_reading": 0,
-        "images_with_date": 1,
-        "flags": {
-          "missing-meter-number": 1,
-          "missing-meter-reading": 1,
-          "missing-serial-number": 1
-        }
-      }
-    },
-    {
-      "building_name": "Hazelmere",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Hazelmere\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 2241,
-        "folders_without_images": 3,
-        "images_with_meter_number": 1969,
-        "images_with_serial_number": 54,
-        "images_with_meter_reading": 1425,
-        "images_with_date": 2176,
-        "flags": {
-          "low-confidence-meter-reading": 210,
-          "missing-date": 65,
-          "missing-meter-number": 272,
-          "missing-meter-reading": 816,
-          "missing-serial-number": 2187
-        }
-      }
-    },
-    {
-      "building_name": "La Montagne",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\La Montagne\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 0,
-        "folders_without_images": 7,
-        "images_with_meter_number": 0,
-        "images_with_serial_number": 0,
-        "images_with_meter_reading": 0,
-        "images_with_date": 0,
-        "flags": {}
-      }
-    },
-    {
-      "building_name": "QueensGate",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\QueensGate\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 0,
-        "folders_without_images": 69,
-        "images_with_meter_number": 0,
-        "images_with_serial_number": 0,
-        "images_with_meter_reading": 0,
-        "images_with_date": 0,
-        "flags": {}
-      }
-    },
-    {
-      "building_name": "Rivonia Gates",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Rivonia Gates\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 28,
-        "folders_without_images": 206,
-        "images_with_meter_number": 9,
-        "images_with_serial_number": 2,
-        "images_with_meter_reading": 3,
-        "images_with_date": 3,
-        "flags": {
-          "low-confidence-meter-reading": 3,
-          "missing-date": 25,
-          "missing-meter-number": 19,
-          "missing-meter-reading": 25,
-          "missing-serial-number": 26
-        }
-      }
-    },
-    {
-      "building_name": "Taragona",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Taragona\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 82,
-        "folders_without_images": 195,
-        "images_with_meter_number": 19,
-        "images_with_serial_number": 0,
-        "images_with_meter_reading": 60,
-        "images_with_date": 51,
-        "flags": {
-          "low-confidence-meter-reading": 4,
-          "missing-date": 31,
-          "missing-meter-number": 62,
-          "missing-meter-reading": 21,
-          "missing-serial-number": 81,
-          "processing-error:cannot identify image file 'C:\\\\Projects\\\\Meter App\\\\Buildings\\\\buildings\\\\Taragona\\\\COUNCIL & UTILITIES\\\\Utility Readings\\\\TG Readings 2025\\\\Photos\\\\TAR 23 - Meter Readings 31.10.2025.jpeg'": 1
-        }
-      }
-    },
-    {
-      "building_name": "Transvalia",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Transvalia\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 7,
-        "folders_without_images": 17,
-        "images_with_meter_number": 3,
-        "images_with_serial_number": 1,
-        "images_with_meter_reading": 4,
-        "images_with_date": 5,
-        "flags": {
-          "missing-date": 2,
-          "missing-meter-number": 4,
-          "missing-meter-reading": 3,
-          "missing-serial-number": 6
-        }
-      }
-    },
-    {
-      "building_name": "VILLINO GLEN",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\VILLINO GLEN\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 2,
-        "folders_without_images": 122,
-        "images_with_meter_number": 2,
-        "images_with_serial_number": 0,
-        "images_with_meter_reading": 2,
-        "images_with_date": 1,
-        "flags": {
-          "low-confidence-meter-number": 1,
-          "missing-date": 1,
-          "missing-serial-number": 2
-        }
-      }
-    },
-    {
-      "building_name": "Vista Del Monte",
-      "output_path": "c:\\Projects\\Meter App\\Buildings\\buildings\\Vista Del Monte\\cleaned images\\meter-image-extractions.json",
-      "summary": {
-        "total_images": 462,
-        "folders_without_images": 52,
-        "images_with_meter_number": 250,
-        "images_with_serial_number": 45,
-        "images_with_meter_reading": 268,
-        "images_with_date": 461,
-        "flags": {
-          "low-confidence-meter-reading": 67,
-          "missing-date": 1,
-          "missing-meter-number": 212,
-          "missing-meter-reading": 194,
-          "missing-serial-number": 417
+          "low-confidence-meter-reading": 2,
+          "missing-meter-reading": 15,
+          "missing-serial-number": 30,
+          "reading-below-last-known": 11,
+          "unsupported-document-file": 1
         }
       }
     }
