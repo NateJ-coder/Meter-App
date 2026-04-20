@@ -58,6 +58,11 @@
         </section>
 
         <section class="card">
+            <h2>Imported Data Review</h2>
+            <div id="import-review-dashboard"></div>
+        </section>
+
+        <section class="card">
             <h2>Utility Dash Sync</h2>
             <div class="info-box mb-2">
                 Import the app-native payload generated from the macro-free Utility Dash workbook into app storage for inventory and historical reading seeding.
@@ -69,6 +74,7 @@
         <section class="card">
             <h2>⚠️ System Actions</h2>
             <div class="danger-zone">
+                <button class="btn btn-secondary" onclick="refreshFromFirebase()">Refresh From Firebase</button>
                 <button class="btn btn-warning" onclick="resetOnboarding()">Reset Onboarding</button>
                 <button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
                 <button class="btn btn-secondary" onclick="exportAllData()">Export All Data</button>
@@ -126,8 +132,10 @@
         import { auth } from './assets/auth.js';
         import { setupHealth } from './assets/setup-health.js';
         import { validation } from './assets/validation.js';
+        import { developerReviewParser } from './assets/developer-review-parser.js';
 
         await auth.initialize();
+        await storage.initializeCloudSync({ preload: storage.getAll('schemes').length === 0 });
 
         // Display user info
         const currentUser = auth.getCurrentUser();
@@ -147,6 +155,7 @@
             renderUsersList();
             renderActivityLog();
             renderDataStats();
+            renderImportReviewDashboard();
         }
 
         // Health Dashboard
@@ -429,6 +438,88 @@
             `;
         }
 
+        function renderImportReviewDashboard() {
+            const report = developerReviewParser.parseDeveloperReviewReport();
+            const latestBatch = report.latestBatch;
+            const container = document.getElementById('import-review-dashboard');
+            const errorIssues = report.issues.filter(issue => issue.severity === 'error');
+            const warningIssues = report.issues.filter(issue => issue.severity === 'warning');
+            const infoIssues = report.issues.filter(issue => issue.severity === 'info');
+
+            container.innerHTML = `
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">${report.summary.readings}</div>
+                        <div class="metric-label">Readings Parsed</div>
+                    </div>
+                    <div class="metric-card ${report.summary.errors > 0 ? 'danger' : ''}">
+                        <div class="metric-value">${report.summary.errors}</div>
+                        <div class="metric-label">Parser Errors</div>
+                    </div>
+                    <div class="metric-card ${report.summary.warnings > 0 ? 'warning' : ''}">
+                        <div class="metric-value">${report.summary.warnings}</div>
+                        <div class="metric-label">Parser Warnings</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${latestBatch?.payload_summary?.import_strategy || 'n/a'}</div>
+                        <div class="metric-label">Latest Import Strategy</div>
+                    </div>
+                </div>
+
+                ${latestBatch ? `
+                    <div class="info-box mt-2">
+                        <strong>Latest Batch:</strong> ${latestBatch.id}<br>
+                        <strong>Source:</strong> ${latestBatch.source_file || 'Unknown'}<br>
+                        <strong>Imported At:</strong> ${latestBatch.imported_at || latestBatch.created_at || 'Unknown'}<br>
+                        <strong>History Window:</strong> ${latestBatch.payload_summary?.history_window_per_meter || 'Full history'}
+                    </div>
+                ` : ''}
+
+                ${report.issues.length > 0 ? `
+                    <div class="health-issues-list" style="margin-top: 1rem;">
+                        ${errorIssues.length > 0 ? `
+                            <div class="issue-section">
+                                <h4 style="color: #dc3545; margin-bottom: 0.5rem;">🔴 Parser Errors (${errorIssues.length})</h4>
+                                ${errorIssues.map(issue => `
+                                    <div class="alert alert-danger">
+                                        <strong>${issue.message}</strong>
+                                        <br><small class="text-muted">Affected records: ${issue.count}${issue.samples.length > 0 ? ` • Samples: ${issue.samples.join(', ')}` : ''}</small>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                        ${warningIssues.length > 0 ? `
+                            <div class="issue-section">
+                                <h4 style="color: #ffc107; margin-bottom: 0.5rem;">⚠️ Parser Warnings (${warningIssues.length})</h4>
+                                ${warningIssues.map(issue => `
+                                    <div class="alert alert-warning">
+                                        <strong>${issue.message}</strong>
+                                        <br><small class="text-muted">Affected records: ${issue.count}${issue.samples.length > 0 ? ` • Samples: ${issue.samples.join(', ')}` : ''}</small>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                        ${infoIssues.length > 0 ? `
+                            <div class="issue-section">
+                                <h4 style="color: #17a2b8; margin-bottom: 0.5rem;">ℹ️ Parser Info (${infoIssues.length})</h4>
+                                ${infoIssues.map(issue => `
+                                    <div class="alert alert-info">
+                                        <strong>${issue.message}</strong>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                ` : '<div class="alert alert-success mt-2">✓ Imported data parser found no structural or reading-logic issues.</div>'}
+
+                <script>
+                    window.currentParserIssues = ${JSON.stringify(report.issues)};
+                <\/script>
+            `;
+        }
+
         // Add User Modal
         window.showAddUserModal = function() {
             alert('User provisioning is retired in open-access mode.');
@@ -459,6 +550,16 @@
             alert('Onboarding state reset successfully.');
         };
 
+        window.refreshFromFirebase = async function() {
+            try {
+                await storage.hydrateFromCloud({ clearMissing: true });
+                alert('Local app storage refreshed from Firebase. Reloading console...');
+                location.reload();
+            } catch (error) {
+                alert(`Firebase refresh failed: ${error.message}`);
+            }
+        };
+
         window.clearAllData = function() {
             const confirmation = prompt('Type "DELETE ALL DATA" to confirm complete data wipe:');
             
@@ -474,6 +575,7 @@
             localStorage.removeItem('meters');
             localStorage.removeItem('readings');
             localStorage.removeItem('cycles');
+            localStorage.removeItem('import_batches');
             localStorage.removeItem('fuzio_onboarding_state');
             localStorage.removeItem('fuzio_first_time_checklist');
 
@@ -489,6 +591,7 @@
                 meters: storage.getAll('meters'),
                 readings: storage.getAll('readings'),
                 cycles: storage.getAll('cycles'),
+                import_batches: storage.getAll('import_batches'),
                 users: auth.getUsers(),
                 activities: auth.getActivities(),
                 exported_at: new Date().toISOString(),
@@ -509,20 +612,9 @@
         // Export Issues Report
         window.exportIssuesReport = function() {
             const issues = window.currentIssues || [];
+            const parserIssues = window.currentParserIssues || [];
             const setupStatus = setupHealth.getHealthStatus();
-            const setupIssues = [
-                ...setupStatus.issues.map((issue) => ({
-                    severity: issue.severity === 'high' ? 'error' : 'warning',
-                    message: issue.message,
-                    details: issue.action || 'Review setup data'
-                })),
-                ...setupStatus.warnings.map((warning) => ({
-                    severity: warning.severity === 'medium' ? 'warning' : 'info',
-                    message: warning.message,
-                    details: warning.action || 'Review setup data'
-                }))
-            ];
-            const allIssues = [...issues, ...setupIssues];
+            const allIssues = [...issues, ...parserIssues];
             
             // Gather system info
             const schemes = storage.getAll('schemes');
@@ -560,6 +652,9 @@
                     warnings: setupStatus.warnings,
                     successes: setupStatus.successes,
                     stats: setupStatus.stats
+                },
+                import_review: {
+                    issues: parserIssues
                 },
                 issues_detail: allIssues.map((issue, index) => ({
                     issue_number: index + 1,

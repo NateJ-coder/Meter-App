@@ -22,33 +22,27 @@
     <main class="container">
         <header class="page-header">
             <h1>Utility Dash Sync</h1>
-            <p class="subtitle">Import the app-native JSON payload generated from the macro-free workbook into app storage</p>
+            <p class="subtitle">Backend-managed baseline import status and runtime hydration</p>
         </header>
 
         <section class="card">
-            <h2>Import Payload</h2>
+            <h2>Backend Import</h2>
             <div class="info-box mb-2">
-                Use the generated file: <strong>source-documents/03-extracted-outputs/utility-dash-app/utility-dash-app-payload.json</strong><br>
-                This page imports app-native entities, not raw Utility Dash workbook structures.
+                The app no longer supports browser-driven payload imports on this page. Baseline data is prepared and uploaded through the backend scripts, then hydrated into browser storage from Firebase.
             </div>
             <div class="info-box mb-2">
-                <strong>Raw Excel is not supported on this page yet.</strong><br>
-                If you select the original <strong>.xlsx</strong> workbook here, it will be rejected. The workbook must first be transformed into the app-native payload JSON by the extractor path.
+                <strong>Baseline builder:</strong> scripts/build-utility-dash-operational-baseline.js<br>
+                <strong>Backend uploader:</strong> scripts/upload-operational-baseline-to-firebase.mjs
             </div>
-            <div class="form-group">
-                <label for="utility-dash-sync-file">Payload File</label>
-                <input type="file" id="utility-dash-sync-file" accept="application/json,.json">
+            <div class="info-box mb-2">
+                <strong>Cycle handling:</strong> imported image-capture uploads are materialized as closed cycles using folder-derived dates, so the next manually opened cycle starts from the correct baseline.
             </div>
-            <div class="form-actions">
-                <button type="button" class="btn btn-primary" id="utility-dash-sync-preview-button">Preview Payload</button>
-                <button type="button" class="btn btn-secondary" id="utility-dash-sync-import-button" disabled>Import Into App Storage</button>
-            </div>
-            <div id="utility-dash-sync-status" class="info-box mt-2">No payload loaded yet.</div>
+            <div id="utility-dash-sync-status" class="info-box mt-2">Loading backend sync status...</div>
         </section>
 
         <section class="card">
-            <h2>Payload Summary</h2>
-            <div id="utility-dash-sync-summary"><p class="text-muted">Load a payload to inspect entity counts.</p></div>
+            <h2>Current Runtime Baseline</h2>
+            <div id="utility-dash-sync-summary"><p class="text-muted">Loading latest backend import details...</p></div>
         </section>
     </main>
 

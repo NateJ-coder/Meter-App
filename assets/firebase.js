@@ -32,6 +32,7 @@ export const firebaseCollections = {
     meterEvidence: 'meter_evidence',
     meterFlags: 'meter_flags',
     legacyMeterMap: 'legacy_meter_map',
+    importBatches: 'import_batches',
     disputeCases: 'dispute_cases',
     disputePackExports: 'dispute_pack_exports',
     users: 'users',

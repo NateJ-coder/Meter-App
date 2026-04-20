@@ -125,6 +125,7 @@
         import { importReadingTransferPackage } from './assets/reading-transfer.js';
 
         await auth.initialize();
+        await storage.initializeCloudSync({ preload: storage.getAll('schemes').length === 0 });
 
         // Display user info
         const currentUser = auth.getCurrentUser();

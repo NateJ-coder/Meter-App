@@ -27,13 +27,14 @@ const cloudEntityCollections = {
     meter_evidence: firebaseCollections.meterEvidence,
     meter_flags: firebaseCollections.meterFlags,
     legacy_meter_map: firebaseCollections.legacyMeterMap,
+    import_batches: firebaseCollections.importBatches,
     dispute_cases: firebaseCollections.disputeCases,
     dispute_pack_exports: firebaseCollections.disputePackExports
 };
 
 const LOCAL_BACKUP_KEY = 'fuzio_operational_backup';
 const DESTRUCTIVE_CLEAR_SENTINEL = 'CONFIRM_CLEAR_OPERATIONAL_DATA';
-const supplementalLocalEntities = ['import_batches'];
+const supplementalLocalEntities = [];
 
 const meterRoleByType = {
     BULK: 'bulk',
@@ -220,7 +221,7 @@ async function commitChunkedBatch(operations) {
 export const storage = {
     managedEntityKeys: [...Object.keys(cloudEntityCollections), ...supplementalLocalEntities],
     operationalEntityKeys: ['schemes', 'buildings', 'units', 'meters', 'readings', 'cycles', 'cycle_schedules'],
-    cloudSyncEnabled: false,
+    cloudSyncEnabled: isFirebaseConfigured(),
     cloudSyncPromise: Promise.resolve(),
 
     // Generic CRUD operations

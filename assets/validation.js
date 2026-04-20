@@ -49,6 +49,33 @@ export function getValidationConfig(schemeId = null) {
     return DEFAULT_CONFIG;
 }
 
+function isTrustedHistoricalReading(reading) {
+    if (!reading || reading.consumption == null) {
+        return false;
+    }
+
+    const reviewStatus = String(reading.review_status || '').toLowerCase();
+    const validationStatus = String(reading.validation_status || '').toLowerCase();
+    const hasFlags = Boolean(reading.flags?.length) || Boolean(reading.manual_flags?.length);
+
+    if (reviewStatus === 'rejected' || validationStatus === 'rejected') {
+        return false;
+    }
+
+    if (reviewStatus === 'approved' || validationStatus === 'validated') {
+        return true;
+    }
+
+    return !hasFlags;
+}
+
+function getTrustedHistoricalReadings(meterId) {
+    return storage.getReadings()
+        .filter((reading) => reading.meter_id === meterId)
+        .filter(isTrustedHistoricalReading)
+        .sort((left, right) => new Date(right.reading_date) - new Date(left.reading_date));
+}
+
 export const validation = {
     /**
      * Validate a reading and generate flags
@@ -164,10 +191,7 @@ export const validation = {
      * Get previous cycle consumption for percentage comparison
      */
     getPreviousConsumption(meterId) {
-        const allReadings = storage.getReadings();
-        const meterReadings = allReadings
-            .filter(r => r.meter_id === meterId && r.consumption != null)
-            .sort((a, b) => new Date(b.reading_date) - new Date(a.reading_date));
+        const meterReadings = getTrustedHistoricalReadings(meterId);
         
         return meterReadings.length > 0 ? meterReadings[0].consumption : 0;
     },
@@ -176,10 +200,7 @@ export const validation = {
      * Calculate average consumption for a meter over last N cycles
      */
     getAverageConsumption(meterId, cycles = 3) {
-        const allReadings = storage.getReadings();
-        const meterReadings = allReadings
-            .filter(r => r.meter_id === meterId && r.consumption != null)
-            .sort((a, b) => new Date(b.reading_date) - new Date(a.reading_date))
+        const meterReadings = getTrustedHistoricalReadings(meterId)
             .slice(0, cycles);
 
         if (meterReadings.length === 0) return 0;
@@ -192,10 +213,7 @@ export const validation = {
      * Detect gradual creep - consistent increase over time
      */
     detectGradualCreep(meterId, thresholdPercent = 7) {
-        const allReadings = storage.getReadings();
-        const meterReadings = allReadings
-            .filter(r => r.meter_id === meterId && r.consumption != null)
-            .sort((a, b) => new Date(b.reading_date) - new Date(a.reading_date))
+        const meterReadings = getTrustedHistoricalReadings(meterId)
             .slice(0, 6);
         
         if (meterReadings.length < 4) return null; // Need at least 4 cycles
@@ -239,9 +257,7 @@ export const validation = {
         lastYearDate.setMonth(lastYearDate.getMonth() - comparisonMonths);
         
         // Find reading from approximately same time last year
-        const allReadings = storage.getReadings();
-        const historicalReadings = allReadings
-            .filter(r => r.meter_id === meterId && r.consumption != null)
+        const historicalReadings = getTrustedHistoricalReadings(meterId)
             .map(r => ({
                 ...r,
                 date: new Date(r.reading_date)

@@ -21,6 +21,8 @@ function initializePage() {
     populateSchemeSelect('schedule-scheme');
     bindTabControls();
 
+    document.getElementById('cycle-scheme').addEventListener('change', handleCycleSchemeChange);
+
     document.getElementById('cycle-form').addEventListener('submit', handleCycleSubmit);
     document.getElementById('schedule-form').addEventListener('submit', handleScheduleSubmit);
 
@@ -60,6 +62,69 @@ function getTodayDateKey() {
     return formatDateForInput(new Date());
 }
 
+function getMonthWindowFromDate(dateValue) {
+    const baseDate = new Date(`${dateValue}T00:00:00`);
+    if (Number.isNaN(baseDate.getTime())) {
+        return null;
+    }
+
+    const firstDay = new Date(baseDate.getFullYear(), baseDate.getMonth(), 1);
+    const lastDay = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, 0);
+    return {
+        startDate: formatDateForInput(firstDay),
+        endDate: formatDateForInput(lastDay)
+    };
+}
+
+function getNextMonthWindow(dateValue) {
+    const baseDate = new Date(`${dateValue}T00:00:00`);
+    if (Number.isNaN(baseDate.getTime())) {
+        return null;
+    }
+
+    const firstDay = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, 1);
+    const lastDay = new Date(baseDate.getFullYear(), baseDate.getMonth() + 2, 0);
+    return {
+        startDate: formatDateForInput(firstDay),
+        endDate: formatDateForInput(lastDay)
+    };
+}
+
+function getLatestCycleForScheme(schemeId) {
+    return storage.getCycles(schemeId)
+        .slice()
+        .sort((left, right) => String(right.end_date || right.start_date || '').localeCompare(String(left.end_date || left.start_date || '')))[0] || null;
+}
+
+function getSuggestedCycleWindow(schemeId = null) {
+    if (schemeId) {
+        const latestCycle = getLatestCycleForScheme(schemeId);
+        if (latestCycle?.end_date) {
+            return getNextMonthWindow(latestCycle.end_date);
+        }
+    }
+
+    const todayWindow = getMonthWindowFromDate(getTodayDateKey());
+    return todayWindow || {
+        startDate: document.getElementById('cycle-start-date').value,
+        endDate: document.getElementById('cycle-end-date').value
+    };
+}
+
+function applySuggestedCycleWindow(schemeId = null) {
+    const window = getSuggestedCycleWindow(schemeId);
+    if (!window) {
+        return;
+    }
+
+    document.getElementById('cycle-start-date').value = window.startDate;
+    document.getElementById('cycle-end-date').value = window.endDate;
+}
+
+function handleCycleSchemeChange() {
+    applySuggestedCycleWindow(document.getElementById('cycle-scheme').value || null);
+}
+
 function getOpenCycles() {
     return storage.getAll('cycles')
         .filter(cycle => cycle.status === 'OPEN')
@@ -95,6 +160,17 @@ function handleCycleSubmit(event) {
     const existingCycle = storage.getOpenCycle(schemeId);
     if (existingCycle) {
         showNotification('This scheme already has an open cycle. Close it first or select another scheme.');
+        return;
+    }
+
+    const latestCycle = getLatestCycleForScheme(schemeId);
+    if (latestCycle?.end_date && startDate <= latestCycle.end_date) {
+        const suggestedWindow = getNextMonthWindow(latestCycle.end_date);
+        showNotification(`This scheme already has data through ${latestCycle.end_date}. Start the next cycle after that period${suggestedWindow ? `, for example ${suggestedWindow.startDate} to ${suggestedWindow.endDate}` : ''}.`);
+        if (suggestedWindow) {
+            document.getElementById('cycle-start-date').value = suggestedWindow.startDate;
+            document.getElementById('cycle-end-date').value = suggestedWindow.endDate;
+        }
         return;
     }
 
