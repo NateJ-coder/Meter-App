@@ -224,6 +224,16 @@ export const storage = {
     cloudSyncEnabled: isFirebaseConfigured(),
     cloudSyncPromise: Promise.resolve(),
 
+    shouldPreloadCloudData(entityKeys = ['schemes', 'buildings', 'units', 'meters']) {
+        const populatedEntities = entityKeys.filter((entity) => this.getAll(entity).length > 0);
+
+        if (populatedEntities.length === 0) {
+            return true;
+        }
+
+        return populatedEntities.length !== entityKeys.length;
+    },
+
     // Generic CRUD operations
     getAll(entity) {
         const data = localStorage.getItem(entity);

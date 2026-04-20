@@ -7,7 +7,7 @@ import { initializeFolderSchemes } from './app.js';
 import { storage } from './storage.js';
 
 await auth.initialize();
-await storage.initializeCloudSync({ preload: storage.getAll('schemes').length === 0 });
+await storage.initializeCloudSync({ preload: storage.shouldPreloadCloudData() });
 window.auth = auth;
 window.storage = storage;
 

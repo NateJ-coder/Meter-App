@@ -29,6 +29,10 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 loadTabData('schemes');
 renderDataSyncPanel();
 
+function getActiveTab() {
+    return document.querySelector('.tab-btn.active')?.dataset.tab || 'schemes';
+}
+
 function loadTabData(tab) {
     switch(tab) {
         case 'schemes':
@@ -56,15 +60,31 @@ function renderDataSyncPanel(message = '') {
     const buildings = storage.getBuildings().length;
     const units = storage.getUnits().length;
     const meters = storage.getMeters().length;
+    const syncMessage = storage.cloudSyncEnabled
+        ? 'Cloud sync is active. This page hydrates from Firebase when the local cache is empty or incomplete.'
+        : 'App data is stored locally in the browser. Firebase sync is not active in this runtime.';
+
     panel.innerHTML = `
         <div class="info-box">
             <strong>Current cache</strong><br>
             Schemes: ${schemes} | Buildings: ${buildings} | Units: ${units} | Meters: ${meters}<br>
-            <span class="text-muted">App data is stored locally in the browser. No cleaned-data bundle or automatic database sync is active in the runtime.</span>
+            <span class="text-muted">${syncMessage}</span>
+            ${storage.cloudSyncEnabled ? '<div class="mt-2"><button class="btn btn-secondary" onclick="refreshMeterRegisterCache()">Refresh From Firebase</button></div>' : ''}
             ${message ? `<div class="mt-2">${message}</div>` : ''}
         </div>
     `;
 }
+
+window.refreshMeterRegisterCache = async function() {
+    try {
+        await storage.hydrateFromCloud();
+        renderDataSyncPanel('<span class="text-success">App data refreshed from Firebase.</span>');
+        loadTabData(getActiveTab());
+    } catch (error) {
+        console.error(error);
+        renderDataSyncPanel('<span class="text-danger">Unable to refresh app data from Firebase.</span>');
+    }
+};
 
 window.closeMeterHistoryModal = function() {
     const root = document.getElementById('meter-history-modal-root');
