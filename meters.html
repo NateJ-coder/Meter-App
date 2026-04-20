@@ -25,7 +25,7 @@
     <main class="container">
         <header class="page-header">
             <h1>Meter Register</h1>
-            <p class="subtitle">Manage schemes, buildings, units, and meters</p>
+            <p class="subtitle">View schemes, buildings, units, and meters</p>
         </header>
 
         <section class="card">
@@ -33,6 +33,7 @@
                 <h2>App Data</h2>
             </div>
             <div id="data-sync-panel"></div>
+            <div id="meter-register-mode-note" class="mt-2"></div>
         </section>
 
         <!-- Tabs -->
@@ -48,11 +49,11 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Schemes</h2>
-                    <button class="btn btn-primary" onclick="showSchemeForm()">+ Add Scheme</button>
+                    <button class="btn btn-primary" data-admin-only onclick="showSchemeForm()">+ Add Scheme</button>
                 </div>
                 <div id="schemes-list"></div>
             </div>
-            <div id="scheme-form" class="card" style="display: none;">
+            <div id="scheme-form" class="card" data-admin-only style="display: none;">
                 <h3 id="scheme-form-title">Add Scheme</h3>
                 <form id="scheme-form-element">
                     <input type="hidden" id="scheme-id">
@@ -73,11 +74,11 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Buildings</h2>
-                    <button class="btn btn-primary" onclick="showBuildingForm()">+ Add Building</button>
+                    <button class="btn btn-primary" data-admin-only onclick="showBuildingForm()">+ Add Building</button>
                 </div>
                 <div id="buildings-list"></div>
             </div>
-            <div id="building-form" class="card" style="display: none;">
+            <div id="building-form" class="card" data-admin-only style="display: none;">
                 <h3 id="building-form-title">Add Building</h3>
                 <form id="building-form-element">
                     <input type="hidden" id="building-id">
@@ -102,11 +103,11 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Units</h2>
-                    <button class="btn btn-primary" onclick="showUnitForm()">+ Add Unit</button>
+                    <button class="btn btn-primary" data-admin-only onclick="showUnitForm()">+ Add Unit</button>
                 </div>
                 <div id="units-list"></div>
             </div>
-            <div id="unit-form" class="card" style="display: none;">
+            <div id="unit-form" class="card" data-admin-only style="display: none;">
                 <h3 id="unit-form-title">Add Unit</h3>
                 <form id="unit-form-element">
                     <input type="hidden" id="unit-id">
@@ -135,11 +136,38 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Meters</h2>
-                    <button class="btn btn-primary" onclick="showMeterForm()">+ Add Meter</button>
+                    <button class="btn btn-primary" data-admin-only onclick="showMeterForm()">+ Add Meter</button>
+                </div>
+                <div class="filter-bar">
+                    <div class="form-group">
+                        <label for="meter-filter-scheme">Scheme</label>
+                        <select id="meter-filter-scheme" onchange="updateMeterFilterBuildingOptions(); filterMeters()">
+                            <option value="">All Schemes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="meter-filter-building">Building</label>
+                        <select id="meter-filter-building" onchange="filterMeters()">
+                            <option value="">All Buildings</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="meter-filter-unit">Search Unit</label>
+                        <input type="search" id="meter-filter-unit" placeholder="Type a unit number" oninput="filterMeters()" autocomplete="off" spellcheck="false">
+                    </div>
+                    <div class="form-group">
+                        <label for="meter-filter-type">Meter Type</label>
+                        <select id="meter-filter-type" onchange="filterMeters()">
+                            <option value="">All Types</option>
+                            <option value="UNIT">Unit</option>
+                            <option value="BULK">Bulk</option>
+                            <option value="COMMON">Common</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="meters-list"></div>
             </div>
-            <div id="meter-form" class="card" style="display: none;">
+            <div id="meter-form" class="card" data-admin-only style="display: none;">
                 <h3 id="meter-form-title">Add Meter</h3>
                 <form id="meter-form-element">
                     <input type="hidden" id="meter-id">

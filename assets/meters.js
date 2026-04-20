@@ -5,6 +5,10 @@
 import { storage } from './storage.js';
 import { showNotification, confirmAction, parseDecimalInput } from './app.js';
 
+const meterRegisterAdminMode = new URLSearchParams(window.location.search).get('mode') === 'admin';
+
+initializeMeterRegisterMode();
+
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -28,6 +32,24 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 // Load initial tab
 loadTabData('schemes');
 renderDataSyncPanel();
+
+function initializeMeterRegisterMode() {
+    document.querySelectorAll('[data-admin-only]').forEach((element) => {
+        if (!meterRegisterAdminMode) {
+            element.style.display = 'none';
+        }
+    });
+
+    const note = document.getElementById('meter-register-mode-note');
+    if (note) {
+        note.innerHTML = meterRegisterAdminMode
+            ? '<div class="info-box"><strong>Developer mode</strong><br>Inventory editing is enabled on this page because it was opened in developer mode.</div>'
+            : '<div class="info-box"><strong>Read-only register</strong><br>Meter, unit, building, and scheme registration has been removed from the main app. Developer-only inventory changes should be started from the Developer Console.</div>';
+    }
+
+    populateMeterFilterSchemeOptions();
+    updateMeterFilterBuildingOptions();
+}
 
 function getActiveTab() {
     return document.querySelector('.tab-btn.active')?.dataset.tab || 'schemes';
@@ -63,17 +85,80 @@ function renderDataSyncPanel(message = '') {
     const syncMessage = storage.cloudSyncEnabled
         ? 'Cloud sync is active. This page hydrates from Firebase when the local cache is empty or incomplete.'
         : 'App data is stored locally in the browser. Firebase sync is not active in this runtime.';
+    const modeMessage = meterRegisterAdminMode
+        ? 'Developer inventory editing is enabled for this session.'
+        : 'Inventory management is read-only here. Use the Developer Console if inventory changes are needed in future.';
 
     panel.innerHTML = `
         <div class="info-box">
             <strong>Current cache</strong><br>
             Schemes: ${schemes} | Buildings: ${buildings} | Units: ${units} | Meters: ${meters}<br>
             <span class="text-muted">${syncMessage}</span>
+            <br><span class="text-muted">${modeMessage}</span>
             ${storage.cloudSyncEnabled ? '<div class="mt-2"><button class="btn btn-secondary" onclick="refreshMeterRegisterCache()">Refresh From Firebase</button></div>' : ''}
             ${message ? `<div class="mt-2">${message}</div>` : ''}
         </div>
     `;
 }
+
+function normalizeSearchValue(value) {
+    return String(value || '').trim().toLowerCase();
+}
+
+function populateMeterFilterSchemeOptions() {
+    const select = document.getElementById('meter-filter-scheme');
+    if (!select) {
+        return;
+    }
+
+    const previousValue = select.value;
+    const schemes = storage.getSchemes()
+        .slice()
+        .sort((left, right) => String(left.name || '').localeCompare(String(right.name || '')));
+
+    select.innerHTML = '<option value="">All Schemes</option>' +
+        schemes.map((scheme) => `<option value="${scheme.id}">${scheme.name}</option>`).join('');
+
+    if (schemes.some((scheme) => scheme.id === previousValue)) {
+        select.value = previousValue;
+    }
+}
+
+window.updateMeterFilterBuildingOptions = function() {
+    const select = document.getElementById('meter-filter-building');
+    const schemeId = document.getElementById('meter-filter-scheme')?.value || '';
+    if (!select) {
+        return;
+    }
+
+    const previousValue = select.value;
+    const buildings = storage.getBuildings(schemeId || null)
+        .slice()
+        .sort((left, right) => String(left.name || '').localeCompare(String(right.name || '')));
+
+    select.innerHTML = '<option value="">All Buildings</option>' +
+        buildings.map((building) => `<option value="${building.id}">${building.name}</option>`).join('');
+
+    if (buildings.some((building) => building.id === previousValue)) {
+        select.value = previousValue;
+        return;
+    }
+
+    select.value = '';
+};
+
+function getMeterRegisterFilters() {
+    return {
+        schemeId: document.getElementById('meter-filter-scheme')?.value || '',
+        buildingId: document.getElementById('meter-filter-building')?.value || '',
+        unitSearch: normalizeSearchValue(document.getElementById('meter-filter-unit')?.value || ''),
+        meterType: (document.getElementById('meter-filter-type')?.value || '').toUpperCase()
+    };
+}
+
+window.filterMeters = function() {
+    loadMeters();
+};
 
 window.refreshMeterRegisterCache = async function() {
     try {
@@ -208,7 +293,7 @@ function loadSchemes() {
     const container = document.getElementById('schemes-list');
     
     if (schemes.length === 0) {
-        container.innerHTML = '<p class="text-muted">No schemes found. Add your first scheme.</p>';
+        container.innerHTML = '<p class="text-muted">No schemes are currently available in the register.</p>';
         return;
     }
     
@@ -217,17 +302,19 @@ function loadSchemes() {
             <thead>
                 <tr>
                     <th>Scheme Name</th>
-                    <th>Actions</th>
+                    ${meterRegisterAdminMode ? '<th>Actions</th>' : ''}
                 </tr>
             </thead>
             <tbody>
                 ${schemes.map(scheme => `
                     <tr>
                         <td><strong>${scheme.name}</strong></td>
+                        ${meterRegisterAdminMode ? `
                         <td>
                             <button class="btn btn-secondary" onclick="editScheme('${scheme.id}')">Edit</button>
                             <button class="btn btn-danger" onclick="deleteScheme('${scheme.id}')">Delete</button>
                         </td>
+                        ` : ''}
                     </tr>
                 `).join('')}
             </tbody>
@@ -301,11 +388,17 @@ document.getElementById('scheme-form-element').addEventListener('submit', (e) =>
 
 // ========== BUILDINGS ==========
 function loadBuildings() {
-    const buildings = storage.getBuildings();
+    const buildings = storage.getBuildings()
+        .slice()
+        .sort((left, right) => {
+            const schemeNameLeft = storage.get('schemes', left.scheme_id)?.name || '';
+            const schemeNameRight = storage.get('schemes', right.scheme_id)?.name || '';
+            return `${schemeNameLeft} ${left.name}`.localeCompare(`${schemeNameRight} ${right.name}`);
+        });
     const container = document.getElementById('buildings-list');
     
     if (buildings.length === 0) {
-        container.innerHTML = '<p class="text-muted">No buildings found. Add your first building.</p>';
+        container.innerHTML = '<p class="text-muted">No buildings are currently available in the register.</p>';
         return;
     }
     
@@ -315,7 +408,7 @@ function loadBuildings() {
                 <tr>
                     <th>Scheme</th>
                     <th>Building Name</th>
-                    <th>Actions</th>
+                    ${meterRegisterAdminMode ? '<th>Actions</th>' : ''}
                 </tr>
             </thead>
             <tbody>
@@ -325,10 +418,12 @@ function loadBuildings() {
                         <tr>
                             <td>${scheme ? scheme.name : 'Unknown'}</td>
                             <td><strong>${building.name}</strong></td>
+                            ${meterRegisterAdminMode ? `
                             <td>
                                 <button class="btn btn-secondary" onclick="editBuilding('${building.id}')">Edit</button>
                                 <button class="btn btn-danger" onclick="deleteBuilding('${building.id}')">Delete</button>
                             </td>
+                            ` : ''}
                         </tr>
                     `;
                 }).join('')}
@@ -398,11 +493,17 @@ document.getElementById('building-form-element').addEventListener('submit', (e) 
 
 // ========== UNITS ==========
 function loadUnits() {
-    const units = storage.getUnits();
+    const units = storage.getUnits()
+        .slice()
+        .sort((left, right) => {
+            const buildingNameLeft = storage.get('buildings', left.building_id)?.name || '';
+            const buildingNameRight = storage.get('buildings', right.building_id)?.name || '';
+            return `${buildingNameLeft} ${left.unit_number}`.localeCompare(`${buildingNameRight} ${right.unit_number}`, undefined, { numeric: true, sensitivity: 'base' });
+        });
     const container = document.getElementById('units-list');
     
     if (units.length === 0) {
-        container.innerHTML = '<p class="text-muted">No units found. Add your first unit.</p>';
+        container.innerHTML = '<p class="text-muted">No units are currently available in the register.</p>';
         return;
     }
     
@@ -413,7 +514,7 @@ function loadUnits() {
                     <th>Building</th>
                     <th>Unit Number</th>
                     <th>Owner</th>
-                    <th>Actions</th>
+                    <th>${meterRegisterAdminMode ? 'Actions' : 'Tools'}</th>
                 </tr>
             </thead>
             <tbody>
@@ -425,8 +526,8 @@ function loadUnits() {
                             <td><strong>${unit.unit_number}</strong></td>
                             <td>${unit.owner_name || 'N/A'}</td>
                             <td>
-                                <button class="btn btn-secondary" onclick="editUnit('${unit.id}')">Edit</button>
-                                <button class="btn btn-danger" onclick="deleteUnit('${unit.id}')">Delete</button>
+                                ${meterRegisterAdminMode ? `<button class="btn btn-secondary" onclick="editUnit('${unit.id}')">Edit</button>
+                                <button class="btn btn-danger" onclick="deleteUnit('${unit.id}')">Delete</button>` : ''}
                                 <button class="btn btn-primary" onclick="window.location.href='dispute.html?unit_id=${unit.id}'">📋 Dispute Pack</button>
                             </td>
                         </tr>
@@ -496,11 +597,55 @@ document.getElementById('unit-form-element').addEventListener('submit', (e) => {
 
 // ========== METERS ==========
 function loadMeters() {
-    const meters = storage.getMeters();
+    populateMeterFilterSchemeOptions();
+    updateMeterFilterBuildingOptions();
+
+    const filters = getMeterRegisterFilters();
+    const meters = storage.getMeters()
+        .filter((meter) => {
+            const meterType = String(meter.meter_type || '').toUpperCase();
+            const meterDetails = storage.getMeterWithDetails(meter.id);
+            const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
+            const building = unit?.building_id ? storage.get('buildings', unit.building_id) : null;
+            const searchText = normalizeSearchValue([
+                meter.meter_number,
+                meterDetails?.unit_name,
+                building?.name
+            ].join(' '));
+
+            if (filters.schemeId && meter.scheme_id !== filters.schemeId) {
+                return false;
+            }
+
+            if (filters.buildingId && unit?.building_id !== filters.buildingId) {
+                return false;
+            }
+
+            if (filters.meterType && meterType !== filters.meterType) {
+                return false;
+            }
+
+            if (filters.unitSearch && !searchText.includes(filters.unitSearch)) {
+                return false;
+            }
+
+            return true;
+        })
+        .sort((left, right) => {
+            const leftDetails = storage.getMeterWithDetails(left.id);
+            const rightDetails = storage.getMeterWithDetails(right.id);
+            const leftUnit = left.unit_id ? storage.get('units', left.unit_id) : null;
+            const rightUnit = right.unit_id ? storage.get('units', right.unit_id) : null;
+            const leftBuilding = leftUnit?.building_id ? storage.get('buildings', leftUnit.building_id) : null;
+            const rightBuilding = rightUnit?.building_id ? storage.get('buildings', rightUnit.building_id) : null;
+            const leftKey = `${leftBuilding?.name || ''} ${leftDetails?.unit_name || ''} ${left.meter_number || ''}`;
+            const rightKey = `${rightBuilding?.name || ''} ${rightDetails?.unit_name || ''} ${right.meter_number || ''}`;
+            return leftKey.localeCompare(rightKey, undefined, { numeric: true, sensitivity: 'base' });
+        });
     const container = document.getElementById('meters-list');
     
     if (meters.length === 0) {
-        container.innerHTML = '<p class="text-muted">No meters found. Add your first meter.</p>';
+        container.innerHTML = '<p class="text-muted">No meters match the current filters.</p>';
         return;
     }
     
@@ -508,18 +653,23 @@ function loadMeters() {
         <table class="data-table">
             <thead>
                 <tr>
+                    <th>Scheme</th>
+                    <th>Building</th>
                     <th>Type</th>
                     <th>Meter Number</th>
                     <th>Unit</th>
                     <th>Last Reading</th>
                     <th>Last Reading Date</th>
                     <th>Status</th>
-                    <th>Actions</th>
+                    <th>${meterRegisterAdminMode ? 'Actions' : 'Tools'}</th>
                 </tr>
             </thead>
             <tbody>
                 ${meters.map(meter => {
                     const meterDetails = storage.getMeterWithDetails(meter.id);
+                    const scheme = storage.get('schemes', meter.scheme_id);
+                    const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
+                    const building = unit?.building_id ? storage.get('buildings', unit.building_id) : null;
                     const badgeClass = meter.meter_type === 'BULK'
                         ? 'danger'
                         : meter.meter_type === 'COMMON'
@@ -532,6 +682,8 @@ function loadMeters() {
                             : (meterDetails.unit_name || 'N/A');
                     return `
                         <tr>
+                            <td>${scheme?.name || 'Unknown'}</td>
+                            <td>${building?.name || (meter.meter_type === 'UNIT' ? 'N/A' : 'Scheme-level')}</td>
                             <td><span class="badge badge-${badgeClass}">${meter.meter_type}</span></td>
                             <td><strong>${meter.meter_number}</strong></td>
                             <td>${location}</td>
@@ -540,8 +692,10 @@ function loadMeters() {
                             <td><span class="badge badge-secondary">${meter.status}</span></td>
                             <td>
                                 <button class="btn btn-primary" onclick="viewMeterHistory('${meter.id}')">History</button>
+                                ${meterRegisterAdminMode ? `
                                 <button class="btn btn-secondary" onclick="editMeter('${meter.id}')">Edit</button>
                                 <button class="btn btn-danger" onclick="deleteMeter('${meter.id}')">Delete</button>
+                                ` : ''}
                             </td>
                         </tr>
                     `;
