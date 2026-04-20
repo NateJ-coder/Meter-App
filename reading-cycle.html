@@ -93,10 +93,14 @@
 
                 <div class="filter-bar">
                     <div class="form-group">
-                        <label for="filter-building">Filter by Building</label>
+                        <label for="filter-building">Building *</label>
                         <select id="filter-building" onchange="filterReadings()">
-                            <option value="">All Buildings</option>
+                            <option value="">Select a building</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-unit">Search Unit</label>
+                        <input type="search" id="filter-unit" placeholder="Type a unit number" oninput="filterReadings()" autocomplete="off" spellcheck="false">
                     </div>
                     <div class="form-group">
                         <label for="filter-status">Filter by Status</label>

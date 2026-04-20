@@ -183,6 +183,14 @@ function writeEntityToLocalCache(entity, items) {
     localStorage.setItem(entity, JSON.stringify(items));
 }
 
+function formatDateKey(date) {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
+function getDateKeyFromCycle(cycle) {
+    return String(cycle?.start_date || cycle?.end_date || '');
+}
+
 function buildOperationalBackupSnapshot(storageApi) {
     const snapshot = {};
 
@@ -577,6 +585,42 @@ export const storage = {
     getCycles(schemeId = null) {
         const cycles = this.getAll('cycles');
         return schemeId ? cycles.filter(c => c.scheme_id === schemeId) : cycles;
+    },
+
+    getCaptureWindowCutoffDate(schemeId = null) {
+        const importedCycles = this.getCycles(schemeId)
+            .filter((cycle) => String(cycle.imported_from || '').toLowerCase() === 'image_capture_upload')
+            .sort((left, right) => getDateKeyFromCycle(left).localeCompare(getDateKeyFromCycle(right)));
+
+        if (importedCycles.length === 0) {
+            return null;
+        }
+
+        const earliestImportedDate = getDateKeyFromCycle(importedCycles[0]);
+        const cutoffDate = new Date(`${earliestImportedDate}T00:00:00`);
+        if (Number.isNaN(cutoffDate.getTime())) {
+            return null;
+        }
+
+        cutoffDate.setMonth(cutoffDate.getMonth() - 1, 1);
+        return formatDateKey(cutoffDate);
+    },
+
+    getVisibleCycles(schemeId = null) {
+        const cycles = this.getCycles(schemeId);
+        const cutoffDate = this.getCaptureWindowCutoffDate(schemeId);
+
+        if (!cutoffDate) {
+            return cycles;
+        }
+
+        return cycles.filter((cycle) => {
+            if (String(cycle.status || '').toUpperCase() === 'OPEN') {
+                return true;
+            }
+
+            return getDateKeyFromCycle(cycle) >= cutoffDate;
+        });
     },
 
     getReadings(cycleId = null) {

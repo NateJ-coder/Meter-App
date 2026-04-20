@@ -13,6 +13,10 @@ const cyclePageState = {
     activeTabId: 'cycle-control-tab'
 };
 
+function normalizeSearchValue(value) {
+    return String(value || '').trim().toLowerCase();
+}
+
 initializePage();
 
 function initializePage() {
@@ -287,6 +291,8 @@ function renderOpenCycles() {
         document.getElementById('readings-list').innerHTML = '';
         document.getElementById('active-cycle-select').innerHTML = '';
         populateBuildingFilter(null);
+        document.getElementById('filter-unit').value = '';
+        document.getElementById('filter-status').value = '';
         return;
     }
 
@@ -358,7 +364,7 @@ function renderSelectedCycle() {
     document.getElementById('active-cycle-summary').innerHTML = `
         <strong>${scheme?.name || 'Unknown Scheme'}</strong><br>
         ${sourceLabel} • ${cycle.start_date} to ${cycle.end_date}<br>
-        Only this scheme's meters are shown below. Use the selector above to switch cycles.
+        Select a building first, then use the unit search to narrow the meters for this scheme.
     `;
 
     populateBuildingFilter(cycle.scheme_id);
@@ -369,18 +375,22 @@ function populateBuildingFilter(schemeId) {
     const select = document.getElementById('filter-building');
 
     if (!schemeId) {
-        select.innerHTML = '<option value="">All Buildings</option>';
+        select.innerHTML = '<option value="">Select a building</option>';
         return;
     }
 
     const previousValue = select.value;
     const buildings = storage.getBuildings(schemeId);
-    select.innerHTML = '<option value="">All Buildings</option>' +
+    select.innerHTML = '<option value="">Select a building</option>' +
         buildings.map(building => `<option value="${building.id}">${building.name}</option>`).join('');
 
     if (buildings.some(building => building.id === previousValue)) {
         select.value = previousValue;
+        return;
     }
+
+    select.value = buildings.length === 1 ? buildings[0].id : '';
+    document.getElementById('filter-unit').value = '';
 }
 
 function loadReadingsList(cycleId) {
@@ -393,17 +403,28 @@ function loadReadingsList(cycleId) {
     }
 
     const buildingFilter = document.getElementById('filter-building').value;
+    const unitFilter = normalizeSearchValue(document.getElementById('filter-unit').value);
     const statusFilter = document.getElementById('filter-status').value;
     const meters = storage.getMeters(cycle.scheme_id).filter(meter => meter.meter_type === 'UNIT');
     const readings = storage.getReadings(cycleId);
     const readingsMap = new Map(readings.map(reading => [reading.meter_id, reading]));
 
+    if (!buildingFilter) {
+        container.innerHTML = '<p class="text-muted">Select a building to load the meters for this scheme.</p>';
+        return;
+    }
+
     const filteredMeters = meters.filter(meter => {
         const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
         const reading = readingsMap.get(meter.id);
         const hasFlags = Boolean(reading?.flags?.length);
+        const unitIdentifier = normalizeSearchValue(unit?.unit_number || unit?.name || '');
 
-        if (buildingFilter && unit?.building_id !== buildingFilter) {
+        if (unit?.building_id !== buildingFilter) {
+            return false;
+        }
+
+        if (unitFilter && !unitIdentifier.includes(unitFilter)) {
             return false;
         }
 
@@ -428,7 +449,7 @@ function loadReadingsList(cycleId) {
     }
 
     if (filteredMeters.length === 0) {
-        container.innerHTML = '<p class="text-muted">No meters match the current filters.</p>';
+        container.innerHTML = '<p class="text-muted">No meters match the selected building and filters.</p>';
         return;
     }
 

@@ -82,8 +82,7 @@ export const xlsxExport = {
         summaryData.push(['Notes:', reading.notes || 'None']);
 
         // Get reading history for this meter (last 6 readings)
-        const allCycles = storage.getAll('cycles')
-            .filter(c => c.scheme_id === scheme.id)
+        const allCycles = storage.getVisibleCycles(scheme.id)
             .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
             .slice(0, 6);
 

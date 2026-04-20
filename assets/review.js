@@ -11,7 +11,7 @@ populateCycleSelect();
 loadReviewData();
 
 function populateCycleSelect() {
-    const cycles = storage.getAll('cycles').sort((a, b) => 
+    const cycles = storage.getVisibleCycles().sort((a, b) => 
         new Date(b.start_date) - new Date(a.start_date)
     );
     

@@ -66,8 +66,7 @@ window.onSchemeChange = function() {
 };
 
 function populateCycleFilter(schemeId) {
-    const cycles = storage.getAll('cycles')
-        .filter(c => c.scheme_id === schemeId)
+    const cycles = storage.getVisibleCycles(schemeId)
         .sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
     
     const select = document.getElementById('filter-cycle');

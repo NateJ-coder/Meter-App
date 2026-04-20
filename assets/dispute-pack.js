@@ -79,9 +79,7 @@ export function getDisputePack(unitId, options = {}) {
     }
 
     // Step 5: Find relevant cycles
-    let cycles = storage.getAll('cycles').filter(c => 
-        c.scheme_id === scheme.id
-    );
+    let cycles = storage.getVisibleCycles(scheme.id);
 
     // Filter by status
     if (!includeOpen) {

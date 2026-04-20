@@ -659,6 +659,7 @@ body.modal-open {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-bottom: 1rem;
+    align-items: end;
 }
 
 /* ===================================
