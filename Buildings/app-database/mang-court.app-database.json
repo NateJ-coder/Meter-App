@@ -1,0 +1,379 @@
+{
+  "record_type": "building-app-database",
+  "building_slug": "mang-court",
+  "generated_at": "2026-04-20T07:58:45.954Z",
+  "source_references": {
+    "normalized_sheet_json": "C:\\Projects\\Meter App\\DataMigration\\outputs\\sheet-normalized\\mang-court.normalized.json",
+    "utility_dash_app_payload_json": "C:\\Projects\\Meter App\\source-documents\\03-extracted-outputs\\utility-dash-app\\utility-dash-app-payload.json",
+    "building_source_folder": null
+  },
+  "building": {
+    "id": "building-mang-court-main",
+    "scheme_id": "scheme-mang-court",
+    "name": "Mang Court",
+    "created_at": "2026-04-08T18:27:33.559067",
+    "imported_from": "utility_dash_macrofree",
+    "source_reference": "Mang Court"
+  },
+  "scheme": {
+    "id": "scheme-mang-court",
+    "name": "Mang Court",
+    "created_at": "2026-04-08T18:27:33.559050",
+    "imported_from": "utility_dash_macrofree",
+    "source_reference": "Mang Court"
+  },
+  "settings_snapshot": {
+    "vat_percent": 0.15,
+    "ignore_negative_common_property_amounts": true,
+    "tolerance_months": 4,
+    "tolerance_percentage": 1
+  },
+  "charge_modes": [
+    {
+      "source_row": 4,
+      "charge_name": "Elec Common Prop",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 5,
+      "charge_name": "Elec Service Charge",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 6,
+      "charge_name": "Elec Network Charge",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 7,
+      "charge_name": "Water Charge",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 8,
+      "charge_name": "Water Demand Management Levy",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 9,
+      "charge_name": "Water Surcharge",
+      "distribution_mode": "None"
+    },
+    {
+      "source_row": 10,
+      "charge_name": "Sanitation",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 11,
+      "charge_name": "Refuse",
+      "distribution_mode": "None"
+    }
+  ],
+  "cycles": [],
+  "units": [
+    {
+      "id": "unit-mang-court-mc-01",
+      "building_id": "building-mang-court-main",
+      "unit_number": "MC 01",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.560142",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 01"
+    },
+    {
+      "id": "unit-mang-court-mc-02",
+      "building_id": "building-mang-court-main",
+      "unit_number": "MC 02",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.560177",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 02"
+    },
+    {
+      "id": "unit-mang-court-mc-03",
+      "building_id": "building-mang-court-main",
+      "unit_number": "MC 03",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.560197",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 03"
+    },
+    {
+      "id": "unit-mang-court-mc-04",
+      "building_id": "building-mang-court-main",
+      "unit_number": "MC 04",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.560216",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 04"
+    },
+    {
+      "id": "unit-mang-court-mc-05",
+      "building_id": "building-mang-court-main",
+      "unit_number": "MC 05",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.560236",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 05"
+    },
+    {
+      "id": "unit-mang-court-mc-06",
+      "building_id": "building-mang-court-main",
+      "unit_number": "MC 06",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:33.560255",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 06"
+    }
+  ],
+  "meters": [
+    {
+      "id": "meter-mang-court-unit-mc-01",
+      "scheme_id": "scheme-mang-court",
+      "unit_id": "unit-mang-court-mc-01",
+      "meter_number": "MC 01",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "MC 01",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 16.66666667,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:33.560162",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 01",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-mang-court-unit-mc-02",
+      "scheme_id": "scheme-mang-court",
+      "unit_id": "unit-mang-court-mc-02",
+      "meter_number": "MC 02",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "MC 02",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 16.66666667,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:33.560185",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 02",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-mang-court-unit-mc-03",
+      "scheme_id": "scheme-mang-court",
+      "unit_id": "unit-mang-court-mc-03",
+      "meter_number": "MC 03",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "MC 03",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 16.66666667,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:33.560205",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 03",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-mang-court-unit-mc-04",
+      "scheme_id": "scheme-mang-court",
+      "unit_id": "unit-mang-court-mc-04",
+      "meter_number": "MC 04",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "MC 04",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 16.66666667,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:33.560224",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 04",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-mang-court-unit-mc-05",
+      "scheme_id": "scheme-mang-court",
+      "unit_id": "unit-mang-court-mc-05",
+      "meter_number": "MC 05",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "MC 05",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 16.66666667,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:33.560243",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 05",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-mang-court-unit-mc-06",
+      "scheme_id": "scheme-mang-court",
+      "unit_id": "unit-mang-court-mc-06",
+      "meter_number": "MC 06",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "MC 06",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 16.66666667,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:33.560262",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:MC 06",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-mang-court-bulk-bulk-1",
+      "scheme_id": "scheme-mang-court",
+      "unit_id": null,
+      "meter_number": "Bulk 1",
+      "meter_type": "BULK",
+      "meter_role": "bulk",
+      "service_type": "electricity",
+      "location_description": "Mang Court",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": null,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:33.560276",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Mang Court:Bulk 1",
+      "source_confidence": "medium"
+    }
+  ],
+  "legacy_meter_map": [
+    {
+      "id": "legacy-map-mang-court-mc-01",
+      "legacy_label": "MC 01",
+      "source_sheet": "Mang Court",
+      "meter_id": "meter-mang-court-unit-mc-01",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:33.560170"
+    },
+    {
+      "id": "legacy-map-mang-court-mc-02",
+      "legacy_label": "MC 02",
+      "source_sheet": "Mang Court",
+      "meter_id": "meter-mang-court-unit-mc-02",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:33.560191"
+    },
+    {
+      "id": "legacy-map-mang-court-mc-03",
+      "legacy_label": "MC 03",
+      "source_sheet": "Mang Court",
+      "meter_id": "meter-mang-court-unit-mc-03",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:33.560211"
+    },
+    {
+      "id": "legacy-map-mang-court-mc-04",
+      "legacy_label": "MC 04",
+      "source_sheet": "Mang Court",
+      "meter_id": "meter-mang-court-unit-mc-04",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:33.560230"
+    },
+    {
+      "id": "legacy-map-mang-court-mc-05",
+      "legacy_label": "MC 05",
+      "source_sheet": "Mang Court",
+      "meter_id": "meter-mang-court-unit-mc-05",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:33.560249"
+    },
+    {
+      "id": "legacy-map-mang-court-mc-06",
+      "legacy_label": "MC 06",
+      "source_sheet": "Mang Court",
+      "meter_id": "meter-mang-court-unit-mc-06",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:33.560268"
+    },
+    {
+      "id": "legacy-map-mang-court-bulk-1",
+      "legacy_label": "Bulk 1",
+      "source_sheet": "Mang Court",
+      "meter_id": "meter-mang-court-bulk-bulk-1",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:33.560282"
+    }
+  ],
+  "historical_readings": [],
+  "data_quality": {
+    "review_flags": [
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 18,
+        "legacy_label": "MC 01",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 19,
+        "legacy_label": "MC 02",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 20,
+        "legacy_label": "MC 03",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 21,
+        "legacy_label": "MC 04",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 22,
+        "legacy_label": "MC 05",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 23,
+        "legacy_label": "MC 06",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 24,
+        "legacy_label": "Bulk 1",
+        "message": "Electricity row has no captured reading values."
+      }
+    ],
+    "non_numeric_reading_rows": [],
+    "meter_number_note": "meter_number currently equals the legacy meter label because no distinct serial-number field was found in the extracted sources"
+  }
+}

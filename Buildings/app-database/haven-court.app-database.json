@@ -1,0 +1,766 @@
+{
+  "record_type": "building-app-database",
+  "building_slug": "haven-court",
+  "generated_at": "2026-04-20T07:58:46.191Z",
+  "source_references": {
+    "normalized_sheet_json": "C:\\Projects\\Meter App\\DataMigration\\outputs\\sheet-normalized\\haven-court.normalized.json",
+    "utility_dash_app_payload_json": "C:\\Projects\\Meter App\\source-documents\\03-extracted-outputs\\utility-dash-app\\utility-dash-app-payload.json",
+    "building_source_folder": null
+  },
+  "building": {
+    "id": "building-haven-court-main",
+    "scheme_id": "scheme-haven-court",
+    "name": "Haven Court",
+    "created_at": "2026-04-08T18:27:34.584350",
+    "imported_from": "utility_dash_macrofree",
+    "source_reference": "Haven Court"
+  },
+  "scheme": {
+    "id": "scheme-haven-court",
+    "name": "Haven Court",
+    "created_at": "2026-04-08T18:27:34.584319",
+    "imported_from": "utility_dash_macrofree",
+    "source_reference": "Haven Court"
+  },
+  "settings_snapshot": {
+    "vat_percent": 0.15,
+    "ignore_negative_common_property_amounts": true,
+    "tolerance_months": 4,
+    "tolerance_percentage": 1
+  },
+  "charge_modes": [
+    {
+      "source_row": 4,
+      "charge_name": "Elec Common Prop",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 5,
+      "charge_name": "Elec Service Charge",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 6,
+      "charge_name": "Elec Network Charge",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 7,
+      "charge_name": "Water Charge",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 8,
+      "charge_name": "Water Demand Management Levy",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 9,
+      "charge_name": "Water Surcharge",
+      "distribution_mode": "Even"
+    },
+    {
+      "source_row": 10,
+      "charge_name": "Sanitation",
+      "distribution_mode": "PQ"
+    },
+    {
+      "source_row": 11,
+      "charge_name": "Refuse",
+      "distribution_mode": "None"
+    }
+  ],
+  "cycles": [],
+  "units": [
+    {
+      "id": "unit-haven-court-hc01",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC01",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585616",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC01"
+    },
+    {
+      "id": "unit-haven-court-hc02",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC02",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585645",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC02"
+    },
+    {
+      "id": "unit-haven-court-hc03",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC03",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585665",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC03"
+    },
+    {
+      "id": "unit-haven-court-hc04",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC04",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585684",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC04"
+    },
+    {
+      "id": "unit-haven-court-hc05",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC05",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585703",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC05"
+    },
+    {
+      "id": "unit-haven-court-hc06",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC06",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585721",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC06"
+    },
+    {
+      "id": "unit-haven-court-hc07",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC07",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585740",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC07"
+    },
+    {
+      "id": "unit-haven-court-hc08",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC08",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585759",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC08"
+    },
+    {
+      "id": "unit-haven-court-hc09",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC09",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585781",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC09"
+    },
+    {
+      "id": "unit-haven-court-hc10",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC10",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585799",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC10"
+    },
+    {
+      "id": "unit-haven-court-hc11",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC11",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585819",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC11"
+    },
+    {
+      "id": "unit-haven-court-hc12",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC12",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585838",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC12"
+    },
+    {
+      "id": "unit-haven-court-hc13",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC13",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585857",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC13"
+    },
+    {
+      "id": "unit-haven-court-hc14",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC14",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585875",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC14"
+    },
+    {
+      "id": "unit-haven-court-hc15",
+      "building_id": "building-haven-court-main",
+      "unit_number": "HC15",
+      "status": "occupied",
+      "created_at": "2026-04-08T18:27:34.585894",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC15"
+    }
+  ],
+  "meters": [
+    {
+      "id": "meter-haven-court-unit-hc01",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc01",
+      "meter_number": "HC01",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC01",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 5.743243243,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585631",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC01",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc02",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc02",
+      "meter_number": "HC02",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC02",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 7.995495495,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585653",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC02",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc03",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc03",
+      "meter_number": "HC03",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC03",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 8.445945946,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585672",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC03",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc04",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc04",
+      "meter_number": "HC04",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC04",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 8.558558559,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585691",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC04",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc05",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc05",
+      "meter_number": "HC05",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC05",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 8.558558559,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585710",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC05",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc06",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc06",
+      "meter_number": "HC06",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC06",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 5.855855856,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585729",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC06",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc07",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc07",
+      "meter_number": "HC07",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC07",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 1.126126126,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585748",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC07",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc08",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc08",
+      "meter_number": "HC08",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC08",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 6.306306306,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585769",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC08",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc09",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc09",
+      "meter_number": "HC09",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC09",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 9.572072072,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585788",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC09",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc10",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc10",
+      "meter_number": "HC10",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC10",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 10.13513514,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585807",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC10",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc11",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc11",
+      "meter_number": "HC11",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC11",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 10.24774775,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585826",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC11",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc12",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc12",
+      "meter_number": "HC12",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC12",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 8.896396396,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585845",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC12",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc13",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc13",
+      "meter_number": "HC13",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC13",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 6.193693694,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585864",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC13",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc14",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc14",
+      "meter_number": "HC14",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC14",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 1.238738739,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585882",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC14",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-unit-hc15",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": "unit-haven-court-hc15",
+      "meter_number": "HC15",
+      "meter_type": "UNIT",
+      "meter_role": "unit",
+      "service_type": "electricity",
+      "location_description": "HC15",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": 1.126126126,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585901",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:HC15",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-haven-court-bulk-bulk01",
+      "scheme_id": "scheme-haven-court",
+      "unit_id": null,
+      "meter_number": "BULK01",
+      "meter_type": "BULK",
+      "meter_role": "bulk",
+      "service_type": "electricity",
+      "location_description": "Haven Court",
+      "last_reading": null,
+      "last_reading_date": null,
+      "pq_factor": null,
+      "prepaid_marker": "",
+      "created_at": "2026-04-08T18:27:34.585915",
+      "imported_from": "utility_dash_macrofree",
+      "source_reference": "Haven Court:BULK01",
+      "source_confidence": "medium"
+    }
+  ],
+  "legacy_meter_map": [
+    {
+      "id": "legacy-map-haven-court-hc01",
+      "legacy_label": "HC01",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc01",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585639"
+    },
+    {
+      "id": "legacy-map-haven-court-hc02",
+      "legacy_label": "HC02",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc02",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585659"
+    },
+    {
+      "id": "legacy-map-haven-court-hc03",
+      "legacy_label": "HC03",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc03",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585678"
+    },
+    {
+      "id": "legacy-map-haven-court-hc04",
+      "legacy_label": "HC04",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc04",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585697"
+    },
+    {
+      "id": "legacy-map-haven-court-hc05",
+      "legacy_label": "HC05",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc05",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585716"
+    },
+    {
+      "id": "legacy-map-haven-court-hc06",
+      "legacy_label": "HC06",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc06",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585734"
+    },
+    {
+      "id": "legacy-map-haven-court-hc07",
+      "legacy_label": "HC07",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc07",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585753"
+    },
+    {
+      "id": "legacy-map-haven-court-hc08",
+      "legacy_label": "HC08",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc08",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585775"
+    },
+    {
+      "id": "legacy-map-haven-court-hc09",
+      "legacy_label": "HC09",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc09",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585794"
+    },
+    {
+      "id": "legacy-map-haven-court-hc10",
+      "legacy_label": "HC10",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc10",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585813"
+    },
+    {
+      "id": "legacy-map-haven-court-hc11",
+      "legacy_label": "HC11",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc11",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585832"
+    },
+    {
+      "id": "legacy-map-haven-court-hc12",
+      "legacy_label": "HC12",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc12",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585851"
+    },
+    {
+      "id": "legacy-map-haven-court-hc13",
+      "legacy_label": "HC13",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc13",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585869"
+    },
+    {
+      "id": "legacy-map-haven-court-hc14",
+      "legacy_label": "HC14",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc14",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585888"
+    },
+    {
+      "id": "legacy-map-haven-court-hc15",
+      "legacy_label": "HC15",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-unit-hc15",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585907"
+    },
+    {
+      "id": "legacy-map-haven-court-bulk01",
+      "legacy_label": "BULK01",
+      "source_sheet": "Haven Court",
+      "meter_id": "meter-haven-court-bulk-bulk01",
+      "mapping_confidence": "medium",
+      "review_status": "pending",
+      "created_at": "2026-04-08T18:27:34.585921"
+    }
+  ],
+  "historical_readings": [],
+  "data_quality": {
+    "review_flags": [
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 18,
+        "legacy_label": "HC01",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 19,
+        "legacy_label": "HC02",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 20,
+        "legacy_label": "HC03",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 21,
+        "legacy_label": "HC04",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 22,
+        "legacy_label": "HC05",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 23,
+        "legacy_label": "HC06",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 24,
+        "legacy_label": "HC07",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 25,
+        "legacy_label": "HC08",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 26,
+        "legacy_label": "HC09",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 27,
+        "legacy_label": "HC10",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 28,
+        "legacy_label": "HC11",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 29,
+        "legacy_label": "HC12",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 30,
+        "legacy_label": "HC13",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 31,
+        "legacy_label": "HC14",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 32,
+        "legacy_label": "HC15",
+        "message": "Electricity row has no captured reading values."
+      },
+      {
+        "severity": "medium",
+        "type": "row-with-no-readings",
+        "row_index": 33,
+        "legacy_label": "BULK01",
+        "message": "Electricity row has no captured reading values."
+      }
+    ],
+    "non_numeric_reading_rows": [],
+    "meter_number_note": "meter_number currently equals the legacy meter label because no distinct serial-number field was found in the extracted sources"
+  }
+}

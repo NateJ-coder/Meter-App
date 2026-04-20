@@ -4,6 +4,7 @@
   "description": "**Bulk + Submeter Readings | Role-Separated | Audit-Friendly**",
   "main": "index.js",
   "scripts": {
+    "generate:app-database": "node scripts/generate-building-app-database.js",
     "test": "echo No automated tests configured"
   },
   "repository": {
