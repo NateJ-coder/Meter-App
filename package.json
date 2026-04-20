@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "generate:app-database": "node scripts/generate-building-app-database.js",
+    "sync:firestore-operational": "node scripts/replace-firestore-operational-state.mjs",
     "test": "echo No automated tests configured"
   },
   "repository": {
