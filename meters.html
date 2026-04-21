@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meter Register - Fuzio Electricity Readings</title>
+    <title>Meters - Fuzio Electricity Readings</title>
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Dashboard</a></li>
-            <li><a href="meters.html" class="active">Meter Register</a></li>
+            <li><a href="meters.html" class="active">Meters</a></li>
             <li><a href="reading-cycle.html">Reading Cycle</a></li>
             <li><a href="review.html">Review</a></li>
             <li><a href="export.html">Export</a></li>
@@ -24,8 +24,8 @@
 
     <main class="container">
         <header class="page-header">
-            <h1>Meter Register</h1>
-            <p class="subtitle">View schemes, buildings, units, and meters</p>
+            <h1>Meters</h1>
+            <p class="subtitle">Index of registered schemes, buildings, units, and meters</p>
         </header>
 
         <section class="card">
@@ -36,16 +36,35 @@
             <div id="meter-register-mode-note" class="mt-2"></div>
         </section>
 
-        <!-- Tabs -->
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="schemes">Schemes</button>
-            <button class="tab-btn" data-tab="buildings">Buildings</button>
-            <button class="tab-btn" data-tab="units">Units</button>
-            <button class="tab-btn" data-tab="meters">Meters</button>
-        </div>
+        <section class="card">
+            <div class="card-header">
+                <h2>Filters</h2>
+                <button class="btn btn-secondary" type="button" onclick="clearInventoryFilters()">Clear Filters</button>
+            </div>
+            <div class="filter-bar">
+                <div class="form-group">
+                    <label for="inventory-filter-scheme">Scheme</label>
+                    <select id="inventory-filter-scheme" onchange="filterInventory()">
+                        <option value="">All Schemes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inventory-filter-unit">Search Unit</label>
+                    <input type="search" id="inventory-filter-unit" placeholder="Type a unit number" oninput="filterInventory()" autocomplete="off" spellcheck="false">
+                </div>
+                <div class="form-group">
+                    <label for="inventory-filter-meter-type">Meter Type</label>
+                    <select id="inventory-filter-meter-type" onchange="filterInventory()">
+                        <option value="">All Types</option>
+                        <option value="UNIT">Unit</option>
+                        <option value="BULK">Bulk</option>
+                        <option value="COMMON">Common</option>
+                    </select>
+                </div>
+            </div>
+        </section>
 
-        <!-- Schemes Tab -->
-        <section class="tab-content active" id="tab-schemes">
+        <section class="inventory-section" id="schemes-section">
             <div class="card">
                 <div class="card-header">
                     <h2>Schemes</h2>
@@ -69,8 +88,7 @@
             </div>
         </section>
 
-        <!-- Buildings Tab -->
-        <section class="tab-content" id="tab-buildings">
+        <section class="inventory-section" id="buildings-section">
             <div class="card">
                 <div class="card-header">
                     <h2>Buildings</h2>
@@ -98,8 +116,7 @@
             </div>
         </section>
 
-        <!-- Units Tab -->
-        <section class="tab-content" id="tab-units">
+        <section class="inventory-section" id="units-section">
             <div class="card">
                 <div class="card-header">
                     <h2>Units</h2>
@@ -131,39 +148,11 @@
             </div>
         </section>
 
-        <!-- Meters Tab -->
-        <section class="tab-content" id="tab-meters">
+        <section class="inventory-section" id="meters-section">
             <div class="card">
                 <div class="card-header">
                     <h2>Meters</h2>
                     <button class="btn btn-primary" data-admin-only onclick="showMeterForm()">+ Add Meter</button>
-                </div>
-                <div class="filter-bar">
-                    <div class="form-group">
-                        <label for="meter-filter-scheme">Scheme</label>
-                        <select id="meter-filter-scheme" onchange="updateMeterFilterBuildingOptions(); filterMeters()">
-                            <option value="">All Schemes</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="meter-filter-building">Building</label>
-                        <select id="meter-filter-building" onchange="filterMeters()">
-                            <option value="">All Buildings</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="meter-filter-unit">Search Unit</label>
-                        <input type="search" id="meter-filter-unit" placeholder="Type a unit number" oninput="filterMeters()" autocomplete="off" spellcheck="false">
-                    </div>
-                    <div class="form-group">
-                        <label for="meter-filter-type">Meter Type</label>
-                        <select id="meter-filter-type" onchange="filterMeters()">
-                            <option value="">All Types</option>
-                            <option value="UNIT">Unit</option>
-                            <option value="BULK">Bulk</option>
-                            <option value="COMMON">Common</option>
-                        </select>
-                    </div>
                 </div>
                 <div id="meters-list"></div>
             </div>

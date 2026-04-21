@@ -73,7 +73,7 @@
         <section class="card">
             <h2>Inventory Admin</h2>
             <div class="info-box mb-2">
-                The public Meter Register is now read-only. Open the register in developer mode if inventory maintenance is ever needed in future.
+                The public Meters page is now read-only. Open the inventory page in developer mode if maintenance is ever needed in future.
             </div>
             <a href="meters.html?mode=admin" class="btn btn-primary">Open Inventory Admin</a>
         </section>
@@ -711,7 +711,7 @@
                     recommendations.push({
                         for_issue: issue.message,
                         recommendation: 'Add at least one bulk meter so reconciliation, common usage, and loss checks can run correctly.',
-                        action: 'Create a bulk meter in the Meter Register'
+                        action: 'Create a bulk meter from the Meters inventory page'
                     });
                 }
 
@@ -719,7 +719,7 @@
                     recommendations.push({
                         for_issue: issue.message,
                         recommendation: 'Register common property meters separately so shared-area usage is measured directly instead of being inferred from the bulk residual.',
-                        action: 'Create common property meters in the Meter Register'
+                        action: 'Create common property meters from the Meters inventory page'
                     });
                 }
 

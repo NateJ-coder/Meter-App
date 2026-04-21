@@ -14,7 +14,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Dashboard</a></li>
-            <li><a href="meters.html">Meter Register</a></li>
+            <li><a href="meters.html">Meters</a></li>
             <li><a href="qr-generator.html" class="active">QR Codes</a></li>
         </ul>
     </nav>
@@ -100,7 +100,7 @@
             if (schemes.length === 0) {
                 const option = document.createElement('option');
                 option.disabled = true;
-                option.textContent = 'No schemes found. Create schemes in Meter Register first.';
+                option.textContent = 'No schemes found. Review the Meters page first.';
                 select.appendChild(option);
                 return;
             }

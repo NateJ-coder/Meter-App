@@ -1,5 +1,5 @@
 /**
- * meters.js - Meter Register Page Logic
+ * meters.js - Meters Index Page Logic
  */
 
 import { storage } from './storage.js';
@@ -29,8 +29,17 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
-// Load initial tab
-loadTabData('schemes');
+/**
+ * meters.js - Meters Index Page Logic
+ */
+
+import { storage } from './storage.js';
+import { showNotification, confirmAction, parseDecimalInput } from './app.js';
+
+const meterRegisterAdminMode = new URLSearchParams(window.location.search).get('mode') === 'admin';
+
+initializeMeterRegisterMode();
+loadMeterIndexPage();
 renderDataSyncPanel();
 
 function initializeMeterRegisterMode() {
@@ -44,50 +53,17 @@ function initializeMeterRegisterMode() {
     if (note) {
         note.innerHTML = meterRegisterAdminMode
             ? '<div class="info-box"><strong>Developer mode</strong><br>Inventory editing is enabled on this page because it was opened in developer mode.</div>'
-            : '<div class="info-box"><strong>Read-only register</strong><br>Meter, unit, building, and scheme registration has been removed from the main app. Developer-only inventory changes should be started from the Developer Console.</div>';
+            : '<div class="info-box"><strong>Read-only index</strong><br>Inventory editing has been removed from the main app. This page is now a live index of the registered schemes, buildings, units, and meters. Developer-only inventory changes should be started from the Developer Console.</div>';
     }
 
-    populateMeterFilterSchemeOptions();
-    updateMeterFilterBuildingOptions();
+    populateInventorySchemeOptions();
 }
-
-function getActiveTab() {
-    return document.querySelector('.tab-btn.active')?.dataset.tab || 'schemes';
-}
-
-function loadTabData(tab) {
-    switch(tab) {
-        case 'schemes':
-            loadSchemes();
-            break;
-        case 'buildings':
-            loadBuildings();
-            break;
-        case 'units':
-            loadUnits();
-            break;
-        case 'meters':
-            loadMeters();
-            break;
-    }
-}
-
-function renderDataSyncPanel(message = '') {
-    const panel = document.getElementById('data-sync-panel');
-    if (!panel) {
-        return;
-    }
-
-    const schemes = storage.getSchemes().length;
-    const buildings = storage.getBuildings().length;
-    const units = storage.getUnits().length;
-    const meters = storage.getMeters().length;
     const syncMessage = storage.cloudSyncEnabled
         ? 'Cloud sync is active. This page hydrates from Firebase when the local cache is empty or incomplete.'
         : 'App data is stored locally in the browser. Firebase sync is not active in this runtime.';
     const modeMessage = meterRegisterAdminMode
         ? 'Developer inventory editing is enabled for this session.'
-        : 'Inventory management is read-only here. Use the Developer Console if inventory changes are needed in future.';
+        : 'This page is read-only and shows the current registered inventory. Use the Developer Console if inventory changes are needed in future.';
 
     panel.innerHTML = `
         <div class="info-box">
@@ -105,8 +81,8 @@ function normalizeSearchValue(value) {
     return String(value || '').trim().toLowerCase();
 }
 
-function populateMeterFilterSchemeOptions() {
-    const select = document.getElementById('meter-filter-scheme');
+function populateInventorySchemeOptions() {
+    const select = document.getElementById('inventory-filter-scheme');
     if (!select) {
         return;
     }
@@ -124,47 +100,129 @@ function populateMeterFilterSchemeOptions() {
     }
 }
 
-window.updateMeterFilterBuildingOptions = function() {
-    const select = document.getElementById('meter-filter-building');
-    const schemeId = document.getElementById('meter-filter-scheme')?.value || '';
-    if (!select) {
-        return;
-    }
-
-    const previousValue = select.value;
-    const buildings = storage.getBuildings(schemeId || null)
-        .slice()
-        .sort((left, right) => String(left.name || '').localeCompare(String(right.name || '')));
-
-    select.innerHTML = '<option value="">All Buildings</option>' +
-        buildings.map((building) => `<option value="${building.id}">${building.name}</option>`).join('');
-
-    if (buildings.some((building) => building.id === previousValue)) {
-        select.value = previousValue;
-        return;
-    }
-
-    select.value = '';
-};
-
-function getMeterRegisterFilters() {
+function getInventoryFilters() {
     return {
-        schemeId: document.getElementById('meter-filter-scheme')?.value || '',
-        buildingId: document.getElementById('meter-filter-building')?.value || '',
-        unitSearch: normalizeSearchValue(document.getElementById('meter-filter-unit')?.value || ''),
-        meterType: (document.getElementById('meter-filter-type')?.value || '').toUpperCase()
+        schemeId: document.getElementById('inventory-filter-scheme')?.value || '',
+        unitSearch: normalizeSearchValue(document.getElementById('inventory-filter-unit')?.value || ''),
+        meterType: (document.getElementById('inventory-filter-meter-type')?.value || '').toUpperCase()
     };
 }
 
-window.filterMeters = function() {
-    loadMeters();
+function buildInventoryViewModel() {
+    const filters = getInventoryFilters();
+    const units = storage.getUnits();
+    const buildings = storage.getBuildings();
+    const schemes = storage.getSchemes();
+    const meters = storage.getMeters();
+
+    const filteredUnits = units.filter((unit) => {
+        const building = storage.get('buildings', unit.building_id);
+        const scheme = building ? storage.get('schemes', building.scheme_id) : null;
+        const unitSearchText = normalizeSearchValue(`${unit.unit_number} ${unit.owner_name || ''} ${building?.name || ''} ${scheme?.name || ''}`);
+
+        if (filters.schemeId && building?.scheme_id !== filters.schemeId) {
+            return false;
+        }
+
+        if (filters.unitSearch && !unitSearchText.includes(filters.unitSearch)) {
+            return false;
+        }
+
+        return true;
+    });
+
+    const filteredBuildings = buildings.filter((building) => {
+        if (filters.schemeId && building.scheme_id !== filters.schemeId) {
+            return false;
+        }
+
+        if (filters.unitSearch) {
+            return filteredUnits.some((unit) => unit.building_id === building.id);
+        }
+
+        return true;
+    });
+
+    const filteredSchemes = schemes.filter((scheme) => {
+        if (filters.schemeId && scheme.id !== filters.schemeId) {
+            return false;
+        }
+
+        if (filters.unitSearch) {
+            return filteredBuildings.some((building) => building.scheme_id === scheme.id);
+        }
+
+        return true;
+    });
+
+    const filteredMeters = meters.filter((meter) => {
+        const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
+        const building = unit?.building_id ? storage.get('buildings', unit.building_id) : null;
+        const scheme = storage.get('schemes', meter.scheme_id);
+        const searchText = normalizeSearchValue(`${meter.meter_number} ${unit?.unit_number || ''} ${building?.name || ''} ${scheme?.name || ''}`);
+        const meterType = String(meter.meter_type || '').toUpperCase();
+
+        if (filters.schemeId && meter.scheme_id !== filters.schemeId) {
+            return false;
+        }
+
+        if (filters.meterType && meterType !== filters.meterType) {
+            return false;
+        }
+
+        if (filters.unitSearch && !searchText.includes(filters.unitSearch)) {
+            return false;
+        }
+
+        return true;
+    });
+
+    return {
+        schemes: filteredSchemes,
+        buildings: filteredBuildings,
+        units: filteredUnits,
+        meters: filteredMeters
+    };
+}
+
+function loadMeterIndexPage() {
+    populateInventorySchemeOptions();
+    const viewModel = buildInventoryViewModel();
+    loadSchemes(viewModel);
+    loadBuildings(viewModel);
+    loadUnits(viewModel);
+    loadMeters(viewModel);
+}
+
+window.filterInventory = function() {
+    loadMeterIndexPage();
+};
+
+window.clearInventoryFilters = function() {
+    const schemeSelect = document.getElementById('inventory-filter-scheme');
+    const unitSearchInput = document.getElementById('inventory-filter-unit');
+    const meterTypeSelect = document.getElementById('inventory-filter-meter-type');
+
+    if (schemeSelect) {
+        schemeSelect.value = '';
+    }
+
+    if (unitSearchInput) {
+        unitSearchInput.value = '';
+    }
+
+    if (meterTypeSelect) {
+        meterTypeSelect.value = '';
+    }
+
+    loadMeterIndexPage();
 };
 
 window.refreshMeterRegisterCache = async function() {
     try {
         await storage.hydrateFromCloud();
         renderDataSyncPanel('<span class="text-success">App data refreshed from Firebase.</span>');
-        loadTabData(getActiveTab());
+        loadMeterIndexPage();
     } catch (error) {
         console.error(error);
         renderDataSyncPanel('<span class="text-danger">Unable to refresh app data from Firebase.</span>');
@@ -286,14 +344,14 @@ window.viewMeterHistory = async function(meterId) {
 };
 
 // ========== SCHEMES ==========
-function loadSchemes() {
-    const schemes = storage.getSchemes()
+function loadSchemes(viewModel = buildInventoryViewModel()) {
+    const schemes = viewModel.schemes
         .slice()
         .sort((left, right) => left.name.localeCompare(right.name));
     const container = document.getElementById('schemes-list');
     
     if (schemes.length === 0) {
-        container.innerHTML = '<p class="text-muted">No schemes are currently available in the register.</p>';
+        container.innerHTML = '<p class="text-muted">No schemes match the current filters.</p>';
         return;
     }
     
@@ -362,7 +420,7 @@ window.deleteScheme = function(id) {
     });
     
     storage.delete('schemes', id);
-    loadSchemes();
+    loadMeterIndexPage();
     showNotification('Scheme deleted successfully');
 };
 
@@ -383,12 +441,12 @@ document.getElementById('scheme-form-element').addEventListener('submit', (e) =>
     }
     
     cancelSchemeForm();
-    loadSchemes();
+    loadMeterIndexPage();
 });
 
 // ========== BUILDINGS ==========
-function loadBuildings() {
-    const buildings = storage.getBuildings()
+function loadBuildings(viewModel = buildInventoryViewModel()) {
+    const buildings = viewModel.buildings
         .slice()
         .sort((left, right) => {
             const schemeNameLeft = storage.get('schemes', left.scheme_id)?.name || '';
@@ -398,7 +456,7 @@ function loadBuildings() {
     const container = document.getElementById('buildings-list');
     
     if (buildings.length === 0) {
-        container.innerHTML = '<p class="text-muted">No buildings are currently available in the register.</p>';
+        container.innerHTML = '<p class="text-muted">No buildings match the current filters.</p>';
         return;
     }
     
@@ -466,7 +524,7 @@ window.deleteBuilding = function(id) {
     });
     
     storage.delete('buildings', id);
-    loadBuildings();
+    loadMeterIndexPage();
     showNotification('Building deleted');
 };
 
@@ -488,12 +546,12 @@ document.getElementById('building-form-element').addEventListener('submit', (e) 
     }
     
     cancelBuildingForm();
-    loadBuildings();
+    loadMeterIndexPage();
 });
 
 // ========== UNITS ==========
-function loadUnits() {
-    const units = storage.getUnits()
+function loadUnits(viewModel = buildInventoryViewModel()) {
+    const units = viewModel.units
         .slice()
         .sort((left, right) => {
             const buildingNameLeft = storage.get('buildings', left.building_id)?.name || '';
@@ -503,7 +561,7 @@ function loadUnits() {
     const container = document.getElementById('units-list');
     
     if (units.length === 0) {
-        container.innerHTML = '<p class="text-muted">No units are currently available in the register.</p>';
+        container.innerHTML = '<p class="text-muted">No units match the current filters.</p>';
         return;
     }
     
@@ -569,7 +627,7 @@ window.deleteUnit = function(id) {
     meters.forEach(meter => storage.delete('meters', meter.id));
     
     storage.delete('units', id);
-    loadUnits();
+    loadMeterIndexPage();
     showNotification('Unit deleted');
 };
 
@@ -592,45 +650,13 @@ document.getElementById('unit-form-element').addEventListener('submit', (e) => {
     }
     
     cancelUnitForm();
-    loadUnits();
+    loadMeterIndexPage();
 });
 
 // ========== METERS ==========
-function loadMeters() {
-    populateMeterFilterSchemeOptions();
-    updateMeterFilterBuildingOptions();
-
-    const filters = getMeterRegisterFilters();
-    const meters = storage.getMeters()
-        .filter((meter) => {
-            const meterType = String(meter.meter_type || '').toUpperCase();
-            const meterDetails = storage.getMeterWithDetails(meter.id);
-            const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
-            const building = unit?.building_id ? storage.get('buildings', unit.building_id) : null;
-            const searchText = normalizeSearchValue([
-                meter.meter_number,
-                meterDetails?.unit_name,
-                building?.name
-            ].join(' '));
-
-            if (filters.schemeId && meter.scheme_id !== filters.schemeId) {
-                return false;
-            }
-
-            if (filters.buildingId && unit?.building_id !== filters.buildingId) {
-                return false;
-            }
-
-            if (filters.meterType && meterType !== filters.meterType) {
-                return false;
-            }
-
-            if (filters.unitSearch && !searchText.includes(filters.unitSearch)) {
-                return false;
-            }
-
-            return true;
-        })
+function loadMeters(viewModel = buildInventoryViewModel()) {
+    const meters = viewModel.meters
+        .slice()
         .sort((left, right) => {
             const leftDetails = storage.getMeterWithDetails(left.id);
             const rightDetails = storage.getMeterWithDetails(right.id);
@@ -811,7 +837,7 @@ document.getElementById('meter-form-element').addEventListener('submit', (e) => 
     }
     
     cancelMeterForm();
-    loadMeters();
+    loadMeterIndexPage();
 });
 
 // Helper functions

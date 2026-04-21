@@ -156,7 +156,7 @@ export const onboarding = {
                     <li>Open your first reading cycle</li>
                     <li>Be ready to capture readings with confidence</li>
                 </ul>
-                <p class="text-muted">You can always modify these settings later from the Meter Register.</p>
+                <p class="text-muted">You can always review these settings later from the Meters page.</p>
             </div>
         `;
     },
