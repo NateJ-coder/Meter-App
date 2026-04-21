@@ -8,37 +8,6 @@ import { showNotification, confirmAction, parseDecimalInput } from './app.js';
 const meterRegisterAdminMode = new URLSearchParams(window.location.search).get('mode') === 'admin';
 
 initializeMeterRegisterMode();
-
-// Tab switching
-document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const tab = btn.dataset.tab;
-        
-        // Update buttons
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        // Update content
-        document.querySelectorAll('.tab-content').forEach(content => {
-            content.classList.remove('active');
-        });
-        document.getElementById(`tab-${tab}`).classList.add('active');
-        
-        // Load tab data
-        loadTabData(tab);
-    });
-});
-
-/**
- * meters.js - Meters Index Page Logic
- */
-
-import { storage } from './storage.js';
-import { showNotification, confirmAction, parseDecimalInput } from './app.js';
-
-const meterRegisterAdminMode = new URLSearchParams(window.location.search).get('mode') === 'admin';
-
-initializeMeterRegisterMode();
 loadMeterIndexPage();
 renderDataSyncPanel();
 
@@ -58,6 +27,16 @@ function initializeMeterRegisterMode() {
 
     populateInventorySchemeOptions();
 }
+
+function renderDataSyncPanel(message = '') {
+    const panel = document.getElementById('data-sync-panel');
+    if (!panel) return;
+
+    const schemes = storage.getAll('schemes').length;
+    const buildings = storage.getAll('buildings').length;
+    const units = storage.getAll('units').length;
+    const meters = storage.getAll('meters').length;
+
     const syncMessage = storage.cloudSyncEnabled
         ? 'Cloud sync is active. This page hydrates from Firebase when the local cache is empty or incomplete.'
         : 'App data is stored locally in the browser. Firebase sync is not active in this runtime.';
