@@ -74,11 +74,13 @@ function setCachedActivities(activities) {
 
 async function fetchUserRecord(uid, email) {
     // Try lookup by Firebase UID first, then by email
-    const byUid = await getDoc(doc(firebaseDb, firebaseCollections.users, uid)).catch(() => null);
-    if (byUid?.exists()) return { id: uid, ...byUid.data() };
+    const byUidResult = await getDoc(doc(firebaseDb, firebaseCollections.users, uid)).catch((e) => { console.error('[auth] UID lookup error:', e); return null; });
+    console.log('[auth] UID lookup for', uid, '— exists:', byUidResult?.exists());
+    if (byUidResult?.exists()) return { id: uid, ...byUidResult.data() };
 
     // Fallback: scan users collection for matching email
-    const snap = await getDocs(collection(firebaseDb, firebaseCollections.users)).catch(() => ({ docs: [] }));
+    const snap = await getDocs(collection(firebaseDb, firebaseCollections.users)).catch((e) => { console.error('[auth] collection scan error:', e); return { docs: [] }; });
+    console.log('[auth] email scan — doc count:', snap.docs?.length, 'looking for:', email);
     const match = snap.docs.find((d) => d.data().email?.toLowerCase() === email?.toLowerCase());
     if (match) return { id: match.id, ...match.data() };
 
