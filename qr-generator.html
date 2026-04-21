@@ -3,8 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator - Fuzio Meter Readings</title>
+    <title>QR Codes - Fuzio Meter Readings</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        /* ---- QR grid ---- */
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .qr-tile {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .qr-tile img { width: 160px; height: 160px; border: 1px solid #ccc; }
+        .qr-tile .qr-label { font-weight: 600; font-size: 0.95rem; }
+        .qr-tile .qr-sublabel { font-size: 0.8rem; color: #666; }
+        .qr-tile .qr-type-badge {
+            font-size: 0.7rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 6px;
+            text-transform: uppercase;
+        }
+        .qr-tile .qr-type-badge.bulk { background: #e53935; }
+        /* ---- Print styles ---- */
+        @media print {
+            .navbar, .page-header, .card.filter-card, .no-print { display: none !important; }
+            body { margin: 0; background: white; }
+            .qr-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+                page-break-inside: avoid;
+            }
+            .qr-tile { border: 1px solid #999; break-inside: avoid; }
+            .print-heading { display: block !important; }
+        }
+        .print-heading { display: none; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -21,48 +66,58 @@
 
     <main class="container">
         <header class="page-header">
-            <h1>QR Code Generator</h1>
-            <p class="subtitle">Generate QR codes for meter reading access</p>
+            <h1>QR Codes</h1>
+            <p class="subtitle">One QR code per meter — scan on-site to capture a reading directly</p>
         </header>
 
-        <section class="card">
+        <section class="card filter-card">
             <div class="card-header">
-                <h2>Select Scheme</h2>
-                <button class="btn btn-secondary" onclick="loadSchemes()">🔄 Refresh Schemes</button>
+                <h2>Filter</h2>
+                <div class="action-buttons no-print">
+                    <button class="btn btn-secondary" onclick="loadSchemes()">🔄 Refresh</button>
+                    <button class="btn btn-primary" onclick="window.print()">🖨️ Print Sheet</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="scheme-select">Scheme</label>
-                <select id="scheme-select" onchange="generateQR()">
-                    <option value="">-- Select a scheme --</option>
-                </select>
-            </div>
-            <div class="info-box" style="background: #e7f3ff; border-left-color: #2196F3;">
-                <strong>ℹ️ One QR code per scheme</strong><br>
-                The bulk meter serves the entire scheme. When scanned, the reader will capture the bulk meter reading first, then walk through all submeters across all buildings in the scheme.
-            </div>
-        </section>
-
-        <section class="card" id="qr-output" style="display: none;">
-            <h2>QR Code</h2>
-            <div id="meter-info" class="info-box mb-2"></div>
-            <div style="text-align: center; margin: 2rem 0;">
-                <img id="qr-image" alt="QR Code" style="max-width: 300px; border: 1px solid #ccc; padding: 10px; background: white;">
-            </div>
-            <div class="form-group">
-                <label>Reader URL</label>
-                <input type="text" id="reader-url" readonly onclick="this.select()">
-                <small class="form-help">Click to select and copy, or click the button below to test</small>
-            </div>
-            <div class="action-buttons">
-                <button class="btn btn-success" onclick="testReaderLink()">🔗 Test Reader Link</button>
-                <button class="btn btn-primary" onclick="downloadQR()">Download QR Code</button>
-                <button class="btn btn-secondary" onclick="printQR()">Print QR Code</button>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="scheme-select">Scheme</label>
+                    <select id="scheme-select" onchange="generateQRCodes()">
+                        <option value="">-- All schemes --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="type-filter">Meter type</label>
+                    <select id="type-filter" onchange="generateQRCodes()">
+                        <option value="">All types</option>
+                        <option value="BULK">Bulk meters only</option>
+                        <option value="UNIT">Unit meters only</option>
+                    </select>
+                </div>
             </div>
         </section>
 
-        <section class="card">
-            <h2>Instructions</h2>
+        <section class="card" id="qr-results" style="display:none;">
+            <div class="card-header no-print">
+                <h2 id="qr-results-heading">QR Codes</h2>
+            </div>
+            <p class="print-heading" id="print-heading"></p>
+            <div id="qr-grid" class="qr-grid"></div>
+        </section>
+
+        <section class="card no-print">
+            <h2>How to use</h2>
             <ol>
+                <li>Select a scheme (or leave blank for all) and optionally filter by meter type</li>
+                <li>QR codes are generated for every matching meter</li>
+                <li>Click <strong>Print Sheet</strong> to print all visible QR codes on an A4 sheet (4 per row)</li>
+                <li>Cut and attach each QR label to the corresponding meter</li>
+                <li>When a reader scans it with their phone, they go straight to that meter's reading capture form</li>
+            </ol>
+            <div class="info-box" style="background:#e7f3ff; border-left-color:#2196F3; margin-top:1rem;">
+                <strong>Note:</strong> Readers need an internet connection and a valid login on their phone to submit readings.
+            </div>
+        </section>
+    </main>
                 <li>Select a scheme from the dropdown</li>
                 <li>A QR code will be generated for that scheme's bulk meter</li>
                 <li><strong>For testing:</strong> Click "Test Reader Link" button to open in a new tab</li>
@@ -142,113 +197,107 @@
             });
         };
 
-        window.generateQR = function() {
-            const schemeId = document.getElementById('scheme-select').value;
-            if (!schemeId) {
-                document.getElementById('qr-output').style.display = 'none';
-                return;
-            }
+    <script type="module" src="assets/page-auth.js"></script>
+    <script type="module">
+        import { storage } from './assets/storage.js';
 
-            const scheme = storage.get('schemes', schemeId);
-            
-            // Find the bulk meter for this scheme
-            const bulkMeter = storage.getAll('meters').find(m => 
-                m.meter_type === 'BULK' && m.scheme_id === schemeId
-            );
-            const openCycle = storage.getOpenCycle(schemeId);
+        const BASE_URL = window.location.origin + window.location.pathname.replace('qr-generator.html', '');
 
-            if (!bulkMeter) {
-                alert('No bulk meter found for this scheme');
-                return;
-            }
+        function qrImageUrl(url, size = 200) {
+            return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(url)}`;
+        }
 
-            // Count buildings and submeters
-            const buildings = storage.getBuildings(schemeId);
-            const allUnits = [];
-            buildings.forEach(b => {
-                allUnits.push(...storage.getUnits(b.id));
+        function getMeterLabel(meter, unit, building) {
+            if (meter.meter_type === 'BULK') return meter.meter_number || 'Bulk Meter';
+            const parts = [];
+            if (building?.name) parts.push(building.name);
+            if (unit?.unit_number) parts.push(`Unit ${unit.unit_number}`);
+            if (meter.meter_number) parts.push(meter.meter_number);
+            return parts.join(' — ') || meter.id;
+        }
+
+        window.loadSchemes = function () {
+            const schemes = storage.getAll('schemes');
+            const select = document.getElementById('scheme-select');
+            select.innerHTML = '<option value="">-- All schemes --</option>';
+            schemes.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = s.name;
+                select.appendChild(opt);
             });
-            const unitIds = allUnits.map(u => u.id);
-            const submeters = storage.getAll('meters').filter(m => 
-                m.meter_type === 'UNIT' && unitIds.includes(m.unit_id)
-            );
-            
-            // Build reader URL with scheme_id
-            const baseUrl = window.location.origin + window.location.pathname.replace('qr-generator.html', '');
-            const readerUrl = `${baseUrl}reader.html?scheme_id=${schemeId}`;
-            
-            // Generate QR code using API
-            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(readerUrl)}`;
-            
-            // Display scheme info
-            let infoHtml = `<strong>Scheme:</strong> ${scheme.name}<br>`;
-            infoHtml += `<strong>Buildings:</strong> ${buildings.length}<br>`;
-            infoHtml += `<strong>Bulk Meter:</strong> ${bulkMeter.meter_number}<br>`;
-            infoHtml += `<strong>Reader Status:</strong> ${openCycle ? 'Active for capture' : 'Dormant until cycle is opened'}<br>`;
-            infoHtml += `<strong>Submeters:</strong> ${submeters.length} units<br>`;
-            infoHtml += `<strong>Total Steps:</strong> ${submeters.length + 1} (bulk + all submeters)`;
-            
-            document.getElementById('meter-info').innerHTML = infoHtml;
-            document.getElementById('qr-image').src = qrApiUrl;
-            document.getElementById('reader-url').value = readerUrl;
-            document.getElementById('qr-output').style.display = 'block';
+            generateQRCodes();
         };
 
-        window.downloadQR = function() {
-            const qrImage = document.getElementById('qr-image');
+        window.generateQRCodes = function () {
             const schemeId = document.getElementById('scheme-select').value;
-            const scheme = storage.get('schemes', schemeId);
-            const link = document.createElement('a');
-            link.href = qrImage.src;
-            link.download = `scheme-qr-${scheme.name.replace(/\s+/g, '-')}.png`;
-            link.click();
-        };
+            const typeFilter = document.getElementById('type-filter').value;
 
-        window.testReaderLink = function() {
-            const readerUrl = document.getElementById('reader-url').value;
-            if (readerUrl) {
-                window.open(readerUrl, '_blank');
+            let meters = storage.getAll('meters');
+            if (typeFilter) meters = meters.filter(m => m.meter_type === typeFilter);
+
+            if (schemeId) {
+                const buildings = storage.getBuildings(schemeId);
+                const allUnitIds = buildings.flatMap(b => storage.getUnits(b.id).map(u => u.id));
+                meters = meters.filter(m =>
+                    m.scheme_id === schemeId || allUnitIds.includes(m.unit_id)
+                );
             }
+
+            const grid = document.getElementById('qr-grid');
+            const resultsSection = document.getElementById('qr-results');
+            const heading = document.getElementById('qr-results-heading');
+            const printHeading = document.getElementById('print-heading');
+
+            if (meters.length === 0) {
+                resultsSection.style.display = 'none';
+                return;
+            }
+
+            const schemeName = schemeId ? (storage.get('schemes', schemeId)?.name || schemeId) : 'All Schemes';
+            heading.textContent = `${meters.length} Meter${meters.length !== 1 ? 's' : ''} — ${schemeName}`;
+            printHeading.textContent = `QR Codes — ${schemeName}`;
+            resultsSection.style.display = 'block';
+
+            grid.innerHTML = '';
+            meters.forEach(meter => {
+                const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
+                const building = unit ? storage.get('buildings', unit.building_id) : null;
+                const scheme = meter.scheme_id
+                    ? storage.get('schemes', meter.scheme_id)
+                    : (building ? storage.get('schemes', building.scheme_id) : null);
+
+                const readerUrl = `${BASE_URL}reader.html?meter_id=${encodeURIComponent(meter.id)}`;
+                const label = getMeterLabel(meter, unit, building);
+                const isBulk = meter.meter_type === 'BULK';
+
+                const tile = document.createElement('div');
+                tile.className = 'qr-tile';
+                const safeLabel = label.replace(/'/g, "\\'");
+                tile.innerHTML = `
+                    <span class="qr-type-badge${isBulk ? ' bulk' : ''}">${isBulk ? 'Bulk' : 'Unit'}</span>
+                    <img src="${qrImageUrl(readerUrl)}" alt="QR for ${label}" loading="lazy">
+                    <div class="qr-label">${label}</div>
+                    ${scheme ? `<div class="qr-sublabel">${scheme.name}</div>` : ''}
+                    <div class="action-buttons no-print" style="flex-direction:row;gap:0.4rem;margin-top:0.25rem;">
+                        <a class="btn btn-sm btn-secondary" href="${readerUrl}" target="_blank" style="font-size:0.75rem;padding:4px 8px;">Test</a>
+                        <button class="btn btn-sm btn-primary" style="font-size:0.75rem;padding:4px 8px;"
+                            onclick="downloadSingle('${qrImageUrl(readerUrl, 400)}','${safeLabel}')">Save</button>
+                    </div>`;
+                grid.appendChild(tile);
+            });
         };
 
-        window.printQR = function() {
-            const qrImage = document.getElementById('qr-image').src;
-            const meterInfo = document.getElementById('meter-info').innerHTML;
-            
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <html>
-                <head>
-                    <title>Print QR Code</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; text-align: center; padding: 2rem; }
-                        .info { text-align: left; margin: 1rem auto; max-width: 400px; }
-                        img { max-width: 300px; margin: 1rem 0; }
-                    </style>
-                </head>
-                <body>
-                    <h1>Meter Reading QR Code</h1>
-                    <div class="info">${meterInfo}</div>
-                    <img src="${qrImage}" alt="QR Code">
-                    <p>Scan this QR code to submit meter readings</p>
-                    <script type="text/javascript">
-                        window.onload = function() { window.print(); }
-                    <\/script>
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
+        window.downloadSingle = function (src, label) {
+            const a = document.createElement('a');
+            a.href = src;
+            a.download = `qr-${label.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.png`;
+            a.click();
         };
 
         // Initial load
         loadSchemes();
-        
-        // Refresh schemes when page becomes visible (catches updates from other tabs)
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) {
-                loadSchemes();
-            }
-        });
+        document.addEventListener('visibilitychange', () => { if (!document.hidden) loadSchemes(); });
     </script>
 </body>
 </html>

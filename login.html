@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Access Redirect - Fuzio Meter Readings</title>
+    <title>Sign In - Fuzio Meter Readings</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .login-error {
+            background: #fde8e8;
+            border-left: 4px solid #e53935;
+            color: #b71c1c;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .login-error.visible { display: block; }
+        .btn-block { width: 100%; }
+        #login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    </style>
 </head>
 <body class="login-body">
 <div class="login-container">
@@ -12,17 +26,79 @@
         <div class="login-header">
             <img src="assets/images/Fuzio logo.jpg" alt="Fuzio Properties" class="login-logo">
             <h1>Fuzio Meter Readings</h1>
-            <p class="subtitle">Login has been retired. The app now opens directly in open-access mode.</p>
+            <p class="subtitle">Sign in to continue</p>
         </div>
-        <div class="info-box mb-2">
-            Redirecting to the dashboard now. Update any old bookmarks that still point to this page.
-        </div>
-        <p><a href="index.html" class="btn btn-primary btn-large btn-block">Continue to Dashboard</a></p>
+
+        <div id="login-error" class="login-error" role="alert"></div>
+
+        <form id="login-form" novalidate>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" autocomplete="email" required
+                       placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" autocomplete="current-password" required
+                       placeholder="••••••••">
+            </div>
+            <button type="submit" id="login-btn" class="btn btn-primary btn-large btn-block">Sign In</button>
+        </form>
     </div>
 </div>
 
-<script>
-    window.location.replace('index.html');
+<script type="module">
+    import { auth } from './assets/auth.js';
+
+    // If already authenticated, redirect immediately
+    const session = await auth.initialize();
+    if (session) {
+        const params = new URLSearchParams(location.search);
+        const returnTo = params.get('returnTo');
+        location.replace(returnTo && returnTo.startsWith(location.origin) ? returnTo : 'index.html');
+    }
+
+    const form = document.getElementById('login-form');
+    const errorBox = document.getElementById('login-error');
+    const btn = document.getElementById('login-btn');
+
+    function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.classList.add('visible');
+    }
+
+    function clearError() {
+        errorBox.textContent = '';
+        errorBox.classList.remove('visible');
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearError();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        if (!email || !password) {
+            showError('Please enter your email and password.');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Signing in…';
+
+        const result = await auth.login(email, password);
+
+        if (result.success) {
+            const params = new URLSearchParams(location.search);
+            const returnTo = params.get('returnTo');
+            location.replace(returnTo && returnTo.startsWith(location.origin) ? returnTo : 'index.html');
+        } else {
+            showError(result.error || 'Sign in failed. Please try again.');
+            btn.disabled = false;
+            btn.textContent = 'Sign In';
+        }
+    });
 </script>
 </body>
 </html>

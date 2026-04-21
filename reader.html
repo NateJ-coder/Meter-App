@@ -145,6 +145,7 @@
   // Get URL params
   const params = new URLSearchParams(window.location.search);
   const schemeId = params.get('scheme_id');
+  const directMeterId = params.get('meter_id'); // single-meter QR scan
   const currentIndex = parseInt(params.get('index') || '0');
   const mode = params.get('mode'); // 'onsite' for on-site mode
   const onsiteCycleId = params.get('cycle_id');
@@ -214,6 +215,50 @@
 
   // --- Load workflow context ---
   function loadWorkflowContext() {
+    // --- Single-meter QR scan (meter_id param) ---
+    if (directMeterId) {
+      const meter = storage.get('meters', directMeterId);
+      if (!meter) {
+        showError(`Meter not found (ID: ${directMeterId}). Ensure you are on the correct device.`);
+        return null;
+      }
+
+      // Resolve the scheme for this meter
+      let resolvedSchemeId = meter.scheme_id;
+      if (!resolvedSchemeId && meter.unit_id) {
+        const unit = storage.get('units', meter.unit_id);
+        const building = unit ? storage.get('buildings', unit.building_id) : null;
+        resolvedSchemeId = building?.scheme_id;
+      }
+
+      const scheme = resolvedSchemeId ? storage.get('schemes', resolvedSchemeId) : null;
+      if (!scheme) {
+        showError('Could not determine the scheme for this meter. Contact the administrator.');
+        return null;
+      }
+
+      const openCycle = storage.getOpenCycle(resolvedSchemeId);
+      if (!openCycle) {
+        showError('No reading cycle is currently open. The admin must open a new cycle before readings can be captured.');
+        return null;
+      }
+
+      // Resolve unit info for display
+      const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
+      const building = unit ? storage.get('buildings', unit.building_id) : null;
+
+      return {
+        scheme,
+        bulkMeter: meter.meter_type === 'BULK' ? meter : null,
+        openCycle,
+        submeters: meter.meter_type !== 'BULK' ? [{ ...meter, unit_info: unit ? { ...unit, building_name: building?.name } : null }] : [],
+        currentIndex: meter.meter_type === 'BULK' ? 0 : 1,
+        currentMeter: meter,
+        totalMeters: 1,
+        singleMeterMode: true
+      };
+    }
+
     // Starting from bulk meter QR scan
     if (schemeId && currentIndex === 0) {
       const scheme = storage.get('schemes', schemeId);
@@ -504,12 +549,12 @@
       // Move to next meter or finish
       const nextIndex = workflowContext.currentIndex + 1;
       
-      if (nextIndex < workflowContext.totalMeters) {
+      if (!workflowContext.singleMeterMode && nextIndex < workflowContext.totalMeters) {
         // Continue to next submeter
         const nextUrl = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIndex}`;
         window.location.href = nextUrl;
       } else {
-        // All done!
+        // All done (or single-meter mode)
         showSuccess();
       }
     });

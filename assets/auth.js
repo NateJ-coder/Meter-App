@@ -1,43 +1,48 @@
 /**
- * auth.js - Open-access compatibility layer.
+ * auth.js - Firebase Auth module with role-based access.
  *
- * The app no longer enforces login or role-based access in the UI. This module
- * preserves the previous API shape so existing pages can keep recording
- * activity and referencing a current operator without a sign-in flow.
+ * Roles:
+ *   developer — full access including dev console and admin tools
+ *   admin     — operational pages only; dev console is blocked
+ *
+ * A user record must exist in the Firestore `users` collection with:
+ *   { email, name, role: 'developer' | 'admin', status: 'active' }
  */
 
 import {
     collection,
     doc,
+    getDoc,
     getDocs,
     setDoc
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
 
-import { firebaseCollections, firebaseDb, isFirebaseConfigured } from './firebase.js';
+import {
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut as firebaseSignOut
+} from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
+
+import { firebaseAuth, firebaseCollections, firebaseDb, isFirebaseConfigured } from './firebase.js';
 
 const SESSION_KEY = 'fuzio_user_session';
-const USERS_CACHE_KEY = 'fuzio_users';
 const ACTIVITIES_CACHE_KEY = 'fuzio_activities';
-const OPEN_ACCESS_USER = Object.freeze({
-    id: 'open-access-operator',
-    email: '',
-    name: 'Open Access Operator',
-    role: 'open_access',
-    phone: '',
-    contact_details: '',
-    status: 'active',
-    user_type: 'system'
+
+// Roles that are permitted to access the app
+export const ROLES = Object.freeze({
+    DEVELOPER: 'developer',
+    ADMIN: 'admin'
 });
 
-let currentSession = readJson(SESSION_KEY, null);
+// Pages only accessible to developers
+const DEVELOPER_ONLY_PAGES = ['dev-console.html'];
+
+let currentSession = null;
 let initializationPromise = null;
 
 function readJson(key, fallback) {
     const rawValue = localStorage.getItem(key);
-    if (!rawValue) {
-        return fallback;
-    }
-
+    if (!rawValue) return fallback;
     try {
         return JSON.parse(rawValue);
     } catch {
@@ -49,22 +54,14 @@ function writeJson(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-function buildOpenAccessSession(overrides = {}) {
-    return {
-        ...OPEN_ACCESS_USER,
-        loginTime: new Date().toISOString(),
-        ...overrides
-    };
-}
-
 function saveCurrentSession(session) {
     currentSession = session;
-    writeJson(SESSION_KEY, session);
+    if (session) {
+        writeJson(SESSION_KEY, session);
+    } else {
+        localStorage.removeItem(SESSION_KEY);
+    }
     return session;
-}
-
-function ensureSession() {
-    return currentSession || saveCurrentSession(buildOpenAccessSession());
 }
 
 function getCachedActivities() {
@@ -75,15 +72,42 @@ function setCachedActivities(activities) {
     writeJson(ACTIVITIES_CACHE_KEY, activities);
 }
 
-async function refreshActivitiesFromFirestore() {
-    if (!isFirebaseConfigured()) {
-        return getCachedActivities();
+async function fetchUserRecord(uid, email) {
+    // Try lookup by Firebase UID first, then by email
+    const byUid = await getDoc(doc(firebaseDb, firebaseCollections.users, uid)).catch(() => null);
+    if (byUid?.exists()) return { id: uid, ...byUid.data() };
+
+    // Fallback: scan users collection for matching email
+    const snap = await getDocs(collection(firebaseDb, firebaseCollections.users)).catch(() => ({ docs: [] }));
+    const match = snap.docs.find((d) => d.data().email?.toLowerCase() === email?.toLowerCase());
+    if (match) return { id: match.id, ...match.data() };
+
+    return null;
+}
+
+async function buildSessionFromFirebaseUser(firebaseUser) {
+    const userRecord = await fetchUserRecord(firebaseUser.uid, firebaseUser.email);
+    if (!userRecord) {
+        return null; // User not provisioned in the app
     }
+
+    return {
+        id: firebaseUser.uid,
+        email: firebaseUser.email,
+        name: userRecord.name || firebaseUser.displayName || firebaseUser.email,
+        role: userRecord.role || ROLES.ADMIN,
+        status: userRecord.status || 'active',
+        loginTime: new Date().toISOString()
+    };
+}
+
+async function refreshActivitiesFromFirestore() {
+    if (!isFirebaseConfigured()) return getCachedActivities();
 
     const snapshot = await getDocs(collection(firebaseDb, firebaseCollections.activities));
     const activities = snapshot.docs
         .map((entry) => ({ id: entry.id, ...entry.data() }))
-        .sort((activityA, activityB) => (activityB.timestamp_ms || 0) - (activityA.timestamp_ms || 0))
+        .sort((a, b) => (b.timestamp_ms || 0) - (a.timestamp_ms || 0))
         .slice(0, 100);
 
     setCachedActivities(activities);
@@ -91,101 +115,106 @@ async function refreshActivitiesFromFirestore() {
 }
 
 export const auth = {
-    async initialize() {
+    /**
+     * Initialize auth. Resolves when the Firebase Auth state is known.
+     * Returns the current session or null if not authenticated.
+     */
+    initialize() {
         if (!initializationPromise) {
-            initializationPromise = Promise.resolve(ensureSession());
+            initializationPromise = new Promise((resolve) => {
+                const unsubscribe = onAuthStateChanged(firebaseAuth, async (firebaseUser) => {
+                    unsubscribe();
+                    if (firebaseUser) {
+                        const session = await buildSessionFromFirebaseUser(firebaseUser);
+                        saveCurrentSession(session);
+                        resolve(session);
+                    } else {
+                        saveCurrentSession(null);
+                        resolve(null);
+                    }
+                });
+            });
         }
-
         return initializationPromise;
     },
 
     isAuthenticated() {
-        return true;
+        return currentSession !== null;
     },
 
     getCurrentUser() {
-        return ensureSession();
+        return currentSession;
+    },
+
+    getRole() {
+        return currentSession?.role || null;
+    },
+
+    isDeveloper() {
+        return currentSession?.role === ROLES.DEVELOPER;
+    },
+
+    isAdmin() {
+        return currentSession?.role === ROLES.ADMIN || currentSession?.role === ROLES.DEVELOPER;
+    },
+
+    /** Returns true if the current user may access the given page filename (e.g. 'dev-console.html') */
+    canAccessPage(pageName) {
+        if (!currentSession) return false;
+        if (DEVELOPER_ONLY_PAGES.includes(pageName)) {
+            return this.isDeveloper();
+        }
+        return true;
     },
 
     isGuestUser() {
         return false;
     },
 
-    clearSession() {
-        return saveCurrentSession(buildOpenAccessSession());
-    },
-
-    async login() {
-        const session = ensureSession();
-        return { success: true, user: session };
-    },
-
-    async register() {
-        return {
-            success: false,
-            error: 'User provisioning is retired. The app now runs in open-access mode.'
-        };
+    async login(email, password) {
+        try {
+            const credential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+            const session = await buildSessionFromFirebaseUser(credential.user);
+            if (!session) {
+                await firebaseSignOut(firebaseAuth);
+                return { success: false, error: 'Your account is not provisioned in this application. Contact the administrator.' };
+            }
+            saveCurrentSession(session);
+            return { success: true, user: session };
+        } catch (err) {
+            const messages = {
+                'auth/invalid-credential': 'Incorrect email or password.',
+                'auth/user-not-found': 'No account found for that email.',
+                'auth/wrong-password': 'Incorrect password.',
+                'auth/too-many-requests': 'Too many failed attempts. Please wait and try again.',
+                'auth/network-request-failed': 'Network error. Check your connection.'
+            };
+            return { success: false, error: messages[err.code] || err.message };
+        }
     },
 
     async logout() {
-        this.clearSession();
-        window.location.href = 'index.html';
-    },
-
-    startGuestSession() {
-        return ensureSession();
-    },
-
-    getUsers() {
-        return [];
-    },
-
-    async refreshUsers() {
-        writeJson(USERS_CACHE_KEY, []);
-        return [];
-    },
-
-    async updateUser() {
-        return {
-            success: false,
-            error: 'User management is retired in open-access mode.'
-        };
-    },
-
-    async deleteUser() {
-        return {
-            success: false,
-            error: 'User management is retired in open-access mode.'
-        };
-    },
-
-    initializeDefaultAdmin() {
-        writeJson(USERS_CACHE_KEY, []);
-        return ensureSession();
+        await firebaseSignOut(firebaseAuth).catch(() => {});
+        saveCurrentSession(null);
+        window.location.href = 'login.html';
     },
 
     hasPermission() {
-        return true;
+        return this.isAuthenticated();
     },
 
     generateId() {
         return Date.now().toString(36) + Math.random().toString(36).substr(2);
     },
 
-    getUserById(userId) {
-        const currentUser = ensureSession();
-        return currentUser.id === userId ? currentUser : null;
-    },
-
     recordActivity(action, details = {}) {
-        const user = ensureSession();
+        if (!currentSession) return;
         const activity = {
             id: this.generateId(),
-            userId: user.id,
-            userName: user.name,
+            userId: currentSession.id,
+            userName: currentSession.name,
             action,
             details,
-            access_mode: 'open_access',
             timestamp: new Date().toISOString(),
             timestamp_ms: Date.now()
         };

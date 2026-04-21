@@ -13,6 +13,8 @@ const DEFAULT_CONFIG = {
     zeroTolerance: true,              // Flag zero consumption
     backwardAllowed: false,           // Allow backward readings (meter replacements)
     minHistoryCycles: 3,              // Minimum cycles for average calculation
+    tolerancePercentage: 30,          // % band around rolling average (matches VBA ErrorTolPercentage logic)
+    toleranceCheckMonths: 3,          // How many prior months to average (matches VBA ErrorCheckMonths)
     bulkMismatchThreshold: 20,        // % mismatch for bulk reconciliation flag
     gradualCreepThreshold: 7,         // % increase per cycle over 6 cycles = creep
     seasonalComparisonMonths: 12      // Compare to same month last year
@@ -129,6 +131,26 @@ export const validation = {
             });
         }
 
+        // ===== TOLERANCE CHECK (mirrors VBA T_Tolorance logic) =====
+        // Flag if this month's consumption is outside ±tolerancePercentage% of the rolling average
+        // VBA: PastAverage = (reading[n-1] - reading[n-ErrorCheckMonths-1]) / ErrorCheckMonths
+        //      Flag if ThisMonthsUsage < PastAverage*(1-ErrorTolPercentage) OR > PastAverage*(1+ErrorTolPercentage)
+        const toleranceAvg = this.getRollingAverageConsumption(meter.id, config.toleranceCheckMonths);
+        if (toleranceAvg > 0) {
+            const tolMin = toleranceAvg * (1 - config.tolerancePercentage / 100);
+            const tolMax = toleranceAvg * (1 + config.tolerancePercentage / 100);
+            if (consumption < tolMin || consumption > tolMax) {
+                const direction = consumption > tolMax ? 'above' : 'below';
+                const pct = Math.abs(((consumption - toleranceAvg) / toleranceAvg) * 100).toFixed(1);
+                flags.push({
+                    type: 'tolerance',
+                    severity: 'medium',
+                    message: `Consumption ${pct}% ${direction} ${config.toleranceCheckMonths}-month average (avg: ${toleranceAvg.toFixed(2)}, current: ${consumption.toFixed(2)})`,
+                    description: `Usage is outside the ±${config.tolerancePercentage}% tolerance band around the rolling average. Review for accuracy.`
+                });
+            }
+        }
+
         // FLAG 3: Zero or very low consumption (if enabled)
         if (config.zeroTolerance && consumption === 0 && meter.last_reading > 0) {
             flags.push({
@@ -207,6 +229,22 @@ export const validation = {
 
         const totalConsumption = meterReadings.reduce((sum, r) => sum + (r.consumption || 0), 0);
         return totalConsumption / meterReadings.length;
+    },
+
+    /**
+     * Rolling average matching VBA T_Tolorance: average consumption over the last N months.
+     * Uses ALL historical readings (not only trusted) to match the VBA behaviour of
+     * averaging whatever was recorded, regardless of review status.
+     */
+    getRollingAverageConsumption(meterId, months = 3) {
+        const readings = storage.getReadings()
+            .filter((r) => r.meter_id === meterId && r.consumption != null)
+            .sort((a, b) => new Date(b.reading_date) - new Date(a.reading_date))
+            .slice(0, months);
+
+        if (readings.length < months) return 0; // Not enough history
+        const total = readings.reduce((sum, r) => sum + Number(r.consumption), 0);
+        return total / readings.length;
     },
 
     /**

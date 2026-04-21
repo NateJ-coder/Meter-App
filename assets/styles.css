@@ -101,6 +101,15 @@ body.modal-open {
     color: white;
 }
 
+.nav-signout {
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+.nav-signout:hover {
+    opacity: 1;
+}
+
 /* ===================================
    LAYOUT
    =================================== */

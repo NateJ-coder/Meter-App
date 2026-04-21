@@ -58,16 +58,17 @@ function loadMetrics(cycleId) {
 
 function loadFlaggedReadings(cycleId) {
     const readings = storage.getReadings(cycleId);
-    
-    // PHASE 3: Include readings with either auto flags or manual flags
-    const flaggedReadings = readings.filter(r => 
+    const flaggedReadings = readings.filter(r =>
         (r.flags && r.flags.length > 0) || (r.manual_flags && r.manual_flags.length > 0)
     );
-    
+    renderFlaggedReadings(flaggedReadings, cycleId);
+}
+
+function renderFlaggedReadings(flaggedReadings, cycleId) {
     const container = document.getElementById('flagged-readings-list');
-    
+
     if (flaggedReadings.length === 0) {
-        container.innerHTML = '<p class="text-muted">No flagged readings. Everything looks good!</p>';
+        container.innerHTML = '<p class="text-muted">No flagged readings match the current filter.</p>';
         return;
     }
     
@@ -162,8 +163,35 @@ function loadMissingReadings(cycleId) {
 }
 
 window.filterReview = function() {
-    // Simple reload for now
-    loadReviewData();
+    const cycleId = document.getElementById('review-cycle').value;
+    if (!cycleId) return;
+
+    const flagTypeFilter = document.getElementById('filter-flag-type').value.toLowerCase();
+    const statusFilter = document.getElementById('filter-review-status').value.toLowerCase();
+
+    const cycle = storage.get('cycles', cycleId);
+    let readings = storage.getReadings(cycleId);
+
+    // Keep only flagged readings for the flagged table
+    readings = readings.filter(r =>
+        (r.flags && r.flags.length > 0) || (r.manual_flags && r.manual_flags.length > 0)
+    );
+
+    if (flagTypeFilter) {
+        readings = readings.filter(r => {
+            const allFlags = [...(r.flags || []), ...(r.manual_flags || [])];
+            return allFlags.some(f => String(f.type).toLowerCase() === flagTypeFilter);
+        });
+    }
+
+    if (statusFilter) {
+        readings = readings.filter(r => {
+            const effective = String(getEffectiveReviewStatus(r, cycle)).toLowerCase();
+            return effective === statusFilter;
+        });
+    }
+
+    renderFlaggedReadings(readings, cycleId);
 };
 
 window.openReviewModal = function(readingId) {

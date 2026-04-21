@@ -63,8 +63,12 @@
                     <label for="filter-flag-type">Flag Type</label>
                     <select id="filter-flag-type" onchange="filterReview()">
                         <option value="">All Flags</option>
+                        <option value="tolerance">Tolerance (Out of Range)</option>
                         <option value="backward">Backward Reading</option>
                         <option value="spike">Huge Spike</option>
+                        <option value="percentage-spike">Percentage Spike</option>
+                        <option value="zero-consumption">Zero Consumption</option>
+                        <option value="unchanged">Unchanged Reading</option>
                         <option value="missing">Missing Reading</option>
                         <option value="duplicate">Duplicate Meter</option>
                     </select>
