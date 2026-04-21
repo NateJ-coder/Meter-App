@@ -133,7 +133,9 @@
 
         document.getElementById('user-name').textContent = currentUser.name;
 
-        document.getElementById('dev-console-link').style.display = 'block';
+        if (auth.isDeveloper()) {
+            document.getElementById('dev-console-link').style.display = 'block';
+        }
 
         // Session reset handler
         window.handleLogout = function() {

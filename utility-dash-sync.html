@@ -14,7 +14,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Dashboard</a></li>
-            <li><a href="dev-console.html">Developer Console</a></li>
+            <li id="dev-console-link" style="display:none;"><a href="dev-console.html">Developer Console</a></li>
             <li><a href="utility-dash-sync.html" class="active">Utility Dash Sync</a></li>
         </ul>
     </nav>
@@ -47,6 +47,14 @@
     </main>
 
     <script type="module" src="assets/page-auth.js"></script>
+    <script type="module">
+        import { auth } from './assets/auth.js';
+        auth.initialize().then(() => {
+            if (auth.isDeveloper()) {
+                document.getElementById('dev-console-link').style.display = 'block';
+            }
+        });
+    </script>
     <script type="module" src="assets/utility-dash-sync.js"></script>
 </body>
 </html>
