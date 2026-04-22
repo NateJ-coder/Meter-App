@@ -28,7 +28,15 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --radius: 8px;
     --radius-sm: 4px;
-    
+    --bg-subtle: #f0f4f8;
+
+    /* Animation timing */
+    --anim-fast: 0.15s;
+    --anim-base: 0.28s;
+    --anim-slow: 0.5s;
+    --anim-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --anim-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
     /* Fuzio Brand Colors (for reference) */
     --fuzio-blue: #0b4da2;
     --fuzio-blue-dark: #083a7a;
@@ -108,6 +116,27 @@ body.modal-open {
 
 .nav-signout:hover {
     opacity: 1;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.nav-role-badge {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+    background: var(--primary);
+    color: white;
+    vertical-align: middle;
 }
 
 /* ===================================
@@ -199,10 +228,12 @@ body.modal-open {
 }
 
 .metric-value {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.25rem;
+    line-height: 1.2;
+    word-break: break-all;
 }
 
 .metric-label {
@@ -210,6 +241,52 @@ body.modal-open {
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+/* Metric progress bar */
+.metric-progress {
+    margin-top: 0.625rem;
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.metric-progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+.metric-progress-fill.warning {
+    background: var(--warning);
+}
+
+/* Cycle status row */
+.cycle-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cycle-status-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.cycle-scheme-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.cycle-period {
+    font-size: 0.875rem;
 }
 
 /* ===================================
@@ -224,8 +301,8 @@ body.modal-open {
     border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all 0.2s;
     text-align: center;
+    /* transition defined in ANIMATIONS section */
 }
 
 .btn-primary {
@@ -268,6 +345,16 @@ body.modal-open {
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+}
+
+.btn-large {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
 }
 
 .reading-photo-preview {
@@ -1958,8 +2045,62 @@ body.modal-open {
 
 .onsite-actions-secondary {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     justify-content: center;
     padding: 0 1.5rem 1.5rem;
+}
+
+/* Confirm/correct meter info disclosure */
+.onsite-confirm-details {
+    margin: 0 1.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+.onsite-confirm-summary {
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: var(--bg-subtle, #f8f9fa);
+    user-select: none;
+    list-style: none;
+}
+.onsite-confirm-summary::-webkit-details-marker { display: none; }
+.onsite-confirm-summary::before { content: '▸ '; }
+.onsite-confirm-details[open] .onsite-confirm-summary::before { content: '▾ '; }
+.onsite-confirm-body {
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid var(--border);
+}
+.onsite-confirm-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0 0 0.75rem;
+}
+
+/* Toast notification */
+.onsite-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2e7d32;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+    white-space: nowrap;
+    animation: toastIn 0.2s ease;
+}
+@keyframes toastIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
 .onsite-btn-pause {
@@ -2413,6 +2554,193 @@ body.modal-open {
     flex: 1;
     min-width: 150px;
 }
+
+/* Collapsible danger zone on dashboard */
+.danger-zone-details {
+    border: 1px solid #fca5a5 !important;
+    background: #fff5f5 !important;
+}
+
+.danger-zone-details[open] {
+    border-color: var(--danger) !important;
+}
+
+.danger-zone-summary {
+    font-weight: 600;
+    color: var(--danger);
+    cursor: pointer;
+    padding: 0.25rem 0;
+    list-style: none;
+    user-select: none;
+}
+
+.danger-zone-summary::-webkit-details-marker { display: none; }
+
+.danger-zone-summary::before {
+    content: '▶ ';
+    font-size: 0.7em;
+    vertical-align: middle;
+}
+
+.danger-zone-details[open] .danger-zone-summary::before {
+    content: '▼ ';
+}
+
+.danger-zone-body {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.danger-zone-body p {
+    flex: 1;
+    font-size: 0.875rem;
+}
+
+/* Focus rings */
+*:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* ===================================
+   ANIMATIONS
+   =================================== */
+
+/* Reduced-motion override — must come first */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* --- Keyframes --- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-18px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.93); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* --- Page-load: navbar --- */
+.navbar {
+    animation: slideDown var(--anim-base) var(--anim-ease) both;
+}
+
+/* --- Page-load: page header --- */
+.page-header {
+    animation: fadeUp var(--anim-slow) var(--anim-ease) 0.05s both;
+}
+
+/* --- Metric cards stagger on page load --- */
+.metrics-grid .metric-card:nth-child(1) { animation: fadeUp 0.42s var(--anim-ease) 0.10s both; }
+.metrics-grid .metric-card:nth-child(2) { animation: fadeUp 0.42s var(--anim-ease) 0.18s both; }
+.metrics-grid .metric-card:nth-child(3) { animation: fadeUp 0.42s var(--anim-ease) 0.26s both; }
+.metrics-grid .metric-card:nth-child(4) { animation: fadeUp 0.42s var(--anim-ease) 0.34s both; }
+
+/* --- Login card entrance --- */
+.login-card {
+    animation: scaleIn 0.38s var(--anim-spring) both;
+}
+
+/* --- Modal slide-up --- */
+.modal-content {
+    animation: fadeUp 0.28s var(--anim-ease) both;
+}
+
+/* --- Tab content fade-in --- */
+.tab-content.active {
+    animation: fadeIn var(--anim-fast) var(--anim-ease) both;
+}
+
+/* --- Button hover lift --- */
+.btn {
+    transition:
+        transform var(--anim-fast) var(--anim-ease),
+        box-shadow var(--anim-fast) var(--anim-ease),
+        background-color var(--anim-fast) var(--anim-ease),
+        color var(--anim-fast) var(--anim-ease),
+        opacity var(--anim-fast) var(--anim-ease);
+}
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+}
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow);
+}
+
+/* --- Card hover lift (subtle) --- */
+.card {
+    transition: box-shadow var(--anim-base) var(--anim-ease);
+}
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* --- Scroll-reveal utility --- */
+/* Elements start invisible; JS adds .is-visible when in viewport */
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+        opacity var(--anim-slow) var(--anim-ease),
+        transform var(--anim-slow) var(--anim-ease);
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-18px);
+    transition:
+        opacity var(--anim-slow) var(--anim-ease),
+        transform var(--anim-slow) var(--anim-ease);
+}
+.reveal-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Stagger delays within a .reveal-group container */
+.reveal-group > .reveal:nth-child(1),
+.reveal-group > .reveal-left:nth-child(1) { transition-delay: 0s; }
+.reveal-group > .reveal:nth-child(2),
+.reveal-group > .reveal-left:nth-child(2) { transition-delay: 0.07s; }
+.reveal-group > .reveal:nth-child(3),
+.reveal-group > .reveal-left:nth-child(3) { transition-delay: 0.14s; }
+.reveal-group > .reveal:nth-child(4),
+.reveal-group > .reveal-left:nth-child(4) { transition-delay: 0.21s; }
+.reveal-group > .reveal:nth-child(5),
+.reveal-group > .reveal-left:nth-child(5) { transition-delay: 0.28s; }
+.reveal-group > .reveal:nth-child(6),
+.reveal-group > .reveal-left:nth-child(6) { transition-delay: 0.35s; }
 
 /* ===================================
    PRINT STYLES

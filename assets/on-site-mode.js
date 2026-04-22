@@ -279,19 +279,9 @@ export const onSiteMode = {
                     ` : ''}
                 </div>
 
-                <!-- Instructions -->
-                <div class="onsite-instructions">
-                    <h3>What to do</h3>
-                    <ol>
-                        <li>Confirm the meter number matches: <strong>${meter.meter_number}</strong></li>
-                        <li>Read the number displayed on the meter</li>
-                        <li>Take a photo of the meter display (optional but encouraged)</li>
-                        <li>Enter the reading below</li>
-                    </ol>
-                </div>
-
                 <!-- Capture Form -->
                 <form id="onsite-capture-form" class="onsite-capture-form">
+                    <!-- Reading input -->
                     <div class="form-group">
                         <label for="onsite-reading">Meter Reading (kWh) *</label>
                         <input 
@@ -309,6 +299,36 @@ export const onSiteMode = {
 
                     <!-- Live Feedback -->
                     <div id="onsite-feedback" class="onsite-feedback"></div>
+
+                    <!-- Confirm/correct meter info (collapsible) -->
+                    <details class="onsite-confirm-details" id="onsite-confirm-section">
+                        <summary class="onsite-confirm-summary">Correct meter info</summary>
+                        <div class="onsite-confirm-body">
+                            <p class="onsite-confirm-hint">If the meter number or unit label on the physical device is different from what's shown above, update it here. Your correction will be saved.</p>
+                            <div class="form-group">
+                                <label for="onsite-meter-number">Meter number (on device)</label>
+                                <input 
+                                    type="text" 
+                                    id="onsite-meter-number" 
+                                    value="${meter.meter_number || ''}"
+                                    placeholder="e.g. 12345678"
+                                    autocomplete="off"
+                                    class="onsite-input"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="onsite-unit-label">Unit label (on door/wall)</label>
+                                <input 
+                                    type="text" 
+                                    id="onsite-unit-label" 
+                                    value="${meter.location_description || ''}"
+                                    placeholder="e.g. Unit 7, Flat 12B"
+                                    autocomplete="off"
+                                    class="onsite-input"
+                                >
+                            </div>
+                        </div>
+                    </details>
 
                     <div class="form-group">
                         <label for="onsite-notes">Notes (optional)</label>
@@ -342,6 +362,9 @@ export const onSiteMode = {
                     <div class="onsite-actions-secondary">
                         <button type="button" class="btn btn-secondary btn-outline" onclick="onSiteMode.showIssueDialog('${meter.id}', '${cycleId}')">
                             ⚠ Flag an Issue
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-outline" onclick="onSiteMode.showAddUnlistedMeterDialog('${cycleId}')">
+                            + Add unlisted meter
                         </button>
                     </div>
                 </form>
@@ -423,6 +446,10 @@ export const onSiteMode = {
         const notes = document.getElementById('onsite-notes').value;
         const photoInput = document.getElementById('onsite-photo');
 
+        // Optional meter corrections
+        const correctedMeterNumber = (document.getElementById('onsite-meter-number')?.value || '').trim();
+        const correctedUnitLabel = (document.getElementById('onsite-unit-label')?.value || '').trim();
+
         if (Number.isNaN(readingValue)) {
             alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
             readingInput.focus();
@@ -433,6 +460,18 @@ export const onSiteMode = {
         if (!meter) {
             alert('Meter not found');
             return;
+        }
+
+        // Persist any corrections the reader made to the meter record
+        const meterUpdates = {};
+        if (correctedMeterNumber && correctedMeterNumber !== (meter.meter_number || '')) {
+            meterUpdates.meter_number = correctedMeterNumber;
+        }
+        if (correctedUnitLabel && correctedUnitLabel !== (meter.location_description || '')) {
+            meterUpdates.location_description = correctedUnitLabel;
+        }
+        if (Object.keys(meterUpdates).length > 0) {
+            storage.update('meters', meterId, meterUpdates);
         }
 
         // Get current user
@@ -486,6 +525,123 @@ export const onSiteMode = {
         
         // Re-render
         this.renderOnSiteCapture('onsite-container', cycleId);
+    },
+
+    /**
+     * Show dialog to add a meter that isn't in the database
+     */
+    showAddUnlistedMeterDialog(cycleId) {
+        const cycle = storage.get('cycles', cycleId);
+        if (!cycle) return;
+
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay';
+        modal.innerHTML = `
+            <div class="modal-content onsite-issue-modal">
+                <div class="modal-header">
+                    <h3>Add Unlisted Meter</h3>
+                    <button class="close-btn" onclick="this.closest('.modal-overlay').remove()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Fill in what you can see. At minimum, give us the unit label.</p>
+                    <form id="add-meter-form">
+                        <div class="form-group">
+                            <label for="new-unit-label">Unit label (door / wall) *</label>
+                            <input type="text" id="new-unit-label" required placeholder="e.g. Unit 7, Flat 12B, Shop 3" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-meter-number">Meter number (on device)</label>
+                            <input type="text" id="new-meter-number" placeholder="e.g. 87654321 — leave blank if not visible" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-meter-reading">Meter reading (kWh) *</label>
+                            <input type="text" id="new-meter-reading" required inputmode="decimal" autocomplete="off" placeholder="Enter reading">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-meter-notes">Notes (optional)</label>
+                            <textarea id="new-meter-notes" rows="2" placeholder="Anything unusual about this meter..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Reading</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        document.getElementById('add-meter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const unitLabel = document.getElementById('new-unit-label').value.trim();
+            const meterNumber = document.getElementById('new-meter-number').value.trim();
+            const readingValue = parseDecimalInput(document.getElementById('new-meter-reading').value);
+            const notes = document.getElementById('new-meter-notes').value.trim();
+
+            if (!unitLabel) {
+                alert('Unit label is required.');
+                return;
+            }
+            if (Number.isNaN(readingValue)) {
+                alert('Please enter a valid number for the meter reading.');
+                return;
+            }
+
+            const currentUser = window.auth ? window.auth.getCurrentUser() : null;
+            const slug = unitLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+            // Create a provisional meter under the scheme
+            const provisionalMeter = {
+                id: `meter-${cycle.scheme_id}-provisional-${slug}-${Date.now()}`,
+                scheme_id: cycle.scheme_id,
+                unit_id: null,
+                meter_number: meterNumber || null,
+                meter_type: 'UNIT',
+                meter_role: 'unit',
+                service_type: 'electricity',
+                location_description: unitLabel,
+                last_reading: readingValue,
+                last_reading_date: new Date().toISOString().split('T')[0],
+                provisional: true,
+                provisional_added_by: currentUser ? currentUser.name : 'Unknown',
+                provisional_added_at: new Date().toISOString(),
+                created_at: new Date().toISOString()
+            };
+            storage.create('meters', provisionalMeter);
+
+            // Create reading for it
+            const reading = {
+                cycle_id: cycleId,
+                meter_id: provisionalMeter.id,
+                reading_value: readingValue,
+                reading_date: new Date().toISOString().split('T')[0],
+                previous_reading: null,
+                consumption: null,
+                notes: notes,
+                captured_by: currentUser ? currentUser.name : 'Unknown User',
+                captured_by_id: currentUser ? currentUser.id : null,
+                captured_at: new Date().toISOString(),
+                review_status: 'pending',
+                provisional: true,
+                flags: [{
+                    type: 'provisional_meter',
+                    severity: 'medium',
+                    message: `Provisional meter added on-site: ${unitLabel}`
+                }]
+            };
+            storage.create('readings', reading);
+
+            modal.remove();
+            // Re-render to stay on current meter (unlisted meter doesn't advance the queue)
+            this.renderOnSiteCapture('onsite-container', cycleId);
+            // Brief confirmation
+            const toast = document.createElement('div');
+            toast.className = 'onsite-toast';
+            toast.textContent = `✓ Unlisted meter saved (${unitLabel})`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        });
     },
 
     /**

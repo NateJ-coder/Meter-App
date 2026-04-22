@@ -55,6 +55,31 @@ initializeFolderSchemes();
     navLinks.appendChild(li);
 })();
 
+// Scroll-reveal: observe all .reveal and .reveal-left elements
+(function initScrollReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    // Observe elements already in DOM, then watch for dynamic additions
+    function observe() {
+        document.querySelectorAll('.reveal:not(.is-visible), .reveal-left:not(.is-visible)')
+            .forEach(el => observer.observe(el));
+    }
+
+    // Run immediately for static elements
+    observe();
+
+    // Re-run after short delay to catch dynamically rendered content
+    setTimeout(observe, 500);
+    setTimeout(observe, 1500);
+})();
+
 export function requireAuth() {
     return auth.isAuthenticated();
 }

@@ -22,8 +22,8 @@
             <li id="dev-console-link" style="display:none;"><a href="dev-console.html">🔧 Dev</a></li>
         </ul>
         <div class="nav-user">
-            <span id="user-name"></span>
-            <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Reset Session</button>
+            <span id="user-name"></span><span id="user-role-badge" class="nav-role-badge" style="display:none;"></span>
+            <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Sign Out</button>
         </div>
     </nav>
 
@@ -45,7 +45,7 @@
             <section id="setup-health-container"></section>
 
             <!-- Current Cycle Summary -->
-            <section class="card">
+            <section class="card reveal">
                 <h2>Current Reading Cycle</h2>
                 <div id="cycle-status-container">
                     <p class="text-muted">Loading cycle information...</p>
@@ -55,36 +55,37 @@
         <!-- Key Metrics -->
         <section class="metrics-grid">
             <div class="metric-card">
-                <div class="metric-value" id="total-meters">0</div>
+                <div class="metric-value" id="total-meters">—</div>
                 <div class="metric-label">Total Meters</div>
             </div>
             <div class="metric-card">
-                <div class="metric-value" id="meters-read">0</div>
+                <div class="metric-value" id="meters-read">—</div>
                 <div class="metric-label">Meters Read</div>
+                <div class="metric-progress"><div class="metric-progress-fill" id="meters-read-fill" style="width:0%"></div></div>
             </div>
             <div class="metric-card warning">
-                <div class="metric-value" id="meters-not-read">0</div>
-                <div class="metric-label">Not Read</div>
+                <div class="metric-value" id="meters-not-read">—</div>
+                <div class="metric-label">Not Yet Read</div>
+                <div class="metric-progress"><div class="metric-progress-fill warning" id="meters-not-read-fill" style="width:0%"></div></div>
             </div>
             <div class="metric-card danger">
-                <div class="metric-value" id="flagged-readings">0</div>
+                <div class="metric-value" id="flagged-readings">—</div>
                 <div class="metric-label">Flagged</div>
             </div>
         </section>
 
         <!-- Quick Actions -->
-        <section class="card">
+        <section class="card reveal">
             <h2>Quick Actions</h2>
             <div class="action-buttons">
                 <a href="reading-cycle.html" class="btn btn-primary">Open New Cycle</a>
                 <a href="reading-cycle.html#capture" class="btn btn-secondary">Capture Readings</a>
                 <a href="review.html" class="btn btn-secondary">Review Exceptions</a>
                 <a href="export.html" class="btn btn-secondary">Export Data</a>
-                <button class="btn btn-danger" onclick="clearAllData()" style="margin-left: auto;">Clear All Data</button>
             </div>
         </section>
 
-        <section class="card">
+        <section class="card reveal">
             <h2>Mobile Reading Transfer</h2>
             <div class="info-box mb-2">
                 Use this when readings were captured on a phone after scanning a QR code. Download the reading package from the phone, then import it here to record the readings on this dashboard.
@@ -103,12 +104,21 @@
         </section>
 
         <!-- Recent Activity -->
-        <section class="card">
+        <section class="card reveal">
             <h2>Recent Cycles</h2>
             <div id="recent-cycles-container">
                 <p class="text-muted">Loading recent cycles...</p>
             </div>
         </section>
+
+        <!-- Danger Zone -->
+        <details class="card danger-zone-details">
+            <summary class="danger-zone-summary">⚠ Danger Zone</summary>
+            <div class="danger-zone-body">
+                <p class="text-muted">This will permanently delete all schemes, meters, readings, and cycles from local storage. User accounts are not affected.</p>
+                <button class="btn btn-danger" onclick="clearAllData()">Clear All Operational Data</button>
+            </div>
+        </details>
         </div>
     </main>
 
@@ -135,13 +145,17 @@
 
         if (auth.isDeveloper()) {
             document.getElementById('dev-console-link').style.display = 'block';
+            const badge = document.getElementById('user-role-badge');
+            badge.textContent = 'Dev';
+            badge.style.display = 'inline';
+        } else if (currentUser.role === 'admin') {
+            const badge = document.getElementById('user-role-badge');
+            badge.textContent = 'Admin';
+            badge.style.display = 'inline';
         }
 
-        // Session reset handler
         window.handleLogout = function() {
-            if (confirm('Reset the local open-access session metadata?')) {
-                void auth.logout();
-            }
+            void auth.logout();
         };
 
         // Make storage globally available
@@ -232,6 +246,24 @@
             }
         };
 
+        // Animate a numeric string into an element (count-up)
+        function countUp(el, targetText, duration = 600) {
+            const match = targetText.match(/^(\d+)(.*)$/);
+            if (!match) { el.textContent = targetText; return; }
+            const end = parseInt(match[1], 10);
+            const suffix = match[2] || '';
+            const start = 0;
+            const startTime = performance.now();
+            function step(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                // ease-out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(start + (end - start) * eased) + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
         // Load dashboard data
         function loadDashboard() {
             const cycles = storage.getAll('cycles');
@@ -246,21 +278,23 @@
             if (openCycle) {
                 const scheme = storage.get('schemes', openCycle.scheme_id);
                 cycleStatusContainer.innerHTML = `
-                    <div class="cycle-status open">
-                        <div class="status-badge">OPEN</div>
-                        <div>
-                            <strong>${scheme ? scheme.name : 'Unknown Scheme'}</strong>
-                            <br>
-                            <span class="text-muted">${openCycle.start_date} to ${openCycle.end_date}</span>
+                    <div class="cycle-status-row">
+                        <div class="cycle-status-info">
+                            <span class="badge badge-success">Active</span>
+                            <span class="cycle-scheme-name">${scheme ? scheme.name : 'Unknown Scheme'}</span>
+                            <span class="cycle-period text-muted">${openCycle.start_date} &ndash; ${openCycle.end_date}</span>
                         </div>
+                        <a href="reading-cycle.html#capture" class="btn btn-primary btn-sm">Capture Readings</a>
                     </div>
                 `;
             } else {
                 cycleStatusContainer.innerHTML = `
-                    <div class="cycle-status closed">
-                        <div class="status-badge">NO OPEN CYCLE</div>
-                        <p class="text-muted">Open a new reading cycle to start capturing readings.</p>
-                        <a href="reading-cycle.html" class="btn btn-primary">Open Cycle</a>
+                    <div class="cycle-status-row">
+                        <div class="cycle-status-info">
+                            <span class="badge badge-secondary">No Open Cycle</span>
+                            <span class="text-muted">Open a reading cycle to start capturing.</span>
+                        </div>
+                        <a href="reading-cycle.html" class="btn btn-primary btn-sm">Open Cycle</a>
                     </div>
                 `;
             }
@@ -278,10 +312,19 @@
                 flaggedCount = cycleReadings.filter(r => r.flags && r.flags.length > 0).length;
             }
 
-            document.getElementById('total-meters').textContent = totalMeters;
-            document.getElementById('meters-read').textContent = metersRead;
-            document.getElementById('meters-not-read').textContent = totalMeters - metersRead;
-            document.getElementById('flagged-readings').textContent = flaggedCount;
+            const notRead = totalMeters - metersRead;
+            const pctRead = totalMeters > 0 ? Math.round((metersRead / totalMeters) * 100) : 0;
+            const pctNotRead = totalMeters > 0 ? Math.round((notRead / totalMeters) * 100) : 0;
+
+            countUp(document.getElementById('total-meters'), String(totalMeters));
+            countUp(document.getElementById('meters-read'), openCycle ? `${metersRead} / ${totalMeters}` : String(metersRead));
+            countUp(document.getElementById('meters-not-read'), openCycle ? `${notRead} / ${totalMeters}` : String(notRead));
+            countUp(document.getElementById('flagged-readings'), String(flaggedCount));
+            // Animate progress bars after a short delay
+            setTimeout(() => {
+                document.getElementById('meters-read-fill').style.width = pctRead + '%';
+                document.getElementById('meters-not-read-fill').style.width = pctNotRead + '%';
+            }, 150);
 
             // Load recent cycles
             const recentCycles = cycles

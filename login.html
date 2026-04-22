@@ -14,10 +14,47 @@
             border-radius: 4px;
             margin-bottom: 1rem;
             display: none;
+            font-size: 0.9rem;
         }
         .login-error.visible { display: block; }
-        .btn-block { width: 100%; }
+        .btn-block { width: 100%; justify-content: center; }
         #login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* Password toggle */
+        .password-field {
+            position: relative;
+        }
+        .password-field input {
+            padding-right: 3rem;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 0.25rem;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+        .password-toggle:hover { color: var(--text-primary); }
+
+        /* Spinner inside button */
+        .btn-spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 0.4rem;
+            vertical-align: middle;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="login-body">
@@ -39,8 +76,13 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" autocomplete="current-password" required
-                       placeholder="••••••••">
+                <div class="password-field">
+                    <input type="password" id="password" name="password" autocomplete="current-password" required
+                           placeholder="••••••••">
+                    <button type="button" class="password-toggle" id="pw-toggle" aria-label="Show password">
+                        👁
+                    </button>
+                </div>
             </div>
             <button type="submit" id="login-btn" class="btn btn-primary btn-large btn-block">Sign In</button>
         </form>
@@ -61,6 +103,15 @@
     const form = document.getElementById('login-form');
     const errorBox = document.getElementById('login-error');
     const btn = document.getElementById('login-btn');
+    const pwInput = document.getElementById('password');
+    const pwToggle = document.getElementById('pw-toggle');
+
+    pwToggle.addEventListener('click', () => {
+        const isHidden = pwInput.type === 'password';
+        pwInput.type = isHidden ? 'text' : 'password';
+        pwToggle.textContent = isHidden ? '🙈' : '👁';
+        pwToggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    });
 
     function showError(msg) {
         errorBox.textContent = msg;
@@ -85,7 +136,7 @@
         }
 
         btn.disabled = true;
-        btn.textContent = 'Signing in…';
+        btn.innerHTML = '<span class="btn-spinner"></span>Signing in…';
 
         const result = await auth.login(email, password);
 

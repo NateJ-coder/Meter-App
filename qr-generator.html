@@ -104,6 +104,18 @@
             <div id="qr-grid" class="qr-grid"></div>
         </section>
 
+        <!-- Building-start labels for first run -->
+        <section class="card no-print" id="building-start-section">
+            <div class="card-header">
+                <h2>Building Start Labels</h2>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="printBuildingLabels()">🖨️ Print labels</button>
+                </div>
+            </div>
+            <p class="subtitle">One label per building. The reader scans it at the door to start the on-site reading session for that building. Use these for the first visit — they work for every future cycle too.</p>
+            <div id="building-label-grid" class="qr-grid" style="margin-top:1rem;"></div>
+        </section>
+
         <section class="card no-print">
             <h2>How to use</h2>
             <ol>
@@ -295,9 +307,73 @@
             a.click();
         };
 
+        // Building-start labels (one per scheme, for first-run on-site mode)
+        function renderBuildingLabels() {
+            const filterSchemeId = document.getElementById('scheme-select').value;
+            const grid = document.getElementById('building-label-grid');
+            const section = document.getElementById('building-start-section');
+
+            let schemes = storage.getAll('schemes');
+            if (filterSchemeId) schemes = schemes.filter(s => s.id === filterSchemeId);
+
+            grid.innerHTML = '';
+
+            if (schemes.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            section.style.display = '';
+
+            schemes.forEach(scheme => {
+                const buildings = storage.getBuildings(scheme.id);
+                const unitCount = buildings.flatMap(b => storage.getUnits(b.id)).length;
+                // Link to on-site mode, scheme-scoped — cycle_id auto-detected from open cycle
+                const startUrl = `${BASE_URL}reader.html?scheme_id=${encodeURIComponent(scheme.id)}&mode=onsite`;
+                const label = scheme.name;
+
+                const tile = document.createElement('div');
+                tile.className = 'qr-tile building-start-tile';
+                const safeLabel = label.replace(/'/g, "\\'");
+                tile.innerHTML = `
+                    <span class="qr-type-badge" style="background:#1565c0;">Start</span>
+                    <img src="${qrImageUrl(startUrl)}" alt="Start QR for ${label}" loading="lazy">
+                    <div class="qr-label">${label}</div>
+                    <div class="qr-sublabel">${unitCount} unit${unitCount !== 1 ? 's' : ''} across ${buildings.length} building${buildings.length !== 1 ? 's' : ''}</div>
+                    <div class="qr-sublabel" style="font-size:0.7rem;color:#888;">Scan to begin on-site reading</div>
+                    <div class="action-buttons no-print" style="flex-direction:row;gap:0.4rem;margin-top:0.25rem;">
+                        <a class="btn btn-sm btn-secondary" href="${startUrl}" target="_blank" style="font-size:0.75rem;padding:4px 8px;">Test</a>
+                        <button class="btn btn-sm btn-primary" style="font-size:0.75rem;padding:4px 8px;"
+                            onclick="downloadSingle('${qrImageUrl(startUrl, 400)}','start-${safeLabel}')">Save</button>
+                    </div>`;
+                grid.appendChild(tile);
+            });
+        }
+
+        window.printBuildingLabels = function () {
+            renderBuildingLabels();
+            // Hide per-meter QR grid during print
+            document.getElementById('qr-results').classList.add('no-print');
+            document.getElementById('building-start-section').classList.remove('no-print');
+            window.print();
+            document.getElementById('qr-results').classList.remove('no-print');
+        };
+
         // Initial load
         loadSchemes();
-        document.addEventListener('visibilitychange', () => { if (!document.hidden) loadSchemes(); });
+        renderBuildingLabels();
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                loadSchemes();
+                renderBuildingLabels();
+            }
+        });
+
+        // Re-render building labels when scheme filter changes
+        const origGenerateQRCodes = window.generateQRCodes;
+        window.generateQRCodes = function () {
+            origGenerateQRCodes();
+            renderBuildingLabels();
+        };
     </script>
 </body>
 </html>

@@ -187,10 +187,12 @@
     // Activate on-site mode
     onSiteMode.activate();
 
-    // Find open cycle
+    // Find open cycle (prefer scheme-scoped lookup when scheme_id is in URL)
     const openCycle = onsiteCycleId
       ? storage.get('cycles', onsiteCycleId)
-      : storage.getAll('cycles').find(c => c.status === 'OPEN');
+      : schemeId
+        ? storage.getOpenCycle(schemeId)
+        : storage.getAll('cycles').find(c => c.status === 'OPEN');
 
     if (!openCycle || openCycle.status !== 'OPEN') {
       showError('No open reading cycle found. Please open a cycle first.');
