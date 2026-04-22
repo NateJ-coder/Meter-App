@@ -88,6 +88,17 @@
                 <button class="btn btn-secondary" onclick="exportAllData()">Export All Data</button>
             </div>
         </section>
+
+        <!-- Stale Scheme Purge -->
+        <section class="card">
+            <h2>Stale Scheme Cleanup</h2>
+            <p class="text-muted" style="margin-bottom:1rem;">Lists schemes in the database that are not part of the approved building list. These are typically remnants from old Utility Dash imports. Review, then delete.</p>
+            <div id="stale-schemes-list"></div>
+            <div class="action-buttons" style="margin-top:1rem;">
+                <button class="btn btn-secondary" onclick="renderStaleSchemes()">Scan for Stale Schemes</button>
+                <button class="btn btn-danger" id="purge-stale-btn" style="display:none;" onclick="purgeStaleSchemes()">Purge All Stale Schemes</button>
+            </div>
+        </section>
     </main>
 
     <!-- Add User Modal -->
@@ -142,6 +153,7 @@
         import { setupHealth } from './assets/setup-health.js';
         import { validation } from './assets/validation.js';
         import { developerReviewParser } from './assets/developer-review-parser.js';
+        import { DEFAULT_SCHEME_NAMES } from './assets/app.js';
 
         await auth.initialize();
         await storage.initializeCloudSync({ preload: storage.shouldPreloadCloudData() });
@@ -767,6 +779,99 @@
 
             return recommendations;
         }
+
+        // --- Stale scheme detection ---
+
+        function getApprovedSchemeNamesNormalized() {
+            return new Set(DEFAULT_SCHEME_NAMES.map(n => n.trim().toLowerCase()));
+        }
+
+        window.renderStaleSchemes = function() {
+            const container = document.getElementById('stale-schemes-list');
+            const purgeBtn = document.getElementById('purge-stale-btn');
+            const approved = getApprovedSchemeNamesNormalized();
+            const allSchemes = storage.getAll('schemes');
+            const stale = allSchemes.filter(s => !approved.has((s.name || '').trim().toLowerCase()));
+
+            if (stale.length === 0) {
+                container.innerHTML = '<p class="text-muted">No stale schemes found. Database matches the approved building list.</p>';
+                purgeBtn.style.display = 'none';
+                return;
+            }
+
+            purgeBtn.style.display = 'inline-block';
+
+            const rows = stale.map(scheme => {
+                const buildings = storage.getAll('buildings').filter(b => b.scheme_id === scheme.id);
+                const units = storage.getAll('units').filter(u => buildings.some(b => b.id === u.building_id));
+                const meters = storage.getAll('meters').filter(m => m.scheme_id === scheme.id);
+                const cycles = storage.getAll('cycles').filter(c => c.scheme_id === scheme.id);
+                const readings = storage.getAll('readings').filter(r => cycles.some(c => c.id === r.cycle_id));
+                return `
+                    <tr>
+                        <td><strong>${scheme.name}</strong></td>
+                        <td>${scheme.id}</td>
+                        <td>${buildings.length} buildings, ${units.length} units, ${meters.length} meters, ${cycles.length} cycles, ${readings.length} readings</td>
+                    </tr>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <table class="data-table">
+                    <thead><tr><th>Name</th><th>ID</th><th>Linked data</th></tr></thead>
+                    <tbody>${rows}</tbody>
+                </table>
+                <p class="text-muted" style="margin-top:0.75rem; font-size:0.875rem;">
+                    ${stale.length} stale scheme${stale.length > 1 ? 's' : ''} detected. Purging removes the scheme and all linked buildings, units, meters, cycles, and readings.
+                </p>
+            `;
+        };
+
+        window.purgeStaleSchemes = function() {
+            const approved = getApprovedSchemeNamesNormalized();
+            const allSchemes = storage.getAll('schemes');
+            const stale = allSchemes.filter(s => !approved.has((s.name || '').trim().toLowerCase()));
+
+            if (stale.length === 0) {
+                alert('No stale schemes to purge.');
+                return;
+            }
+
+            const names = stale.map(s => s.name).join(', ');
+            if (!confirm(`This will permanently delete:\n${names}\n\n…and all their buildings, units, meters, cycles, and readings.\n\nThis also syncs the deletions to Firebase. Are you sure?`)) return;
+
+            stale.forEach(scheme => {
+                // Delete readings tied to this scheme's cycles
+                const cycles = storage.getAll('cycles').filter(c => c.scheme_id === scheme.id);
+                cycles.forEach(cycle => {
+                    storage.getAll('readings')
+                        .filter(r => r.cycle_id === cycle.id)
+                        .forEach(r => storage.delete('readings', r.id));
+                    storage.delete('cycles', cycle.id);
+                });
+
+                // Delete meters
+                storage.getAll('meters')
+                    .filter(m => m.scheme_id === scheme.id)
+                    .forEach(m => storage.delete('meters', m.id));
+
+                // Delete units via buildings
+                const buildings = storage.getAll('buildings').filter(b => b.scheme_id === scheme.id);
+                buildings.forEach(building => {
+                    storage.getAll('units')
+                        .filter(u => u.building_id === building.id)
+                        .forEach(u => storage.delete('units', u.id));
+                    storage.delete('buildings', building.id);
+                });
+
+                // Delete scheme
+                storage.delete('schemes', scheme.id);
+            });
+
+            alert(`✓ Purged ${stale.length} stale scheme${stale.length > 1 ? 's' : ''}. Changes queued for Firebase sync.`);
+            renderStaleSchemes();
+            renderDataStats();
+        };
 
         // Initialize on load
         await initializeDashboard();

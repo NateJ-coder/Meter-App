@@ -300,6 +300,17 @@ export const onSiteMode = {
                     <!-- Live Feedback -->
                     <div id="onsite-feedback" class="onsite-feedback"></div>
 
+                    <!-- Meter type confirmation -->
+                    <div class="form-group">
+                        <label>Meter type</label>
+                        <div class="meter-type-selector" id="onsite-meter-type-selector" role="group" aria-label="Confirm meter type">
+                            <button type="button" class="meter-type-btn${meter.meter_type === 'UNIT' ? ' active' : ''}" data-type="UNIT">Unit</button>
+                            <button type="button" class="meter-type-btn${meter.meter_type === 'COMMON' ? ' active' : ''}" data-type="COMMON">Common Property</button>
+                            <button type="button" class="meter-type-btn${meter.meter_type === 'BULK' ? ' active' : ''}" data-type="BULK">Bulk</button>
+                        </div>
+                        <small class="form-help">Confirm or correct what this meter serves. Corrections are applied when the cycle closes.</small>
+                    </div>
+
                     <!-- Confirm/correct meter info (collapsible) -->
                     <details class="onsite-confirm-details" id="onsite-confirm-section">
                         <summary class="onsite-confirm-summary">Correct meter info</summary>
@@ -377,6 +388,14 @@ export const onSiteMode = {
             this.handleOnsiteSubmit(meter.id, cycleId);
         });
 
+        // Meter type toggle
+        document.querySelectorAll('.meter-type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.meter-type-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
         // Attach real-time validation
         document.getElementById('onsite-reading').addEventListener('input', () => {
             this.validateOnsiteReading(meter.id);
@@ -450,6 +469,10 @@ export const onSiteMode = {
         const correctedMeterNumber = (document.getElementById('onsite-meter-number')?.value || '').trim();
         const correctedUnitLabel = (document.getElementById('onsite-unit-label')?.value || '').trim();
 
+        // Meter type identification (reader confirmation)
+        const activeTypeBtn = document.querySelector('.meter-type-btn.active');
+        const identifiedType = activeTypeBtn ? activeTypeBtn.dataset.type : null;
+
         if (Number.isNaN(readingValue)) {
             alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
             readingInput.focus();
@@ -510,6 +533,20 @@ export const onSiteMode = {
 
         // Validate and add flags
         reading.flags = validation.validateReading(reading);
+
+        // Record meter type identification from reader
+        if (identifiedType) {
+            reading.meter_type_identified = identifiedType;
+            if (identifiedType !== (meter.meter_type || 'UNIT')) {
+                reading.flags.push({
+                    type: 'meter_type_identified',
+                    severity: 'info',
+                    identified_type: identifiedType,
+                    previous_type: meter.meter_type || null,
+                    message: `Reader updated meter type: ${meter.meter_type || 'unknown'} → ${identifiedType}`
+                });
+            }
+        }
 
         // Save reading
         storage.create('readings', reading);

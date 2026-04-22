@@ -6,20 +6,18 @@
 import { storage } from './storage.js';
 import { router } from './router.js';
 
-const DEFAULT_SCHEME_NAMES = [
+export const DEFAULT_SCHEME_NAMES = [
     'Akasia',
     'Azores',
     'Bonifay',
     'Carissa Lane',
-    'Colnbrook',
     'Genisis on Fairmount',
-    'Gosforth Park',
     'Hazelmere',
     'La Montagne',
+    'Phanda Lodge',
     'QueensGate',
     'Rivonia Gates',
     'Taragona',
-    'Transvalia',
     'VILLINO GLEN',
     'Vista Del Monte'
 ];

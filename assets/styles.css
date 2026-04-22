@@ -2081,6 +2081,42 @@ body.modal-open {
     margin: 0 0 0.75rem;
 }
 
+/* Meter type pill selector (on-site capture) */
+.meter-type-selector {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.375rem;
+}
+
+.meter-type-btn {
+    padding: 0.35rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border: 2px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition:
+        border-color var(--anim-fast, 0.15s) ease,
+        background-color var(--anim-fast, 0.15s) ease,
+        color var(--anim-fast, 0.15s) ease;
+}
+
+.meter-type-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: none; /* override global btn lift */
+    box-shadow: none;
+}
+
+.meter-type-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
 /* Toast notification */
 .onsite-toast {
     position: fixed;

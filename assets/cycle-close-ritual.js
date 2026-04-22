@@ -400,6 +400,24 @@ window.confirmCloseCycle = function(cycleId) {
             status: 'CLOSED',
             closed_at: new Date().toISOString()
         });
+
+        // Apply any meter type identifications collected during this cycle
+        // Readings where the reader corrected the meter type are the source of truth
+        const allReadings = storage.getReadings(cycleId);
+        const typeChangeCount = allReadings.reduce((count, reading) => {
+            if (!reading.meter_type_identified) return count;
+            const meter = storage.get('meters', reading.meter_id);
+            if (!meter) return count;
+            if (meter.meter_type !== reading.meter_type_identified) {
+                storage.update('meters', reading.meter_id, {
+                    meter_type: reading.meter_type_identified,
+                    meter_type_updated_at: new Date().toISOString(),
+                    meter_type_updated_by_cycle: cycleId
+                });
+                return count + 1;
+            }
+            return count;
+        }, 0);
         
         // Update onboarding state if this is first cycle
         if (window.onboarding) {
@@ -408,7 +426,10 @@ window.confirmCloseCycle = function(cycleId) {
             window.onboarding.setState(state);
         }
         
-        alert('✓ Cycle closed successfully!');
+        const closedMsg = typeChangeCount > 0
+            ? `✓ Cycle closed. ${typeChangeCount} meter type${typeChangeCount > 1 ? 's' : ''} updated from reader corrections.`
+            : '✓ Cycle closed successfully!';
+        alert(closedMsg);
         window.closeCycleModal();
         location.reload();
     }

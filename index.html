@@ -179,8 +179,12 @@
                 // Show first-time checklist if not completed
                 firstTimeChecklist.renderChecklist('first-time-checklist-container');
 
-                // Show setup health panel
-                setupHealth.renderHealthPanel('setup-health-container');
+                // Show setup health panel (developer only — contains internal diagnostics)
+                if (auth.isDeveloper()) {
+                    setupHealth.renderHealthPanel('setup-health-container');
+                } else {
+                    document.getElementById('setup-health-container').style.display = 'none';
+                }
 
                 // Load dashboard data
                 loadDashboard();
