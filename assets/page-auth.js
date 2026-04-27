@@ -11,8 +11,10 @@ import { storage } from './storage.js';
 
 const currentPage = location.pathname.split('/').pop() || 'index.html';
 
-// login.html is exempt from the guard (it IS the login page)
-if (currentPage !== 'login.html') {
+// Public pages — accessible without a login (QR scan targets, login page itself)
+const PUBLIC_PAGES = new Set(['login.html', 'reader.html']);
+
+if (!PUBLIC_PAGES.has(currentPage)) {
     const session = await auth.initialize();
 
     if (!session) {
@@ -29,7 +31,7 @@ if (currentPage !== 'login.html') {
         throw new Error('Insufficient role for this page');
     }
 } else {
-    await auth.initialize();
+    await auth.initialize(); // restore session if present, but do not redirect
 }
 
 await storage.initializeCloudSync({ preload: storage.shouldPreloadCloudData() });

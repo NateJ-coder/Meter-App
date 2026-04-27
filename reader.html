@@ -25,27 +25,55 @@
 
   <!-- Fallback: Traditional Reader (if on-site mode not activated) -->
   <div id="traditional-reader" style="display:none;">
-    <div id="context-card" class="card reader-context-card">
+
+    <!-- Panel A: Meter info — always shown when a valid meter QR is scanned -->
+    <section id="panel-meter-info" class="card" style="display:none;"></section>
+
+    <!-- Shown when no reading cycle is currently open -->
+    <section id="panel-no-cycle" class="card" style="display:none;">
+      <div class="info-box" style="background:#fff3cd;border-left-color:#ffc107;">
+        <strong>⏸ No active reading cycle</strong><br>
+        There is no open reading cycle for this scheme right now. Readings cannot be captured until the building manager opens a new cycle. The meter information is shown above.
+      </div>
+    </section>
+
+    <!-- Context card (cycle + meter identifier bar, used by all flows) -->
+    <div id="context-card" class="card reader-context-card" style="display:none;">
       <p id="context-info" class="context-text"></p>
       <div id="progress-info" class="reader-progress"></div>
     </div>
 
-    <section class="card instructions-card">
+    <!-- Instructions -->
+    <section id="panel-instructions" class="card instructions-card" style="display:none;">
       <h3>📋 What to do</h3>
       <ol>
         <li>Confirm the meter number matches the one shown above</li>
         <li>Read the number displayed on the meter</li>
         <li>Take a clear photo of the meter display</li>
         <li>Enter the reading below</li>
-        <li>Tap <strong>Submit</strong> to continue</li>
+        <li>Tap <strong>Submit</strong> to save</li>
       </ol>
       <p class="instruction-tip">
         💡 <strong>Tip:</strong> If the meter is inaccessible, damaged, or unclear, make a note in the "Notes" field.
       </p>
     </section>
 
-    <section class="card">
+    <!-- Panel B: Reading input form (shown only when a cycle is open) -->
+    <section id="panel-reading-form" class="card" style="display:none;">
       <form id="reader-form">
+
+        <!-- Reader identity: visible for unauthenticated QR scans, hidden for logged-in staff -->
+        <div class="form-group" id="reader-name-group">
+          <label for="reader-name">Your Name *</label>
+          <input
+            type="text"
+            id="reader-name"
+            required
+            placeholder="Full name of the person capturing this reading"
+            autocomplete="name"
+          >
+        </div>
+
         <div class="form-group">
           <label for="reading-value">Current Reading (kWh) *</label>
           <input 
@@ -72,7 +100,7 @@
             capture="environment"
             class="reader-input"
           >
-          <small class="form-help">Photos upload to Firebase Storage when available, with local fallback on this device if the upload fails.</small>
+          <small class="form-help">Take a clear photo of the meter display. Photos are saved to cloud storage when available.</small>
         </div>
 
         <div class="form-group">
@@ -83,7 +111,7 @@
         <div class="form-actions">
           <button type="button" id="reader-back-btn" class="btn btn-secondary">Back</button>
           <button type="submit" id="reader-submit-btn" class="btn btn-primary btn-large reader-submit">
-            Submit & Continue
+            Submit Reading
           </button>
         </div>
       </form>
@@ -205,14 +233,53 @@
   }
 
   function initializeTraditionalReader() {
-    console.log('Initializing Traditional Reader...');
     document.getElementById('traditional-reader').style.display = 'block';
     workflowContext = loadWorkflowContext();
-    
-    if (workflowContext) {
-      displayMeterContext(workflowContext);
-      setupFormHandlers();
+
+    if (!workflowContext) return;
+
+    if (directMeterId) {
+      // ── Two-panel QR scan mode (no auth required) ──
+      renderMeterInfoPanel(workflowContext);
+
+      if (workflowContext.openCycle) {
+        const { openCycle, currentMeter } = workflowContext;
+        const cycleLabel = openCycle.name
+          || [openCycle.start_date, openCycle.end_date].filter(Boolean).join(' → ')
+          || 'Open Cycle';
+        document.getElementById('context-info').textContent = `Cycle: ${cycleLabel}`;
+        document.getElementById('progress-info').textContent = `Meter: ${currentMeter.meter_number}`;
+        document.getElementById('context-card').style.display = 'block';
+        document.getElementById('panel-instructions').style.display = 'block';
+        document.getElementById('panel-reading-form').style.display = 'block';
+
+        // Pre-fill reader name if the user happens to be logged in
+        const loggedInUser = auth.getCurrentUser ? auth.getCurrentUser() : null;
+        const readerNameInput = document.getElementById('reader-name');
+        const readerNameGroup = document.getElementById('reader-name-group');
+        if (loggedInUser?.name && readerNameInput) {
+          readerNameInput.value = loggedInUser.name;
+          readerNameInput.required = false;
+          if (readerNameGroup) readerNameGroup.style.display = 'none';
+        }
+
+        setupFormHandlers();
+      } else {
+        document.getElementById('panel-no-cycle').style.display = 'block';
+      }
+      return;
     }
+
+    // ── Scheme-level admin workflow (index-based navigation) ──
+    const readerNameGroup = document.getElementById('reader-name-group');
+    const readerNameInput = document.getElementById('reader-name');
+    if (readerNameGroup) readerNameGroup.style.display = 'none';
+    if (readerNameInput) readerNameInput.required = false;
+    document.getElementById('context-card').style.display = 'block';
+    document.getElementById('panel-instructions').style.display = 'block';
+    document.getElementById('panel-reading-form').style.display = 'block';
+    displayMeterContext(workflowContext);
+    setupFormHandlers();
   }
 
   // --- Load workflow context ---
@@ -239,23 +306,24 @@
         return null;
       }
 
-      const openCycle = storage.getOpenCycle(resolvedSchemeId);
-      if (!openCycle) {
-        showError('No reading cycle is currently open. The admin must open a new cycle before readings can be captured.');
-        return null;
-      }
+      // openCycle may be null — the info panel is shown regardless; the input form only when open
+      const openCycle = resolvedSchemeId ? storage.getOpenCycle(resolvedSchemeId) : null;
 
-      // Resolve unit info for display
+      // Resolve unit / building for display
       const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
       const building = unit ? storage.get('buildings', unit.building_id) : null;
+      const unitInfo = unit ? { ...unit, building_name: building?.name } : null;
+      const currentMeter = { ...meter, unit_info: unitInfo };
 
       return {
         scheme,
-        bulkMeter: meter.meter_type === 'BULK' ? meter : null,
+        unit,
+        building,
+        bulkMeter: meter.meter_type === 'BULK' ? currentMeter : null,
         openCycle,
-        submeters: meter.meter_type !== 'BULK' ? [{ ...meter, unit_info: unit ? { ...unit, building_name: building?.name } : null }] : [],
-        currentIndex: meter.meter_type === 'BULK' ? 0 : 1,
-        currentMeter: meter,
+        submeters: meter.meter_type !== 'BULK' ? [currentMeter] : [],
+        currentIndex: 0,
+        currentMeter,
         totalMeters: 1,
         singleMeterMode: true
       };
@@ -374,6 +442,35 @@
 
     showError('Invalid QR code. Please scan a scheme bulk meter QR code to start.');
     return null;
+  }
+
+  // --- Meter info panel (Panel A) — always shown for direct QR scans ---
+  function renderMeterInfoPanel(context) {
+    const panel = document.getElementById('panel-meter-info');
+    if (!panel) return;
+
+    const { meter, scheme, unit, building, openCycle } = context;
+    const m = meter || context.currentMeter;
+
+    const cycleHtml = openCycle
+      ? `<span class="badge badge-success">Cycle open: ${openCycle.name || [openCycle.start_date, openCycle.end_date].filter(Boolean).join(' → ') || 'Active'}</span>`
+      : `<span class="badge badge-secondary">No active cycle</span>`;
+
+    const rows = [];
+    if (scheme) rows.push(`<tr><td><strong>Scheme</strong></td><td>${scheme.name}</td></tr>`);
+    if (building) rows.push(`<tr><td><strong>Building</strong></td><td>${building.name}</td></tr>`);
+    if (unit) rows.push(`<tr><td><strong>Unit</strong></td><td>${unit.unit_number}${unit.owner_name ? ` — ${unit.owner_name}` : ''}</td></tr>`);
+    rows.push(`<tr><td><strong>Meter Number</strong></td><td><strong>${m.meter_number}</strong></td></tr>`);
+    rows.push(`<tr><td><strong>Type</strong></td><td>${m.meter_type}</td></tr>`);
+    rows.push(`<tr><td><strong>Last Reading</strong></td><td>${m.last_reading != null ? `${m.last_reading} kWh` : 'No reading on record'}</td></tr>`);
+    if (m.last_reading_date) rows.push(`<tr><td><strong>Last Reading Date</strong></td><td>${m.last_reading_date}</td></tr>`);
+    rows.push(`<tr><td><strong>Cycle Status</strong></td><td>${cycleHtml}</td></tr>`);
+
+    panel.innerHTML = `
+      <h3 style="margin-bottom:0.75rem;">📊 Meter Information</h3>
+      <table class="data-table"><tbody>${rows.join('')}</tbody></table>
+    `;
+    panel.style.display = 'block';
   }
 
   // --- Display current meter context ---
@@ -512,9 +609,12 @@
       // Calculate consumption
       const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
 
-      // Get current user
+      // Get current user — may be null for unauthenticated QR scans
       const currentUser = window.auth ? window.auth.getCurrentUser() : null;
-      const capturedBy = currentUser ? `${currentUser.name} (QR)` : 'QR Reader';
+      const readerNameValue = document.getElementById('reader-name')?.value?.trim();
+      const capturedBy = currentUser?.name
+        ? `${currentUser.name} (QR)`
+        : readerNameValue || 'QR Reader';
 
       // Create reading record
       const readingData = {
@@ -822,6 +922,34 @@
 
   function showSuccess() {
     document.getElementById('traditional-reader').style.display = 'none';
+
+    if (workflowContext?.singleMeterMode) {
+      // Simple confirmation for single-meter QR scan
+      const m = workflowContext.currentMeter;
+      const readingValue = document.getElementById('reading-value')?.value || '';
+      const successHeading = document.querySelector('#success-message h2');
+      if (successHeading) successHeading.textContent = 'Reading Saved!';
+      document.getElementById('reading-summary').innerHTML = `
+        <div class="info-box" style="text-align:center;">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">✓</div>
+          <strong>Meter:</strong> ${m.meter_number}<br>
+          <strong>Reading submitted:</strong> ${readingValue} kWh<br>
+          <span class="text-muted">This reading has been saved and will be included in the current billing cycle.</span>
+        </div>
+      `;
+      document.getElementById('submission-identity-panel').innerHTML = '';
+      document.getElementById('publish-readings-button').style.display = 'none';
+      document.getElementById('download-transfer-button').style.display = 'none';
+      document.getElementById('transfer-package-panel').style.display = 'none';
+      document.getElementById('publish-status-message').textContent = '';
+      const finishLink = document.getElementById('reader-finish-link');
+      finishLink.textContent = 'Done';
+      finishLink.style.display = 'inline-block';
+      finishLink.href = 'index.html';
+      document.getElementById('success-message').style.display = 'block';
+      return;
+    }
+
     renderWorkflowSummary();
     document.getElementById('success-message').style.display = 'block';
   }
