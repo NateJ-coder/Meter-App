@@ -94,9 +94,14 @@ function buildInventoryViewModel() {
     const schemes = storage.getSchemes();
     const meters = storage.getMeters();
 
+    // Build lookup Maps once — avoids repeated JSON.parse calls inside filter/sort/render loops
+    const buildingById = new Map(buildings.map((b) => [b.id, b]));
+    const schemeById = new Map(schemes.map((s) => [s.id, s]));
+    const unitById = new Map(units.map((u) => [u.id, u]));
+
     const filteredUnits = units.filter((unit) => {
-        const building = storage.get('buildings', unit.building_id);
-        const scheme = building ? storage.get('schemes', building.scheme_id) : null;
+        const building = buildingById.get(unit.building_id);
+        const scheme = building ? schemeById.get(building.scheme_id) : null;
         const unitSearchText = normalizeSearchValue(`${unit.unit_number} ${unit.owner_name || ''} ${building?.name || ''} ${scheme?.name || ''}`);
 
         if (filters.schemeId && building?.scheme_id !== filters.schemeId) {
@@ -110,17 +115,21 @@ function buildInventoryViewModel() {
         return true;
     });
 
+    const filteredBuildingIdsFromUnits = new Set(filteredUnits.map((u) => u.building_id));
+
     const filteredBuildings = buildings.filter((building) => {
         if (filters.schemeId && building.scheme_id !== filters.schemeId) {
             return false;
         }
 
         if (filters.unitSearch) {
-            return filteredUnits.some((unit) => unit.building_id === building.id);
+            return filteredBuildingIdsFromUnits.has(building.id);
         }
 
         return true;
     });
+
+    const filteredSchemeIdsFromBuildings = new Set(filteredBuildings.map((b) => b.scheme_id));
 
     const filteredSchemes = schemes.filter((scheme) => {
         if (filters.schemeId && scheme.id !== filters.schemeId) {
@@ -128,16 +137,16 @@ function buildInventoryViewModel() {
         }
 
         if (filters.unitSearch) {
-            return filteredBuildings.some((building) => building.scheme_id === scheme.id);
+            return filteredSchemeIdsFromBuildings.has(scheme.id);
         }
 
         return true;
     });
 
     const filteredMeters = meters.filter((meter) => {
-        const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
-        const building = unit?.building_id ? storage.get('buildings', unit.building_id) : null;
-        const scheme = storage.get('schemes', meter.scheme_id);
+        const unit = meter.unit_id ? unitById.get(meter.unit_id) : null;
+        const building = unit?.building_id ? buildingById.get(unit.building_id) : null;
+        const scheme = schemeById.get(meter.scheme_id);
         const searchText = normalizeSearchValue(`${meter.meter_number} ${unit?.unit_number || ''} ${building?.name || ''} ${scheme?.name || ''}`);
         const meterType = String(meter.meter_type || '').toUpperCase();
 
@@ -160,12 +169,14 @@ function buildInventoryViewModel() {
         schemes: filteredSchemes,
         buildings: filteredBuildings,
         units: filteredUnits,
-        meters: filteredMeters
+        meters: filteredMeters,
+        buildingById,
+        schemeById,
+        unitById
     };
 }
 
 function loadMeterIndexPage() {
-    populateInventorySchemeOptions();
     const viewModel = buildInventoryViewModel();
     loadSchemes(viewModel);
     loadBuildings(viewModel);
@@ -425,16 +436,17 @@ document.getElementById('scheme-form-element').addEventListener('submit', (e) =>
 
 // ========== BUILDINGS ==========
 function loadBuildings(viewModel = buildInventoryViewModel()) {
-    const buildings = viewModel.buildings
+    const { buildings, schemeById = new Map(storage.getSchemes().map((s) => [s.id, s])) } = viewModel;
+    const sorted = buildings
         .slice()
         .sort((left, right) => {
-            const schemeNameLeft = storage.get('schemes', left.scheme_id)?.name || '';
-            const schemeNameRight = storage.get('schemes', right.scheme_id)?.name || '';
-            return `${schemeNameLeft} ${left.name}`.localeCompare(`${schemeNameRight} ${right.name}`);
+            const leftKey = `${schemeById.get(left.scheme_id)?.name || ''} ${left.name}`;
+            const rightKey = `${schemeById.get(right.scheme_id)?.name || ''} ${right.name}`;
+            return leftKey.localeCompare(rightKey);
         });
     const container = document.getElementById('buildings-list');
     
-    if (buildings.length === 0) {
+    if (sorted.length === 0) {
         container.innerHTML = '<p class="text-muted">No buildings match the current filters.</p>';
         return;
     }
@@ -449,8 +461,8 @@ function loadBuildings(viewModel = buildInventoryViewModel()) {
                 </tr>
             </thead>
             <tbody>
-                ${buildings.map(building => {
-                    const scheme = storage.get('schemes', building.scheme_id);
+                ${sorted.map(building => {
+                    const scheme = schemeById.get(building.scheme_id);
                     return `
                         <tr>
                             <td>${scheme ? scheme.name : 'Unknown'}</td>
@@ -530,16 +542,17 @@ document.getElementById('building-form-element').addEventListener('submit', (e) 
 
 // ========== UNITS ==========
 function loadUnits(viewModel = buildInventoryViewModel()) {
-    const units = viewModel.units
+    const { units, buildingById = new Map(storage.getBuildings().map((b) => [b.id, b])) } = viewModel;
+    const sorted = units
         .slice()
         .sort((left, right) => {
-            const buildingNameLeft = storage.get('buildings', left.building_id)?.name || '';
-            const buildingNameRight = storage.get('buildings', right.building_id)?.name || '';
-            return `${buildingNameLeft} ${left.unit_number}`.localeCompare(`${buildingNameRight} ${right.unit_number}`, undefined, { numeric: true, sensitivity: 'base' });
+            const leftKey = `${buildingById.get(left.building_id)?.name || ''} ${left.unit_number}`;
+            const rightKey = `${buildingById.get(right.building_id)?.name || ''} ${right.unit_number}`;
+            return leftKey.localeCompare(rightKey, undefined, { numeric: true, sensitivity: 'base' });
         });
     const container = document.getElementById('units-list');
     
-    if (units.length === 0) {
+    if (sorted.length === 0) {
         container.innerHTML = '<p class="text-muted">No units match the current filters.</p>';
         return;
     }
@@ -555,8 +568,8 @@ function loadUnits(viewModel = buildInventoryViewModel()) {
                 </tr>
             </thead>
             <tbody>
-                ${units.map(unit => {
-                    const building = storage.get('buildings', unit.building_id);
+                ${sorted.map(unit => {
+                    const building = buildingById.get(unit.building_id);
                     return `
                         <tr>
                             <td>${building ? building.name : 'Unknown'}</td>
@@ -634,22 +647,26 @@ document.getElementById('unit-form-element').addEventListener('submit', (e) => {
 
 // ========== METERS ==========
 function loadMeters(viewModel = buildInventoryViewModel()) {
-    const meters = viewModel.meters
+    const {
+        meters,
+        buildingById = new Map(storage.getBuildings().map((b) => [b.id, b])),
+        schemeById = new Map(storage.getSchemes().map((s) => [s.id, s])),
+        unitById = new Map(storage.getUnits().map((u) => [u.id, u]))
+    } = viewModel;
+    const sorted = meters
         .slice()
         .sort((left, right) => {
-            const leftDetails = storage.getMeterWithDetails(left.id);
-            const rightDetails = storage.getMeterWithDetails(right.id);
-            const leftUnit = left.unit_id ? storage.get('units', left.unit_id) : null;
-            const rightUnit = right.unit_id ? storage.get('units', right.unit_id) : null;
-            const leftBuilding = leftUnit?.building_id ? storage.get('buildings', leftUnit.building_id) : null;
-            const rightBuilding = rightUnit?.building_id ? storage.get('buildings', rightUnit.building_id) : null;
-            const leftKey = `${leftBuilding?.name || ''} ${leftDetails?.unit_name || ''} ${left.meter_number || ''}`;
-            const rightKey = `${rightBuilding?.name || ''} ${rightDetails?.unit_name || ''} ${right.meter_number || ''}`;
+            const leftUnit = left.unit_id ? unitById.get(left.unit_id) : null;
+            const rightUnit = right.unit_id ? unitById.get(right.unit_id) : null;
+            const leftBuilding = leftUnit?.building_id ? buildingById.get(leftUnit.building_id) : null;
+            const rightBuilding = rightUnit?.building_id ? buildingById.get(rightUnit.building_id) : null;
+            const leftKey = `${leftBuilding?.name || ''} ${leftUnit?.unit_number || ''} ${left.meter_number || ''}`;
+            const rightKey = `${rightBuilding?.name || ''} ${rightUnit?.unit_number || ''} ${right.meter_number || ''}`;
             return leftKey.localeCompare(rightKey, undefined, { numeric: true, sensitivity: 'base' });
         });
     const container = document.getElementById('meters-list');
     
-    if (meters.length === 0) {
+    if (sorted.length === 0) {
         container.innerHTML = '<p class="text-muted">No meters match the current filters.</p>';
         return;
     }
@@ -670,11 +687,10 @@ function loadMeters(viewModel = buildInventoryViewModel()) {
                 </tr>
             </thead>
             <tbody>
-                ${meters.map(meter => {
-                    const meterDetails = storage.getMeterWithDetails(meter.id);
-                    const scheme = storage.get('schemes', meter.scheme_id);
-                    const unit = meter.unit_id ? storage.get('units', meter.unit_id) : null;
-                    const building = unit?.building_id ? storage.get('buildings', unit.building_id) : null;
+                ${sorted.map(meter => {
+                    const scheme = schemeById.get(meter.scheme_id);
+                    const unit = meter.unit_id ? unitById.get(meter.unit_id) : null;
+                    const building = unit?.building_id ? buildingById.get(unit.building_id) : null;
                     const badgeClass = meter.meter_type === 'BULK'
                         ? 'danger'
                         : meter.meter_type === 'COMMON'
@@ -684,7 +700,7 @@ function loadMeters(viewModel = buildInventoryViewModel()) {
                         ? 'BULK SUPPLY'
                         : meter.meter_type === 'COMMON'
                             ? 'COMMON PROPERTY'
-                            : (meterDetails.unit_name || 'N/A');
+                            : (unit?.unit_number || 'N/A');
                     return `
                         <tr>
                             <td>${scheme?.name || 'Unknown'}</td>
