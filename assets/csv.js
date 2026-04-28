@@ -6,6 +6,23 @@
 import { storage } from './storage.js';
 import { getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
 
+/**
+ * Return the corrected consumption from a raw reading record.
+ * Historical import applied a 1,000,000-rollover on any backward OCR reading.
+ * Any stored consumption > 100,000 where actual diff is negative is a false positive.
+ */
+function getSafeConsumption(reading) {
+    const stored = reading?.consumption ?? null;
+    if (stored == null) return null;
+    const cur = reading.reading_value ?? null;
+    const prev = reading.previous_reading ?? null;
+    if (cur != null && prev != null) {
+        const actual = cur - prev;
+        if (actual < 0 && stored > 100000) return actual;
+    }
+    return stored;
+}
+
 export const csv = {
     /**
      * Export unit readings for a cycle
@@ -25,7 +42,7 @@ export const csv = {
             if (!meter || meter.meter_type !== 'UNIT') return;
 
             const flags = reading.flags ? reading.flags.map(f => f.type).join('; ') : '';
-            const consumption = reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A';
+            const consumption = getSafeConsumption(reading) != null ? getSafeConsumption(reading).toFixed(2) : 'N/A';
 
             rows.push([
                 scheme.name,
@@ -65,22 +82,22 @@ export const csv = {
         const readingByMeterId = new Map(readings.map(reading => [reading.meter_id, reading]));
         meters.filter(m => m.meter_type === 'BULK').forEach(meter => {
             const reading = readingByMeterId.get(meter.id);
-            if (reading?.consumption != null) {
-                bulk_kWh += reading.consumption;
-            }
+            const c = getSafeConsumption(reading);
+            if (c != null) bulk_kWh += c;
         });
 
         // Sum unit consumptions
         readings.forEach(reading => {
             const meter = storage.get('meters', reading.meter_id);
-            if (!meter || reading.consumption == null) return;
+            const safeC = getSafeConsumption(reading);
+            if (!meter || safeC == null) return;
 
             if (meter.meter_type === 'UNIT') {
-                sum_units_kWh += reading.consumption;
+                sum_units_kWh += safeC;
             }
 
             if (meter.meter_type === 'COMMON') {
-                common_meter_kWh += reading.consumption;
+                common_meter_kWh += safeC;
             }
         });
 
@@ -142,7 +159,7 @@ export const csv = {
                 meter.meter_number,
                 getPreviousReadingDisplayValue(reading, meter),
                 reading.reading_value,
-                reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A',
+                reading.consumption != null ? getSafeConsumption(reading)?.toFixed(2) ?? 'N/A' : 'N/A',
                 flags,
                 getEffectiveReviewStatus(reading, cycle)
             ]);
@@ -160,21 +177,21 @@ export const csv = {
         const readingByMeterId = new Map(readings.map(reading => [reading.meter_id, reading]));
         meters.filter(m => m.meter_type === 'BULK').forEach(meter => {
             const reading = readingByMeterId.get(meter.id);
-            if (reading?.consumption != null) {
-                bulk_kWh += reading.consumption;
-            }
+            const c = getSafeConsumption(reading);
+            if (c != null) bulk_kWh += c;
         });
 
         readings.forEach(reading => {
             const meter = storage.get('meters', reading.meter_id);
-            if (!meter || reading.consumption == null) return;
+            const safeC = getSafeConsumption(reading);
+            if (!meter || safeC == null) return;
 
             if (meter.meter_type === 'UNIT') {
-                sum_units_kWh += reading.consumption;
+                sum_units_kWh += safeC;
             }
 
             if (meter.meter_type === 'COMMON') {
-                common_meter_kWh += reading.consumption;
+                common_meter_kWh += safeC;
             }
         });
 

@@ -77,6 +77,39 @@
           >
         </div>
 
+        <!-- Previous reading baseline (shown when a previous reading exists) -->
+        <div id="previous-reading-display" style="display:none; margin-bottom:1rem;">
+          <div id="previous-reading-banner" class="info-box" style="margin-bottom:0.5rem;"></div>
+          <!-- Override toggle -->
+          <details id="override-details" style="border:1px solid #ddd;border-radius:6px;padding:0.6rem 0.75rem;">
+            <summary style="cursor:pointer;font-size:0.9rem;color:#555;user-select:none;">
+              ⚙ Override previous reading or mark meter replaced
+            </summary>
+            <div style="margin-top:0.75rem;">
+              <div class="form-group" style="margin-bottom:0.5rem;">
+                <label style="display:flex;align-items:center;gap:0.5rem;font-weight:normal;">
+                  <input type="checkbox" id="meter-replaced-toggle" style="width:auto;margin:0;">
+                  Meter was replaced — start consumption from 0
+                </label>
+              </div>
+              <div class="form-group" id="override-value-group" style="margin-bottom:0;">
+                <label for="previous-reading-override" style="font-size:0.9rem;">
+                  Correct previous reading (kWh)
+                </label>
+                <input
+                  type="text"
+                  id="previous-reading-override"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  placeholder="Enter the actual previous meter reading..."
+                  style="max-width:220px;"
+                >
+                <small class="form-help">This becomes the baseline for consumption calculation. The reading you enter below remains the source of truth.</small>
+              </div>
+            </div>
+          </details>
+        </div>
+
         <div class="form-group">
           <label for="reading-value">Current Reading (kWh) *</label>
           <input 
@@ -95,7 +128,7 @@
         <div id="existing-reading-note" class="info-box" style="display:none; margin-bottom: 1rem;"></div>
 
         <div class="form-group">
-          <label for="photo-ref">Meter Photo *</label>
+          <label for="photo-ref">Meter Photo <span style="font-weight:normal;color:#777;">(recommended)</span></label>
           <input 
             type="file"
             id="photo-ref"
@@ -103,7 +136,10 @@
             capture="environment"
             class="reader-input"
           >
-          <small class="form-help">Take a clear photo of the meter display. Photos are saved to cloud storage when available.</small>
+          <small class="form-help">Take a clear photo of the meter display. If you can't capture one right now, add a note explaining why.</small>
+        </div>
+        <div id="photo-warning" class="info-box" style="display:none;background:#fff8e1;border-left-color:#ffc107;margin-bottom:0.75rem;">
+          ⚠ No photo captured — the reading will be accepted but flagged for follow-up. Please add a note if applicable.
         </div>
 
         <div class="form-group">
@@ -674,44 +710,98 @@
     const submitButton = document.getElementById('reader-submit-btn');
     const backButton = document.getElementById('reader-back-btn');
 
+    // ── Previous-reading banner & override controls ───────────────────
+    const prevDisplay = document.getElementById('previous-reading-display');
+    const prevBanner = document.getElementById('previous-reading-banner');
+    const meterReplacedToggle = document.getElementById('meter-replaced-toggle');
+    const overrideValueGroup = document.getElementById('override-value-group');
+    const prevOverrideInput = document.getElementById('previous-reading-override');
+
+    if (meter.last_reading != null) {
+      // Check whether the last reading has a suspect flag (backward/rollover or still pending)
+      const lastCycleReading = storage.getAll('readings')
+        .filter(r => r.meter_id === meter.id)
+        .sort((a, b) => new Date(b.reading_date) - new Date(a.reading_date))[0];
+
+      const lastReadingUncertain = lastCycleReading && (
+        lastCycleReading.review_status === 'pending' ||
+        (lastCycleReading.flags || []).some(f => ['backward', 'rollover_error', 'spike'].includes(String(f.type).toLowerCase()))
+      );
+
+      prevBanner.innerHTML = lastReadingUncertain
+        ? `⚠ <strong>Previous reading may be unreliable</strong> — last recorded value is <strong>${meter.last_reading} kWh</strong> but is flagged for review. 
+           Your new reading will be accepted as-is and become the source of truth. 
+           Use the override below if the previous baseline was wrong.`
+        : `Previous reading: <strong>${meter.last_reading} kWh</strong>`;
+      prevBanner.style.background = lastReadingUncertain ? '#fff8e1' : '#f0f4ff';
+      prevBanner.style.borderLeftColor = lastReadingUncertain ? '#ffc107' : '#4a7fd4';
+
+      // Pre-fill override input with current last_reading
+      prevOverrideInput.value = meter.last_reading;
+      prevDisplay.style.display = 'block';
+    } else {
+      prevDisplay.style.display = 'none';
+    }
+
+    // Meter-replaced toggle disables the override input
+    meterReplacedToggle.addEventListener('change', function () {
+      overrideValueGroup.style.opacity = this.checked ? '0.4' : '1';
+      prevOverrideInput.disabled = this.checked;
+      if (this.checked) {
+        feedbackDiv.textContent = 'Meter replaced — consumption will be calculated from 0';
+        feedbackDiv.className = 'input-feedback info';
+      } else {
+        // Re-trigger the reading input event for fresh feedback
+        readingInput.dispatchEvent(new Event('input'));
+      }
+    });
+
+    // Helper: effective previous reading for consumption calculation
+    function getEffectivePreviousReading() {
+      if (meterReplacedToggle.checked) return 0;
+      const overrideVal = parseDecimalInput(prevOverrideInput.value);
+      if (!isNaN(overrideVal) && overrideVal !== meter.last_reading) return overrideVal;
+      return meter.last_reading ?? 0;
+    }
+
     if (existingReading) {
       readingInput.value = existingReading.reading_value;
       notesInput.value = existingReading.notes || '';
-      photoInput.required = !existingReading.photo;
       existingNote.style.display = 'block';
       existingNote.textContent = 'An existing reading was found for this meter. You can update it here without re-entering the photo unless you want to replace it.';
       submitButton.textContent = workflowContext.currentIndex === workflowContext.totalMeters - 1 ? 'Update & Finish' : 'Update & Continue';
     } else {
-      photoInput.required = true;
       existingNote.style.display = 'none';
     }
+
+    // Photo warning (soft — not blocking)
+    photoInput.addEventListener('change', function () {
+      const photoWarning = document.getElementById('photo-warning');
+      if (photoWarning) photoWarning.style.display = 'none';
+    });
 
     if (workflowContext.currentIndex === 0) {
       backButton.disabled = true;
     }
 
     backButton.addEventListener('click', () => {
-      if (workflowContext.currentIndex === 0) {
-        return;
-      }
-
-      const previousUrl = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${workflowContext.currentIndex - 1}`;
-      window.location.href = previousUrl;
+      if (workflowContext.currentIndex === 0) return;
+      window.location.href = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${workflowContext.currentIndex - 1}`;
     });
     
     readingInput.addEventListener('input', function() {
       const value = parseDecimalInput(this.value);
       
-      if (isNaN(value) || value === 0) {
+      if (isNaN(value) || this.value === '') {
         feedbackDiv.textContent = '';
         return;
       }
       
-      if (meter.last_reading) {
-        const consumption = value - meter.last_reading;
-        
+      const effectivePrev = getEffectivePreviousReading();
+      if (effectivePrev != null && effectivePrev !== 0 || meter.last_reading != null) {
+        const consumption = value - effectivePrev;
         if (consumption < 0) {
-          feedbackDiv.textContent = `⚠ Reading is lower than last reading (${meter.last_reading} kWh)`;
+          feedbackDiv.textContent = `⚠ Reading is lower than previous (${effectivePrev} kWh) — will be flagged for review`;
           feedbackDiv.className = 'input-feedback warning';
         } else if (consumption === 0) {
           feedbackDiv.textContent = `ℹ No consumption since last reading`;
@@ -730,10 +820,29 @@
     document.getElementById('reader-form').addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const readingInput = document.getElementById('reading-value');
       const readingValue = parseDecimalInput(readingInput.value);
-      const notes = document.getElementById('notes').value;
-      const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
+      const notes = notesInput.value;
+      const hasPhoto = photoInput && photoInput.files && photoInput.files[0];
+      const photoWarning = document.getElementById('photo-warning');
+
+      if (Number.isNaN(readingValue)) {
+        alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
+        readingInput.focus();
+        return;
+      }
+
+      // Photo is encouraged but not blocking — show soft warning once, allow on second submit
+      if (!hasPhoto && !existingReading?.photo) {
+        if (photoWarning && photoWarning.style.display === 'none') {
+          photoWarning.style.display = 'block';
+          submitButton.textContent = 'Submit Without Photo';
+          return; // First attempt: pause and show warning, reader taps again to confirm
+        }
+        // Second attempt: proceed without photo, flag it
+      }
+      if (photoWarning) photoWarning.style.display = 'none';
+
+      const preparedPhoto = hasPhoto
         ? await preparePhotoForStorage(photoInput.files[0])
         : null;
       const photoPayload = preparedPhoto
@@ -750,48 +859,73 @@
             photo_storage_path: existingReading?.photo_storage_path || ''
           };
 
-      if (Number.isNaN(readingValue)) {
-        alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
-        readingInput.focus();
-        return;
-      }
+      // Determine effective previous reading (override or meter-replaced or last_reading)
+      const effectivePreviousReading = getEffectivePreviousReading();
+      const meterReplaced = meterReplacedToggle.checked;
+      const previousOverridden = !meterReplaced
+        && prevOverrideInput.value !== ''
+        && parseDecimalInput(prevOverrideInput.value) !== meter.last_reading;
 
-      if (!preparedPhoto && !existingReading?.photo) {
-        alert('Please capture a meter photo before submitting.');
-        return;
-      }
+      // Calculate consumption from effective previous — this reading IS the truth
+      const consumption = readingValue - effectivePreviousReading;
 
-      // Calculate consumption
-      const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
-
-      // Get current user — may be null for unauthenticated QR scans
+      // Get current user
       const currentUser = window.auth ? window.auth.getCurrentUser() : null;
       const readerNameValue = document.getElementById('reader-name')?.value?.trim();
       const capturedBy = currentUser?.name
         ? `${currentUser.name} (QR)`
         : readerNameValue || 'QR Reader';
 
+      // Build flags
+      const extraFlags = [];
+      if (!hasPhoto && !existingReading?.photo) {
+        extraFlags.push({
+          type: 'no-photo',
+          severity: 'medium',
+          message: 'Reading submitted without meter photo',
+          description: 'Photo evidence was not captured. Review this reading manually.'
+        });
+      }
+      if (meterReplaced) {
+        extraFlags.push({
+          type: 'meter-replaced',
+          severity: 'low',
+          message: 'Meter replacement indicated by reader',
+          description: 'Field reader indicated the meter was replaced. Previous consumption baseline reset to 0.'
+        });
+      }
+      if (previousOverridden) {
+        extraFlags.push({
+          type: 'previous-overridden',
+          severity: 'low',
+          message: `Previous reading overridden by reader: ${effectivePreviousReading} kWh (was ${meter.last_reading} kWh)`,
+          description: 'Reader manually corrected the previous reading baseline.'
+        });
+      }
+
       // Create reading record
       const readingData = {
         meter_id: meter.id,
         cycle_id: workflowContext.openCycle.id,
         reading_value: readingValue,
-        previous_reading: meter.last_reading ?? null,
+        previous_reading: effectivePreviousReading,
         reading_date: getCurrentDateTime(),
         photo: photoPayload.photo,
         photo_name: photoPayload.photo_name,
         photo_storage_mode: photoPayload.photo_storage_mode,
         photo_storage_path: photoPayload.photo_storage_path,
         notes: notes,
-        consumption: consumption,
+        consumption,
         captured_by: capturedBy,
         captured_by_id: currentUser ? currentUser.id : null,
-        flags: [],
-        review_status: 'pending'
+        flags: extraFlags,
+        review_status: 'pending',
+        ...(meterReplaced && { meter_replaced: true }),
+        ...(previousOverridden && { previous_reading_source: 'reader_override' })
       };
 
-      // Validate and generate flags
-      readingData.flags = validation.validateReading(readingData);
+      // Append auto-validation flags (backward, spike, etc.)
+      readingData.flags = [...extraFlags, ...validation.validateReading(readingData)];
 
       // Save to readings
       if (existingReading) {
@@ -800,18 +934,18 @@
         storage.create('readings', readingData);
       }
 
-      // Update meter's last reading
-      storage.update('meters', meter.id, { last_reading: readingValue });
+      // The new reading is the source of truth — update meter baseline
+      storage.update('meters', meter.id, {
+        last_reading: readingValue,
+        last_reading_date: readingData.reading_date,
+        ...(meterReplaced && { meter_replaced_at: readingData.reading_date })
+      });
 
       // Move to next meter or finish
       const nextIndex = workflowContext.currentIndex + 1;
-      
       if (!workflowContext.singleMeterMode && nextIndex < workflowContext.totalMeters) {
-        // Continue to next submeter
-        const nextUrl = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIndex}`;
-        window.location.href = nextUrl;
+        window.location.href = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIndex}`;
       } else {
-        // All done (or single-meter mode)
         showSuccess();
       }
     });

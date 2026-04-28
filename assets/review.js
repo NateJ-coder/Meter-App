@@ -6,6 +6,30 @@ import { storage } from './storage.js';
 import { validation } from './validation.js';
 import { showNotification, formatDateTime, parseDecimalInput, getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
 
+/**
+ * Return the corrected consumption for a reading, detecting bad rollover values.
+ * The historical import applied 1,000,000-rollover on any backward reading. Any
+ * stored consumption > 100,000 where actual diff is negative is a false rollover.
+ */
+function getDisplayConsumption(reading) {
+    const stored = reading?.consumption ?? null;
+    if (stored == null) return null;
+    const cur = reading.reading_value ?? null;
+    const prev = reading.previous_reading ?? null;
+    if (cur != null && prev != null) {
+        const actual = cur - prev;
+        if (actual < 0 && stored > 100000) return actual; // corrected
+    }
+    return stored;
+}
+
+function formatConsumption(reading) {
+    const c = getDisplayConsumption(reading);
+    if (c == null) return 'N/A';
+    if (c < 0) return `<span style="color:#e53935;font-weight:600;">${c.toFixed(2)} kWh ⚠ backward</span>`;
+    return `${c.toFixed(2)} kWh`;
+}
+
 // Load page
 populateCycleSelect();
 loadReviewData();
@@ -110,7 +134,7 @@ function renderFlaggedReadings(flaggedReadings, cycleId) {
                             <td>${meter.unit_name || 'N/A'}</td>
                             <td>${meter.meter_number}</td>
                             <td>${reading.reading_value} kWh</td>
-                            <td>${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'} kWh</td>
+                            <td>${formatConsumption(reading)}</td>
                             <td>${flagsHtml}</td>
                             <td><span class="badge ${statusBadge}">${statusText}</span></td>
                             <td>
@@ -214,7 +238,7 @@ window.openReviewModal = function(readingId) {
             <strong>Meter:</strong> ${meter.meter_number}<br>
             <strong>Previous Reading:</strong> ${getPreviousReadingDisplayValue(reading, meter)} kWh<br>
             <strong>Current Reading:</strong> ${reading.reading_value} kWh<br>
-            <strong>Consumption:</strong> ${reading.consumption != null ? reading.consumption.toFixed(2) : 'N/A'} kWh<br>
+            <strong>Consumption:</strong> ${formatConsumption(reading)}<br>
             <strong>Reading Date:</strong> ${formatDateTime(reading.reading_date)}<br>
             <strong>Captured By:</strong> ${reading.captured_by || 'Unknown'}<br>
             <strong>Contact Details:</strong> ${reading.captured_by_contact_details || reading.submitted_by_contact_details || 'Not provided'}<br>

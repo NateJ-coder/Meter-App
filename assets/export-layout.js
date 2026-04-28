@@ -65,6 +65,32 @@ function buildMeterEntry(meter, reading, cycle) {
         : [];
     const flags = [...autoFlags, ...manualFlags];
 
+    // ── Sanitize consumption ─────────────────────────────────────────────
+    // Historical import applied a 1,000,000-rollover whenever a reading went
+    // backward (OCR error or meter replacement). Detect and correct this:
+    // if stored consumption > 100,000 but the actual diff is negative and
+    // small, the rollover was a false positive — use the real negative diff.
+    let consumption = reading?.consumption ?? null;
+    const currentVal = reading?.reading_value ?? null;
+    const prevVal = reading?.previous_reading ?? null;
+    if (consumption != null && currentVal != null && prevVal != null) {
+        const actualDiff = currentVal - prevVal;
+        if (actualDiff < 0 && consumption > 100000) {
+            // Bad rollover — replace with the real (negative) consumption
+            consumption = actualDiff;
+            // Ensure a backward flag is present
+            const alreadyFlagged = flags.some(f => f.type === 'backward');
+            if (!alreadyFlagged) {
+                flags.push(normalizeFlag({
+                    type: 'backward',
+                    severity: 'high',
+                    message: `Backward reading: ${currentVal} < ${prevVal} (corrected from erroneous rollover)`,
+                    description: 'Reading is lower than previous. Possible OCR misread or meter replacement.'
+                }, 'auto'));
+            }
+        }
+    }
+
     return {
         meterId: meter.id,
         meterNumber: meter.meter_number,
@@ -73,8 +99,8 @@ function buildMeterEntry(meter, reading, cycle) {
         meterStatus: meter.status || 'ACTIVE',
         readingId: reading?.id || null,
         previousReading: reading ? getPreviousReadingDisplayValue(reading, meter) : (meter.last_reading ?? 0),
-        currentReading: reading?.reading_value ?? null,
-        consumption: reading?.consumption ?? null,
+        currentReading: currentVal,
+        consumption,
         readingDate: reading?.reading_date || null,
         capturedBy: reading?.captured_by || null,
         contactDetails: reading?.captured_by_contact_details || reading?.submitted_by_contact_details || '',

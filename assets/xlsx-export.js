@@ -8,6 +8,29 @@ import { getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.
 import { auth } from './auth.js';
 import { getCycleExportLayout, sanitizeLayoutSegment } from './export-layout.js';
 
+/**
+ * Get corrected consumption from a raw reading record.
+ * The historical import applied a 1,000,000-rollover on backward readings.
+ * If stored consumption > 100,000 but actual diff is negative, use actual diff.
+ */
+function getSafeConsumption(reading) {
+    const stored = reading?.consumption ?? null;
+    if (stored == null) return null;
+    const cur = reading.reading_value ?? null;
+    const prev = reading.previous_reading ?? null;
+    if (cur != null && prev != null) {
+        const actual = cur - prev;
+        if (actual < 0 && stored > 100000) return actual;
+    }
+    return stored;
+}
+
+function formatSafeConsumption(reading) {
+    const c = getSafeConsumption(reading);
+    if (c == null) return 'N/A';
+    return c.toFixed(2) + ' kWh';
+}
+
 export const xlsxExport = {
     /**
      * Generate individual meter report for dispute pack
@@ -54,7 +77,7 @@ export const xlsxExport = {
             [''],
             ['PREVIOUS READING:', meter.last_reading || 0],
             ['CURRENT READING:', reading.reading_value],
-            ['DIFFERENCE (Consumption):', reading.consumption != null ? reading.consumption.toFixed(2) + ' kWh' : 'N/A'],
+            ['DIFFERENCE (Consumption):', formatSafeConsumption(reading)],
             [''],
             ['Note:', 'Consumption = Current Reading - Previous Reading'],
             [''],
@@ -102,7 +125,7 @@ export const xlsxExport = {
                     historicalReading.reading_date,
                     historicalMeter.last_reading || 0,
                     historicalReading.reading_value,
-                    historicalReading.consumption != null ? historicalReading.consumption.toFixed(2) : 'N/A',
+                    historicalReading.consumption != null ? getSafeConsumption(historicalReading)?.toFixed(2) ?? 'N/A' : 'N/A',
                     flags
                 ]);
             }

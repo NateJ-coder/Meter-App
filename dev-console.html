@@ -58,11 +58,6 @@
         </section>
 
         <section class="card">
-            <h2>Imported Data Review</h2>
-            <div id="import-review-dashboard"></div>
-        </section>
-
-        <section class="card">
             <h2>Utility Dash Sync</h2>
             <div class="info-box mb-2">
                 Import the app-native payload generated from the macro-free Utility Dash workbook into app storage for inventory and historical reading seeding.
@@ -152,7 +147,6 @@
         import { auth } from './assets/auth.js';
         import { setupHealth } from './assets/setup-health.js';
         import { validation } from './assets/validation.js';
-        import { developerReviewParser } from './assets/developer-review-parser.js';
         import { DEFAULT_SCHEME_NAMES } from './assets/app.js';
 
         await auth.initialize();
@@ -176,7 +170,6 @@
             renderUsersList();
             renderActivityLog();
             renderDataStats();
-            renderImportReviewDashboard();
         }
 
         // Health Dashboard
@@ -456,88 +449,6 @@
                         <div class="stat-label">Cycles</div>
                     </div>
                 </div>
-            `;
-        }
-
-        function renderImportReviewDashboard() {
-            const report = developerReviewParser.parseDeveloperReviewReport();
-            const latestBatch = report.latestBatch;
-            const container = document.getElementById('import-review-dashboard');
-            const errorIssues = report.issues.filter(issue => issue.severity === 'error');
-            const warningIssues = report.issues.filter(issue => issue.severity === 'warning');
-            const infoIssues = report.issues.filter(issue => issue.severity === 'info');
-
-            container.innerHTML = `
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-value">${report.summary.readings}</div>
-                        <div class="metric-label">Readings Parsed</div>
-                    </div>
-                    <div class="metric-card ${report.summary.errors > 0 ? 'danger' : ''}">
-                        <div class="metric-value">${report.summary.errors}</div>
-                        <div class="metric-label">Parser Errors</div>
-                    </div>
-                    <div class="metric-card ${report.summary.warnings > 0 ? 'warning' : ''}">
-                        <div class="metric-value">${report.summary.warnings}</div>
-                        <div class="metric-label">Parser Warnings</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">${latestBatch?.payload_summary?.import_strategy || 'n/a'}</div>
-                        <div class="metric-label">Latest Import Strategy</div>
-                    </div>
-                </div>
-
-                ${latestBatch ? `
-                    <div class="info-box mt-2">
-                        <strong>Latest Batch:</strong> ${latestBatch.id}<br>
-                        <strong>Source:</strong> ${latestBatch.source_file || 'Unknown'}<br>
-                        <strong>Imported At:</strong> ${latestBatch.imported_at || latestBatch.created_at || 'Unknown'}<br>
-                        <strong>History Window:</strong> ${latestBatch.payload_summary?.history_window_per_meter || 'Full history'}
-                    </div>
-                ` : ''}
-
-                ${report.issues.length > 0 ? `
-                    <div class="health-issues-list" style="margin-top: 1rem;">
-                        ${errorIssues.length > 0 ? `
-                            <div class="issue-section">
-                                <h4 style="color: #dc3545; margin-bottom: 0.5rem;">🔴 Parser Errors (${errorIssues.length})</h4>
-                                ${errorIssues.map(issue => `
-                                    <div class="alert alert-danger">
-                                        <strong>${issue.message}</strong>
-                                        <br><small class="text-muted">Affected records: ${issue.count}${issue.samples.length > 0 ? ` • Samples: ${issue.samples.join(', ')}` : ''}</small>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-
-                        ${warningIssues.length > 0 ? `
-                            <div class="issue-section">
-                                <h4 style="color: #ffc107; margin-bottom: 0.5rem;">⚠️ Parser Warnings (${warningIssues.length})</h4>
-                                ${warningIssues.map(issue => `
-                                    <div class="alert alert-warning">
-                                        <strong>${issue.message}</strong>
-                                        <br><small class="text-muted">Affected records: ${issue.count}${issue.samples.length > 0 ? ` • Samples: ${issue.samples.join(', ')}` : ''}</small>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-
-                        ${infoIssues.length > 0 ? `
-                            <div class="issue-section">
-                                <h4 style="color: #17a2b8; margin-bottom: 0.5rem;">ℹ️ Parser Info (${infoIssues.length})</h4>
-                                ${infoIssues.map(issue => `
-                                    <div class="alert alert-info">
-                                        <strong>${issue.message}</strong>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-                    </div>
-                ` : '<div class="alert alert-success mt-2">✓ Imported data parser found no structural or reading-logic issues.</div>'}
-
-                <script>
-                    window.currentParserIssues = ${JSON.stringify(report.issues)};
-                <\/script>
             `;
         }
 

@@ -114,9 +114,22 @@ export function getDisputePack(unitId, options = {}) {
 
         // Derive previous reading (from meter's state before this reading)
         let previousReading = null;
-        if (reading && reading.consumption !== null && reading.reading_value !== null) {
-            // Calculate backwards: current - consumption = previous
-            previousReading = reading.reading_value - reading.consumption;
+        if (reading && reading.reading_value !== null) {
+            // Prefer the stored previous_reading field if available
+            if (reading.previous_reading != null) {
+                previousReading = reading.previous_reading;
+            } else if (reading.consumption !== null) {
+                // Calculate backwards: current - consumption = previous
+                // Guard against erroneous rollover values (> 100,000 kWh for unit meters)
+                const safeConsumption = (() => {
+                    const stored = reading.consumption;
+                    const cur = reading.reading_value;
+                    const prev = reading.previous_reading;
+                    if (prev != null && cur != null && cur - prev < 0 && stored > 100000) return cur - prev;
+                    return stored;
+                })();
+                previousReading = reading.reading_value - safeConsumption;
+            }
         }
 
         // Build cycle entry
