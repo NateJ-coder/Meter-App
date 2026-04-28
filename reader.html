@@ -23,6 +23,9 @@
   <!-- On-Site Mode Container -->
   <div id="onsite-container"></div>
 
+  <!-- ── Scheme Overview Panel (scheme_id present, no index param) ── -->
+  <div id="scheme-overview" style="display:none;"></div>
+
   <!-- Fallback: Traditional Reader (if on-site mode not activated) -->
   <div id="traditional-reader" style="display:none;">
 
@@ -174,7 +177,9 @@
   const params = new URLSearchParams(window.location.search);
   const schemeId = params.get('scheme_id');
   const directMeterId = params.get('meter_id'); // single-meter QR scan
-  const currentIndex = parseInt(params.get('index') || '0');
+  // null means param is absent (overview mode); explicit value means sequential reading
+  const indexParam = params.get('index');
+  const currentIndex = indexParam !== null ? parseInt(indexParam) : null;
   const mode = params.get('mode'); // 'onsite' for on-site mode
   const onsiteCycleId = params.get('cycle_id');
 
@@ -205,6 +210,9 @@
   // Check if we should use on-site mode
   if (mode === 'onsite' || onSiteMode.isActive()) {
     initializeOnsiteMode();
+  } else if (schemeId && indexParam === null && !directMeterId) {
+    // Scheme QR scanned — show overview dashboard
+    initializeSchemeOverview();
   } else {
     initializeTraditionalReader();
   }
@@ -230,6 +238,158 @@
     // Render on-site capture
     document.getElementById('traditional-reader').style.display = 'none';
     onSiteMode.renderOnSiteCapture('onsite-container', openCycle.id);
+  }
+
+  // ── Scheme Overview (QR scan entry point) ───────────────────────────────
+  function initializeSchemeOverview() {
+    const scheme = storage.get('schemes', schemeId);
+    if (!scheme) {
+      showError(`Scheme not found (ID: ${schemeId}). The QR code may be outdated.`);
+      return;
+    }
+
+    const buildings   = storage.getBuildings(schemeId);
+    const allUnits    = buildings.flatMap(b => storage.getUnits(b.id).map(u => ({ ...u, building_name: b.name })));
+    const allUnitIds  = allUnits.map(u => u.id);
+    const allMeters   = storage.getAll('meters');
+    const schemeMeters = allMeters.filter(m => m.scheme_id === schemeId || allUnitIds.includes(m.unit_id));
+    const openCycle   = storage.getOpenCycle(schemeId);
+
+    // ── Ordered meter list for reading walkthrough ──────────────────────
+    const bulkMeter = schemeMeters.find(m => m.meter_type === 'BULK' && m.scheme_id === schemeId);
+    const unitMeters = schemeMeters
+      .filter(m => m.meter_type === 'UNIT' && allUnitIds.includes(m.unit_id))
+      .map(m => {
+        const unit = allUnits.find(u => u.id === m.unit_id);
+        return { ...m, _unit: unit };
+      })
+      .sort((a, b) => {
+        const ba = a._unit?.building_name || '';
+        const bb = b._unit?.building_name || '';
+        if (ba !== bb) return ba.localeCompare(bb);
+        return String(a._unit?.unit_number || '').localeCompare(String(b._unit?.unit_number || ''), undefined, { numeric: true });
+      });
+    const orderedMeters = [...(bulkMeter ? [bulkMeter] : []), ...unitMeters];
+
+    // ── Open flags from flagged readings ────────────────────────────────
+    const allReadings = storage.getAll('readings');
+    const schemeReadings = allReadings.filter(r => schemeMeters.some(m => m.id === r.meter_id));
+    const flaggedReadings = schemeReadings
+      .filter(r => Array.isArray(r.flags) && r.flags.length > 0)
+      .sort((a, b) => new Date(b.reading_date || b.created_at || 0) - new Date(a.reading_date || a.created_at || 0))
+      .slice(0, 10);
+
+    // Also pull open meter_flags
+    const openMeterFlags = storage.getMeterFlags({ status: 'open' })
+      .filter(f => schemeMeters.some(m => m.id === f.meter_id))
+      .slice(0, 10);
+
+    // ── Cycle badge ──────────────────────────────────────────────────────
+    const cycleActive = Boolean(openCycle);
+    const cycleBadgeHtml = cycleActive
+      ? `<span class="badge badge-success" style="font-size:0.9rem;">🟢 Cycle open — ${openCycle.name || [openCycle.start_date, openCycle.end_date].filter(Boolean).join(' → ') || 'Active'}</span>`
+      : `<span class="badge badge-secondary" style="font-size:0.9rem;">⏸ No active reading cycle</span>`;
+
+    // ── Buildings summary rows ───────────────────────────────────────────
+    const buildingRows = buildings.map(b => {
+      const bUnits   = allUnits.filter(u => u.building_id === b.id);
+      const bMeters  = schemeMeters.filter(m => bUnits.some(u => u.id === m.unit_id));
+      const lastRead = bMeters
+        .map(m => m.last_reading_date)
+        .filter(Boolean)
+        .sort()
+        .pop() || '—';
+      return `<tr>
+        <td>${b.name}</td>
+        <td>${bUnits.length}</td>
+        <td>${bMeters.length}</td>
+        <td>${lastRead}</td>
+      </tr>`;
+    }).join('');
+
+    // ── Flags section ────────────────────────────────────────────────────
+    let flagsHtml = '';
+    if (openMeterFlags.length > 0 || flaggedReadings.length > 0) {
+      const flagItems = [
+        ...openMeterFlags.map(f => {
+          const meter = schemeMeters.find(m => m.id === f.meter_id);
+          const meterLabel = meter ? meter.meter_number : f.meter_id;
+          return `<li><strong>${meterLabel}</strong>: ${f.description || f.flag_type || 'Open issue'}</li>`;
+        }),
+        ...flaggedReadings.map(r => {
+          const meter = schemeMeters.find(m => m.id === r.meter_id);
+          const unit  = meter?.unit_id ? allUnits.find(u => u.id === meter.unit_id) : null;
+          const label = unit ? `Unit ${unit.unit_number}` : (meter?.meter_number || 'Unknown');
+          const flagLabels = r.flags.map(f => String(f.type || f.rule || f).replace(/_/g, ' ')).join(', ');
+          return `<li><strong>${label}</strong>: ${flagLabels} <span class="text-muted">(${r.reading_date || 'unknown date'})</span></li>`;
+        })
+      ].slice(0, 10);
+
+      flagsHtml = `
+        <div class="card" style="border-left: 3px solid #ffc107; margin-top: 1rem;">
+          <h3 style="margin-bottom:0.5rem;">⚠ Items to check</h3>
+          <ul style="margin:0;padding-left:1.25rem;line-height:1.8;">${flagItems.join('')}</ul>
+        </div>`;
+    }
+
+    // ── Reading order preview ────────────────────────────────────────────
+    const orderRows = orderedMeters.map((m, i) => {
+      const unit     = allUnits.find(u => u.id === m.unit_id);
+      const location = m.meter_type === 'BULK' ? 'Bulk Meter'
+        : m.meter_type === 'COMMON' ? 'Common Property'
+        : `${unit?.building_name || ''} · Unit ${unit?.unit_number || '?'}`;
+      const lastReading = m.last_reading != null ? `${m.last_reading} kWh` : '—';
+      return `<tr>
+        <td style="color:#999;">${i + 1}</td>
+        <td>${m.meter_number}</td>
+        <td>${location}</td>
+        <td>${lastReading}</td>
+        <td>${m.last_reading_date || '—'}</td>
+      </tr>`;
+    }).join('');
+
+    // ── Begin Reading button ─────────────────────────────────────────────
+    const beginUrl = `reader.html?scheme_id=${encodeURIComponent(schemeId)}&index=0`;
+    const beginBtnHtml = cycleActive
+      ? `<a href="${beginUrl}" class="btn btn-primary btn-large" style="min-width:200px;">▶ Begin Reading</a>`
+      : `<button class="btn btn-secondary btn-large" disabled title="Open a reading cycle first" style="min-width:200px;opacity:0.55;cursor:not-allowed;">▶ Begin Reading</button>`;
+
+    // ── Render ───────────────────────────────────────────────────────────
+    document.getElementById('scheme-overview').style.display = 'block';
+    document.getElementById('scheme-overview').innerHTML = `
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;">
+          <div>
+            <h2 style="margin:0;">${scheme.name}</h2>
+            <p class="text-muted" style="margin:0.25rem 0 0;">${buildings.length} building${buildings.length !== 1 ? 's' : ''} · ${allUnits.length} unit${allUnits.length !== 1 ? 's' : ''} · ${schemeMeters.length} meter${schemeMeters.length !== 1 ? 's' : ''}</p>
+          </div>
+          <div>${cycleBadgeHtml}</div>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>Building</th><th>Units</th><th>Meters</th><th>Last Read</th></tr>
+          </thead>
+          <tbody>${buildingRows || '<tr><td colspan="4" class="text-muted">No buildings registered</td></tr>'}</tbody>
+        </table>
+      </div>
+
+      ${flagsHtml}
+
+      <div class="card" style="margin-top:1rem;">
+        <h3 style="margin-bottom:0.75rem;">📋 Reading Order</h3>
+        ${orderedMeters.length === 0
+          ? '<p class="text-muted">No meters registered for this scheme.</p>'
+          : `<table class="data-table">
+              <thead><tr><th>#</th><th>Meter</th><th>Location</th><th>Last Reading</th><th>Last Date</th></tr></thead>
+              <tbody>${orderRows}</tbody>
+            </table>`}
+        <div style="margin-top:1.25rem;text-align:center;">
+          ${beginBtnHtml}
+          ${!cycleActive ? '<p class="text-muted" style="margin-top:0.5rem;font-size:0.85rem;">The Begin Reading button will activate once an admin opens a reading cycle for this scheme.</p>' : ''}
+        </div>
+      </div>
+    `;
   }
 
   function initializeTraditionalReader() {
