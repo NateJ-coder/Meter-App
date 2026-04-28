@@ -1,12 +1,52 @@
+'use strict';
+
+/**
+ * generate-building-app-database.js
+ *
+ * Regenerates Buildings/app-database/*.app-database.json files sourced
+ * EXCLUSIVELY from the Buildings/buildings/ folder.
+ *
+ * Data sources (in priority order per building):
+ *   1. meter-capture-readings.json  (e.g., Azores)
+ *   2. *.xlsx files                 (e.g., Bonifay, Phanda Lodge, Vista Del Monte)
+ *   3. Image filenames              (unit existence confirmation only; no readings)
+ *
+ * Historical pipeline sources (utility-dash-app-payload.json,
+ * DataMigration/outputs/) are NOT consulted.
+ *
+ * Configuration preserved from existing app-database:
+ *   - building / scheme identity records (IDs are kept stable for Firebase)
+ *   - units / meters registry (pq_factor, meter_type, etc.)
+ *   - charge_modes and settings_snapshot (billing configuration)
+ *
+ * Historical data removed from output:
+ *   - cycles              → []
+ *   - historical_readings → []
+ *   - legacy_meter_map    → []
+ *
+ * meter.last_reading / meter.last_reading_date are updated ONLY from folder
+ * data.  Meters with no matching folder entry keep their existing last_reading
+ * value (it is still the last confirmed reading; we simply have no newer
+ * folder data for them yet).
+ *
+ * Usage:
+ *   node scripts/generate-building-app-database.js
+ *   node scripts/generate-building-app-database.js --building azores
+ */
+
 const fs = require('fs');
 const path = require('path');
-
-const DEFAULT_SOURCE = path.resolve(__dirname, '..', 'source-documents', '03-extracted-outputs', 'utility-dash-app', 'utility-dash-app-payload.json');
-const DEFAULT_MANIFEST = path.resolve(__dirname, '..', 'DataMigration', 'outputs', 'reviews', 'workbook-sheet-export-manifest.json');
 const DEFAULT_NORMALIZED_DIR = path.resolve(__dirname, '..', 'DataMigration', 'outputs', 'sheet-normalized');
-const DEFAULT_OUTPUT_DIR = path.resolve(__dirname, '..', 'Buildings', 'app-database');
+const DEFAULT_APP_DB_DIR = path.resolve(__dirname, '..', 'Buildings', 'app-database');
 const DEFAULT_BUILDINGS_ROOT = path.resolve(__dirname, '..', 'Buildings', 'buildings');
-const METER_NUMBER_NOTE = 'meter_number currently equals the legacy meter label because no distinct serial-number field was found in the extracted sources';
+
+/** Month abbreviation → zero-padded month number */
+const MONTH_ABBR = {
+    jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06',
+    jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12'
+};
+
+// ─── String helpers ────────────────────────────────────────────────────────
 
 function slugify(value) {
     return String(value || '')
@@ -33,321 +73,530 @@ function normalizeCompactKey(value) {
         .replace(/[^a-z0-9]+/g, '');
 }
 
-function stripCompletedSuffix(value) {
+function stripFolderSuffix(value) {
     return String(value || '')
         .replace(/\s*-\s*completed$/i, '')
         .replace(/\s*-\s*march\s*completed$/i, '')
         .trim();
 }
 
-function parseArgs(argv) {
-    const options = {
-        source: DEFAULT_SOURCE,
-        manifest: DEFAULT_MANIFEST,
-        normalizedDir: DEFAULT_NORMALIZED_DIR,
-        outputDir: DEFAULT_OUTPUT_DIR,
-        buildingsRoot: DEFAULT_BUILDINGS_ROOT,
-        onlyBuilding: null,
-        overwrite: false
-    };
+function padUnit(n, width) {
+    return String(n).padStart(width || 2, '0');
+}
 
-    for (let index = 0; index < argv.length; index += 1) {
-        const arg = argv[index];
-        const nextArg = argv[index + 1];
+// ─── Date extraction ───────────────────────────────────────────────────────
 
-        if (arg === '--source' && nextArg) {
-            options.source = path.resolve(nextArg);
-            index += 1;
-            continue;
-        }
+/**
+ * Extract the LAST (most recent) date found in a file path or name string.
+ * Recognises ISO dates ("2026.03.31", "2026-03-31") and verbal dates
+ * ("3Mar 2026", "2Apr 2026").
+ */
+function extractLatestDateFromText(text) {
+    const t = String(text || '');
 
-        if (arg === '--manifest' && nextArg) {
-            options.manifest = path.resolve(nextArg);
-            index += 1;
-            continue;
-        }
-
-        if (arg === '--normalized-dir' && nextArg) {
-            options.normalizedDir = path.resolve(nextArg);
-            index += 1;
-            continue;
-        }
-
-        if (arg === '--output-dir' && nextArg) {
-            options.outputDir = path.resolve(nextArg);
-            index += 1;
-            continue;
-        }
-
-        if (arg === '--buildings-root' && nextArg) {
-            options.buildingsRoot = path.resolve(nextArg);
-            index += 1;
-            continue;
-        }
-
-        if (arg === '--building' && nextArg) {
-            options.onlyBuilding = slugify(nextArg);
-            index += 1;
-            continue;
-        }
-
-        if (arg === '--overwrite') {
-            options.overwrite = true;
-        }
+    const isoMatches = [...t.matchAll(/(20\d{2})[.\-_](\d{2})[.\-_](\d{2})/g)];
+    if (isoMatches.length) {
+        const last = isoMatches[isoMatches.length - 1];
+        return `${last[1]}-${last[2]}-${last[3]}`;
     }
 
-    return options;
+    const verbalMatches = [
+        ...t.matchAll(/(\d{1,2})(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{4})/gi)
+    ];
+    if (verbalMatches.length) {
+        const last = verbalMatches[verbalMatches.length - 1];
+        const day = padUnit(parseInt(last[1]));
+        const month = MONTH_ABBR[last[2].toLowerCase()];
+        return `${last[3]}-${month}-${day}`;
+    }
+
+    return null;
 }
 
-function loadJson(filePath) {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
+// ─── Building folder discovery ─────────────────────────────────────────────
 
 function listBuildingFolders(buildingsRoot) {
     if (!fs.existsSync(buildingsRoot)) {
         return [];
     }
-
     return fs.readdirSync(buildingsRoot, { withFileTypes: true })
-        .filter((entry) => entry.isDirectory())
-        .map((entry) => ({
-            name: entry.name,
-            fullPath: path.join(buildingsRoot, entry.name),
-            normalized: normalizeKey(stripCompletedSuffix(entry.name)),
-            compact: normalizeCompactKey(stripCompletedSuffix(entry.name))
+        .filter((e) => e.isDirectory())
+        .map((e) => ({
+            name: e.name,
+            fullPath: path.join(buildingsRoot, e.name),
+            normalized: normalizeKey(stripFolderSuffix(e.name)),
+            compact: normalizeCompactKey(stripFolderSuffix(e.name))
         }));
 }
 
 function findBuildingFolder(folderEntries, candidates) {
-    const expandedCandidates = candidates
+    const keys = candidates
         .filter(Boolean)
-        .flatMap((candidate) => {
-            const baseValue = String(candidate).trim();
-            const values = [baseValue];
-            if (/^the\s+/i.test(baseValue)) {
-                values.push(baseValue.replace(/^the\s+/i, '').trim());
+        .flatMap((c) => {
+            const v = String(c).trim();
+            const list = [v];
+            if (/^the\s+/i.test(v)) {
+                list.push(v.replace(/^the\s+/i, '').trim());
             }
-            return values;
+            return list;
         });
 
-    for (const candidate of expandedCandidates) {
-        const normalized = normalizeKey(candidate);
-        const exact = folderEntries.find((entry) => entry.normalized === normalized);
-        if (exact) {
-            return exact.fullPath;
+    for (const c of keys) {
+        const match = folderEntries.find((e) => e.normalized === normalizeKey(c));
+        if (match) {
+            return match.fullPath;
         }
     }
-
-    for (const candidate of expandedCandidates) {
-        const compact = normalizeCompactKey(candidate);
-        const exact = folderEntries.find((entry) => entry.compact === compact);
-        if (exact) {
-            return exact.fullPath;
+    for (const c of keys) {
+        const match = folderEntries.find((e) => e.compact === normalizeCompactKey(c));
+        if (match) {
+            return match.fullPath;
         }
     }
-
     return null;
 }
 
-function indexNormalizedSheets(manifest, manifestPath, normalizedDir) {
-    const buildingSheets = (manifest.sheets || []).filter((sheet) => sheet.sheet_category === 'building');
-    const manifestDir = path.dirname(manifestPath);
+// ─── Directory walk ────────────────────────────────────────────────────────
 
-    return buildingSheets.map((sheet) => {
-        const relativeNormalizedPath = String(sheet.normalized_json || '').replace(/\\/g, path.sep);
-        const normalizedPath = path.resolve(manifestDir, '..', relativeNormalizedPath);
-        const fallbackPath = path.resolve(normalizedDir, `${sheet.sheet_slug}.normalized.json`);
-        const filePath = fs.existsSync(normalizedPath) ? normalizedPath : fallbackPath;
+function walkDir(dir, collector) {
+    if (!fs.existsSync(dir)) {
+        return;
+    }
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+            walkDir(full, collector);
+        } else {
+            collector(full, entry.name);
+        }
+    }
+}
 
-        return {
-            ...sheet,
-            filePath,
-            payload: loadJson(filePath),
-            nameKey: normalizeKey(sheet.sheet_name),
-            slugKey: slugify(sheet.sheet_slug),
-            schemeKey: normalizeKey(sheet.sheet_name)
-        };
+// ─── Source 1: meter-capture-readings.json ─────────────────────────────────
+
+function loadCaptureReadings(buildingFolderPath) {
+    const found = [];
+    walkDir(buildingFolderPath, (fullPath, name) => {
+        if (name === 'meter-capture-readings.json') {
+            found.push(fullPath);
+        }
     });
+    if (!found.length) {
+        return null;
+    }
+    found.sort();
+    try {
+        return JSON.parse(fs.readFileSync(found[found.length - 1], 'utf8'));
+    } catch (_) {
+        return null;
+    }
 }
 
-function matchNormalizedSheet(indexedSheets, scheme, building) {
-    const candidates = [
-        building?.source_reference,
-        building?.name,
-        scheme?.name,
-        scheme?.source_reference,
-        scheme?.id ? scheme.id.replace(/^scheme-/, '') : null
-    ].filter(Boolean);
-
-    for (const candidate of candidates) {
-        const candidateKey = normalizeKey(candidate);
-        const exactName = indexedSheets.find((sheet) => sheet.nameKey === candidateKey);
-        if (exactName) {
-            return exactName;
-        }
+/**
+ * Build a Map<UNIT_LABEL_UPPER, {reading, date, source}> from a
+ * meter-capture-readings JSON payload.
+ *
+ * Priority per capture entry:
+ *   1. extracted_reading from the first capture with a valid numeric value
+ *   2. latest_reference_reading (last confirmed reading from the reference register)
+ *
+ * Only entries that yield a numeric reading are included in the map.
+ * The presence of an entry in meter_captures confirms the meter is active;
+ * the buildings folder is treated as the authoritative source of truth.
+ */
+function buildReadingMapFromCapture(captureData) {
+    const map = new Map();
+    if (!captureData || !Array.isArray(captureData.meter_captures)) {
+        return map;
     }
 
-    for (const candidate of candidates) {
-        const candidateSlug = slugify(candidate);
-        const exactSlug = indexedSheets.find((sheet) => sheet.slugKey === candidateSlug);
-        if (exactSlug) {
-            return exactSlug;
+    for (const capture of captureData.meter_captures) {
+        const key = String(capture.unit_number || capture.meter_number || '').trim().toUpperCase();
+        if (!key) {
+            continue;
         }
-    }
 
-    return null;
-}
+        let reading = null;
+        let readingDate = null;
+        let readingSource = null;
 
-function deriveNonNumericReadingRows(normalizedPayload) {
-    return (normalizedPayload.electricity_rows || [])
-        .map((row) => {
-            const badReadings = (row.readings || [])
-                .filter((reading) => {
-                    if (reading.reading_value != null) {
-                        return false;
-                    }
-
-                    const rawValue = reading.reading_value_raw;
-                    return rawValue != null && String(rawValue).trim() !== '';
-                })
-                .map((reading) => ({
-                    column_index: reading.column_index ?? null,
-                    reading_label: reading.reading_label ?? null,
-                    reading_date_raw: reading.reading_date_raw ?? null,
-                    reading_date: reading.reading_date ?? null,
-                    reading_value_raw: reading.reading_value_formula || reading.reading_value_raw || null
-                }));
-
-            if (!badReadings.length) {
-                return null;
+        for (const c of capture.captures || []) {
+            if (c.extracted_reading != null) {
+                const val = parseFloat(c.extracted_reading);
+                if (Number.isFinite(val)) {
+                    reading = val;
+                    readingDate = c.capture_date || null;
+                    readingSource = 'captured_image';
+                    break;
+                }
             }
+        }
 
-            return {
-                source_row: row.source_row ?? null,
-                legacy_label: row.legacy_label ?? null,
-                meter_type: row.meter_type ?? null,
-                bad_reading_count: badReadings.length,
-                bad_readings: badReadings
-            };
-        })
-        .filter(Boolean);
-}
+        if (reading == null && capture.latest_reference_reading != null) {
+            reading = capture.latest_reference_reading;
+            readingDate = capture.latest_reference_reading_date || null;
+            readingSource = 'reference_register';
+        }
 
-function buildDataQuality(normalizedPayload) {
-    return {
-        review_flags: Array.isArray(normalizedPayload.review_flags) ? normalizedPayload.review_flags : [],
-        non_numeric_reading_rows: deriveNonNumericReadingRows(normalizedPayload),
-        meter_number_note: METER_NUMBER_NOTE
-    };
-}
-
-function buildPayloadForScheme(sourcePayload, sourcePath, normalizedSheet, buildingFolderPath, scheme) {
-    const building = (sourcePayload.buildings || []).find((item) => item.scheme_id === scheme.id);
-    if (!building) {
-        throw new Error(`No building found for scheme ${scheme.id}`);
+        if (reading != null) {
+            map.set(key, { reading, date: readingDate, source: readingSource });
+        }
     }
 
-    const buildingId = building.id;
-    const units = (sourcePayload.units || []).filter((item) => item.building_id === buildingId);
-    const meters = (sourcePayload.meters || []).filter((item) => item.scheme_id === scheme.id);
-    const meterIds = new Set(meters.map((item) => item.id));
-    const cycles = (sourcePayload.cycles || []).filter((item) => item.scheme_id === scheme.id);
-    const cycleIds = new Set(cycles.map((item) => item.id));
-    const historicalReadings = (sourcePayload.readings || []).filter((item) => meterIds.has(item.meter_id) || cycleIds.has(item.cycle_id));
-    const legacyMeterMap = (sourcePayload.legacy_meter_map || []).filter((item) => meterIds.has(item.meter_id));
-    const buildingSlug = scheme.id.replace(/^scheme-/, '') || slugify(building.name || scheme.name);
+    return map;
+}
+
+// ─── Source 2: Excel files ─────────────────────────────────────────────────
+
+let _XLSX = null;
+function requireXLSX() {
+    if (!_XLSX) {
+        _XLSX = require('xlsx');
+    }
+    return _XLSX;
+}
+
+function findExcelFiles(buildingFolderPath) {
+    const results = [];
+    walkDir(buildingFolderPath, (fullPath, name) => {
+        if (/\.xlsx$/i.test(name)) {
+            results.push(fullPath);
+        }
+    });
+    return results;
+}
+
+/**
+ * Pick the most recent Excel file from a list, scored by the latest date
+ * found in the full file path string.
+ * Returns { path, date } — date may be null.
+ */
+function pickMostRecentExcel(excelPaths) {
+    if (!excelPaths.length) {
+        return null;
+    }
+    const scored = excelPaths.map((p) => ({
+        path: p,
+        date: extractLatestDateFromText(p) || '0000-00-00'
+    }));
+    scored.sort((a, b) => b.date.localeCompare(a.date));
+    return scored[0];
+}
+
+/** Detect the index of the "Closing Reading" column from a header row. */
+function detectClosingReadingCol(headerRow) {
+    if (!Array.isArray(headerRow)) {
+        return 2;
+    }
+    for (let i = 0; i < headerRow.length; i++) {
+        if (String(headerRow[i] || '').toLowerCase().includes('closing')) {
+            return i;
+        }
+    }
+    return 2;
+}
+
+/** Detect the index of the unit/door identifier column from a header row. */
+function detectUnitIdentifierCol(headerRow) {
+    if (!Array.isArray(headerRow)) {
+        return 0;
+    }
+    for (let i = 0; i < headerRow.length; i++) {
+        const h = String(headerRow[i] || '').toLowerCase();
+        if (h.includes('unit') || h.includes('door')) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+/**
+ * Parse an Excel file and return a Map<UNIT_LABEL_UPPER, {reading, date, source}>.
+ *
+ * @param {string}   excelPath    - absolute path to the .xlsx file
+ * @param {Function} unitLabelFn  - converts raw cell value → unit label string (or null to skip row)
+ * @param {string}   fallbackDate - ISO date string derived from the file path
+ */
+function buildReadingMapFromExcel(excelPath, unitLabelFn, fallbackDate) {
+    const map = new Map();
+    try {
+        const xlsx = requireXLSX();
+        const wb = xlsx.readFile(excelPath);
+        const sheetName = wb.SheetNames[0];
+        const rows = xlsx.utils.sheet_to_json(wb.Sheets[sheetName], { header: 1 });
+        if (rows.length < 2) {
+            return map;
+        }
+
+        const headerRow = rows[0];
+        const unitCol = detectUnitIdentifierCol(headerRow);
+        const closingCol = detectClosingReadingCol(headerRow);
+
+        for (const row of rows.slice(1)) {
+            const rawUnit = row[unitCol];
+            if (rawUnit == null || rawUnit === '') {
+                continue;
+            }
+            const rawClosing = row[closingCol];
+            if (rawClosing == null) {
+                continue;
+            }
+            const closing = parseFloat(rawClosing);
+            if (!Number.isFinite(closing)) {
+                continue;
+            }
+            const unitLabel = unitLabelFn(rawUnit);
+            if (!unitLabel) {
+                continue;
+            }
+            map.set(unitLabel.toUpperCase(), {
+                reading: closing,
+                date: fallbackDate || null,
+                source: 'excel_closing_reading'
+            });
+        }
+    } catch (err) {
+        console.error(`  [WARN] Could not parse Excel at ${excelPath}: ${err.message}`);
+    }
+    return map;
+}
+
+// ─── Building-specific unit label formatters ───────────────────────────────
+//
+// Convert raw Excel cell values into the canonical meter_number used in the
+// app-database (e.g., "BC 01", "PH 03", "VD 12").  The label MUST match
+// the meter.meter_number in the existing app-database so the lookup succeeds.
+
+const UNIT_LABEL_FORMATTERS = {
+    bonifay: (raw) => {
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? `BC ${padUnit(n)}` : null;
+    },
+    'phanda-lodge': (raw) => {
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? `PH ${padUnit(n)}` : null;
+    },
+    'vista-del-monte': (raw) => {
+        const m = String(raw).match(/^Unit\s+(\d+)$/i);
+        if (!m) {
+            return null;
+        }
+        return `VD ${padUnit(parseInt(m[1], 10))}`;
+    }
+};
+
+// ─── Reading resolution entry point ────────────────────────────────────────
+
+/**
+ * Given a building slug and its source folder path, load the most
+ * authoritative reading data available from the folder.
+ *
+ * Returns:
+ *   {
+ *     source:     'capture_json' | 'excel' | 'none',
+ *     map:        Map<UNIT_LABEL_UPPER, {reading, date, source}>,
+ *     sourceFile: string | null,
+ *     sourceDate: string | null
+ *   }
+ */
+function resolveReadingsFromFolder(buildingSlug, buildingFolderPath) {
+    // Priority 1: meter-capture-readings.json
+    const captureData = loadCaptureReadings(buildingFolderPath);
+    if (captureData) {
+        const map = buildReadingMapFromCapture(captureData);
+        if (map.size > 0) {
+            return {
+                source: 'capture_json',
+                map,
+                sourceFile: captureData.source_extraction_file || null,
+                sourceDate: captureData.generated_at ? captureData.generated_at.slice(0, 10) : null
+            };
+        }
+    }
+
+    // Priority 2: Excel files (only for buildings with a known label formatter)
+    const labelFn = UNIT_LABEL_FORMATTERS[buildingSlug];
+    if (labelFn) {
+        const excelPaths = findExcelFiles(buildingFolderPath);
+        if (excelPaths.length) {
+            const picked = pickMostRecentExcel(excelPaths);
+            const map = buildReadingMapFromExcel(picked.path, labelFn, picked.date);
+            if (map.size > 0) {
+                return {
+                    source: 'excel',
+                    map,
+                    sourceFile: picked.path,
+                    sourceDate: picked.date
+                };
+            }
+        }
+    }
+
+    return { source: 'none', map: new Map(), sourceFile: null, sourceDate: null };
+}
+
+// ─── App-database builder ──────────────────────────────────────────────────
+
+/**
+ * Produce a clean app-database record from the existing database +
+ * folder-derived readings.
+ *
+ * Invariants:
+ *  • cycles and historical_readings are always []  (pipeline data removed)
+ *  • legacy_meter_map is always []
+ *  • data_pipeline = 'buildings_folder_only'
+ *  • Meters whose meter_number matches a folder reading get last_reading updated.
+ *  • Meters not in the folder map keep their existing last_reading unchanged.
+ *    (They still have a valid last-known reading; we simply have no newer
+ *     folder data for them and do NOT assume a reading exists.)
+ */
+function buildCleanDatabase(existingDb, readingInfo, buildingFolderPath) {
+    const metersUpdated = (existingDb.meters || []).map((meter) => {
+        const key = String(meter.meter_number || '').trim().toUpperCase();
+        const entry = readingInfo.map.get(key);
+        if (entry) {
+            return {
+                ...meter,
+                last_reading: entry.reading,
+                last_reading_date: entry.date || meter.last_reading_date
+            };
+        }
+        return { ...meter };
+    });
+
+    const matchedCount = (existingDb.meters || []).filter((m) =>
+        readingInfo.map.has(String(m.meter_number || '').trim().toUpperCase())
+    ).length;
+
+    const noteBySource = {
+        capture_json: 'Readings sourced from meter-capture-readings.json in building folder. Historical pipeline removed.',
+        excel: 'Readings sourced from most recent Excel file in building folder. Historical pipeline removed.',
+        none: 'No structured reading data found in building folder. Meter last_reading values retained from prior configuration. Historical pipeline removed.'
+    };
 
     return {
         record_type: 'building-app-database',
-        building_slug: buildingSlug,
+        building_slug: existingDb.building_slug,
         generated_at: new Date().toISOString(),
+        data_pipeline: 'buildings_folder_only',
         source_references: {
-            normalized_sheet_json: normalizedSheet?.filePath || null,
-            utility_dash_app_payload_json: sourcePath,
-            building_source_folder: buildingFolderPath || null
+            buildings_folder: buildingFolderPath || null,
+            reading_source_type: readingInfo.source,
+            reading_source_file: readingInfo.sourceFile || null,
+            reading_source_date: readingInfo.sourceDate || null,
+            meters_with_folder_reading: matchedCount,
+            note: noteBySource[readingInfo.source] || noteBySource.none
         },
-        building,
-        scheme,
-        settings_snapshot: normalizedSheet?.payload?.settings_snapshot || {},
-        charge_modes: Array.isArray(normalizedSheet?.payload?.charge_modes) ? normalizedSheet.payload.charge_modes : [],
-        cycles,
-        units,
-        meters,
-        legacy_meter_map: legacyMeterMap,
-        historical_readings: historicalReadings,
-        data_quality: normalizedSheet ? buildDataQuality(normalizedSheet.payload) : buildDataQuality({})
+        building: existingDb.building,
+        scheme: existingDb.scheme,
+        settings_snapshot: existingDb.settings_snapshot || {},
+        charge_modes: Array.isArray(existingDb.charge_modes) ? existingDb.charge_modes : [],
+        cycles: [],
+        units: existingDb.units || [],
+        meters: metersUpdated,
+        legacy_meter_map: [],
+        historical_readings: []
     };
 }
 
-function ensureDirectory(dirPath) {
-    fs.mkdirSync(dirPath, { recursive: true });
+// ─── CLI argument parsing ──────────────────────────────────────────────────
+
+function parseArgs(argv) {
+    const opts = {
+        appDbDir: DEFAULT_APP_DB_DIR,
+        buildingsRoot: DEFAULT_BUILDINGS_ROOT,
+        onlySlug: null
+    };
+    for (let i = 0; i < argv.length; i++) {
+        const arg = argv[i];
+        const next = argv[i + 1];
+        if (arg === '--building' && next) {
+            opts.onlySlug = slugify(next);
+            i++;
+        }
+        if (arg === '--app-db-dir' && next) {
+            opts.appDbDir = path.resolve(next);
+            i++;
+        }
+        if (arg === '--buildings-root' && next) {
+            opts.buildingsRoot = path.resolve(next);
+            i++;
+        }
+    }
+    return opts;
 }
 
-function writePayload(outputPath, payload) {
-    fs.writeFileSync(outputPath, JSON.stringify(payload, null, 2));
-}
+// ─── Main ──────────────────────────────────────────────────────────────────
 
 function main() {
-    const options = parseArgs(process.argv.slice(2));
-    const sourcePayload = loadJson(options.source);
-    const manifest = loadJson(options.manifest);
-    const indexedSheets = indexNormalizedSheets(manifest, options.manifest, options.normalizedDir);
-    const buildingFolders = listBuildingFolders(options.buildingsRoot);
+    const opts = parseArgs(process.argv.slice(2));
 
-    ensureDirectory(options.outputDir);
+    if (!fs.existsSync(opts.appDbDir)) {
+        console.error(`App-database directory not found: ${opts.appDbDir}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    const buildingFolders = listBuildingFolders(opts.buildingsRoot);
+
+    const dbFiles = fs.readdirSync(opts.appDbDir)
+        .filter((f) => f.endsWith('.app-database.json'))
+        .sort()
+        .filter((f) => !opts.onlySlug || f.startsWith(`${opts.onlySlug}.`));
+
+    if (!dbFiles.length) {
+        console.error(`No app-database files matched${opts.onlySlug ? ` slug "${opts.onlySlug}"` : ''}.`);
+        process.exitCode = 1;
+        return;
+    }
 
     const results = [];
-    const skipped = [];
 
-    for (const scheme of sourcePayload.schemes || []) {
-        const building = (sourcePayload.buildings || []).find((item) => item.scheme_id === scheme.id);
-        if (!building) {
-            skipped.push({ scheme: scheme.name, reason: 'missing-building-record' });
-            continue;
-        }
+    for (const dbFile of dbFiles) {
+        const dbPath = path.join(opts.appDbDir, dbFile);
+        const existingDb = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+        const slug = existingDb.building_slug || dbFile.replace('.app-database.json', '');
 
-        const normalizedSheet = matchNormalizedSheet(indexedSheets, scheme, building);
-        const buildingSlug = scheme.id.replace(/^scheme-/, '') || slugify(building.name || scheme.name);
-        if (options.onlyBuilding && buildingSlug !== options.onlyBuilding) {
-            continue;
-        }
+        const candidates = [
+            existingDb.building && existingDb.building.name,
+            existingDb.scheme && existingDb.scheme.name,
+            existingDb.building && existingDb.building.source_reference,
+            slug
+        ];
+        const buildingFolderPath = findBuildingFolder(buildingFolders, candidates);
 
-        const outputPath = path.join(options.outputDir, `${buildingSlug}.app-database.json`);
-        if (fs.existsSync(outputPath) && !options.overwrite) {
-            skipped.push({ scheme: scheme.name, reason: 'existing-output', outputPath });
-            continue;
-        }
+        const readingInfo = buildingFolderPath
+            ? resolveReadingsFromFolder(slug, buildingFolderPath)
+            : { source: 'none', map: new Map(), sourceFile: null, sourceDate: null };
 
-        const buildingFolderPath = findBuildingFolder(
-            buildingFolders,
-            [building.name, scheme.name, building.source_reference, normalizedSheet?.sheet_name]
-        );
-
-        const payload = buildPayloadForScheme(sourcePayload, options.source, normalizedSheet, buildingFolderPath, scheme);
-        writePayload(outputPath, payload);
+        const cleanDb = buildCleanDatabase(existingDb, readingInfo, buildingFolderPath);
+        fs.writeFileSync(dbPath, JSON.stringify(cleanDb, null, 2));
 
         results.push({
-            scheme: scheme.name,
-            building: building.name,
-            buildingSlug,
-            outputPath,
-            normalizedSheet: normalizedSheet?.sheet_name || null,
-            buildingFolderPath,
-            units: payload.units.length,
-            meters: payload.meters.length,
-            cycles: payload.cycles.length,
-            historicalReadings: payload.historical_readings.length,
-            reviewFlags: payload.data_quality.review_flags.length,
-            nonNumericRows: payload.data_quality.non_numeric_reading_rows.length
+            slug,
+            buildingFolder: buildingFolderPath ? path.basename(buildingFolderPath) : '(not found)',
+            readingSource: readingInfo.source,
+            metersWithFolderReading: cleanDb.source_references.meters_with_folder_reading,
+            totalUnits: cleanDb.units.length,
+            totalMeters: cleanDb.meters.length,
+            cyclesRemoved: (existingDb.cycles || []).length,
+            historicalReadingsRemoved: (existingDb.historical_readings || []).length
         });
     }
 
+    const totalCyclesRemoved = results.reduce((s, r) => s + r.cyclesRemoved, 0);
+    const totalReadingsRemoved = results.reduce((s, r) => s + r.historicalReadingsRemoved, 0);
+
     console.log(JSON.stringify({
-        source: options.source,
-        manifest: options.manifest,
-        outputDir: options.outputDir,
-        generated: results,
-        skipped
+        buildingsRoot: opts.buildingsRoot,
+        appDbDir: opts.appDbDir,
+        dataPipeline: 'buildings_folder_only',
+        summary: {
+            buildingsProcessed: results.length,
+            totalCyclesRemoved,
+            totalHistoricalReadingsRemoved: totalReadingsRemoved
+        },
+        results
     }, null, 2));
 }
 

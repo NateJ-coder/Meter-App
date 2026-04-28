@@ -1,3 +1,9 @@
+// ⚠ RETIRED PIPELINE SCRIPT
+// This script was a one-time import for Vista Del Monte March 2026 cycle data.
+// The Buildings/buildings/ folder is now the authoritative source of truth.
+// Cycle imports no longer use separate per-building scripts.
+// See: scripts/generate-building-app-database.js
+
 /**
  * import-vista-march-2026.mjs
  * 

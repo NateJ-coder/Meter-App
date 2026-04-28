@@ -1,3 +1,9 @@
+// ⚠ RETIRED PIPELINE SCRIPT
+// This script sourced data from the utility-dash-app-payload.json historical
+// pipeline and is no longer used.  The Buildings/buildings/ folder is now the
+// authoritative source of truth.  Do not run this script.
+// See: scripts/generate-building-app-database.js
+
 const fs = require('fs');
 const path = require('path');
 

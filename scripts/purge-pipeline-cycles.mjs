@@ -1,3 +1,9 @@
+// ⚠ RETIRED PIPELINE SCRIPT
+// Historical pipeline cycles have been removed at the app-database generation
+// level.  The new generate-building-app-database.js emits cycles: [] for every
+// building, so there is nothing left to purge.  Do not run this script unless
+// you need to clean up a Firestore environment that received old pipeline data.
+
 /**
  * purge-pipeline-cycles.mjs
  *

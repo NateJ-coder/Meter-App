@@ -1,3 +1,9 @@
+// ⚠ RETIRED PIPELINE SCRIPT
+// This script uploaded the utility-dash operational baseline to Firebase and is
+// no longer used.  The Buildings/buildings/ folder is now the authoritative
+// source of truth.  Do not run this script.
+// See: scripts/generate-building-app-database.js + upload-building-app-database-to-firebase.mjs
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

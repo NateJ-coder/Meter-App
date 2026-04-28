@@ -1,3 +1,9 @@
+// ⚠ RETIRED PIPELINE SCRIPT
+// This script patched the phanda-lodge and vista-del-monte app-database files
+// with new cycles sourced from Excel files.  It is no longer used because
+// generate-building-app-database.js now handles all buildings from the folder.
+// See: scripts/generate-building-app-database.js
+
 /**
  * update-new-buildings-from-folders.mjs
  * 
