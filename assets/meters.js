@@ -4,8 +4,14 @@
 
 import { storage } from './storage.js';
 import { showNotification, confirmAction, parseDecimalInput } from './app.js';
+import { auth } from './auth.js';
 
 const meterRegisterAdminMode = new URLSearchParams(window.location.search).get('mode') === 'admin';
+
+if (auth.isDeveloper()) {
+    const appDataSection = document.getElementById('app-data-section');
+    if (appDataSection) appDataSection.hidden = false;
+}
 
 initializeMeterRegisterMode();
 loadMeterIndexPage();

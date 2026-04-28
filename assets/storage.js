@@ -455,6 +455,24 @@ export const storage = {
         return counts;
     },
 
+    /**
+     * Lightweight targeted sync for a single entity collection.
+     * Safe to call on every page load for small, critical collections like cycles.
+     */
+    async refreshEntityFromCloud(entity) {
+        const collectionName = cloudEntityCollections[entity];
+        if (!collectionName || !isFirebaseConfigured()) return;
+        try {
+            const snapshot = await getDocs(collection(firebaseDb, collectionName));
+            const items = snapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
+            if (items.length > 0) {
+                writeEntityToLocalCache(entity, items);
+            }
+        } catch (error) {
+            console.warn(`refreshEntityFromCloud: failed to sync "${entity}"`, error);
+        }
+    },
+
     async replaceOperationalData(payload, options = {}) {
         const pushToCloud = options.pushToCloud !== false && isFirebaseConfigured();
 

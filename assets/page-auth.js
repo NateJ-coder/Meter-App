@@ -35,6 +35,11 @@ if (!PUBLIC_PAGES.has(currentPage)) {
 }
 
 await storage.initializeCloudSync({ preload: storage.shouldPreloadCloudData() });
+// Always re-sync cycles from Firestore — they are small and critical for all pages.
+// This ensures stale localStorage cycles (from old pipeline imports) are replaced.
+if (storage.cloudSyncEnabled) {
+    await storage.refreshEntityFromCloud('cycles');
+}
 window.auth = auth;
 window.storage = storage;
 
