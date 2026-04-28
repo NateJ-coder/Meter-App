@@ -167,6 +167,8 @@
   import { preparePhotoForStorage } from './assets/photo-utils.js';
   import { persistReadingPhoto } from './assets/firebase-media.js';
   import { buildReadingTransferPackage, downloadReadingTransferPackage } from './assets/reading-transfer.js';
+  import { collection, doc, getDoc, getDocs, query, where } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+  import { firebaseDb } from './assets/firebase.js';
 
   // Make globally available
   window.storage = storage;
@@ -241,160 +243,164 @@
   }
 
   // ── Scheme Overview (QR scan entry point) ───────────────────────────────
-  function initializeSchemeOverview() {
-    const scheme = storage.get('schemes', schemeId);
-    if (!scheme) {
-      showError(`Scheme not found (ID: ${schemeId}). The QR code may be outdated.`);
-      return;
-    }
+  async function initializeSchemeOverview() {
+    // Show loading state immediately
+    const overviewEl = document.getElementById('scheme-overview');
+    overviewEl.style.display = 'block';
+    overviewEl.innerHTML = `<div class="card" style="text-align:center;padding:2rem;"><p>Loading scheme info…</p></div>`;
 
-    const buildings   = storage.getBuildings(schemeId);
-    const allUnits    = buildings.flatMap(b => storage.getUnits(b.id).map(u => ({ ...u, building_name: b.name })));
-    const allUnitIds  = allUnits.map(u => u.id);
-    const allMeters   = storage.getAll('meters');
-    const schemeMeters = allMeters.filter(m => m.scheme_id === schemeId || allUnitIds.includes(m.unit_id));
-    const openCycle   = storage.getOpenCycle(schemeId);
+    try {
+      // ── Fetch scheme from Firestore ──────────────────────────────────
+      const schemeSnap = await getDoc(doc(firebaseDb, 'schemes', schemeId));
+      if (!schemeSnap.exists()) {
+        showError(`Scheme not found (ID: ${schemeId}). The QR code may be outdated.`);
+        return;
+      }
+      const scheme = { id: schemeSnap.id, ...schemeSnap.data() };
 
-    // ── Ordered meter list for reading walkthrough ──────────────────────
-    const bulkMeter = schemeMeters.find(m => m.meter_type === 'BULK' && m.scheme_id === schemeId);
-    const unitMeters = schemeMeters
-      .filter(m => m.meter_type === 'UNIT' && allUnitIds.includes(m.unit_id))
-      .map(m => {
-        const unit = allUnits.find(u => u.id === m.unit_id);
-        return { ...m, _unit: unit };
-      })
-      .sort((a, b) => {
-        const ba = a._unit?.building_name || '';
-        const bb = b._unit?.building_name || '';
-        if (ba !== bb) return ba.localeCompare(bb);
-        return String(a._unit?.unit_number || '').localeCompare(String(b._unit?.unit_number || ''), undefined, { numeric: true });
-      });
-    const orderedMeters = [...(bulkMeter ? [bulkMeter] : []), ...unitMeters];
+      // ── Buildings ────────────────────────────────────────────────────
+      const buildingsSnap = await getDocs(
+        query(collection(firebaseDb, 'buildings'), where('scheme_id', '==', schemeId))
+      );
+      const buildings = buildingsSnap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .sort((a, b) => String(a.name).localeCompare(String(b.name)));
 
-    // ── Open flags from flagged readings ────────────────────────────────
-    const allReadings = storage.getAll('readings');
-    const schemeReadings = allReadings.filter(r => schemeMeters.some(m => m.id === r.meter_id));
-    const flaggedReadings = schemeReadings
-      .filter(r => Array.isArray(r.flags) && r.flags.length > 0)
-      .sort((a, b) => new Date(b.reading_date || b.created_at || 0) - new Date(a.reading_date || a.created_at || 0))
-      .slice(0, 10);
+      // ── Units (batch by building_id, max 10 per IN query) ────────────
+      const buildingIds = buildings.map(b => b.id);
+      let allUnits = [];
+      for (let i = 0; i < buildingIds.length; i += 10) {
+        const chunk = buildingIds.slice(i, i + 10);
+        const unitsSnap = await getDocs(
+          query(collection(firebaseDb, 'units'), where('building_id', 'in', chunk))
+        );
+        unitsSnap.docs.forEach(d => {
+          const building = buildings.find(b => b.id === d.data().building_id);
+          allUnits.push({ id: d.id, ...d.data(), building_name: building?.name || '' });
+        });
+      }
+      allUnits.sort((a, b) =>
+        String(a.unit_number || '').localeCompare(String(b.unit_number || ''), undefined, { numeric: true })
+      );
+      const allUnitIds = allUnits.map(u => u.id);
 
-    // Also pull open meter_flags
-    const openMeterFlags = storage.getMeterFlags({ status: 'open' })
-      .filter(f => schemeMeters.some(m => m.id === f.meter_id))
-      .slice(0, 10);
+      // ── Meters for this scheme ────────────────────────────────────────
+      const metersSnap = await getDocs(
+        query(collection(firebaseDb, 'meters'), where('scheme_id', '==', schemeId))
+      );
+      const schemeMeters = metersSnap.docs.map(d => ({ id: d.id, ...d.data() }));
 
-    // ── Cycle badge ──────────────────────────────────────────────────────
-    const cycleActive = Boolean(openCycle);
-    const cycleBadgeHtml = cycleActive
-      ? `<span class="badge badge-success" style="font-size:0.9rem;">🟢 Cycle open — ${openCycle.name || [openCycle.start_date, openCycle.end_date].filter(Boolean).join(' → ') || 'Active'}</span>`
-      : `<span class="badge badge-secondary" style="font-size:0.9rem;">⏸ No active reading cycle</span>`;
+      // ── Open cycle ───────────────────────────────────────────────────
+      const cyclesSnap = await getDocs(
+        query(collection(firebaseDb, 'cycles'),
+          where('scheme_id', '==', schemeId),
+          where('status', '==', 'OPEN')
+        )
+      );
+      const openCycle = cyclesSnap.empty ? null : { id: cyclesSnap.docs[0].id, ...cyclesSnap.docs[0].data() };
 
-    // ── Buildings summary rows ───────────────────────────────────────────
-    const buildingRows = buildings.map(b => {
-      const bUnits   = allUnits.filter(u => u.building_id === b.id);
-      const bMeters  = schemeMeters.filter(m => bUnits.some(u => u.id === m.unit_id));
-      const lastRead = bMeters
-        .map(m => m.last_reading_date)
-        .filter(Boolean)
-        .sort()
-        .pop() || '—';
-      return `<tr>
-        <td>${b.name}</td>
-        <td>${bUnits.length}</td>
-        <td>${bMeters.length}</td>
-        <td>${lastRead}</td>
-      </tr>`;
-    }).join('');
-
-    // ── Flags section ────────────────────────────────────────────────────
-    let flagsHtml = '';
-    if (openMeterFlags.length > 0 || flaggedReadings.length > 0) {
-      const flagItems = [
-        ...openMeterFlags.map(f => {
-          const meter = schemeMeters.find(m => m.id === f.meter_id);
-          const meterLabel = meter ? meter.meter_number : f.meter_id;
-          return `<li><strong>${meterLabel}</strong>: ${f.description || f.flag_type || 'Open issue'}</li>`;
-        }),
-        ...flaggedReadings.map(r => {
-          const meter = schemeMeters.find(m => m.id === r.meter_id);
-          const unit  = meter?.unit_id ? allUnits.find(u => u.id === meter.unit_id) : null;
-          const label = unit ? `Unit ${unit.unit_number}` : (meter?.meter_number || 'Unknown');
-          const flagLabels = r.flags.map(f => String(f.type || f.rule || f).replace(/_/g, ' ')).join(', ');
-          return `<li><strong>${label}</strong>: ${flagLabels} <span class="text-muted">(${r.reading_date || 'unknown date'})</span></li>`;
+      // ── Ordered meter list ───────────────────────────────────────────
+      const bulkMeters = schemeMeters
+        .filter(m => m.meter_type === 'BULK')
+        .sort((a, b) => String(a.meter_number).localeCompare(String(b.meter_number)));
+      const commonMetersOv = schemeMeters
+        .filter(m => m.meter_type === 'COMMON')
+        .sort((a, b) => String(a.meter_number).localeCompare(String(b.meter_number)));
+      const unitMeters = schemeMeters
+        .filter(m => m.meter_type === 'UNIT' && allUnitIds.includes(m.unit_id))
+        .map(m => {
+          const unit = allUnits.find(u => u.id === m.unit_id);
+          return { ...m, _unit: unit };
         })
-      ].slice(0, 10);
+        .sort((a, b) => {
+          const ba = a._unit?.building_name || '';
+          const bb = b._unit?.building_name || '';
+          if (ba !== bb) return ba.localeCompare(bb);
+          return String(a._unit?.unit_number || '').localeCompare(String(b._unit?.unit_number || ''), undefined, { numeric: true });
+        });
+      const orderedMeters = [...bulkMeters, ...commonMetersOv, ...unitMeters];
 
-      flagsHtml = `
-        <div class="card" style="border-left: 3px solid #ffc107; margin-top: 1rem;">
-          <h3 style="margin-bottom:0.5rem;">⚠ Items to check</h3>
-          <ul style="margin:0;padding-left:1.25rem;line-height:1.8;">${flagItems.join('')}</ul>
-        </div>`;
-    }
+      // ── Cycle badge ──────────────────────────────────────────────────
+      const cycleActive = Boolean(openCycle);
+      const cycleBadgeHtml = cycleActive
+        ? `<span class="badge badge-success" style="font-size:0.9rem;">🟢 Cycle open — ${openCycle.name || [openCycle.start_date, openCycle.end_date].filter(Boolean).join(' → ') || 'Active'}</span>`
+        : `<span class="badge badge-secondary" style="font-size:0.9rem;">⏸ No active reading cycle</span>`;
 
-    // ── Reading order preview ────────────────────────────────────────────
-    const orderRows = orderedMeters.map((m, i) => {
-      const unit     = allUnits.find(u => u.id === m.unit_id);
-      const location = m.meter_type === 'BULK' ? 'Bulk Meter'
-        : m.meter_type === 'COMMON' ? 'Common Property'
-        : `${unit?.building_name || ''} · Unit ${unit?.unit_number || '?'}`;
-      const lastReading = m.last_reading != null ? `${m.last_reading} kWh` : '—';
-      return `<tr>
-        <td style="color:#999;">${i + 1}</td>
-        <td>${m.meter_number}</td>
-        <td>${location}</td>
-        <td>${lastReading}</td>
-        <td>${m.last_reading_date || '—'}</td>
-      </tr>`;
-    }).join('');
+      // ── Buildings summary rows ───────────────────────────────────────
+      const buildingRows = buildings.map(b => {
+        const bUnits  = allUnits.filter(u => u.building_id === b.id);
+        const bMeters = schemeMeters.filter(m => bUnits.some(u => u.id === m.unit_id));
+        const lastRead = bMeters.map(m => m.last_reading_date).filter(Boolean).sort().pop() || '—';
+        return `<tr>
+          <td>${b.name}</td>
+          <td>${bUnits.length}</td>
+          <td>${bMeters.length}</td>
+          <td>${lastRead}</td>
+        </tr>`;
+      }).join('');
 
-    // ── Begin Reading button ─────────────────────────────────────────────
-    const beginUrl = `reader.html?scheme_id=${encodeURIComponent(schemeId)}&index=0`;
-    const beginBtnHtml = cycleActive
-      ? `<a href="${beginUrl}" class="btn btn-primary btn-large" style="min-width:200px;">▶ Begin Reading</a>`
-      : `<button class="btn btn-secondary btn-large" disabled title="Open a reading cycle first" style="min-width:200px;opacity:0.55;cursor:not-allowed;">▶ Begin Reading</button>`;
+      // ── Reading order rows ───────────────────────────────────────────
+      const orderRows = orderedMeters.map((m, i) => {
+        const unit     = allUnits.find(u => u.id === m.unit_id);
+        const location = m.meter_type === 'BULK' ? 'Bulk Meter'
+          : m.meter_type === 'COMMON' ? 'Common Property'
+          : `${unit?.building_name || ''} · Unit ${unit?.unit_number || '?'}`;
+        const lastReading = m.last_reading != null ? `${m.last_reading} kWh` : '—';
+        return `<tr>
+          <td style="color:#999;">${i + 1}</td>
+          <td>${m.meter_number}</td>
+          <td>${location}</td>
+          <td>${lastReading}</td>
+          <td>${m.last_reading_date || '—'}</td>
+        </tr>`;
+      }).join('');
 
-    // ── Render ───────────────────────────────────────────────────────────
-    document.getElementById('scheme-overview').style.display = 'block';
-    document.getElementById('scheme-overview').innerHTML = `
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;">
-          <div>
-            <h2 style="margin:0;">${scheme.name}</h2>
-            <p class="text-muted" style="margin:0.25rem 0 0;">${buildings.length} building${buildings.length !== 1 ? 's' : ''} · ${allUnits.length} unit${allUnits.length !== 1 ? 's' : ''} · ${schemeMeters.length} meter${schemeMeters.length !== 1 ? 's' : ''}</p>
+      // ── Begin Reading button ─────────────────────────────────────────
+      const beginUrl = `reader.html?scheme_id=${encodeURIComponent(schemeId)}&index=0`;
+      const beginBtnHtml = cycleActive
+        ? `<a href="${beginUrl}" class="btn btn-primary btn-large" style="min-width:200px;">▶ Begin Reading</a>`
+        : `<button class="btn btn-secondary btn-large" disabled title="Open a reading cycle first" style="min-width:200px;opacity:0.55;cursor:not-allowed;">▶ Begin Reading</button>`;
+
+      // ── Render ───────────────────────────────────────────────────────
+      overviewEl.innerHTML = `
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;">
+            <div>
+              <h2 style="margin:0;">${scheme.name}</h2>
+              <p class="text-muted" style="margin:0.25rem 0 0;">${buildings.length} building${buildings.length !== 1 ? 's' : ''} · ${allUnits.length} unit${allUnits.length !== 1 ? 's' : ''} · ${schemeMeters.length} meter${schemeMeters.length !== 1 ? 's' : ''}</p>
+            </div>
+            <div>${cycleBadgeHtml}</div>
           </div>
-          <div>${cycleBadgeHtml}</div>
+          <table class="data-table">
+            <thead><tr><th>Building</th><th>Units</th><th>Meters</th><th>Last Read</th></tr></thead>
+            <tbody>${buildingRows || '<tr><td colspan="4" class="text-muted">No buildings registered</td></tr>'}</tbody>
+          </table>
         </div>
 
-        <table class="data-table">
-          <thead>
-            <tr><th>Building</th><th>Units</th><th>Meters</th><th>Last Read</th></tr>
-          </thead>
-          <tbody>${buildingRows || '<tr><td colspan="4" class="text-muted">No buildings registered</td></tr>'}</tbody>
-        </table>
-      </div>
-
-      ${flagsHtml}
-
-      <div class="card" style="margin-top:1rem;">
-        <h3 style="margin-bottom:0.75rem;">📋 Reading Order</h3>
-        ${orderedMeters.length === 0
-          ? '<p class="text-muted">No meters registered for this scheme.</p>'
-          : `<table class="data-table">
-              <thead><tr><th>#</th><th>Meter</th><th>Location</th><th>Last Reading</th><th>Last Date</th></tr></thead>
-              <tbody>${orderRows}</tbody>
-            </table>`}
-        <div style="margin-top:1.25rem;text-align:center;">
-          ${beginBtnHtml}
-          ${!cycleActive ? '<p class="text-muted" style="margin-top:0.5rem;font-size:0.85rem;">The Begin Reading button will activate once an admin opens a reading cycle for this scheme.</p>' : ''}
+        <div class="card" style="margin-top:1rem;">
+          <h3 style="margin-bottom:0.75rem;">📋 Reading Order</h3>
+          ${orderedMeters.length === 0
+            ? '<p class="text-muted">No meters registered for this scheme.</p>'
+            : `<table class="data-table">
+                <thead><tr><th>#</th><th>Meter</th><th>Location</th><th>Last Reading</th><th>Last Date</th></tr></thead>
+                <tbody>${orderRows}</tbody>
+              </table>`}
+          <div style="margin-top:1.25rem;text-align:center;">
+            ${beginBtnHtml}
+            ${!cycleActive ? '<p class="text-muted" style="margin-top:0.5rem;font-size:0.85rem;">The Begin Reading button will activate once an admin opens a reading cycle for this scheme.</p>' : ''}
+          </div>
         </div>
-      </div>
-    `;
+      `;
+
+    } catch (err) {
+      console.error('Scheme overview load failed:', err);
+      showError(`Unable to load scheme info. Please check your connection and try again.`);
+    }
   }
 
-  function initializeTraditionalReader() {
+  async function initializeTraditionalReader() {
     document.getElementById('traditional-reader').style.display = 'block';
-    workflowContext = loadWorkflowContext();
+    workflowContext = await loadWorkflowContext();
 
     if (!workflowContext) return;
 
@@ -443,7 +449,7 @@
   }
 
   // --- Load workflow context ---
-  function loadWorkflowContext() {
+  async function loadWorkflowContext() {
     // --- Single-meter QR scan (meter_id param) ---
     if (directMeterId) {
       const meter = storage.get('meters', directMeterId);
@@ -489,118 +495,105 @@
       };
     }
 
-    // Starting from bulk meter QR scan
-    if (schemeId && currentIndex === 0) {
-      const scheme = storage.get('schemes', schemeId);
-      if (!scheme) {
-        showError(`Scheme not found (ID: ${schemeId}). Please ensure you're on the same device/browser where the scheme was created.`);
+    // ── Scheme sequential reading (Begin Reading → index 0, 1, 2, …) ──────
+    if (schemeId && currentIndex !== null) {
+      // Fetch scheme
+      const schemeSnap = await getDoc(doc(firebaseDb, 'schemes', schemeId));
+      if (!schemeSnap.exists()) {
+        showError(`Scheme not found (ID: ${schemeId}). The QR code may be outdated.`);
         return null;
       }
+      const scheme = { id: schemeSnap.id, ...schemeSnap.data() };
 
-      // Find bulk meter for this scheme
-      const bulkMeter = storage.getAll('meters').find(m => 
-        m.meter_type === 'BULK' && m.scheme_id === schemeId
+      // Fetch open cycle
+      const cyclesSnap = await getDocs(
+        query(collection(firebaseDb, 'cycles'),
+          where('scheme_id', '==', schemeId),
+          where('status', '==', 'OPEN')
+        )
       );
+      const openCycle = cyclesSnap.empty ? null
+        : { id: cyclesSnap.docs[0].id, ...cyclesSnap.docs[0].data() };
 
-      if (!bulkMeter) {
-        showError('No bulk meter found for this scheme. Please contact the managing agent.');
-        return null;
-      }
-      
-      // Check open cycle
-      const openCycle = storage.getOpenCycle(schemeId);
       if (!openCycle) {
-        showError('No reading cycle is currently open. The admin must open a new cycle before readings can be captured.');
+        showError('No reading cycle is currently open. The admin must open a cycle before readings can be captured.');
         return null;
       }
 
-      // Get all submeters for this scheme (across all buildings)
-      const buildings = storage.getBuildings(schemeId);
-      const allUnits = [];
-      buildings.forEach(building => {
-        const units = storage.getUnits(building.id);
-        units.forEach(unit => {
-          allUnits.push({ ...unit, building_id: building.id, building_name: building.name });
+      // Fetch all meters for this scheme
+      const metersSnap = await getDocs(
+        query(collection(firebaseDb, 'meters'), where('scheme_id', '==', schemeId))
+      );
+      const allSchemeMeters = metersSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+      // Fetch buildings and units (needed for UNIT meter location labels)
+      const buildingsSnap = await getDocs(
+        query(collection(firebaseDb, 'buildings'), where('scheme_id', '==', schemeId))
+      );
+      const buildings = buildingsSnap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .sort((a, b) => String(a.name).localeCompare(String(b.name)));
+
+      let allUnits = [];
+      const buildingIds = buildings.map(b => b.id);
+      for (let i = 0; i < buildingIds.length; i += 10) {
+        const chunk = buildingIds.slice(i, i + 10);
+        const unitsSnap = await getDocs(
+          query(collection(firebaseDb, 'units'), where('building_id', 'in', chunk))
+        );
+        unitsSnap.docs.forEach(d => {
+          const building = buildings.find(b => b.id === d.data().building_id);
+          allUnits.push({ id: d.id, ...d.data(), building_name: building?.name || '' });
         });
-      });
-      
-      const unitIds = allUnits.map(u => u.id);
-      const submeters = storage.getAll('meters')
-        .filter(m => m.meter_type === 'UNIT' && unitIds.includes(m.unit_id))
-        .map(meter => {
-          const unit = allUnits.find(u => u.id === meter.unit_id);
-          return { ...meter, unit_info: unit };
+      }
+
+      // ── Build ordered reading list: BULK → COMMON → UNIT ──────────────
+      const bulkMeters = allSchemeMeters
+        .filter(m => m.meter_type === 'BULK')
+        .sort((a, b) => String(a.meter_number).localeCompare(String(b.meter_number)));
+
+      const commonMeters = allSchemeMeters
+        .filter(m => m.meter_type === 'COMMON')
+        .sort((a, b) => String(a.meter_number).localeCompare(String(b.meter_number)));
+
+      const unitMeters = allSchemeMeters
+        .filter(m => m.meter_type === 'UNIT' && allUnits.some(u => u.id === m.unit_id))
+        .map(m => {
+          const unit = allUnits.find(u => u.id === m.unit_id);
+          return { ...m, unit_info: unit };
         })
         .sort((a, b) => {
-          // Sort by building name, then unit number
-          if (a.unit_info.building_name !== b.unit_info.building_name) {
-            return a.unit_info.building_name.localeCompare(b.unit_info.building_name);
-          }
-          return a.unit_info.unit_number.localeCompare(b.unit_info.unit_number, undefined, { numeric: true });
+          const ba = a.unit_info?.building_name || '';
+          const bb = b.unit_info?.building_name || '';
+          if (ba !== bb) return ba.localeCompare(bb);
+          return String(a.unit_info?.unit_number || '').localeCompare(
+            String(b.unit_info?.unit_number || ''), undefined, { numeric: true }
+          );
         });
 
-      return {
-        scheme,
-        bulkMeter,
-        openCycle,
-        submeters,
-        currentIndex: 0,
-        currentMeter: bulkMeter,
-        totalMeters: submeters.length + 1 // bulk + all submeters
-      };
-    }
+      const orderedMeters = [...bulkMeters, ...commonMeters, ...unitMeters];
 
-    // Continuing with submeters
-    if (schemeId && currentIndex > 0) {
-      const scheme = storage.get('schemes', schemeId);
-      const openCycle = storage.getOpenCycle(schemeId);
+      if (orderedMeters.length === 0) {
+        showError('No meters registered for this scheme. Please contact the managing agent.');
+        return null;
+      }
 
-      // Get all submeters again (same logic)
-      const buildings = storage.getBuildings(schemeId);
-      const allUnits = [];
-      buildings.forEach(building => {
-        const units = storage.getUnits(building.id);
-        units.forEach(unit => {
-          allUnits.push({ ...unit, building_id: building.id, building_name: building.name });
-        });
-      });
-      
-      const unitIds = allUnits.map(u => u.id);
-      const submeters = storage.getAll('meters')
-        .filter(m => m.meter_type === 'UNIT' && unitIds.includes(m.unit_id))
-        .map(meter => {
-          const unit = allUnits.find(u => u.id === meter.unit_id);
-          return { ...meter, unit_info: unit };
-        })
-        .sort((a, b) => {
-          if (a.unit_info.building_name !== b.unit_info.building_name) {
-            return a.unit_info.building_name.localeCompare(b.unit_info.building_name);
-          }
-          return a.unit_info.unit_number.localeCompare(b.unit_info.unit_number, undefined, { numeric: true });
-        });
-
-      // Determine which submeter we're on (index 1 = first submeter, 2 = second, etc.)
-      const submeterIndex = currentIndex - 1;
-      if (submeterIndex >= submeters.length) {
-        // All done!
+      if (currentIndex >= orderedMeters.length) {
         showSuccess();
         return null;
       }
 
-      const currentMeter = submeters[submeterIndex];
-
       return {
         scheme,
-        bulkMeter: null,
         openCycle,
-        submeters,
+        orderedMeters,
         currentIndex,
-        currentMeter,
-        totalMeters: submeters.length + 1
+        currentMeter: orderedMeters[currentIndex],
+        totalMeters: orderedMeters.length
       };
     }
 
-    showError('Invalid QR code. Please scan a scheme bulk meter QR code to start.');
+    showError('Invalid QR code. Please scan a valid scheme QR code to start.');
     return null;
   }
 
@@ -636,27 +629,29 @@
   // --- Display current meter context ---
   function displayMeterContext(context) {
     const meter = context.currentMeter;
-    
-    let contextText = `${context.scheme.name}`;
+    const meterType = meter.meter_type || 'UNIT';
+    const stepLabel = `${context.currentIndex + 1} of ${context.totalMeters}`;
+
+    let contextText = context.scheme.name;
     let progressText = '';
-    
-    if (context.currentIndex === 0) {
-      // Bulk meter
-      contextText += ` | BULK METER: ${meter.meter_number}`;
-      progressText = `Step 1 of ${context.totalMeters}: Bulk Meter`;
+
+    if (meterType === 'BULK') {
+      contextText += ` | Bulk Meter: ${meter.meter_number}`;
+      progressText = `Step ${stepLabel}: Bulk Meter`;
       document.getElementById('progress-info').className = 'reader-progress bulk';
-    } else {
-      // Submeter
-      contextText += ` - ${meter.unit_info.building_name} - Unit ${meter.unit_info.unit_number}`;
-      progressText = `Meter ${context.currentIndex + 1} of ${context.totalMeters}`;
+      if (meter.last_reading != null) contextText += ` | Last: ${meter.last_reading} kWh`;
+    } else if (meterType === 'COMMON') {
+      contextText += ` | Common Property: ${meter.meter_number}`;
+      progressText = `Step ${stepLabel}: Common Meter`;
       document.getElementById('progress-info').className = 'reader-progress unit';
-      
-      // Add last reading info
-      if (meter.last_reading) {
-        contextText += ` | Meter: ${meter.meter_number} | Last: ${meter.last_reading} kWh`;
-      } else {
-        contextText += ` | Meter: ${meter.meter_number}`;
-      }
+      if (meter.last_reading != null) contextText += ` | Last: ${meter.last_reading} kWh`;
+    } else {
+      // UNIT meter
+      const unit = meter.unit_info;
+      contextText += ` — ${unit?.building_name || ''} · Unit ${unit?.unit_number || '?'} | Meter: ${meter.meter_number}`;
+      progressText = `Step ${stepLabel}: Unit Meter`;
+      document.getElementById('progress-info').className = 'reader-progress unit';
+      if (meter.last_reading != null) contextText += ` | Last: ${meter.last_reading} kWh`;
     }
 
     document.getElementById('context-info').textContent = contextText;
@@ -823,47 +818,58 @@
   }
 
   function getWorkflowMetersForSummary() {
-    if (!schemeId) {
-      return [];
+    // Prefer the already-loaded in-memory context (works on phones, handles all meter types)
+    if (workflowContext?.orderedMeters) {
+      const { orderedMeters, openCycle } = workflowContext;
+      return orderedMeters.map((meter, index) => {
+        let meter_name;
+        if (meter.meter_type === 'BULK') {
+          meter_name = `Bulk Meter (${meter.meter_number})`;
+        } else if (meter.meter_type === 'COMMON') {
+          meter_name = `Common Property (${meter.meter_number})`;
+        } else {
+          const unit = meter.unit_info;
+          meter_name = unit ? `${unit.building_name} — Unit ${unit.unit_number}` : meter.meter_number;
+        }
+        return { ...meter, meter_name, workflow_index: index, cycle_id: openCycle.id };
+      });
     }
+
+    // Fallback: single-meter mode or legacy path (localStorage)
+    if (!schemeId) return [];
 
     const scheme = storage.get('schemes', schemeId);
     const openCycle = storage.getOpenCycle(schemeId);
-    if (!scheme || !openCycle) {
-      return [];
-    }
+    if (!scheme || !openCycle) return [];
 
-    const bulkMeter = storage.getAll('meters').find(m => m.meter_type === 'BULK' && m.scheme_id === schemeId);
+    const allSchemeMeters = storage.getAll('meters').filter(m => m.scheme_id === schemeId);
     const buildings = storage.getBuildings(schemeId);
-    const allUnits = [];
+    const allUnits = buildings.flatMap(b =>
+      storage.getUnits(b.id).map(u => ({ ...u, building_name: b.name }))
+    );
 
-    buildings.forEach(building => {
-      storage.getUnits(building.id).forEach(unit => {
-        allUnits.push({ ...unit, building_name: building.name });
-      });
-    });
+    const bulkMeters = allSchemeMeters.filter(m => m.meter_type === 'BULK')
+      .sort((a, b) => String(a.meter_number).localeCompare(String(b.meter_number)))
+      .map(m => ({ ...m, meter_name: `Bulk Meter (${m.meter_number})` }));
 
-    const submeters = storage.getAll('meters')
-      .filter(meter => meter.meter_type === 'UNIT' && allUnits.some(unit => unit.id === meter.unit_id))
-      .map(meter => {
-        const unitInfo = allUnits.find(unit => unit.id === meter.unit_id);
-        return { ...meter, unit_info: unitInfo };
+    const commonMeters = allSchemeMeters.filter(m => m.meter_type === 'COMMON')
+      .sort((a, b) => String(a.meter_number).localeCompare(String(b.meter_number)))
+      .map(m => ({ ...m, meter_name: `Common Property (${m.meter_number})` }));
+
+    const unitMeters = allSchemeMeters
+      .filter(m => m.meter_type === 'UNIT' && allUnits.some(u => u.id === m.unit_id))
+      .map(m => {
+        const unit = allUnits.find(u => u.id === m.unit_id);
+        return { ...m, unit_info: unit, meter_name: `${unit?.building_name || ''} — Unit ${unit?.unit_number || '?'}` };
       })
-      .sort((meterA, meterB) => {
-        if (meterA.unit_info.building_name !== meterB.unit_info.building_name) {
-          return meterA.unit_info.building_name.localeCompare(meterB.unit_info.building_name);
-        }
-
-        return meterA.unit_info.unit_number.localeCompare(meterB.unit_info.unit_number, undefined, { numeric: true });
+      .sort((a, b) => {
+        if (a.unit_info?.building_name !== b.unit_info?.building_name)
+          return String(a.unit_info?.building_name).localeCompare(String(b.unit_info?.building_name));
+        return String(a.unit_info?.unit_number || '').localeCompare(String(b.unit_info?.unit_number || ''), undefined, { numeric: true });
       });
 
-    return [
-      ...(bulkMeter ? [{ ...bulkMeter, meter_name: 'Bulk Meter' }] : []),
-      ...submeters.map(meter => ({
-        ...meter,
-        meter_name: `${meter.unit_info.building_name} - Unit ${meter.unit_info.unit_number}`
-      }))
-    ].map((meter, index) => ({ ...meter, workflow_index: index, cycle_id: openCycle.id }));
+    return [...bulkMeters, ...commonMeters, ...unitMeters]
+      .map((m, index) => ({ ...m, workflow_index: index, cycle_id: openCycle.id }));
   }
 
   function renderWorkflowSummary() {
