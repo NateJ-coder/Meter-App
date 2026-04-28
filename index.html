@@ -111,8 +111,8 @@
             </div>
         </section>
 
-        <!-- Danger Zone -->
-        <details class="card danger-zone-details">
+        <!-- Danger Zone (developer only) -->
+        <details id="danger-zone" class="card danger-zone-details" hidden>
             <summary class="danger-zone-summary">⚠ Danger Zone</summary>
             <div class="danger-zone-body">
                 <p class="text-muted">This will permanently delete all schemes, meters, readings, and cycles from local storage. User accounts are not affected.</p>
@@ -182,6 +182,7 @@
                 // Show setup health panel (developer only — contains internal diagnostics)
                 if (auth.isDeveloper()) {
                     setupHealth.renderHealthPanel('setup-health-container');
+                    document.getElementById('danger-zone').hidden = false;
                 } else {
                     document.getElementById('setup-health-container').style.display = 'none';
                 }
