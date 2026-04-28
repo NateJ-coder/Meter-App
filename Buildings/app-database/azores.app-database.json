@@ -1,7 +1,7 @@
 {
   "record_type": "building-app-database",
   "building_slug": "azores",
-  "generated_at": "2026-04-28T10:20:26.426Z",
+  "generated_at": "2026-04-28T10:45:25.434Z",
   "data_pipeline": "buildings_folder_only",
   "source_references": {
     "buildings_folder": "C:\\Projects\\Meter App\\Buildings\\buildings\\Azores - Completed",
@@ -74,7 +74,16 @@
       "distribution_mode": "None"
     }
   ],
-  "cycles": [],
+  "cycles": [
+    {
+      "id": "cycle-azores-2026-04-14",
+      "scheme_id": "scheme-azores",
+      "start_date": "2026-04-01",
+      "end_date": "2026-04-14",
+      "status": "CLOSED",
+      "imported_from": "buildings_folder"
+    }
+  ],
   "units": [
     {
       "id": "unit-azores-az-01a",

@@ -87,30 +87,99 @@ function padUnit(n, width) {
 // ─── Date extraction ───────────────────────────────────────────────────────
 
 /**
+ * Extract ALL dates found in a text string and return them as ISO strings.
+ * Recognises:
+ *   • YYYY.MM.DD / YYYY-MM-DD / YYYY_MM_DD  (ISO-style)
+ *   • DD.MM.YYYY / DD-MM-YYYY               (European day-first)
+ *   • 3Mar 2026 / 12Apr 2026                (verbal)
+ */
+function extractAllDatesFromText(text) {
+    const t = String(text || '');
+    const results = [];
+
+    // ISO-style: 2026.03.31, 2026-03-31, 2026_03_31
+    for (const m of t.matchAll(/(20\d{2})[.\-_](\d{2})[.\-_](\d{2})/g)) {
+        results.push(`${m[1]}-${m[2]}-${m[3]}`);
+    }
+
+    // European day-first: 01.04.2026, 12-04-2026 (only when year is 4 digits at end)
+    for (const m of t.matchAll(/\b(\d{2})[.\-](\d{2})[.\-](20\d{2})\b/g)) {
+        const dd = m[1], mm = m[2], yyyy = m[3];
+        // Validate plausible month/day ranges
+        if (parseInt(mm) >= 1 && parseInt(mm) <= 12 && parseInt(dd) >= 1 && parseInt(dd) <= 31) {
+            results.push(`${yyyy}-${mm}-${dd}`);
+        }
+    }
+
+    // Verbal: 3Mar 2026, 12Apr 2026
+    for (const m of t.matchAll(/(\d{1,2})(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{4})/gi)) {
+        const day = padUnit(parseInt(m[1]));
+        const month = MONTH_ABBR[m[2].toLowerCase()];
+        results.push(`${m[3]}-${month}-${day}`);
+    }
+
+    return results;
+}
+
+/**
  * Extract the LAST (most recent) date found in a file path or name string.
- * Recognises ISO dates ("2026.03.31", "2026-03-31") and verbal dates
- * ("3Mar 2026", "2Apr 2026").
  */
 function extractLatestDateFromText(text) {
-    const t = String(text || '');
+    const dates = extractAllDatesFromText(text);
+    if (!dates.length) return null;
+    return dates.sort().pop();
+}
 
-    const isoMatches = [...t.matchAll(/(20\d{2})[.\-_](\d{2})[.\-_](\d{2})/g)];
-    if (isoMatches.length) {
-        const last = isoMatches[isoMatches.length - 1];
-        return `${last[1]}-${last[2]}-${last[3]}`;
+/**
+ * Walk a building folder and return the latest date found across all
+ * file names and directory names.
+ */
+function findLatestDateFromFolder(buildingFolderPath) {
+    const all = [];
+    try {
+        walkDir(buildingFolderPath, (fullPath) => {
+            for (const d of extractAllDatesFromText(path.basename(fullPath))) {
+                all.push(d);
+            }
+        });
+        // Also check subfolder names
+        const scanDirs = (dir) => {
+            if (!fs.existsSync(dir)) return;
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+                for (const d of extractAllDatesFromText(entry.name)) {
+                    all.push(d);
+                }
+                if (entry.isDirectory()) scanDirs(path.join(dir, entry.name));
+            }
+        };
+        scanDirs(buildingFolderPath);
+    } catch (_) { /* ignore */ }
+    if (!all.length) return null;
+    return all.sort().pop();
+}
+
+/**
+ * Given a reading date string (YYYY-MM-DD), return a { start_date, end_date }
+ * pair suitable for a billing cycle.
+ *
+ * start_date = first day of the same month.
+ * end_date   = the reading date.
+ * If they would be equal (reading on the 1st), back start up to the first
+ * of the previous month so the cycle always spans a range.
+ */
+function cycleWindowFromDate(dateStr) {
+    if (!dateStr) return null;
+    const [yyyy, mm, dd] = dateStr.split('-').map(Number);
+    if (!yyyy || !mm || !dd) return null;
+    const startSameMonth = `${yyyy}-${padUnit(mm)}-01`;
+    if (startSameMonth === dateStr) {
+        // Reading is on the 1st — back start to first of previous month
+        const prev = new Date(yyyy, mm - 2, 1); // month is 0-based
+        const py = prev.getFullYear();
+        const pm = padUnit(prev.getMonth() + 1);
+        return { start_date: `${py}-${pm}-01`, end_date: dateStr };
     }
-
-    const verbalMatches = [
-        ...t.matchAll(/(\d{1,2})(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{4})/gi)
-    ];
-    if (verbalMatches.length) {
-        const last = verbalMatches[verbalMatches.length - 1];
-        const day = padUnit(parseInt(last[1]));
-        const month = MONTH_ABBR[last[2].toLowerCase()];
-        return `${last[3]}-${month}-${day}`;
-    }
-
-    return null;
+    return { start_date: startSameMonth, end_date: dateStr };
 }
 
 // ─── Building folder discovery ─────────────────────────────────────────────
@@ -432,7 +501,9 @@ function resolveReadingsFromFolder(buildingSlug, buildingFolderPath) {
         }
     }
 
-    return { source: 'none', map: new Map(), sourceFile: null, sourceDate: null };
+    // Priority 3: scan all file/folder names for any date evidence
+    const folderDate = findLatestDateFromFolder(buildingFolderPath);
+    return { source: 'none', map: new Map(), sourceFile: null, sourceDate: folderDate };
 }
 
 // ─── App-database builder ──────────────────────────────────────────────────
@@ -474,6 +545,25 @@ function buildCleanDatabase(existingDb, readingInfo, buildingFolderPath) {
         none: 'No structured reading data found in building folder. Meter last_reading values retained from prior configuration. Historical pipeline removed.'
     };
 
+    // Synthesize a CLOSED cycle from the folder reading date
+    const cycles = [];
+    const schemeId = existingDb.scheme && existingDb.scheme.id;
+    const readingDate = readingInfo.sourceDate || null;
+    if (schemeId && readingDate) {
+        const window = cycleWindowFromDate(readingDate);
+        if (window) {
+            const buildingSlug = existingDb.building_slug || 'unknown';
+            cycles.push({
+                id: `cycle-${buildingSlug}-${window.end_date}`,
+                scheme_id: schemeId,
+                start_date: window.start_date,
+                end_date: window.end_date,
+                status: 'CLOSED',
+                imported_from: 'buildings_folder'
+            });
+        }
+    }
+
     return {
         record_type: 'building-app-database',
         building_slug: existingDb.building_slug,
@@ -483,7 +573,7 @@ function buildCleanDatabase(existingDb, readingInfo, buildingFolderPath) {
             buildings_folder: buildingFolderPath || null,
             reading_source_type: readingInfo.source,
             reading_source_file: readingInfo.sourceFile || null,
-            reading_source_date: readingInfo.sourceDate || null,
+            reading_source_date: readingDate,
             meters_with_folder_reading: matchedCount,
             note: noteBySource[readingInfo.source] || noteBySource.none
         },
@@ -491,7 +581,7 @@ function buildCleanDatabase(existingDb, readingInfo, buildingFolderPath) {
         scheme: existingDb.scheme,
         settings_snapshot: existingDb.settings_snapshot || {},
         charge_modes: Array.isArray(existingDb.charge_modes) ? existingDb.charge_modes : [],
-        cycles: [],
+        cycles,
         units: existingDb.units || [],
         meters: metersUpdated,
         legacy_meter_map: [],

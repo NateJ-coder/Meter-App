@@ -22,7 +22,8 @@ const registryCollections = {
     schemes: 'schemes',
     buildings: 'buildings',
     units: 'units',
-    meters: 'meters'
+    meters: 'meters',
+    cycles: 'cycles'
 };
 
 function parseArgs(argv) {
@@ -99,11 +100,13 @@ async function main() {
         const buildings = payload.building ? [payload.building] : [];
         const units = Array.isArray(payload.units) ? payload.units : [];
         const meters = Array.isArray(payload.meters) ? payload.meters : [];
+        const cycles = Array.isArray(payload.cycles) ? payload.cycles : [];
 
         await writeEntityCollection(db, registryCollections.schemes, schemes);
         await writeEntityCollection(db, registryCollections.buildings, buildings);
         await writeEntityCollection(db, registryCollections.units, units);
         await writeEntityCollection(db, registryCollections.meters, meters);
+        await writeEntityCollection(db, registryCollections.cycles, cycles);
 
         const importAuditId = `building-registry-${payload.building_slug || Date.now()}-${Date.now()}`;
         await setDoc(doc(db, 'import_batches', importAuditId), {
@@ -112,8 +115,8 @@ async function main() {
             source_file: payloadPath,
             imported_at: new Date().toISOString(),
             imported_by_name: 'Terminal Uploader',
-            rows_processed: units.length + meters.length + buildings.length + schemes.length,
-            rows_approved: units.length + meters.length + buildings.length + schemes.length,
+            rows_processed: units.length + meters.length + buildings.length + schemes.length + cycles.length,
+            rows_approved: units.length + meters.length + buildings.length + schemes.length + cycles.length,
             rows_flagged: 0,
             rows_rejected: 0,
             payload_summary: {
@@ -125,6 +128,7 @@ async function main() {
                 buildings: buildings.length,
                 units: units.length,
                 meters: meters.length,
+                cycles: cycles.length,
                 source_references: payload.source_references || {}
             }
         });
@@ -135,6 +139,7 @@ async function main() {
             building: payload.building?.name || null,
             units: units.length,
             meters: meters.length,
+            cycles: cycles.length,
             importAuditId
         });
     }

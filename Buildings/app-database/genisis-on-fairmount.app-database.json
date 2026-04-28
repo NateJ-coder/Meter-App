@@ -1,13 +1,13 @@
 {
   "record_type": "building-app-database",
   "building_slug": "genisis-on-fairmount",
-  "generated_at": "2026-04-28T10:20:26.597Z",
+  "generated_at": "2026-04-28T10:45:25.603Z",
   "data_pipeline": "buildings_folder_only",
   "source_references": {
     "buildings_folder": "C:\\Projects\\Meter App\\Buildings\\buildings\\Genisis on Fairmount - completed",
     "reading_source_type": "none",
     "reading_source_file": null,
-    "reading_source_date": null,
+    "reading_source_date": "2026-04-01",
     "meters_with_folder_reading": 0,
     "note": "No structured reading data found in building folder. Meter last_reading values retained from prior configuration. Historical pipeline removed."
   },
@@ -74,7 +74,16 @@
       "distribution_mode": "None"
     }
   ],
-  "cycles": [],
+  "cycles": [
+    {
+      "id": "cycle-genisis-on-fairmount-2026-04-01",
+      "scheme_id": "scheme-genisis-on-fairmount",
+      "start_date": "2026-03-01",
+      "end_date": "2026-04-01",
+      "status": "CLOSED",
+      "imported_from": "buildings_folder"
+    }
+  ],
   "units": [
     {
       "id": "unit-genisis-on-fairmount-gen-01",

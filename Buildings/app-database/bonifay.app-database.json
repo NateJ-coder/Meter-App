@@ -1,7 +1,7 @@
 {
   "record_type": "building-app-database",
   "building_slug": "bonifay",
-  "generated_at": "2026-04-28T10:20:26.565Z",
+  "generated_at": "2026-04-28T10:45:25.594Z",
   "data_pipeline": "buildings_folder_only",
   "source_references": {
     "buildings_folder": "C:\\Projects\\Meter App\\Buildings\\buildings\\Bonifay - completed",
@@ -74,7 +74,16 @@
       "distribution_mode": "None"
     }
   ],
-  "cycles": [],
+  "cycles": [
+    {
+      "id": "cycle-bonifay-2026-03-03",
+      "scheme_id": "scheme-bonifay",
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-03",
+      "status": "CLOSED",
+      "imported_from": "buildings_folder"
+    }
+  ],
   "units": [
     {
       "id": "unit-bonifay-bc-01",

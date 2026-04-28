@@ -1,7 +1,7 @@
 {
   "record_type": "building-app-database",
   "building_slug": "vista-del-monte",
-  "generated_at": "2026-04-28T10:20:26.777Z",
+  "generated_at": "2026-04-28T10:45:25.683Z",
   "data_pipeline": "buildings_folder_only",
   "source_references": {
     "buildings_folder": "C:\\Projects\\Meter App\\Buildings\\buildings\\Vista Del Monte",
@@ -80,7 +80,16 @@
       "distribution_mode": "None"
     }
   ],
-  "cycles": [],
+  "cycles": [
+    {
+      "id": "cycle-vista-del-monte-2026-03-31",
+      "scheme_id": "scheme-vista-del-monte",
+      "start_date": "2026-03-01",
+      "end_date": "2026-03-31",
+      "status": "CLOSED",
+      "imported_from": "buildings_folder"
+    }
+  ],
   "units": [
     {
       "id": "unit-vista-del-monte-vd-01",

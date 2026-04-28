@@ -1,7 +1,7 @@
 {
   "record_type": "building-app-database",
   "building_slug": "phanda-lodge",
-  "generated_at": "2026-04-28T10:20:26.697Z",
+  "generated_at": "2026-04-28T10:45:25.651Z",
   "data_pipeline": "buildings_folder_only",
   "source_references": {
     "buildings_folder": "C:\\Projects\\Meter App\\Buildings\\buildings\\Phanda Lodge",
@@ -74,7 +74,16 @@
       "distribution_mode": "None"
     }
   ],
-  "cycles": [],
+  "cycles": [
+    {
+      "id": "cycle-phanda-lodge-2026-04-02",
+      "scheme_id": "scheme-phanda-lodge",
+      "start_date": "2026-04-01",
+      "end_date": "2026-04-02",
+      "status": "CLOSED",
+      "imported_from": "buildings_folder"
+    }
+  ],
   "units": [
     {
       "id": "unit-phanda-lodge-ph-01",
