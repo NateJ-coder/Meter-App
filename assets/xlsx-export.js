@@ -204,7 +204,13 @@ export const xlsxExport = {
         // === SHEET 3: ANALYTICS ===
         const analyticsData = this.buildAnalyticsSheet(layout);
         const wsAnalytics = XLSX.utils.aoa_to_sheet(analyticsData);
-        wsAnalytics['!cols'] = [{ wch: 20 }, { wch: 15 }, { wch: 18 }];
+        wsAnalytics['!cols'] = [
+            { wch: 32 }, // label / range
+            { wch: 16 }, // value
+            { wch: 8  }, // spacer
+            { wch: 24 }, // right-col label
+            { wch: 16 }, // right-col value
+        ];
         XLSX.utils.book_append_sheet(wb, wsAnalytics, 'Analytics');
 
         // === SHEET 4: FLAGS & ISSUES ===
@@ -213,12 +219,18 @@ export const xlsxExport = {
         wsFlags['!cols'] = [{ wch: 15 }, { wch: 12 }, { wch: 15 }, { wch: 15 }, { wch: 20 }, { wch: 30 }];
         XLSX.utils.book_append_sheet(wb, wsFlags, 'Flags & Issues');
 
+        // === SHEET 5: CHART DATA (clean pivot tables for Excel charting) ===
+        const chartsData = this.buildChartsDataSheet(layout);
+        const wsCharts = XLSX.utils.aoa_to_sheet(chartsData);
+        wsCharts['!cols'] = [{ wch: 35 }, { wch: 20 }, { wch: 12 }, { wch: 12 }];
+        XLSX.utils.book_append_sheet(wb, wsCharts, 'Chart Data');
+
         // Download file
         const filename = layout.outputFiles.find(file => file.type === 'scheme-report')?.filename
             || `01-scheme-report-${sanitizeLayoutSegment(scheme.name)}-${cycle.start_date}.xlsx`;
         XLSX.writeFile(wb, filename);
 
-        alert(`✅ Scheme report exported successfully!\n\nFilename: ${filename}\n\nIncludes 4 sheets:\n• Summary (bulk reconciliation)\n• Unit Readings (detailed)\n• Analytics (top consumers)\n• Flags & Issues`);
+        alert(`✅ Scheme report exported successfully!\n\nFilename: ${filename}\n\nIncludes 5 sheets:\n• Summary (bulk reconciliation)\n• Unit Readings (detailed)\n• Analytics (bar charts + statistics)\n• Flags & Issues\n• Chart Data (select a table → Insert → Chart in Excel)`);
 
         return filename;
     },
@@ -404,77 +416,219 @@ export const xlsxExport = {
     },
 
     /**
-     * Build analytics sheet with top consumers
+     * Build enhanced analytics sheet with Unicode bar charts and statistics
      */
     buildAnalyticsSheet(layout) {
         const { cycle, scheme, units } = layout;
+
         const unitConsumption = units
             .map(unit => ({
+                label: `${unit.buildingName} – ${unit.unitNumber}`,
                 building: unit.buildingName,
                 unit: unit.unitNumber,
                 meter_count: unit.meterCount,
-                consumption: unit.totalConsumption
+                consumption: unit.totalConsumption,
+                flagged: unit.flaggedCount,
+                read: unit.readCount
             }))
-            .filter(unit => unit.consumption != null);
+            .filter(u => u.consumption != null && u.consumption >= 0);
 
-        // Sort by consumption (highest first)
         unitConsumption.sort((a, b) => b.consumption - a.consumption);
 
-        // Calculate statistics
+        const n = unitConsumption.length;
         const totalConsumption = unitConsumption.reduce((sum, u) => sum + u.consumption, 0);
-        const avgConsumption = unitConsumption.length > 0 ? totalConsumption / unitConsumption.length : 0;
-        const maxConsumption = unitConsumption.length > 0 ? unitConsumption[0].consumption : 0;
-        const minConsumption = unitConsumption.length > 0 ? unitConsumption[unitConsumption.length - 1].consumption : 0;
+        const avgConsumption = n > 0 ? totalConsumption / n : 0;
+        const maxConsumption = n > 0 ? unitConsumption[0].consumption : 0;
+        const minConsumption = n > 0 ? unitConsumption[n - 1].consumption : 0;
+        const stdDev = n > 1
+            ? Math.sqrt(unitConsumption.reduce((sum, u) => sum + Math.pow(u.consumption - avgConsumption, 2), 0) / n)
+            : 0;
+        const sorted = unitConsumption.map(u => u.consumption);
+        const mid = Math.floor(n / 2);
+        const median = n === 0 ? 0 : n % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+
+        const BAR_MAX = 36;
+        const buildBar = (val, max) => {
+            if (max === 0 || val == null) return '';
+            const filled = Math.max(1, Math.round((val / max) * BAR_MAX));
+            return '█'.repeat(filled);
+        };
+
+        const capturedCount = units.reduce((sum, u) => sum + u.readCount, 0);
+        const totalMeters = units.reduce((sum, u) => sum + u.meterCount, 0);
+        const completionPct = totalMeters > 0 ? (capturedCount / totalMeters) * 100 : 0;
+        const completionFilled = Math.round(completionPct / 5); // 20 segments = 100%
+        const completionBar = `[${'■'.repeat(completionFilled)}${'□'.repeat(20 - completionFilled)}]  ${completionPct.toFixed(1)}%`;
 
         const data = [
-            ['CONSUMPTION ANALYTICS'],
+            ['FUZIO PROPERTIES — CONSUMPTION ANALYTICS'],
             ['Scheme:', scheme.name],
-            ['Period:', `${cycle.start_date} to ${cycle.end_date}`],
+            ['Period:', `${cycle.start_date}  →  ${cycle.end_date}`],
+            ['Generated:', new Date().toLocaleString()],
             [''],
-            ['=== STATISTICS ==='],
-            ['Total Units:', unitConsumption.length],
-            ['Total Consumption (kWh):', totalConsumption.toFixed(2)],
-            ['Average Consumption (kWh):', avgConsumption.toFixed(2)],
-            ['Highest Consumption (kWh):', maxConsumption.toFixed(2)],
-            ['Lowest Consumption (kWh):', minConsumption.toFixed(2)],
+            ['━━━  KEY STATISTICS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'],
+            ['Total units metered:', n, '', 'Average / unit:', avgConsumption.toFixed(2) + ' kWh'],
+            ['Total consumption:', totalConsumption.toFixed(2) + ' kWh', '', 'Median / unit:', median.toFixed(2) + ' kWh'],
+            ['Highest consumer:', maxConsumption.toFixed(2) + ' kWh', '', 'Std deviation:', stdDev.toFixed(2) + ' kWh'],
+            ['Lowest consumer:', minConsumption.toFixed(2) + ' kWh', '', 'Units not read:', units.filter(u => u.readCount === 0).length],
             [''],
-            ['=== TOP 10 CONSUMERS ==='],
-            ['Rank', 'Unit', 'Meters', 'Consumption (kWh)', '% of Total']
         ];
 
-        unitConsumption.slice(0, 10).forEach((unit, index) => {
-            const percentage = totalConsumption > 0 ? (unit.consumption / totalConsumption * 100).toFixed(1) : 0;
+        // ── TOP 15 CONSUMERS — BAR CHART ──────────────────────────────────────────
+        data.push(['━━━  TOP 15 CONSUMERS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━']);
+        data.push(['#', 'Unit', 'kWh', '% of Total', `Bar  (max = ${maxConsumption.toFixed(0)} kWh, each █ ≈ ${(maxConsumption / BAR_MAX).toFixed(1)} kWh)`]);
+
+        unitConsumption.slice(0, 15).forEach((u, i) => {
+            const pct = totalConsumption > 0 ? (u.consumption / totalConsumption * 100) : 0;
             data.push([
-                index + 1,
-                `${unit.building} - ${unit.unit}`,
-                unit.meter_count,
-                unit.consumption.toFixed(2),
-                percentage + '%'
+                i + 1,
+                u.label,
+                parseFloat(u.consumption.toFixed(2)),
+                pct.toFixed(1) + '%',
+                buildBar(u.consumption, maxConsumption)
             ]);
         });
 
+        // ── DISTRIBUTION HISTOGRAM ────────────────────────────────────────────────
+        const DIST_RANGES = [
+            { label: '    0 – 100 kWh', min: 0,   max: 100 },
+            { label: '  101 – 200 kWh', min: 101,  max: 200 },
+            { label: '  201 – 300 kWh', min: 201,  max: 300 },
+            { label: '  301 – 500 kWh', min: 301,  max: 500 },
+            { label: '  501 – 750 kWh', min: 501,  max: 750 },
+            { label: '  751 kWh +',     min: 751,  max: Infinity },
+        ].map(r => ({ ...r, count: 0 }));
+
+        unitConsumption.forEach(u => {
+            const rng = DIST_RANGES.find(r => u.consumption >= r.min && u.consumption <= r.max);
+            if (rng) rng.count++;
+        });
+
+        const maxRangeCount = Math.max(...DIST_RANGES.map(r => r.count), 1);
+        const HIST_MAX = 28;
+
         data.push(['']);
-        data.push(['=== CONSUMPTION DISTRIBUTION ===']);
-        
-        // Group units into consumption ranges
-        const ranges = [
-            { label: '0-100 kWh', min: 0, max: 100, count: 0 },
-            { label: '101-200 kWh', min: 101, max: 200, count: 0 },
-            { label: '201-300 kWh', min: 201, max: 300, count: 0 },
-            { label: '301-500 kWh', min: 301, max: 500, count: 0 },
-            { label: '500+ kWh', min: 501, max: Infinity, count: 0 }
+        data.push(['━━━  DISTRIBUTION HISTOGRAM  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━']);
+        data.push(['Range', 'Units', '% of Total', 'Histogram']);
+        DIST_RANGES.forEach(rng => {
+            const pct = n > 0 ? (rng.count / n * 100) : 0;
+            const bars = rng.count > 0 ? '▓'.repeat(Math.max(1, Math.round((rng.count / maxRangeCount) * HIST_MAX))) : '';
+            data.push([rng.label, rng.count, pct.toFixed(1) + '%', bars]);
+        });
+
+        // ── READING COMPLETION ────────────────────────────────────────────────────
+        data.push(['']);
+        data.push(['━━━  READING COMPLETION  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━']);
+        data.push(['Captured:', capturedCount, 'of', totalMeters, completionBar]);
+        data.push(['Flagged readings:', units.reduce((sum, u) => sum + u.flaggedCount, 0)]);
+
+        // ── BUILDINGS SUMMARY ─────────────────────────────────────────────────────
+        const buildingMap = {};
+        units.forEach(u => {
+            if (!buildingMap[u.buildingName]) {
+                buildingMap[u.buildingName] = { total: 0, count: 0 };
+            }
+            buildingMap[u.buildingName].total += u.totalConsumption || 0;
+            buildingMap[u.buildingName].count++;
+        });
+        const buildingRows = Object.entries(buildingMap)
+            .map(([name, stats]) => ({ name, total: stats.total, count: stats.count, avg: stats.total / stats.count }))
+            .sort((a, b) => b.total - a.total);
+        const maxBldgTotal = buildingRows.length > 0 ? buildingRows[0].total : 1;
+
+        data.push(['']);
+        data.push(['━━━  BUILDING-LEVEL SUMMARY  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━']);
+        data.push(['Building', 'Units', 'Total kWh', 'Avg kWh / Unit', 'Bar']);
+        buildingRows.forEach(b => {
+            data.push([b.name, b.count, parseFloat(b.total.toFixed(2)), parseFloat(b.avg.toFixed(2)), buildBar(b.total, maxBldgTotal)]);
+        });
+
+        // ── CHART-READY DATA TABLE (for Excel Insert → Chart) ─────────────────────
+        data.push(['']);
+        data.push(['']);
+        data.push(['━━━  CHART-READY DATA  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━']);
+        data.push(['Tip: Select the table below (columns A & B), then use  Insert → Chart  in Excel for a native bar/column chart.']);
+        data.push(['']);
+        data.push(['Unit', 'Consumption (kWh)', 'Flagged?']);
+        unitConsumption.forEach(u => {
+            data.push([u.label, parseFloat(u.consumption.toFixed(2)), u.flagged > 0 ? 'Yes' : '']);
+        });
+
+        return data;
+    },
+
+    /**
+     * Build a clean pivot-style sheet optimised for Excel chart insertion.
+     * Contains three standalone tables: per-unit, per-building, and distribution.
+     */
+    buildChartsDataSheet(layout) {
+        const { cycle, scheme, units } = layout;
+
+        const unitRows = units
+            .map(u => ({
+                label: `${u.buildingName} – ${u.unitNumber}`,
+                building: u.buildingName,
+                consumption: u.totalConsumption,
+                flagged: u.flaggedCount
+            }))
+            .filter(u => u.consumption != null)
+            .sort((a, b) => b.consumption - a.consumption);
+
+        // Building rollup
+        const buildingMap = {};
+        units.forEach(u => {
+            if (!buildingMap[u.buildingName]) buildingMap[u.buildingName] = { total: 0, count: 0, flagged: 0 };
+            buildingMap[u.buildingName].total += u.totalConsumption || 0;
+            buildingMap[u.buildingName].count += u.meterCount || 0;
+            buildingMap[u.buildingName].flagged += u.flaggedCount || 0;
+        });
+        const buildingRows = Object.entries(buildingMap)
+            .map(([name, s]) => [name, parseFloat(s.total.toFixed(2)), s.count, s.flagged])
+            .sort((a, b) => b[1] - a[1]);
+
+        // Distribution
+        const DIST_RANGES = [
+            { label: '0-100 kWh',   min: 0,   max: 100 },
+            { label: '101-200 kWh', min: 101,  max: 200 },
+            { label: '201-300 kWh', min: 201,  max: 300 },
+            { label: '301-500 kWh', min: 301,  max: 500 },
+            { label: '501-750 kWh', min: 501,  max: 750 },
+            { label: '751 kWh+',    min: 751,  max: Infinity },
+        ].map(r => ({ ...r, count: 0 }));
+        unitRows.forEach(u => {
+            const rng = DIST_RANGES.find(r => u.consumption >= r.min && u.consumption <= r.max);
+            if (rng) rng.count++;
+        });
+
+        const data = [
+            [`CHART DATA — ${scheme.name} — ${cycle.start_date} to ${cycle.end_date}`],
+            ['Generated:', new Date().toLocaleString()],
+            [''],
+            ['NOTE: Each table below is designed to be selected independently and inserted as an Excel chart.'],
+            ['        Select any table (header row + data), then: Insert → Charts → Recommended / Column / Bar'],
+            [''],
+            [''],
+            // TABLE 1 — Unit Consumption
+            ['TABLE 1 — Unit Consumption (sorted highest → lowest)'],
+            ['Unit', 'Consumption (kWh)', 'Flagged?'],
         ];
-
-        unitConsumption.forEach(unit => {
-            const range = ranges.find(r => unit.consumption >= r.min && unit.consumption <= r.max);
-            if (range) range.count++;
+        unitRows.forEach(u => {
+            data.push([u.label, parseFloat(u.consumption.toFixed(2)), u.flagged > 0 ? 1 : 0]);
         });
 
-        data.push(['Range', 'Number of Units', 'Percentage']);
-        ranges.forEach(range => {
-            const percentage = unitConsumption.length > 0 ? (range.count / unitConsumption.length * 100).toFixed(1) : 0;
-            data.push([range.label, range.count, percentage + '%']);
-        });
+        data.push(['']);
+        data.push(['']);
+        // TABLE 2 — Building Summary
+        data.push(['TABLE 2 — Building Summary']);
+        data.push(['Building', 'Total kWh', 'Meters', 'Flagged']);
+        buildingRows.forEach(r => data.push(r));
+
+        data.push(['']);
+        data.push(['']);
+        // TABLE 3 — Consumption Distribution
+        data.push(['TABLE 3 — Consumption Distribution']);
+        data.push(['Range', 'Number of Units']);
+        DIST_RANGES.forEach(r => data.push([r.label, r.count]));
 
         return data;
     },
