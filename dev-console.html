@@ -328,6 +328,7 @@
                                 <h4 style="color: #dc3545; margin-bottom: 0.5rem;">🔴 Critical Errors (${errorIssues.length})</h4>
                                 ${errorIssues.map((issue, index) => `
                                     <div class="alert alert-danger">
+                                        <button class="alert-close" onclick="this.closest('.alert').remove()" title="Dismiss">&times;</button>
                                         <strong>Error #${index + 1}:</strong> ${issue.message}
                                         ${issue.details ? `<br><small class="text-muted">${issue.details}</small>` : ''}
                                     </div>
@@ -340,6 +341,7 @@
                                 <h4 style="color: #ffc107; margin-bottom: 0.5rem;">⚠️ Warnings (${warningIssues.length})</h4>
                                 ${warningIssues.map((issue, index) => `
                                     <div class="alert alert-warning">
+                                        <button class="alert-close" onclick="this.closest('.alert').remove()" title="Dismiss">&times;</button>
                                         <strong>Warning #${index + 1}:</strong> ${issue.message}
                                         ${issue.details ? `<br><small class="text-muted">${issue.details}</small>` : ''}
                                     </div>
@@ -352,6 +354,7 @@
                                 <h4 style="color: #17a2b8; margin-bottom: 0.5rem;">ℹ️ Information (${infoIssues.length})</h4>
                                 ${infoIssues.map((issue, index) => `
                                     <div class="alert alert-info">
+                                        <button class="alert-close" onclick="this.closest('.alert').remove()" title="Dismiss">&times;</button>
                                         <strong>Info #${index + 1}:</strong> ${issue.message}
                                         ${issue.details ? `<br><small class="text-muted">${issue.details}</small>` : ''}
                                     </div>
