@@ -149,6 +149,7 @@
 
         <div class="form-actions">
           <button type="button" id="reader-back-btn" class="btn btn-secondary">Back</button>
+          <button type="button" id="reader-flag-btn" class="btn btn-secondary">⚠ No Meter / Flag Issue</button>
           <button type="submit" id="reader-submit-btn" class="btn btn-primary btn-large reader-submit">
             Submit Reading
           </button>
@@ -948,6 +949,99 @@
       } else {
         showSuccess();
       }
+    });
+
+    // ── Flag & Skip (no meter / inaccessible) ────────────────────────────
+    document.getElementById('reader-flag-btn')?.addEventListener('click', () => {
+      const issueOptions = [
+        { value: 'inaccessible', label: 'Meter inaccessible (locked room, no key)' },
+        { value: 'no-meter',    label: 'No meter found at this location' },
+        { value: 'damaged',     label: 'Meter damaged or display unreadable' },
+        { value: 'other',       label: 'Other issue' }
+      ];
+
+      // Build inline modal
+      const existing = document.getElementById('reader-flag-modal');
+      if (existing) existing.remove();
+
+      const modal = document.createElement('div');
+      modal.id = 'reader-flag-modal';
+      modal.className = 'modal-overlay';
+      modal.innerHTML = `
+        <div class="modal-content" onclick="event.stopPropagation()" style="max-width:420px;">
+          <div class="modal-header">
+            <h3>Flag Issue &amp; Skip</h3>
+            <button class="close-btn" onclick="document.getElementById('reader-flag-modal').remove()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p style="margin-bottom:0.75rem;">Select the issue, add a note, then tap <strong>Flag &amp; Skip</strong> to record it and move to the next meter.</p>
+            <form id="reader-flag-form">
+              <div class="form-group">
+                <label>Issue type *</label>
+                <div style="display:flex;flex-direction:column;gap:0.4rem;">
+                  ${issueOptions.map(o => `
+                    <label style="display:flex;align-items:center;gap:0.5rem;font-weight:normal;">
+                      <input type="radio" name="flag-issue" value="${o.value}" style="width:auto;margin:0;"> ${o.label}
+                    </label>`).join('')}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="flag-notes">Notes *</label>
+                <textarea id="flag-notes" rows="3" required
+                  placeholder="Be specific — e.g. 'Meter room locked, no key available' or 'No meter fitted at this unit'"
+                  style="width:100%;"></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="document.getElementById('reader-flag-modal').remove()">Cancel</button>
+                <button type="submit" class="btn btn-warning">Flag &amp; Skip →</button>
+              </div>
+            </form>
+          </div>
+        </div>`;
+      document.body.appendChild(modal);
+
+      document.getElementById('reader-flag-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const issueType = document.querySelector('input[name="flag-issue"]:checked')?.value;
+        if (!issueType) { alert('Please select an issue type.'); return; }
+        const flagNotes = document.getElementById('flag-notes').value.trim();
+        if (!flagNotes) { alert('Please add a note describing the issue.'); return; }
+
+        const currentUser = window.auth?.getCurrentUser();
+        const capturedBy = currentUser?.name ? `${currentUser.name} (QR)` : 'QR Reader';
+
+        const issueReading = {
+          meter_id: meter.id,
+          cycle_id: workflowContext.openCycle.id,
+          reading_value: meter.last_reading ?? null,
+          previous_reading: meter.last_reading ?? null,
+          reading_date: getCurrentDateTime(),
+          notes: flagNotes,
+          consumption: 0,
+          captured_by: capturedBy,
+          captured_by_id: currentUser?.id ?? null,
+          review_status: 'pending',
+          is_issue: true,
+          issue_type: issueType,
+          flags: [{ type: 'issue', severity: 'high', message: `Meter issue: ${issueType}`, description: flagNotes }],
+          photo: '', photo_name: '', photo_storage_mode: '', photo_storage_path: ''
+        };
+
+        if (existingReading) {
+          storage.update('readings', existingReading.id, issueReading);
+        } else {
+          storage.create('readings', issueReading);
+        }
+
+        modal.remove();
+
+        const nextIdx = workflowContext.currentIndex + 1;
+        if (!workflowContext.singleMeterMode && nextIdx < workflowContext.totalMeters) {
+          window.location.href = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIdx}`;
+        } else {
+          showSuccess();
+        }
+      });
     });
   }
 

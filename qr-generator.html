@@ -201,11 +201,21 @@
             });
         };
 
-        window.downloadSingle = function (src, label) {
-            const a = document.createElement('a');
-            a.href = src;
-            a.download = `qr-${label.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.png`;
-            a.click();
+        window.downloadSingle = async function (src, label) {
+            const filename = `qr-${label.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.png`;
+            try {
+                const resp = await fetch(src);
+                const blob = await resp.blob();
+                const objectUrl = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = objectUrl;
+                a.download = filename;
+                a.click();
+                setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
+            } catch {
+                // Fallback: open in new tab so user can long-press / right-click to save
+                window.open(src, '_blank');
+            }
         };
 
         // Initial load
