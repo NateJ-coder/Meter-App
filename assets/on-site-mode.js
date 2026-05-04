@@ -292,7 +292,7 @@ export const onSiteMode = {
                             inputmode="decimal"
                             autocomplete="off"
                             spellcheck="false"
-                            placeholder="${meter.last_reading ? `Greater than ${meter.last_reading.toFixed(2)}` : 'Enter reading'}"
+                            placeholder="Enter exact digits shown on meter display"
                             class="onsite-input-large"
                         >
                     </div>
@@ -346,7 +346,7 @@ export const onSiteMode = {
                         <textarea 
                             id="onsite-notes" 
                             rows="2" 
-                            placeholder="Any observations about this meter..."
+                            placeholder="Any observations about this meter (e.g. 'display slightly faded but legible', 'meter in locked room B')"
                             class="onsite-textarea"
                         ></textarea>
                     </div>
@@ -434,23 +434,39 @@ export const onSiteMode = {
         let message = '';
         let className = 'info';
 
+        let anomalyActive = false;
+
         if (reading < lastReading) {
-            message = `⚠ This reading is lower than the previous (${lastReading.toFixed(2)} kWh). That's okay — it will be reviewed.`;
+            message = `⚠ Lower than last reading (${lastReading.toFixed(2)} kWh) — re-check the meter display now. If the number is correct, add a note below explaining why (e.g. meter replaced, rollover).`;
             className = 'warning';
+            anomalyActive = true;
         } else if (consumption === 0 && lastReading > 0) {
-            message = `ℹ No consumption detected. That's okay — it will be reviewed.`;
+            message = `ℹ No consumption detected. Confirm the meter display shows exactly this value, then add a note below (e.g. unit was vacant all month, meter disconnected).`;
             className = 'info';
+            anomalyActive = true;
         } else if (avgConsumption > 0 && consumption > avgConsumption * 3) {
-            message = `⚠ This reading is much higher than usual. That's okay — it will be reviewed.`;
+            message = `⚠ Much higher than usual — re-check the meter display now. If the number is correct, add a note below explaining why (e.g. estimated last cycle, known high-usage period).`;
             className = 'warning';
+            anomalyActive = true;
         } else if (avgConsumption > 0) {
             const typicalLow = Math.round(avgConsumption * 0.7);
             const typicalHigh = Math.round(avgConsumption * 1.3);
-            message = `✓ Consumption: ${consumption.toFixed(2)} kWh (typical range: ${typicalLow}–${typicalHigh} kWh)`;
+            message = `✓ Consumption: ${consumption.toFixed(2)} kWh (typical: ${typicalLow}–${typicalHigh} kWh)`;
             className = 'success';
         } else {
             message = `✓ Consumption: ${consumption.toFixed(2)} kWh`;
             className = 'success';
+        }
+
+        onSiteMode._anomalyActive = anomalyActive;
+
+        // Update notes field to signal that a note is required
+        const notesEl = document.getElementById('onsite-notes');
+        if (notesEl) {
+            notesEl.placeholder = anomalyActive
+                ? 'Required: Explain the unusual reading — e.g. "Meter display clearly shows 4821.7" or "Unit was vacant all month"'
+                : 'Any observations about this meter...';
+            notesEl.style.borderColor = anomalyActive ? '#ffc107' : '';
         }
 
         feedback.innerHTML = `<div class="onsite-feedback-message ${className}">${message}</div>`;
@@ -476,6 +492,18 @@ export const onSiteMode = {
         if (Number.isNaN(readingValue)) {
             alert('Please enter a valid meter reading. Decimals like 1450.5 or 1450,5 are accepted.');
             readingInput.focus();
+            return;
+        }
+
+        // If the reading triggered an anomaly warning, a note is required before saving
+        if (onSiteMode._anomalyActive && !notes.trim()) {
+            const notesEl = document.getElementById('onsite-notes');
+            if (notesEl) {
+                notesEl.placeholder = 'Required: Explain the unusual reading — e.g. "Meter display clearly shows 4821.7" or "Unit was vacant all month"';
+                notesEl.style.borderColor = '#dc3545';
+                notesEl.focus();
+            }
+            alert('Please add a note explaining the unusual reading before saving.');
             return;
         }
 
@@ -716,7 +744,7 @@ export const onSiteMode = {
                         </div>
                         <div class="form-group">
                             <label for="issue-notes">Notes *</label>
-                            <textarea id="issue-notes" rows="3" required placeholder="Describe the issue..."></textarea>
+                            <textarea id="issue-notes" rows="3" required placeholder="Be specific — e.g. 'Meter box locked, no key on site' or 'Display cracked, digits 2–4 unreadable'"></textarea>
                         </div>
                         <div class="form-actions">
                             <button type="button" class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">Cancel</button>
