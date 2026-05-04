@@ -180,7 +180,15 @@ function normalizeEntityPayload(entity, data) {
 }
 
 function writeEntityToLocalCache(entity, items) {
-    localStorage.setItem(entity, JSON.stringify(items));
+    try {
+        localStorage.setItem(entity, JSON.stringify(items));
+    } catch (e) {
+        if (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
+            console.warn(`localStorage quota exceeded writing ${entity}. Data saved to Firestore only.`);
+        } else {
+            throw e;
+        }
+    }
 }
 
 function formatDateKey(date) {
@@ -373,7 +381,16 @@ export const storage = {
     },
 
     persistOperationalBackup() {
-        localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(buildOperationalBackupSnapshot(this)));
+        try {
+            localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(buildOperationalBackupSnapshot(this)));
+        } catch (e) {
+            // Backup is best-effort — a full localStorage quota must not crash reading saves.
+            if (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
+                console.warn('localStorage quota exceeded writing operational backup. Backup skipped; Firestore is the source of truth.');
+            } else {
+                throw e;
+            }
+        }
     },
 
     getOperationalBackup() {

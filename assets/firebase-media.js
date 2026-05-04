@@ -37,7 +37,9 @@ export async function persistReadingPhoto(preparedPhoto, context = {}) {
     }
 
     if (!isFirebaseConfigured()) {
-        return buildLocalFallback(preparedPhoto);
+        // Firebase not configured — omit the photo from localStorage to avoid quota issues.
+        // The file was selected but cannot be stored safely without Firebase Storage.
+        return { photo: '', photo_name: preparedPhoto?.name || '', photo_storage_mode: 'no-firebase', photo_storage_path: '' };
     }
 
     try {
@@ -53,7 +55,10 @@ export async function persistReadingPhoto(preparedPhoto, context = {}) {
             photo_storage_path: storagePath
         };
     } catch (error) {
-        console.error('Firebase Storage upload failed, keeping local fallback.', error);
-        return buildLocalFallback(preparedPhoto);
+        console.error('Firebase Storage upload failed, photo will be omitted from record.', error);
+        // Do NOT fall back to storing the full data URL in localStorage — it can exceed the
+        // 5 MB quota on mobile devices and crash the entire reading save. The reading is more
+        // important than the photo; flag it for follow-up instead.
+        return { photo: '', photo_name: preparedPhoto?.name || '', photo_storage_mode: 'failed', photo_storage_path: '' };
     }
 }

@@ -893,12 +893,13 @@
 
       // Build flags
       const extraFlags = [];
-      if (!hasPhoto && !existingReading?.photo) {
+      const photoNotStored = hasPhoto && (!photoPayload.photo || photoPayload.photo_storage_mode === 'failed' || photoPayload.photo_storage_mode === 'no-firebase');
+      if (!hasPhoto && !existingReading?.photo || photoNotStored) {
         extraFlags.push({
           type: 'no-photo',
           severity: 'medium',
-          message: 'Reading submitted without meter photo',
-          description: 'Photo evidence was not captured. Review this reading manually.'
+          message: photoNotStored ? 'Photo could not be saved — upload failed on this device' : 'Reading submitted without meter photo',
+          description: photoNotStored ? 'The reader selected a photo but it could not be stored. Re-capture the photo from the Review page.' : 'Photo evidence was not captured. Review this reading manually.'
         });
       }
       if (meterReplaced) {
