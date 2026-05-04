@@ -821,6 +821,8 @@
     document.getElementById('reader-form').addEventListener('submit', async function (e) {
       e.preventDefault();
 
+      try {
+
       const readingValue = parseDecimalInput(readingInput.value);
       const notes = notesInput.value;
       const hasPhoto = photoInput && photoInput.files && photoInput.files[0];
@@ -843,9 +845,21 @@
       }
       if (photoWarning) photoWarning.style.display = 'none';
 
-      const preparedPhoto = hasPhoto
-        ? await preparePhotoForStorage(photoInput.files[0])
-        : null;
+      // Disable submit button to prevent double-tap while saving
+      submitButton.disabled = true;
+      submitButton.textContent = 'Saving…';
+
+      // Prepare photo — fail-safe: if processing fails, continue without photo
+      let preparedPhoto = null;
+      if (hasPhoto) {
+        try {
+          preparedPhoto = await preparePhotoForStorage(photoInput.files[0]);
+        } catch (photoErr) {
+          console.warn('Photo processing failed, continuing without photo:', photoErr);
+          preparedPhoto = null;
+        }
+      }
+
       const photoPayload = preparedPhoto
         ? await persistReadingPhoto(preparedPhoto, {
             cycleId: workflowContext.openCycle.id,
@@ -948,6 +962,13 @@
         window.location.href = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIndex}`;
       } else {
         showSuccess();
+      }
+
+      } catch (err) {
+        console.error('Reading submission failed:', err);
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Reading';
+        alert('Something went wrong saving the reading. Please try again. If the problem persists, use "No Meter / Flag Issue" to skip and continue.');
       }
     });
 
