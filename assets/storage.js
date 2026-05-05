@@ -473,6 +473,30 @@ export const storage = {
     },
 
     /**
+     * Push all readings currently in localStorage to Firestore.
+     * Use this after a field session where phones may have had connectivity issues
+     * that prevented queueCloudUpsert from completing.
+     * Returns the number of readings pushed.
+     */
+    async pushLocalReadingsToCloud() {
+        const collectionName = cloudEntityCollections['readings'];
+        if (!collectionName || !isFirebaseConfigured()) return 0;
+
+        const readings = this.getAll('readings');
+        if (readings.length === 0) return 0;
+
+        const operations = readings.map((reading) => ({
+            type: 'set',
+            collectionName,
+            id: reading.id,
+            data: sanitizeForFirestore(reading)
+        }));
+
+        await commitChunkedBatch(operations);
+        return readings.length;
+    },
+
+    /**
      * Lightweight targeted sync for a single entity collection.
      * Safe to call on every page load for small, critical collections like cycles.
      */

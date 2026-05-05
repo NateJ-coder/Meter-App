@@ -165,7 +165,7 @@
 
         // Initialize dashboard
         async function initializeDashboard() {
-            await Promise.allSettled([auth.refreshUsers(), auth.refreshActivities()]);
+            await Promise.allSettled([auth.refreshActivities()]);
             renderHealthDashboard();
             renderUsersList();
             renderActivityLog();

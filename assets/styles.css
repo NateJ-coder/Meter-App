@@ -2974,6 +2974,224 @@ body.modal-open {
 }
 
 /* ===================================
+   WARNING BUTTON
+   =================================== */
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+}
+.btn-warning:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+/* ===================================
+   COLLAPSIBLE SECTION
+   =================================== */
+.section-toggle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.125rem 0;
+}
+.section-toggle-header h2 { margin-bottom: 0; }
+.toggle-chevron {
+    display: inline-block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    transition: transform 0.3s var(--anim-ease);
+    padding: 0.3rem;
+    border-radius: 4px;
+}
+.section-toggle-header:hover .toggle-chevron { background: var(--bg-tertiary); color: var(--primary); }
+.toggle-chevron.open { transform: rotate(180deg); }
+
+.collapsible-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
+}
+.collapsible-body.open {
+    max-height: 800px;
+    opacity: 1;
+}
+
+/* ===================================
+   EMPTY STATE
+   =================================== */
+.cycle-empty-state {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+}
+.cycle-empty-state .empty-icon {
+    font-size: 2.75rem;
+    margin-bottom: 1rem;
+    opacity: 0.55;
+    display: block;
+}
+.cycle-empty-state h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.375rem;
+}
+.cycle-empty-state p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===================================
+   SKELETON LOADERS
+   =================================== */
+@keyframes skeleton-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+.skeleton-line {
+    height: 0.875rem;
+    margin-bottom: 0.625rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+.skeleton-line.w-full { width: 100%; }
+.skeleton-line.w-3-4 { width: 75%; }
+.skeleton-line.w-1-2 { width: 52%; }
+.skeleton-line.w-1-3 { width: 35%; }
+.skeleton-line.tall { height: 1.25rem; }
+.skeleton-block {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius);
+    animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+.skeleton-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+.skeleton-card + .skeleton-card { animation-delay: 0.18s; }
+.skeleton-card + .skeleton-card + .skeleton-card { animation-delay: 0.36s; }
+
+/* ===================================
+   READER HEADER SCROLL-SHRINK
+   =================================== */
+.reader-header {
+    transition: padding 0.28s ease, box-shadow 0.28s ease;
+}
+.reader-header.scrolled {
+    padding: 0.5rem 2rem;
+    box-shadow: 0 4px 20px rgba(11, 77, 162, 0.22);
+}
+.reader-header.scrolled .reader-logo { height: 32px; transition: height 0.28s ease; }
+.reader-header.scrolled h1 { font-size: 1.05rem; transition: font-size 0.28s ease; }
+.reader-header.scrolled .subtitle { display: none; }
+
+/* ===================================
+   READING SUCCESS FLASH
+   =================================== */
+@keyframes flash-scale-in {
+    0% { transform: scale(0.35); opacity: 0; }
+    65% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+.reading-success-flash {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9000;
+    background: rgba(16, 185, 129, 0.07);
+    pointer-events: none;
+}
+.reading-success-flash .flash-check {
+    width: 96px;
+    height: 96px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.75rem;
+    color: white;
+    box-shadow: 0 8px 36px rgba(16, 185, 129, 0.5);
+    animation: flash-scale-in 0.45s var(--anim-spring) forwards;
+}
+
+/* ===================================
+   TAB SLIDE TRANSITION
+   =================================== */
+.tab-content.active {
+    animation: tab-slide-in 0.22s ease forwards;
+}
+@keyframes tab-slide-in {
+    from { opacity: 0; transform: translateX(8px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ===================================
+   READER PROGRESS BAR
+   =================================== */
+.reader-progress-wrap {
+    padding: 0.75rem 1.5rem;
+    background: var(--fuzio-blue-dark);
+}
+.reader-progress-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.reader-progress-fill {
+    height: 100%;
+    background: var(--fuzio-gold);
+    border-radius: 2px;
+    transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reader-progress-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.35rem;
+    text-align: right;
+    letter-spacing: 0.04em;
+}
+
+/* ===================================
+   CYCLE CONTROL BAR (Capture section header)
+   =================================== */
+.cycle-control-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+.cycle-control-scheme {
+    flex: 1;
+    min-width: 200px;
+}
+.cycle-control-scheme label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+.cycle-control-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* ===================================
    PRINT STYLES
    =================================== */
 @media print {

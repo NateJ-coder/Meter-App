@@ -281,9 +281,13 @@ function renderOpenCycles() {
 
     if (openCycles.length === 0) {
         cycleStatus.innerHTML = `
-            <div class="cycle-status closed">
-                <div class="status-badge">NO OPEN CYCLE</div>
-                <p class="text-muted">Open a manual cycle or create a schedule to start capturing readings.</p>
+            <div class="cycle-empty-state">
+                <span class="empty-icon">&#128266;</span>
+                <h3>No open reading cycles</h3>
+                <p>Open a manual cycle below to start capturing meter readings for a scheme.</p>
+                <button class="btn btn-primary" onclick="openCycleFormFocus()">
+                    &#43; Open a Cycle
+                </button>
             </div>
         `;
         document.getElementById('capture-section').style.display = 'none';
@@ -293,8 +297,13 @@ function renderOpenCycles() {
         populateBuildingFilter(null);
         document.getElementById('filter-unit').value = '';
         document.getElementById('filter-status').value = '';
+        // Auto-expand the form when no cycles exist
+        setOpenCycleFormOpen(true);
         return;
     }
+
+    // Cycles exist — collapse the form to keep focus on active work
+    setOpenCycleFormOpen(false);
 
     cycleStatus.innerHTML = `
         <div class="cycle-list">
@@ -304,21 +313,30 @@ function renderOpenCycles() {
                 const sourceBadge = cycle.opened_via === 'schedule'
                     ? '<span class="badge badge-secondary">Scheduled</span>'
                     : '<span class="badge badge-success">Manual</span>';
+                const readings = storage.getReadings(cycle.id);
+                const meters = storage.getMeters(cycle.scheme_id).filter(m => m.meter_type === 'UNIT');
+                const pct = meters.length > 0 ? Math.round((readings.length / meters.length) * 100) : 0;
 
                 return `
                     <div class="cycle-list-item ${isSelected ? 'selected' : ''}">
-                        <div>
+                        <div style="flex:1;min-width:0;">
                             <div class="cycle-list-title">
                                 <strong>${scheme?.name || 'Unknown Scheme'}</strong>
                                 <span class="status-badge-inline">OPEN</span>
                                 ${sourceBadge}
                             </div>
-                            <div class="text-muted">${cycle.start_date} to ${cycle.end_date}</div>
+                            <div class="text-muted" style="font-size:0.8rem; margin-top:0.2rem;">${cycle.start_date} &rarr; ${cycle.end_date}</div>
+                            <div style="margin-top:0.5rem;">
+                                <div style="height:4px;background:var(--bg-tertiary);border-radius:2px;overflow:hidden;">
+                                    <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--fuzio-blue),var(--fuzio-gold));border-radius:2px;transition:width 0.6s;"></div>
+                                </div>
+                                <span style="font-size:0.72rem;color:var(--text-muted);">${readings.length} / ${meters.length} read &middot; ${pct}%</span>
+                            </div>
                         </div>
-                        <div class="action-buttons">
-                            <button class="btn btn-secondary" onclick="selectCycle('${cycle.id}')">Manage</button>
-                            <button class="btn btn-warning" onclick="cancelCycleFromList('${cycle.id}')">Cancel</button>
-                            <button class="btn btn-danger" onclick="closeCycleFromList('${cycle.id}')">Close</button>
+                        <div class="action-buttons" style="flex-shrink:0;">
+                            <button class="btn btn-secondary btn-sm" onclick="selectCycle('${cycle.id}')">Manage</button>
+                            <button class="btn btn-warning btn-sm" onclick="cancelCycleFromList('${cycle.id}')">Cancel</button>
+                            <button class="btn btn-danger btn-sm" onclick="closeCycleFromList('${cycle.id}')">Close</button>
                         </div>
                     </div>
                 `;
@@ -361,12 +379,13 @@ function renderSelectedCycle() {
     captureSection.style.display = 'block';
 
     const scheme = storage.get('schemes', cycle.scheme_id);
-    const sourceLabel = cycle.opened_via === 'schedule' ? 'Scheduled cycle' : 'Manual cycle';
-    document.getElementById('active-cycle-summary').innerHTML = `
-        <strong>${scheme?.name || 'Unknown Scheme'}</strong><br>
-        ${sourceLabel} • ${cycle.start_date} to ${cycle.end_date}<br>
-        Select a building first, then use the unit search to narrow the meters for this scheme.
-    `;
+    const readings = storage.getReadings(cycleId);
+    const meters = storage.getMeters(cycle.scheme_id).filter(m => m.meter_type === 'UNIT');
+    const pct = meters.length > 0 ? Math.round((readings.length / meters.length) * 100) : 0;
+    const sourceLabel = cycle.opened_via === 'schedule' ? 'Scheduled' : 'Manual';
+
+    document.getElementById('active-cycle-summary').innerHTML =
+        `${scheme?.name || 'Unknown'} &middot; ${sourceLabel} &middot; ${cycle.start_date} &rarr; ${cycle.end_date} &middot; <strong>${readings.length}/${meters.length}</strong> read (${pct}%)`;
 
     populateBuildingFilter(cycle.scheme_id);
     loadReadingsList(cycle.id);
@@ -562,6 +581,28 @@ function switchCycleTab(tabId) {
 
 window.switchCycleTab = switchCycleTab;
 
+// Open-cycle form toggle
+function setOpenCycleFormOpen(open) {
+    const body = document.getElementById('open-cycle-body');
+    const chevron = document.getElementById('open-cycle-chevron');
+    if (!body) return;
+    body.classList.toggle('open', open);
+    if (chevron) chevron.classList.toggle('open', open);
+}
+
+window.toggleOpenCycleForm = function() {
+    const body = document.getElementById('open-cycle-body');
+    if (!body) return;
+    const isOpen = body.classList.contains('open');
+    setOpenCycleFormOpen(!isOpen);
+};
+
+window.openCycleFormFocus = function() {
+    setOpenCycleFormOpen(true);
+    document.getElementById('open-cycle-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => document.getElementById('cycle-scheme')?.focus(), 420);
+};
+
 window.selectActiveCycle = function() {
     cyclePageState.selectedCycleId = document.getElementById('active-cycle-select').value || null;
     renderOpenCycles();
@@ -615,6 +656,26 @@ window.closeCycleFromList = function(cycleId) {
 window.filterReadings = function() {
     if (cyclePageState.selectedCycleId) {
         loadReadingsList(cyclePageState.selectedCycleId);
+    }
+};
+
+window.resyncReadingsToCloud = async function() {
+    const btn = document.querySelector('[onclick="resyncReadingsToCloud()"]');
+    const originalText = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Syncing…'; }
+
+    try {
+        const count = await storage.pushLocalReadingsToCloud();
+        // After pushing up, pull fresh from Firestore so the cycle UI reflects any
+        // readings that were on other devices but now confirmed in the cloud
+        await storage.refreshEntityFromCloud('readings');
+        showNotification(`✓ Synced ${count} readings to cloud. Reloading…`);
+        setTimeout(() => loadCyclePage(), 800);
+    } catch (err) {
+        console.error('Re-sync failed:', err);
+        showNotification('Re-sync failed. Check your connection and try again.');
+    } finally {
+        if (btn) { btn.disabled = false; btn.textContent = originalText; }
     }
 };
 

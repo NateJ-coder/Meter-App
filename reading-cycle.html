@@ -40,70 +40,68 @@
                 <div id="cycle-status"></div>
             </section>
 
-            <!-- Open New Cycle -->
+            <!-- Open New Cycle (collapsible) -->
             <section class="card reveal" id="open-cycle-section">
-                <h2>Open Reading Cycle Manually</h2>
-                <div class="info-box mb-2">
-                    You can keep one live cycle open per scheme. This lets multiple schemes be active on the same day without blocking each other.
+                <div class="section-toggle-header" onclick="toggleOpenCycleForm()" title="Toggle form">
+                    <h2 style="margin:0;">Open Reading Cycle Manually</h2>
+                    <span class="toggle-chevron" id="open-cycle-chevron">&#9660;</span>
                 </div>
-                <form id="cycle-form">
-                    <div class="form-group">
-                        <label for="cycle-scheme">Scheme *</label>
-                        <select id="cycle-scheme" required></select>
+                <div class="collapsible-body" id="open-cycle-body">
+                    <div class="info-box" style="margin-top:0.875rem; margin-bottom:1rem;">
+                        One live cycle per scheme — multiple schemes can be active on the same day.
                     </div>
-                    <div class="form-row">
+                    <form id="cycle-form">
                         <div class="form-group">
-                            <label for="cycle-start-date">Start Date *</label>
-                            <input type="date" id="cycle-start-date" required>
+                            <label for="cycle-scheme">Scheme *</label>
+                            <select id="cycle-scheme" required></select>
                         </div>
-                        <div class="form-group">
-                            <label for="cycle-end-date">End Date *</label>
-                            <input type="date" id="cycle-end-date" required>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cycle-start-date">Start Date *</label>
+                                <input type="date" id="cycle-start-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cycle-end-date">End Date *</label>
+                                <input type="date" id="cycle-end-date" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Open Cycle</button>
-                    </div>
-                </form>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Open Cycle</button>
+                        </div>
+                    </form>
+                </div>
             </section>
 
             <!-- Capture Readings -->
             <section class="card" id="capture-section" style="display: none;">
-                <div class="card-header">
-                    <div>
-                        <h2>Capture Readings</h2>
-                        <p class="text-muted">Select which open scheme cycle you want to manage.</p>
-                    </div>
-                    <div class="capture-cycle-selector">
+                <!-- Tight control bar: selector + actions in one row -->
+                <div class="cycle-control-bar">
+                    <div class="cycle-control-scheme">
                         <label for="active-cycle-select">Active Cycle</label>
                         <select id="active-cycle-select" onchange="selectActiveCycle()"></select>
                     </div>
-                </div>
-                
-                <div class="action-buttons mb-2">
-                    <button class="btn btn-secondary" onclick="startOnsiteMode()">📱 Start On-Site Readings</button>
-                    <button class="btn btn-danger" onclick="showCloseCycleRitual()">Close Selected Cycle</button>
+                    <div class="cycle-control-actions">
+                        <button class="btn btn-primary" onclick="startOnsiteMode()">&#128241; On-Site Mode</button>
+                        <button class="btn btn-secondary" onclick="resyncReadingsToCloud()" title="Push all locally stored readings to Firestore">&#8635; Re-sync</button>
+                        <button class="btn btn-danger" onclick="showCloseCycleRitual()">Close Cycle</button>
+                    </div>
                 </div>
 
-                <div id="active-cycle-summary" class="info-box" style="margin-bottom: 1rem;"></div>
-
-                <div class="info-box" style="margin-bottom: 1rem;">
-                    <strong>💡 Tip:</strong> Use <strong>On-Site Mode</strong> for field readings. It shows one meter at a time with clear instructions and progress tracking.
-                </div>
+                <div id="active-cycle-summary" class="text-muted" style="font-size:0.875rem; margin-bottom:1rem;"></div>
 
                 <div class="filter-bar">
                     <div class="form-group">
-                        <label for="filter-building">Building *</label>
+                        <label for="filter-building">Building</label>
                         <select id="filter-building" onchange="filterReadings()">
                             <option value="">Select a building</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="filter-unit">Search Unit</label>
-                        <input type="search" id="filter-unit" placeholder="Type a unit number" oninput="filterReadings()" autocomplete="off" spellcheck="false">
+                        <input type="search" id="filter-unit" placeholder="Unit number..." oninput="filterReadings()" autocomplete="off" spellcheck="false">
                     </div>
                     <div class="form-group">
-                        <label for="filter-status">Filter by Status</label>
+                        <label for="filter-status">Status</label>
                         <select id="filter-status" onchange="filterReadings()">
                             <option value="">All</option>
                             <option value="not-read">Not Read</option>

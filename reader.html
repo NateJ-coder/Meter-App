@@ -17,6 +17,13 @@
       <p class="subtitle">Fuzio Properties – Official Meter Capture</p>
     </div>
   </div>
+  <!-- Reading progress bar — populated by JS when sequential index is active -->
+  <div id="reader-progress-wrap" class="reader-progress-wrap" style="display:none;">
+    <div class="reader-progress-bar">
+      <div id="reader-progress-fill" class="reader-progress-fill" style="width:0%;"></div>
+    </div>
+    <div id="reader-progress-label" class="reader-progress-label"></div>
+  </div>
 </header>
 
 <main class="container reader-container">
@@ -212,6 +219,28 @@
   window.onSiteMode = onSiteMode;
   window.auth = auth;
 
+  // ── Scroll-shrink header ────────────────────────────────────────────────
+  (function initScrollShrink() {
+    const header = document.querySelector('.reader-header');
+    if (!header) return;
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  })();
+
+  // ── Success flash helper ────────────────────────────────────────────────
+  function showReadingFlash(then) {
+    const flash = document.createElement('div');
+    flash.className = 'reading-success-flash';
+    flash.innerHTML = '<div class="flash-check">&#10003;</div>';
+    document.body.appendChild(flash);
+    setTimeout(() => {
+      flash.style.transition = 'opacity 0.3s ease';
+      flash.style.opacity = '0';
+      setTimeout(() => { flash.remove(); then(); }, 320);
+    }, 520);
+  }
+
   // Get URL params
   const params = new URLSearchParams(window.location.search);
   const schemeId = params.get('scheme_id');
@@ -281,10 +310,23 @@
 
   // ── Scheme Overview (QR scan entry point) ───────────────────────────────
   async function initializeSchemeOverview() {
-    // Show loading state immediately
+    // Show skeleton while fetching from Firestore
     const overviewEl = document.getElementById('scheme-overview');
     overviewEl.style.display = 'block';
-    overviewEl.innerHTML = `<div class="card" style="text-align:center;padding:2rem;"><p>Loading scheme info…</p></div>`;
+    overviewEl.innerHTML = `
+      <div class="skeleton-card">
+        <div class="skeleton-line tall w-1-2" style="margin-bottom:1rem;"></div>
+        <div class="skeleton-line w-full"></div>
+        <div class="skeleton-line w-3-4"></div>
+        <div class="skeleton-line w-1-2" style="margin-top:1.25rem;"></div>
+      </div>
+      <div class="skeleton-card" style="animation-delay:0.15s;">
+        <div class="skeleton-line w-1-3" style="margin-bottom:0.75rem;"></div>
+        <div class="skeleton-line w-full"></div>
+        <div class="skeleton-line w-full"></div>
+        <div class="skeleton-line w-3-4"></div>
+      </div>
+    `;
 
     try {
       // ── Fetch scheme from Firestore ──────────────────────────────────
@@ -694,6 +736,17 @@
     document.getElementById('context-info').textContent = contextText;
     document.getElementById('progress-info').textContent = progressText;
     document.getElementById('context-card').style.display = 'block';
+
+    // Update header progress bar
+    if (!context.singleMeterMode && context.totalMeters > 1) {
+      const pct = Math.round((context.currentIndex / context.totalMeters) * 100);
+      const wrap = document.getElementById('reader-progress-wrap');
+      const fill = document.getElementById('reader-progress-fill');
+      const label = document.getElementById('reader-progress-label');
+      if (wrap) wrap.style.display = 'block';
+      if (fill) fill.style.width = `${pct}%`;
+      if (label) label.textContent = `${context.currentIndex + 1} / ${context.totalMeters} meters`;
+    }
   }
 
   // --- Setup form handlers ---
@@ -960,9 +1013,11 @@
       // Move to next meter or finish
       const nextIndex = workflowContext.currentIndex + 1;
       if (!workflowContext.singleMeterMode && nextIndex < workflowContext.totalMeters) {
-        window.location.href = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIndex}`;
+        showReadingFlash(() => {
+          window.location.href = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIndex}`;
+        });
       } else {
-        showSuccess();
+        showReadingFlash(() => showSuccess());
       }
 
       } catch (err) {
@@ -1059,9 +1114,11 @@
 
         const nextIdx = workflowContext.currentIndex + 1;
         if (!workflowContext.singleMeterMode && nextIdx < workflowContext.totalMeters) {
-          window.location.href = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIdx}`;
+          showReadingFlash(() => {
+            window.location.href = `reader.html?scheme_id=${workflowContext.scheme.id}&index=${nextIdx}`;
+          });
         } else {
-          showSuccess();
+          showReadingFlash(() => showSuccess());
         }
       });
     });
