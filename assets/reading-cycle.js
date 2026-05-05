@@ -317,6 +317,7 @@ function renderOpenCycles() {
                         </div>
                         <div class="action-buttons">
                             <button class="btn btn-secondary" onclick="selectCycle('${cycle.id}')">Manage</button>
+                            <button class="btn btn-warning" onclick="cancelCycleFromList('${cycle.id}')">Cancel</button>
                             <button class="btn btn-danger" onclick="closeCycleFromList('${cycle.id}')">Close</button>
                         </div>
                     </div>
@@ -569,6 +570,38 @@ window.selectActiveCycle = function() {
 window.selectCycle = function(cycleId) {
     cyclePageState.selectedCycleId = cycleId;
     renderOpenCycles();
+};
+
+window.cancelCycleFromList = function(cycleId) {
+    const cycle = storage.get('cycles', cycleId);
+    if (!cycle) return;
+
+    const scheme = storage.get('schemes', cycle.scheme_id);
+    const readings = storage.getReadings(cycleId);
+    const readingCount = readings.length;
+
+    const warningLine = readingCount > 0
+        ? `\n\n⚠ ${readingCount} reading${readingCount > 1 ? 's' : ''} captured for this cycle will also be deleted.`
+        : '';
+
+    const confirmed = confirm(
+        `Cancel the reading cycle for "${scheme?.name || 'this scheme'}" (${cycle.start_date} to ${cycle.end_date})?${warningLine}\n\nThis will permanently delete the cycle and cannot be undone.`
+    );
+
+    if (!confirmed) return;
+
+    // Delete all readings for this cycle
+    readings.forEach(reading => storage.delete('readings', reading.id));
+
+    // Delete the cycle itself
+    storage.delete('cycles', cycleId);
+
+    if (cyclePageState.selectedCycleId === cycleId) {
+        cyclePageState.selectedCycleId = null;
+    }
+
+    showNotification(`Cycle cancelled and deleted.`);
+    loadCyclePage();
 };
 
 window.closeCycleFromList = function(cycleId) {
