@@ -192,11 +192,15 @@
       <button type="button" id="publish-readings-button" class="btn btn-primary btn-large" onclick="publishWorkflowReadings()">
         Publish Records
       </button>
+      <button type="button" id="sync-readings-button" class="btn btn-secondary btn-large" onclick="syncReadingsToCloud()">
+        &#8635; Sync to Cloud
+      </button>
       <button type="button" id="download-transfer-button" class="btn btn-secondary btn-large" onclick="downloadWorkflowTransferPackage()" style="display: none;">
         Download Reading Package
       </button>
       <a id="reader-finish-link" href="index.html" class="btn btn-secondary btn-large" style="display: none;">Finish</a>
     </div>
+    <p id="sync-status-message" class="text-muted mt-2" style="text-align:center;"></p>
     <p id="publish-status-message" class="text-muted mt-2"></p>
   </section>
 </main>
@@ -467,6 +471,12 @@
           <div style="margin-top:1.25rem;text-align:center;">
             ${beginBtnHtml}
             ${!cycleActive ? '<p class="text-muted" style="margin-top:0.5rem;font-size:0.85rem;">The Begin Reading button will activate once an admin opens a reading cycle for this scheme.</p>' : ''}
+            <div style="margin-top:1rem;">
+              <button type="button" id="overview-sync-btn" class="btn btn-secondary" onclick="overviewSyncToCloud()" style="font-size:0.85rem;">
+                &#8635; Sync stored readings to cloud
+              </button>
+              <p id="overview-sync-status" class="text-muted" style="font-size:0.8rem;margin-top:0.4rem;"></p>
+            </div>
           </div>
         </div>
       `;
@@ -1395,6 +1405,40 @@
     window.location.href = `reader.html?scheme_id=${targetSchemeId}&index=${index}`;
   };
 
+  window.syncReadingsToCloud = async function() {
+    const btn = document.getElementById('sync-readings-button');
+    const statusEl = document.getElementById('sync-status-message');
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Syncing…'; }
+    if (statusEl) statusEl.textContent = '';
+    try {
+      const count = await storage.pushLocalReadingsToCloud();
+      if (statusEl) statusEl.textContent = `✓ ${count} reading${count !== 1 ? 's' : ''} pushed to cloud.`;
+      if (btn) { btn.textContent = '✓ Synced'; }
+    } catch (err) {
+      console.error('Sync failed:', err);
+      if (statusEl) statusEl.textContent = 'Sync failed — check your connection and try again.';
+      if (btn) { btn.disabled = false; btn.textContent = '↻ Sync to Cloud'; }
+    }
+  };
+
+  window.overviewSyncToCloud = async function() {
+    const btn = document.getElementById('overview-sync-btn');
+    const statusEl = document.getElementById('overview-sync-status');
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Syncing…'; }
+    if (statusEl) statusEl.textContent = '';
+    try {
+      const count = await storage.pushLocalReadingsToCloud();
+      if (statusEl) statusEl.textContent = count > 0
+        ? `✓ ${count} reading${count !== 1 ? 's' : ''} pushed to cloud.`
+        : 'No local readings found to sync.';
+      if (btn) { btn.textContent = '✓ Synced'; }
+    } catch (err) {
+      console.error('Overview sync failed:', err);
+      if (statusEl) statusEl.textContent = 'Sync failed — check your connection and try again.';
+      if (btn) { btn.disabled = false; btn.textContent = '↻ Sync stored readings to cloud'; }
+    }
+  };
+
   function showError(message) {
     document.getElementById('error-text').textContent = message;
     document.getElementById('traditional-reader').style.display = 'none';
@@ -1403,6 +1447,10 @@
 
   function showSuccess() {
     document.getElementById('traditional-reader').style.display = 'none';
+
+    // Show the sync button whenever cloud sync is available
+    const syncBtn = document.getElementById('sync-readings-button');
+    if (syncBtn) syncBtn.style.display = storage.cloudSyncEnabled ? 'inline-block' : 'none';
 
     if (workflowContext?.singleMeterMode) {
       // Simple confirmation for single-meter QR scan
