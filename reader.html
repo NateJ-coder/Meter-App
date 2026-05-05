@@ -1010,6 +1010,11 @@
         ...(meterReplaced && { meter_replaced_at: readingData.reading_date })
       });
 
+      // Wait for all in-flight Firestore writes to land before navigating.
+      // Without this, navigating immediately abandons the pending promise chain
+      // and the reading is never written to Firestore.
+      await storage.awaitSync();
+
       // Move to next meter or finish
       const nextIndex = workflowContext.currentIndex + 1;
       if (!workflowContext.singleMeterMode && nextIndex < workflowContext.totalMeters) {
@@ -1111,6 +1116,9 @@
         }
 
         modal.remove();
+
+        // Wait for Firestore writes before navigating
+        await storage.awaitSync();
 
         const nextIdx = workflowContext.currentIndex + 1;
         if (!workflowContext.singleMeterMode && nextIdx < workflowContext.totalMeters) {

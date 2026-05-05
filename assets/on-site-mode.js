@@ -585,6 +585,14 @@ export const onSiteMode = {
             last_reading_date: reading.reading_date
         });
 
+        // Wait for all in-flight Firestore writes to land before re-rendering.
+        // This ensures the reading is in Firestore before we move to the next meter,
+        // so a lost connection or closed tab cannot silently drop a submitted reading.
+        const submitBtn = document.querySelector('#onsite-capture-form [type="submit"]');
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Saving…'; }
+        await storage.awaitSync();
+        if (submitBtn) { submitBtn.disabled = false; }
+
         // Move to next meter
         const nextMeter = this.advanceQueue(cycleId);
         
@@ -637,7 +645,7 @@ export const onSiteMode = {
 
         document.body.appendChild(modal);
 
-        document.getElementById('add-meter-form').addEventListener('submit', (e) => {
+        document.getElementById('add-meter-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const unitLabel = document.getElementById('new-unit-label').value.trim();
             const meterNumber = document.getElementById('new-meter-number').value.trim();
@@ -696,6 +704,9 @@ export const onSiteMode = {
                 }]
             };
             storage.create('readings', reading);
+
+            // Wait for Firestore writes before proceeding
+            await storage.awaitSync();
 
             modal.remove();
             // Re-render to stay on current meter (unlisted meter doesn't advance the queue)
@@ -757,13 +768,16 @@ export const onSiteMode = {
 
         document.body.appendChild(modal);
 
-        document.getElementById('issue-form').addEventListener('submit', (e) => {
+        document.getElementById('issue-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const issueType = document.querySelector('input[name="issue"]:checked').value;
             const notes = document.getElementById('issue-notes').value;
             
             this.flagMeterIssue(meterId, cycleId, issueType, notes);
             modal.remove();
+
+            // Wait for Firestore write before advancing
+            await storage.awaitSync();
             
             // Move to next meter
             this.advanceQueue(cycleId);

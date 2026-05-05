@@ -239,6 +239,7 @@ export const storage = {
     operationalEntityKeys: ['schemes', 'buildings', 'units', 'meters', 'readings', 'cycles', 'cycle_schedules'],
     cloudSyncEnabled: isFirebaseConfigured(),
     cloudSyncPromise: Promise.resolve(),
+    _pendingWrites: new Set(),
 
     shouldPreloadCloudData(entityKeys = ['schemes', 'buildings', 'units', 'meters']) {
         const populatedEntities = entityKeys.filter((entity) => this.getAll(entity).length > 0);
@@ -570,11 +571,20 @@ export const storage = {
             return;
         }
 
-        this.cloudSyncPromise = this.cloudSyncPromise
-            .then(() => setDoc(doc(firebaseDb, collectionName, item.id), sanitizeForFirestore(item)))
+        // Fire immediately (parallel, not serial) — each item has a unique id so
+        // concurrent writes never conflict. Track in _pendingWrites so awaitSync()
+        // can block until every in-flight write resolves.
+        const writePromise = setDoc(doc(firebaseDb, collectionName, item.id), sanitizeForFirestore(item))
             .catch((error) => {
                 console.error(`Cloud upsert failed for ${entity}/${item.id}`, error);
+            })
+            .finally(() => {
+                this._pendingWrites.delete(writePromise);
             });
+
+        this._pendingWrites.add(writePromise);
+        // Keep cloudSyncPromise updated for any legacy callers.
+        this.cloudSyncPromise = this.cloudSyncPromise.then(() => writePromise);
     },
 
     queueCloudDelete(entity, id) {
@@ -583,11 +593,25 @@ export const storage = {
             return;
         }
 
-        this.cloudSyncPromise = this.cloudSyncPromise
-            .then(() => deleteDoc(doc(firebaseDb, collectionName, id)))
+        const deletePromise = deleteDoc(doc(firebaseDb, collectionName, id))
             .catch((error) => {
                 console.error(`Cloud delete failed for ${entity}/${id}`, error);
+            })
+            .finally(() => {
+                this._pendingWrites.delete(deletePromise);
             });
+
+        this._pendingWrites.add(deletePromise);
+        this.cloudSyncPromise = this.cloudSyncPromise.then(() => deletePromise);
+    },
+
+    /**
+     * Wait for all in-flight Firestore writes to settle before proceeding.
+     * Call this before page navigation or showing a "session complete" screen
+     * to ensure no readings are lost.
+     */
+    awaitSync() {
+        return Promise.allSettled([...this._pendingWrites]);
     },
 
     clearOperationalData(options = {}) {
