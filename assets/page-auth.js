@@ -35,12 +35,13 @@ if (!PUBLIC_PAGES.has(currentPage)) {
 }
 
 await storage.initializeCloudSync({ preload: storage.shouldPreloadCloudData() });
-// Always re-sync cycles and readings from Firestore.
-// Readings may be captured on other devices (phones during field sessions) and won't
-// exist in this browser's localStorage unless explicitly refreshed from cloud.
+// Re-sync cycles from Firestore on every page load so close-cycle logic sees
+// up-to-date state from other devices.
+// Readings are NOT pre-loaded here — the collection can be large and would stall
+// page load on slow mobile connections. Readings are synced on-demand per page
+// (reading-cycle.html refreshes them explicitly; reader.html pushes via awaitSync).
 if (storage.cloudSyncEnabled) {
     await storage.refreshEntityFromCloud('cycles');
-    await storage.refreshEntityFromCloud('readings');
 }
 window.auth = auth;
 window.storage = storage;

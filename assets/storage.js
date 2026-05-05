@@ -486,6 +486,10 @@ export const storage = {
         const readings = this.getAll('readings');
         if (readings.length === 0) return 0;
 
+        // Drain any in-flight queueCloudUpsert writes first so we don't issue
+        // concurrent setDoc + batch.set calls against the same document IDs.
+        await this.awaitSync();
+
         const operations = readings.map((reading) => ({
             type: 'set',
             collectionName,
