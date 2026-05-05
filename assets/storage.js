@@ -452,7 +452,15 @@ export const storage = {
 
         const counts = {};
 
+        // 'readings' is excluded from bulk hydration — it is a large, write-heavy
+        // collection that grows with every field session. Fetching it on page load
+        // stalls the UI on slow mobile connections. Readings are synced on-demand
+        // (pushLocalReadingsToCloud / refreshEntityFromCloud per specific page).
+        const skipEntities = new Set(['readings']);
+
         for (const [entity, collectionName] of Object.entries(cloudEntityCollections)) {
+            if (skipEntities.has(entity)) continue;
+
             try {
                 const snapshot = await getDocs(collection(firebaseDb, collectionName));
                 const items = snapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
