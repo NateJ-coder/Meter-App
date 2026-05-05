@@ -305,12 +305,18 @@ function loadManualFlagsUI(reading) {
 
 window.showAddManualFlagForm = function() {
     document.getElementById('add-manual-flag-form').style.display = 'block';
+    // Enable required fields so they participate in validation when visible
+    document.querySelectorAll('#add-manual-flag-form input, #add-manual-flag-form select, #add-manual-flag-form textarea')
+        .forEach(el => { el.disabled = false; });
 };
 
 window.cancelAddManualFlag = function() {
     document.getElementById('add-manual-flag-form').style.display = 'none';
+    // Disable required fields so they don't block the main Save Review submission
+    document.querySelectorAll('#add-manual-flag-form input, #add-manual-flag-form select, #add-manual-flag-form textarea')
+        .forEach(el => { el.disabled = true; });
     document.getElementById('manual-flag-type').value = '';
-    document.getElementById('manual-flag-severity').value = '';
+    document.getElementById('manual-flag-severity').value = 'high';
     document.getElementById('manual-flag-message').value = '';
     document.getElementById('manual-flag-description').value = '';
 };
@@ -341,8 +347,8 @@ window.saveManualFlag = function() {
     const reading = storage.getReadingWithDetails(readingId);
     loadManualFlagsUI(reading);
     
-    // Reset form
-    cancelAddManualFlag();
+    // Reset and hide form (re-disables required fields)
+    window.cancelAddManualFlag();
 };
 
 window.removeManualFlagFromUI = function(readingId, flagIndex) {
@@ -413,3 +419,24 @@ window.exportMeterReportFromReview = async function(meterId, cycleId) {
     const { xlsxExport } = await import('./xlsx-export.js');
     await xlsxExport.exportMeterReport(meterId, cycleId);
 };
+
+// Wire up all static event listeners (replaces inline onclick/onchange in HTML)
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('review-cycle')?.addEventListener('change', () => window.loadReviewData());
+    document.getElementById('filter-flag-type')?.addEventListener('change', () => window.filterReview());
+    document.getElementById('filter-review-status')?.addEventListener('change', () => window.filterReview());
+    document.getElementById('review-action')?.addEventListener('change', () => window.toggleEstimateField());
+    document.getElementById('review-modal-close')?.addEventListener('click', () => window.closeReviewModal());
+    document.getElementById('review-modal-cancel')?.addEventListener('click', () => window.closeReviewModal());
+    document.getElementById('show-manual-flag-btn')?.addEventListener('click', () => window.showAddManualFlagForm());
+    document.getElementById('save-manual-flag-btn')?.addEventListener('click', () => window.saveManualFlag());
+    document.getElementById('cancel-manual-flag-btn')?.addEventListener('click', () => window.cancelAddManualFlag());
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('review-modal');
+            if (modal && modal.style.display !== 'none') window.closeReviewModal();
+        }
+    });
+});
