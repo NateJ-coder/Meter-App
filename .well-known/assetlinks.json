@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.fuzio.meterreader",
+      "sha256_cert_fingerprints": [
+        "C6:BB:49:FB:E2:6A:B7:8A:43:EA:9D:DC:37:0B:37:3C:6F:6A:87:A6:17:1E:6C:31:8E:6C:F3:87:B1:63:9A:5A"
+      ]
+    }
+  }
+]
