@@ -1,27 +1,25 @@
 {
-  "generated_at": "2026-04-14T13:27:45.173459+00:00",
+  "generated_at": "2026-05-19T10:30:49.275891+00:00",
   "buildings": [
     {
-      "building_name": "Azores - Completed",
-      "output_path": "C:\\Projects\\Meter App\\Buildings\\buildings\\Azores - Completed\\cleaned images\\meter-image-extractions.json",
-      "capture_output_path": "C:\\Projects\\Meter App\\Buildings\\buildings\\Azores - Completed\\cleaned images\\meter-capture-readings.json",
+      "building_name": "Akasia - completed",
+      "output_path": "C:\\Projects\\Meter App\\Buildings\\buildings\\Akasia - completed\\cleaned images\\meter-image-extractions.json",
+      "capture_output_path": "C:\\Projects\\Meter App\\Buildings\\buildings\\Akasia - completed\\cleaned images\\meter-capture-readings.json",
       "summary": {
-        "total_images": 30,
-        "total_documents_requiring_review": 1,
+        "total_images": 2,
+        "total_documents_requiring_review": 0,
         "folders_without_images": 0,
-        "images_with_meter_number": 30,
+        "images_with_meter_number": 0,
         "images_with_serial_number": 0,
-        "images_with_meter_reading": 15,
-        "images_with_date": 30,
-        "images_with_reference_match": 30,
-        "reference_register_resolved": true,
-        "reference_register_meter_count": 73,
+        "images_with_meter_reading": 1,
+        "images_with_date": 2,
+        "images_with_reference_match": 0,
+        "reference_register_resolved": false,
+        "reference_register_meter_count": 0,
         "flags": {
-          "low-confidence-meter-reading": 2,
-          "missing-meter-reading": 15,
-          "missing-serial-number": 30,
-          "reading-below-last-known": 11,
-          "unsupported-document-file": 1
+          "missing-meter-number": 2,
+          "missing-meter-reading": 1,
+          "missing-serial-number": 2
         }
       }
     }

@@ -1,0 +1,111 @@
+{
+  "building_name": "Akasia - completed",
+  "generated_at": "2026-05-19T10:30:49.269757+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "reference_register": {
+    "resolved": false,
+    "scheme_name": null,
+    "sheet_name": null,
+    "sheet_slug": null,
+    "source_path": null,
+    "meter_count": 0
+  },
+  "summary": {
+    "total_images": 2,
+    "total_documents_requiring_review": 0,
+    "folders_without_images": 0,
+    "images_with_meter_number": 0,
+    "images_with_serial_number": 0,
+    "images_with_meter_reading": 1,
+    "images_with_date": 2,
+    "images_with_reference_match": 0,
+    "reference_register_resolved": false,
+    "reference_register_meter_count": 0,
+    "flags": {
+      "missing-meter-number": 2,
+      "missing-meter-reading": 1,
+      "missing-serial-number": 2
+    }
+  },
+  "folders_without_images": [],
+  "documents_requiring_review": [],
+  "images": [
+    {
+      "image_path": "Images/2026-04/AKA - Readings 2026.02.03.jpeg",
+      "containing_folder": "Images/2026-04",
+      "file_name": "AKA - Readings 2026.02.03.jpeg",
+      "date": "2026-02-03",
+      "date_source": "path:AKA - Readings 2026.02.03.jpeg",
+      "date_confidence": "medium",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": "16102",
+      "meter_reading_source": "ocr:reading_window_bin",
+      "meter_reading_confidence": "medium",
+      "reference_scheme_name": null,
+      "reference_sheet_slug": null,
+      "reference_meter_number": null,
+      "reference_meter_type": null,
+      "reference_last_reading": null,
+      "reference_last_reading_date": null,
+      "reference_match_kind": null,
+      "reference_match_inputs": [],
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number"
+      ],
+      "ocr_samples": {
+        "label_region": "\u2014 LSP ee\nMeter",
+        "meter_region": "> 56 aq SR in |\nel Aprete| 2 |_ Shee or |\no ltes mL) \u00ab= | CcCey oe\n66 ns'| po gee]\nwleoasy | 1 Lts-75 )\n1} 113 7 | Ob Sr |\n2 na (EPs | 318 61s\n- us |Emp7y | 39 | 03-5 |\n2. 116 320 ow |\n: 7 a2 | \\G-86 ",
+        "reading_center": "eet\n\n62\n\noie\n\n312\n\n63\n\n$19\n\n64\n\n313\n\n520\n\n65\n\n314\n\neS\n\nmek\n\n612\n\nOre RE\n\n315\n\n613\n\n112\n\n316\n\n614\n\n113\n\n317\n\n318\n\n615\n\n114\n\nPa\n\n319\n\n616\n\n115\n\nEmp AY |\n\n116\n\n320\n\n617\n\n117\n\n412\n\n618\n\nib: OF\n\n118\n\nOA SA",
+        "reading_window": "64\n\n1S\n\n413\n\nOC) + G/\n\n314\n\n65\n\nAs |\n\nOre RE\n\n315\n\n112\n\n316\n\n113\n\n317\n\n114\n\nae\n\n318\n\n319\n\n115\n\nEpa |\n\n116\n\n320\n\n117\n\n412\n\n118\n\n413\n\n14-46\n\na? pa\n\nAVA\n\ni",
+        "reading_window_bin": "343\n65\n6 2\n112 362\n727\n16102 320\n117 2"
+      }
+    },
+    {
+      "image_path": "Images/2026-04/AKA - Tower Readings 2026.01.06.jpeg",
+      "containing_folder": "Images/2026-04",
+      "file_name": "AKA - Tower Readings 2026.01.06.jpeg",
+      "date": "2026-01-06",
+      "date_source": "path:AKA - Tower Readings 2026.01.06.jpeg",
+      "date_confidence": "medium",
+      "meter_number": null,
+      "meter_number_source": null,
+      "meter_number_kind": null,
+      "meter_number_confidence": "missing",
+      "unit_label": null,
+      "unit_label_source": null,
+      "serial_number": null,
+      "serial_number_source": null,
+      "meter_reading": null,
+      "meter_reading_source": null,
+      "meter_reading_confidence": "missing",
+      "reference_scheme_name": null,
+      "reference_sheet_slug": null,
+      "reference_meter_number": null,
+      "reference_meter_type": null,
+      "reference_last_reading": null,
+      "reference_last_reading_date": null,
+      "reference_match_kind": null,
+      "reference_match_inputs": [],
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading"
+      ],
+      "ocr_samples": {
+        "label_region": "o- sete enone eee ee",
+        "meter_region": "",
+        "reading_center": "Vall AOU\n\n7 5\n\n, 4\n\niy\n\not A\n\ncomet es Cy\n\nPTT",
+        "reading_window": "wry\n\nner!\n\ni\"\n\n4\n\n$i\n\nsete act",
+        "reading_window_bin": ""
+      }
+    }
+  ]
+}

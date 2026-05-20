@@ -1,0 +1,68 @@
+{
+  "building_name": "Akasia - completed",
+  "generated_at": "2026-05-19T10:30:49.269757+00:00",
+  "tesseract_cmd": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+  "source_extraction_file": "C:\\Projects\\Meter App\\Buildings\\buildings\\Akasia - completed\\cleaned images\\meter-image-extractions.json",
+  "reference_register": {
+    "resolved": false,
+    "scheme_name": null,
+    "sheet_name": null,
+    "sheet_slug": null,
+    "source_path": null,
+    "meter_count": 0
+  },
+  "summary": {
+    "total_meter_capture_records": 0,
+    "total_unmatched_captures": 2,
+    "meter_capture_statuses": {},
+    "documents_requiring_review": 0,
+    "images_with_meter_reading": 1,
+    "images_without_meter_reading": 1,
+    "reference_register_resolved": false
+  },
+  "meter_captures": [],
+  "unmatched_captures": [
+    {
+      "capture_date": "2026-01-06",
+      "image_path": "Images/2026-04/AKA - Tower Readings 2026.01.06.jpeg",
+      "file_name": "AKA - Tower Readings 2026.01.06.jpeg",
+      "containing_folder": "Images/2026-04",
+      "extracted_meter_label": null,
+      "extracted_unit_label": null,
+      "extracted_serial_number": null,
+      "extracted_reading": null,
+      "reading_confidence": "missing",
+      "reference_match_kind": null,
+      "reference_match_inputs": [],
+      "capture_status": "missing-reading",
+      "capture_description": "The image matched a meter, but no usable numeric reading was extracted.",
+      "match_description": "No canonical meter match description is available.",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number",
+        "missing-meter-reading"
+      ]
+    },
+    {
+      "capture_date": "2026-02-03",
+      "image_path": "Images/2026-04/AKA - Readings 2026.02.03.jpeg",
+      "file_name": "AKA - Readings 2026.02.03.jpeg",
+      "containing_folder": "Images/2026-04",
+      "extracted_meter_label": null,
+      "extracted_unit_label": null,
+      "extracted_serial_number": null,
+      "extracted_reading": "16102",
+      "reading_confidence": "medium",
+      "reference_match_kind": null,
+      "reference_match_inputs": [],
+      "capture_status": "captured",
+      "capture_description": "A reading was extracted from the image.",
+      "match_description": "No canonical meter match description is available.",
+      "flags": [
+        "missing-meter-number",
+        "missing-serial-number"
+      ]
+    }
+  ],
+  "documents_requiring_review": []
+}
