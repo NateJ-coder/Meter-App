@@ -257,6 +257,15 @@ body.modal-open {
     box-shadow: var(--shadow-md);
 }
 
+.metric-card[role="button"] {
+    cursor: pointer;
+}
+
+.metric-card[role="button"]:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
 .metric-card.warning {
     border-left-color: var(--warning);
 }

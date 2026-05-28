@@ -68,7 +68,7 @@
                 <div class="metric-label">Not Yet Read</div>
                 <div class="metric-progress"><div class="metric-progress-fill warning" id="meters-not-read-fill" style="width:0%"></div></div>
             </div>
-            <div class="metric-card danger">
+            <div class="metric-card danger" id="dashboard-flagged-card" role="button" tabindex="0" aria-label="Open flagged readings in review page">
                 <div class="metric-value" id="flagged-readings">—</div>
                 <div class="metric-label">Flagged</div>
             </div>
@@ -274,6 +274,7 @@
             const cycles = storage.getAll('cycles');
             const readings = storage.getAll('readings');
             const meters = storage.getAll('meters');
+            const flaggedCard = document.getElementById('dashboard-flagged-card');
             
             // Find open cycle
             const openCycle = cycles.find(c => c.status === 'OPEN');
@@ -315,6 +316,26 @@
                 const cycleReadings = readings.filter(r => r.cycle_id === openCycle.id);
                 metersRead = new Set(cycleReadings.map(r => r.meter_id)).size;
                 flaggedCount = cycleReadings.filter(r => r.flags && r.flags.length > 0).length;
+
+                const params = new URLSearchParams();
+                params.set('cycle', openCycle.id);
+                params.set('focus', 'flagged');
+                const reviewUrl = `review.html?${params.toString()}`;
+
+                flaggedCard.onclick = () => {
+                    window.location.href = reviewUrl;
+                };
+                flaggedCard.onkeydown = (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        window.location.href = reviewUrl;
+                    }
+                };
+            }
+
+            if (!openCycle) {
+                flaggedCard.onclick = null;
+                flaggedCard.onkeydown = null;
             }
 
             const notRead = totalMeters - metersRead;

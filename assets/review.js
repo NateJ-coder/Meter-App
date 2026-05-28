@@ -6,6 +6,16 @@ import { storage } from './storage.js';
 import { validation } from './validation.js';
 import { showNotification, formatDateTime, parseDecimalInput, getEffectiveReviewStatus, getPreviousReadingDisplayValue } from './app.js';
 
+const REVIEW_FOCUS = {
+    ALL: 'all',
+    MISSING: 'missing',
+    FLAGGED: 'flagged',
+    APPROVED: 'approved'
+};
+
+let activeFocus = REVIEW_FOCUS.ALL;
+let shouldAutoFocus = false;
+
 /**
  * Return the corrected consumption for a reading, detecting bad rollover values.
  * The historical import applied 1,000,000-rollover on any backward reading. Any
@@ -32,7 +42,109 @@ function formatConsumption(reading) {
 
 // Load page
 populateCycleSelect();
+applyRouteQueryState();
 loadReviewData();
+
+function applyRouteQueryState() {
+    const params = new URLSearchParams(window.location.search);
+    const cycleId = params.get('cycle');
+    const focus = String(params.get('focus') || REVIEW_FOCUS.ALL).toLowerCase();
+    const status = String(params.get('status') || '').toLowerCase();
+    const flagType = String(params.get('flagType') || '').toLowerCase();
+
+    if (cycleId) {
+        const cycleSelect = document.getElementById('review-cycle');
+        if (cycleSelect?.querySelector(`option[value="${cycleId}"]`)) {
+            cycleSelect.value = cycleId;
+        }
+    }
+
+    if (flagType) {
+        const flagTypeSelect = document.getElementById('filter-flag-type');
+        if (flagTypeSelect?.querySelector(`option[value="${flagType}"]`)) {
+            flagTypeSelect.value = flagType;
+        }
+    }
+
+    if (status) {
+        const statusSelect = document.getElementById('filter-review-status');
+        if (statusSelect?.querySelector(`option[value="${status}"]`)) {
+            statusSelect.value = status;
+        }
+    }
+
+    if (Object.values(REVIEW_FOCUS).includes(focus)) {
+        activeFocus = focus;
+    }
+
+    shouldAutoFocus = Boolean(params.get('focus') || params.get('status') || params.get('flagType'));
+}
+
+function updateReviewQueryFromState() {
+    const cycleId = document.getElementById('review-cycle').value;
+    const status = document.getElementById('filter-review-status').value;
+    const flagType = document.getElementById('filter-flag-type').value;
+    const params = new URLSearchParams(window.location.search);
+
+    if (cycleId) params.set('cycle', cycleId);
+    else params.delete('cycle');
+
+    if (activeFocus && activeFocus !== REVIEW_FOCUS.ALL) params.set('focus', activeFocus);
+    else params.delete('focus');
+
+    if (status) params.set('status', status);
+    else params.delete('status');
+
+    if (flagType) params.set('flagType', flagType);
+    else params.delete('flagType');
+
+    const query = params.toString();
+    history.replaceState(null, '', `review.html${query ? `?${query}` : ''}`);
+}
+
+function focusReviewSection() {
+    const flaggedSection = document.getElementById('flagged-readings-list');
+    const missingSection = document.getElementById('missing-readings-list');
+
+    if (activeFocus === REVIEW_FOCUS.MISSING) {
+        missingSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        flaggedSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function applyFocusPreset() {
+    const statusSelect = document.getElementById('filter-review-status');
+
+    if (activeFocus === REVIEW_FOCUS.APPROVED) {
+        statusSelect.value = 'approved';
+    }
+
+    if (activeFocus !== REVIEW_FOCUS.MISSING) {
+        window.filterReview();
+    }
+
+    if (shouldAutoFocus) {
+        focusReviewSection();
+    }
+}
+
+window.focusReviewMetric = function(focus) {
+    activeFocus = Object.values(REVIEW_FOCUS).includes(focus) ? focus : REVIEW_FOCUS.ALL;
+    shouldAutoFocus = true;
+
+    const statusSelect = document.getElementById('filter-review-status');
+    const flagTypeSelect = document.getElementById('filter-flag-type');
+    if (activeFocus === REVIEW_FOCUS.APPROVED) {
+        statusSelect.value = 'approved';
+    } else {
+        statusSelect.value = '';
+        flagTypeSelect.value = '';
+    }
+
+    applyFocusPreset();
+    updateReviewQueryFromState();
+};
 
 function populateCycleSelect() {
     const cycles = storage.getVisibleCycles().sort((a, b) => 
@@ -63,6 +175,13 @@ window.loadReviewData = function() {
     loadMetrics(cycleId);
     loadFlaggedReadings(cycleId);
     loadMissingReadings(cycleId);
+
+    if (document.getElementById('filter-review-status').value || document.getElementById('filter-flag-type').value) {
+        window.filterReview();
+    }
+
+    applyFocusPreset();
+    updateReviewQueryFromState();
 };
 
 function loadMetrics(cycleId) {
@@ -216,6 +335,7 @@ window.filterReview = function() {
     }
 
     renderFlaggedReadings(readings, cycleId);
+    updateReviewQueryFromState();
 };
 
 window.openReviewModal = function(readingId) {
@@ -431,6 +551,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('show-manual-flag-btn')?.addEventListener('click', () => window.showAddManualFlagForm());
     document.getElementById('save-manual-flag-btn')?.addEventListener('click', () => window.saveManualFlag());
     document.getElementById('cancel-manual-flag-btn')?.addEventListener('click', () => window.cancelAddManualFlag());
+
+    document.querySelectorAll('.metric-card[data-focus]').forEach((card) => {
+        const focus = card.getAttribute('data-focus') || REVIEW_FOCUS.ALL;
+        card.addEventListener('click', () => window.focusReviewMetric(focus));
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.focusReviewMetric(focus);
+            }
+        });
+    });
 
     // Close modal on Escape key
     document.addEventListener('keydown', (e) => {

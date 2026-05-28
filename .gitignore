@@ -24,6 +24,8 @@ vendor/
 .env
 .env.local
 .env.*.local
+.env.gemini
+.env.gemini.local
 
 # Build outputs (for future phases)
 dist/

@@ -6,6 +6,11 @@
   "scripts": {
     "generate:app-database": "node scripts/generate-building-app-database.js",
     "sync:firestore-operational": "node scripts/replace-firestore-operational-state.mjs",
+    "ai:clean-workbook": "node scripts/gemini-clean-workbook.mjs",
+    "ai:clean-workbook:free": "node scripts/gemini-clean-workbook.mjs --model gemini-2.5-flash-lite --fallback-models \"gemini-1.5-flash,gemini-2.5-flash\" --chunk-size 60 --max-retries 6 --retry-base-ms 2500",
+    "ai:clean-workbook:default": "node scripts/gemini-clean-workbook.mjs --input \"legacy-ud/ud extraction and data check.xlsx\" --sheet \"Sheet1\" --notes-sheet \"Workbook Notes\"",
+    "ai:clean-workbook:pro": "node scripts/gemini-clean-workbook.mjs --model gemini-2.5-pro --fallback-models \"gemini-2.5-flash,gemini-2.5-flash-lite,gemini-1.5-flash\" --chunk-size 40",
+    "ai:clean-workbook:capacity": "node scripts/gemini-clean-workbook.mjs --model gemini-2.5-flash-lite --fallback-models \"gemini-1.5-flash,gemini-2.5-flash\" --chunk-size 45",
     "test": "echo No automated tests configured"
   },
   "repository": {
@@ -21,6 +26,8 @@
   },
   "homepage": "https://github.com/NateJ-coder/Meter-App#readme",
   "dependencies": {
-    "firebase": "^12.10.0"
+    "dotenv": "^17.4.2",
+    "firebase": "^12.10.0",
+    "xlsx": "^0.18.5"
   }
 }

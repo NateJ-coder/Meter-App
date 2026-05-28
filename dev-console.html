@@ -78,6 +78,7 @@
             <h2>⚠️ System Actions</h2>
             <div class="danger-zone">
                 <button class="btn btn-secondary" onclick="refreshFromFirebase()">Refresh From Firebase</button>
+                <button class="btn btn-secondary" onclick="applyWorkbookPolicyToMeters()">Apply Workbook Policy To Meters</button>
                 <button class="btn btn-warning" onclick="resetOnboarding()">Reset Onboarding</button>
                 <button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
                 <button class="btn btn-secondary" onclick="exportAllData()">Export All Data</button>
@@ -148,6 +149,7 @@
         import { setupHealth } from './assets/setup-health.js';
         import { validation } from './assets/validation.js';
         import { DEFAULT_SCHEME_NAMES } from './assets/app.js';
+        import { getWorkbookCapturePolicyForMeter, preloadWorkbookCapturePolicy } from './assets/workbook-capture-policy.js';
 
         await auth.initialize();
         await storage.initializeCloudSync({ preload: storage.shouldPreloadCloudData() });
@@ -492,6 +494,74 @@
                 location.reload();
             } catch (error) {
                 alert(`Firebase refresh failed: ${error.message}`);
+            }
+        };
+
+        window.applyWorkbookPolicyToMeters = async function() {
+            if (!confirm('Apply workbook capture policy hints to meter records now? This updates local storage and syncs to Firebase.')) {
+                return;
+            }
+
+            try {
+                await preloadWorkbookCapturePolicy();
+
+                const meters = storage.getAll('meters');
+                const units = storage.getAll('units');
+                const buildings = storage.getAll('buildings');
+                const unitById = new Map(units.map((unit) => [unit.id, unit]));
+                const buildingById = new Map(buildings.map((building) => [building.id, building]));
+
+                const updates = [];
+                const counts = {
+                    capture_required: 0,
+                    skip_allowed: 0,
+                    client_submitted: 0,
+                    unknown: 0
+                };
+
+                meters.forEach((meter) => {
+                    const unit = meter.unit_id ? unitById.get(meter.unit_id) : null;
+                    const building = unit?.building_id ? buildingById.get(unit.building_id) : null;
+                    const hint = getWorkbookCapturePolicyForMeter(meter, { buildingName: building?.name || '' });
+
+                    if (!hint || !hint.capturePolicy || hint.capturePolicy === 'unknown') {
+                        counts.unknown += 1;
+                        return;
+                    }
+
+                    counts[hint.capturePolicy] = (counts[hint.capturePolicy] || 0) + 1;
+                    updates.push({
+                        id: meter.id,
+                        workbook_capture_policy: hint.capturePolicy,
+                        workbook_skip_reason: hint.skipReason || '',
+                        workbook_policy_rationale: hint.rationale || '',
+                        workbook_policy_confidence: hint.confidence || 0,
+                        workbook_policy_match_type: hint.matchType || null,
+                        workbook_policy_source_row_index: hint.sourceRowIndex || null,
+                        workbook_policy_source_building: hint.sourceBuilding || '',
+                        workbook_policy_source_meter_label: hint.sourceMeterLabel || '',
+                        workbook_policy_source_serial: hint.sourceSerial || ''
+                    });
+                });
+
+                if (!updates.length) {
+                    alert('No matching workbook policy hints were found for current meters.');
+                    return;
+                }
+
+                await storage.upsertMany('meters', updates, { awaitCloud: true });
+
+                alert(
+                    `Workbook policy applied to ${updates.length} meter(s).\n\n`
+                    + `capture_required: ${counts.capture_required}\n`
+                    + `skip_allowed: ${counts.skip_allowed}\n`
+                    + `client_submitted: ${counts.client_submitted}\n`
+                    + `no match: ${counts.unknown}`
+                );
+                initializeDashboard();
+            } catch (error) {
+                console.error(error);
+                alert(`Failed to apply workbook policy: ${error.message}`);
             }
         };
 

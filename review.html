@@ -38,19 +38,19 @@
 
         <!-- Summary Stats -->
         <section class="metrics-grid">
-            <div class="metric-card">
+            <div class="metric-card" id="metric-total-readings" data-focus="all" role="button" tabindex="0" aria-label="Show all flagged readings">
                 <div class="metric-value" id="review-total-readings">0</div>
                 <div class="metric-label">Total Readings</div>
             </div>
-            <div class="metric-card warning">
+            <div class="metric-card warning" id="metric-not-read" data-focus="missing" role="button" tabindex="0" aria-label="Show missing readings">
                 <div class="metric-value" id="review-not-read">0</div>
                 <div class="metric-label">Not Read</div>
             </div>
-            <div class="metric-card danger">
+            <div class="metric-card danger" id="metric-flagged" data-focus="flagged" role="button" tabindex="0" aria-label="Show flagged readings">
                 <div class="metric-value" id="review-flagged">0</div>
                 <div class="metric-label">Flagged</div>
             </div>
-            <div class="metric-card">
+            <div class="metric-card" id="metric-approved" data-focus="approved" role="button" tabindex="0" aria-label="Show approved flagged readings">
                 <div class="metric-value" id="review-approved">0</div>
                 <div class="metric-label">Approved</div>
             </div>

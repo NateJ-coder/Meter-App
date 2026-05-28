@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-05-27T10:16:38.705Z",
+  "input_file": "C:\\Projects\\Meter App\\legacy-ud\\ud extraction and data check.xlsx",
+  "model": "gemini-2.5-flash-lite",
+  "fallback_models": [
+    "gemini-1.5-flash",
+    "gemini-2.5-flash"
+  ],
+  "max_retries": 3,
+  "retry_base_ms": 1800,
+  "data_sheet": "Sheet1",
+  "notes_sheet": "Workbook Notes",
+  "chunk_size": 45,
+  "total_rows": 757,
+  "accepted_count": 696,
+  "review_count": 61,
+  "rejected_count": 0,
+  "output_dir": "C:\\Projects\\Meter App\\source-documents\\03-extracted-outputs\\gemini-cleaning"
+}

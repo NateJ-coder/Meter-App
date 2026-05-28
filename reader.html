@@ -133,6 +133,7 @@
         </div>
 
         <div id="existing-reading-note" class="info-box" style="display:none; margin-bottom: 1rem;"></div>
+        <div id="capture-policy-note" class="info-box" style="display:none; margin-bottom: 1rem;"></div>
 
         <div class="form-group">
           <label for="photo-ref">Meter Photo <span style="font-weight:normal;color:#777;">(recommended)</span></label>
@@ -208,12 +209,13 @@
 <script type="module" src="assets/page-auth.js"></script>
 <script type="module">
   import { storage } from './assets/storage.js';
-  import { validation } from './assets/validation.js';
   import { onSiteMode } from './assets/on-site-mode.js';
   import { getCurrentDateTime, parseDecimalInput } from './assets/app.js';
   import { auth } from './assets/auth.js';
   import { preparePhotoForStorage } from './assets/photo-utils.js';
   import { persistReadingPhoto } from './assets/firebase-media.js';
+  import { buildCaptureReadingRecord, getMeterDisplayDescriptor, saveCaptureReading } from './assets/capture-shared.js';
+  import { getWorkbookCapturePolicyForMeter, preloadWorkbookCapturePolicy } from './assets/workbook-capture-policy.js';
   import { buildReadingTransferPackage, downloadReadingTransferPackage } from './assets/reading-transfer.js';
   import { collection, doc, getDoc, getDocs, query, where } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
   import { firebaseDb } from './assets/firebase.js';
@@ -256,6 +258,82 @@
   const onsiteCycleId = params.get('cycle_id');
 
   let workflowContext = null;
+
+  function getMeterOverviewLocation(meter, allUnits = []) {
+    if (meter.meter_type === 'BULK') {
+      return 'Bulk Meter';
+    }
+    if (meter.meter_type === 'COMMON') {
+      return 'Common Property';
+    }
+
+    const unit = meter._unit || allUnits.find((entry) => entry.id === meter.unit_id);
+    if (!unit) {
+      return 'Unknown location';
+    }
+
+    return `${unit.building_name || ''} · Unit ${unit.unit_number || '?'}`;
+  }
+
+  function buildCapturePolicySummary(orderedMeters, allUnits = []) {
+    const counts = {
+      capture_required: 0,
+      skip_allowed: 0,
+      client_submitted: 0,
+      unknown: 0
+    };
+
+    const highlights = [];
+
+    orderedMeters.forEach((meter) => {
+      const unit = meter._unit || allUnits.find((entry) => entry.id === meter.unit_id);
+      const buildingName = unit?.building_name || '';
+      const hint = getWorkbookCapturePolicyForMeter(meter, { buildingName });
+      const policy = hint?.capturePolicy || 'unknown';
+
+      counts[policy] = (counts[policy] || 0) + 1;
+
+      if (hint && (policy === 'skip_allowed' || policy === 'client_submitted') && highlights.length < 12) {
+        highlights.push({
+          meterNumber: meter.meter_number || 'Unknown meter',
+          location: getMeterOverviewLocation(meter, allUnits),
+          policy,
+          reason: hint.skipReason || ''
+        });
+      }
+    });
+
+    const hasPolicyMatches = counts.capture_required + counts.skip_allowed + counts.client_submitted > 0;
+    const highlightRows = highlights.map((item) => `
+      <tr>
+        <td>${item.meterNumber}</td>
+        <td>${item.location}</td>
+        <td>${item.policy === 'skip_allowed' ? 'Skip allowed' : 'Client submitted'}</td>
+        <td>${item.reason || '—'}</td>
+      </tr>
+    `).join('');
+
+    return `
+      <div class="card" style="margin-top:1rem;">
+        <h3 style="margin-bottom:0.5rem;">Workbook Capture Policy</h3>
+        <p class="text-muted" style="margin-top:0;">Policy hints are advisory: field users can still capture or skip with notes, and overrides are flagged for review.</p>
+        ${hasPolicyMatches ? `
+          <div style="display:flex;gap:0.65rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span class="badge badge-success" style="font-size:0.82rem;">Capture required: ${counts.capture_required}</span>
+            <span class="badge" style="background:#fff8e1;color:#8a6d3b;font-size:0.82rem;">Skip allowed: ${counts.skip_allowed}</span>
+            <span class="badge" style="background:#e8f4fd;color:#0c5460;font-size:0.82rem;">Client submitted: ${counts.client_submitted}</span>
+            <span class="badge badge-secondary" style="font-size:0.82rem;">No hint matched: ${counts.unknown}</span>
+          </div>
+          ${highlights.length > 0 ? `
+            <table class="data-table">
+              <thead><tr><th>Meter</th><th>Location</th><th>Policy</th><th>Workbook note</th></tr></thead>
+              <tbody>${highlightRows}</tbody>
+            </table>
+          ` : '<p class="text-muted">No skip/client-submitted hints for this scheme.</p>'}
+        ` : '<p class="text-muted">No workbook policy hints matched this scheme yet.</p>'}
+      </div>
+    `;
+  }
 
   function getSessionReaderProfile() {
     const currentUser = auth.getCurrentUser();
@@ -333,6 +411,8 @@
     `;
 
     try {
+      await preloadWorkbookCapturePolicy();
+
       // ── Fetch scheme from Firestore ──────────────────────────────────
       const schemeSnap = await getDoc(doc(firebaseDb, 'schemes', schemeId));
       if (!schemeSnap.exists()) {
@@ -438,6 +518,8 @@
         </tr>`;
       }).join('');
 
+      const capturePolicySummaryHtml = buildCapturePolicySummary(orderedMeters, allUnits);
+
       // ── Begin Reading button ─────────────────────────────────────────
       const beginUrl = `reader.html?scheme_id=${encodeURIComponent(schemeId)}&index=0`;
       const beginBtnHtml = cycleActive
@@ -479,6 +561,8 @@
             </div>
           </div>
         </div>
+
+        ${capturePolicySummaryHtml}
       `;
 
     } catch (err) {
@@ -693,6 +777,7 @@
 
     const { meter, scheme, unit, building, openCycle } = context;
     const m = meter || context.currentMeter;
+    const meterDescriptor = getMeterDisplayDescriptor(m);
 
     const cycleHtml = openCycle
       ? `<span class="badge badge-success">Cycle open: ${openCycle.name || [openCycle.start_date, openCycle.end_date].filter(Boolean).join(' → ') || 'Active'}</span>`
@@ -703,6 +788,8 @@
     if (building) rows.push(`<tr><td><strong>Building</strong></td><td>${building.name}</td></tr>`);
     if (unit) rows.push(`<tr><td><strong>Unit</strong></td><td>${unit.unit_number}${unit.owner_name ? ` — ${unit.owner_name}` : ''}</td></tr>`);
     rows.push(`<tr><td><strong>Meter Number</strong></td><td><strong>${m.meter_number}</strong></td></tr>`);
+    if (meterDescriptor.label) rows.push(`<tr><td><strong>Meter Label</strong></td><td>${meterDescriptor.label}</td></tr>`);
+    if (meterDescriptor.serial) rows.push(`<tr><td><strong>Serial Number</strong></td><td>${meterDescriptor.serial}</td></tr>`);
     rows.push(`<tr><td><strong>Type</strong></td><td>${m.meter_type}</td></tr>`);
     rows.push(`<tr><td><strong>Last Reading</strong></td><td>${m.last_reading != null ? `${m.last_reading} kWh` : 'No reading on record'}</td></tr>`);
     if (m.last_reading_date) rows.push(`<tr><td><strong>Last Reading Date</strong></td><td>${m.last_reading_date}</td></tr>`);
@@ -718,6 +805,7 @@
   // --- Display current meter context ---
   function displayMeterContext(context) {
     const meter = context.currentMeter;
+    const meterDescriptor = getMeterDisplayDescriptor(meter);
     const meterType = meter.meter_type || 'UNIT';
     const stepLabel = `${context.currentIndex + 1} of ${context.totalMeters}`;
 
@@ -744,6 +832,12 @@
     }
 
     document.getElementById('context-info').textContent = contextText;
+    if (meterDescriptor.label) {
+      document.getElementById('context-info').textContent += ` | Label: ${meterDescriptor.label}`;
+    }
+    if (meterDescriptor.serial) {
+      document.getElementById('context-info').textContent += ` | Serial: ${meterDescriptor.serial}`;
+    }
     document.getElementById('progress-info').textContent = progressText;
     document.getElementById('context-card').style.display = 'block';
 
@@ -764,6 +858,11 @@
     const meter = workflowContext.currentMeter;
     const existingReading = storage.getReadings(workflowContext.openCycle.id)
       .find(reading => reading.meter_id === meter.id);
+    preloadWorkbookCapturePolicy();
+
+    const policyHint = getWorkbookCapturePolicyForMeter(meter, {
+      buildingName: workflowContext.currentMeter?.unit_info?.building_name || ''
+    });
     
     // Real-time validation feedback
     const readingInput = document.getElementById('reading-value');
@@ -771,6 +870,7 @@
     const photoInput = document.getElementById('photo-ref');
     const notesInput = document.getElementById('notes');
     const existingNote = document.getElementById('existing-reading-note');
+    const policyNote = document.getElementById('capture-policy-note');
     const submitButton = document.getElementById('reader-submit-btn');
     const backButton = document.getElementById('reader-back-btn');
 
@@ -838,6 +938,28 @@
       existingNote.style.display = 'none';
     }
 
+    if (policyNote) {
+      if (policyHint && policyHint.capturePolicy !== 'unknown') {
+        const policyLabelMap = {
+          capture_required: 'Capture required',
+          skip_allowed: 'Skip allowed',
+          client_submitted: 'Client-submitted reading expected'
+        };
+        const policyLabel = policyLabelMap[policyHint.capturePolicy] || policyHint.capturePolicy;
+        const policyClass = policyHint.capturePolicy === 'capture_required'
+          ? 'background:#e8f5e9;border-left-color:#4caf50;'
+          : 'background:#fff8e1;border-left-color:#ffc107;';
+        policyNote.style.display = 'block';
+        policyNote.style.cssText = `display:block;margin-bottom:1rem;${policyClass}`;
+        policyNote.innerHTML = `
+          <strong>Capture policy:</strong> ${policyLabel}
+          ${policyHint.skipReason ? `<br><small>${policyHint.skipReason}</small>` : ''}
+        `;
+      } else {
+        policyNote.style.display = 'none';
+      }
+    }
+
     // Photo warning (soft — not blocking)
     photoInput.addEventListener('change', function () {
       const photoWarning = document.getElementById('photo-warning');
@@ -897,6 +1019,16 @@
         return;
       }
 
+      if (
+        policyHint
+        && (policyHint.capturePolicy === 'skip_allowed' || policyHint.capturePolicy === 'client_submitted')
+        && !notes.trim()
+      ) {
+        alert('Please add a note when overriding the workbook capture policy with a manual reading.');
+        notesInput.focus();
+        return;
+      }
+
       // Photo is encouraged but not blocking — show soft warning once, allow on second submit
       if (!hasPhoto && !existingReading?.photo) {
         if (photoWarning && photoWarning.style.display === 'none') {
@@ -937,15 +1069,10 @@
             photo_storage_path: existingReading?.photo_storage_path || ''
           };
 
-      // Determine effective previous reading (override or meter-replaced or last_reading)
-      const effectivePreviousReading = getEffectivePreviousReading();
       const meterReplaced = meterReplacedToggle.checked;
-      const previousOverridden = !meterReplaced
-        && prevOverrideInput.value !== ''
-        && parseDecimalInput(prevOverrideInput.value) !== meter.last_reading;
-
-      // Calculate consumption from effective previous — this reading IS the truth
-      const consumption = readingValue - effectivePreviousReading;
+      const overrideValue = prevOverrideInput.value !== ''
+        ? parseDecimalInput(prevOverrideInput.value)
+        : null;
 
       // Get current user
       const currentUser = window.auth ? window.auth.getCurrentUser() : null;
@@ -954,70 +1081,51 @@
         ? `${currentUser.name} (QR)`
         : readerNameValue || 'QR Reader';
 
-      // Build flags
-      const extraFlags = [];
       const photoNotStored = hasPhoto && (!photoPayload.photo || photoPayload.photo_storage_mode === 'failed' || photoPayload.photo_storage_mode === 'no-firebase');
-      if (!hasPhoto && !existingReading?.photo || photoNotStored) {
-        extraFlags.push({
-          type: 'no-photo',
-          severity: 'medium',
-          message: photoNotStored ? 'Photo could not be saved — upload failed on this device' : 'Reading submitted without meter photo',
-          description: photoNotStored ? 'The reader selected a photo but it could not be stored. Re-capture the photo from the Review page.' : 'Photo evidence was not captured. Review this reading manually.'
-        });
-      }
-      if (meterReplaced) {
-        extraFlags.push({
-          type: 'meter-replaced',
-          severity: 'low',
-          message: 'Meter replacement indicated by reader',
-          description: 'Field reader indicated the meter was replaced. Previous consumption baseline reset to 0.'
-        });
-      }
-      if (previousOverridden) {
-        extraFlags.push({
-          type: 'previous-overridden',
-          severity: 'low',
-          message: `Previous reading overridden by reader: ${effectivePreviousReading} kWh (was ${meter.last_reading} kWh)`,
-          description: 'Reader manually corrected the previous reading baseline.'
-        });
+      const policyFlags = [];
+      const policyFields = {};
+      if (policyHint) {
+        policyFields.workbook_capture_policy = policyHint.capturePolicy;
+        policyFields.workbook_policy_match_type = policyHint.matchType;
+        policyFields.workbook_policy_confidence = policyHint.confidence;
+        policyFields.workbook_policy_skip_reason = policyHint.skipReason || '';
+        policyFields.workbook_policy_rationale = policyHint.rationale || '';
+        policyFields.workbook_policy_source_row = policyHint.sourceRowIndex;
+
+        if (policyHint.capturePolicy !== 'capture_required') {
+          policyFlags.push({
+            type: 'policy-override',
+            severity: 'medium',
+            message: `Manual reading captured despite workbook policy: ${policyHint.capturePolicy}`,
+            description: policyHint.skipReason || 'Reader intentionally captured a reading for this meter.'
+          });
+        }
       }
 
-      // Create reading record
-      const readingData = {
-        meter_id: meter.id,
-        cycle_id: workflowContext.openCycle.id,
-        reading_value: readingValue,
-        previous_reading: effectivePreviousReading,
-        reading_date: getCurrentDateTime(),
-        photo: photoPayload.photo,
-        photo_name: photoPayload.photo_name,
-        photo_storage_mode: photoPayload.photo_storage_mode,
-        photo_storage_path: photoPayload.photo_storage_path,
-        notes: notes,
-        consumption,
-        captured_by: capturedBy,
-        captured_by_id: currentUser ? currentUser.id : null,
-        flags: extraFlags,
-        review_status: 'pending',
-        ...(meterReplaced && { meter_replaced: true }),
-        ...(previousOverridden && { previous_reading_source: 'reader_override' })
-      };
+      const readingData = buildCaptureReadingRecord({
+        meter,
+        cycleId: workflowContext.openCycle.id,
+        readingValue,
+        readingDate: getCurrentDateTime(),
+        notes,
+        capturedBy,
+        capturedById: currentUser ? currentUser.id : null,
+        photoPayload,
+        hasPhoto,
+        hadExistingPhoto: Boolean(existingReading?.photo),
+        photoStorageFailed: photoNotStored,
+        meterReplaced,
+        previousOverrideValue: Number.isNaN(overrideValue) ? null : overrideValue,
+        previousOverrideSource: 'reader_override',
+        additionalFlags: policyFlags,
+        additionalFields: policyFields
+      }).reading;
 
-      // Append auto-validation flags (backward, spike, etc.)
-      readingData.flags = [...extraFlags, ...validation.validateReading(readingData)];
-
-      // Save to readings
-      if (existingReading) {
-        storage.update('readings', existingReading.id, readingData);
-      } else {
-        storage.create('readings', readingData);
-      }
-
-      // The new reading is the source of truth — update meter baseline
-      storage.update('meters', meter.id, {
-        last_reading: readingValue,
-        last_reading_date: readingData.reading_date,
-        ...(meterReplaced && { meter_replaced_at: readingData.reading_date })
+      saveCaptureReading({
+        existingReading,
+        reading: readingData,
+        meter,
+        meterUpdateExtras: meterReplaced ? { meter_replaced_at: readingData.reading_date } : {}
       });
 
       // Wait for all in-flight Firestore writes to land before navigating.
@@ -1092,7 +1200,7 @@
         </div>`;
       document.body.appendChild(modal);
 
-      document.getElementById('reader-flag-form').addEventListener('submit', (e) => {
+      document.getElementById('reader-flag-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const issueType = document.querySelector('input[name="flag-issue"]:checked')?.value;
         if (!issueType) { alert('Please select an issue type.'); return; }
@@ -1101,6 +1209,10 @@
 
         const currentUser = window.auth?.getCurrentUser();
         const capturedBy = currentUser?.name ? `${currentUser.name} (QR)` : 'QR Reader';
+        const skipPolicyHint = getWorkbookCapturePolicyForMeter(meter, {
+          buildingName: workflowContext.currentMeter?.unit_info?.building_name || ''
+        });
+        const policyConflict = skipPolicyHint && skipPolicyHint.capturePolicy === 'capture_required';
 
         const issueReading = {
           meter_id: meter.id,
@@ -1115,7 +1227,15 @@
           review_status: 'pending',
           is_issue: true,
           issue_type: issueType,
-          flags: [{ type: 'issue', severity: 'high', message: `Meter issue: ${issueType}`, description: flagNotes }],
+          workbook_capture_policy: skipPolicyHint?.capturePolicy || null,
+          workbook_policy_skip_reason: skipPolicyHint?.skipReason || '',
+          workbook_policy_match_type: skipPolicyHint?.matchType || null,
+          flags: [{ type: 'issue', severity: 'high', message: `Meter issue: ${issueType}`, description: flagNotes }, ...(policyConflict ? [{
+            type: 'capture-policy-conflict',
+            severity: 'high',
+            message: 'Meter skipped even though workbook policy expected capture_required',
+            description: skipPolicyHint.skipReason || ''
+          }] : [])],
           photo: '', photo_name: '', photo_storage_mode: '', photo_storage_path: ''
         };
 

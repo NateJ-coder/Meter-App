@@ -1,0 +1,1483 @@
+{
+  "review": [
+    {
+      "row_index": 2,
+      "source_row": {
+        "row_index": 2,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2025-12-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": null,
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row is blank or contains no usable meter data.",
+      "confidence": 0,
+      "rationale": "No building, meter label, serial number, or reading provided.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 16,
+      "source_row": {
+        "row_index": 16,
+        "building": "Akasia",
+        "meter_label": "14 / FL 114",
+        "serial_number": "Unknown",
+        "reading_raw": 0,
+        "notes": "Empty"
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "14 / FL 114",
+      "serial_number_clean": "Unknown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading is marked as 'Empty'.",
+      "confidence": 0.5,
+      "rationale": "Meter label includes 'FL 114' as per rule 3. Reading is empty, skip allowed.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 17,
+      "source_row": {
+        "row_index": 17,
+        "building": "Akasia",
+        "meter_label": "15 / FL 115",
+        "serial_number": "Unknown",
+        "reading_raw": 0,
+        "notes": "Empty"
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "15 / FL 115",
+      "serial_number_clean": "Unknown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading is marked as 'Empty'.",
+      "confidence": 0.5,
+      "rationale": "Meter label includes 'FL 115' as per rule 3. Reading is empty, skip allowed.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 21,
+      "source_row": {
+        "row_index": 21,
+        "building": "Akasia",
+        "meter_label": "19 / FL 23",
+        "serial_number": "Unknown",
+        "reading_raw": 0,
+        "notes": "Empty"
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "19 / FL 23",
+      "serial_number_clean": "Unknown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading is marked as 'Empty'.",
+      "confidence": 0.5,
+      "rationale": "Meter label includes 'FL 23' as per rule 3. Reading is empty, skip allowed.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 32,
+      "source_row": {
+        "row_index": 32,
+        "building": "Akasia",
+        "meter_label": "30 / FL 215",
+        "serial_number": "Unknown",
+        "reading_raw": 0,
+        "notes": "No Reading"
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "30 / FL 215",
+      "serial_number_clean": "Unknown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading is marked as 'No Reading'.",
+      "confidence": 0.5,
+      "rationale": "Meter label includes 'FL 215' as per rule 3. Reading is absent, skip allowed.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 35,
+      "source_row": {
+        "row_index": 35,
+        "building": "Akasia",
+        "meter_label": "33 FL 34",
+        "serial_number": "Unknown",
+        "reading_raw": 14.06,
+        "notes": "Empty"
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "33 FL 34",
+      "serial_number_clean": "Unknown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading is marked as 'Empty'.",
+      "confidence": 0.5,
+      "rationale": "Meter label includes 'FL 34' as per rule 3. Reading is empty, skip allowed.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 39,
+      "source_row": {
+        "row_index": 39,
+        "building": "Akasia",
+        "meter_label": "37 / FL 316",
+        "serial_number": "Unknown",
+        "reading_raw": 13.73,
+        "notes": "Empty"
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "37 / FL 316",
+      "serial_number_clean": "Unknown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading is marked as 'Empty'.",
+      "confidence": 0.5,
+      "rationale": "Meter label includes 'FL 316' as per rule 3. Reading is empty, skip allowed.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 40,
+      "source_row": {
+        "row_index": 40,
+        "building": "Akasia",
+        "meter_label": "38 / FL 317",
+        "serial_number": "Unknown",
+        "reading_raw": 6.87,
+        "notes": "Empty"
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "38 / FL 317",
+      "serial_number_clean": "Unknown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading is marked as 'Empty'.",
+      "confidence": 0.5,
+      "rationale": "Meter label includes 'FL 317' as per rule 3. Reading is empty, skip allowed.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 61,
+      "source_row": {
+        "row_index": 61,
+        "building": "Akasia",
+        "meter_label": "59 / FL 414",
+        "serial_number": "Unknown",
+        "reading_raw": 0,
+        "notes": "No Reading"
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "59 / FL 414",
+      "serial_number_clean": "Unknown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading is marked as 'No Reading'.",
+      "confidence": 0.5,
+      "rationale": "Meter label includes 'FL 414' as per rule 3. Reading is absent, skip allowed.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 96,
+      "source_row": {
+        "row_index": 96,
+        "building": "Akasia currently does not have any electricity and the last readings were only captured in Jan 2026.",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Akasia",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-01-01",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Building notes indicate no electricity and last readings were in Jan 2026.",
+      "confidence": 0.8,
+      "rationale": "Building notes indicate no electricity and last readings were in Jan 2026, making current readings invalid.",
+      "review_issues": [
+        "missing-meter-label"
+      ]
+    },
+    {
+      "row_index": 109,
+      "source_row": {
+        "row_index": 109,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-03-31",
+      "capture_policy": "unknown",
+      "skip_reason": "Missing building and meter label information.",
+      "confidence": 0.5,
+      "rationale": "Row contains a date but lacks essential building and meter identification.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "unknown-policy",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 186,
+      "source_row": {
+        "row_index": 186,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-03-31",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row appears to be a date entry, not a meter reading.",
+      "confidence": 0.5,
+      "rationale": "Row contains only a date and no meter details.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 224,
+      "source_row": {
+        "row_index": 224,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-03-31",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row appears to be a date marker or incomplete entry with no meter details.",
+      "confidence": 0.1,
+      "rationale": "Row lacks essential meter identification and reading data, only contains a date.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 288,
+      "source_row": {
+        "row_index": 288,
+        "building": "Genesis Bulk",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Genesis Bulk",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row is blank, no meter reading or serial number provided.",
+      "confidence": 0,
+      "rationale": "Blank row, skipped as per policy.",
+      "review_issues": [
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 293,
+      "source_row": {
+        "row_index": 293,
+        "building": "Genesis",
+        "meter_label": "Com 5",
+        "serial_number": "",
+        "reading_raw": null,
+        "notes": "Empty"
+      },
+      "building_clean": "Genesis",
+      "meter_label_clean": "Com 5",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Meter label 'Com 5' has no serial number or reading, marked as empty.",
+      "confidence": 0,
+      "rationale": "Missing serial number and reading, skipped as per policy.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 297,
+      "source_row": {
+        "row_index": 297,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-03-31",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row is blank, no building, meter label, serial number, or reading provided.",
+      "confidence": 0,
+      "rationale": "Blank row with only a date, skipped as per policy.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 364,
+      "source_row": {
+        "row_index": 364,
+        "building": "Hazelmere",
+        "meter_label": "G1",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G1",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.5,
+      "rationale": "Reading is null, date inferred from workbook notes. Requires manual verification.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 365,
+      "source_row": {
+        "row_index": 365,
+        "building": "Hazelmere",
+        "meter_label": "G19",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G19",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.5,
+      "rationale": "Reading is null, date inferred from workbook notes. Requires manual verification.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 366,
+      "source_row": {
+        "row_index": 366,
+        "building": "Hazelmere",
+        "meter_label": "G2",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G2",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.5,
+      "rationale": "Reading is null, date inferred from workbook notes. Requires manual verification.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 367,
+      "source_row": {
+        "row_index": 367,
+        "building": "Hazelmere",
+        "meter_label": "G4",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G4",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.5,
+      "rationale": "Reading is null, date inferred from workbook notes. Requires manual verification.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 391,
+      "source_row": {
+        "row_index": 391,
+        "building": "Hazelmere",
+        "meter_label": "G90",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G90",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading value is null.",
+      "confidence": 0,
+      "rationale": "Null reading value, cannot capture.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 392,
+      "source_row": {
+        "row_index": 392,
+        "building": "Hazelmere",
+        "meter_label": "G91",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G91",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading value is null.",
+      "confidence": 0,
+      "rationale": "Null reading value, cannot capture.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 425,
+      "source_row": {
+        "row_index": 425,
+        "building": "Hazelmere",
+        "meter_label": "G106",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G106",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading value is null.",
+      "confidence": 0,
+      "rationale": "Null reading value, cannot capture.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 428,
+      "source_row": {
+        "row_index": 428,
+        "building": "Hazelmere",
+        "meter_label": "G116",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G116",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading value is null.",
+      "confidence": 0,
+      "rationale": "Null reading value, cannot capture.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 438,
+      "source_row": {
+        "row_index": 438,
+        "building": "Hazelmere",
+        "meter_label": "G110",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "G110",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading value is null.",
+      "confidence": 0,
+      "rationale": "Null reading value, cannot capture.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 447,
+      "source_row": {
+        "row_index": 447,
+        "building": "Hazelmere",
+        "meter_label": "ST10",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "ST10",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Missing reading value.",
+      "confidence": 0.5,
+      "rationale": "Missing reading value, cannot capture. Inferred date from workbook notes.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 448,
+      "source_row": {
+        "row_index": 448,
+        "building": "Hazelmere",
+        "meter_label": "ST12",
+        "serial_number": "Unkown",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "Hazelmere",
+      "meter_label_clean": "ST12",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Missing reading value.",
+      "confidence": 0.5,
+      "rationale": "Missing reading value, cannot capture. Inferred date from workbook notes.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 452,
+      "source_row": {
+        "row_index": 452,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-03-31",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Missing building and meter label.",
+      "confidence": 0.1,
+      "rationale": "Missing essential building and meter label information.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 507,
+      "source_row": {
+        "row_index": 507,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-03-31",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Missing building and meter label.",
+      "confidence": 0.1,
+      "rationale": "Missing essential building and meter label information.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 565,
+      "source_row": {
+        "row_index": 565,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": null,
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row is blank or contains only metadata.",
+      "confidence": 0,
+      "rationale": "Row is blank, skipping.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 586,
+      "source_row": {
+        "row_index": 586,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-03-31",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row appears to be a date marker, not a meter reading.",
+      "confidence": 0.1,
+      "rationale": "Row contains only a date and no building or meter information, likely a date marker.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 633,
+      "source_row": {
+        "row_index": 633,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-02-28T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-02-28",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row appears to be a date marker, not a meter reading.",
+      "confidence": 0.1,
+      "rationale": "Row contains only a date and no building or meter information, likely a date marker.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 637,
+      "source_row": {
+        "row_index": 637,
+        "building": "Vilino Glen",
+        "meter_label": "VG 04",
+        "serial_number": "Unkown",
+        "reading_raw": 15838,
+        "notes": "I think we only capture water for this building, so we do not need to concern ourselves with the electricity aspect. Also, the client sends use their water readings, so we actually do not need to concern ourselves with this building until we integrate water on the app. In the meantime, perhaps we can establish a method of manually uploading data via the web-side admin console app? For the cases where readings are sent to us via clients. March 2026 was the last month that we did their electricity."
+      },
+      "building_clean": "Vilino Glen",
+      "meter_label_clean": "VG 04",
+      "serial_number_clean": "Unkown",
+      "reading_value_clean": 15838,
+      "reading_date_clean": "2026-03-31",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Notes indicate this meter is for water only and electricity readings are no longer captured for this building.",
+      "confidence": 0.2,
+      "rationale": "Notes explicitly state that electricity is not captured for this meter, and it's for water only. Date is inferred from notes.",
+      "review_issues": [
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 678,
+      "source_row": {
+        "row_index": 678,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": null,
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row is blank or contains no meter reading information.",
+      "confidence": 0,
+      "rationale": "Blank row, no meter data.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 731,
+      "source_row": {
+        "row_index": 731,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-04-30T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-04-30",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row appears to be a date marker or header, not a meter reading.",
+      "confidence": 0.1,
+      "rationale": "Row contains only a date and no meter details, likely a marker.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 778,
+      "source_row": {
+        "row_index": 778,
+        "building": "",
+        "meter_label": "",
+        "serial_number": "",
+        "reading_raw": "2026-03-31T22:00:00.000Z",
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": null,
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Row appears to be a date entry or malformed, no meter reading data.",
+      "confidence": 0,
+      "rationale": "Missing building, meter label, and reading value.",
+      "review_issues": [
+        "missing-building",
+        "missing-meter-label",
+        "low-confidence"
+      ]
+    },
+    {
+      "row_index": 780,
+      "source_row": {
+        "row_index": 780,
+        "building": "",
+        "meter_label": "BC 02",
+        "serial_number": "",
+        "reading_raw": 324435,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 02",
+      "serial_number_clean": "",
+      "reading_value_clean": 324435,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 781,
+      "source_row": {
+        "row_index": 781,
+        "building": "",
+        "meter_label": "BC 03",
+        "serial_number": "",
+        "reading_raw": 45780,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 03",
+      "serial_number_clean": "",
+      "reading_value_clean": 45780,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 782,
+      "source_row": {
+        "row_index": 782,
+        "building": "",
+        "meter_label": "BC 04",
+        "serial_number": "",
+        "reading_raw": 369418,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 04",
+      "serial_number_clean": "",
+      "reading_value_clean": 369418,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 783,
+      "source_row": {
+        "row_index": 783,
+        "building": "",
+        "meter_label": "BC 05",
+        "serial_number": "",
+        "reading_raw": 263195,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 05",
+      "serial_number_clean": "",
+      "reading_value_clean": 263195,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 784,
+      "source_row": {
+        "row_index": 784,
+        "building": "",
+        "meter_label": "BC 06",
+        "serial_number": "",
+        "reading_raw": 514760,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 06",
+      "serial_number_clean": "",
+      "reading_value_clean": 514760,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 785,
+      "source_row": {
+        "row_index": 785,
+        "building": "",
+        "meter_label": "BC 07",
+        "serial_number": "",
+        "reading_raw": 561767,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 07",
+      "serial_number_clean": "",
+      "reading_value_clean": 561767,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 786,
+      "source_row": {
+        "row_index": 786,
+        "building": "",
+        "meter_label": "BC 08",
+        "serial_number": "",
+        "reading_raw": 53008,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 08",
+      "serial_number_clean": "",
+      "reading_value_clean": 53008,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 787,
+      "source_row": {
+        "row_index": 787,
+        "building": "",
+        "meter_label": "BC 09",
+        "serial_number": "",
+        "reading_raw": 328599,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 09",
+      "serial_number_clean": "",
+      "reading_value_clean": 328599,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 788,
+      "source_row": {
+        "row_index": 788,
+        "building": "",
+        "meter_label": "BC 10",
+        "serial_number": "",
+        "reading_raw": 442777,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 10",
+      "serial_number_clean": "",
+      "reading_value_clean": 442777,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 789,
+      "source_row": {
+        "row_index": 789,
+        "building": "",
+        "meter_label": "BC 11",
+        "serial_number": "",
+        "reading_raw": 364940,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 11",
+      "serial_number_clean": "",
+      "reading_value_clean": 364940,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 790,
+      "source_row": {
+        "row_index": 790,
+        "building": "",
+        "meter_label": "BC 12",
+        "serial_number": "",
+        "reading_raw": 30157,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 12",
+      "serial_number_clean": "",
+      "reading_value_clean": 30157,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 791,
+      "source_row": {
+        "row_index": 791,
+        "building": "",
+        "meter_label": "BC 13",
+        "serial_number": "",
+        "reading_raw": 346210,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 13",
+      "serial_number_clean": "",
+      "reading_value_clean": 346210,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 792,
+      "source_row": {
+        "row_index": 792,
+        "building": "",
+        "meter_label": "BC 14",
+        "serial_number": "",
+        "reading_raw": 413848,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 14",
+      "serial_number_clean": "",
+      "reading_value_clean": 413848,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 793,
+      "source_row": {
+        "row_index": 793,
+        "building": "",
+        "meter_label": "BC 15",
+        "serial_number": "",
+        "reading_raw": 338058,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 15",
+      "serial_number_clean": "",
+      "reading_value_clean": 338058,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 794,
+      "source_row": {
+        "row_index": 794,
+        "building": "",
+        "meter_label": "BC 16",
+        "serial_number": "",
+        "reading_raw": 58736,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 16",
+      "serial_number_clean": "",
+      "reading_value_clean": 58736,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 795,
+      "source_row": {
+        "row_index": 795,
+        "building": "",
+        "meter_label": "BC 17",
+        "serial_number": "",
+        "reading_raw": 355071,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 17",
+      "serial_number_clean": "",
+      "reading_value_clean": 355071,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 796,
+      "source_row": {
+        "row_index": 796,
+        "building": "",
+        "meter_label": "BC 18",
+        "serial_number": "",
+        "reading_raw": 321085,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 18",
+      "serial_number_clean": "",
+      "reading_value_clean": 321085,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 797,
+      "source_row": {
+        "row_index": 797,
+        "building": "",
+        "meter_label": "BC 19",
+        "serial_number": "",
+        "reading_raw": 389137,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 19",
+      "serial_number_clean": "",
+      "reading_value_clean": 389137,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 798,
+      "source_row": {
+        "row_index": 798,
+        "building": "",
+        "meter_label": "BC 20",
+        "serial_number": "",
+        "reading_raw": 477815,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 20",
+      "serial_number_clean": "",
+      "reading_value_clean": 477815,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 799,
+      "source_row": {
+        "row_index": 799,
+        "building": "",
+        "meter_label": "BC 21",
+        "serial_number": "",
+        "reading_raw": 187505,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 21",
+      "serial_number_clean": "",
+      "reading_value_clean": 187505,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 800,
+      "source_row": {
+        "row_index": 800,
+        "building": "",
+        "meter_label": "BC 22",
+        "serial_number": "",
+        "reading_raw": 404326,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 22",
+      "serial_number_clean": "",
+      "reading_value_clean": 404326,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 801,
+      "source_row": {
+        "row_index": 801,
+        "building": "",
+        "meter_label": "BC 23",
+        "serial_number": "",
+        "reading_raw": 445841,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 23",
+      "serial_number_clean": "",
+      "reading_value_clean": 445841,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 802,
+      "source_row": {
+        "row_index": 802,
+        "building": "",
+        "meter_label": "BC 24",
+        "serial_number": "",
+        "reading_raw": 311803,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "BC 24",
+      "serial_number_clean": "",
+      "reading_value_clean": 311803,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture. Meter label adjusted for leading zero.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 803,
+      "source_row": {
+        "row_index": 803,
+        "building": "",
+        "meter_label": "Com Storeroom",
+        "serial_number": "",
+        "reading_raw": 93163,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "Com Storeroom",
+      "serial_number_clean": "",
+      "reading_value_clean": 93163,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 804,
+      "source_row": {
+        "row_index": 804,
+        "building": "",
+        "meter_label": "Com Staff Room 1 (Willie)",
+        "serial_number": "",
+        "reading_raw": 17231,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "Com Staff Room 1 (Willie)",
+      "serial_number_clean": "",
+      "reading_value_clean": 17231,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 805,
+      "source_row": {
+        "row_index": 805,
+        "building": "",
+        "meter_label": "Com Staff Room 2 (unit 16)",
+        "serial_number": "",
+        "reading_raw": 68999,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "Com Staff Room 2 (unit 16)",
+      "serial_number_clean": "",
+      "reading_value_clean": 68999,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "capture_required",
+      "skip_reason": "",
+      "confidence": 0.9,
+      "rationale": "Standard reading capture.",
+      "review_issues": [
+        "missing-building"
+      ]
+    },
+    {
+      "row_index": 806,
+      "source_row": {
+        "row_index": 806,
+        "building": "",
+        "meter_label": "Bulk 1",
+        "serial_number": "",
+        "reading_raw": null,
+        "notes": ""
+      },
+      "building_clean": "",
+      "meter_label_clean": "Bulk 1",
+      "serial_number_clean": "",
+      "reading_value_clean": null,
+      "reading_date_clean": "2026-05-04",
+      "capture_policy": "skip_allowed",
+      "skip_reason": "Reading value is null.",
+      "confidence": 0,
+      "rationale": "Null reading value.",
+      "review_issues": [
+        "missing-building",
+        "low-confidence"
+      ]
+    }
+  ],
+  "rejected": []
+}

@@ -184,7 +184,7 @@ export const cycleCloseRitual = {
                                     ${readiness.unreviewedFlags > 0 ? `
                                         <p class="text-warning">
                                             <strong>${readiness.unreviewedFlags} flagged readings need review.</strong><br>
-                                            You can review them in the <a href="review.html">Review page</a>.
+                                            You can review them in the <a href="review.html?cycle=${encodeURIComponent(cycleId)}&focus=flagged&status=pending">Review page</a>.
                                         </p>
                                     ` : `
                                         <p class="text-success">All flagged readings have been reviewed.</p>
@@ -275,7 +275,7 @@ export const cycleCloseRitual = {
                                 </button>
                             ` : ''}
                             ${readiness.unreviewedFlags > 0 ? `
-                                <button type="button" class="btn btn-secondary" onclick="goToReview()">
+                                <button type="button" class="btn btn-secondary" onclick="goToReview('${cycleId}')">
                                     Review Flags
                                 </button>
                             ` : ''}
@@ -359,8 +359,14 @@ window.goToCaptureReadings = function() {
     window.location.href = 'reading-cycle.html#capture';
 };
 
-window.goToReview = function() {
-    window.location.href = 'review.html';
+window.goToReview = function(cycleId = '') {
+    const params = new URLSearchParams();
+    if (cycleId) {
+        params.set('cycle', cycleId);
+    }
+    params.set('focus', 'flagged');
+    params.set('status', 'pending');
+    window.location.href = `review.html?${params.toString()}`;
 };
 
 window.confirmCloseCycle = function(cycleId) {
