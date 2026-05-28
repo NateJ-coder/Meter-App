@@ -86,7 +86,7 @@ function updateReviewQueryFromState() {
     const flagType = document.getElementById('filter-flag-type').value;
     const params = new URLSearchParams(window.location.search);
 
-    if (cycleId) params.set('cycle', cycleId);
+    if (cycleId && cycleId !== 'all') params.set('cycle', cycleId);
     else params.delete('cycle');
 
     if (activeFocus && activeFocus !== REVIEW_FOCUS.ALL) params.set('focus', activeFocus);
@@ -152,22 +152,38 @@ function populateCycleSelect() {
     );
     
     const select = document.getElementById('review-cycle');
-    select.innerHTML = '<option value="">-- Select Cycle --</option>' +
+    const previousValue = select.value;
+    select.innerHTML = '<option value="all">All Schemes / All Cycles</option>' +
         cycles.map(cycle => {
             const scheme = storage.get('schemes', cycle.scheme_id);
             return `<option value="${cycle.id}">${scheme ? scheme.name : 'Unknown'} - ${cycle.start_date} (${cycle.status})</option>`;
         }).join('');
-    
-    // Auto-select first cycle if available
-    if (cycles.length > 0) {
-        select.value = cycles[0].id;
+
+    if (previousValue && select.querySelector(`option[value="${previousValue}"]`)) {
+        select.value = previousValue;
+    } else {
+        select.value = 'all';
     }
 }
 
-window.loadReviewData = function() {
+function getReviewScope(cycleId) {
+    const visibleCycles = storage.getVisibleCycles();
+    const scopedCycles = cycleId && cycleId !== 'all'
+        ? visibleCycles.filter(cycle => cycle.id === cycleId)
+        : visibleCycles;
+
+    const cycleMap = new Map(scopedCycles.map(cycle => [cycle.id, cycle]));
+    const readings = scopedCycles.flatMap(cycle => storage.getReadings(cycle.id));
+
+    return { scopedCycles, cycleMap, readings };
+}
+
+function loadReviewData() {
     const cycleId = document.getElementById('review-cycle').value;
-    if (!cycleId) {
-        document.getElementById('flagged-readings-list').innerHTML = '<p class="text-muted">Select a cycle to review.</p>';
+    const { scopedCycles } = getReviewScope(cycleId);
+
+    if (scopedCycles.length === 0) {
+        document.getElementById('flagged-readings-list').innerHTML = '<p class="text-muted">No cycles available yet.</p>';
         document.getElementById('missing-readings-list').innerHTML = '';
         return;
     }
@@ -182,16 +198,24 @@ window.loadReviewData = function() {
 
     applyFocusPreset();
     updateReviewQueryFromState();
-};
+}
+
+window.loadReviewData = loadReviewData;
 
 function loadMetrics(cycleId) {
-    const cycle = storage.get('cycles', cycleId);
-    const meters = storage.getMeters(cycle.scheme_id).filter(m => m.meter_type === 'UNIT');
-    const readings = storage.getReadings(cycleId);
+    const { scopedCycles, readings, cycleMap } = getReviewScope(cycleId);
+
+    if (scopedCycles.length === 0) {
+        document.getElementById('review-total-readings').textContent = '0';
+        document.getElementById('review-not-read').textContent = '0';
+        document.getElementById('review-flagged').textContent = '0';
+        document.getElementById('review-approved').textContent = '0';
+        return;
+    }
     
-    const flaggedCount = readings.filter(r => r.flags && r.flags.length > 0).length;
-    const approvedCount = readings.filter(r => getEffectiveReviewStatus(r, cycle) === 'approved').length;
-    const notReadCount = meters.length - readings.length;
+    const flaggedCount = readings.filter(r => (r.flags && r.flags.length > 0) || (r.manual_flags && r.manual_flags.length > 0)).length;
+    const approvedCount = readings.filter(r => getEffectiveReviewStatus(r, cycleMap.get(r.cycle_id)) === 'approved').length;
+    const notReadCount = scopedCycles.reduce((total, cycle) => total + validation.getMissingReadings(cycle.id).length, 0);
     
     document.getElementById('review-total-readings').textContent = readings.length;
     document.getElementById('review-not-read').textContent = notReadCount;
@@ -200,7 +224,7 @@ function loadMetrics(cycleId) {
 }
 
 function loadFlaggedReadings(cycleId) {
-    const readings = storage.getReadings(cycleId);
+    const { readings } = getReviewScope(cycleId);
     const flaggedReadings = readings.filter(r =>
         (r.flags && r.flags.length > 0) || (r.manual_flags && r.manual_flags.length > 0)
     );
@@ -219,6 +243,9 @@ function renderFlaggedReadings(flaggedReadings, cycleId) {
         <table class="data-table">
             <thead>
                 <tr>
+                    <th>Scheme</th>
+                    <th>Cycle</th>
+                    <th>Building</th>
                     <th>Unit</th>
                     <th>Meter</th>
                     <th>Reading</th>
@@ -231,7 +258,9 @@ function renderFlaggedReadings(flaggedReadings, cycleId) {
             <tbody>
                 ${flaggedReadings.map(reading => {
                     const meter = storage.getMeterWithDetails(reading.meter_id);
-                    const effectiveStatus = getEffectiveReviewStatus(reading, storage.get('cycles', cycleId));
+                    const cycle = storage.get('cycles', reading.cycle_id);
+                    const scheme = cycle ? storage.get('schemes', cycle.scheme_id) : null;
+                    const effectiveStatus = getEffectiveReviewStatus(reading, cycle);
                     
                     // PHASE 3: Show both auto and manual flags
                     const allFlags = validation.getAllFlags(reading);
@@ -250,6 +279,9 @@ function renderFlaggedReadings(flaggedReadings, cycleId) {
                     
                     return `
                         <tr>
+                            <td>${scheme?.name || 'Unknown Scheme'}</td>
+                            <td>${cycle ? `${cycle.start_date} to ${cycle.end_date}` : 'N/A'}</td>
+                            <td>${meter.building_name || 'N/A'}</td>
                             <td>${meter.unit_name || 'N/A'}</td>
                             <td>${meter.meter_number}</td>
                             <td>${reading.reading_value} kWh</td>
@@ -268,10 +300,13 @@ function renderFlaggedReadings(flaggedReadings, cycleId) {
 }
 
 function loadMissingReadings(cycleId) {
-    const missingMeters = validation.getMissingReadings(cycleId);
+    const { scopedCycles } = getReviewScope(cycleId);
+    const missingRows = scopedCycles.flatMap(cycle =>
+        validation.getMissingReadings(cycle.id).map(meter => ({ meter, cycle }))
+    );
     const container = document.getElementById('missing-readings-list');
     
-    if (missingMeters.length === 0) {
+    if (missingRows.length === 0) {
         container.innerHTML = '<p class="text-muted">All meters have been read.</p>';
         return;
     }
@@ -280,6 +315,8 @@ function loadMissingReadings(cycleId) {
         <table class="data-table">
             <thead>
                 <tr>
+                    <th>Scheme</th>
+                    <th>Cycle</th>
                     <th>Building</th>
                     <th>Unit</th>
                     <th>Meter Number</th>
@@ -288,10 +325,13 @@ function loadMissingReadings(cycleId) {
                 </tr>
             </thead>
             <tbody>
-                ${missingMeters.map(meter => {
+                ${missingRows.map(({ meter, cycle }) => {
                     const meterDetails = storage.getMeterWithDetails(meter.id);
+                    const scheme = storage.get('schemes', cycle.scheme_id);
                     return `
                         <tr>
+                            <td>${scheme?.name || 'Unknown Scheme'}</td>
+                            <td>${cycle.start_date} to ${cycle.end_date}</td>
                             <td>${meterDetails.building_name || 'N/A'}</td>
                             <td><strong>${meterDetails.unit_name || 'N/A'}</strong></td>
                             <td>${meter.meter_number}</td>
@@ -307,34 +347,34 @@ function loadMissingReadings(cycleId) {
 
 window.filterReview = function() {
     const cycleId = document.getElementById('review-cycle').value;
-    if (!cycleId) return;
+    const { readings, cycleMap } = getReviewScope(cycleId);
+    if (cycleMap.size === 0) return;
 
     const flagTypeFilter = document.getElementById('filter-flag-type').value.toLowerCase();
     const statusFilter = document.getElementById('filter-review-status').value.toLowerCase();
 
-    const cycle = storage.get('cycles', cycleId);
-    let readings = storage.getReadings(cycleId);
+    let filteredReadings = readings;
 
     // Keep only flagged readings for the flagged table
-    readings = readings.filter(r =>
+    filteredReadings = filteredReadings.filter(r =>
         (r.flags && r.flags.length > 0) || (r.manual_flags && r.manual_flags.length > 0)
     );
 
     if (flagTypeFilter) {
-        readings = readings.filter(r => {
+        filteredReadings = filteredReadings.filter(r => {
             const allFlags = [...(r.flags || []), ...(r.manual_flags || [])];
             return allFlags.some(f => String(f.type).toLowerCase() === flagTypeFilter);
         });
     }
 
     if (statusFilter) {
-        readings = readings.filter(r => {
-            const effective = String(getEffectiveReviewStatus(r, cycle)).toLowerCase();
+        filteredReadings = filteredReadings.filter(r => {
+            const effective = String(getEffectiveReviewStatus(r, cycleMap.get(r.cycle_id))).toLowerCase();
             return effective === statusFilter;
         });
     }
 
-    renderFlaggedReadings(readings, cycleId);
+    renderFlaggedReadings(filteredReadings, cycleId);
     updateReviewQueryFromState();
 };
 
@@ -532,7 +572,7 @@ document.getElementById('review-form').addEventListener('submit', (e) => {
     showNotification(`Reading marked as: ${action}`);
     
     closeReviewModal();
-    loadReviewData();
+    window.loadReviewData();
 });
 // Export individual meter report from review modal
 window.exportMeterReportFromReview = async function(meterId, cycleId) {

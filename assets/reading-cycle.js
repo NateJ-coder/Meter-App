@@ -611,6 +611,20 @@ window.selectActiveCycle = function() {
 window.selectCycle = function(cycleId) {
     cyclePageState.selectedCycleId = cycleId;
     renderOpenCycles();
+
+    const cycle = storage.get('cycles', cycleId);
+    if (cycle) {
+        const buildingSelect = document.getElementById('filter-building');
+        if (buildingSelect && !buildingSelect.value) {
+            const buildings = storage.getBuildings(cycle.scheme_id);
+            if (buildings.length > 0) {
+                buildingSelect.value = buildings[0].id;
+            }
+        }
+        loadReadingsList(cycleId);
+    }
+
+    document.getElementById('capture-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 window.cancelCycleFromList = function(cycleId) {
