@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fuzio MeterCapture — Design System &amp; Screen Mockups</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap');
+
+  /* ============================================================
+     DESIGN TOKENS
+     Confirmed Fuzio Properties brand palette, sourced from the
+     "Fuzio Staff Hub" internal README (Primary Blue, Accent Gold/Orange,
+     Deep Charcoal, Info Grey, Status Green, Warning Red). Every
+     component below reads from these variables, so any future
+     tweak is still a one-pass fix.
+     ============================================================ */
+  :root{
+    --navy-900:#00203D;
+    --navy-800:#004A99;
+    --navy-700:#0A5CB8;
+    --navy-600:#1C6FCE;
+    --blue-500:#2E86D1;
+    --blue-100:#E1EDFA;
+    --gold-600:#D68E12;
+    --gold-500:#F5A623;
+    --gold-400:#F7B84D;
+    --gold-100:#FDEDD3;
+    --bg:#F4F6F9;
+    --surface:#FFFFFF;
+    --surface-alt:#F8FAFC;
+    --text-900:#2D2D2D;
+    --text-600:#6C757D;
+    --text-400:#9CA3AC;
+    --border:#E1E4E8;
+    --border-soft:#ECEEF1;
+    --success:#28A745;
+    --success-bg:#E9F7EC;
+    --warning:#F5A623;
+    --warning-bg:#FDF1DD;
+    --danger:#DC3545;
+    --danger-bg:#FBE3E5;
+    --radius-xs:6px;
+    --radius-sm:10px;
+    --radius-md:16px;
+    --radius-lg:26px;
+    --radius-pill:999px;
+    --shadow-1:0 1px 2px rgba(15,42,74,.06), 0 1px 1px rgba(15,42,74,.05);
+    --shadow-2:0 10px 30px rgba(10,27,46,.16);
+    --shadow-3:0 22px 50px rgba(10,27,46,.22);
+    --font-head:'Poppins',sans-serif;
+    --font-body:'Inter',sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font-body);
+    background:var(--bg);
+    color:var(--text-900);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--font-head); margin:0; color:var(--navy-900);}
+  p{margin:0;}
+  a{color:inherit;}
+  ::selection{background:var(--gold-400); color:var(--navy-900);}
+
+  /* ============================================================
+     PAGE CHROME
+     ============================================================ */
+  .topbar{
+    background:var(--navy-900);
+    color:#fff;
+    padding:22px 40px;
+    display:flex; align-items:center; justify-content:space-between;
+    position:sticky; top:0; z-index:50;
+    border-bottom:3px solid var(--gold-500);
+  }
+  .topbar .brand{display:flex; align-items:center; gap:14px;}
+  .brand-mark{
+    width:42px; height:42px; border-radius:12px;
+    background:linear-gradient(145deg, var(--gold-400), var(--gold-600));
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-head); font-weight:700; font-size:18px; color:var(--navy-900);
+    box-shadow:var(--shadow-1);
+  }
+  .brand-text .name{font-family:var(--font-head); font-weight:600; font-size:17px; letter-spacing:.2px;}
+  .brand-text .sub{font-size:12px; color:#9FB3C8; letter-spacing:.4px; text-transform:uppercase;}
+  .topbar nav{display:flex; gap:28px;}
+  .topbar nav a{
+    color:#CBDAE7; text-decoration:none; font-size:13.5px; font-weight:500;
+    padding-bottom:4px; border-bottom:2px solid transparent; transition:.15s;
+  }
+  .topbar nav a:hover{color:#fff; border-color:var(--gold-500);}
+  .topbar .flag{
+    font-size:11px; color:var(--navy-900); background:var(--gold-400);
+    padding:5px 10px; border-radius:var(--radius-pill); font-weight:700; letter-spacing:.3px;
+  }
+
+  main{max-width:1360px; margin:0 auto; padding:48px 40px 100px;}
+
+  .section-intro{max-width:760px; margin-bottom:34px;}
+  .section-intro .eyebrow{
+    font-size:12px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
+    color:var(--gold-600); margin-bottom:10px; display:block;
+  }
+  .section-intro h2{font-size:30px; margin-bottom:10px;}
+  .section-intro p{color:var(--text-600); font-size:15px; line-height:1.6;}
+
+  .screens-section{margin-bottom:88px; scroll-margin-top:100px;}
+  .row-label{
+    font-size:13px; font-weight:700; color:var(--navy-700); text-transform:uppercase;
+    letter-spacing:.6px; margin:34px 0 16px; display:flex; align-items:center; gap:10px;
+  }
+  .row-label::after{content:""; flex:1; height:1px; background:var(--border);}
+  .frame-row{display:flex; flex-wrap:wrap; gap:28px; align-items:flex-start;}
+  .frame-caption{
+    max-width:300px; margin-top:14px; font-size:13px; color:var(--text-600); line-height:1.5;
+  }
+  .frame-caption b{color:var(--navy-800);}
+  .frame-col{display:flex; flex-direction:column; align-items:flex-start;}
+
+  /* ============================================================
+     STYLE GUIDE
+     ============================================================ */
+  .style-guide{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
+    padding:36px; margin-bottom:70px; box-shadow:var(--shadow-1);
+  }
+  .swatch-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; margin-top:20px;}
+  .swatch{border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--border-soft);}
+  .swatch .chip{height:70px;}
+  .swatch .label{padding:10px 12px; background:var(--surface);}
+  .swatch .label .name{font-size:12.5px; font-weight:600;}
+  .swatch .label .hex{font-size:11.5px; color:var(--text-400); font-family:monospace;}
+
+  .type-scale{display:flex; flex-direction:column; gap:14px; margin-top:22px;}
+  .type-row{display:flex; align-items:baseline; gap:18px; border-bottom:1px dashed var(--border-soft); padding-bottom:12px;}
+  .type-row .tag{font-size:11px; color:var(--text-400); width:170px; font-family:monospace;}
+
+  .component-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:26px; margin-top:22px;}
+  .component-card{padding:20px; border:1px solid var(--border-soft); border-radius:var(--radius-sm); background:var(--surface-alt);}
+  .component-card h4{font-size:13px; text-transform:uppercase; letter-spacing:.5px; color:var(--text-600); margin-bottom:14px;}
+
+  /* Buttons */
+  .btn{
+    font-family:var(--font-body); font-weight:600; font-size:14.5px; border:none; cursor:pointer;
+    padding:13px 22px; border-radius:var(--radius-sm); display:inline-flex; align-items:center; gap:8px; justify-content:center;
+    transition:transform .1s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:linear-gradient(180deg, var(--gold-400), var(--gold-600)); color:var(--navy-900); box-shadow:0 6px 16px rgba(201,162,75,.35);}
+  .btn-navy{background:var(--navy-800); color:#fff;}
+  .btn-outline{background:transparent; border:1.5px solid var(--navy-700); color:var(--navy-800);}
+  .btn-ghost{background:transparent; color:var(--navy-700); padding:10px 6px;}
+  .btn-danger{background:var(--danger-bg); color:var(--danger);}
+  .btn-block{width:100%;}
+  .btn-sm{padding:8px 14px; font-size:12.5px; border-radius:var(--radius-xs);}
+
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; padding:6px 13px; border-radius:var(--radius-pill);
+    font-size:12.5px; font-weight:600; border:1.5px solid var(--border);
+    color:var(--text-600); background:var(--surface);
+  }
+  .chip.active{background:var(--navy-800); border-color:var(--navy-800); color:#fff;}
+  .badge{padding:4px 10px; border-radius:var(--radius-pill); font-size:11px; font-weight:700; letter-spacing:.2px;}
+  .badge-success{background:var(--success-bg); color:var(--success);}
+  .badge-warning{background:var(--warning-bg); color:var(--warning);}
+  .badge-danger{background:var(--danger-bg); color:var(--danger);}
+  .badge-navy{background:var(--blue-100); color:var(--navy-700);}
+
+  .field{display:flex; flex-direction:column; gap:6px; width:100%;}
+  .field label{font-size:12px; font-weight:600; color:var(--text-600);}
+  .field input, .field select, .field textarea{
+    font-family:var(--font-body); font-size:14px; padding:12px 14px; border-radius:var(--radius-sm);
+    border:1.5px solid var(--border); background:var(--surface); color:var(--text-900); outline:none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--gold-500); box-shadow:0 0 0 3px var(--gold-100);}
+
+  /* ============================================================
+     PHONE FRAME
+     ============================================================ */
+  .phone-frame{
+    width:318px; height:664px; background:var(--navy-900); border-radius:46px;
+    padding:12px; box-shadow:var(--shadow-3); position:relative; flex-shrink:0;
+  }
+  .phone-frame::before{
+    content:""; position:absolute; top:22px; left:50%; transform:translateX(-50%);
+    width:110px; height:22px; background:var(--navy-900); border-radius:0 0 14px 14px; z-index:6;
+  }
+  .phone-screen{
+    width:100%; height:100%; background:var(--bg); border-radius:36px; overflow:hidden;
+    position:relative; display:flex; flex-direction:column; font-size:14px;
+  }
+  .statusbar{
+    display:flex; justify-content:space-between; align-items:center; padding:14px 22px 4px;
+    font-size:12px; font-weight:600; color:var(--text-900); flex-shrink:0; background:transparent;
+  }
+  .statusbar.on-navy{color:#fff;}
+  .app-bar{
+    background:var(--navy-800); color:#fff; padding:40px 20px 16px; display:flex; align-items:center;
+    justify-content:space-between; flex-shrink:0;
+  }
+  .app-bar .title{font-family:var(--font-head); font-weight:600; font-size:16px;}
+  .app-bar .sub{font-size:11.5px; color:#9FB3C8; margin-top:2px;}
+  .app-bar-icon{
+    width:32px; height:32px; border-radius:var(--radius-pill); background:rgba(255,255,255,.12);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .phone-body{flex:1; overflow:hidden; padding:18px; display:flex; flex-direction:column; gap:14px;}
+  .phone-body.no-pad{padding:0;}
+  .bottom-nav{
+    display:flex; justify-content:space-around; align-items:center; padding:12px 10px 16px;
+    background:var(--surface); border-top:1px solid var(--border-soft); flex-shrink:0;
+  }
+  .bottom-nav .nav-item{display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10px; color:var(--text-400); font-weight:600;}
+  .bottom-nav .nav-item.active{color:var(--navy-800);}
+
+  .icon{width:20px; height:20px; display:inline-block; vertical-align:middle;}
+  .icon svg{width:100%; height:100%;}
+
+  /* Cards & lists reused across mobile screens */
+  .card{background:var(--surface); border:1px solid var(--border-soft); border-radius:var(--radius-md); padding:16px; box-shadow:var(--shadow-1);}
+  .list-row{display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--border-soft);}
+  .list-row:last-child{border-bottom:none;}
+  .avatar-sq{width:44px; height:44px; border-radius:12px; background:var(--blue-100); color:var(--navy-700); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:var(--font-head); flex-shrink:0;}
+  .row-text{flex:1; min-width:0;}
+  .row-text .t1{font-weight:600; font-size:13.5px; color:var(--text-900);}
+  .row-text .t2{font-size:11.5px; color:var(--text-400); margin-top:2px;}
+  .progress-track{height:7px; background:var(--border-soft); border-radius:var(--radius-pill); overflow:hidden;}
+  .progress-fill{height:100%; background:linear-gradient(90deg, var(--gold-500), var(--gold-400)); border-radius:var(--radius-pill);}
+
+  /* Onboarding */
+  .onboarding-art{
+    height:220px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(150deg, var(--navy-800), var(--navy-600)); position:relative; overflow:hidden;
+  }
+  .onboarding-art .glow{position:absolute; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(216,185,106,.35), transparent 70%);}
+  .onboarding-art .icon-big{width:76px; height:76px; color:var(--gold-400); position:relative; z-index:2;}
+  .dots{display:flex; gap:7px; justify-content:center; margin:6px 0;}
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--border);}
+  .dot.active{width:20px; border-radius:var(--radius-pill); background:var(--gold-500);}
+  .onboard-skip{position:absolute; top:46px; right:22px; z-index:9; font-size:12px; font-weight:600; color:var(--text-400);}
+
+  /* Camera screen */
+  .camera-view{
+    flex:1; background:linear-gradient(160deg,#0d1b28,#1a2f42); position:relative; display:flex; align-items:center; justify-content:center;
+  }
+  .camera-view .grid-overlay{position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size:33% 33%;}
+  .camera-guide{
+    width:210px; height:150px; border:2.5px dashed rgba(216,185,106,.85); border-radius:14px; position:relative; z-index:2;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .camera-guide span{font-size:11px; color:var(--gold-400); position:absolute; bottom:-26px; white-space:nowrap; font-weight:600;}
+  .camera-top-overlay{position:absolute; top:0; left:0; right:0; padding:42px 18px 16px; display:flex; justify-content:space-between; align-items:center; z-index:3; color:#fff;}
+  .camera-bottom-bar{
+    position:relative; z-index:3; padding:20px 26px 26px; display:flex; align-items:center; justify-content:space-between;
+    background:linear-gradient(0deg, rgba(0,0,0,.55), transparent);
+  }
+  .shutter-btn{width:66px; height:66px; border-radius:50%; background:#fff; border:4px solid rgba(255,255,255,.35); flex-shrink:0;}
+  .thumb-mini{width:40px; height:40px; border-radius:10px; background:#31465a; border:2px solid rgba(255,255,255,.5);}
+  .flash-icon{width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center; color:#fff;}
+
+  .fab{
+    position:absolute; bottom:22px; right:22px; width:56px; height:56px; border-radius:50%;
+    background:linear-gradient(180deg, var(--gold-400), var(--gold-600)); box-shadow:0 10px 22px rgba(201,162,75,.5);
+    display:flex; align-items:center; justify-content:center; color:var(--navy-900); z-index:5;
+  }
+
+  .keypad-display{
+    background:var(--navy-900); color:var(--gold-400); font-family:var(--font-head); font-size:34px; font-weight:600;
+    border-radius:var(--radius-md); padding:18px 20px; text-align:right; letter-spacing:1px;
+  }
+  .keypad-display .unit{font-size:14px; color:#9FB3C8; margin-left:6px; font-family:var(--font-body); font-weight:500;}
+
+  .success-check{
+    width:82px; height:82px; border-radius:50%; background:var(--success-bg); color:var(--success);
+    display:flex; align-items:center; justify-content:center; margin:0 auto;
+  }
+
+  /* ============================================================
+     BROWSER FRAME (Admin)
+     ============================================================ */
+  .browser-frame{
+    width:1000px; max-width:100%; background:var(--surface); border-radius:var(--radius-md); overflow:hidden;
+    box-shadow:var(--shadow-2); border:1px solid var(--border-soft); flex-shrink:0;
+  }
+  .browser-chrome{
+    background:var(--navy-900); padding:12px 18px; display:flex; align-items:center; gap:8px;
+  }
+  .browser-chrome .dot{width:10px; height:10px; border-radius:50%;}
+  .browser-chrome .dot.r{background:#E5645C;} .browser-chrome .dot.y{background:#E6B450;} .browser-chrome .dot.g{background:#59C9A0;}
+  .browser-chrome .addr{
+    margin-left:14px; background:rgba(255,255,255,.08); color:#CBDAE7; font-size:11.5px; padding:5px 14px;
+    border-radius:var(--radius-pill); font-family:monospace;
+  }
+  .admin-shell{display:flex; min-height:600px;}
+  .admin-sidenav{width:198px; background:var(--navy-800); color:#CBDAE7; padding:20px 14px; flex-shrink:0;}
+  .admin-sidenav .side-item{
+    display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:var(--radius-xs); font-size:13px; font-weight:500;
+    margin-bottom:2px; color:#B9CBDB;
+  }
+  .admin-sidenav .side-item.active{background:rgba(255,255,255,.1); color:#fff; font-weight:600;}
+  .admin-main{flex:1; padding:26px 30px; background:var(--surface-alt); overflow:hidden;}
+  .admin-topline{display:flex; justify-content:space-between; align-items:center; margin-bottom:22px;}
+  .admin-topline h3{font-size:20px;}
+  .stat-row{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px;}
+  .stat-card{background:var(--surface); border:1px solid var(--border-soft); border-radius:var(--radius-sm); padding:16px;}
+  .stat-card .num{font-family:var(--font-head); font-size:24px; font-weight:700; color:var(--navy-900);}
+  .stat-card .lbl{font-size:12px; color:var(--text-600); margin-top:2px;}
+  .stat-card .delta{font-size:11px; margin-top:6px; font-weight:700;}
+
+  table.admin-table{width:100%; border-collapse:collapse; background:var(--surface); border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--border-soft);}
+  table.admin-table th{text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:var(--text-400); padding:12px 16px; background:var(--surface-alt); border-bottom:1px solid var(--border-soft);}
+  table.admin-table td{padding:12px 16px; font-size:13px; border-bottom:1px solid var(--border-soft); color:var(--text-900);}
+  table.admin-table tr:last-child td{border-bottom:none;}
+  .cell-photo{width:34px; height:34px; border-radius:7px; background:linear-gradient(135deg,var(--navy-700),var(--navy-600));}
+
+  .bar-chart{display:flex; align-items:flex-end; gap:10px; height:140px; padding-top:10px;}
+  .bar-chart .bar{flex:1; background:linear-gradient(180deg, var(--gold-400), var(--gold-600)); border-radius:6px 6px 0 0; position:relative;}
+  .bar-chart .bar span{position:absolute; bottom:-20px; left:0; right:0; text-align:center; font-size:10px; color:var(--text-400);}
+
+  .gallery-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:12px;}
+  .gallery-item{border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--border-soft); background:var(--surface);}
+  .gallery-thumb{height:78px; background:linear-gradient(135deg,var(--navy-700),var(--navy-600));}
+  .gallery-meta{padding:8px 10px;}
+  .gallery-meta .t1{font-size:11.5px; font-weight:600;}
+  .gallery-meta .t2{font-size:10px; color:var(--text-400); margin-top:1px;}
+
+  .chat-shell{display:flex; height:560px;}
+  .chat-list{width:230px; background:var(--surface-alt); border-right:1px solid var(--border-soft); padding:16px;}
+  .chat-list .conv{padding:10px 12px; border-radius:var(--radius-xs); font-size:12.5px; margin-bottom:4px; color:var(--text-600);}
+  .chat-list .conv.active{background:var(--surface); box-shadow:var(--shadow-1); color:var(--navy-900); font-weight:600;}
+  .chat-main{flex:1; display:flex; flex-direction:column; padding:22px 26px; background:var(--surface);}
+  .msg{max-width:72%; padding:13px 16px; border-radius:16px; font-size:13.5px; line-height:1.5; margin-bottom:14px;}
+  .msg.user{background:var(--navy-800); color:#fff; margin-left:auto; border-bottom-right-radius:4px;}
+  .msg.ai{background:var(--surface-alt); border:1px solid var(--border-soft); border-bottom-left-radius:4px;}
+  .ai-record-card{border:1px solid var(--border-soft); border-radius:var(--radius-sm); padding:12px; margin-top:10px; background:var(--surface); display:flex; gap:12px;}
+  .ai-record-card .thumb{width:56px; height:56px; border-radius:8px; background:linear-gradient(135deg,var(--navy-700),var(--navy-600)); flex-shrink:0;}
+
+  .footer-note{
+    max-width:1360px; margin:0 auto; padding:0 40px 60px; color:var(--text-400); font-size:12.5px; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">F</div>
+    <div class="brand-text">
+      <div class="name">Fuzio MeterCapture</div>
+      <div class="sub">Design System · Screen Mockups</div>
+    </div>
+  </div>
+  <nav>
+    <a href="#palette">Style Guide</a>
+    <a href="#mobile">Mobile App</a>
+    <a href="#admin">Admin Portal</a>
+  </nav>
+  <div class="flag">Draft v0.2</div>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       STYLE GUIDE
+  ============================================================ -->
+  <section id="palette" class="style-guide">
+    <span class="eyebrow">Foundations</span>
+    <h2>Colour, type &amp; components</h2>
+    <p style="color:var(--text-600); font-size:14.5px; margin-top:8px; max-width:680px; line-height:1.6;">
+      Confirmed Fuzio Properties brand palette, sourced from the Fuzio Staff Hub README (Primary Blue, Accent Gold/Orange,
+      Deep Charcoal, Info Grey, Status Green &amp; Warning Red) — every screen below is built from these CSS variables.
+    </p>
+
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:var(--navy-900)"></div><div class="label"><div class="name">Navy 900</div><div class="hex">#00203D</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--navy-800)"></div><div class="label"><div class="name">Primary Blue</div><div class="hex">#004A99</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--blue-500)"></div><div class="label"><div class="name">Blue 500</div><div class="hex">#2E86D1</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--gold-500)"></div><div class="label"><div class="name">Accent Gold/Orange</div><div class="hex">#F5A623</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--gold-100)"></div><div class="label"><div class="name">Gold 100</div><div class="hex">#FDEDD3</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--bg)"></div><div class="label"><div class="name">Background</div><div class="hex">#F4F6F9</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--text-900)"></div><div class="label"><div class="name">Deep Charcoal</div><div class="hex">#2D2D2D</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--success)"></div><div class="label"><div class="name">Status Green</div><div class="hex">#28A745</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--danger)"></div><div class="label"><div class="name">Warning Red</div><div class="hex">#DC3545</div></div></div>
+    </div>
+
+    <div class="type-scale">
+      <div class="type-row"><div class="tag">H1 / Poppins 600</div><div style="font-family:var(--font-head); font-weight:600; font-size:28px;">Meter Capture</div></div>
+      <div class="type-row"><div class="tag">H2 / Poppins 600</div><div style="font-family:var(--font-head); font-weight:600; font-size:20px;">Select a building</div></div>
+      <div class="type-row"><div class="tag">Body / Inter 400</div><div style="font-size:15px;">Align the meter display within the frame and hold steady.</div></div>
+      <div class="type-row"><div class="tag">Caption / Inter 500</div><div style="font-size:12.5px; color:var(--text-600);">12 of 12 meters captured · Synced 2 min ago</div></div>
+      <div class="type-row"><div class="tag">Mono / record IDs</div><div style="font-family:monospace; font-size:13px; color:var(--text-600);">FZ-AZR-EL-0016-20260720</div></div>
+    </div>
+
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Buttons</h4>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <button class="btn btn-primary">Save &amp; Next</button>
+          <button class="btn btn-navy">Continue</button>
+          <button class="btn btn-outline">Retake Photo</button>
+          <button class="btn btn-danger">Log Out</button>
+        </div>
+      </div>
+      <div class="component-card">
+        <h4>Status &amp; badges</h4>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span class="badge badge-success">Synced</span>
+          <span class="badge badge-warning">Needs Review</span>
+          <span class="badge badge-danger">Flagged</span>
+          <span class="badge badge-navy">Exported</span>
+        </div>
+      </div>
+      <div class="component-card">
+        <h4>Filter chips</h4>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span class="chip active">All</span>
+          <span class="chip">Water</span>
+          <span class="chip">Electricity</span>
+          <span class="chip">Gas</span>
+        </div>
+      </div>
+      <div class="component-card">
+        <h4>Form field</h4>
+        <div class="field"><label>METER READING</label><input placeholder="e.g. 04821.6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MOBILE APP
+  ============================================================ -->
+  <section id="mobile" class="screens-section">
+    <div class="section-intro">
+      <span class="eyebrow">Field Operator App</span>
+      <h2>Mobile — capture flow</h2>
+      <p>Select a building, then move through every meter progressively and consecutively: photograph, label, read, confirm — repeat. Designed for gloved hands, bright plant rooms and patchy signal.</p>
+    </div>
+
+    <div class="row-label">01 · First-open tutorial</div>
+    <div class="frame-row">
+
+      <!-- Onboarding 1 -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="statusbar on-navy" style="position:absolute; width:100%; z-index:8;"><span>9:41</span><span>●●● 5G 100%</span></div>
+        <div style="flex:1; background:var(--navy-900); display:flex; flex-direction:column; padding:60px 26px 30px; color:#fff; position:relative;">
+          <span class="onboard-skip" style="color:#8FA3B6;">Skip</span>
+          <div class="onboarding-art"><div class="glow"></div>
+            <svg class="icon-big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-3h6l2 3h3v11H4V8z"/><circle cx="12" cy="13" r="3.5"/></svg>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:12px; text-align:center;">
+            <h3 style="color:#fff; font-size:22px;">Welcome to<br>MeterCapture</h3>
+            <p style="color:#B9CBDB; font-size:13.5px; line-height:1.6;">The faster, paperless way for Fuzio field operators to capture meter readings.</p>
+          </div>
+          <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+          <button class="btn btn-primary btn-block" style="margin-top:14px;">Next</button>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>1 · Welcome</b> — sets expectations before any permissions are requested.</div>
+      </div>
+
+      <!-- Onboarding 2 -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="statusbar on-navy" style="position:absolute; width:100%; z-index:8;"><span>9:41</span><span>●●● 5G 100%</span></div>
+        <div style="flex:1; background:var(--navy-900); display:flex; flex-direction:column; padding:60px 26px 30px; color:#fff; position:relative;">
+          <span class="onboard-skip" style="color:#8FA3B6;">Skip</span>
+          <div class="onboarding-art"><div class="glow"></div>
+            <svg class="icon-big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/></svg>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:12px; text-align:center;">
+            <h3 style="color:#fff; font-size:22px;">Pick a building,<br>capture every meter</h3>
+            <p style="color:#B9CBDB; font-size:13.5px; line-height:1.6;">Work through each meter one at a time — nothing gets skipped or double-counted.</p>
+          </div>
+          <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+          <button class="btn btn-primary btn-block" style="margin-top:14px;">Next</button>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>2 · Select &amp; shoot</b> — introduces the building-first, meter-by-meter model.</div>
+      </div>
+
+      <!-- Onboarding 3 -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="statusbar on-navy" style="position:absolute; width:100%; z-index:8;"><span>9:41</span><span>●●● 5G 100%</span></div>
+        <div style="flex:1; background:var(--navy-900); display:flex; flex-direction:column; padding:60px 26px 30px; color:#fff; position:relative;">
+          <span class="onboard-skip" style="color:#8FA3B6;">Skip</span>
+          <div class="onboarding-art"><div class="glow"></div>
+            <svg class="icon-big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20l-2-2H5a2 2 0 01-2-2V6a2 2 0 012-2h9l2 2h3a2 2 0 012 2v6"/><path d="M15 15l5 5M20 15l-5 5"/></svg>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:12px; text-align:center;">
+            <h3 style="color:#fff; font-size:22px;">Label it.<br>Confirm it. Done.</h3>
+            <p style="color:#B9CBDB; font-size:13.5px; line-height:1.6;">Tag the meter type, type in the reading, and move straight to the next one.</p>
+          </div>
+          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+          <button class="btn btn-primary btn-block" style="margin-top:14px;">Next</button>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>3 · Label &amp; confirm</b> — previews the reading-entry step.</div>
+      </div>
+
+      <!-- Onboarding 4 -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="statusbar on-navy" style="position:absolute; width:100%; z-index:8;"><span>9:41</span><span>●●● 5G 100%</span></div>
+        <div style="flex:1; background:var(--navy-900); display:flex; flex-direction:column; padding:60px 26px 30px; color:#fff; position:relative;">
+          <div class="onboarding-art"><div class="glow"></div>
+            <svg class="icon-big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 18a4.5 4.5 0 010-9 5.5 5.5 0 0110.7-1.8A4 4 0 0118 15"/><path d="M12 12v6M9.5 15.5L12 18l2.5-2.5"/></svg>
+          </div>
+          <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:12px; text-align:center;">
+            <h3 style="color:#fff; font-size:22px;">Synced straight<br>to the office</h3>
+            <p style="color:#B9CBDB; font-size:13.5px; line-height:1.6;">Photos and readings upload automatically — even offline, they queue and send later.</p>
+          </div>
+          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+          <button class="btn btn-primary btn-block" style="margin-top:14px;">Get Started</button>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>4 · Sync &amp; go</b> — ends on the offline-safety reassurance, then drops into Login.</div>
+      </div>
+
+    </div>
+
+    <div class="row-label">02 · Sign in &amp; choose a building</div>
+    <div class="frame-row">
+
+      <!-- Login -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="statusbar"><span>9:41</span><span>●●● 5G 100%</span></div>
+        <div class="phone-body" style="justify-content:center; gap:22px; padding:0 28px;">
+          <div style="text-align:center; margin-bottom:6px;">
+            <div class="brand-mark" style="margin:0 auto 14px; width:56px; height:56px; font-size:24px; border-radius:16px;">F</div>
+            <h3 style="font-size:19px;">Who's capturing?</h3>
+            <p style="color:var(--text-400); font-size:12.5px; margin-top:4px; line-height:1.5;">Fuzio Properties · MeterCapture<br>For internal, on-site use only</p>
+          </div>
+          <div class="field"><label>YOUR NAME</label><input placeholder="e.g. Thabo Ndlovu"></div>
+          <div>
+            <label style="font-size:11px; font-weight:600; color:var(--text-400); display:block; margin-bottom:8px;">RECENT</label>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span class="chip">Thabo N.</span><span class="chip">Lerato M.</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block">Continue</button>
+          <p style="text-align:center; font-size:11px; color:var(--text-400); margin-top:6px;">v1.0 · Operator build</p>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>Name entry</b> — no account or password; staff just enter their name so every reading records who captured it.</div>
+      </div>
+
+      <!-- Building selection -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="statusbar on-navy" style="position:absolute; width:100%; z-index:2;"><span>9:41</span><span>●●● 5G 100%</span></div>
+        <div class="app-bar">
+          <div><div class="title">Select Building</div><div class="sub">4 assigned to you</div></div>
+          <div class="app-bar-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+          </div>
+        </div>
+        <div class="phone-body">
+          <div class="field"><input placeholder="🔍  Search buildings..."></div>
+          <div class="card" style="padding:0; overflow:hidden;">
+            <div style="padding:12px 14px 4px; font-size:11px; font-weight:700; color:var(--text-400); text-transform:uppercase; letter-spacing:.4px;">Assigned to you</div>
+            <div style="padding:0 14px;">
+              <div class="list-row"><div class="avatar-sq">AZ</div><div class="row-text"><div class="t1">Azores</div><div class="t2">42 units · 18 meters · last capture 3d ago</div></div><span class="badge badge-warning">Due</span></div>
+              <div class="list-row"><div class="avatar-sq">FC</div><div class="row-text"><div class="t1">Fairview Court</div><div class="t2">28 units · 12 meters · last capture 1d ago</div></div><span class="badge badge-success">Synced</span></div>
+              <div class="list-row"><div class="avatar-sq">WV</div><div class="row-text"><div class="t1">Waterstone Views</div><div class="t2">65 units · 24 meters · last capture 9d ago</div></div><span class="badge badge-danger">Overdue</span></div>
+              <div class="list-row"><div class="avatar-sq">TM</div><div class="row-text"><div class="t1">The Meridian</div><div class="t2">33 units · 15 meters · last capture 2d ago</div></div><span class="badge badge-success">Synced</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item active">🏢<span>Buildings</span></div>
+          <div class="nav-item">🕓<span>History</span></div>
+          <div class="nav-item">⚙️<span>Settings</span></div>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>Building selection</b> — status badge flags overdue sites so operators self-prioritise.</div>
+      </div>
+
+      <!-- Meter list / session start -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="app-bar">
+          <div><div class="title">Azores</div><div class="sub">4 of 18 meters captured</div></div>
+          <div class="app-bar-icon">✕</div>
+        </div>
+        <div class="phone-body" style="position:relative;">
+          <div class="progress-track"><div class="progress-fill" style="width:22%;"></div></div>
+          <div class="card" style="padding:0;">
+            <div style="padding:0 14px;">
+              <div class="list-row"><div class="avatar-sq" style="background:var(--success-bg); color:var(--success);">✓</div><div class="row-text"><div class="t1">Water — Ground Floor</div><div class="t2">04821.6 kL · captured</div></div></div>
+              <div class="list-row"><div class="avatar-sq" style="background:var(--success-bg); color:var(--success);">✓</div><div class="row-text"><div class="t1">Electricity — Main DB</div><div class="t2">128 430 kWh · captured</div></div></div>
+              <div class="list-row"><div class="avatar-sq" style="background:var(--success-bg); color:var(--success);">✓</div><div class="row-text"><div class="t1">Water — Basement</div><div class="t2">02210.4 kL · captured</div></div></div>
+              <div class="list-row"><div class="avatar-sq" style="background:var(--gold-100); color:var(--gold-600);">4</div><div class="row-text"><div class="t1">Electricity — Basement</div><div class="t2">tap to capture</div></div><span style="color:var(--text-400);">›</span></div>
+              <div class="list-row" style="opacity:.45;"><div class="avatar-sq">5</div><div class="row-text"><div class="t1">Gas — Boiler Room</div><div class="t2">pending</div></div></div>
+            </div>
+          </div>
+          <div class="fab">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--navy-900)" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4V8z"/><circle cx="12" cy="13" r="3.5"/></svg>
+          </div>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>Session checklist</b> — the progressive/consecutive queue: each meter is captured in order, nothing is skipped.</div>
+      </div>
+
+    </div>
+
+    <div class="row-label">03 · Capture, read &amp; label</div>
+    <div class="frame-row">
+
+      <!-- Camera -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen" style="background:#0d1b28;">
+        <div class="camera-top-overlay">
+          <div>✕</div>
+          <div style="text-align:center;"><div style="font-size:12px; font-weight:700;">Meter 4 of 18</div><div style="font-size:10.5px; color:#B9CBDB;">Electricity — Basement</div></div>
+          <div class="flash-icon">⚡</div>
+        </div>
+        <div class="camera-view">
+          <div class="grid-overlay"></div>
+          <div class="camera-guide"><span>Align meter display within frame</span></div>
+        </div>
+        <div class="camera-bottom-bar">
+          <div class="thumb-mini"></div>
+          <div class="shutter-btn"></div>
+          <div class="flash-icon">↺</div>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>Camera capture</b> — guide frame + live meter counter keep the operator oriented meter-to-meter.</div>
+      </div>
+
+      <!-- Reading input -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="app-bar"><div><div class="title">Confirm Reading</div><div class="sub">Meter 4 of 18 · Azores</div></div><div class="app-bar-icon">✕</div></div>
+        <div class="phone-body" style="gap:12px;">
+          <div style="height:100px; border-radius:14px; background:linear-gradient(135deg,var(--navy-700),var(--navy-600)); display:flex; align-items:center; justify-content:center; color:#8FA3B6; font-size:11.5px; position:relative;">
+            Photo preview
+            <span style="position:absolute; bottom:8px; right:8px; background:rgba(0,0,0,.4); color:#fff; font-size:10px; padding:3px 8px; border-radius:20px;">Retake</span>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <span class="chip">💧 Water</span><span class="chip active">⚡ Electricity</span><span class="chip">🔥 Gas</span><span class="chip">🌡️ Heat</span>
+          </div>
+          <div class="keypad-display">128430<span class="unit">kWh</span></div>
+          <div class="field"><label>METER SERIAL / ID</label><input value="EL-BSMT-004"></div>
+          <div class="field"><label>NOTES (OPTIONAL)</label><input placeholder="e.g. Glass cracked, reading still legible"></div>
+          <button class="btn btn-primary btn-block">Save &amp; Next Meter</button>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>Reading + label</b> — meter type, serial, reading and notes captured against the photo just taken.</div>
+      </div>
+
+      <!-- Session complete -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="app-bar"><div><div class="title">Azores</div><div class="sub">18 of 18 meters captured</div></div><div class="app-bar-icon">✕</div></div>
+        <div class="phone-body">
+          <div class="progress-track"><div class="progress-fill" style="width:100%;"></div></div>
+          <div class="card" style="padding:0; max-height:420px; overflow:hidden;">
+            <div style="padding:0 14px;">
+              <div class="list-row"><div class="avatar-sq" style="background:var(--success-bg); color:var(--success);">✓</div><div class="row-text"><div class="t1">Water — Ground Floor</div><div class="t2">04821.6 kL</div></div></div>
+              <div class="list-row"><div class="avatar-sq" style="background:var(--success-bg); color:var(--success);">✓</div><div class="row-text"><div class="t1">Electricity — Main DB</div><div class="t2">128 430 kWh</div></div></div>
+              <div class="list-row"><div class="avatar-sq" style="background:var(--success-bg); color:var(--success);">✓</div><div class="row-text"><div class="t1">Water — Basement</div><div class="t2">02210.4 kL</div></div></div>
+              <div class="list-row"><div class="avatar-sq" style="background:var(--success-bg); color:var(--success);">✓</div><div class="row-text"><div class="t1">Electricity — Basement</div><div class="t2">128 430 kWh</div></div></div>
+              <div class="list-row"><div class="avatar-sq" style="background:var(--success-bg); color:var(--success);">✓</div><div class="row-text"><div class="t1">Gas — Boiler Room</div><div class="t2">00981.2 m³</div></div></div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block">Finish Session</button>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>Session checklist — complete</b> — every meter shows green before the operator can finish.</div>
+      </div>
+
+    </div>
+
+    <div class="row-label">04 · Submit, review history &amp; settings</div>
+    <div class="frame-row">
+
+      <!-- Success/sync -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="statusbar"><span>9:41</span><span>●●● 5G 100%</span></div>
+        <div class="phone-body" style="justify-content:center; align-items:center; text-align:center; gap:18px;">
+          <div class="success-check"><svg class="icon" style="width:38px; height:38px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3 style="font-size:19px;">Session submitted</h3>
+          <div class="card" style="width:100%; text-align:left;">
+            <div class="row-text"><div class="t1">Azores</div><div class="t2">18 meters · 22 min · 20 Jul 2026, 10:14</div></div>
+          </div>
+          <div class="card" style="width:100%; text-align:left; display:flex; align-items:center; gap:10px;">
+            <div style="width:16px; height:16px; border:2.5px solid var(--gold-400); border-top-color:transparent; border-radius:50%;"></div>
+            <div class="row-text"><div class="t1" style="font-size:12.5px;">Uploading 6 of 18 photos…</div><div class="t2">Will finish automatically over Wi-Fi</div></div>
+          </div>
+          <button class="btn btn-navy btn-block">Back to Buildings</button>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>Submit &amp; sync</b> — queues offline, uploads in the background, never blocks the operator.</div>
+      </div>
+
+      <!-- History -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="app-bar"><div><div class="title">Capture History</div><div class="sub">Last 30 days</div></div><div class="app-bar-icon">⇅</div></div>
+        <div class="phone-body">
+          <div class="card" style="padding:0;">
+            <div style="padding:0 14px;">
+              <div class="list-row"><div class="avatar-sq">AZ</div><div class="row-text"><div class="t1">Azores</div><div class="t2">18 meters · Today, 10:14</div></div><span class="badge badge-success">Synced</span></div>
+              <div class="list-row"><div class="avatar-sq">FC</div><div class="row-text"><div class="t1">Fairview Court</div><div class="t2">12 meters · Yesterday</div></div><span class="badge badge-success">Synced</span></div>
+              <div class="list-row"><div class="avatar-sq">TM</div><div class="row-text"><div class="t1">The Meridian</div><div class="t2">15 meters · 2 days ago</div></div><span class="badge badge-warning">Pending</span></div>
+              <div class="list-row"><div class="avatar-sq">WV</div><div class="row-text"><div class="t1">Waterstone Views</div><div class="t2">24 meters · 9 days ago</div></div><span class="badge badge-success">Synced</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="nav-item">🏢<span>Buildings</span></div>
+          <div class="nav-item active">🕓<span>History</span></div>
+          <div class="nav-item">⚙️<span>Settings</span></div>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>History</b> — past sessions with sync status; operators can re-open a session to fix an entry.</div>
+      </div>
+
+      <!-- Settings -->
+      <div class="frame-col">
+      <div class="phone-frame"><div class="phone-screen">
+        <div class="app-bar"><div class="title">Settings</div></div>
+        <div class="phone-body">
+          <div class="card" style="display:flex; align-items:center; gap:12px;">
+            <div class="avatar-sq" style="width:52px; height:52px; border-radius:16px;">TN</div>
+            <div class="row-text"><div class="t1">Thabo N.</div><div class="t2">Field Operator · 4 buildings assigned</div></div>
+          </div>
+          <div class="card" style="padding:0;">
+            <div style="padding:0 14px;">
+              <div class="list-row"><div class="row-text"><div class="t1">Assigned Buildings</div></div><span style="color:var(--text-400);">›</span></div>
+              <div class="list-row"><div class="row-text"><div class="t1">Offline Storage</div><div class="t2">6 photos queued</div></div><span style="color:var(--text-400);">›</span></div>
+              <div class="list-row"><div class="row-text"><div class="t1">Replay Tutorial</div></div><span style="color:var(--text-400);">›</span></div>
+              <div class="list-row"><div class="row-text"><div class="t1">Help &amp; Support</div></div><span style="color:var(--text-400);">›</span></div>
+            </div>
+          </div>
+          <button class="btn btn-danger btn-block">Log Out</button>
+        </div>
+      </div></div>
+      <div class="frame-caption"><b>Settings</b> — includes "Replay Tutorial" so the onboarding is never a one-time thing.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ADMIN PORTAL
+  ============================================================ -->
+  <section id="admin" class="screens-section">
+    <div class="section-intro">
+      <span class="eyebrow">Back Office</span>
+      <h2>Admin — pipeline, records &amp; audit</h2>
+      <p>Every capture flows through a cleaning pipeline into a per-building spreadsheet and an indexed photo archive, with a full audit trail underneath. The AI assistant (Phase 2) sits on top of that same index.</p>
+    </div>
+
+    <div class="row-label">01 · Dashboard</div>
+    <div class="frame-row">
+      <div class="frame-col">
+      <div class="browser-frame">
+        <div class="browser-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="addr">admin.fuzio-metercapture.co.za/dashboard</div></div>
+        <div class="admin-shell">
+          <div class="admin-sidenav">
+            <div class="side-item active">📊 Dashboard</div>
+            <div class="side-item">🧹 Pipeline</div>
+            <div class="side-item">📑 Buildings</div>
+            <div class="side-item">🖼️ Image Index</div>
+            <div class="side-item">🕓 Audit Trail</div>
+            <div class="side-item">💬 Assistant</div>
+          </div>
+          <div class="admin-main">
+            <div class="admin-topline"><h3>Dashboard</h3><button class="btn btn-navy btn-sm">Export Monthly Report</button></div>
+            <div class="stat-row">
+              <div class="stat-card"><div class="num">24</div><div class="lbl">Active buildings</div><div class="delta" style="color:var(--success);">+2 this month</div></div>
+              <div class="stat-card"><div class="num">1,482</div><div class="lbl">Meters captured (MTD)</div><div class="delta" style="color:var(--success);">+9.4%</div></div>
+              <div class="stat-card"><div class="num">37</div><div class="lbl">Pending review</div><div class="delta" style="color:var(--warning);">needs attention</div></div>
+              <div class="stat-card"><div class="num">6</div><div class="lbl">Flagged anomalies</div><div class="delta" style="color:var(--danger);">outliers vs. history</div></div>
+            </div>
+            <div class="card" style="margin-bottom:16px;">
+              <h4 style="font-size:12.5px; text-transform:uppercase; color:var(--text-600); margin-bottom:4px;">Captures per week</h4>
+              <div class="bar-chart">
+                <div class="bar" style="height:40%;"><span>W1</span></div>
+                <div class="bar" style="height:62%;"><span>W2</span></div>
+                <div class="bar" style="height:51%;"><span>W3</span></div>
+                <div class="bar" style="height:78%;"><span>W4</span></div>
+                <div class="bar" style="height:90%;"><span>W5</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <h4 style="font-size:12.5px; text-transform:uppercase; color:var(--text-600); margin-bottom:10px;">Recent activity</h4>
+              <div class="list-row"><div class="avatar-sq">TN</div><div class="row-text"><div class="t1">Thabo N. submitted Azores — 18 meters</div><div class="t2">2 min ago</div></div></div>
+              <div class="list-row"><div class="avatar-sq">LM</div><div class="row-text"><div class="t1">Lerato M. flagged Waterstone Views — Electricity Main</div><div class="t2">41 min ago</div></div></div>
+              <div class="list-row"><div class="avatar-sq">AD</div><div class="row-text"><div class="t1">Admin exported The Meridian to Excel</div><div class="t2">1h ago</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-caption"><b>Dashboard</b> — portfolio-wide health at a glance, with anomalies surfaced up front.</div>
+      </div>
+    </div>
+
+    <div class="row-label">02 · Data cleaning pipeline</div>
+    <div class="frame-row">
+      <div class="frame-col">
+      <div class="browser-frame">
+        <div class="browser-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="addr">admin.fuzio-metercapture.co.za/pipeline</div></div>
+        <div class="admin-shell">
+          <div class="admin-sidenav">
+            <div class="side-item">📊 Dashboard</div>
+            <div class="side-item active">🧹 Pipeline</div>
+            <div class="side-item">📑 Buildings</div>
+            <div class="side-item">🖼️ Image Index</div>
+            <div class="side-item">🕓 Audit Trail</div>
+            <div class="side-item">💬 Assistant</div>
+          </div>
+          <div class="admin-main">
+            <div class="admin-topline"><h3>Review Queue</h3><div style="display:flex; gap:8px;"><span class="chip active">All (37)</span><span class="chip">Raw</span><span class="chip">Flagged</span><span class="chip">Validated</span></div></div>
+            <table class="admin-table">
+              <tr><th>Photo</th><th>Building</th><th>Meter</th><th>Operator</th><th>Reading</th><th>Status</th><th></th></tr>
+              <tr><td><div class="cell-photo"></div></td><td>Azores</td><td>Electricity — Basement</td><td>Thabo N.</td><td>128 430 kWh</td><td><span class="badge badge-warning">Needs Review</span></td><td><button class="btn btn-sm btn-outline">Open</button></td></tr>
+              <tr><td><div class="cell-photo"></div></td><td>Waterstone Views</td><td>Electricity — Main</td><td>Lerato M.</td><td>899 210 kWh</td><td><span class="badge badge-danger">Flagged — spike</span></td><td><button class="btn btn-sm btn-outline">Open</button></td></tr>
+              <tr><td><div class="cell-photo"></div></td><td>Fairview Court</td><td>Water — Roof Tank</td><td>Lerato M.</td><td>03310.9 kL</td><td><span class="badge badge-navy">Validated</span></td><td><button class="btn btn-sm btn-outline">Open</button></td></tr>
+              <tr><td><div class="cell-photo"></div></td><td>The Meridian</td><td>Gas — Boiler Room</td><td>Thabo N.</td><td>00981.2 m³</td><td><span class="badge badge-success">Exported</span></td><td><button class="btn btn-sm btn-outline">Open</button></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="frame-caption"><b>Cleaning pipeline</b> — raw → needs review → validated → exported, with anomaly detection (e.g. an implausible jump vs. last reading) auto-flagging for a human check before it reaches the spreadsheet.</div>
+      </div>
+    </div>
+
+    <div class="row-label">03 · Per-building spreadsheet view</div>
+    <div class="frame-row">
+      <div class="frame-col">
+      <div class="browser-frame">
+        <div class="browser-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="addr">admin.fuzio-metercapture.co.za/buildings/azores</div></div>
+        <div class="admin-shell">
+          <div class="admin-sidenav">
+            <div class="side-item">📊 Dashboard</div>
+            <div class="side-item">🧹 Pipeline</div>
+            <div class="side-item active">📑 Buildings</div>
+            <div class="side-item">🖼️ Image Index</div>
+            <div class="side-item">🕓 Audit Trail</div>
+            <div class="side-item">💬 Assistant</div>
+          </div>
+          <div class="admin-main">
+            <div class="admin-topline"><h3>Azores — Meter Register</h3><button class="btn btn-primary btn-sm">⬇ Export to Excel</button></div>
+            <table class="admin-table">
+              <tr><th>Meter ID</th><th>Label</th><th>Location</th><th>May</th><th>Jun</th><th>Jul</th></tr>
+              <tr><td style="font-family:monospace;">WT-GF-001</td><td>Water</td><td>Ground Floor</td><td>04510.2</td><td>04688.9</td><td>04821.6</td></tr>
+              <tr><td style="font-family:monospace;">EL-MDB-002</td><td>Electricity</td><td>Main DB</td><td>121 900</td><td>125 110</td><td>128 430</td></tr>
+              <tr><td style="font-family:monospace;">WT-BS-003</td><td>Water</td><td>Basement</td><td>02100.0</td><td>02155.7</td><td>02210.4</td></tr>
+              <tr><td style="font-family:monospace;">EL-BS-004</td><td>Electricity</td><td>Basement</td><td>110 220</td><td>114 800</td><td style="background:var(--danger-bg); color:var(--danger); font-weight:700;">128 430 ⚠</td></tr>
+              <tr><td style="font-family:monospace;">GS-BLR-005</td><td>Gas</td><td>Boiler Room</td><td>00902.1</td><td>00941.5</td><td>00981.2</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="frame-caption"><b>Spreadsheet view</b> — the Excel-style register this feeds; anomalous cells are highlighted before export so cleaning rules can be refined over time.</div>
+      </div>
+    </div>
+
+    <div class="row-label">04 · Indexed photo archive</div>
+    <div class="frame-row">
+      <div class="frame-col">
+      <div class="browser-frame">
+        <div class="browser-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="addr">admin.fuzio-metercapture.co.za/index</div></div>
+        <div class="admin-shell">
+          <div class="admin-sidenav">
+            <div class="side-item">📊 Dashboard</div>
+            <div class="side-item">🧹 Pipeline</div>
+            <div class="side-item">📑 Buildings</div>
+            <div class="side-item active">🖼️ Image Index</div>
+            <div class="side-item">🕓 Audit Trail</div>
+            <div class="side-item">💬 Assistant</div>
+          </div>
+          <div class="admin-main">
+            <div class="admin-topline"><h3>Image &amp; Document Index</h3><div style="display:flex; gap:8px;"><span class="chip active">Building</span><span class="chip">Unit</span><span class="chip">Meter type</span><span class="chip">Date range</span></div></div>
+            <div class="gallery-grid">
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Azores · Unit 16</div><div class="t2">Electricity · 20 Jul</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Azores · Basement</div><div class="t2">Water · 20 Jul</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Fairview · Roof</div><div class="t2">Water · 19 Jul</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Meridian · Boiler</div><div class="t2">Gas · 18 Jul</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Waterstone · Main</div><div class="t2">Electricity · 11 Jul</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Azores · Unit 4</div><div class="t2">Electricity · 20 Jun</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Fairview · Unit 9</div><div class="t2">Water · 15 Jun</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Meridian · Unit 2</div><div class="t2">Electricity · 12 Jun</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Azores · Unit 16</div><div class="t2">Electricity · 20 May</div></div></div>
+              <div class="gallery-item"><div class="gallery-thumb"></div><div class="gallery-meta"><div class="t1">Waterstone · Unit 31</div><div class="t2">Water · 8 May</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-caption"><b>Image index</b> — every photo tagged by building, unit, meter type and date; this is what the audit trail and future AI assistant both query against.</div>
+      </div>
+    </div>
+
+    <div class="row-label">05 · Audit trail</div>
+    <div class="frame-row">
+      <div class="frame-col">
+      <div class="browser-frame">
+        <div class="browser-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="addr">admin.fuzio-metercapture.co.za/audit-trail</div></div>
+        <div class="admin-shell">
+          <div class="admin-sidenav">
+            <div class="side-item">📊 Dashboard</div>
+            <div class="side-item">🧹 Pipeline</div>
+            <div class="side-item">📑 Buildings</div>
+            <div class="side-item">🖼️ Image Index</div>
+            <div class="side-item active">🕓 Audit Trail</div>
+            <div class="side-item">💬 Assistant</div>
+          </div>
+          <div class="admin-main">
+            <div class="admin-topline"><h3>Audit Trail</h3><input class="btn-sm" style="border:1.5px solid var(--border); border-radius:8px; padding:8px 12px; font-size:12.5px;" placeholder="🔍 Search record ID, unit, operator…"></div>
+            <table class="admin-table">
+              <tr><th>Timestamp</th><th>User</th><th>Action</th><th>Record</th><th>Detail</th></tr>
+              <tr><td>2026-07-20 10:14</td><td>Thabo N.</td><td><span class="badge badge-navy">Captured</span></td><td style="font-family:monospace;">FZ-AZR-EL-0016</td><td>Azores · Unit 16 · Electricity</td></tr>
+              <tr><td>2026-07-20 10:22</td><td>System</td><td><span class="badge badge-warning">Flagged</span></td><td style="font-family:monospace;">FZ-WSV-EL-0002</td><td>+312% vs. last reading</td></tr>
+              <tr><td>2026-07-20 11:05</td><td>Lerato M.</td><td><span class="badge badge-success">Validated</span></td><td style="font-family:monospace;">FZ-FVC-WT-0009</td><td>Manually confirmed against photo</td></tr>
+              <tr><td>2026-07-20 11:40</td><td>Admin</td><td><span class="badge badge-navy">Exported</span></td><td style="font-family:monospace;">FZ-MER-*</td><td>The Meridian → Excel</td></tr>
+              <tr><td>2026-07-20 14:02</td><td>Admin</td><td><span class="badge badge-danger">Viewed</span></td><td style="font-family:monospace;">FZ-AZR-EL-0016</td><td>Pulled for owner appeal — Unit 16</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="frame-caption"><b>Audit trail</b> — every capture, edit, flag, view and export logged against a record ID, for compliance and owner-dispute defensibility.</div>
+      </div>
+    </div>
+
+    <div class="row-label">06 · AI assistant over the index — Phase 2 concept</div>
+    <div class="frame-row">
+      <div class="frame-col">
+      <div class="browser-frame">
+        <div class="browser-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="addr">admin.fuzio-metercapture.co.za/assistant</div></div>
+        <div class="admin-shell">
+          <div class="admin-sidenav">
+            <div class="side-item">📊 Dashboard</div>
+            <div class="side-item">🧹 Pipeline</div>
+            <div class="side-item">📑 Buildings</div>
+            <div class="side-item">🖼️ Image Index</div>
+            <div class="side-item">🕓 Audit Trail</div>
+            <div class="side-item active">💬 Assistant</div>
+          </div>
+          <div class="admin-main" style="padding:0;">
+            <div class="chat-shell">
+              <div class="chat-list">
+                <div style="font-size:11px; font-weight:700; color:var(--text-400); text-transform:uppercase; margin-bottom:10px;">Conversations</div>
+                <div class="conv active">Unit 16 Azores appeal</div>
+                <div class="conv">July anomaly review</div>
+                <div class="conv">Waterstone export prep</div>
+              </div>
+              <div class="chat-main">
+                <div style="margin-bottom:14px;"><span class="badge badge-warning">Phase 2 — Concept</span></div>
+                <div class="msg user">Owner from unit 16 Azores wants to appeal usage. Need the image and readings.</div>
+                <div class="msg ai">
+                  Found it — Azores, Unit 16, Electricity meter, captured 20 Jul 2026.
+                  <div class="ai-record-card">
+                    <div class="thumb"></div>
+                    <div class="row-text">
+                      <div class="t1" style="font-family:monospace; font-size:12px;">FZ-AZR-EL-0016-20260720</div>
+                      <div class="t2">128 430 kWh · captured by Thabo N. · validated</div>
+                      <div style="display:flex; gap:8px; margin-top:8px;"><button class="btn btn-sm btn-outline">Open Record</button><button class="btn btn-sm btn-navy">Export PDF</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-caption"><b>AI assistant (Phase 2)</b> — a natural-language layer over the same audit index: it resolves "unit 16, Azores" to a record ID and surfaces the photo + reading + chain of custody instantly, instead of a manual folder search.</div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<div class="footer-note">
+  Fuzio MeterCapture — internal concept mockup, Draft v0.2 · Building names, readings and people shown are illustrative sample data, not real records.
+  Palette matches confirmed Fuzio Properties brand colours (sourced from the Fuzio Staff Hub README).
+</div>
+
+</body>
+</html>

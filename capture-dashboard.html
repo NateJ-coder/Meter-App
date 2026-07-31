@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture Dashboard - Fuzio Meter Readings</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="assets/images/Fuzio logo.jpg" alt="Fuzio" class="nav-logo">
+            <span>Fuzio Meter Readings</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="capture-dashboard.html" class="active">Mobile Captures</a></li>
+            <li><a href="export.html">Export</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Mobile Capture Dashboard</h1>
+            <p class="subtitle">Readings and photos captured from the Fuzio Meter Reader Android app</p>
+        </header>
+
+        <section class="card">
+            <div class="filter-grid">
+                <div class="form-group">
+                    <label for="building-input">Building</label>
+                    <input type="text" id="building-input" value="Genesis" placeholder="e.g. Genesis">
+                </div>
+                <div class="form-group" style="align-self: end;">
+                    <button class="btn btn-primary" id="load-btn">Load Captures</button>
+                </div>
+                <div class="form-group" style="align-self: end;">
+                    <button class="btn btn-secondary" id="export-btn" disabled>Export to Excel</button>
+                </div>
+            </div>
+            <p id="status-text" class="text-muted"></p>
+        </section>
+
+        <section class="card">
+            <table class="data-table" id="captures-table">
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Meter Label</th>
+                        <th>Type</th>
+                        <th>Reading</th>
+                        <th>Captured At</th>
+                        <th>Photo File</th>
+                    </tr>
+                </thead>
+                <tbody id="captures-body">
+                    <tr><td colspan="6" class="text-muted">Load a building to see captured readings.</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script type="module" src="assets/capture-dashboard.js"></script>
+</body>
+</html>

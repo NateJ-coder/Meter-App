@@ -196,6 +196,9 @@
       <button type="button" id="sync-readings-button" class="btn btn-secondary btn-large" onclick="syncReadingsToCloud()">
         &#8635; Sync to Cloud
       </button>
+      <button type="button" id="download-excel-button" class="btn btn-secondary btn-large" onclick="downloadWorkflowExcel()" style="display: none;">
+        Download Excel
+      </button>
       <button type="button" id="download-transfer-button" class="btn btn-secondary btn-large" onclick="downloadWorkflowTransferPackage()" style="display: none;">
         Download Reading Package
       </button>
@@ -213,10 +216,11 @@
   import { getCurrentDateTime, parseDecimalInput } from './assets/app.js';
   import { auth } from './assets/auth.js';
   import { preparePhotoForStorage } from './assets/photo-utils.js';
-  import { persistReadingPhoto } from './assets/firebase-media.js';
+  import { persistReadingPhoto, syncPendingReadingPhotos } from './assets/firebase-media.js';
   import { buildCaptureReadingRecord, getMeterDisplayDescriptor, saveCaptureReading } from './assets/capture-shared.js';
   import { getWorkbookCapturePolicyForMeter, preloadWorkbookCapturePolicy } from './assets/workbook-capture-policy.js';
   import { buildReadingTransferPackage, downloadReadingTransferPackage } from './assets/reading-transfer.js';
+  import { xlsxExport } from './assets/xlsx-export.js';
   import { collection, doc, getDoc, getDocs, query, where } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
   import { firebaseDb } from './assets/firebase.js';
 
@@ -358,13 +362,74 @@
   }
 
   // Check if we should use on-site mode
-  if (mode === 'onsite' || onSiteMode.isActive()) {
+  if (!schemeId && !directMeterId) {
+    initializeSchemePicker();
+  } else if (mode === 'onsite' || onSiteMode.isActive()) {
     initializeOnsiteMode();
   } else if (schemeId && indexParam === null && !directMeterId) {
     // Scheme QR scanned — show overview dashboard
     initializeSchemeOverview();
   } else {
     initializeTraditionalReader();
+  }
+
+  function initializeSchemePicker() {
+    const overviewEl = document.getElementById('scheme-overview');
+    const onsiteContainer = document.getElementById('onsite-container');
+    const traditionalReader = document.getElementById('traditional-reader');
+
+    if (onsiteContainer) onsiteContainer.style.display = 'none';
+    if (traditionalReader) traditionalReader.style.display = 'none';
+
+    const schemes = storage.getAll('schemes')
+      .slice()
+      .sort((left, right) => String(left.name || '').localeCompare(String(right.name || '')));
+
+    const defaultScheme = schemes.find((scheme) => /gen(e|i)sis/i.test(String(scheme.name || '')))
+      || schemes[0]
+      || null;
+
+    const optionsHtml = schemes.length > 0
+      ? schemes.map((scheme) => `
+          <option value="${scheme.id}" ${defaultScheme && scheme.id === defaultScheme.id ? 'selected' : ''}>${scheme.name}</option>
+        `).join('')
+      : '<option value="">No schemes available</option>';
+
+    overviewEl.style.display = 'block';
+    overviewEl.innerHTML = `
+      <div class="card" style="max-width:760px;margin:0 auto;">
+        <h2 style="margin-top:0;">Start Meter Capture</h2>
+        <p class="text-muted">Select the scheme, then start guided on-site capture.</p>
+
+        <form id="scheme-picker-form">
+          <div class="form-group">
+            <label for="scheme-picker-select">Scheme / Building</label>
+            <select id="scheme-picker-select" class="reader-input" ${schemes.length === 0 ? 'disabled' : ''}>
+              ${optionsHtml}
+            </select>
+          </div>
+
+          <div class="form-actions" style="justify-content:flex-start;">
+            <button type="submit" class="btn btn-primary btn-large" ${schemes.length === 0 ? 'disabled' : ''}>Start On-Site Capture</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Go to Dashboard</button>
+          </div>
+        </form>
+
+        <p class="text-muted" style="margin-top:0.75rem;">Camera permission is requested as soon as you choose a photo for a meter reading.</p>
+      </div>
+    `;
+
+    const pickerForm = document.getElementById('scheme-picker-form');
+    pickerForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const selectedSchemeId = document.getElementById('scheme-picker-select')?.value;
+      if (!selectedSchemeId) {
+        alert('Please select a scheme first.');
+        return;
+      }
+
+      window.location.href = `reader.html?mode=onsite&scheme_id=${encodeURIComponent(selectedSchemeId)}`;
+    });
   }
 
   function initializeOnsiteMode() {
@@ -1060,13 +1125,19 @@
             cycleId: workflowContext.openCycle.id,
             meterId: meter.id,
             readingId: existingReading?.id || `${workflowContext.openCycle.id}-${meter.id}`,
-            capturedAt: getCurrentDateTime()
+            capturedAt: getCurrentDateTime(),
+            schemeId: workflowContext?.scheme?.id || '',
+            schemeName: workflowContext?.scheme?.name || '',
+            buildingName: meter?.unit_info?.building_name || '',
+            meterNumber: meter?.meter_number || '',
+            meterLabel: meter?.location_description || meter?.meter_label || meter?.meter_number || ''
           })
         : {
             photo: existingReading?.photo || '',
             photo_name: existingReading?.photo_name || '',
             photo_storage_mode: existingReading?.photo_storage_mode || '',
-            photo_storage_path: existingReading?.photo_storage_path || ''
+            photo_storage_path: existingReading?.photo_storage_path || '',
+            photo_pending_id: existingReading?.photo_pending_id || ''
           };
 
       const meterReplaced = meterReplacedToggle.checked;
@@ -1236,7 +1307,7 @@
             message: 'Meter skipped even though workbook policy expected capture_required',
             description: skipPolicyHint.skipReason || ''
           }] : [])],
-          photo: '', photo_name: '', photo_storage_mode: '', photo_storage_path: ''
+          photo: '', photo_name: '', photo_storage_mode: '', photo_storage_path: '', photo_pending_id: ''
         };
 
         if (existingReading) {
@@ -1532,7 +1603,17 @@
     if (statusEl) statusEl.textContent = '';
     try {
       const count = await storage.pushLocalReadingsToCloud();
-      if (statusEl) statusEl.textContent = `✓ ${count} reading${count !== 1 ? 's' : ''} pushed to cloud.`;
+      const photoSync = await syncPendingReadingPhotos({
+        readings: storage.getAll('readings'),
+        updateReading: (readingId, patch) => storage.update('readings', readingId, patch)
+      });
+      if (photoSync.uploaded > 0) {
+        await storage.pushLocalReadingsToCloud();
+      }
+
+      if (statusEl) {
+        statusEl.textContent = `✓ ${count} reading${count !== 1 ? 's' : ''} pushed to cloud. ${photoSync.uploaded} photo${photoSync.uploaded !== 1 ? 's' : ''} uploaded (${photoSync.failed} failed).`;
+      }
       if (btn) { btn.textContent = '✓ Synced'; }
     } catch (err) {
       console.error('Sync failed:', err);
@@ -1548,14 +1629,36 @@
     if (statusEl) statusEl.textContent = '';
     try {
       const count = await storage.pushLocalReadingsToCloud();
+      const photoSync = await syncPendingReadingPhotos({
+        readings: storage.getAll('readings'),
+        updateReading: (readingId, patch) => storage.update('readings', readingId, patch)
+      });
+      if (photoSync.uploaded > 0) {
+        await storage.pushLocalReadingsToCloud();
+      }
+
       if (statusEl) statusEl.textContent = count > 0
-        ? `✓ ${count} reading${count !== 1 ? 's' : ''} pushed to cloud.`
+        ? `✓ ${count} reading${count !== 1 ? 's' : ''} pushed to cloud. ${photoSync.uploaded} photo${photoSync.uploaded !== 1 ? 's' : ''} uploaded (${photoSync.failed} failed).`
         : 'No local readings found to sync.';
       if (btn) { btn.textContent = '✓ Synced'; }
     } catch (err) {
       console.error('Overview sync failed:', err);
       if (statusEl) statusEl.textContent = 'Sync failed — check your connection and try again.';
       if (btn) { btn.disabled = false; btn.textContent = '↻ Sync stored readings to cloud'; }
+    }
+  };
+
+  window.downloadWorkflowExcel = async function() {
+    const workflowMeters = getWorkflowMetersForSummary();
+    if (!workflowMeters.length) {
+      alert('No captured readings are available for export yet.');
+      return;
+    }
+
+    const cycleId = workflowMeters[0].cycle_id;
+    const filename = await xlsxExport.exportSimpleReadingsWorkbook(cycleId);
+    if (!filename) {
+      return;
     }
   };
 
@@ -1570,7 +1673,9 @@
 
     // Show the sync button whenever cloud sync is available
     const syncBtn = document.getElementById('sync-readings-button');
+    const excelBtn = document.getElementById('download-excel-button');
     if (syncBtn) syncBtn.style.display = storage.cloudSyncEnabled ? 'inline-block' : 'none';
+    if (excelBtn) excelBtn.style.display = 'inline-block';
 
     if (workflowContext?.singleMeterMode) {
       // Simple confirmation for single-meter QR scan
@@ -1588,6 +1693,7 @@
       `;
       document.getElementById('submission-identity-panel').innerHTML = '';
       document.getElementById('publish-readings-button').style.display = 'none';
+      document.getElementById('download-excel-button').style.display = 'inline-block';
       document.getElementById('download-transfer-button').style.display = 'none';
       document.getElementById('transfer-package-panel').style.display = 'none';
       document.getElementById('publish-status-message').textContent = '';

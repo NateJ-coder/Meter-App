@@ -7,6 +7,7 @@
 
 import { auth } from './auth.js';
 import { initializeFolderSchemes } from './app.js';
+import { syncPendingReadingPhotos } from './firebase-media.js';
 import { storage } from './storage.js';
 
 const currentPage = location.pathname.split('/').pop() || 'index.html';
@@ -43,6 +44,44 @@ await storage.initializeCloudSync({ preload: storage.shouldPreloadCloudData() })
 if (storage.cloudSyncEnabled) {
     await storage.refreshEntityFromCloud('cycles');
 }
+
+let backgroundSyncInFlight = false;
+
+async function runBackgroundReadingSync(reason = 'startup') {
+    if (!storage.cloudSyncEnabled || backgroundSyncInFlight) {
+        return;
+    }
+
+    backgroundSyncInFlight = true;
+
+    try {
+        await storage.pushLocalReadingsToCloud();
+
+        const photoSyncResult = await syncPendingReadingPhotos({
+            readings: storage.getAll('readings'),
+            updateReading: (readingId, patch) => storage.update('readings', readingId, patch)
+        });
+
+        if (photoSyncResult.uploaded > 0) {
+            await storage.pushLocalReadingsToCloud();
+        }
+    } catch (error) {
+        console.warn(`Background reading sync (${reason}) failed`, error);
+    } finally {
+        backgroundSyncInFlight = false;
+    }
+}
+
+if (typeof window !== 'undefined') {
+    window.addEventListener('online', () => {
+        runBackgroundReadingSync('online');
+    });
+
+    setTimeout(() => {
+        runBackgroundReadingSync('startup');
+    }, 250);
+}
+
 window.auth = auth;
 window.storage = storage;
 

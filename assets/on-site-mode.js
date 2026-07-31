@@ -715,6 +715,8 @@ export const onSiteMode = {
         // Get current user
         const currentUser = window.auth ? window.auth.getCurrentUser() : null;
         const capturedBy = currentUser ? currentUser.name : 'Unknown User';
+        const cycle = storage.get('cycles', cycleId);
+        const scheme = cycle ? storage.get('schemes', cycle.scheme_id) : null;
         const preparedPhoto = hasPhoto
             ? await preparePhotoForStorage(photoInput.files[0])
             : null;
@@ -723,9 +725,14 @@ export const onSiteMode = {
                 cycleId,
                 meterId,
                 readingId: `${cycleId}-${meterId}-${Date.now()}`,
-                capturedAt: new Date().toISOString()
+                capturedAt: new Date().toISOString(),
+                schemeId: cycle?.scheme_id || '',
+                schemeName: scheme?.name || '',
+                buildingName: meter.building_name || '',
+                meterNumber: meter.meter_number || '',
+                meterLabel: meter.location_description || meter.meter_label || meter.meter_number || ''
             })
-            : { photo: '', photo_name: '', photo_storage_mode: '', photo_storage_path: '' };
+            : { photo: '', photo_name: '', photo_storage_mode: '', photo_storage_path: '', photo_pending_id: '' };
 
         const overrideValue = overrideInput && overrideInput.value !== ''
             ? parseDecimalInput(overrideInput.value)
@@ -842,6 +849,7 @@ export const onSiteMode = {
             photo_name: existingReading?.photo_name || '',
             photo_storage_mode: existingReading?.photo_storage_mode || '',
             photo_storage_path: existingReading?.photo_storage_path || '',
+            photo_pending_id: existingReading?.photo_pending_id || '',
             flags: [{
                 type: 'skipped-meter',
                 severity: 'medium',

@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "meter-app-36307"
-  }
+  },
+  "targets": {
+    "meter-app-36307": {
+      "storage": {
+        "default": [
+          "meter-app-36307.firebasestorage.app"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

@@ -433,18 +433,28 @@ window.submitEnhancedReading = async function(event, meterId, cycleId) {
     const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
         ? await preparePhotoForStorage(photoInput.files[0])
         : null;
+    const unit = meter?.unit_id ? storage.get('units', meter.unit_id) : null;
+    const building = unit?.building_id ? storage.get('buildings', unit.building_id) : null;
+    const cycle = storage.get('cycles', cycleId);
+    const scheme = cycle?.scheme_id ? storage.get('schemes', cycle.scheme_id) : null;
     const photoPayload = preparedPhoto
         ? await persistReadingPhoto(preparedPhoto, {
             cycleId,
             meterId,
             readingId: existingReading?.id || `${cycleId}-${meterId}`,
-            capturedAt: readingDate
+            capturedAt: readingDate,
+            schemeId: cycle?.scheme_id || '',
+            schemeName: scheme?.name || '',
+            buildingName: building?.name || '',
+            meterNumber: meter?.meter_number || '',
+            meterLabel: meter?.location_description || meter?.meter_label || meter?.meter_number || ''
         })
         : {
             photo: existingReading?.photo || '',
             photo_name: existingReading?.photo_name || '',
             photo_storage_mode: existingReading?.photo_storage_mode || '',
-            photo_storage_path: existingReading?.photo_storage_path || ''
+            photo_storage_path: existingReading?.photo_storage_path || '',
+            photo_pending_id: existingReading?.photo_pending_id || ''
         };
 
     const reading = {
@@ -461,6 +471,7 @@ window.submitEnhancedReading = async function(event, meterId, cycleId) {
         photo_name: photoPayload.photo_name,
         photo_storage_mode: photoPayload.photo_storage_mode,
         photo_storage_path: photoPayload.photo_storage_path,
+        photo_pending_id: photoPayload.photo_pending_id || '',
         captured_at: new Date().toISOString(),
         review_status: 'pending'
     };

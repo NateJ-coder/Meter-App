@@ -127,6 +127,7 @@ export function buildCaptureReadingRecord({
         photo_name: photoPayload?.photo_name || '',
         photo_storage_mode: photoPayload?.photo_storage_mode || '',
         photo_storage_path: photoPayload?.photo_storage_path || '',
+        photo_pending_id: photoPayload?.photo_pending_id || '',
         notes: notes || '',
         consumption: readingValue - effectivePreviousReading,
         captured_by: capturedBy,

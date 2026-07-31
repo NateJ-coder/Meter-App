@@ -319,6 +319,64 @@ export const xlsxExport = {
         return filename;
     },
 
+    async exportSimpleReadingsWorkbook(cycleId, options = {}) {
+        const cycle = storage.get('cycles', cycleId);
+        if (!cycle) {
+            alert('Unable to find the selected cycle for export.');
+            return null;
+        }
+
+        const scheme = storage.get('schemes', cycle.scheme_id);
+        const readings = storage.getReadings(cycleId);
+
+        if (readings.length === 0) {
+            alert('No readings were captured for this cycle yet.');
+            return null;
+        }
+
+        const rows = readings
+            .map((reading) => {
+                const meter = storage.get('meters', reading.meter_id);
+                const unit = meter?.unit_id ? storage.get('units', meter.unit_id) : null;
+                const building = unit?.building_id ? storage.get('buildings', unit.building_id) : null;
+
+                const meterLabel = String(
+                    meter?.location_description
+                    || meter?.meter_label
+                    || meter?.meter_number
+                    || reading.meter_id
+                    || ''
+                ).trim();
+
+                return {
+                    meterLabel,
+                    readingValue: Number(reading.reading_value),
+                    buildingName: building?.name || ''
+                };
+            })
+            .filter((row) => row.meterLabel && Number.isFinite(row.readingValue))
+            .filter((row) => !options.buildingName || row.buildingName === options.buildingName)
+            .sort((left, right) => left.meterLabel.localeCompare(right.meterLabel, undefined, { numeric: true }));
+
+        if (rows.length === 0) {
+            alert('No matching readings were found for this export.');
+            return null;
+        }
+
+        await this.loadSheetJS();
+
+        const workbook = XLSX.utils.book_new();
+        const sheetRows = rows.map((row) => [row.meterLabel, row.readingValue]);
+        const worksheet = XLSX.utils.aoa_to_sheet(sheetRows);
+        worksheet['!cols'] = [{ wch: 24 }, { wch: 14 }];
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Readings');
+
+        const filename = options.filename
+            || `simple-readings-${sanitizeLayoutSegment(scheme?.name || 'scheme')}-${cycle.start_date}.xlsx`;
+        XLSX.writeFile(workbook, filename);
+        return filename;
+    },
+
     exportOutputManifest(cycleId, filters = {}) {
         const layout = getCycleExportLayout(cycleId, filters);
         if (!layout) {

@@ -783,6 +783,9 @@ document.getElementById('reading-form').addEventListener('submit', async (e) => 
     const existingReading = readings.find(r => r.meter_id === meterId);
     
     const meter = storage.get('meters', meterId);
+    const meterWithDetails = storage.getMeterWithDetails(meterId);
+    const cycle = storage.get('cycles', cycleId);
+    const scheme = cycle ? storage.get('schemes', cycle.scheme_id) : null;
     const consumption = validation.calculateConsumption(readingValue, meter.last_reading);
     const photoInput = document.getElementById('reading-photo');
     const preparedPhoto = photoInput && photoInput.files && photoInput.files[0]
@@ -793,13 +796,19 @@ document.getElementById('reading-form').addEventListener('submit', async (e) => 
             cycleId,
             meterId,
             readingId: existingReading?.id || `${cycleId}-${meterId}`,
-            capturedAt: document.getElementById('reading-date').value || new Date().toISOString()
+            capturedAt: document.getElementById('reading-date').value || new Date().toISOString(),
+            schemeId: cycle?.scheme_id || '',
+            schemeName: scheme?.name || '',
+            buildingName: meterWithDetails?.building_name || '',
+            meterNumber: meter?.meter_number || '',
+            meterLabel: meter?.location_description || meter?.meter_label || meter?.meter_number || ''
         })
         : {
             photo: existingReading?.photo || '',
             photo_name: existingReading?.photo_name || '',
             photo_storage_mode: existingReading?.photo_storage_mode || '',
-            photo_storage_path: existingReading?.photo_storage_path || ''
+            photo_storage_path: existingReading?.photo_storage_path || '',
+            photo_pending_id: existingReading?.photo_pending_id || ''
         };
     
     // Get current user from auth
@@ -815,6 +824,7 @@ document.getElementById('reading-form').addEventListener('submit', async (e) => 
         photo_name: photoPayload.photo_name,
         photo_storage_mode: photoPayload.photo_storage_mode,
         photo_storage_path: photoPayload.photo_storage_path,
+        photo_pending_id: photoPayload.photo_pending_id || '',
         notes: document.getElementById('reading-notes').value,
         consumption: consumption,
         captured_by: capturedBy,
