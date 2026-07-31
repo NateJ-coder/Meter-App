@@ -11,6 +11,7 @@ import {
     doc,
     getDocs,
     query,
+    updateDoc,
     where
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
 
@@ -24,7 +25,9 @@ const capturesBody = document.getElementById('captures-body');
 
 let currentRows = [];
 let autoRefreshTimer = null;
+let editingRowId = null;
 const AUTO_REFRESH_MS = 15000;
+const METER_TYPES = ['Electricity', 'Water'];
 
 function formatDate(date) {
     const dd = String(date.getDate()).padStart(2, '0');
@@ -43,9 +46,19 @@ function photoFilename(row) {
     return `${row.label} - ${row.meterType} Reading ${formatDate(row.capturedAtDate)}.jpeg`;
 }
 
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 async function loadCaptures(isAutoRefresh = false) {
     const building = buildingInput.value.trim();
     if (!building) return;
+    if (isAutoRefresh && editingRowId !== null) return; // don't clobber an in-progress edit
 
     if (!isAutoRefresh) {
         statusText.textContent = 'Loading...';
@@ -103,26 +116,93 @@ async function deleteCapture(id) {
     }
 }
 
+function startEdit(id) {
+    editingRowId = id;
+    renderRows();
+}
+
+function cancelEdit() {
+    editingRowId = null;
+    renderRows();
+}
+
+async function saveEdit(id) {
+    const row = document.querySelector(`tr[data-row-id="${id}"]`);
+    if (!row) return;
+
+    const label = row.querySelector('.edit-label').value.trim();
+    const meterType = row.querySelector('.edit-type').value;
+    const readingValue = row.querySelector('.edit-reading').value.trim();
+
+    if (!label || !readingValue) {
+        alert('Meter label and reading are required.');
+        return;
+    }
+
+    try {
+        await updateDoc(doc(firebaseDb, 'mobile_captures', id), { label, meterType, readingValue });
+        const target = currentRows.find((r) => r.id === id);
+        if (target) {
+            target.label = label;
+            target.meterType = meterType;
+            target.readingValue = readingValue;
+        }
+        editingRowId = null;
+        renderRows();
+        statusText.textContent = `Saved changes to "${label}".`;
+    } catch (err) {
+        console.error(err);
+        statusText.textContent = `Failed to save: ${err.message}`;
+    }
+}
+
 function renderRows() {
     if (currentRows.length === 0) {
         capturesBody.innerHTML = '<tr><td colspan="7" class="text-muted">No captures found for this building yet.</td></tr>';
         return;
     }
 
-    capturesBody.innerHTML = currentRows.map((row) => `
-        <tr>
-            <td>${row.photoUrl ? `<a href="${row.photoUrl}" target="_blank" rel="noopener"><img src="${row.photoUrl}" alt="${row.label}" style="width:64px;height:64px;object-fit:cover;border-radius:4px;"></a>` : '—'}</td>
-            <td>${row.label}</td>
-            <td>${row.meterType}</td>
-            <td>${row.readingValue}</td>
+    capturesBody.innerHTML = currentRows.map((row) => {
+        const isEditing = row.id === editingRowId;
+        const safeLabel = escapeHtml(row.label);
+        const safeReading = escapeHtml(row.readingValue);
+        const labelCell = isEditing
+            ? `<input type="text" class="edit-label" value="${safeLabel}" style="width:100%;">`
+            : safeLabel;
+        const typeCell = isEditing
+            ? `<select class="edit-type">${METER_TYPES.map((t) => `<option value="${t}" ${t === row.meterType ? 'selected' : ''}>${t}</option>`).join('')}</select>`
+            : escapeHtml(row.meterType);
+        const readingCell = isEditing
+            ? `<input type="text" class="edit-reading" value="${safeReading}" style="width:100%;">`
+            : safeReading;
+        const actionsCell = isEditing
+            ? `<button type="button" class="btn-primary btn-sm save-edit-btn" data-id="${row.id}">Save</button> <button type="button" class="btn-secondary btn-sm cancel-edit-btn">Cancel</button>`
+            : `<button type="button" class="btn-secondary btn-sm edit-row-btn" data-id="${row.id}">Edit</button> <button type="button" class="btn-secondary btn-sm delete-row-btn" data-id="${row.id}">Delete</button>`;
+
+        return `
+        <tr data-row-id="${row.id}">
+            <td>${row.photoUrl ? `<a href="${row.photoUrl}" target="_blank" rel="noopener"><img src="${row.photoUrl}" alt="${safeLabel}" style="width:64px;height:64px;object-fit:cover;border-radius:4px;"></a>` : '—'}</td>
+            <td>${labelCell}</td>
+            <td>${typeCell}</td>
+            <td>${readingCell}</td>
             <td>${row.capturedAtDate.toLocaleString()}</td>
             <td>${row.photoUrl ? `<a href="${row.photoUrl}" download="${photoFilename(row)}" target="_blank" rel="noopener">Download</a>` : '—'}</td>
-            <td><button type="button" class="btn-secondary btn-sm delete-row-btn" data-id="${row.id}">Delete</button></td>
+            <td>${actionsCell}</td>
         </tr>
-    `).join('');
+    `;
+    }).join('');
 
     capturesBody.querySelectorAll('.delete-row-btn').forEach((btn) => {
         btn.addEventListener('click', () => deleteCapture(btn.dataset.id));
+    });
+    capturesBody.querySelectorAll('.edit-row-btn').forEach((btn) => {
+        btn.addEventListener('click', () => startEdit(btn.dataset.id));
+    });
+    capturesBody.querySelectorAll('.save-edit-btn').forEach((btn) => {
+        btn.addEventListener('click', () => saveEdit(btn.dataset.id));
+    });
+    capturesBody.querySelectorAll('.cancel-edit-btn').forEach((btn) => {
+        btn.addEventListener('click', () => cancelEdit());
     });
 }
 
