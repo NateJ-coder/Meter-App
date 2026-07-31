@@ -7,6 +7,8 @@
  */
 import {
     collection,
+    deleteDoc,
+    doc,
     getDocs,
     query,
     where
@@ -21,6 +23,8 @@ const statusText = document.getElementById('status-text');
 const capturesBody = document.getElementById('captures-body');
 
 let currentRows = [];
+let autoRefreshTimer = null;
+const AUTO_REFRESH_MS = 15000;
 
 function formatDate(date) {
     const dd = String(date.getDate()).padStart(2, '0');
@@ -39,13 +43,15 @@ function photoFilename(row) {
     return `${row.label} - ${row.meterType} Reading ${formatDate(row.capturedAtDate)}.jpeg`;
 }
 
-async function loadCaptures() {
+async function loadCaptures(isAutoRefresh = false) {
     const building = buildingInput.value.trim();
     if (!building) return;
 
-    statusText.textContent = 'Loading...';
-    loadBtn.disabled = true;
-    exportBtn.disabled = true;
+    if (!isAutoRefresh) {
+        statusText.textContent = 'Loading...';
+        loadBtn.disabled = true;
+        exportBtn.disabled = true;
+    }
 
     try {
         const q = query(collection(firebaseDb, 'mobile_captures'), where('building', '==', building));
@@ -66,8 +72,10 @@ async function loadCaptures() {
         }).sort((a, b) => a.capturedAtDate - b.capturedAtDate);
 
         renderRows();
-        statusText.textContent = `${currentRows.length} reading(s) found for "${building}".`;
+        const stamp = new Date().toLocaleTimeString();
+        statusText.textContent = `${currentRows.length} reading(s) found for "${building}" (last refreshed ${stamp}).`;
         exportBtn.disabled = currentRows.length === 0;
+        restartAutoRefresh();
     } catch (err) {
         console.error(err);
         statusText.textContent = `Failed to load captures: ${err.message}`;
@@ -76,9 +84,28 @@ async function loadCaptures() {
     }
 }
 
+function restartAutoRefresh() {
+    if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(() => loadCaptures(true), AUTO_REFRESH_MS);
+}
+
+async function deleteCapture(id) {
+    if (!confirm('Delete this capture? This removes the reading and photo reference permanently.')) return;
+    try {
+        await deleteDoc(doc(firebaseDb, 'mobile_captures', id));
+        currentRows = currentRows.filter((row) => row.id !== id);
+        renderRows();
+        statusText.textContent = `Deleted. ${currentRows.length} reading(s) remaining for "${buildingInput.value.trim()}".`;
+        exportBtn.disabled = currentRows.length === 0;
+    } catch (err) {
+        console.error(err);
+        statusText.textContent = `Failed to delete: ${err.message}`;
+    }
+}
+
 function renderRows() {
     if (currentRows.length === 0) {
-        capturesBody.innerHTML = '<tr><td colspan="6" class="text-muted">No captures found for this building yet.</td></tr>';
+        capturesBody.innerHTML = '<tr><td colspan="7" class="text-muted">No captures found for this building yet.</td></tr>';
         return;
     }
 
@@ -90,8 +117,13 @@ function renderRows() {
             <td>${row.readingValue}</td>
             <td>${row.capturedAtDate.toLocaleString()}</td>
             <td>${row.photoUrl ? `<a href="${row.photoUrl}" download="${photoFilename(row)}" target="_blank" rel="noopener">Download</a>` : '—'}</td>
+            <td><button type="button" class="btn-secondary btn-sm delete-row-btn" data-id="${row.id}">Delete</button></td>
         </tr>
     `).join('');
+
+    capturesBody.querySelectorAll('.delete-row-btn').forEach((btn) => {
+        btn.addEventListener('click', () => deleteCapture(btn.dataset.id));
+    });
 }
 
 function loadSheetJS() {
@@ -127,11 +159,12 @@ async function exportToExcel() {
     XLSX.writeFile(workbook, `${building} Readings ${dateStamp}.xlsx`);
 }
 
-loadBtn.addEventListener('click', loadCaptures);
+loadBtn.addEventListener('click', () => loadCaptures());
 exportBtn.addEventListener('click', exportToExcel);
 buildingInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') loadCaptures();
 });
 
-// Auto-load the default building on first visit.
+// Auto-load the default building on first visit; keeps refreshing every
+// 15s afterwards so new mobile captures show up without manual reloads.
 loadCaptures();
