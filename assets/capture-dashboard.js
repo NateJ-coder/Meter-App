@@ -20,6 +20,7 @@ import { firebaseDb } from './firebase.js';
 const buildingInput = document.getElementById('building-input');
 const loadBtn = document.getElementById('load-btn');
 const exportBtn = document.getElementById('export-btn');
+const downloadPhotosBtn = document.getElementById('download-photos-btn');
 const statusText = document.getElementById('status-text');
 const capturesBody = document.getElementById('captures-body');
 
@@ -88,6 +89,7 @@ async function loadCaptures(isAutoRefresh = false) {
         const stamp = new Date().toLocaleTimeString();
         statusText.textContent = `${currentRows.length} reading(s) found for "${building}" (last refreshed ${stamp}).`;
         exportBtn.disabled = currentRows.length === 0;
+        downloadPhotosBtn.disabled = !currentRows.some((row) => row.photoUrl);
         restartAutoRefresh();
     } catch (err) {
         console.error(err);
@@ -110,6 +112,7 @@ async function deleteCapture(id) {
         renderRows();
         statusText.textContent = `Deleted. ${currentRows.length} reading(s) remaining for "${buildingInput.value.trim()}".`;
         exportBtn.disabled = currentRows.length === 0;
+        downloadPhotosBtn.disabled = !currentRows.some((row) => row.photoUrl);
     } catch (err) {
         console.error(err);
         statusText.textContent = `Failed to delete: ${err.message}`;
@@ -239,8 +242,106 @@ async function exportToExcel() {
     XLSX.writeFile(workbook, `${building} Readings ${dateStamp}.xlsx`);
 }
 
+function loadJSZip() {
+    return new Promise((resolve, reject) => {
+        if (window.JSZip) {
+            resolve();
+            return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load JSZip'));
+        document.head.appendChild(script);
+    });
+}
+
+// Dedupe filenames within a single zip (two captures could share the same
+// label/type/date if a meter was recaptured the same minute).
+function uniqueZipName(usedNames, name) {
+    if (!usedNames.has(name)) {
+        usedNames.add(name);
+        return name;
+    }
+    const dot = name.lastIndexOf('.');
+    const base = dot === -1 ? name : name.slice(0, dot);
+    const ext = dot === -1 ? '' : name.slice(dot);
+    let n = 2;
+    let candidate = `${base} (${n})${ext}`;
+    while (usedNames.has(candidate)) {
+        n += 1;
+        candidate = `${base} (${n})${ext}`;
+    }
+    usedNames.add(candidate);
+    return candidate;
+}
+
+async function downloadAllPhotos() {
+    const withPhotos = currentRows.filter((row) => row.photoUrl);
+    if (withPhotos.length === 0) return;
+
+    downloadPhotosBtn.disabled = true;
+    const originalText = downloadPhotosBtn.textContent;
+
+    try {
+        await loadJSZip();
+        const zip = new JSZip();
+        const usedNames = new Set();
+        let failed = 0;
+
+        for (let i = 0; i < withPhotos.length; i += 1) {
+            const row = withPhotos[i];
+            downloadPhotosBtn.textContent = `Downloading ${i + 1} of ${withPhotos.length}...`;
+            try {
+                const response = await fetch(row.photoUrl);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const blob = await response.blob();
+                zip.file(uniqueZipName(usedNames, photoFilename(row)), blob);
+            } catch (err) {
+                failed += 1;
+                if (i === 0) {
+                    // The Storage bucket has no CORS config, so fetch() can never
+                    // succeed here (this is a one-time setup step, not a bug in
+                    // this page) — stop immediately instead of failing 1-by-1.
+                    throw new Error(
+                        'Photo storage isn\'t configured to allow zip downloads yet (missing CORS on the ' +
+                        'Storage bucket). Ask a developer to run a one-time `gsutil cors set` command on the ' +
+                        'bucket, then this button will work. In the meantime, use the per-row Download links ' +
+                        '(they open the photo in a new tab — use "Save image as" to keep it).'
+                    );
+                }
+                console.error(`Failed to fetch photo for ${row.label}:`, err);
+            }
+        }
+
+        downloadPhotosBtn.textContent = 'Zipping...';
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        const building = buildingInput.value.trim() || 'building';
+        const dateStamp = formatDate(new Date());
+        const url = URL.createObjectURL(zipBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${building} Photos ${dateStamp}.zip`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+
+        statusText.textContent = failed === 0
+            ? `Downloaded ${withPhotos.length} photo(s) as a zip.`
+            : `Downloaded ${withPhotos.length - failed} of ${withPhotos.length} photo(s) as a zip (${failed} failed — see console).`;
+    } catch (err) {
+        console.error(err);
+        statusText.textContent = err.message;
+    } finally {
+        downloadPhotosBtn.textContent = originalText;
+        downloadPhotosBtn.disabled = !currentRows.some((row) => row.photoUrl);
+    }
+}
+
 loadBtn.addEventListener('click', () => loadCaptures());
 exportBtn.addEventListener('click', exportToExcel);
+downloadPhotosBtn.addEventListener('click', downloadAllPhotos);
 buildingInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') loadCaptures();
 });

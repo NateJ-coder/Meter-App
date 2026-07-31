@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["https://app.fuzio.co.za", "http://localhost:5500"],
+    "method": ["GET"],
+    "maxAgeSeconds": 3600,
+    "responseHeader": ["Content-Type"]
+  }
+]
