@@ -38,6 +38,10 @@ tmp/
 temp/
 *.tmp
 
+# Accidental browser downloads landing in the repo root during local testing
+/*.zip
+/*.xlsx
+
 # Backup files
 *.bak
 *.backup
