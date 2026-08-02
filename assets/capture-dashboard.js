@@ -223,13 +223,31 @@ function loadSheetJS() {
     });
 }
 
+// Natural sort that treats "GEN 43" and "GEN43" as the same for ordering
+// purposes, so inconsistent spacing during capture doesn't scramble the
+// exported order (plain localeCompare({numeric:true}) breaks on this because
+// the stray space sorts as its own character between letters and digits).
+function naturalLabelCompare(a, b) {
+    const tokenize = (s) => s.replace(/\s+/g, '').match(/\d+|\D+/g) || [];
+    const at = tokenize(a);
+    const bt = tokenize(b);
+    const len = Math.max(at.length, bt.length);
+    for (let i = 0; i < len; i += 1) {
+        const av = at[i] ?? '';
+        const bv = bt[i] ?? '';
+        const isNum = /^\d+$/.test(av) && /^\d+$/.test(bv);
+        const diff = isNum ? Number(av) - Number(bv) : av.localeCompare(bv);
+        if (diff) return diff;
+    }
+    return 0;
+}
+
 async function exportToExcel() {
     if (currentRows.length === 0) return;
 
     await loadSheetJS();
 
-    const sorted = [...currentRows].sort((a, b) =>
-        a.label.localeCompare(b.label, undefined, { numeric: true }));
+    const sorted = [...currentRows].sort((a, b) => naturalLabelCompare(a.label, b.label));
 
     const sheetRows = sorted.map((row) => [row.label, Number(row.readingValue) || row.readingValue]);
     const workbook = XLSX.utils.book_new();
