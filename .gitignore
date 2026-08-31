@@ -44,6 +44,9 @@ temp/
 /*.zip
 /*.xlsx
 
+# APK files (too large for git, deployed separately)
+downloads/*.apk
+
 # Backup files
 *.bak
 *.backup
