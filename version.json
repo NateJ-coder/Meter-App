@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
-  "buildNumber": 1,
-  "apkUrl": "https://app.fuzio.co.za/downloads/fuzio-meter-reader-v1.0.0.apk",
-  "message": "Initial release with:\n• Month-based filtering for readings\n• Automatic update notifications\n• Data cleaning support",
+  "version": "1.0.1",
+  "buildNumber": 2,
+  "apkUrl": "https://app.fuzio.co.za/downloads/fuzio-meter-reader-v1.0.1.apk",
+  "message": "New features:\n• Building dropdown (Genesis / Phanda Lodge)\n• Ensures consistent naming for data cleaning\n• Month-based filtering\n• Automatic updates",
   "required": false
 }
