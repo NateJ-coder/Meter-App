@@ -4,14 +4,15 @@
 
 **Location:** `Mobile App\build\app\outputs\flutter-apk\app-release.apk`
 
-**Current Version:** v1.0.0 (Build 1)  
+**Current Version:** v1.0.1 (Build 2)  
 **Size:** ~49 MB  
 **Last Built:** 2026-08-31
 
 **Features:**
+- ✅ Building dropdown (Genesis / Phanda Lodge)
 - ✅ Month-based filtering for readings
 - ✅ Data cleaning (ready for Phanda Lodge rules)
-- ✅ **Automatic update checker (NEW!)**
+- ✅ Automatic update checker
 - ✅ Capture date/time display
 
 ---
@@ -63,6 +64,11 @@ npm run deploy:hosting
 ---
 
 ## 📝 Version History
+
+### v1.0.1 (Build 2) - 2026-08-31
+- Building dropdown with Genesis and Phanda Lodge options
+- Ensures consistent naming for data cleaning
+- Improved UX with building icon
 
 ### v1.0.0 (Build 1) - 2026-08-31
 - Initial release with update system
