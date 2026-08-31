@@ -20,12 +20,44 @@ class _CaptureScreenState extends State<CaptureScreen> {
   List<Capture> _all = [];
   Timer? _retryTimer;
   bool _loading = true;
+  String? _selectedMonth; // null = show all
 
-  List<Capture> get _mine => _all
+  List<Capture> get _buildingCaptures => _all
       .where((c) =>
           c.building.trim().toLowerCase() == widget.building.trim().toLowerCase())
       .toList()
-    ..sort((a, b) => a.capturedAt.compareTo(b.capturedAt));
+    ..sort((a, b) => b.capturedAt.compareTo(a.capturedAt)); // newest first
+
+  List<Capture> get _mine {
+    if (_selectedMonth == null) return _buildingCaptures;
+    return _buildingCaptures
+        .where((c) => _formatMonth(c.capturedAt) == _selectedMonth)
+        .toList();
+  }
+
+  List<String> get _availableMonths {
+    final months = _buildingCaptures
+        .map((c) => _formatMonth(c.capturedAt))
+        .toSet()
+        .toList()
+      ..sort((a, b) => b.compareTo(a)); // newest first
+    return months;
+  }
+
+  String _formatMonth(DateTime dt) {
+    return '${dt.year}-${dt.month.toString().padLeft(2, '0')}';
+  }
+
+  String _displayMonth(String monthKey) {
+    final parts = monthKey.split('-');
+    final year = parts[0];
+    final month = int.parse(parts[1]);
+    final monthNames = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    return '${monthNames[month - 1]} $year';
+  }
 
   @override
   void initState() {
@@ -93,6 +125,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
     final photosPending = items
         .where((c) => c.readingSynced && c.photoUrl == null)
         .length;
+    final months = _availableMonths;
 
     return Scaffold(
       appBar: AppBar(
@@ -109,6 +142,42 @@ class _CaptureScreenState extends State<CaptureScreen> {
           ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
+                // Month filter bar
+                if (months.isNotEmpty)
+                  Container(
+                    width: double.infinity,
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.calendar_month, size: 20),
+                        const SizedBox(width: 8),
+                        const Text('Filter by month:', style: TextStyle(fontWeight: FontWeight.w500)),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: DropdownButton<String?>(
+                            value: _selectedMonth,
+                            isExpanded: true,
+                            underline: const SizedBox(),
+                            items: [
+                              DropdownMenuItem<String?>(
+                                value: null,
+                                child: Text('All months (${_buildingCaptures.length})'),
+                              ),
+                              ...months.map((m) => DropdownMenuItem<String?>(
+                                    value: m,
+                                    child: Text('${_displayMonth(m)} (${_buildingCaptures.where((c) => _formatMonth(c.capturedAt) == m).length})'),
+                                  )),
+                            ],
+                            onChanged: (val) {
+                              setState(() => _selectedMonth = val);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                // Status bar
                 Container(
                   width: double.infinity,
                   color: Theme.of(context).colorScheme.surfaceContainerHighest,
@@ -136,6 +205,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
                           itemCount: items.length,
                           itemBuilder: (context, index) {
                             final c = items[index];
+                            final dateStr = '${c.capturedAt.day}/${c.capturedAt.month}/${c.capturedAt.year} ${c.capturedAt.hour.toString().padLeft(2, '0')}:${c.capturedAt.minute.toString().padLeft(2, '0')}';
                             return ListTile(
                               leading: ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
@@ -149,9 +219,9 @@ class _CaptureScreenState extends State<CaptureScreen> {
                                 ),
                               ),
                               title: Text('${c.label} · ${c.meterType}'),
-                              subtitle: Text('Reading: ${c.readingValue}'
+                              subtitle: Text('Reading: ${c.readingValue}\n$dateStr'
                                   '${c.error != null ? '\n${c.error}' : ''}'),
-                              isThreeLine: c.error != null,
+                              isThreeLine: true,
                               trailing: _statusChip(c),
                               onTap: c.status == CaptureStatus.failed
                                   ? () => _upload(c)
