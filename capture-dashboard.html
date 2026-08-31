@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b4da2">
     <title>Capture Dashboard - Fuzio Meter Readings</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="assets/images/Fuzio logo.jpg">
     <link rel="stylesheet" href="assets/styles.css">
+    <style>.dashboard-auth-pending > * { visibility: hidden; }</style>
 </head>
-<body>
+<body class="dashboard-auth-pending">
     <nav class="navbar">
         <div class="nav-brand">
             <img src="assets/images/Fuzio logo.jpg" alt="Fuzio" class="nav-logo">
             <span>Fuzio Meter Readings</span>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">Dashboard</a></li>
             <li><a href="capture-dashboard.html" class="active">Mobile Captures</a></li>
-            <li><a href="export.html">Export</a></li>
+            <li><a href="#" id="sign-out-link">Sign Out</a></li>
         </ul>
     </nav>
 
@@ -39,6 +42,9 @@
                 </div>
                 <div class="form-group" style="align-self: end;">
                     <button class="btn btn-secondary" id="download-photos-btn" disabled>Download All Photos</button>
+                </div>
+                <div class="form-group" style="align-self: end;" id="install-group" hidden>
+                    <button class="btn btn-secondary" id="install-btn">Install Dashboard</button>
                 </div>
             </div>
             <p id="status-text" class="text-muted"></p>
@@ -65,5 +71,6 @@
     </main>
 
     <script type="module" src="assets/capture-dashboard.js"></script>
+    <script src="assets/install-dashboard.js" defer></script>
 </body>
 </html>

@@ -30,6 +30,8 @@ vendor/
 # Build outputs (for future phases)
 dist/
 build/
+.firebase/
+.firebase-hosting/
 *.min.js
 *.min.css
 

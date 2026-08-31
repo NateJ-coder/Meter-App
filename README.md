@@ -10,6 +10,16 @@ It replaces *"WhatsApp + spreadsheets + site runs"* with a clean, controlled wor
 
 **Meter Register → Reading Cycle → On-Site Capture (QR) → Automated Validation → Admin Review → Export for Billing & Trustees**
 
+## Mobile Capture Dashboard Hosting
+
+The Firebase-backed capture dashboard can be installed as a browser app and hosted continuously on Firebase Hosting.
+
+```powershell
+npm run deploy:hosting
+```
+
+The deployment bundle is generated from an explicit allowlist in `scripts/prepare-hosting.mjs`. Do not publish the repository root directly because it contains local configuration and source documents that are not part of the dashboard.
+
 This repo currently runs as a **no-backend skeleton** (HTML + CSS + vanilla JS + localStorage) to prove the workflow quickly. It is designed to harden cleanly into a production system.
 
 ---

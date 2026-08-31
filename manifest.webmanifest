@@ -1,0 +1,18 @@
+{
+  "name": "Fuzio Meter Capture Dashboard",
+  "short_name": "Meter Captures",
+  "description": "Review and export meter readings captured in the field.",
+  "start_url": "/capture-dashboard.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0b4da2",
+  "icons": [
+    {
+      "src": "/assets/images/Fuzio logo.jpg",
+      "sizes": "800x800",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

@@ -14,8 +14,32 @@ import {
     updateDoc,
     where
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+import {
+    onAuthStateChanged,
+    signOut
+} from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
 
-import { firebaseDb } from './firebase.js';
+import { firebaseAuth, firebaseDb } from './firebase.js';
+
+const OFFICE_EMAILS = new Set([
+    'nathan@sectionalts.co',
+    'admin@sectionalts.co'
+]);
+
+const officeUser = await new Promise((resolve) => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
+        unsubscribe();
+        resolve(user && OFFICE_EMAILS.has(user.email?.toLowerCase()) ? user : null);
+    });
+});
+
+if (!officeUser) {
+    const returnTo = encodeURIComponent(location.pathname + location.search);
+    location.replace(`/capture-login.html?returnTo=${returnTo}`);
+    await new Promise(() => {});
+}
+
+document.body.classList.remove('dashboard-auth-pending');
 
 const buildingInput = document.getElementById('building-input');
 const loadBtn = document.getElementById('load-btn');
@@ -23,6 +47,7 @@ const exportBtn = document.getElementById('export-btn');
 const downloadPhotosBtn = document.getElementById('download-photos-btn');
 const statusText = document.getElementById('status-text');
 const capturesBody = document.getElementById('captures-body');
+const signOutLink = document.getElementById('sign-out-link');
 
 let currentRows = [];
 let autoRefreshTimer = null;
@@ -360,6 +385,11 @@ async function downloadAllPhotos() {
 loadBtn.addEventListener('click', () => loadCaptures());
 exportBtn.addEventListener('click', exportToExcel);
 downloadPhotosBtn.addEventListener('click', downloadAllPhotos);
+signOutLink.addEventListener('click', async (event) => {
+    event.preventDefault();
+    await signOut(firebaseAuth);
+    location.replace('/capture-login.html');
+});
 buildingInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') loadCaptures();
 });

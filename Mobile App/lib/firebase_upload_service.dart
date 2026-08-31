@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'capture.dart';
 import 'firebase_config.dart';
+import 'reading_cleaner.dart';
 
 /// Handles pushing a capture's photo + reading data to Firebase
 /// (Storage for the photo, Firestore for the reading record) using
@@ -67,11 +68,20 @@ class FirebaseUploadService {
     final docUri = Uri.parse(
         '${FirebaseConfig.firestoreBaseUrl}/${FirebaseConfig.capturesCollection}/${capture.id}?key=${FirebaseConfig.apiKey}');
 
+    // Clean the reading value using building-specific rules
+    final cleanedValue = ReadingCleaner.clean(
+      building: capture.building,
+      label: capture.label,
+      meterType: capture.meterType,
+      rawValue: capture.readingValue,
+    );
+
     final fields = {
       'building': {'stringValue': capture.building},
       'label': {'stringValue': capture.label},
       'meterType': {'stringValue': capture.meterType},
-      'readingValue': {'stringValue': capture.readingValue},
+      'readingValue': {'stringValue': cleanedValue},
+      'rawReadingValue': {'stringValue': capture.readingValue}, // Keep original for audit
       'photoPath': {'stringValue': capture.photoPath},
       'capturedAt': {
         'timestampValue': capture.capturedAt.toUtc().toIso8601String()

@@ -2,8 +2,17 @@ rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
+    function isOfficeUser() {
+      return request.auth != null
+        && request.auth.token.email in [
+          'nathan@sectionalts.co',
+          'admin@sectionalts.co'
+        ];
+    }
+
     match /{allPaths=**} {
-      allow read, write: if true;
+      allow write: if true;
+      allow read: if isOfficeUser();
     }
   }
 }
