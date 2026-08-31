@@ -32,18 +32,13 @@ class BuildingScreen extends StatefulWidget {
 }
 
 class _BuildingScreenState extends State<BuildingScreen> {
-  final _controller = TextEditingController(text: 'Genesis');
+  String _selectedBuilding = 'Genesis';
+  final List<String> _buildings = ['Genesis', 'Phanda Lodge'];
 
   @override
   void initState() {
     super.initState();
     _checkForUpdates();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   Future<void> _checkForUpdates() async {
@@ -64,10 +59,8 @@ class _BuildingScreenState extends State<BuildingScreen> {
   }
 
   void _start() {
-    final building = _controller.text.trim();
-    if (building.isEmpty) return;
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => CaptureScreen(building: building)),
+      MaterialPageRoute(builder: (_) => CaptureScreen(building: _selectedBuilding)),
     );
   }
 
@@ -89,14 +82,24 @@ class _BuildingScreenState extends State<BuildingScreen> {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 24),
-            TextField(
-              controller: _controller,
+            DropdownButtonFormField<String>(
+              value: _selectedBuilding,
               decoration: const InputDecoration(
                 labelText: 'Building',
                 border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.apartment),
               ),
-              textInputAction: TextInputAction.done,
-              onSubmitted: (_) => _start(),
+              items: _buildings.map((building) {
+                return DropdownMenuItem<String>(
+                  value: building,
+                  child: Text(building),
+                );
+              }).toList(),
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() => _selectedBuilding = value);
+                }
+              },
             ),
             const SizedBox(height: 24),
             FilledButton(
