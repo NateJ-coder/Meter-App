@@ -42,25 +42,11 @@ cp "Mobile App/build/app/outputs/flutter-apk/app-release.apk" `
    "downloads/fuzio-meter-reader-v1.1.0.apk"
 ```
 
-### Step 4: Upload APK to Server
+### Step 4: APK Will Deploy Automatically
 
-**Option A: Via Firebase Hosting (if APK is not too large)**
+The hosting script automatically includes all `.apk` files from the `downloads/` folder. No manual upload needed!
 
-Add to `scripts/prepare-hosting.mjs`:
-```javascript
-'downloads/fuzio-meter-reader-v1.1.0.apk'
-```
-
-Then deploy:
-```powershell
-npm run deploy:hosting
-```
-
-**Option B: Manual Upload (Recommended for large files)**
-
-Upload the APK file to your hosting server's `downloads/` directory.
-
-Verify it's accessible at:
+When you run `npm run deploy:hosting` (in Step 6), the APK will be deployed to:
 `https://app.fuzio.co.za/downloads/fuzio-meter-reader-v1.1.0.apk`
 
 ### Step 5: Update version.json
@@ -84,13 +70,18 @@ Edit `version.json`:
 - `message`: What's new (shown to users)
 - `required`: If `true`, users cannot skip the update
 
-### Step 6: Deploy version.json
+### Step 6: Deploy Everything (version.json + APK)
 
 ```powershell
 npm run deploy:hosting
 ```
 
-This deploys the updated `version.json` to Firebase Hosting.
+This single command deploys:
+- The updated `version.json` 
+- All APK files from the `downloads/` folder
+- Your web dashboard files
+
+The APK will be available at the URL specified in `version.json`.
 
 ### Step 7: Test the Update
 

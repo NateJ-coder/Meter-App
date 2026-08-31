@@ -2,6 +2,6 @@
   "version": "1.0.0",
   "buildNumber": 1,
   "apkUrl": "https://app.fuzio.co.za/downloads/fuzio-meter-reader-v1.0.0.apk",
-  "message": "Initial release with Genesis and Phanda Lodge meter capture support.",
+  "message": "Initial release with:\n• Month-based filtering for readings\n• Automatic update notifications\n• Data cleaning support",
   "required": false
 }
