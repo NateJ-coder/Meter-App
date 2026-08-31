@@ -41,7 +41,7 @@ if (!officeUser) {
 
 document.body.classList.remove('dashboard-auth-pending');
 
-const buildingInput = document.getElementById('building-input');
+const buildingSelect = document.getElementById('building-select');
 const loadBtn = document.getElementById('load-btn');
 const exportBtn = document.getElementById('export-btn');
 const downloadPhotosBtn = document.getElementById('download-photos-btn');
@@ -82,7 +82,7 @@ function escapeHtml(value) {
 }
 
 async function loadCaptures(isAutoRefresh = false) {
-    const building = buildingInput.value.trim();
+    const building = buildingSelect.value.trim();
     if (!building) return;
     if (isAutoRefresh && editingRowId !== null) return; // don't clobber an in-progress edit
 
@@ -135,7 +135,7 @@ async function deleteCapture(id) {
         await deleteDoc(doc(firebaseDb, 'mobile_captures', id));
         currentRows = currentRows.filter((row) => row.id !== id);
         renderRows();
-        statusText.textContent = `Deleted. ${currentRows.length} reading(s) remaining for "${buildingInput.value.trim()}".`;
+        statusText.textContent = `Deleted. ${currentRows.length} reading(s) remaining for "${buildingSelect.value.trim()}".`;
         exportBtn.disabled = currentRows.length === 0;
         downloadPhotosBtn.disabled = !currentRows.some((row) => row.photoUrl);
     } catch (err) {
@@ -280,7 +280,7 @@ async function exportToExcel() {
     worksheet['!cols'] = [{ wch: 24 }, { wch: 14 }];
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Readings');
 
-    const building = buildingInput.value.trim() || 'building';
+    const building = buildingSelect.value.trim() || 'building';
     const dateStamp = formatDate(new Date());
     XLSX.writeFile(workbook, `${building} Readings ${dateStamp}.xlsx`);
 }
@@ -359,7 +359,7 @@ async function downloadAllPhotos() {
 
         downloadPhotosBtn.textContent = 'Zipping...';
         const zipBlob = await zip.generateAsync({ type: 'blob' });
-        const building = buildingInput.value.trim() || 'building';
+        const building = buildingSelect.value.trim() || 'building';
         const dateStamp = formatDate(new Date());
         const url = URL.createObjectURL(zipBlob);
         const link = document.createElement('a');
@@ -390,8 +390,8 @@ signOutLink.addEventListener('click', async (event) => {
     await signOut(firebaseAuth);
     location.replace('/capture-login.html');
 });
-buildingInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') loadCaptures();
+buildingSelect.addEventListener('change', () => {
+    loadCaptures();
 });
 
 // Auto-load the default building on first visit; keeps refreshing every
