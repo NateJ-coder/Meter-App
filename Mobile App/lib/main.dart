@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'app_updater.dart';
 import 'capture_screen.dart';
 
 void main() {
@@ -34,9 +35,32 @@ class _BuildingScreenState extends State<BuildingScreen> {
   final _controller = TextEditingController(text: 'Genesis');
 
   @override
+  void initState() {
+    super.initState();
+    _checkForUpdates();
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<void> _checkForUpdates() async {
+    // Small delay to let the UI settle
+    await Future.delayed(const Duration(seconds: 1));
+    
+    if (!mounted) return;
+
+    try {
+      final updateInfo = await AppUpdater.checkForUpdate();
+      if (updateInfo != null && mounted) {
+        await AppUpdater.showUpdateDialog(context, updateInfo);
+      }
+    } catch (e) {
+      // Silently fail - don't interrupt user if update check fails
+      debugPrint('Update check error: $e');
+    }
   }
 
   void _start() {

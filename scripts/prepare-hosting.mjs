@@ -9,6 +9,7 @@ const publicFiles = [
     'capture-login.html',
     'manifest.webmanifest',
     'service-worker.js',
+    'version.json',
     'assets/styles.css',
     'assets/capture-dashboard.js',
     'assets/capture-login.js',
