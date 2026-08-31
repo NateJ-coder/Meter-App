@@ -54,6 +54,7 @@ class AppUpdater {
     BuildContext context,
     UpdateInfo updateInfo, {
     required Function(double progress) onProgress,
+    required CancelToken cancelToken,
   }) async {
     try {
       final dir = await getExternalStorageDirectory();
@@ -68,13 +69,22 @@ class AppUpdater {
       }
 
       // Download with progress
-      final dio = Dio();
+      final dio = Dio(BaseOptions(
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(minutes: 5),
+        sendTimeout: const Duration(seconds: 30),
+      ));
+      
       await dio.download(
         updateInfo.apkUrl,
         apkPath,
+        cancelToken: cancelToken,
         onReceiveProgress: (received, total) {
           if (total > 0) {
             onProgress(received / total);
+          } else {
+            // If total is unknown, show indeterminate progress
+            debugPrint('Downloaded $received bytes (size unknown)');
           }
         },
       );
@@ -128,11 +138,13 @@ class _UpdateDialogState extends State<_UpdateDialog> {
   bool _downloading = false;
   double _progress = 0.0;
   String? _error;
+  CancelToken? _cancelToken;
 
   Future<void> _startDownload() async {
     setState(() {
       _downloading = true;
       _error = null;
+      _cancelToken = CancelToken();
     });
 
     try {
@@ -142,17 +154,29 @@ class _UpdateDialogState extends State<_UpdateDialog> {
         onProgress: (progress) {
           setState(() => _progress = progress);
         },
+        cancelToken: _cancelToken!,
       );
 
       if (mounted) {
         Navigator.of(context).pop();
       }
     } catch (e) {
-      setState(() {
-        _downloading = false;
-        _error = e.toString();
-      });
+      if (e is DioException && e.type == DioExceptionType.cancel) {
+        setState(() {
+          _downloading = false;
+          _error = 'Download cancelled';
+        });
+      } else {
+        setState(() {
+          _downloading = false;
+          _error = e.toString();
+        });
+      }
     }
+  }
+
+  void _cancelDownload() {
+    _cancelToken?.cancel('User cancelled');
   }
 
   @override
@@ -202,10 +226,20 @@ class _UpdateDialogState extends State<_UpdateDialog> {
             onPressed: () => Navigator.of(context).pop(),
             child: const Text('Later'),
           ),
-        if (!_downloading)
+        if (_downloading)
+          TextButton(
+            onPressed: _cancelDownload,
+            child: const Text('Cancel'),
+          ),
+        if (!_downloading && _error == null)
           FilledButton(
             onPressed: _startDownload,
             child: const Text('Update Now'),
+          ),
+        if (!_downloading && _error != null)
+          FilledButton(
+            onPressed: _startDownload,
+            child: const Text('Retry'),
           ),
       ],
     );

@@ -1,7 +1,7 @@
 {
-  "version": "1.0.1",
-  "buildNumber": 2,
-  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.0.1.apk",
-  "message": "New features:\n• Building dropdown (Genesis / Phanda Lodge)\n• Ensures consistent naming for data cleaning\n• Month-based filtering\n• Automatic updates",
+  "version": "1.0.2",
+  "buildNumber": 3,
+  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.0.2.apk",
+  "message": "Critical fix:\n• Fixed download timeout issue (15+ minute hangs)\n• Added Cancel button during download\n• Added Retry button if download fails\n• Improved timeout handling (5 min max)",
   "required": false
 }
