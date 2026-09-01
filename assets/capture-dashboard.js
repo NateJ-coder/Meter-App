@@ -42,6 +42,7 @@ if (!officeUser) {
 document.body.classList.remove('dashboard-auth-pending');
 
 const buildingSelect = document.getElementById('building-select');
+const monthSelect = document.getElementById('month-select');
 const loadBtn = document.getElementById('load-btn');
 const exportBtn = document.getElementById('export-btn');
 const downloadPhotosBtn = document.getElementById('download-photos-btn');
@@ -50,6 +51,7 @@ const capturesBody = document.getElementById('captures-body');
 const signOutLink = document.getElementById('sign-out-link');
 
 let currentRows = [];
+let allRows = []; // Store all loaded rows
 let autoRefreshTimer = null;
 let editingRowId = null;
 const AUTO_REFRESH_MS = 15000;
@@ -81,6 +83,53 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
+function formatMonth(date) {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    return `${yyyy}-${mm}`;
+}
+
+function displayMonth(monthStr) {
+    const [year, month] = monthStr.split('-');
+    const date = new Date(parseInt(year), parseInt(month) - 1);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+}
+
+function populateMonthFilter() {
+    const months = new Set();
+    allRows.forEach(row => {
+        months.add(formatMonth(row.capturedAtDate));
+    });
+    
+    const sortedMonths = Array.from(months).sort().reverse(); // Newest first
+    
+    // Store current selection
+    const currentSelection = monthSelect.value;
+    
+    // Clear and rebuild options
+    monthSelect.innerHTML = '<option value="">All months</option>';
+    sortedMonths.forEach(month => {
+        const option = document.createElement('option');
+        option.value = month;
+        option.textContent = displayMonth(month);
+        monthSelect.appendChild(option);
+    });
+    
+    // Restore selection if it still exists
+    if (currentSelection && sortedMonths.includes(currentSelection)) {
+        monthSelect.value = currentSelection;
+    }
+}
+
+function applyMonthFilter() {
+    const selectedMonth = monthSelect.value;
+    if (!selectedMonth) {
+        currentRows = [...allRows];
+    } else {
+        currentRows = allRows.filter(row => formatMonth(row.capturedAtDate) === selectedMonth);
+    }
+}
+
 async function loadCaptures(isAutoRefresh = false) {
     const building = buildingSelect.value.trim();
     if (!building) return;
@@ -108,11 +157,18 @@ async function loadCaptures(isAutoRefresh = false) {
                 photoUrl: data.photoUrl || '',
                 capturedAtDate
             };
-        }).sort((a, b) => a.capturedAtDate - b.capturedAtDate);
+        }).sort((a, b) => b.capturedAtDate - a.capturedAtDate); // Newest first
 
+        allRows = currentRows;
+        populateMonthFilter();
+        applyMonthFilter();
         renderRows();
         const stamp = new Date().toLocaleTimeString();
-        statusText.textContent = `${currentRows.length} reading(s) found for "${building}" (last refreshed ${stamp}).`;
+        const totalCount = allRows.length;
+        const filteredCount = currentRows.length;
+        statusText.textContent = filteredCount < totalCount 
+            ? `${filteredCount} of ${totalCount} reading(s) for "${building}" (last refreshed ${stamp})`
+            : `${currentRows.length} reading(s) found for "${building}" (last refreshed ${stamp})`;
         exportBtn.disabled = currentRows.length === 0;
         downloadPhotosBtn.disabled = !currentRows.some((row) => row.photoUrl);
         restartAutoRefresh();
@@ -133,7 +189,9 @@ async function deleteCapture(id) {
     if (!confirm('Delete this capture? This removes the reading and photo reference permanently.')) return;
     try {
         await deleteDoc(doc(firebaseDb, 'mobile_captures', id));
+        allRows = allRows.filter((row) => row.id !== id);
         currentRows = currentRows.filter((row) => row.id !== id);
+        populateMonthFilter();
         renderRows();
         statusText.textContent = `Deleted. ${currentRows.length} reading(s) remaining for "${buildingSelect.value.trim()}".`;
         exportBtn.disabled = currentRows.length === 0;
@@ -391,7 +449,20 @@ signOutLink.addEventListener('click', async (event) => {
     location.replace('/capture-login.html');
 });
 buildingSelect.addEventListener('change', () => {
+    monthSelect.value = ''; // Reset month filter when changing buildings
     loadCaptures();
+});
+monthSelect.addEventListener('change', () => {
+    applyMonthFilter();
+    renderRows();
+    const building = buildingSelect.value.trim();
+    const totalCount = allRows.length;
+    const filteredCount = currentRows.length;
+    statusText.textContent = filteredCount < totalCount 
+        ? `${filteredCount} of ${totalCount} reading(s) for "${building}"`
+        : `${currentRows.length} reading(s) for "${building}"`;
+    exportBtn.disabled = currentRows.length === 0;
+    downloadPhotosBtn.disabled = !currentRows.some((row) => row.photoUrl);
 });
 
 // Auto-load the default building on first visit; keeps refreshing every
