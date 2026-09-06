@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fuzio-capture-dashboard-v2';
+const CACHE_NAME = 'fuzio-capture-dashboard-v3';
 const APP_SHELL = [
     '/capture-dashboard.html',
     '/capture-login.html',
@@ -38,6 +38,21 @@ self.addEventListener('fetch', (event) => {
                     return response;
                 })
                 .catch(async () => (await caches.match(event.request)) || caches.match('/capture-dashboard.html'))
+        );
+        return;
+    }
+
+    // Code assets must be network-first: a cache-first copy can pin stale JS/CSS
+    // against freshly deployed HTML and break the page.
+    if (/\.(?:js|css|webmanifest)$/i.test(url.pathname)) {
+        event.respondWith(
+            fetch(event.request)
+                .then((response) => {
+                    const copy = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+                    return response;
+                })
+                .catch(() => caches.match(event.request))
         );
         return;
     }
