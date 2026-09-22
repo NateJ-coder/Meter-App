@@ -15,6 +15,9 @@ class Capture {
   CaptureStatus status;
   String? photoUrl; // set once uploaded
   String? error;
+  final String reviewNote;
+  final List<String> reviewWarnings;
+  final bool reviewAcknowledged;
   bool readingSynced; // true once the reading value has reached Firestore, independent of the photo
 
   Capture({
@@ -28,6 +31,9 @@ class Capture {
     this.status = CaptureStatus.pending,
     this.photoUrl,
     this.error,
+    this.reviewNote = '',
+    this.reviewWarnings = const [],
+    this.reviewAcknowledged = false,
     this.readingSynced = false,
   });
 
@@ -42,6 +48,9 @@ class Capture {
         'status': status.name,
         'photoUrl': photoUrl,
         'error': error,
+        'reviewNote': reviewNote,
+        'reviewWarnings': reviewWarnings,
+        'reviewAcknowledged': reviewAcknowledged,
         'readingSynced': readingSynced,
       };
 
@@ -59,6 +68,9 @@ class Capture {
         ),
         photoUrl: json['photoUrl'] as String?,
         error: json['error'] as String?,
+        reviewNote: json['reviewNote'] as String? ?? '',
+        reviewWarnings: (json['reviewWarnings'] as List<dynamic>?)?.cast<String>() ?? const [],
+        reviewAcknowledged: json['reviewAcknowledged'] as bool? ?? false,
         readingSynced: json['readingSynced'] as bool? ?? false,
       );
 

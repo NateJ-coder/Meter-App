@@ -1,5 +1,60 @@
 # APK Update Quick Reference
 
+## Release Signing and Rollout Hold (2026-09-22)
+
+The local v1.0.3 (build 4) APK now uses a dedicated release key, not the
+computer's debug key. It is NOT approved for distribution yet. The historical
+distribution details below are not the current local build status.
+
+- Private keystore: `%USERPROFILE%\.android\fuzio-release\fuzio-release.jks`
+- Local configuration: `Mobile App/android/key.properties` (ignored by Git).
+- Alias: `fuzio-release`; format: PKCS12; RSA: 3072 bits.
+- Certificate SHA-256: `8938876e92f71b3daa466e9f7a21652096dbee6fbcf42072d3eabc5ec9441c7a`.
+- Verified local backup: `%USERPROFILE%\Documents\Fuzio Signing Backup\2026-09-22`.
+
+The backup contains both the keystore and its password configuration. Treat
+both as secrets. Keep an encrypted copy on separate storage before relying on
+this key for production. A second folder on the same PC does not protect
+against formatting or disk failure. Never commit, publicly upload, or place
+signing material in a Hosting/downloads folder.
+
+On a replacement PC, restore the keystore and `android/key.properties`, then
+adjust `storeFile` to its restored absolute path using forward slashes. Keep
+the same key and alias for subsequent releases. Missing signing configuration
+must be restored; do not substitute a newly generated key or debug signing.
+
+This key cannot sign an in-place update to the existing v1.0.2 installation,
+whose original signing key is unavailable. Do not uninstall the old app or
+clear its storage until every phone's pending readings and photos are backed
+up and reconciled. A side-by-side migration requires a separate package ID
+and has not been implemented. Leave the hosted update manifest unchanged.
+
+Cloud photo downloads currently return HTTP 402 because the owning project's
+billing account is disabled in a delinquent state. Restore billing and verify
+the image backup before rollout; stored photo links alone are not a backup.
+
+### Evening Readiness Review
+
+- Local candidate: v1.0.3, build 4. Live manifest rechecked: v1.0.2, build 3.
+- App and admin dashboard offer 31 buildings. Specialized numeric rules exist
+  for Genesis, Phanda and Hazelmere; other buildings preserve decimals.
+- Advisory review supports a note or acknowledgement followed by Next. Raw
+  entries, cleaned values, reader notes and warning flags are retained.
+- Previous-reading checks use exact-label/type local history only. No OCR,
+  image identity correction, complete meter checklist or automatic OneDrive
+  filing is claimed.
+- Local per-record write serialization, corrupt-queue protection, cross-building
+  retries, reading-first uploads and masked photo-only retries are tested.
+- Update cancellation and closed-dialog handling were repaired. Opening the
+  Android installer is not proof of a successful installation.
+- Verification: 15 Flutter tests passed; full-app analyzer clean; isolated
+  browser tests checked building choices, escaped review notes and audit export.
+  Firebase calls were mocked in dashboard tests. No production test captures
+  were created. No physical Android device was available for acceptance tests.
+- No new update manifest or APK has been deployed. A Git source push does not
+  publish a compatible app update. Do not use the historical rollout commands
+  below until signing migration, phone backups and Storage billing are resolved.
+
 ## 📱 CURRENT APK FOR DISTRIBUTION
 
 **Location:** `Mobile App\build\app\outputs\flutter-apk\app-release.apk`

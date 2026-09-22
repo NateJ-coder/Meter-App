@@ -13,31 +13,29 @@ class FirebaseUploadService {
   /// Reading data is always synced first (and independently of the
   /// photo) so a Storage outage never blocks the meter reading itself
   /// from reaching the server.
-  static Future<void> uploadCapture(Capture capture) async {
-    final file = File(capture.photoPath);
-    String? photoUrl;
-    String? photoError;
-
-    if (await file.exists()) {
-      try {
-        photoUrl = await _uploadPhoto(capture, file);
-      } catch (e) {
-        photoError = e.toString();
+  static Future<void> uploadCapture(Capture capture, {http.Client? client}) async {
+    final connection = client ?? http.Client();
+    try {
+      if (!capture.readingSynced) {
+        await _writeReadingDoc(capture, connection);
+        capture.readingSynced = true;
       }
-    } else {
-      photoError = 'Photo file missing on device';
-    }
-
-    await _writeReadingDoc(capture, photoUrl);
-    capture.readingSynced = true;
-    capture.photoUrl = photoUrl;
-
-    if (photoUrl == null) {
-      throw Exception('Reading synced, photo still pending: $photoError');
+      if (capture.photoUrl == null) {
+        final file = File(capture.photoPath);
+        if (!await file.exists()) {
+          throw StateError('Reading synced, photo file missing on device');
+        }
+        capture.photoUrl = await _uploadPhoto(capture, file, connection);
+      }
+      await _patchFields(capture.id, {
+        'photoUrl': {'stringValue': capture.photoUrl!},
+      }, connection);
+    } finally {
+      if (client == null) connection.close();
     }
   }
 
-  static Future<String> _uploadPhoto(Capture capture, File file) async {
+  static Future<String> _uploadPhoto(Capture capture, File file, http.Client client) async {
     final bytes = await file.readAsBytes();
 
     final objectPath =
@@ -47,7 +45,7 @@ class FirebaseUploadService {
     final uploadUri = Uri.parse(
         '${FirebaseConfig.storageBaseUrl}?uploadType=media&name=$encodedPath&key=${FirebaseConfig.apiKey}');
 
-    final uploadResponse = await http
+    final uploadResponse = await client
         .post(uploadUri,
             headers: {'Content-Type': 'image/jpeg'}, body: bytes)
         .timeout(const Duration(seconds: 30));
@@ -64,10 +62,7 @@ class FirebaseUploadService {
 
   /// PATCH upserts the document whether or not it already exists, so
   /// this is safe to call repeatedly (retry-friendly).
-  static Future<void> _writeReadingDoc(Capture capture, String? photoUrl) async {
-    final docUri = Uri.parse(
-        '${FirebaseConfig.firestoreBaseUrl}/${FirebaseConfig.capturesCollection}/${capture.id}?key=${FirebaseConfig.apiKey}');
-
+  static Future<void> _writeReadingDoc(Capture capture, http.Client client) async {
     // Clean the reading value using building-specific rules
     final cleanedValue = ReadingCleaner.clean(
       building: capture.building,
@@ -86,10 +81,24 @@ class FirebaseUploadService {
       'capturedAt': {
         'timestampValue': capture.capturedAt.toUtc().toIso8601String()
       },
-      if (photoUrl != null) 'photoUrl': {'stringValue': photoUrl},
+      'readerNote': {'stringValue': capture.reviewNote},
+      'readerWarnings': {'arrayValue': {'values': capture.reviewWarnings
+          .map((warning) => {'stringValue': warning}).toList()}},
+      'readerAcknowledged': {'booleanValue': capture.reviewAcknowledged},
     };
 
-    final docResponse = await http
+    await _patchFields(capture.id, fields, client);
+  }
+
+  static Future<void> _patchFields(String id, Map<String, dynamic> fields, http.Client client) async {
+    final docUri = Uri.parse(
+        '${FirebaseConfig.firestoreBaseUrl}/${FirebaseConfig.capturesCollection}/$id').replace(
+      queryParameters: {
+        'key': FirebaseConfig.apiKey,
+        'updateMask.fieldPaths': fields.keys.toList(),
+      },
+    );
+    final docResponse = await client
         .patch(docUri,
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({'fields': fields}))

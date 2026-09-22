@@ -20,6 +20,9 @@ class _CaptureScreenState extends State<CaptureScreen> {
   List<Capture> _all = [];
   Timer? _retryTimer;
   bool _loading = true;
+  String? _loadError;
+  bool _retrying = false;
+  static final Set<String> _activeUploads = {};
   String? _selectedMonth; // null = show all
 
   List<Capture> get _buildingCaptures => _all
@@ -73,49 +76,77 @@ class _CaptureScreenState extends State<CaptureScreen> {
   }
 
   Future<void> _load() async {
-    final items = await CaptureStore.loadAll();
-    setState(() {
-      _all = items;
-      _loading = false;
-    });
-    _retryPending();
+    try {
+      final items = await CaptureStore.loadAll();
+      for (final capture in items) {
+        if (capture.status == CaptureStatus.uploading && !_activeUploads.contains(capture.id)) {
+          capture.status = CaptureStatus.pending;
+        }
+      }
+      if (!mounted) return;
+      setState(() { _all = items; _loading = false; _loadError = null; });
+      unawaited(_retryPending());
+    } catch (error) {
+      if (!mounted) return;
+      setState(() { _loading = false; _loadError = 'Saved readings could not be loaded. Nothing has been overwritten. $error'; });
+    }
   }
 
-  Future<void> _persist() => CaptureStore.saveAll(_all);
-
   Future<void> _upload(Capture capture) async {
-    setState(() => capture.status = CaptureStatus.uploading);
-    await _persist();
+    if (!_activeUploads.add(capture.id)) return;
     try {
-      await FirebaseUploadService.uploadCapture(capture);
-      capture.status = CaptureStatus.done;
-      capture.error = null;
-    } catch (e) {
+      final saved = await CaptureStore.loadAll();
+      capture = saved.firstWhere((item) => item.id == capture.id);
+      final index = _all.indexWhere((item) => item.id == capture.id);
+      if (index >= 0) _all[index] = capture;
+      if (capture.status == CaptureStatus.done) return;
+      capture.status = CaptureStatus.uploading;
+      if (mounted) setState(() {});
+      await CaptureStore.saveCapture(capture);
+      try {
+        await FirebaseUploadService.uploadCapture(capture);
+        capture.status = CaptureStatus.done;
+        capture.error = null;
+      } catch (error) {
+        capture.status = CaptureStatus.failed;
+        capture.error = error.toString();
+      }
+      await CaptureStore.saveCapture(capture);
+    } catch (error) {
       capture.status = CaptureStatus.failed;
-      capture.error = e.toString();
+      capture.error = 'Local save failed: $error';
+    } finally {
+      _activeUploads.remove(capture.id);
+      if (mounted) setState(() {});
     }
-    if (mounted) setState(() {});
-    await _persist();
   }
 
   Future<void> _retryPending() async {
-    final pending = _mine.where((c) =>
-        c.status == CaptureStatus.pending || c.status == CaptureStatus.failed);
-    for (final capture in pending.toList()) {
-      await _upload(capture);
+    if (_retrying || _loading || _loadError != null || !mounted) return;
+    _retrying = true;
+    try {
+      final items = await CaptureStore.loadAll();
+      if (!mounted) return;
+      setState(() => _all = items);
+      for (final capture in items) {
+        if (!mounted) break;
+        if (capture.status != CaptureStatus.done) await _upload(capture);
+      }
+    } catch (error) {
+      if (mounted) setState(() => _loadError = 'Could not reload saved readings. Nothing has been overwritten. $error');
+    } finally {
+      _retrying = false;
     }
   }
 
   Future<void> _addMeter() async {
     final capture = await Navigator.of(context).push<Capture>(
       MaterialPageRoute(
-        builder: (_) => AddCaptureScreen(building: widget.building),
+        builder: (_) => AddCaptureScreen(building: widget.building, previousCaptures: _all),
       ),
     );
-    if (capture == null) return;
-    setState(() => _all.add(capture));
-    await _persist();
-    unawaited(_upload(capture));
+    if (capture == null || !mounted) return;
+    await _load();
   }
 
   @override
@@ -134,13 +165,14 @@ class _CaptureScreenState extends State<CaptureScreen> {
           IconButton(
             icon: const Icon(Icons.sync),
             tooltip: 'Retry pending uploads',
-            onPressed: _retryPending,
+            onPressed: _loadError != null ? _load : _retryPending,
           ),
         ],
       ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
-          : Column(
+            : _loadError != null ? Center(child: Padding(
+              padding: const EdgeInsets.all(24), child: Text(_loadError!))) : Column(
               children: [
                 // Month filter bar
                 if (months.isNotEmpty)
@@ -220,6 +252,8 @@ class _CaptureScreenState extends State<CaptureScreen> {
                               ),
                               title: Text('${c.label} · ${c.meterType}'),
                               subtitle: Text('Reading: ${c.readingValue}\n$dateStr'
+                                  '${c.reviewWarnings.isNotEmpty ? '\nReviewed: ${c.reviewWarnings.length} checks' : ''}'
+                                  '${c.reviewNote.isNotEmpty ? '\nNote: ${c.reviewNote}' : ''}'
                                   '${c.error != null ? '\n${c.error}' : ''}'),
                               isThreeLine: true,
                               trailing: _statusChip(c),
@@ -233,7 +267,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
               ],
             ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _addMeter,
+        onPressed: _loading || _loadError != null ? null : _addMeter,
         icon: const Icon(Icons.add_a_photo),
         label: const Text('Add Meter'),
       ),

@@ -33,7 +33,15 @@ class BuildingScreen extends StatefulWidget {
 
 class _BuildingScreenState extends State<BuildingScreen> {
   String _selectedBuilding = 'Genesis';
-  final List<String> _buildings = ['Genesis', 'Phanda Lodge'];
+  static const buildings = [
+    'Genesis', 'Phanda Lodge', 'Akasia', 'Azores', 'Bonifay', 'Carissa Lane',
+    'Colnbrook', 'Dolphine Cove', 'Gosforth Park', 'Granistar Heights',
+    'Haven Court', 'Hazelmere', "L'Montagne", 'Magnolia Gardens', 'Mang Court',
+    'New Poort', 'Palm View Estate', 'Panarama View', 'Queensgate',
+    'River View', 'Riviera Villas', 'Rivonia Gate', 'Stonecrest',
+    'Summers Ridge', 'Suncrest', 'Sundene', 'Taragona', 'Transvalia',
+    'Villino Glen', 'Vista Del Monte', 'Wesley Heights',
+  ];
 
   @override
   void initState() {
@@ -83,16 +91,17 @@ class _BuildingScreenState extends State<BuildingScreen> {
             ),
             const SizedBox(height: 24),
             DropdownButtonFormField<String>(
-              value: _selectedBuilding,
+              initialValue: _selectedBuilding,
+              isExpanded: true,
               decoration: const InputDecoration(
                 labelText: 'Building',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.apartment),
               ),
-              items: _buildings.map((building) {
+              items: buildings.map((building) {
                 return DropdownMenuItem<String>(
                   value: building,
-                  child: Text(building),
+                  child: Text(building, overflow: TextOverflow.ellipsis),
                 );
               }).toList(),
               onChanged: (value) {

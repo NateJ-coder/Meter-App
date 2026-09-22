@@ -154,6 +154,10 @@ async function loadCaptures(isAutoRefresh = false) {
                 label: data.label || '',
                 meterType: data.meterType || '',
                 readingValue: data.readingValue || '',
+                rawReadingValue: data.rawReadingValue ?? data.readingValue ?? '',
+                readerNote: data.readerNote || '',
+                readerWarnings: Array.isArray(data.readerWarnings) ? data.readerWarnings : [],
+                readerAcknowledged: data.readerAcknowledged === true,
                 photoUrl: data.photoUrl || '',
                 capturedAtDate
             };
@@ -244,7 +248,7 @@ async function saveEdit(id) {
 
 function renderRows() {
     if (currentRows.length === 0) {
-        capturesBody.innerHTML = '<tr><td colspan="7" class="text-muted">No captures found for this building yet.</td></tr>';
+        capturesBody.innerHTML = '<tr><td colspan="8" class="text-muted">No captures found for this building yet.</td></tr>';
         return;
     }
 
@@ -260,7 +264,12 @@ function renderRows() {
             : escapeHtml(row.meterType);
         const readingCell = isEditing
             ? `<input type="text" class="edit-reading" value="${safeReading}" style="width:100%;">`
-            : safeReading;
+            : `${safeReading}<br><small>Entered: ${escapeHtml(row.rawReadingValue)}</small>`;
+        const reviewCell = [
+            row.readerAcknowledged ? '<small>Reader checked</small>' : '',
+            ...row.readerWarnings.map((warning) => `<div>${escapeHtml(warning)}</div>`),
+            row.readerNote ? `<div><strong>Note:</strong> ${escapeHtml(row.readerNote)}</div>` : ''
+        ].filter(Boolean).join('') || 'No reader review recorded';
         const actionsCell = isEditing
             ? `<button type="button" class="btn-primary btn-sm save-edit-btn" data-id="${row.id}">Save</button> <button type="button" class="btn-secondary btn-sm cancel-edit-btn">Cancel</button>`
             : `<button type="button" class="btn-secondary btn-sm edit-row-btn" data-id="${row.id}">Edit</button> <button type="button" class="btn-secondary btn-sm delete-row-btn" data-id="${row.id}">Delete</button>`;
@@ -271,6 +280,7 @@ function renderRows() {
             <td>${labelCell}</td>
             <td>${typeCell}</td>
             <td>${readingCell}</td>
+            <td>${reviewCell}</td>
             <td>${row.capturedAtDate.toLocaleString()}</td>
             <td>${row.photoUrl ? `<a href="${row.photoUrl}" download="${photoFilename(row)}" target="_blank" rel="noopener">Download</a>` : '—'}</td>
             <td>${actionsCell}</td>
@@ -337,6 +347,14 @@ async function exportToExcel() {
     const worksheet = XLSX.utils.aoa_to_sheet(sheetRows);
     worksheet['!cols'] = [{ wch: 24 }, { wch: 14 }];
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Readings');
+    const reviewRows = [
+        ['Capture ID', 'Building', 'Meter Label', 'Type', 'Admin Reading', 'Raw Reading', 'Reader Note', 'Warnings', 'Reader Checked', 'Captured At'],
+        ...sorted.map((row) => [row.id, row.building, row.label, row.meterType,
+            row.readingValue, row.rawReadingValue, row.readerNote,
+            row.readerWarnings.join('\n'), row.readerAcknowledged,
+            row.capturedAtDate.toISOString()])
+    ];
+    XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(reviewRows), 'Reader Review');
 
     const building = buildingSelect.value.trim() || 'building';
     const dateStamp = formatDate(new Date());
@@ -401,14 +419,9 @@ async function downloadAllPhotos() {
             } catch (err) {
                 failed += 1;
                 if (i === 0) {
-                    // The Storage bucket has no CORS config, so fetch() can never
-                    // succeed here (this is a one-time setup step, not a bug in
-                    // this page) — stop immediately instead of failing 1-by-1.
                     throw new Error(
-                        'Photo storage isn\'t configured to allow zip downloads yet (missing CORS on the ' +
-                        'Storage bucket). Ask a developer to run a one-time `gsutil cors set` command on the ' +
-                        'bucket, then this button will work. In the meantime, use the per-row Download links ' +
-                        '(they open the photo in a new tab — use "Save image as" to keep it).'
+                        `Photo download failed (${err.message}). No ZIP was created. ` +
+                        'Check Storage billing, access permissions and connectivity before retrying.'
                     );
                 }
                 console.error(`Failed to fetch photo for ${row.label}:`, err);

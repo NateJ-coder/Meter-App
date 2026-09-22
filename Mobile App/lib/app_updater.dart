@@ -12,14 +12,14 @@ class AppUpdater {
   static const versionCheckUrl = 'https://app.fuzio.co.za/version.json';
 
   /// Check if an update is available
-  static Future<UpdateInfo?> checkForUpdate() async {
+  static Future<UpdateInfo?> checkForUpdate({http.Client? client}) async {
     try {
       final packageInfo = await PackageInfo.fromPlatform();
-      final currentVersion = packageInfo.version;
       final currentBuildNumber = int.tryParse(packageInfo.buildNumber) ?? 0;
 
-      final response = await http
-          .get(Uri.parse(versionCheckUrl))
+        final response = await (client == null
+          ? http.get(Uri.parse(versionCheckUrl))
+          : client.get(Uri.parse(versionCheckUrl)))
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode != 200) return null;
@@ -90,7 +90,12 @@ class AppUpdater {
       );
 
       // Install APK (prompts user to install)
-      await OpenFilex.open(apkPath);
+      final result = await OpenFilex.open(apkPath);
+      if (result.type != ResultType.done) {
+        throw StateError('Could not open the Android installer: ${result.message}');
+      }
+    } on DioException {
+      rethrow;
     } catch (e) {
       throw Exception('Download failed: $e');
     }
@@ -140,6 +145,12 @@ class _UpdateDialogState extends State<_UpdateDialog> {
   String? _error;
   CancelToken? _cancelToken;
 
+  @override
+  void dispose() {
+    _cancelToken?.cancel('Update dialog closed');
+    super.dispose();
+  }
+
   Future<void> _startDownload() async {
     setState(() {
       _downloading = true;
@@ -152,7 +163,7 @@ class _UpdateDialogState extends State<_UpdateDialog> {
         context,
         widget.updateInfo,
         onProgress: (progress) {
-          setState(() => _progress = progress);
+          if (mounted) setState(() => _progress = progress);
         },
         cancelToken: _cancelToken!,
       );
@@ -161,6 +172,7 @@ class _UpdateDialogState extends State<_UpdateDialog> {
         Navigator.of(context).pop();
       }
     } catch (e) {
+      if (!mounted) return;
       if (e is DioException && e.type == DioExceptionType.cancel) {
         setState(() {
           _downloading = false;

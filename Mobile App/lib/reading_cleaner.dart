@@ -3,6 +3,38 @@
 /// Configure how readings should be normalized before upload to ensure
 /// consistency across different capture sessions and buildings.
 class ReadingCleaner {
+  static List<String> reviewWarnings(String rawValue, String cleanedValue,
+      {String? previousReading}) {
+    final warnings = <String>[];
+    if (!rawValue.contains('.')) {
+      warnings.add('No decimal entered. Check the decimal position on the display. Whole numbers are allowed.');
+    }
+    if (rawValue != cleanedValue) {
+      warnings.add('The admin reading differs from your entry. Check both values.');
+    }
+    final current = double.tryParse(cleanedValue);
+    final previous = double.tryParse(previousReading ?? '');
+    if (current == 0) warnings.add('The reading is zero. Please check the display.');
+    if (current != null && previous != null) {
+      if (current < previous) {
+        warnings.add('Below the previous local reading ($previousReading). Check for a replaced or rolled-over meter.');
+      } else if (current == previous) {
+        warnings.add('Unchanged from the previous local reading ($previousReading).');
+      } else if (previous > 0 && current >= previous * 10) {
+        warnings.add('At least ten times the previous local reading ($previousReading). Check the digits and decimal.');
+      }
+    }
+    return warnings;
+  }
+
+  static String? validate(String value) {
+    if (value.trim().isEmpty) return 'Required';
+    if (!RegExp(r'^\d+(\.\d+)?$').hasMatch(value.trim())) {
+      return 'Enter digits and one decimal point only (no commas or signs).';
+    }
+    return null;
+  }
+
   /// Clean and normalize a meter reading value before upload.
   ///
   /// Apply building-specific transformations to handle:
@@ -47,24 +79,13 @@ class ReadingCleaner {
 
   /// Genesis building-specific cleaning rules
   static String _cleanGenesis(String label, String meterType, String value) {
-    // Example: Genesis meters always use 5 decimal places
-    // Uncomment and modify as needed:
-    //
-    // String cleaned = value.trim().replaceAll(RegExp(r'\s+'), '');
-    //
-    // // If no decimal point, assume it's missing the decimal places
-    // if (!cleaned.contains('.')) {
-    //   // e.g., "12345" -> "123.45" (last 2 digits are decimal)
-    //   if (cleaned.length >= 2) {
-    //     final intPart = cleaned.substring(0, cleaned.length - 2);
-    //     final decPart = cleaned.substring(cleaned.length - 2);
-    //     cleaned = '$intPart.$decPart';
-    //   }
-    // }
-    //
-    // return cleaned;
-
-    // For now, just trim
+    final match = RegExp(r'^GEN\s*(?:UNIT\s*)?0*(\d{1,2})$',
+            caseSensitive: false)
+        .firstMatch(label.trim());
+    final unit = match == null ? null : int.tryParse(match.group(1)!);
+    if (meterType == 'Electricity' && unit != null && unit >= 1 && unit <= 63) {
+      return value.trim().split('.').first.replaceFirst(RegExp(r'^0+(?=\d)'), '');
+    }
     return value.trim();
   }
 
@@ -128,8 +149,8 @@ class ReadingCleaner {
     // (e.g. "2,739" or "2 739").
     cleaned = cleaned.replaceAll(RegExp(r'[\s,]'), '');
 
-    final isPerUnitSubmeter =
-        _phandaPerUnitSubmeterLabel.hasMatch(label.trim());
+    final isPerUnitSubmeter = meterType == 'Electricity' &&
+      _phandaPerUnitSubmeterLabel.hasMatch(label.trim());
 
     if (isPerUnitSubmeter) {
       // Confirmed whole-number-only meter: drop any decimal point and
@@ -225,7 +246,10 @@ class ReadingCleaner {
     // (e.g. "2,739" or "2 739").
     cleaned = cleaned.replaceAll(RegExp(r'[\s,]'), '');
 
-    final isStaffSubmeter = _hazelmereStaffSubmeterLabel.hasMatch(label.trim());
+    final isStaffSubmeter = meterType == 'Electricity' &&
+      (_hazelmereStaffSubmeterLabel.hasMatch(label.trim()) ||
+        RegExp(r'^\*\*\s*HM\s*(17|39|51)$', caseSensitive: false)
+          .hasMatch(label.trim()));
 
     final dotIndex = cleaned.indexOf('.');
     if (dotIndex != -1) {
