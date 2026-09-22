@@ -1,0 +1,462 @@
+{
+  "building_name": "Azores - Completed",
+  "generated_at": "2026-09-06T20:19:58.773Z",
+  "dry_run": true,
+  "model": "gemini-2.5-flash-lite",
+  "fallback_models": [
+    "gemini-1.5-flash",
+    "gemini-2.5-flash"
+  ],
+  "confidence_thresholds": {
+    "min_legible_confidence": 0.3,
+    "min_match_confidence": 0.6
+  },
+  "summary": {
+    "images_checked": 30,
+    "gemini_calls_made": 0,
+    "gemini_calls_failed": 30,
+    "fingerprint_cache_hits": 0,
+    "decisions": {
+      "needs-review": 30
+    },
+    "flags": {
+      "gemini-call-failed": 30,
+      "duplicate-label-in-batch": 2
+    },
+    "corrections_proposed": 0,
+    "orphan_labels_suggested": 0,
+    "applied_count": 0
+  },
+  "meter_fingerprints": {
+    "AZ 01A": null,
+    "AZ 02": null,
+    "AZ 03": null,
+    "AZ 04": null,
+    "AZ 05B": null,
+    "AZ 06A": null,
+    "AZ 07": null,
+    "AZ 08": null,
+    "AZ 09": null,
+    "AZ 10": null,
+    "AZ 11": null,
+    "AZ 12": null,
+    "AZ 13": null,
+    "AZ 14": null,
+    "AZ 15A": null,
+    "AZ 16A": null,
+    "AZ 17": null,
+    "AZ 18": null,
+    "AZ 19A": null,
+    "AZ 22": null,
+    "AZ 23": null,
+    "AZ 24": null,
+    "AZ 65": null,
+    "AZ 66": null,
+    "AZ 67": null,
+    "AZ 68": null,
+    "AZ 69": null,
+    "AZ 70": null,
+    "AZ 71A": null,
+    "AZ 72A": null
+  },
+  "results": [
+    {
+      "image_path": "April/Images/2_2026-04/AZ 01 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 01 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 01",
+      "labeled_meter_number": "AZ 01A",
+      "reference_match_kind": "alias",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 02 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 02 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 02",
+      "labeled_meter_number": "AZ 02",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 03 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 03 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 03",
+      "labeled_meter_number": "AZ 03",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 04 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 04 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "Z 80M",
+      "labeled_meter_number": "AZ 04",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 05 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 05 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 05",
+      "labeled_meter_number": "AZ 05B",
+      "reference_match_kind": "alias",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 06 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 06 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 06",
+      "labeled_meter_number": "AZ 06A",
+      "reference_match_kind": "alias",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 07 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 07 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 07",
+      "labeled_meter_number": "AZ 07",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 08 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 08 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 08",
+      "labeled_meter_number": "AZ 08",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 09 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 09 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 09",
+      "labeled_meter_number": "AZ 09",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 10 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 10 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 10",
+      "labeled_meter_number": "AZ 10",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 11 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 11 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 11",
+      "labeled_meter_number": "AZ 11",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 12 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 12 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "REVS 7",
+      "labeled_meter_number": "AZ 12",
+      "reference_match_kind": "exact",
+      "flags": [
+        "duplicate-label-in-batch",
+        "gemini-call-failed"
+      ],
+      "duplicate_label_peers": [
+        "April/Images/2_2026-04/AZ 16 - Electricity Reading  2026.04.02.jpeg"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 13 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 13 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 13",
+      "labeled_meter_number": "AZ 13",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 14- Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 14- Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 14",
+      "labeled_meter_number": "AZ 14",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 15 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 15 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 15",
+      "labeled_meter_number": "AZ 15A",
+      "reference_match_kind": "alias",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 16 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 16 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "REVS 7",
+      "labeled_meter_number": "AZ 16A",
+      "reference_match_kind": "alias",
+      "flags": [
+        "duplicate-label-in-batch",
+        "gemini-call-failed"
+      ],
+      "duplicate_label_peers": [
+        "April/Images/2_2026-04/AZ 12 - Electricity Reading  2026.04.02.jpeg"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 17 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 17 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 17",
+      "labeled_meter_number": "AZ 17",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 18 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 18 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 18",
+      "labeled_meter_number": "AZ 18",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 19 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 19 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 19",
+      "labeled_meter_number": "AZ 19A",
+      "reference_match_kind": "alias",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 22 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 22 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "O1",
+      "labeled_meter_number": "AZ 22",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 23- Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 23- Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 23",
+      "labeled_meter_number": "AZ 23",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 24 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 24 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 24",
+      "labeled_meter_number": "AZ 24",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 65 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 65 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 65",
+      "labeled_meter_number": "AZ 65",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 66 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 66 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 66",
+      "labeled_meter_number": "AZ 66",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 67- Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 67- Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 67",
+      "labeled_meter_number": "AZ 67",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 68 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 68 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 68",
+      "labeled_meter_number": "AZ 68",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 69 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 69 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 69",
+      "labeled_meter_number": "AZ 69",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 70 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 70 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 70",
+      "labeled_meter_number": "AZ 70",
+      "reference_match_kind": "exact",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 71 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 71 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 71",
+      "labeled_meter_number": "AZ 71A",
+      "reference_match_kind": "alias",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "April/Images/2_2026-04/AZ 72 - Electricity Reading  2026.04.02.jpeg",
+      "file_name": "AZ 72 - Electricity Reading  2026.04.02.jpeg",
+      "containing_folder": "April/Images/2_2026-04",
+      "current_label_token": "AZ 72",
+      "labeled_meter_number": "AZ 72A",
+      "reference_match_kind": "alias",
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    }
+  ]
+}

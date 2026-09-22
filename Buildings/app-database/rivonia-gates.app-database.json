@@ -1,7 +1,7 @@
 {
   "record_type": "building-app-database",
   "building_slug": "rivonia-gates",
-  "generated_at": "2026-04-28T10:45:25.656Z",
+  "generated_at": "2026-09-22T07:25:44.270076+00:00",
   "data_pipeline": "buildings_folder_only",
   "source_references": {
     "buildings_folder": "C:\\Projects\\Meter App\\Buildings\\buildings\\Rivonia Gates - completed",
@@ -535,6 +535,42 @@
       "created_at": "2026-04-08T18:27:34.364211",
       "imported_from": "utility_dash_macrofree",
       "source_reference": "Rivonia Gate:Bulk 1",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-rivonia-gates-water-bulk-bulk-1",
+      "scheme_id": "scheme-rivonia-gates",
+      "unit_id": null,
+      "meter_number": "Bulk 1",
+      "meter_type": "BULK",
+      "meter_role": "bulk",
+      "service_type": "water",
+      "location_description": "Rivonia Gates",
+      "last_reading": 22520.0,
+      "last_reading_date": "2026-09-04",
+      "pq_factor": null,
+      "prepaid_marker": "",
+      "created_at": "2026-09-22T07:25:44.269956+00:00",
+      "imported_from": "utility_dash_2026_09_water_extension",
+      "source_reference": "Rivonia Gate:WATER:Bulk 1",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-rivonia-gates-water-bulk-bulk-2",
+      "scheme_id": "scheme-rivonia-gates",
+      "unit_id": null,
+      "meter_number": "Bulk 2",
+      "meter_type": "BULK",
+      "meter_role": "bulk",
+      "service_type": "water",
+      "location_description": "Rivonia Gates",
+      "last_reading": 655.0,
+      "last_reading_date": "2026-09-04",
+      "pq_factor": null,
+      "prepaid_marker": "",
+      "created_at": "2026-09-22T07:25:44.270071+00:00",
+      "imported_from": "utility_dash_2026_09_water_extension",
+      "source_reference": "Rivonia Gate:WATER:Bulk 2",
       "source_confidence": "medium"
     }
   ],

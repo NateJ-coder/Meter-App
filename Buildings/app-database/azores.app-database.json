@@ -1,7 +1,7 @@
 {
   "record_type": "building-app-database",
   "building_slug": "azores",
-  "generated_at": "2026-04-28T10:45:25.434Z",
+  "generated_at": "2026-09-22T07:25:43.726325+00:00",
   "data_pipeline": "buildings_folder_only",
   "source_references": {
     "buildings_folder": "C:\\Projects\\Meter App\\Buildings\\buildings\\Azores - Completed",
@@ -2047,6 +2047,24 @@
       "created_at": "2026-04-08T18:27:33.293472",
       "imported_from": "utility_dash_macrofree",
       "source_reference": "The Azores:Bulk 1",
+      "source_confidence": "medium"
+    },
+    {
+      "id": "meter-azores-water-bulk-bulk-1",
+      "scheme_id": "scheme-azores",
+      "unit_id": null,
+      "meter_number": "Bulk 1",
+      "meter_type": "BULK",
+      "meter_role": "bulk",
+      "service_type": "water",
+      "location_description": "Azores",
+      "last_reading": 53394.0,
+      "last_reading_date": "2026-09-01",
+      "pq_factor": null,
+      "prepaid_marker": "",
+      "created_at": "2026-09-22T07:25:43.726303+00:00",
+      "imported_from": "utility_dash_2026_09_water_extension",
+      "source_reference": "The Azores:WATER:Bulk 1",
       "source_confidence": "medium"
     }
   ],

@@ -14,6 +14,9 @@
     "ai:clean-workbook:default": "node scripts/gemini-clean-workbook.mjs --input \"legacy-ud/ud extraction and data check.xlsx\" --sheet \"Sheet1\" --notes-sheet \"Workbook Notes\"",
     "ai:clean-workbook:pro": "node scripts/gemini-clean-workbook.mjs --model gemini-2.5-pro --fallback-models \"gemini-2.5-flash,gemini-2.5-flash-lite,gemini-1.5-flash\" --chunk-size 40",
     "ai:clean-workbook:capacity": "node scripts/gemini-clean-workbook.mjs --model gemini-2.5-flash-lite --fallback-models \"gemini-1.5-flash,gemini-2.5-flash\" --chunk-size 45",
+    "ai:check-meter-labels": "node scripts/check-meter-label-consistency.mjs",
+    "ai:check-meter-labels:apply": "node scripts/check-meter-label-consistency.mjs --apply",
+    "ai:check-meter-labels:self-test": "node scripts/check-meter-label-consistency.mjs --self-test",
     "test": "echo No automated tests configured"
   },
   "repository": {

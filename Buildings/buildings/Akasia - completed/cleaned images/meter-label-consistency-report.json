@@ -1,0 +1,58 @@
+{
+  "building_name": "Akasia - completed",
+  "generated_at": "2026-09-06T20:18:01.819Z",
+  "dry_run": true,
+  "model": "gemini-2.5-flash-lite",
+  "fallback_models": [
+    "gemini-1.5-flash",
+    "gemini-2.5-flash"
+  ],
+  "confidence_thresholds": {
+    "min_legible_confidence": 0.3,
+    "min_match_confidence": 0.6
+  },
+  "summary": {
+    "images_checked": 2,
+    "gemini_calls_made": 0,
+    "gemini_calls_failed": 2,
+    "fingerprint_cache_hits": 0,
+    "decisions": {
+      "needs-review": 2
+    },
+    "flags": {
+      "gemini-call-failed": 2
+    },
+    "corrections_proposed": 0,
+    "orphan_labels_suggested": 0,
+    "applied_count": 0
+  },
+  "meter_fingerprints": {},
+  "results": [
+    {
+      "image_path": "Images/2026-04/AKA - Readings 2026.02.03.jpeg",
+      "file_name": "AKA - Readings 2026.02.03.jpeg",
+      "containing_folder": "Images/2026-04",
+      "current_label_token": null,
+      "labeled_meter_number": null,
+      "reference_match_kind": null,
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    },
+    {
+      "image_path": "Images/2026-04/AKA - Tower Readings 2026.01.06.jpeg",
+      "file_name": "AKA - Tower Readings 2026.01.06.jpeg",
+      "containing_folder": "Images/2026-04",
+      "current_label_token": null,
+      "labeled_meter_number": null,
+      "reference_match_kind": null,
+      "flags": [
+        "gemini-call-failed"
+      ],
+      "decision": "needs-review",
+      "error": "All Gemini model attempts failed. gemini-2.5-flash-lite#1: Gemini request failed before receiving a response: fetch failed | gemini-1.5-flash#1: Gemini request failed before receiving a response: fetch failed | gemini-2.5-flash#1: Gemini request failed before receiving a response: fetch failed"
+    }
+  ]
+}
