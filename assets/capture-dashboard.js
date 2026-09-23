@@ -71,7 +71,34 @@ function toDate(capturedAt) {
 }
 
 function photoFilename(row) {
-    return `${row.label} - ${row.meterType} Reading ${formatDate(row.capturedAtDate)}.jpeg`;
+    const safePart = (value) => String(value).replace(/[<>:"/\\|?*\u0000-\u001f]/g, '_').trim();
+    return `${safePart(row.label)} - ${safePart(row.meterType)} Reading ${formatDate(row.capturedAtDate)}.jpeg`;
+}
+
+async function downloadPhoto(row, button) {
+    button.disabled = true;
+    try {
+        const response = await fetch(row.photoUrl);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const blob = await response.blob();
+        if (!blob.size || !blob.type.startsWith('image/')) {
+            throw new Error('Storage did not return an image');
+        }
+        const objectUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        const filename = photoFilename(row);
+        link.href = objectUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(objectUrl), 60000);
+        statusText.textContent = `Download started: ${filename}`;
+    } catch (error) {
+        statusText.textContent = `Photo download failed: ${error.message}`;
+    } finally {
+        button.disabled = false;
+    }
 }
 
 function escapeHtml(value) {
@@ -282,7 +309,7 @@ function renderRows() {
             <td>${readingCell}</td>
             <td>${reviewCell}</td>
             <td>${row.capturedAtDate.toLocaleString()}</td>
-            <td>${row.photoUrl ? `<a href="${row.photoUrl}" download="${photoFilename(row)}" target="_blank" rel="noopener">Download</a>` : '—'}</td>
+            <td>${row.photoUrl ? `<button type="button" class="btn-secondary btn-sm download-photo-btn" data-id="${escapeHtml(row.id)}">Download</button>` : '—'}</td>
             <td>${actionsCell}</td>
         </tr>
     `;
@@ -290,6 +317,12 @@ function renderRows() {
 
     capturesBody.querySelectorAll('.delete-row-btn').forEach((btn) => {
         btn.addEventListener('click', () => deleteCapture(btn.dataset.id));
+    });
+    capturesBody.querySelectorAll('.download-photo-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const row = currentRows.find((capture) => capture.id === btn.dataset.id);
+            if (row) downloadPhoto(row, btn);
+        });
     });
     capturesBody.querySelectorAll('.edit-row-btn').forEach((btn) => {
         btn.addEventListener('click', () => startEdit(btn.dataset.id));

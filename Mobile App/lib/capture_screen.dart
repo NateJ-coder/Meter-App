@@ -142,7 +142,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
   Future<void> _addMeter() async {
     final capture = await Navigator.of(context).push<Capture>(
       MaterialPageRoute(
-        builder: (_) => AddCaptureScreen(building: widget.building, previousCaptures: _all),
+        builder: (_) => AddCaptureScreen(building: widget.building),
       ),
     );
     if (capture == null || !mounted) return;

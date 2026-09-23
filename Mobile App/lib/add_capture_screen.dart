@@ -11,8 +11,7 @@ import 'reading_cleaner.dart';
 
 class AddCaptureScreen extends StatefulWidget {
   final String building;
-  final List<Capture> previousCaptures;
-  const AddCaptureScreen({super.key, required this.building, this.previousCaptures = const []});
+  const AddCaptureScreen({super.key, required this.building});
 
   @override
   State<AddCaptureScreen> createState() => _AddCaptureScreenState();
@@ -39,7 +38,10 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     setState(() => _takingPhoto = true);
     try {
       final shot = await ImagePicker().pickImage(
-        source: ImageSource.camera, imageQuality: 80, maxWidth: 1600);
+        source: ImageSource.camera,
+        imageQuality: 80,
+        maxWidth: 1600,
+      );
       if (shot == null || !mounted) return;
       final dir = await getApplicationDocumentsDirectory();
       final savedPath = '${dir.path}/capture_${const Uuid().v4()}.jpg';
@@ -48,7 +50,8 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     } catch (error) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Photo not saved. Please retry: $error')));
+          SnackBar(content: Text('Photo not saved. Please retry: $error')),
+        );
       }
     } finally {
       if (mounted) setState(() => _takingPhoto = false);
@@ -67,41 +70,6 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
 
     setState(() => _saving = true);
 
-    final rawValue = _readingController.text.trim();
-    final cleanedValue = ReadingCleaner.clean(
-      building: widget.building,
-      label: _labelController.text.trim(),
-      meterType: _meterType,
-      rawValue: rawValue,
-    );
-    final history = widget.previousCaptures.where((capture) =>
-        capture.building == widget.building &&
-        capture.meterType == _meterType &&
-        capture.label.trim().toUpperCase() == _labelController.text.trim().toUpperCase()).toList()
-      ..sort((first, second) => second.capturedAt.compareTo(first.capturedAt));
-    final previous = history.isEmpty ? null : history.first;
-    final previousReading = previous == null ? null : ReadingCleaner.clean(
-      building: previous.building, label: previous.label,
-      meterType: previous.meterType, rawValue: previous.readingValue,
-    );
-    final warnings = ReadingCleaner.reviewWarnings(rawValue, cleanedValue,
-        previousReading: previousReading);
-    final note = await showDialog<String>(
-      context: context,
-      builder: (context) => ReadingReviewDialog(
-        photo: Image.file(File(_photoPath!), height: 200, fit: BoxFit.contain,
-            errorBuilder: (_, error, stack) => const Text('Photo unavailable. Go back and retake it.')),
-        meter: '${widget.building}: ${_labelController.text.trim()} ($_meterType)',
-        rawValue: rawValue, cleanedValue: cleanedValue, warnings: warnings,
-        previousReading: previousReading,
-      ),
-    );
-    if (!mounted) return;
-    if (note == null) {
-      setState(() => _saving = false);
-      return;
-    }
-
     final capture = Capture(
       id: const Uuid().v4(),
       building: widget.building,
@@ -110,9 +78,6 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       readingValue: _readingController.text.trim(),
       photoPath: _photoPath!,
       capturedAt: DateTime.now(),
-      reviewNote: note,
-      reviewWarnings: warnings,
-      reviewAcknowledged: true,
     );
 
     try {
@@ -122,8 +87,11 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     } catch (error) {
       if (!mounted) return;
       setState(() => _saving = false);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Not saved. Keep this screen open and retry: $error')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Not saved. Keep this screen open and retry: $error'),
+        ),
+      );
     }
   }
 
@@ -147,7 +115,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                  (v == null || v.trim().isEmpty) ? 'Required' : null,
+                    (v == null || v.trim().isEmpty) ? 'Required' : null,
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
@@ -158,16 +126,20 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
                 ),
                 items: const [
                   DropdownMenuItem(
-                      value: 'Electricity', child: Text('Electricity')),
+                    value: 'Electricity',
+                    child: Text('Electricity'),
+                  ),
                   DropdownMenuItem(value: 'Water', child: Text('Water')),
                 ],
-                onChanged: (v) => setState(() => _meterType = v ?? 'Electricity'),
+                onChanged: (v) =>
+                    setState(() => _meterType = v ?? 'Electricity'),
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _readingController,
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 decoration: const InputDecoration(
                   labelText: 'Reading Value',
                   border: OutlineInputBorder(),
@@ -178,7 +150,11 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
               if (_photoPath != null)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.file(File(_photoPath!), height: 220, fit: BoxFit.cover),
+                  child: Image.file(
+                    File(_photoPath!),
+                    height: 220,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               const SizedBox(height: 12),
               OutlinedButton.icon(
@@ -198,73 +174,6 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class ReadingReviewDialog extends StatefulWidget {
-  final Widget photo;
-  final String meter;
-  final String rawValue;
-  final String cleanedValue;
-  final List<String> warnings;
-  final String? previousReading;
-
-  const ReadingReviewDialog({super.key, required this.photo, required this.meter,
-    required this.rawValue, required this.cleanedValue, required this.warnings,
-    this.previousReading});
-
-  @override
-  State<ReadingReviewDialog> createState() => _ReadingReviewDialogState();
-}
-
-class _ReadingReviewDialogState extends State<ReadingReviewDialog> {
-  final _note = TextEditingController();
-  bool _checked = false;
-
-  @override
-  void dispose() {
-    _note.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final canContinue = widget.warnings.isEmpty || _checked || _note.text.trim().isNotEmpty;
-    return AlertDialog(
-      title: const Text('Review reading'),
-      content: SizedBox(
-        width: 420,
-        child: SingleChildScrollView(
-          child: Column(mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start, children: [
-              widget.photo,
-              Text(widget.meter),
-              Text('Entered: ${widget.rawValue}\nAdmin reading: ${widget.cleanedValue}'),
-              Text(widget.previousReading == null ? 'No previous local reading available.'
-                  : 'Previous local reading: ${widget.previousReading}'),
-              const SizedBox(height: 12),
-              ...widget.warnings.map((warning) => Padding(
-                padding: const EdgeInsets.only(bottom: 8), child: Text(warning))),
-              const Text('Check the meter label, serial and register against the photo.'),
-              const SizedBox(height: 12),
-              TextField(controller: _note, maxLines: 3, maxLength: 1000,
-                decoration: const InputDecoration(labelText: 'Note for admin',
-                    border: OutlineInputBorder()),
-                onChanged: (_) => setState(() {})),
-              if (widget.warnings.isNotEmpty)
-                CheckboxListTile(contentPadding: EdgeInsets.zero,
-                  title: const Text('Checked the photo; keep this reading'),
-                  value: _checked,
-                  onChanged: (value) => setState(() => _checked = value ?? false)),
-            ]),
-        ),
-      ),
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Go Back')),
-        FilledButton(onPressed: canContinue ? () => Navigator.pop(context, _note.text.trim()) : null,
-          child: const Text('Next')),
-      ],
     );
   }
 }

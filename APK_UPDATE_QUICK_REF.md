@@ -1,5 +1,19 @@
 # APK Update Quick Reference
 
+## Current Local Build - 2026-09-23
+
+Version 1.0.4 (build 5) simplifies capture to a direct save with no reading
+review prompt. It offers the 13 requested buildings, excluding Akasia and Test.
+The dashboard source fixes per-image downloads using fetched image bytes and
+the label/type/date filename, and keeps existing Test captures accessible.
+
+This APK uses the same dedicated release key as the newly installed 1.0.3
+(build 4), so it can update that installation without uninstalling. The old
+1.0.2 key mismatch still applies only to devices on the old signing lineage.
+Do not change the legacy hosted manifest to advertise this APK to old devices.
+Photo download access was verified restored after billing was repaired on
+2026-09-23. The dated rollout notes below are historical.
+
 ## Release Signing and Rollout Hold (2026-09-22)
 
 The local v1.0.3 (build 4) APK now uses a dedicated release key, not the

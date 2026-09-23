@@ -1,5 +1,30 @@
 # Reading Cleaner - How to Add Rules
 
+## Current Capture Flow - 2026-09-23
+
+Version 1.0.4 (build 5) removes the advisory reading-review dialog, decimal
+prompts and acknowledgement requirement. Save Reading persists the capture
+directly after required label, numeric syntax and photo validation. Existing
+numeric cleaning and raw-value retention are unchanged. Review fields remain
+backward-compatible for older records, but new captures do not claim review.
+
+The app now offers only the 13 requested buildings: The Azores, Carissa Lane,
+Genesis, Hazelmere, L'Montagne, Queensgate, Rivonia Gate, Taragona, Transvalia,
+Vilino Glen, Phanda Lodge, Vista Del Monte and Bonifay Court. Akasia and Test
+are not offered for new capture. Existing storage identifiers (Azores,
+Villino Glen and Bonifay) remain unchanged to preserve dashboard grouping.
+The dashboard retains Test and Akasia only as archived-capture filters.
+
+Per-photo Download now fetches the image bytes and creates a browser download
+named `<entered label> - <type> Reading <DD.MM.YYYY>.jpeg`, with filesystem-unsafe
+characters replaced. It does not identify or rename a physical meter from its
+image. A label such as `# 44` remains as entered until corrected by admin.
+Cloud object names remain unique and existing photo URLs are not rewritten.
+
+The historical review-flow descriptions below document earlier work and are
+superseded by this section. Storage photo access was verified restored on
+2026-09-23 after the billing issue was resolved.
+
 ## Verified Workbook Review - 2026-09-22
 
 Source: `C:\Projects\Projects\Claude\Utilities\Utility Dash 9 September 2026 - Editable (1).xlsm`.

@@ -33,15 +33,21 @@ class BuildingScreen extends StatefulWidget {
 
 class _BuildingScreenState extends State<BuildingScreen> {
   String _selectedBuilding = 'Genesis';
-  static const buildings = [
-    'Genesis', 'Phanda Lodge', 'Akasia', 'Azores', 'Bonifay', 'Carissa Lane',
-    'Colnbrook', 'Dolphine Cove', 'Gosforth Park', 'Granistar Heights',
-    'Haven Court', 'Hazelmere', "L'Montagne", 'Magnolia Gardens', 'Mang Court',
-    'New Poort', 'Palm View Estate', 'Panarama View', 'Queensgate',
-    'River View', 'Riviera Villas', 'Rivonia Gate', 'Stonecrest',
-    'Summers Ridge', 'Suncrest', 'Sundene', 'Taragona', 'Transvalia',
-    'Villino Glen', 'Vista Del Monte', 'Wesley Heights', 'Test',
-  ];
+  static const buildings = {
+    'Azores': 'The Azores',
+    'Carissa Lane': 'Carissa Lane',
+    'Genesis': 'Genesis',
+    'Hazelmere': 'Hazelmere',
+    "L'Montagne": "L'Montagne",
+    'Queensgate': 'Queensgate',
+    'Rivonia Gate': 'Rivonia Gate',
+    'Taragona': 'Taragona',
+    'Transvalia': 'Transvalia',
+    'Villino Glen': 'Vilino Glen',
+    'Phanda Lodge': 'Phanda Lodge',
+    'Vista Del Monte': 'Vista Del Monte',
+    'Bonifay': 'Bonifay Court',
+  };
 
   @override
   void initState() {
@@ -98,10 +104,10 @@ class _BuildingScreenState extends State<BuildingScreen> {
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.apartment),
               ),
-              items: buildings.map((building) {
+              items: buildings.entries.map((building) {
                 return DropdownMenuItem<String>(
-                  value: building,
-                  child: Text(building, overflow: TextOverflow.ellipsis),
+                  value: building.key,
+                  child: Text(building.value, overflow: TextOverflow.ellipsis),
                 );
               }).toList(),
               onChanged: (value) {
