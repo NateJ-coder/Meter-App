@@ -168,4 +168,21 @@ void main() {
     expect(clean('Hazelmere', '**Staff Quarter', '7786.5', 'Water'), '7786');
     expect(clean('Hazelmere', 'HM 17', '337.1'), '337');
   });
+
+  test('Test building uses exactly the HZM cleaning rules', () {
+    for (final label in ['HM 17', 'HM 17 STAFF', '** HM 17', '** HM 39',
+      '** HM 51', '**Staff Quarter', 'Bulk 1', 'G01']) {
+      for (final type in ['Electricity', 'Water']) {
+        for (final value in ['337.1', '00012.30', '0.9', '1234', ' 7786.5 ']) {
+          final expected = clean('HZM', label, value, type);
+          expect(clean('Test', label, value, type), expected,
+              reason: '$label / $type / $value');
+          expect(clean(' test ', label, value, type), expected);
+        }
+      }
+    }
+    expect(clean('Test', 'HM 17', '337.1'), '337');
+    expect(clean('Test', 'HM 17 STAFF', '337.1'), '3371');
+    expect(clean('Test', '**Staff Quarter', '7786.5', 'Water'), '7786');
+  });
 }

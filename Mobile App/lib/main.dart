@@ -40,7 +40,7 @@ class _BuildingScreenState extends State<BuildingScreen> {
     'New Poort', 'Palm View Estate', 'Panarama View', 'Queensgate',
     'River View', 'Riviera Villas', 'Rivonia Gate', 'Stonecrest',
     'Summers Ridge', 'Suncrest', 'Sundene', 'Taragona', 'Transvalia',
-    'Villino Glen', 'Vista Del Monte', 'Wesley Heights',
+    'Villino Glen', 'Vista Del Monte', 'Wesley Heights', 'Test',
   ];
 
   @override

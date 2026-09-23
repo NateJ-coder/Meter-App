@@ -66,6 +66,7 @@ class ReadingCleaner {
         return _cleanPhandaLodge(label, meterType, rawValue);
       case 'hazelmere':
       case 'hzm':
+      case 'test':
         return _cleanHazelmere(label, meterType, rawValue);
       default:
         return _cleanDefault(rawValue);
