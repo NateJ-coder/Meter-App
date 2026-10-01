@@ -14,6 +14,32 @@ The Fuzio Meter Reader app includes an automatic update notification system that
 
 ## Releasing a New Version
 
+### Windows ARM Build Alternative
+
+If Application Control blocks only the x86-64 snapshot compiler or icon
+subsetting tool, an ARM phone release can use Flutter's supported options:
+
+```powershell
+flutter build apk --release --target-platform android-arm,android-arm64 --no-tree-shake-icons
+```
+
+This builds ARM32 and ARM64 packages and retains the complete icon font. It
+does not support x86/x86-64 devices. It does not disable or change Windows
+security policy. If ARM compilation or signing is also blocked, use an approved
+build machine or ask the administrator to resolve the policy. Keep the existing
+release key; changing it breaks in-place updates.
+
+The native Windows Flutter test runner can be blocked independently of the
+Android build. A successful APK build does not establish that those tests ran.
+
+The custom domain `app.fuzio.co.za` is served by GitHub Pages. Firebase Hosting
+serves `meter-app-36307.web.app`, including the APK downloads. Publish and verify
+the signed APK there before publishing a higher build number in either hosted
+`version.json`. Publishing source alone does not update installed Android apps.
+The app checks the custom-domain manifest at launch; Android still requires
+the user's approval to install an update. Never point a higher build number
+at an older APK merely to make the update dialog appear.
+
 ### Step 1: Update Version Number
 
 Edit `Mobile App/pubspec.yaml`:
@@ -47,7 +73,7 @@ cp "Mobile App/build/app/outputs/flutter-apk/app-release.apk" `
 The hosting script automatically includes all `.apk` files from the `downloads/` folder. No manual upload needed!
 
 When you run `npm run deploy:hosting` (in Step 6), the APK will be deployed to:
-`https://app.fuzio.co.za/downloads/fuzio-meter-reader-v1.1.0.apk`
+`https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.1.0.apk`
 
 ### Step 5: Update version.json
 
@@ -57,7 +83,7 @@ Edit `version.json`:
 {
   "version": "1.1.0",
   "buildNumber": 2,
-  "apkUrl": "https://app.fuzio.co.za/downloads/fuzio-meter-reader-v1.1.0.apk",
+  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.1.0.apk",
   "message": "New features:\n• Month-based filtering for readings\n• Improved performance\n• Bug fixes",
   "required": false
 }
@@ -82,6 +108,11 @@ This single command deploys:
 - Your web dashboard files
 
 The APK will be available at the URL specified in `version.json`.
+
+Verify that URL and the APK's embedded build number and signing certificate.
+Then commit and push the matching `version.json` to GitHub Pages. Confirm
+`https://app.fuzio.co.za/version.json` returns the new build number; deploying
+Firebase Hosting alone does not update the manifest checked by phones.
 
 ### Step 7: Test the Update
 
@@ -170,7 +201,10 @@ If a bad version was released:
 
 2. Deploy: `npm run deploy:hosting`
 
-3. Users who installed the bad version will be prompted to downgrade
+3. The current updater will not offer a lower build number. To repair devices
+   that already installed the bad release, build the corrected code with a
+   higher build number and the same signing key. Reverting the manifest only
+   stops older devices from being offered the withdrawn build.
 
 ## File Locations
 

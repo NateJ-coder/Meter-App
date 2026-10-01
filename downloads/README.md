@@ -20,7 +20,7 @@ Use semantic versioning in filenames:
 ## Hosting
 
 APK files in this folder are deployed to Firebase Hosting at:
-- `https://app.fuzio.co.za/downloads/{filename}.apk`
+- `https://meter-app-36307.web.app/downloads/{filename}.apk`
 
 Users can download updates directly from these URLs through the in-app update system.
 
@@ -38,6 +38,7 @@ Make sure `downloads/*.apk` is in your `.gitignore` file to prevent accidentally
 2. Copy APK to this folder with proper naming
 3. Upload to Firebase Hosting (or manually upload to server)
 4. Update `version.json` to point to the new APK
-5. Deploy version.json
+5. Deploy the manifest to Firebase and push it to GitHub Pages, which serves
+  `https://app.fuzio.co.za/version.json` (the URL checked by installed apps).
 
 Users will automatically be prompted to update when they open the app.
