@@ -14,12 +14,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fuzio_meter_reader/capture.dart';
 import 'package:fuzio_meter_reader/capture_store.dart';
 import 'package:fuzio_meter_reader/add_capture_screen.dart';
+import 'package:fuzio_meter_reader/meter_registry.dart';
 
 import 'package:fuzio_meter_reader/main.dart';
+
+// The registry is a real asset read, which never completes under the fake
+// test clock; load it for real once so the screen's loading bar goes away.
+Future<void> _primeMeterRegistry(WidgetTester tester) =>
+    tester.runAsync(() => MeterRegistry.forBuilding('Genesis'));
 
 void main() {
   testWidgets('Capture saves directly without a review prompt', (tester) async {
     SharedPreferences.setMockInitialValues({});
+    await _primeMeterRegistry(tester);
     final directory = Directory.systemTemp.createTempSync('capture-save-test');
     final photo = File('${directory.path}/photo.png');
     photo.writeAsBytesSync(base64Decode(
@@ -66,6 +73,7 @@ void main() {
   });
 
   testWidgets('Malformed readings are rejected before saving', (tester) async {
+    await _primeMeterRegistry(tester);
     await tester.pumpWidget(const MaterialApp(
       home: AddCaptureScreen(building: 'Genesis'),
     ));
@@ -74,7 +82,7 @@ void main() {
     await tester.ensureVisible(find.text('Save Reading'));
     await tester.tap(find.text('Save Reading'));
     await tester.pump();
-    expect(find.text('Enter digits and one decimal point only (no commas or signs).'), findsOneWidget);
+    expect(find.text('Enter digits and one decimal point (or comma) only.'), findsOneWidget);
     expect(find.text('Confirm meter and reading'), findsNothing);
   });
 

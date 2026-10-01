@@ -1,7 +1,7 @@
 {
-  "version": "1.0.4",
-  "buildNumber": 5,
-  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.0.4.apk",
-  "message": "Update from the newly signed version 1.0.3: saves captures without the reading-review prompt and shows the 13 selected buildings. Version 1.0.2 uses an older signing key and cannot install this update in place; contact the administrator before uninstalling or migrating.",
+  "version": "1.0.5",
+  "buildNumber": 6,
+  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.0.5.apk",
+  "message": "Meter labels can now be picked from each building's registered meter list, readings accept a comma as the decimal mark (e.g. 65,70), and unreadable meters can be recorded with a reason. Version 1.0.2 uses an older signing key and cannot install this update in place; contact the administrator before uninstalling.",
   "required": false
 }

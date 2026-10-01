@@ -1,18 +1,25 @@
 # APK Update Quick Reference
 
-## Rebuild Blocked - 2026-10-01
+## Available Update - 2026-10-01
 
-The pending meter-registry and capture changes are not included in the
-published v1.0.4 APK. A v1.0.5 (build 6) release was attempted, but Windows
-Application Control blocked Flutter's test runner and release build tools
-(`gen_snapshot.exe` and `font-subset.exe`). Static analysis passed.
-No new APK was published; the version files still identify v1.0.4 (build 5).
+Version 1.0.5 (build 6) adds meter-label selection from each building's
+registered meter list, accepts a comma decimal mark (e.g. `65,70`), and lets
+staff record an unreadable meter with a reason. It also fixes a crash in the
+meter-label search field. Signed with the same release key (SHA-256
+`8938876e...`), so it updates 1.0.3/1.0.4 in place. 15 Flutter tests passed.
 
-After an administrator resolves the Flutter tool execution policy, rerun
-tests, increment the version to 1.0.5+6, build with the existing release key,
-and verify the signature before publishing. Publish the APK to Firebase
-Hosting before pushing the matching manifest to GitHub Pages, which serves
-https://app.fuzio.co.za/version.json. The custom domain is not Firebase Hosting.
+The earlier Windows Application Control block on Flutter's tools is resolved.
+If a release build fails with "base.jar ... being used by another process",
+run `android\gradlew --stop` from `Mobile App` and rebuild.
+
+Node and the Firebase CLI are not on PATH; they live in
+`%LOCALAPPDATA%\FuzioTools`. Before `npm run deploy:hosting`, run:
+
+```powershell
+$t = "$env:LOCALAPPDATA\FuzioTools"; $env:Path = "$t
+ode-v22.23.2-win-x64;$tirebase-cli
+ode_modules\.bin;$env:Path"
+```
 
 ## Available Update - 2026-09-23
 

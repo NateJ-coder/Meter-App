@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputRoot = path.join(projectRoot, '.firebase-hosting');
 const publicFiles = [
+    'index.html',
     'capture-dashboard.html',
     'capture-login.html',
     'manifest.webmanifest',

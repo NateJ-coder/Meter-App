@@ -30,6 +30,8 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   final _labelController = TextEditingController();
   final _readingController = TextEditingController();
   final _unreadableNoteController = TextEditingController();
+  // Autocomplete requires a focus node whenever it is given a controller.
+  final _labelFocusNode = FocusNode();
   String _meterType = 'Electricity';
   String? _photoPath;
   bool _saving = false;
@@ -92,6 +94,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   @override
   void dispose() {
     _labelController.dispose();
+    _labelFocusNode.dispose();
     _readingController.dispose();
     _unreadableNoteController.dispose();
     super.dispose();
@@ -237,6 +240,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       // _labelController directly, and fieldViewBuilder's `controller`
       // below is guaranteed to be this same instance.
       textEditingController: _labelController,
+      focusNode: _labelFocusNode,
       displayStringForOption: (option) => option.number,
       optionsBuilder: (textEditingValue) {
         final query = textEditingValue.text.trim().toLowerCase();

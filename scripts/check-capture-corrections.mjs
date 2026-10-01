@@ -96,4 +96,11 @@ handlers.get('fetch')({
 assert.equal(await moduleResponse, response);
 assert.equal(networkRequests, 1);
 assert.equal(cachedLookups, 0);
+const homepage = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+assert.match(homepage, /http-equiv="refresh" content="0; url=\/capture-dashboard\.html"/);
+let destination;
+vm.runInNewContext(homepage.match(/<script>(.*?)<\/script>/s)[1], {
+    location: { replace: (url) => { destination = url; } }
+});
+assert.equal(destination, '/capture-dashboard.html');
 console.log('Capture correction checks passed.');

@@ -154,10 +154,10 @@ void main() {
   });
 
   test('Ambiguous and malformed input is rejected, not silently repaired', () {
-    for (final value in ['', '-12', '1,25', '1.2.3', '12abc', '12.', '.2']) {
+    for (final value in ['', '-12', '1,2,5', '1.2.3', '12abc', '12.', '.2', ',2']) {
       expect(ReadingCleaner.validate(value), isNotNull, reason: value);
     }
-    for (final value in ['0', '00012', '12.30', ' 12.30 ']) {
+    for (final value in ['0', '00012', '12.30', ' 12.30 ', '65,70']) {
       expect(ReadingCleaner.validate(value), isNull, reason: value);
     }
   });
