@@ -11,6 +11,7 @@ import {
     doc,
     getDocs,
     query,
+    runTransaction,
     updateDoc,
     where
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
@@ -20,6 +21,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
 
 import { firebaseAuth, firebaseDb } from './firebase.js';
+import { createCorrectionPatch, assertCaptureUnchanged, getCaptureHistoryWarnings } from './capture-corrections.mjs';
 
 const OFFICE_EMAILS = new Set([
     'nathan@sectionalts.co',
@@ -193,6 +195,9 @@ async function loadCaptures(isAutoRefresh = false) {
                 rawReadingValue: data.rawReadingValue ?? data.readingValue ?? '',
                 readerNote: data.readerNote || '',
                 readerWarnings,
+                officeWarnings: Array.isArray(data.officeWarnings) ? data.officeWarnings : [],
+                officeCorrections: Array.isArray(data.officeCorrections) ? data.officeCorrections : [],
+                originalLabel: data.originalLabel ?? data.label ?? '',
                 readerAcknowledged: data.readerAcknowledged === true,
                 isUnreadable,
                 unreadableReason: data.unreadableReason || '',
@@ -204,7 +209,13 @@ async function loadCaptures(isAutoRefresh = false) {
                 photoUrl: data.photoUrl || '',
                 capturedAtDate
             };
-        }).sort((a, b) => {
+        });
+        const historyWarnings = getCaptureHistoryWarnings(currentRows);
+        for (const row of currentRows) {
+            row.officeWarnings = [...new Set([...row.officeWarnings, ...historyWarnings.get(row.id)])];
+            row.needsAttention ||= !row.flagAcknowledged && row.officeWarnings.length > 0;
+        }
+        currentRows.sort((a, b) => {
             // Flagged rows first (so a mislabeled/inaccessible/anomalous
             // reading can't get buried by newer, unremarkable ones), newest
             // first within each group.
@@ -306,13 +317,28 @@ async function saveEdit(id) {
     const meterType = row.querySelector('.edit-type').value;
     const readingValue = row.querySelector('.edit-reading').value.trim();
 
-    if (!label || !readingValue) {
+    const expected = currentRows.find((capture) => capture.id === id);
+    if (!expected) return;
+    if (!label || (!readingValue && !expected.isUnreadable)) {
         alert('Meter label and reading are required.');
         return;
     }
 
+    const reason = prompt('Reason for this correction (include meter identity or photo evidence):', '');
+    if (reason === null) return;
+
     try {
-        await updateDoc(doc(firebaseDb, 'mobile_captures', id), { label, meterType, readingValue });
+        const reference = doc(firebaseDb, 'mobile_captures', id);
+        await runTransaction(firebaseDb, async (transaction) => {
+            const snapshot = await transaction.get(reference);
+            if (!snapshot.exists()) throw new Error('This capture no longer exists.');
+            const current = snapshot.data();
+            assertCaptureUnchanged(current, expected);
+            const patch = createCorrectionPatch(current, { label, meterType, readingValue }, {
+                actor: officeUser.email, reason, at: new Date().toISOString()
+            });
+            if (patch) transaction.update(reference, patch);
+        });
         const target = currentRows.find((r) => r.id === id);
         if (target) {
             target.label = label;
@@ -320,7 +346,7 @@ async function saveEdit(id) {
             target.readingValue = readingValue;
         }
         editingRowId = null;
-        renderRows();
+        await loadCaptures();
         statusText.textContent = `Saved changes to "${label}".`;
     } catch (err) {
         console.error(err);
@@ -355,6 +381,8 @@ function renderRows() {
         const reviewCell = [
             row.readerAcknowledged ? '<small>Reader checked</small>' : '',
             ...row.readerWarnings.map((warning) => `<div>⚠ ${escapeHtml(warning)}</div>`),
+            ...row.officeWarnings.map((warning) => `<div><strong>Office:</strong> ${escapeHtml(warning)}</div>`),
+            ...row.officeCorrections.map((correction) => `<div><small>Corrected by ${escapeHtml(correction.actor)}: ${escapeHtml(correction.reason)}</small></div>`),
             row.readerNote ? `<div><strong>Note:</strong> ${escapeHtml(row.readerNote)}</div>` : '',
             row.flagAcknowledged
                 ? `<div><small>Acknowledged${row.flagAcknowledgedNote ? `: ${escapeHtml(row.flagAcknowledgedNote)}` : ''}</small></div>`
@@ -452,12 +480,13 @@ async function exportToExcel() {
     const reviewRows = [
         ['Capture ID', 'Building', 'Meter Label', 'Label Matched', 'Type', 'Admin Reading', 'Raw Reading',
             'Unreadable', 'Unreadable Reason', 'Unreadable Note', 'Reader Note', 'Warnings',
-            'Needs Attention', 'Acknowledged Note', 'Captured At'],
+            'Needs Attention', 'Acknowledged Note', 'Captured At', 'Original Label', 'Office Warnings', 'Correction History'],
         ...sorted.map((row) => [row.id, row.building, row.label, row.labelConfirmed, row.meterType,
             row.readingValue, row.rawReadingValue, row.isUnreadable, row.unreadableReason, row.unreadableNote,
             row.readerNote, row.readerWarnings.join('\n'), row.needsAttention,
             row.flagAcknowledged ? row.flagAcknowledgedNote || 'yes' : '',
-            row.capturedAtDate.toISOString()])
+            row.capturedAtDate.toISOString(), row.originalLabel, row.officeWarnings.join('\n'),
+            JSON.stringify(row.officeCorrections)])
     ];
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(reviewRows), 'Reader Review');
 

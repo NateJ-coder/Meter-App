@@ -1,10 +1,11 @@
-const CACHE_NAME = 'fuzio-capture-dashboard-v3';
+const CACHE_NAME = 'fuzio-capture-dashboard-v4';
 const APP_SHELL = [
     '/capture-dashboard.html',
     '/capture-login.html',
     '/manifest.webmanifest',
     '/assets/styles.css',
     '/assets/capture-dashboard.js',
+    '/assets/capture-corrections.mjs',
     '/assets/capture-login.js',
     '/assets/firebase.js',
     '/assets/install-dashboard.js',
@@ -44,7 +45,7 @@ self.addEventListener('fetch', (event) => {
 
     // Code assets must be network-first: a cache-first copy can pin stale JS/CSS
     // against freshly deployed HTML and break the page.
-    if (/\.(?:js|css|webmanifest)$/i.test(url.pathname)) {
+    if (/\.(?:m?js|css|webmanifest)$/i.test(url.pathname)) {
         event.respondWith(
             fetch(event.request)
                 .then((response) => {

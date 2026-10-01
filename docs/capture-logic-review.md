@@ -1,4 +1,54 @@
-# Capture Logic Review (Old Web Module -> Current Phone Capture)
+# Capture Logic Review
+
+## Current Mobile Capture Reconciliation - 2026-10-01
+
+The workbook cleaning pipeline produces review artifacts; it does not reconcile
+the live `mobile_captures` collection. The historical web-module description
+below is not the active Android capture implementation.
+
+Genesis reconciliation run `genesis-2026-10-01-label-reconciliation` updated
+75 existing captures transactionally, after checking their pre-change state:
+
+- 74 label changes across 31 August (62) and 30 September (12).
+- Six changes supported by photo serial comparisons: the Unit 30 and Unit 61
+  August typos, E1822 spacing, both hydrant aliases, and the main-water alias.
+- The other 68 changes normalize existing unit-label formatting only. They
+  are not claims that those photos were individually identity-verified.
+- Three pending-review flags cover August/September Unit 9 and September
+  Unit 61. No replacement readings were approved: display OCR was inconclusive.
+- No numeric readings, original photos, photo links or capture timestamps
+  were changed. All 209 records were re-read from the server to verify this.
+
+The private Downloads backup `genesis-before-reconciliation-2026-10-01.json`
+contains all 209 original records and matches the independently saved snapshot.
+It contains photo access links, not image bytes; do not publish it to GitHub.
+Original labels and readings are also retained on corrected documents, with
+author, reason, timestamp and before/after values in `officeCorrections`.
+
+Pending numeric checks:
+
+- Unit 61: raw September `0813240.9` versus August `081015.2`, serial `06053001`.
+- Unit 9: raw September `053048.8` versus August `083018.5`, serial `06069090`.
+- A likely typo is not sufficient evidence to rewrite a meter reading.
+
+The local dashboard now uses `assets/capture-corrections.mjs` to retain raw
+evidence and reject stale edits. History checks run across the loaded building's
+captures before month filtering, distinguish meter types, and flag decreasing,
+unchanged and tenfold readings. Genesis unit electricity comparisons retain
+the established whole-number policy on both sides of the comparison. Duplicate
+timestamps are flagged rather than used as an arbitrary baseline.
+
+Office warnings and correction history are displayed and included in the
+review export. These checks are dashboard-side, not an automatic backend OCR
+or reconciliation job. The source changes must be deployed before users receive
+the new dashboard behavior; the live data repair is already applied.
+
+Validation: `node scripts/check-capture-corrections.mjs` passed. Isolated browser
+tests with mocked Firebase verified warning rendering, audited edits, raw-value
+retention, stale-edit rejection, HTML escaping and audit export. No test writes
+were made to production.
+
+## Historical Web Modules
 
 This review compares old capture behavior in reader-old.html with the active capture stack in reader.html, assets/on-site-mode.js, and assets/capture-shared.js.
 
