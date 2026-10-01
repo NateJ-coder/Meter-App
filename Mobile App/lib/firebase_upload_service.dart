@@ -63,13 +63,27 @@ class FirebaseUploadService {
   /// PATCH upserts the document whether or not it already exists, so
   /// this is safe to call repeatedly (retry-friendly).
   static Future<void> _writeReadingDoc(Capture capture, http.Client client) async {
-    // Clean the reading value using building-specific rules
-    final cleanedValue = ReadingCleaner.clean(
-      building: capture.building,
-      label: capture.label,
-      meterType: capture.meterType,
-      rawValue: capture.readingValue,
-    );
+    // Clean the reading value using building-specific (or, for the other
+    // 10 buildings, meter-role-aware generic) rules. Skipped entirely for
+    // an "unable to read" capture - there's no numeric value to clean.
+    final cleanedValue = capture.isUnreadable
+        ? ''
+        : ReadingCleaner.clean(
+            building: capture.building,
+            label: capture.label,
+            meterType: capture.meterType,
+            rawValue: capture.readingValue,
+            meterRole: capture.meterRole,
+          );
+
+    // A capture is "flagged" for office attention if it has any silent
+    // review warnings, couldn't be read at all, or its label wasn't
+    // matched to the building's canonical meter list. The dashboard uses
+    // this single field to show a flag icon and sort flagged rows to the
+    // top, rather than the reader ever seeing a blocking prompt on-device.
+    final flagged = capture.reviewWarnings.isNotEmpty ||
+        capture.isUnreadable ||
+        !capture.labelConfirmed;
 
     final fields = {
       'building': {'stringValue': capture.building},
@@ -85,6 +99,12 @@ class FirebaseUploadService {
       'readerWarnings': {'arrayValue': {'values': capture.reviewWarnings
           .map((warning) => {'stringValue': warning}).toList()}},
       'readerAcknowledged': {'booleanValue': capture.reviewAcknowledged},
+      'labelConfirmed': {'booleanValue': capture.labelConfirmed},
+      'meterRole': {'stringValue': capture.meterRole},
+      'isUnreadable': {'booleanValue': capture.isUnreadable},
+      'unreadableReason': {'stringValue': capture.unreadableReason},
+      'unreadableNote': {'stringValue': capture.unreadableNote},
+      'flagged': {'booleanValue': flagged},
     };
 
     await _patchFields(capture.id, fields, client);

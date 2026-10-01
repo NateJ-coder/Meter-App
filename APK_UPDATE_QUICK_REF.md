@@ -1,6 +1,20 @@
 # APK Update Quick Reference
 
-## Current Local Build - 2026-09-23
+## Rebuild Blocked - 2026-10-01
+
+The pending meter-registry and capture changes are not included in the
+published v1.0.4 APK. A v1.0.5 (build 6) release was attempted, but Windows
+Application Control blocked Flutter's test runner and release build tools
+(`gen_snapshot.exe` and `font-subset.exe`). Static analysis passed.
+No new APK was published; the version files still identify v1.0.4 (build 5).
+
+After an administrator resolves the Flutter tool execution policy, rerun
+tests, increment the version to 1.0.5+6, build with the existing release key,
+and verify the signature before publishing. Publish the APK to Firebase
+Hosting before pushing the matching manifest to GitHub Pages, which serves
+https://app.fuzio.co.za/version.json. The custom domain is not Firebase Hosting.
+
+## Available Update - 2026-09-23
 
 Version 1.0.4 (build 5) simplifies capture to a direct save with no reading
 review prompt. It offers the 13 requested buildings, excluding Akasia and Test.
@@ -10,7 +24,11 @@ the label/type/date filename, and keeps existing Test captures accessible.
 This APK uses the same dedicated release key as the newly installed 1.0.3
 (build 4), so it can update that installation without uninstalling. The old
 1.0.2 key mismatch still applies only to devices on the old signing lineage.
-Do not change the legacy hosted manifest to advertise this APK to old devices.
+The shared hosted manifest now advertises 1.0.4 (build 5) as an optional update,
+with the APK hosted on Firebase. Newly signed 1.0.3 installations can update
+in place. Old 1.0.2 installations also see the shared announcement but cannot
+install it in place; the update message explicitly warns about this limitation.
+Do not uninstall an old installation until its readings and photos are backed up.
 Photo download access was verified restored after billing was repaired on
 2026-09-23. The dated rollout notes below are historical.
 

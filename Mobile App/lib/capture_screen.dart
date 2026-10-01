@@ -251,9 +251,10 @@ class _CaptureScreenState extends State<CaptureScreen> {
                                 ),
                               ),
                               title: Text('${c.label} · ${c.meterType}'),
-                              subtitle: Text('Reading: ${c.readingValue}\n$dateStr'
-                                  '${c.reviewWarnings.isNotEmpty ? '\nReviewed: ${c.reviewWarnings.length} checks' : ''}'
-                                  '${c.reviewNote.isNotEmpty ? '\nNote: ${c.reviewNote}' : ''}'
+                              subtitle: Text(
+                                  '${c.isUnreadable ? 'Unable to read: ${c.unreadableReason}' : 'Reading: ${c.readingValue}'}\n$dateStr'
+                                  '${!c.labelConfirmed ? '\nLabel not matched to registry' : ''}'
+                                  '${c.unreadableNote.isNotEmpty ? '\nNote: ${c.unreadableNote}' : ''}'
                                   '${c.error != null ? '\n${c.error}' : ''}'),
                               isThreeLine: true,
                               trailing: _statusChip(c),

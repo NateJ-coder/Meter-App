@@ -29,8 +29,12 @@ class ReadingCleaner {
 
   static String? validate(String value) {
     if (value.trim().isEmpty) return 'Required';
-    if (!RegExp(r'^\d+(\.\d+)?$').hasMatch(value.trim())) {
-      return 'Enter digits and one decimal point only (no commas or signs).';
+    // Accept a comma as a decimal point too - the field audit (2026-09)
+    // found bulk meters' kVA registers routinely written with a comma
+    // decimal ("65,70"), which is the normal South African convention.
+    // clean() normalizes whichever separator was typed.
+    if (!RegExp(r'^\d+([.,]\d+)?$').hasMatch(value.trim())) {
+      return 'Enter digits and one decimal point (or comma) only.';
     }
     return null;
   }
@@ -47,6 +51,10 @@ class ReadingCleaner {
   /// [label] - The meter label (e.g., "Unit 1", "Bulk Meter")
   /// [meterType] - The meter type ("Electricity" or "Water")
   /// [rawValue] - The raw reading value captured from the photo
+  /// [meterRole] - 'unit' | 'bulk' | 'common', from the canonical meter
+  ///   registry when the label was matched to it (see MeterRegistry).
+  ///   Empty/unknown when the label was free-typed. Only used by the
+  ///   generic (non-hand-tuned) cleaning path below.
   ///
   /// Returns the cleaned reading value ready for storage.
   static String clean({
@@ -54,10 +62,14 @@ class ReadingCleaner {
     required String label,
     required String meterType,
     required String rawValue,
+    String meterRole = '',
   }) {
     final buildingKey = building.trim().toLowerCase();
 
-    // Apply building-specific rules
+    // Apply building-specific rules - these three are hand-tuned and
+    // confirmed against real multi-cycle reading history (see the doc
+    // comments below), so they stay as their own exact rules rather than
+    // going through the generic per-role path.
     switch (buildingKey) {
       case 'genesis':
         return _cleanGenesis(label, meterType, rawValue);
@@ -69,13 +81,62 @@ class ReadingCleaner {
       case 'test':
         return _cleanHazelmere(label, meterType, rawValue);
       default:
-        return _cleanDefault(rawValue);
+        return _cleanGeneric(meterRole: meterRole, rawValue: rawValue);
     }
   }
 
-  /// Default cleaning: trim whitespace and normalize format
-  static String _cleanDefault(String value) {
-    return value.trim();
+  /// Generic cleaning for every building without a hand-tuned rule above
+  /// (as of 2026-09 that's 10 of 13 buildings, which previously got NO
+  /// cleaning at all beyond a trim - see METER_LABEL_CONSISTENCY_GUIDE.md
+  /// / the 2026-09 field audit). Deliberately conservative: the audit
+  /// found leading-zero and digit-count handling on bulk meters is NOT
+  /// stable even within one meter's own history (e.g. Rivonia Gate's bulk
+  /// water meter recorded at 6, then 7, then 8, then 6 digits across
+  /// consecutive cycles), so this never strips leading zeros or drops a
+  /// genuine decimal point - it only removes stray separators and
+  /// normalizes the decimal mark, trusting what the reader actually typed
+  /// over an assumption about their meter's format.
+  static String _cleanGeneric({required String meterRole, required String rawValue}) {
+    String cleaned = rawValue.trim();
+    if (cleaned.isEmpty) return rawValue.trim();
+
+    // Registry values are 'unit' | 'bulk' | 'common_property' (see
+    // Buildings/app-database/*.app-database.json's meter_role field).
+    final isBulkOrCommon = meterRole == 'bulk' || meterRole == 'common_property';
+
+    // South African bulk meters (e.g. an Itron/Landis+Gyr kVA register)
+    // are routinely written with a comma decimal, e.g. "65,70" - confirmed
+    // on Carissa Lane's and L'Montagne's bulk electricity Kva field in the
+    // 2026-09 audit. A comma followed by exactly 1-2 digits at the end of
+    // the string is treated as that decimal separator (and only for
+    // bulk/common meters, where a real fractional register is expected);
+    // a comma followed by 3 digits (e.g. "2,739") is a thousands
+    // separator instead and is simply dropped, same as for unit meters.
+    final commaDecimal = RegExp(r'^(-?[\d\s]+),(\d{1,2})$').firstMatch(cleaned);
+    if (isBulkOrCommon && commaDecimal != null) {
+      final intPart = commaDecimal.group(1)!.replaceAll(RegExp(r'\s'), '');
+      cleaned = '$intPart.${commaDecimal.group(2)}';
+    } else {
+      cleaned = cleaned.replaceAll(RegExp(r'[,\s]'), '');
+    }
+
+    // Keep at most one real decimal point; strip any other stray
+    // character. Leading zeros and digit count are left exactly as typed.
+    final dotIndex = cleaned.indexOf('.');
+    if (dotIndex != -1) {
+      final intPart = cleaned.substring(0, dotIndex).replaceAll(RegExp(r'[^0-9]'), '');
+      final fracPart = cleaned.substring(dotIndex + 1).replaceAll(RegExp(r'[^0-9]'), '');
+      cleaned = fracPart.isNotEmpty ? '$intPart.$fracPart' : intPart;
+    } else {
+      cleaned = cleaned.replaceAll(RegExp(r'[^0-9]'), '');
+    }
+
+    if (cleaned.isEmpty) {
+      // Nothing usable left - fall back to the trimmed raw value so the
+      // bad entry is still visible for review rather than disappearing.
+      return rawValue.trim();
+    }
+    return cleaned;
   }
 
   /// Genesis building-specific cleaning rules

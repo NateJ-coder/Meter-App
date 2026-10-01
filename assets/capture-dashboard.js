@@ -175,6 +175,15 @@ async function loadCaptures(isAutoRefresh = false) {
         currentRows = snapshot.docs.map((doc) => {
             const data = doc.data();
             const capturedAtDate = toDate(data.capturedAt);
+            const isUnreadable = data.isUnreadable === true;
+            const labelConfirmed = data.labelConfirmed !== false; // default true for older docs
+            const readerWarnings = Array.isArray(data.readerWarnings) ? data.readerWarnings : [];
+            const flagAcknowledged = data.flagAcknowledged === true;
+            // A row needs attention if it has silent review warnings, couldn't
+            // be read at all, or its label wasn't matched to the canonical
+            // meter list - unless office has already acknowledged it.
+            const needsAttention = !flagAcknowledged &&
+                (readerWarnings.length > 0 || isUnreadable || !labelConfirmed);
             return {
                 id: doc.id,
                 building: data.building || '',
@@ -183,12 +192,25 @@ async function loadCaptures(isAutoRefresh = false) {
                 readingValue: data.readingValue || '',
                 rawReadingValue: data.rawReadingValue ?? data.readingValue ?? '',
                 readerNote: data.readerNote || '',
-                readerWarnings: Array.isArray(data.readerWarnings) ? data.readerWarnings : [],
+                readerWarnings,
                 readerAcknowledged: data.readerAcknowledged === true,
+                isUnreadable,
+                unreadableReason: data.unreadableReason || '',
+                unreadableNote: data.unreadableNote || '',
+                labelConfirmed,
+                flagAcknowledged,
+                flagAcknowledgedNote: data.flagAcknowledgedNote || '',
+                needsAttention,
                 photoUrl: data.photoUrl || '',
                 capturedAtDate
             };
-        }).sort((a, b) => b.capturedAtDate - a.capturedAtDate); // Newest first
+        }).sort((a, b) => {
+            // Flagged rows first (so a mislabeled/inaccessible/anomalous
+            // reading can't get buried by newer, unremarkable ones), newest
+            // first within each group.
+            if (a.needsAttention !== b.needsAttention) return a.needsAttention ? -1 : 1;
+            return b.capturedAtDate - a.capturedAtDate;
+        });
 
         allRows = currentRows;
         populateMonthFilter();
@@ -230,6 +252,39 @@ async function deleteCapture(id) {
     } catch (err) {
         console.error(err);
         statusText.textContent = `Failed to delete: ${err.message}`;
+    }
+}
+
+async function acknowledgeFlag(id) {
+    const note = prompt('Optional note (e.g. "meter replaced", "confirmed correct"):', '');
+    if (note === null) return; // cancelled
+
+    try {
+        await updateDoc(doc(firebaseDb, 'mobile_captures', id), {
+            flagAcknowledged: true,
+            flagAcknowledgedNote: note.trim(),
+            flagAcknowledgedBy: officeUser.email,
+            flagAcknowledgedAt: new Date().toISOString()
+        });
+        for (const list of [allRows, currentRows]) {
+            const row = list.find((r) => r.id === id);
+            if (row) {
+                row.flagAcknowledged = true;
+                row.flagAcknowledgedNote = note.trim();
+                row.needsAttention = false;
+            }
+        }
+        // Re-sort so the row drops out of the flagged-first group.
+        allRows.sort((a, b) => {
+            if (a.needsAttention !== b.needsAttention) return a.needsAttention ? -1 : 1;
+            return b.capturedAtDate - a.capturedAtDate;
+        });
+        applyMonthFilter();
+        renderRows();
+        statusText.textContent = 'Flag acknowledged.';
+    } catch (err) {
+        console.error(err);
+        statusText.textContent = `Failed to acknowledge: ${err.message}`;
     }
 }
 
@@ -283,26 +338,34 @@ function renderRows() {
         const isEditing = row.id === editingRowId;
         const safeLabel = escapeHtml(row.label);
         const safeReading = escapeHtml(row.readingValue);
+        const flagIcon = row.needsAttention
+            ? '<span title="Needs office review" style="margin-right:4px;">🚩</span>'
+            : (row.flagAcknowledged ? '<span title="Previously flagged, acknowledged" style="margin-right:4px;opacity:0.5;">✔</span>' : '');
         const labelCell = isEditing
             ? `<input type="text" class="edit-label" value="${safeLabel}" style="width:100%;">`
-            : safeLabel;
+            : `${flagIcon}${safeLabel}${!row.labelConfirmed ? '<br><small style="color:#b45309;">Not matched to meter list</small>' : ''}`;
         const typeCell = isEditing
             ? `<select class="edit-type">${METER_TYPES.map((t) => `<option value="${t}" ${t === row.meterType ? 'selected' : ''}>${t}</option>`).join('')}</select>`
             : escapeHtml(row.meterType);
         const readingCell = isEditing
             ? `<input type="text" class="edit-reading" value="${safeReading}" style="width:100%;">`
-            : `${safeReading}<br><small>Entered: ${escapeHtml(row.rawReadingValue)}</small>`;
+            : row.isUnreadable
+                ? `<strong style="color:#b91c1c;">No access</strong><br><small>${escapeHtml(row.unreadableReason)}</small>${row.unreadableNote ? `<br><small>${escapeHtml(row.unreadableNote)}</small>` : ''}`
+                : `${safeReading}<br><small>Entered: ${escapeHtml(row.rawReadingValue)}</small>`;
         const reviewCell = [
             row.readerAcknowledged ? '<small>Reader checked</small>' : '',
-            ...row.readerWarnings.map((warning) => `<div>${escapeHtml(warning)}</div>`),
-            row.readerNote ? `<div><strong>Note:</strong> ${escapeHtml(row.readerNote)}</div>` : ''
+            ...row.readerWarnings.map((warning) => `<div>⚠ ${escapeHtml(warning)}</div>`),
+            row.readerNote ? `<div><strong>Note:</strong> ${escapeHtml(row.readerNote)}</div>` : '',
+            row.flagAcknowledged
+                ? `<div><small>Acknowledged${row.flagAcknowledgedNote ? `: ${escapeHtml(row.flagAcknowledgedNote)}` : ''}</small></div>`
+                : (row.needsAttention ? `<button type="button" class="btn-secondary btn-sm acknowledge-btn" data-id="${row.id}">Acknowledge</button>` : '')
         ].filter(Boolean).join('') || 'No reader review recorded';
         const actionsCell = isEditing
             ? `<button type="button" class="btn-primary btn-sm save-edit-btn" data-id="${row.id}">Save</button> <button type="button" class="btn-secondary btn-sm cancel-edit-btn">Cancel</button>`
             : `<button type="button" class="btn-secondary btn-sm edit-row-btn" data-id="${row.id}">Edit</button> <button type="button" class="btn-secondary btn-sm delete-row-btn" data-id="${row.id}">Delete</button>`;
 
         return `
-        <tr data-row-id="${row.id}">
+        <tr data-row-id="${row.id}"${row.needsAttention ? ' style="background:#fff7ed;"' : ''}>
             <td>${row.photoUrl ? `<a href="${row.photoUrl}" target="_blank" rel="noopener"><img src="${row.photoUrl}" alt="${safeLabel}" style="width:64px;height:64px;object-fit:cover;border-radius:4px;"></a>` : '—'}</td>
             <td>${labelCell}</td>
             <td>${typeCell}</td>
@@ -315,6 +378,9 @@ function renderRows() {
     `;
     }).join('');
 
+    capturesBody.querySelectorAll('.acknowledge-btn').forEach((btn) => {
+        btn.addEventListener('click', () => acknowledgeFlag(btn.dataset.id));
+    });
     capturesBody.querySelectorAll('.delete-row-btn').forEach((btn) => {
         btn.addEventListener('click', () => deleteCapture(btn.dataset.id));
     });
@@ -375,16 +441,22 @@ async function exportToExcel() {
 
     const sorted = [...currentRows].sort((a, b) => naturalLabelCompare(a.label, b.label));
 
-    const sheetRows = sorted.map((row) => [row.label, Number(row.readingValue) || row.readingValue]);
+    const sheetRows = sorted.map((row) => [
+        row.label,
+        row.isUnreadable ? `NO ACCESS: ${row.unreadableReason}` : (Number(row.readingValue) || row.readingValue)
+    ]);
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.aoa_to_sheet(sheetRows);
     worksheet['!cols'] = [{ wch: 24 }, { wch: 14 }];
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Readings');
     const reviewRows = [
-        ['Capture ID', 'Building', 'Meter Label', 'Type', 'Admin Reading', 'Raw Reading', 'Reader Note', 'Warnings', 'Reader Checked', 'Captured At'],
-        ...sorted.map((row) => [row.id, row.building, row.label, row.meterType,
-            row.readingValue, row.rawReadingValue, row.readerNote,
-            row.readerWarnings.join('\n'), row.readerAcknowledged,
+        ['Capture ID', 'Building', 'Meter Label', 'Label Matched', 'Type', 'Admin Reading', 'Raw Reading',
+            'Unreadable', 'Unreadable Reason', 'Unreadable Note', 'Reader Note', 'Warnings',
+            'Needs Attention', 'Acknowledged Note', 'Captured At'],
+        ...sorted.map((row) => [row.id, row.building, row.label, row.labelConfirmed, row.meterType,
+            row.readingValue, row.rawReadingValue, row.isUnreadable, row.unreadableReason, row.unreadableNote,
+            row.readerNote, row.readerWarnings.join('\n'), row.needsAttention,
+            row.flagAcknowledged ? row.flagAcknowledgedNote || 'yes' : '',
             row.capturedAtDate.toISOString()])
     ];
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(reviewRows), 'Reader Review');

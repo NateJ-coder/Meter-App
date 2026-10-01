@@ -66,6 +66,13 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # Bundled canonical meter registry (per-building meter numbers, used by
+  # AddCaptureScreen's label dropdown instead of free-typing). Regenerate
+  # with `node scripts/generate-mobile-meter-registry.mjs` from the repo
+  # root whenever Buildings/app-database changes.
+  assets:
+    - assets/meter_registry.json
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

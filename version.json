@@ -1,7 +1,7 @@
 {
-  "version": "1.0.2",
-  "buildNumber": 3,
-  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.0.2.apk",
-  "message": "Critical fix:\n• Fixed download timeout issue (15+ minute hangs)\n• Added Cancel button during download\n• Added Retry button if download fails\n• Improved timeout handling (5 min max)",
+  "version": "1.0.4",
+  "buildNumber": 5,
+  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.0.4.apk",
+  "message": "Update from the newly signed version 1.0.3: saves captures without the reading-review prompt and shows the 13 selected buildings. Version 1.0.2 uses an older signing key and cannot install this update in place; contact the administrator before uninstalling or migrating.",
   "required": false
 }
