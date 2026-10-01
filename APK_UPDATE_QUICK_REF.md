@@ -16,9 +16,7 @@ Node and the Firebase CLI are not on PATH; they live in
 `%LOCALAPPDATA%\FuzioTools`. Before `npm run deploy:hosting`, run:
 
 ```powershell
-$t = "$env:LOCALAPPDATA\FuzioTools"; $env:Path = "$t
-ode-v22.23.2-win-x64;$tirebase-cli
-ode_modules\.bin;$env:Path"
+$t = "$env:LOCALAPPDATA\FuzioTools"; $env:Path = "$t\node-v22.23.2-win-x64;$t\firebase-cli\node_modules\.bin;$env:Path"
 ```
 
 ## Available Update - 2026-09-23
