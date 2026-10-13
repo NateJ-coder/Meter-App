@@ -22,6 +22,7 @@ import {
 
 import { firebaseAuth, firebaseDb } from './firebase.js';
 import { createCorrectionPatch, assertCaptureUnchanged, getCaptureHistoryWarnings } from './capture-corrections.mjs';
+import { captureMonth, filterCaptures, normalizeUnit, readNavigation } from './capture-navigation.mjs';
 
 const OFFICE_EMAILS = new Set([
     'nathan@sectionalts.co',
@@ -45,6 +46,7 @@ document.body.classList.remove('dashboard-auth-pending');
 
 const buildingSelect = document.getElementById('building-select');
 const monthSelect = document.getElementById('month-select');
+const unitFilter = document.getElementById('unit-filter');
 const loadBtn = document.getElementById('load-btn');
 const exportBtn = document.getElementById('export-btn');
 const downloadPhotosBtn = document.getElementById('download-photos-btn');
@@ -56,6 +58,8 @@ let currentRows = [];
 let allRows = []; // Store all loaded rows
 let autoRefreshTimer = null;
 let editingRowId = null;
+let requestedMonth = '';
+let loadRequest = 0;
 const AUTO_REFRESH_MS = 15000;
 const METER_TYPES = ['Electricity', 'Water'];
 
@@ -113,9 +117,7 @@ function escapeHtml(value) {
 }
 
 function formatMonth(date) {
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    return `${yyyy}-${mm}`;
+    return captureMonth(date);
 }
 
 function displayMonth(monthStr) {
@@ -126,14 +128,16 @@ function displayMonth(monthStr) {
 
 function populateMonthFilter() {
     const months = new Set();
+    const currentSelection = monthSelect.value || requestedMonth;
+    if (currentSelection) months.add(currentSelection);
     allRows.forEach(row => {
-        months.add(formatMonth(row.capturedAtDate));
+        const month = formatMonth(row.capturedAtDate);
+        if (month) months.add(month);
     });
     
     const sortedMonths = Array.from(months).sort().reverse(); // Newest first
     
     // Store current selection
-    const currentSelection = monthSelect.value;
     
     // Clear and rebuild options
     monthSelect.innerHTML = '<option value="">All months</option>';
@@ -151,18 +155,24 @@ function populateMonthFilter() {
 }
 
 function applyMonthFilter() {
-    const selectedMonth = monthSelect.value;
-    if (!selectedMonth) {
-        currentRows = [...allRows];
-    } else {
-        currentRows = allRows.filter(row => formatMonth(row.capturedAtDate) === selectedMonth);
+    const unit = unitFilter.value.trim() ? normalizeUnit(unitFilter.value) : '';
+    currentRows = filterCaptures(allRows, {
+        building: buildingSelect.value, month: monthSelect.value, unit
+    });
+    const url = new URL(location.href);
+    url.searchParams.set('building', buildingSelect.value);
+    for (const [key, value] of [['month', monthSelect.value], ['unit', unit]]) {
+        if (value) url.searchParams.set(key, value);
+        else url.searchParams.delete(key);
     }
+    history.replaceState(null, '', url);
 }
 
 async function loadCaptures(isAutoRefresh = false) {
     const building = buildingSelect.value.trim();
     if (!building) return;
     if (isAutoRefresh && editingRowId !== null) return; // don't clobber an in-progress edit
+    const requestId = ++loadRequest;
 
     if (!isAutoRefresh) {
         statusText.textContent = 'Loading...';
@@ -171,8 +181,10 @@ async function loadCaptures(isAutoRefresh = false) {
     }
 
     try {
+        if (unitFilter.value.trim()) normalizeUnit(unitFilter.value);
         const q = query(collection(firebaseDb, 'mobile_captures'), where('building', '==', building));
         const snapshot = await getDocs(q);
+        if (requestId !== loadRequest) return;
 
         currentRows = snapshot.docs.map((doc) => {
             const data = doc.data();
@@ -237,10 +249,15 @@ async function loadCaptures(isAutoRefresh = false) {
         downloadPhotosBtn.disabled = !currentRows.some((row) => row.photoUrl);
         restartAutoRefresh();
     } catch (err) {
+        if (requestId !== loadRequest) return;
         console.error(err);
+        currentRows = [];
+        renderRows();
+        exportBtn.disabled = true;
+        downloadPhotosBtn.disabled = true;
         statusText.textContent = `Failed to load captures: ${err.message}`;
     } finally {
-        loadBtn.disabled = false;
+        if (requestId === loadRequest) loadBtn.disabled = false;
     }
 }
 
@@ -356,7 +373,7 @@ async function saveEdit(id) {
 
 function renderRows() {
     if (currentRows.length === 0) {
-        capturesBody.innerHTML = '<tr><td colspan="8" class="text-muted">No captures found for this building yet.</td></tr>';
+        capturesBody.innerHTML = '<tr><td colspan="8" class="text-muted">No captures match this building, month and unit. Clear filters to see other readings.</td></tr>';
         return;
     }
 
@@ -596,11 +613,23 @@ signOutLink.addEventListener('click', async (event) => {
     location.replace('/capture-login.html');
 });
 buildingSelect.addEventListener('change', () => {
+    requestedMonth = '';
+    unitFilter.value = '';
     monthSelect.value = ''; // Reset month filter when changing buildings
     loadCaptures();
 });
-monthSelect.addEventListener('change', () => {
-    applyMonthFilter();
+function updateFilters() {
+    try {
+        requestedMonth = monthSelect.value;
+        applyMonthFilter();
+    } catch (error) {
+        currentRows = [];
+        renderRows();
+        exportBtn.disabled = true;
+        downloadPhotosBtn.disabled = true;
+        statusText.textContent = error.message;
+        return;
+    }
     renderRows();
     const building = buildingSelect.value.trim();
     const totalCount = allRows.length;
@@ -610,8 +639,18 @@ monthSelect.addEventListener('change', () => {
         : `${currentRows.length} reading(s) for "${building}"`;
     exportBtn.disabled = currentRows.length === 0;
     downloadPhotosBtn.disabled = !currentRows.some((row) => row.photoUrl);
-});
+}
+monthSelect.addEventListener('change', updateFilters);
+unitFilter.addEventListener('input', updateFilters);
 
 // Auto-load the default building on first visit; keeps refreshing every
 // 15s afterwards so new mobile captures show up without manual reloads.
-loadCaptures();
+try {
+    const navigation = readNavigation(location.search, [...buildingSelect.options].map(option => option.value));
+    if (navigation.building) buildingSelect.value = navigation.building;
+    requestedMonth = navigation.month;
+    unitFilter.value = navigation.unit;
+    loadCaptures();
+} catch (error) {
+    statusText.textContent = error.message;
+}

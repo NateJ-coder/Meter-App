@@ -14,6 +14,7 @@ const publicFiles = [
     'assets/styles.css',
     'assets/capture-dashboard.js',
     'assets/capture-corrections.mjs',
+    'assets/capture-navigation.mjs',
     'assets/capture-login.js',
     'assets/firebase.js',
     'assets/install-dashboard.js',

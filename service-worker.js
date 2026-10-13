@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fuzio-capture-dashboard-v4';
+const CACHE_NAME = 'fuzio-capture-dashboard-v5';
 const APP_SHELL = [
     '/capture-dashboard.html',
     '/capture-login.html',
@@ -6,6 +6,7 @@ const APP_SHELL = [
     '/assets/styles.css',
     '/assets/capture-dashboard.js',
     '/assets/capture-corrections.mjs',
+    '/assets/capture-navigation.mjs',
     '/assets/capture-login.js',
     '/assets/firebase.js',
     '/assets/install-dashboard.js',

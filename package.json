@@ -7,6 +7,7 @@
     "hosting:prepare": "node scripts/prepare-hosting.mjs",
     "hosting:serve": "npm run hosting:prepare && firebase emulators:start --only hosting",
     "deploy:hosting": "npm run hosting:prepare && firebase deploy --only hosting",
+    "test:captures": "node scripts/check-capture-navigation.mjs && node scripts/check-capture-corrections.mjs",
     "generate:app-database": "node scripts/generate-building-app-database.js",
     "sync:firestore-operational": "node scripts/replace-firestore-operational-state.mjs",
     "ai:clean-workbook": "node scripts/gemini-clean-workbook.mjs",

@@ -12,6 +12,33 @@ It replaces *"WhatsApp + spreadsheets + site runs"* with a clean, controlled wor
 
 ## Mobile Capture Dashboard Hosting
 
+### Unit discussion and direct navigation
+
+The office dashboard accepts bookmarked links such as:
+
+```text
+https://app.fuzio.co.za/capture-dashboard.html?building=Hazelmere&month=2026-10&unit=28
+```
+
+The sign-in flow preserves these filters. `HZM` is accepted as a building alias.
+Months are South African calendar months. The optional Unit field matches the
+exact unit, including a suffix if supplied: unit 28 does not include unit 128,
+28A, garage G28 or bulk meters. All matching water/electricity captures remain
+visible; the view does not choose an approved reading. Missing periods show an
+empty result, including after refresh, rather than falling back to all months.
+Clear the unit filter to return to the building-wide view.
+
+Minion's `meter_app_reading` tool uses the existing read-only Firestore account
+to return current/prior-month readings, raw values, stored review warnings and
+an arithmetic comparison where a unique prior baseline exists. It opens this
+filtered view when asked. It does not change, approve or bill readings, and
+does not automatically interpret photos.
+
+Deploy the updated dashboard assets and Minion tool together before relying on
+voice navigation. This feature requires no Android APK update. Run the isolated
+navigation/correction checks with `npm run test:captures`; they do not access
+production Firebase.
+
 The Firebase-backed capture dashboard can be installed as a browser app and hosted continuously on Firebase Hosting.
 
 ```powershell
