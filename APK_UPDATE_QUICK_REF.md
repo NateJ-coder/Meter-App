@@ -1,5 +1,27 @@
 # APK Update Quick Reference
 
+## Available Update - 2026-10-13
+
+Version 1.0.6 (build 7) closes the gaps found while reconciling the October
+2026 cycle (missed meters, meters captured twice under different labels):
+
+- A building cannot be left, and another building cannot be started, until
+  every registered meter for it has a reading or an "Unable to read" this
+  month. The capture screen shows "X of N registered meters captured" and
+  lists the outstanding ones; the building screen refuses to open a second
+  building while the first is unfinished.
+- The meter list only offers meters not yet captured this month for the
+  chosen type, so a unit with both an electricity and a water meter is
+  captured once per type and never twice for one type. A free-typed label
+  that repeats an earlier capture is refused with the earlier value shown.
+- "Review and Save" shows the meter, type, reading and photo for
+  confirmation; "Change" returns to the form. A reading can still be changed
+  from the list until it has been submitted to the server (after that the
+  office corrects it on the dashboard so the audit trail is kept).
+
+Buildings without a registry (Transvalia) are not gated. Same release key
+(SHA-256 `8938876e...`), so 1.0.3 and later update in place.
+
 ## Available Update - 2026-10-01
 
 Version 1.0.5 (build 6) adds meter-label selection from each building's

@@ -7,6 +7,7 @@ import 'package:uuid/uuid.dart';
 
 import 'capture.dart';
 import 'capture_store.dart';
+import 'cycle_rules.dart';
 import 'meter_registry.dart';
 import 'reading_cleaner.dart';
 
@@ -17,9 +18,34 @@ const List<String> _unreadableReasons = [
   'Other',
 ];
 
+/// Capture one meter reading, or edit one that has not been submitted yet.
+///
+/// Guards added in v1.0.6 (Oct 2026 cycle lessons):
+///  - the meter list only offers registered meters of the chosen type that
+///    have NOT been captured yet this month, so the same meter cannot be
+///    captured twice. A unit with an electricity and a water meter is
+///    offered once under each type.
+///  - a free-typed label that repeats an earlier capture this month (same
+///    label and type) is refused with a pointer to the earlier reading.
+///  - nothing is saved until the reader confirms a summary of the meter,
+///    type, reading and photo, and can go back to change any of them.
 class AddCaptureScreen extends StatefulWidget {
   final String building;
-  const AddCaptureScreen({super.key, required this.building});
+
+  /// Captures already made for [building] this cycle (used for the
+  /// duplicate guard and to hide captured meters from the list).
+  final List<Capture> cycleCaptures;
+
+  /// When set, the screen edits this capture in place instead of creating
+  /// a new one.
+  final Capture? existing;
+
+  const AddCaptureScreen({
+    super.key,
+    required this.building,
+    this.cycleCaptures = const [],
+    this.existing,
+  });
 
   @override
   State<AddCaptureScreen> createState() => _AddCaptureScreenState();
@@ -41,34 +67,62 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   // found - still saved, just flagged for office review instead of
   // silently trusted or blocked).
   MeterOption? _matchedMeter;
+  List<MeterOption> _registry = const [];
   List<MeterOption> _options = const [];
   bool _loadingOptions = true;
 
   bool _isUnreadable = false;
   String? _unreadableReason;
 
+  bool get _editing => widget.existing != null;
+
   @override
   void initState() {
     super.initState();
+    final existing = widget.existing;
+    if (existing != null) {
+      _labelController.text = existing.label;
+      _readingController.text = existing.readingValue;
+      _meterType = existing.meterType;
+      _photoPath = existing.photoPath;
+      _isUnreadable = existing.isUnreadable;
+      _unreadableReason = existing.isUnreadable && existing.unreadableReason.isNotEmpty
+          ? existing.unreadableReason
+          : null;
+      _unreadableNoteController.text = existing.unreadableNote;
+    }
     _loadOptions();
   }
 
   Future<void> _loadOptions() async {
-    final options = await MeterRegistry.forBuilding(widget.building, meterType: _meterType);
+    final registry = await MeterRegistry.forBuilding(widget.building);
     if (!mounted) return;
     setState(() {
-      _options = options;
+      _registry = registry;
+      _options = _availableOptions();
       _loadingOptions = false;
+      if (_editing && _matchedMeter == null) {
+        _matchedMeter = _matchTyped(_labelController.text);
+      }
     });
   }
+
+  List<MeterOption> _availableOptions() => CycleRules.availableMeters(
+        _registry,
+        _meterType,
+        widget.cycleCaptures,
+        excludeId: widget.existing?.id,
+      );
+
+  int get _registeredOfType => _registry.where((m) => m.type == _meterType).length;
 
   void _onMeterTypeChanged(String? value) {
     setState(() {
       _meterType = value ?? 'Electricity';
       _matchedMeter = null;
       _labelController.clear();
+      _options = _availableOptions();
     });
-    _loadOptions();
   }
 
   void _onLabelSelected(MeterOption option) {
@@ -83,10 +137,10 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   /// covers picking the suggestion by finishing typing rather than tapping
   /// it in the list.
   MeterOption? _matchTyped(String typed) {
-    final normalized = typed.trim().toLowerCase();
-    if (normalized.isEmpty) return null;
-    for (final option in _options) {
-      if (option.number.trim().toLowerCase() == normalized) return option;
+    final key = CycleRules.labelKey(typed);
+    if (key.isEmpty) return null;
+    for (final option in _registry) {
+      if (option.type == _meterType && CycleRules.labelKey(option.number) == key) return option;
     }
     return null;
   }
@@ -135,34 +189,98 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     if (label.trim().isEmpty) return null;
     final all = await CaptureStore.loadAll();
     final matches = all.where((c) =>
+        c.id != widget.existing?.id &&
         c.building.trim().toLowerCase() == widget.building.trim().toLowerCase() &&
-        c.label.trim().toLowerCase() == label.trim().toLowerCase() &&
+        CycleRules.labelKey(c.label) == CycleRules.labelKey(label) &&
         c.meterType == _meterType &&
         !c.isUnreadable).toList()
       ..sort((a, b) => b.capturedAt.compareTo(a.capturedAt));
     return matches.isEmpty ? null : matches.first.readingValue;
   }
 
+  void _toast(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  /// Summary the reader must confirm before anything is stored. Returns
+  /// true to save, false to go back and change something.
+  Future<bool> _confirm(String label, MeterOption? matched) async {
+    final reading = _isUnreadable
+        ? 'Unable to read: ${_unreadableReason ?? ''}'
+            '${_unreadableNoteController.text.trim().isNotEmpty ? ' (${_unreadableNoteController.text.trim()})' : ''}'
+        : _readingController.text.trim();
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Confirm meter and reading'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Meter: $label', style: const TextStyle(fontWeight: FontWeight.w600)),
+              if (matched == null)
+                const Padding(
+                  padding: EdgeInsets.only(top: 2, bottom: 6),
+                  child: Text('Not on the registered meter list - the office will be asked to check it.',
+                      style: TextStyle(color: Color(0xFFB45309), fontSize: 13)),
+                ),
+              Text('Type: $_meterType'),
+              Text('Reading: $reading'),
+              const SizedBox(height: 12),
+              if (_photoPath != null)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.file(File(_photoPath!), height: 160, fit: BoxFit.cover),
+                ),
+              const SizedBox(height: 8),
+              const Text('Check the digits against the photo. You cannot change this reading after it is submitted.',
+                  style: TextStyle(fontSize: 13)),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Change')),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(_editing ? 'Confirm changes' : 'Confirm and save'),
+          ),
+        ],
+      ),
+    );
+    return result == true;
+  }
+
   Future<void> _save() async {
     if (_saving || _takingPhoto) return;
     if (!_formKey.currentState!.validate()) return;
     if (_photoPath == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please take a photo of the meter.')),
-      );
+      _toast('Please take a photo of the meter.');
       return;
     }
     if (_isUnreadable && _unreadableReason == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please choose a reason this meter could not be read.')),
-      );
+      _toast('Please choose a reason this meter could not be read.');
       return;
     }
 
-    setState(() => _saving = true);
-
     final label = _labelController.text.trim();
     final matched = _matchedMeter ?? _matchTyped(label);
+
+    // Duplicate guard: one capture per meter per type per month.
+    final earlier = CycleRules.duplicateOf(label, _meterType, widget.cycleCaptures,
+        excludeId: widget.existing?.id);
+    if (earlier != null) {
+      final earlierReading = earlier.isUnreadable
+          ? 'unable to read (${earlier.unreadableReason})'
+          : earlier.readingValue;
+      _toast('$label $_meterType was already captured this month ($earlierReading). '
+          'Pick a meter that is still outstanding, or open the earlier reading to change it.');
+      return;
+    }
+
+    if (!await _confirm(label, matched)) return;
+    if (!mounted) return;
+    setState(() => _saving = true);
 
     // Warnings are computed silently here and stored on the capture - they
     // are never shown to the reader as a popup (Nate, 2026-09): the office
@@ -184,14 +302,21 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       );
     }
 
+    final existing = widget.existing;
+    final photoChanged = existing != null && existing.photoPath != _photoPath;
     final capture = Capture(
-      id: const Uuid().v4(),
+      id: existing?.id ?? const Uuid().v4(),
       building: widget.building,
       label: label,
       meterType: _meterType,
       readingValue: _isUnreadable ? '' : _readingController.text.trim(),
       photoPath: _photoPath!,
-      capturedAt: DateTime.now(),
+      capturedAt: existing?.capturedAt ?? DateTime.now(),
+      // An edited capture goes back through upload so the server copy is
+      // replaced; the photo is only re-sent when it was retaken.
+      status: CaptureStatus.pending,
+      photoUrl: photoChanged ? null : existing?.photoUrl,
+      readingSynced: false,
       labelConfirmed: matched != null,
       meterRole: matched?.role ?? '',
       reviewWarnings: warnings,
@@ -207,11 +332,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     } catch (error) {
       if (!mounted) return;
       setState(() => _saving = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Not saved. Keep this screen open and retry: $error'),
-        ),
-      );
+      _toast('Not saved. Keep this screen open and retry: $error');
     }
   }
 
@@ -219,7 +340,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     if (_loadingOptions) {
       return const LinearProgressIndicator();
     }
-    if (_options.isEmpty) {
+    if (_registry.isEmpty) {
       // No registry for this building yet (e.g. Transvalia) - fall back to
       // plain free text rather than blocking capture.
       return TextFormField(
@@ -233,6 +354,14 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
         validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
       );
     }
+
+    final outstanding = _options.length;
+    final total = _registeredOfType;
+    final helper = _matchedMeter != null
+        ? 'Matched to the registered meter list'
+        : outstanding == 0 && total > 0
+            ? 'Every registered $_meterType meter is captured this month - only type a label for a meter that is not on the list'
+            : '$outstanding of $total $_meterType meters still to capture. Pick a suggestion, or this entry will be flagged for office review';
 
     return Autocomplete<MeterOption>(
       // Supplying our own controller (rather than letting Autocomplete
@@ -255,21 +384,19 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
           textCapitalization: TextCapitalization.characters,
           onChanged: (value) {
             if (_matchedMeter != null &&
-                _matchedMeter!.number.trim().toLowerCase() != value.trim().toLowerCase()) {
+                CycleRules.labelKey(_matchedMeter!.number) != CycleRules.labelKey(value)) {
               setState(() => _matchedMeter = null);
             }
           },
           decoration: InputDecoration(
             labelText: 'Meter Label',
-            hintText: 'Start typing to search this building\'s meters',
+            hintText: 'Start typing to search the outstanding meters',
             border: const OutlineInputBorder(),
             suffixIcon: _matchedMeter != null
                 ? const Icon(Icons.check_circle, color: Colors.green)
                 : null,
-            helperText: _matchedMeter != null
-                ? 'Matched to the registered meter list'
-                : 'Not matched yet - pick a suggestion, or this entry will be flagged for office review',
-            helperMaxLines: 2,
+            helperText: helper,
+            helperMaxLines: 3,
           ),
           validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
         );
@@ -321,7 +448,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Capture Meter')),
+      appBar: AppBar(title: Text(_editing ? 'Change Reading' : 'Capture Meter')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -329,6 +456,11 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              if (_editing)
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 12),
+                  child: Text('This reading has not been submitted yet. Change what is wrong and confirm again.'),
+                ),
               _labelField(),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
@@ -361,6 +493,10 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
                     File(_photoPath!),
                     height: 220,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => const SizedBox(
+                      height: 80,
+                      child: Center(child: Icon(Icons.image_not_supported)),
+                    ),
                   ),
                 ),
               const SizedBox(height: 12),
@@ -372,9 +508,9 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: _saving || _takingPhoto ? null : _save,
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Text('Save Reading'),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  child: Text(_editing ? 'Review Changes' : 'Review and Save'),
                 ),
               ),
             ],

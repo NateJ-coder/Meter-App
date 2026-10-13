@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'app_updater.dart';
 import 'capture_screen.dart';
+import 'capture_store.dart';
+import 'cycle_rules.dart';
+import 'meter_registry.dart';
 
 void main() {
   runApp(const FuzioMeterReaderApp());
@@ -72,8 +75,59 @@ class _BuildingScreenState extends State<BuildingScreen> {
     }
   }
 
-  void _start() {
-    Navigator.of(context).push(
+  /// A reader may only move on to another building once the one they
+  /// started this month is complete (every registered meter has a reading
+  /// or an "unable to read"). Re-opening the unfinished building itself is
+  /// always allowed.
+  Future<void> _start() async {
+    List<CycleProgress> unfinished = const [];
+    try {
+      final all = await CaptureStore.loadAll();
+      final registries = <String, List<MeterOption>>{};
+      for (final building in buildings.keys) {
+        registries[building] = await MeterRegistry.forBuilding(building);
+      }
+      unfinished = await CycleRules.unfinishedBuildings(
+        registries: registries,
+        all: all,
+        now: DateTime.now(),
+        except: _selectedBuilding,
+      );
+    } catch (error) {
+      // A broken local queue is reported inside CaptureScreen; do not
+      // block the reader here on top of that.
+      debugPrint('Completeness check skipped: $error');
+    }
+    if (!mounted) return;
+    if (unfinished.isNotEmpty) {
+      final first = unfinished.first;
+      final goBack = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Finish ${first.building} first'),
+          content: Text(
+            '${first.building} still has ${first.missing.length} of ${first.registered} registered meters without a reading this month: '
+            '${first.describeMissing()}.\n\n'
+            'Every meter must have a reading, or be recorded as "Unable to read", before another building can be started.',
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
+            FilledButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text('Open ${first.building}'),
+            ),
+          ],
+        ),
+      );
+      if (goBack == true && mounted) {
+        setState(() => _selectedBuilding = first.building);
+        await Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => CaptureScreen(building: first.building)),
+        );
+      }
+      return;
+    }
+    await Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => CaptureScreen(building: _selectedBuilding)),
     );
   }

@@ -15,6 +15,7 @@ import 'package:fuzio_meter_reader/capture.dart';
 import 'package:fuzio_meter_reader/capture_store.dart';
 import 'package:fuzio_meter_reader/add_capture_screen.dart';
 import 'package:fuzio_meter_reader/meter_registry.dart';
+import 'package:fuzio_meter_reader/cycle_rules.dart';
 
 import 'package:fuzio_meter_reader/main.dart';
 
@@ -24,7 +25,7 @@ Future<void> _primeMeterRegistry(WidgetTester tester) =>
     tester.runAsync(() => MeterRegistry.forBuilding('Genesis'));
 
 void main() {
-  testWidgets('Capture saves directly without a review prompt', (tester) async {
+  testWidgets('Capture is saved only after the reader confirms the summary', (tester) async {
     SharedPreferences.setMockInitialValues({});
     await _primeMeterRegistry(tester);
     final directory = Directory.systemTemp.createTempSync('capture-save-test');
@@ -62,12 +63,26 @@ void main() {
     });
     await tester.pumpAndSettle();
     expect(find.text('Retake Photo'), findsOneWidget);
-    await tester.ensureVisible(find.text('Save Reading'));
-    await tester.tap(find.text('Save Reading'));
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.tap(find.text('Review and Save'));
+    await tester.pumpAndSettle();
+    expect(find.text('Confirm meter and reading'), findsOneWidget);
+    expect(find.textContaining('Not on the registered meter list'), findsOneWidget);
+    expect(saved, isNull);
+    await tester.tap(find.text('Change'));
+    await tester.pumpAndSettle();
+    expect(find.byType(AlertDialog), findsNothing);
+    expect((await CaptureStore.loadAll()), isEmpty);
+    await tester.enterText(find.byType(TextFormField).last, '124');
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.tap(find.text('Review and Save'));
+    await tester.pumpAndSettle();
+    expect(find.text('Reading: 124'), findsOneWidget);
+    await tester.tap(find.text('Confirm and save'));
     await tester.pumpAndSettle();
     expect(find.byType(AlertDialog), findsNothing);
     expect(saved?.label, '# 44');
-    expect(saved?.readingValue, '123');
+    expect(saved?.readingValue, '124');
     expect(saved?.reviewAcknowledged, isFalse);
     expect((await CaptureStore.loadAll()).single.id, saved?.id);
   });
@@ -79,11 +94,40 @@ void main() {
     ));
     await tester.enterText(find.byType(TextFormField).first, 'GEN 01');
     await tester.enterText(find.byType(TextFormField).last, '123.4.5');
-    await tester.ensureVisible(find.text('Save Reading'));
-    await tester.tap(find.text('Save Reading'));
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.tap(find.text('Review and Save'));
     await tester.pump();
     expect(find.text('Enter digits and one decimal point (or comma) only.'), findsOneWidget);
     expect(find.text('Confirm meter and reading'), findsNothing);
+  });
+
+  testWidgets('A meter captured this month cannot be captured again for the same type', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    await _primeMeterRegistry(tester);
+    final earlier = Capture(id: 'earlier', building: 'Queensgate', label: 'QG 05',
+        meterType: 'Electricity', readingValue: '49921.1', photoPath: '/earlier.jpg',
+        capturedAt: DateTime.now());
+    await tester.pumpWidget(MaterialApp(
+      home: AddCaptureScreen(building: 'Queensgate', cycleCaptures: [earlier]),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('meters still to capture'), findsOneWidget);
+    await tester.enterText(find.byType(TextFormField).first, 'qg 05');
+    await tester.enterText(find.byType(TextFormField).last, '49950');
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.tap(find.text('Review and Save'));
+    await tester.pump();
+    // No photo yet, so the photo prompt comes first; the duplicate guard
+    // runs before the confirmation summary is shown.
+    expect(find.text('Please take a photo of the meter.'), findsOneWidget);
+    expect(find.text('Confirm meter and reading'), findsNothing);
+    final earlierWater = Capture(id: 'w', building: 'Queensgate', label: 'QG 05',
+        meterType: 'Water', readingValue: '153', photoPath: '/w.jpg', capturedAt: DateTime.now());
+    final registry = await tester.runAsync(() => MeterRegistry.forBuilding('Queensgate'));
+    expect(CycleRules.availableMeters(registry!, 'Electricity', [earlier]).any((m) => m.number == 'QG 05'), isFalse);
+    expect(CycleRules.availableMeters(registry, 'Water', [earlier]).any((m) => m.number == 'QG 05'), isTrue);
+    expect(CycleRules.availableMeters(registry, 'Water', [earlier, earlierWater]).any((m) => m.number == 'QG 05'), isFalse);
+    await tester.pumpWidget(const SizedBox.shrink());
   });
 
   testWidgets('Bulk electricity label does not select water', (tester) async {
