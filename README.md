@@ -39,6 +39,30 @@ voice navigation. This feature requires no Android APK update. Run the isolated
 navigation/correction checks with `npm run test:captures`; they do not access
 production Firebase.
 
+### Export to Excel in Utility Dash order
+
+"Export to Excel" writes a `Readings` sheet laid out like the building's
+Utility Dash sheet: an ELECTRICITY block and a WATER block, rows in workbook
+order, with three columns (meter label, reading, note). Reader spellings such
+as `UNIT 5`, `No 5` or `PHA 05` are placed on the `PH 05` row and the note
+records what was typed. A row that received two different captures is left
+blank and marked `CHECK` with both values; captures that match no workbook
+row are listed under `UNMATCHED CAPTURES` at the bottom rather than dropped.
+Readings are exported exactly as captured (no truncation), and the
+`Reader Review` sheet is unchanged.
+
+The row order comes from `assets/export-layouts.json`. Regenerate it from the
+live workbook whenever rows are added or renamed in Utility Dash:
+
+```powershell
+npm run generate:export-layouts
+```
+
+(Pass the workbook path as an argument if it has moved.) The file must be
+deployed with the dashboard; `npm run test:captures` fails if a dashboard
+building has no layout. Without the file the export falls back to plain
+electricity and water lists.
+
 The Firebase-backed capture dashboard can be installed as a browser app and hosted continuously on Firebase Hosting.
 
 ```powershell

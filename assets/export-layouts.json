@@ -1,0 +1,5176 @@
+{
+ "generatedAt": "2026-10-13T14:22:30.753Z",
+ "source": "Utility Dash 9 September 2026 - Editable (1).xlsm",
+ "layouts": {
+  "Azores": {
+   "sheet": "The Azores",
+   "electricity": [
+    {
+     "label": "AZ 01A",
+     "row": 18
+    },
+    {
+     "label": "AZ 02",
+     "row": 19
+    },
+    {
+     "label": "AZ 03",
+     "row": 20
+    },
+    {
+     "label": "AZ 04",
+     "row": 21
+    },
+    {
+     "label": "AZ 05B",
+     "row": 22
+    },
+    {
+     "label": "AZ 06A",
+     "row": 23
+    },
+    {
+     "label": "AZ 07",
+     "row": 24
+    },
+    {
+     "label": "AZ 08",
+     "row": 25
+    },
+    {
+     "label": "AZ 09",
+     "row": 26
+    },
+    {
+     "label": "AZ 10",
+     "row": 27
+    },
+    {
+     "label": "AZ 11",
+     "row": 28
+    },
+    {
+     "label": "AZ 12",
+     "row": 29
+    },
+    {
+     "label": "AZ 13",
+     "row": 30
+    },
+    {
+     "label": "AZ 14",
+     "row": 31
+    },
+    {
+     "label": "AZ 15A",
+     "row": 32
+    },
+    {
+     "label": "AZ 16A",
+     "row": 33
+    },
+    {
+     "label": "AZ 17",
+     "row": 34
+    },
+    {
+     "label": "AZ 18",
+     "row": 35
+    },
+    {
+     "label": "AZ 19A",
+     "row": 36
+    },
+    {
+     "label": "AZ 20",
+     "row": 37
+    },
+    {
+     "label": "AZ 21",
+     "row": 38
+    },
+    {
+     "label": "AZ 22",
+     "row": 39
+    },
+    {
+     "label": "AZ 23",
+     "row": 40
+    },
+    {
+     "label": "AZ 24",
+     "row": 41
+    },
+    {
+     "label": "AZ 25",
+     "row": 42
+    },
+    {
+     "label": "AZ 26A",
+     "row": 43
+    },
+    {
+     "label": "AZ 27",
+     "row": 44
+    },
+    {
+     "label": "AZ 28",
+     "row": 45
+    },
+    {
+     "label": "AZ 29A",
+     "row": 46
+    },
+    {
+     "label": "AZ 30A",
+     "row": 47
+    },
+    {
+     "label": "AZ 31",
+     "row": 48
+    },
+    {
+     "label": "AZ 32A",
+     "row": 49
+    },
+    {
+     "label": "AZ 33",
+     "row": 50
+    },
+    {
+     "label": "AZ 34",
+     "row": 51
+    },
+    {
+     "label": "AZ 35A",
+     "row": 52
+    },
+    {
+     "label": "AZ 36A",
+     "row": 53
+    },
+    {
+     "label": "AZ 37 A",
+     "row": 54
+    },
+    {
+     "label": "AZ 38",
+     "row": 55
+    },
+    {
+     "label": "AZ 39",
+     "row": 56
+    },
+    {
+     "label": "AZ 40",
+     "row": 57
+    },
+    {
+     "label": "AZ 41A",
+     "row": 58
+    },
+    {
+     "label": "AZ 42A",
+     "row": 59
+    },
+    {
+     "label": "AZ 43",
+     "row": 60
+    },
+    {
+     "label": "AZ 44",
+     "row": 61
+    },
+    {
+     "label": "AZ 45",
+     "row": 62
+    },
+    {
+     "label": "AZ 46",
+     "row": 63
+    },
+    {
+     "label": "AZ 47",
+     "row": 64
+    },
+    {
+     "label": "AZ 48",
+     "row": 65
+    },
+    {
+     "label": "AZ 49",
+     "row": 66
+    },
+    {
+     "label": "AZ 50",
+     "row": 67
+    },
+    {
+     "label": "AZ 51",
+     "row": 68
+    },
+    {
+     "label": "AZ 52",
+     "row": 69
+    },
+    {
+     "label": "AZ 53",
+     "row": 70
+    },
+    {
+     "label": "AZ 54",
+     "row": 71
+    },
+    {
+     "label": "AZ 55",
+     "row": 72
+    },
+    {
+     "label": "AZ 56",
+     "row": 73
+    },
+    {
+     "label": "AZ 57",
+     "row": 74
+    },
+    {
+     "label": "AZ 58",
+     "row": 75
+    },
+    {
+     "label": "AZ 59",
+     "row": 76
+    },
+    {
+     "label": "AZ 60A",
+     "row": 77
+    },
+    {
+     "label": "AZ 61",
+     "row": 78
+    },
+    {
+     "label": "AZ 62",
+     "row": 79
+    },
+    {
+     "label": "AZ 63A",
+     "row": 80
+    },
+    {
+     "label": "AZ 64",
+     "row": 81
+    },
+    {
+     "label": "AZ 65",
+     "row": 82
+    },
+    {
+     "label": "AZ 66",
+     "row": 83
+    },
+    {
+     "label": "AZ 67",
+     "row": 84
+    },
+    {
+     "label": "AZ 68",
+     "row": 85
+    },
+    {
+     "label": "AZ 69",
+     "row": 86
+    },
+    {
+     "label": "AZ 70",
+     "row": 87
+    },
+    {
+     "label": "AZ 71A",
+     "row": 88
+    },
+    {
+     "label": "AZ 72A",
+     "row": 89
+    },
+    {
+     "label": "Bulk 1",
+     "row": 90
+    }
+   ],
+   "water": [
+    {
+     "label": "Bulk 1",
+     "row": 92
+    }
+   ]
+  },
+  "Carissa Lane": {
+   "sheet": "Carissa Lane",
+   "electricity": [
+    {
+     "label": "CL 01",
+     "row": 18
+    },
+    {
+     "label": "CL 02",
+     "row": 19
+    },
+    {
+     "label": "CL 03",
+     "row": 20
+    },
+    {
+     "label": "CL 04",
+     "row": 21
+    },
+    {
+     "label": "CL 05A",
+     "row": 22
+    },
+    {
+     "label": "CL 06A",
+     "row": 23
+    },
+    {
+     "label": "CL 07",
+     "row": 24
+    },
+    {
+     "label": "CL 08A",
+     "row": 25
+    },
+    {
+     "label": "CL 09",
+     "row": 26
+    },
+    {
+     "label": "CL 10",
+     "row": 27
+    },
+    {
+     "label": "CL 11",
+     "row": 28
+    },
+    {
+     "label": "CL 12",
+     "row": 29
+    },
+    {
+     "label": "CL 13B",
+     "row": 30
+    },
+    {
+     "label": "CL 14",
+     "row": 31
+    },
+    {
+     "label": "CL 15",
+     "row": 32
+    },
+    {
+     "label": "CL 16",
+     "row": 33
+    },
+    {
+     "label": "CL 17",
+     "row": 34
+    },
+    {
+     "label": "CL 18",
+     "row": 35
+    },
+    {
+     "label": "CL 19",
+     "row": 36
+    },
+    {
+     "label": "CL 20",
+     "row": 37
+    },
+    {
+     "label": "CL 21",
+     "row": 38
+    },
+    {
+     "label": "CL 22",
+     "row": 39
+    },
+    {
+     "label": "CL 23",
+     "row": 40
+    },
+    {
+     "label": "CL 24",
+     "row": 41
+    },
+    {
+     "label": "CL 25",
+     "row": 42
+    },
+    {
+     "label": "CL 26",
+     "row": 43
+    },
+    {
+     "label": "CL 27",
+     "row": 44
+    },
+    {
+     "label": "CL 28",
+     "row": 45
+    },
+    {
+     "label": "CL 29",
+     "row": 46
+    },
+    {
+     "label": "CL 30",
+     "row": 47
+    },
+    {
+     "label": "Com01",
+     "row": 48
+    },
+    {
+     "label": "Com02",
+     "row": 49
+    },
+    {
+     "label": "Com03",
+     "row": 50
+    },
+    {
+     "label": "Bulk 1",
+     "row": 51
+    }
+   ],
+   "water": [
+    {
+     "label": "Bulk 1",
+     "row": 53
+    },
+    {
+     "label": "CL 01",
+     "row": 54
+    },
+    {
+     "label": "CL 02",
+     "row": 55
+    },
+    {
+     "label": "CL 03",
+     "row": 56
+    },
+    {
+     "label": "CL 04",
+     "row": 57
+    },
+    {
+     "label": "CL 05A",
+     "row": 58
+    },
+    {
+     "label": "CL 06",
+     "row": 59
+    },
+    {
+     "label": "CL 07",
+     "row": 60
+    },
+    {
+     "label": "CL 08",
+     "row": 61
+    },
+    {
+     "label": "CL 09",
+     "row": 62
+    },
+    {
+     "label": "CL 10",
+     "row": 63
+    },
+    {
+     "label": "CL 11",
+     "row": 64
+    },
+    {
+     "label": "CL 12",
+     "row": 65
+    },
+    {
+     "label": "CL 13A",
+     "row": 66
+    },
+    {
+     "label": "CL 14",
+     "row": 67
+    },
+    {
+     "label": "CL 15",
+     "row": 68
+    },
+    {
+     "label": "CL 16",
+     "row": 69
+    },
+    {
+     "label": "CL 17",
+     "row": 70
+    },
+    {
+     "label": "CL 18",
+     "row": 71
+    },
+    {
+     "label": "CL 19",
+     "row": 72
+    },
+    {
+     "label": "CL 20",
+     "row": 73
+    },
+    {
+     "label": "CL 21",
+     "row": 74
+    },
+    {
+     "label": "CL 22",
+     "row": 75
+    },
+    {
+     "label": "CL 23",
+     "row": 76
+    },
+    {
+     "label": "CL 24",
+     "row": 77
+    },
+    {
+     "label": "CL 25",
+     "row": 78
+    },
+    {
+     "label": "CL 26",
+     "row": 79
+    },
+    {
+     "label": "CL 27",
+     "row": 80
+    },
+    {
+     "label": "CL 28",
+     "row": 81
+    },
+    {
+     "label": "CL 29",
+     "row": 82
+    },
+    {
+     "label": "CL 30",
+     "row": 83
+    },
+    {
+     "label": "Com01",
+     "row": 84
+    },
+    {
+     "label": "Com02",
+     "row": 85
+    },
+    {
+     "label": "Com03",
+     "row": 86
+    }
+   ]
+  },
+  "Genesis": {
+   "sheet": "Genesis",
+   "electricity": [
+    {
+     "label": "GEN 01",
+     "row": 18
+    },
+    {
+     "label": "GEN 02",
+     "row": 19
+    },
+    {
+     "label": "GEN 03",
+     "row": 20
+    },
+    {
+     "label": "GEN 04",
+     "row": 21
+    },
+    {
+     "label": "GEN 05",
+     "row": 22
+    },
+    {
+     "label": "GEN 06",
+     "row": 23
+    },
+    {
+     "label": "GEN 07",
+     "row": 24
+    },
+    {
+     "label": "GEN 08",
+     "row": 25
+    },
+    {
+     "label": "GEN 09",
+     "row": 26
+    },
+    {
+     "label": "GEN 10",
+     "row": 27
+    },
+    {
+     "label": "GEN 11",
+     "row": 28
+    },
+    {
+     "label": "GEN 12",
+     "row": 29
+    },
+    {
+     "label": "GEN 13",
+     "row": 30
+    },
+    {
+     "label": "GEN 14",
+     "row": 31
+    },
+    {
+     "label": "GEN 15",
+     "row": 32
+    },
+    {
+     "label": "GEN 16",
+     "row": 33
+    },
+    {
+     "label": "GEN 17",
+     "row": 34
+    },
+    {
+     "label": "GEN 18",
+     "row": 35
+    },
+    {
+     "label": "GEN 19",
+     "row": 36
+    },
+    {
+     "label": "GEN 20",
+     "row": 37
+    },
+    {
+     "label": "GEN 21",
+     "row": 38
+    },
+    {
+     "label": "GEN 22",
+     "row": 39
+    },
+    {
+     "label": "GEN 23",
+     "row": 40
+    },
+    {
+     "label": "GEN 24",
+     "row": 41
+    },
+    {
+     "label": "GEN 25",
+     "row": 42
+    },
+    {
+     "label": "GEN 26",
+     "row": 43
+    },
+    {
+     "label": "GEN 27",
+     "row": 44
+    },
+    {
+     "label": "GEN 28",
+     "row": 45
+    },
+    {
+     "label": "GEN 29",
+     "row": 46
+    },
+    {
+     "label": "GEN 30",
+     "row": 47
+    },
+    {
+     "label": "GEN 31",
+     "row": 48
+    },
+    {
+     "label": "GEN 32",
+     "row": 49
+    },
+    {
+     "label": "GEN 33",
+     "row": 50
+    },
+    {
+     "label": "GEN 34",
+     "row": 51
+    },
+    {
+     "label": "GEN 35",
+     "row": 52
+    },
+    {
+     "label": "GEN 36",
+     "row": 53
+    },
+    {
+     "label": "GEN 37",
+     "row": 54
+    },
+    {
+     "label": "GEN 38",
+     "row": 55
+    },
+    {
+     "label": "GEN 39",
+     "row": 56
+    },
+    {
+     "label": "GEN 40",
+     "row": 57
+    },
+    {
+     "label": "GEN 41",
+     "row": 58
+    },
+    {
+     "label": "GEN 42",
+     "row": 59
+    },
+    {
+     "label": "GEN 43",
+     "row": 60
+    },
+    {
+     "label": "GEN 44",
+     "row": 61
+    },
+    {
+     "label": "GEN 45",
+     "row": 62
+    },
+    {
+     "label": "GEN 46",
+     "row": 63
+    },
+    {
+     "label": "GEN 47",
+     "row": 64
+    },
+    {
+     "label": "GEN 48",
+     "row": 65
+    },
+    {
+     "label": "GEN 49",
+     "row": 66
+    },
+    {
+     "label": "GEN 50",
+     "row": 67
+    },
+    {
+     "label": "GEN 51",
+     "row": 68
+    },
+    {
+     "label": "GEN 52",
+     "row": 69
+    },
+    {
+     "label": "GEN 53",
+     "row": 70
+    },
+    {
+     "label": "GEN 54",
+     "row": 71
+    },
+    {
+     "label": "GEN 55",
+     "row": 72
+    },
+    {
+     "label": "GEN 56",
+     "row": 73
+    },
+    {
+     "label": "GEN 57",
+     "row": 74
+    },
+    {
+     "label": "GEN 58",
+     "row": 75
+    },
+    {
+     "label": "GEN 59",
+     "row": 76
+    },
+    {
+     "label": "GEN 60",
+     "row": 77
+    },
+    {
+     "label": "GEN 61",
+     "row": 78
+    },
+    {
+     "label": "GEN 62",
+     "row": 79
+    },
+    {
+     "label": "GEN 63",
+     "row": 80
+    },
+    {
+     "label": "Bulk 1",
+     "row": 81
+    },
+    {
+     "label": "Com 1",
+     "row": 82
+    },
+    {
+     "label": "Com 2",
+     "row": 83
+    },
+    {
+     "label": "Com 3",
+     "row": 84
+    },
+    {
+     "label": "Com 4",
+     "row": 85
+    },
+    {
+     "label": "Com 5",
+     "row": 86
+    },
+    {
+     "label": "Com 6",
+     "row": 87
+    },
+    {
+     "label": "Com 7",
+     "row": 88
+    },
+    {
+     "label": "Com 8",
+     "row": 89
+    },
+    {
+     "label": "Com 9",
+     "row": 90
+    },
+    {
+     "label": "Com 10",
+     "row": 91
+    },
+    {
+     "label": "Com 11",
+     "row": 92
+    }
+   ],
+   "water": [
+    {
+     "label": "GEN 01",
+     "row": 94
+    },
+    {
+     "label": "GEN 02",
+     "row": 95
+    },
+    {
+     "label": "GEN 03",
+     "row": 96
+    },
+    {
+     "label": "GEN 04",
+     "row": 97
+    },
+    {
+     "label": "GEN 05",
+     "row": 98
+    },
+    {
+     "label": "GEN 06",
+     "row": 99
+    },
+    {
+     "label": "GEN 07",
+     "row": 100
+    },
+    {
+     "label": "GEN 08",
+     "row": 101
+    },
+    {
+     "label": "GEN 09",
+     "row": 102
+    },
+    {
+     "label": "GEN 10",
+     "row": 103
+    },
+    {
+     "label": "GEN 11",
+     "row": 104
+    },
+    {
+     "label": "GEN 12",
+     "row": 105
+    },
+    {
+     "label": "GEN 13",
+     "row": 106
+    },
+    {
+     "label": "GEN 14",
+     "row": 107
+    },
+    {
+     "label": "GEN 15",
+     "row": 108
+    },
+    {
+     "label": "GEN 16",
+     "row": 109
+    },
+    {
+     "label": "GEN 17",
+     "row": 110
+    },
+    {
+     "label": "GEN 18",
+     "row": 111
+    },
+    {
+     "label": "GEN 19",
+     "row": 112
+    },
+    {
+     "label": "GEN 20",
+     "row": 113
+    },
+    {
+     "label": "GEN 21",
+     "row": 114
+    },
+    {
+     "label": "GEN 22",
+     "row": 115
+    },
+    {
+     "label": "GEN 23",
+     "row": 116
+    },
+    {
+     "label": "GEN 24",
+     "row": 117
+    },
+    {
+     "label": "GEN 25",
+     "row": 118
+    },
+    {
+     "label": "GEN 26",
+     "row": 119
+    },
+    {
+     "label": "GEN 27",
+     "row": 120
+    },
+    {
+     "label": "GEN 28",
+     "row": 121
+    },
+    {
+     "label": "GEN 29",
+     "row": 122
+    },
+    {
+     "label": "GEN 30",
+     "row": 123
+    },
+    {
+     "label": "GEN 31",
+     "row": 124
+    },
+    {
+     "label": "GEN 32",
+     "row": 125
+    },
+    {
+     "label": "GEN 33",
+     "row": 126
+    },
+    {
+     "label": "GEN 34",
+     "row": 127
+    },
+    {
+     "label": "GEN 35",
+     "row": 128
+    },
+    {
+     "label": "GEN 36",
+     "row": 129
+    },
+    {
+     "label": "GEN 37",
+     "row": 130
+    },
+    {
+     "label": "GEN 38",
+     "row": 131
+    },
+    {
+     "label": "GEN 39",
+     "row": 132
+    },
+    {
+     "label": "GEN 40",
+     "row": 133
+    },
+    {
+     "label": "GEN 41",
+     "row": 134
+    },
+    {
+     "label": "GEN 42",
+     "row": 135
+    },
+    {
+     "label": "GEN 43",
+     "row": 136
+    },
+    {
+     "label": "GEN 44",
+     "row": 137
+    },
+    {
+     "label": "GEN 45",
+     "row": 138
+    },
+    {
+     "label": "GEN 46",
+     "row": 139
+    },
+    {
+     "label": "GEN 47",
+     "row": 140
+    },
+    {
+     "label": "GEN 48",
+     "row": 141
+    },
+    {
+     "label": "GEN 49",
+     "row": 142
+    },
+    {
+     "label": "GEN 50",
+     "row": 143
+    },
+    {
+     "label": "GEN 51",
+     "row": 144
+    },
+    {
+     "label": "GEN 52",
+     "row": 145
+    },
+    {
+     "label": "GEN 53",
+     "row": 146
+    },
+    {
+     "label": "GEN 54",
+     "row": 147
+    },
+    {
+     "label": "GEN 55",
+     "row": 148
+    },
+    {
+     "label": "GEN 56",
+     "row": 149
+    },
+    {
+     "label": "GEN 57",
+     "row": 150
+    },
+    {
+     "label": "GEN 58",
+     "row": 151
+    },
+    {
+     "label": "GEN 59",
+     "row": 152
+    },
+    {
+     "label": "GEN 60",
+     "row": 153
+    },
+    {
+     "label": "GEN 61",
+     "row": 154
+    },
+    {
+     "label": "GEN 62",
+     "row": 155
+    },
+    {
+     "label": "GEN 63",
+     "row": 156
+    },
+    {
+     "label": "Com 1",
+     "row": 157
+    },
+    {
+     "label": "Com 2",
+     "row": 158
+    },
+    {
+     "label": "Bulk 1",
+     "row": 159
+    },
+    {
+     "label": "Bulk 2",
+     "row": 160
+    }
+   ]
+  },
+  "Hazelmere": {
+   "sheet": "Hazelmere",
+   "electricity": [
+    {
+     "label": "HM 01",
+     "row": 18
+    },
+    {
+     "label": "HM 02",
+     "row": 19
+    },
+    {
+     "label": "HM 03",
+     "row": 20
+    },
+    {
+     "label": "HM 04",
+     "row": 21
+    },
+    {
+     "label": "HM 05",
+     "row": 22
+    },
+    {
+     "label": "HM 06",
+     "row": 23
+    },
+    {
+     "label": "HM 07",
+     "row": 24
+    },
+    {
+     "label": "HM 08",
+     "row": 25
+    },
+    {
+     "label": "HM 09",
+     "row": 26
+    },
+    {
+     "label": "HM 10",
+     "row": 27
+    },
+    {
+     "label": "HM 11",
+     "row": 28
+    },
+    {
+     "label": "HM 12",
+     "row": 29
+    },
+    {
+     "label": "HM 13",
+     "row": 30
+    },
+    {
+     "label": "HM 14",
+     "row": 31
+    },
+    {
+     "label": "HM 15A",
+     "row": 32
+    },
+    {
+     "label": "HM 16",
+     "row": 33
+    },
+    {
+     "label": "HM 17",
+     "row": 34
+    },
+    {
+     "label": "HM 18",
+     "row": 35
+    },
+    {
+     "label": "HM 19",
+     "row": 36
+    },
+    {
+     "label": "HM 20",
+     "row": 37
+    },
+    {
+     "label": "HM 21",
+     "row": 38
+    },
+    {
+     "label": "HM 22",
+     "row": 39
+    },
+    {
+     "label": "HM 23",
+     "row": 40
+    },
+    {
+     "label": "HM 24",
+     "row": 41
+    },
+    {
+     "label": "HM 25",
+     "row": 42
+    },
+    {
+     "label": "HM 26",
+     "row": 43
+    },
+    {
+     "label": "HM 27",
+     "row": 44
+    },
+    {
+     "label": "HM 28",
+     "row": 45
+    },
+    {
+     "label": "HM 29",
+     "row": 46
+    },
+    {
+     "label": "HM 30A",
+     "row": 47
+    },
+    {
+     "label": "HM 31",
+     "row": 48
+    },
+    {
+     "label": "HM 32",
+     "row": 49
+    },
+    {
+     "label": "HM 33",
+     "row": 50
+    },
+    {
+     "label": "HM 34",
+     "row": 51
+    },
+    {
+     "label": "HM 35A",
+     "row": 52
+    },
+    {
+     "label": "HM 36A",
+     "row": 53
+    },
+    {
+     "label": "HM 37",
+     "row": 54
+    },
+    {
+     "label": "HM 38",
+     "row": 55
+    },
+    {
+     "label": "HM 39",
+     "row": 56
+    },
+    {
+     "label": "HM 40A",
+     "row": 57
+    },
+    {
+     "label": "HM 41",
+     "row": 58
+    },
+    {
+     "label": "HM 42",
+     "row": 59
+    },
+    {
+     "label": "HM 43",
+     "row": 60
+    },
+    {
+     "label": "HM 44",
+     "row": 61
+    },
+    {
+     "label": "HM 45",
+     "row": 62
+    },
+    {
+     "label": "HM 46",
+     "row": 63
+    },
+    {
+     "label": "HM 47",
+     "row": 64
+    },
+    {
+     "label": "HM 48",
+     "row": 65
+    },
+    {
+     "label": "HM 49",
+     "row": 66
+    },
+    {
+     "label": "HM 50 A",
+     "row": 67
+    },
+    {
+     "label": "HM 51",
+     "row": 68
+    },
+    {
+     "label": "HM 52",
+     "row": 69
+    },
+    {
+     "label": "HM 53",
+     "row": 70
+    },
+    {
+     "label": "** HM 17",
+     "row": 71
+    },
+    {
+     "label": "** HM 51",
+     "row": 72
+    },
+    {
+     "label": "** HM 39",
+     "row": 73
+    },
+    {
+     "label": "Com Store 1",
+     "row": 74
+    },
+    {
+     "label": "Com Store 2",
+     "row": 75
+    },
+    {
+     "label": "Com Store 3",
+     "row": 76
+    },
+    {
+     "label": "Bulk 1",
+     "row": 77
+    },
+    {
+     "label": "Bulk 2",
+     "row": 78
+    },
+    {
+     "label": "Bulk 3",
+     "row": 79
+    },
+    {
+     "label": "Com07 - Public",
+     "row": 80
+    },
+    {
+     "label": "HM 32 Garage",
+     "row": 81
+    },
+    {
+     "label": "SQ Geyser",
+     "row": 82
+    },
+    {
+     "label": "G5",
+     "row": 83
+    },
+    {
+     "label": "G1",
+     "row": 84
+    },
+    {
+     "label": "G19",
+     "row": 85
+    },
+    {
+     "label": "G2",
+     "row": 86
+    },
+    {
+     "label": "G4",
+     "row": 87
+    },
+    {
+     "label": "G16",
+     "row": 88
+    },
+    {
+     "label": "G3",
+     "row": 89
+    },
+    {
+     "label": "G17",
+     "row": 90
+    },
+    {
+     "label": "G14",
+     "row": 91
+    },
+    {
+     "label": "G15",
+     "row": 92
+    },
+    {
+     "label": "G13",
+     "row": 93
+    },
+    {
+     "label": "G24",
+     "row": 94
+    },
+    {
+     "label": "G41",
+     "row": 95
+    },
+    {
+     "label": "G39",
+     "row": 96
+    },
+    {
+     "label": "G40",
+     "row": 97
+    },
+    {
+     "label": "G25",
+     "row": 98
+    },
+    {
+     "label": "G26",
+     "row": 99
+    },
+    {
+     "label": "G20",
+     "row": 100
+    },
+    {
+     "label": "G23",
+     "row": 101
+    },
+    {
+     "label": "G32",
+     "row": 102
+    },
+    {
+     "label": "G30 & G31",
+     "row": 103
+    },
+    {
+     "label": "G28",
+     "row": 104
+    },
+    {
+     "label": "G29",
+     "row": 105
+    },
+    {
+     "label": "G54",
+     "row": 106
+    },
+    {
+     "label": "G59",
+     "row": 107
+    },
+    {
+     "label": "G60",
+     "row": 108
+    },
+    {
+     "label": "G90",
+     "row": 109
+    },
+    {
+     "label": "G91",
+     "row": 110
+    },
+    {
+     "label": "G92",
+     "row": 111
+    },
+    {
+     "label": "G62",
+     "row": 112
+    },
+    {
+     "label": "G66",
+     "row": 113
+    },
+    {
+     "label": "G65",
+     "row": 114
+    },
+    {
+     "label": "G64",
+     "row": 115
+    },
+    {
+     "label": "G79",
+     "row": 116
+    },
+    {
+     "label": "G99",
+     "row": 117
+    },
+    {
+     "label": "G119",
+     "row": 118
+    },
+    {
+     "label": "G112",
+     "row": 119
+    },
+    {
+     "label": "G81",
+     "row": 120
+    },
+    {
+     "label": "G61",
+     "row": 121
+    },
+    {
+     "label": "G63",
+     "row": 122
+    },
+    {
+     "label": "G69",
+     "row": 123
+    },
+    {
+     "label": "G72",
+     "row": 124
+    },
+    {
+     "label": "G71",
+     "row": 125
+    },
+    {
+     "label": "G70",
+     "row": 126
+    },
+    {
+     "label": "G45 & G46",
+     "row": 127
+    },
+    {
+     "label": "G18",
+     "row": 128
+    },
+    {
+     "label": "G82",
+     "row": 129
+    },
+    {
+     "label": "G27",
+     "row": 130
+    },
+    {
+     "label": "G47 & G48",
+     "row": 131
+    },
+    {
+     "label": "G44",
+     "row": 132
+    },
+    {
+     "label": "G42",
+     "row": 133
+    },
+    {
+     "label": "G94",
+     "row": 134
+    },
+    {
+     "label": "G96",
+     "row": 135
+    },
+    {
+     "label": "G97",
+     "row": 136
+    },
+    {
+     "label": "G98",
+     "row": 137
+    },
+    {
+     "label": "G103",
+     "row": 138
+    },
+    {
+     "label": "G52",
+     "row": 139
+    },
+    {
+     "label": "G104",
+     "row": 140
+    },
+    {
+     "label": "G93",
+     "row": 141
+    },
+    {
+     "label": "G105",
+     "row": 142
+    },
+    {
+     "label": "G106",
+     "row": 143
+    },
+    {
+     "label": "G109",
+     "row": 144
+    },
+    {
+     "label": "G108",
+     "row": 145
+    },
+    {
+     "label": "G116",
+     "row": 146
+    },
+    {
+     "label": "G123",
+     "row": 147
+    },
+    {
+     "label": "G113",
+     "row": 148
+    },
+    {
+     "label": "G115",
+     "row": 149
+    },
+    {
+     "label": "G51",
+     "row": 150
+    },
+    {
+     "label": "G122",
+     "row": 151
+    },
+    {
+     "label": "G120",
+     "row": 152
+    },
+    {
+     "label": "G121",
+     "row": 153
+    },
+    {
+     "label": "G111",
+     "row": 154
+    },
+    {
+     "label": "G114",
+     "row": 155
+    },
+    {
+     "label": "G110",
+     "row": 156
+    },
+    {
+     "label": "G80",
+     "row": 157
+    },
+    {
+     "label": "ST3",
+     "row": 158
+    },
+    {
+     "label": "ST4",
+     "row": 159
+    },
+    {
+     "label": "ST7",
+     "row": 160
+    },
+    {
+     "label": "ST8",
+     "row": 161
+    },
+    {
+     "label": "ST9",
+     "row": 162
+    },
+    {
+     "label": "ST11",
+     "row": 163
+    },
+    {
+     "label": "ST10",
+     "row": 164
+    },
+    {
+     "label": "G100",
+     "row": 165
+    },
+    {
+     "label": "G50",
+     "row": 166
+    },
+    {
+     "label": "G53",
+     "row": 167
+    },
+    {
+     "label": "ST12",
+     "row": 168
+    }
+   ],
+   "water": [
+    {
+     "label": "HM 01",
+     "row": 170
+    },
+    {
+     "label": "HM 02",
+     "row": 171
+    },
+    {
+     "label": "HM 03",
+     "row": 172
+    },
+    {
+     "label": "HM 04",
+     "row": 173
+    },
+    {
+     "label": "HM 05",
+     "row": 174
+    },
+    {
+     "label": "HM 06",
+     "row": 175
+    },
+    {
+     "label": "HM 07",
+     "row": 176
+    },
+    {
+     "label": "HM 08",
+     "row": 177
+    },
+    {
+     "label": "HM 09",
+     "row": 178
+    },
+    {
+     "label": "HM 10",
+     "row": 179
+    },
+    {
+     "label": "HM 11",
+     "row": 180
+    },
+    {
+     "label": "HM 12",
+     "row": 181
+    },
+    {
+     "label": "HM 13",
+     "row": 182
+    },
+    {
+     "label": "HM 14",
+     "row": 183
+    },
+    {
+     "label": "HM 15A",
+     "row": 184
+    },
+    {
+     "label": "HM 16",
+     "row": 185
+    },
+    {
+     "label": "HM 17",
+     "row": 186
+    },
+    {
+     "label": "HM 18",
+     "row": 187
+    },
+    {
+     "label": "HM 19",
+     "row": 188
+    },
+    {
+     "label": "HM 20",
+     "row": 189
+    },
+    {
+     "label": "HM 21",
+     "row": 190
+    },
+    {
+     "label": "HM 22",
+     "row": 191
+    },
+    {
+     "label": "HM 23",
+     "row": 192
+    },
+    {
+     "label": "HM 24",
+     "row": 193
+    },
+    {
+     "label": "HM 25",
+     "row": 194
+    },
+    {
+     "label": "HM 26",
+     "row": 195
+    },
+    {
+     "label": "HM 27",
+     "row": 196
+    },
+    {
+     "label": "HM 28",
+     "row": 197
+    },
+    {
+     "label": "HM 29",
+     "row": 198
+    },
+    {
+     "label": "HM 30A",
+     "row": 199
+    },
+    {
+     "label": "HM 31",
+     "row": 200
+    },
+    {
+     "label": "HM 32",
+     "row": 201
+    },
+    {
+     "label": "HM 33",
+     "row": 202
+    },
+    {
+     "label": "HM 34",
+     "row": 203
+    },
+    {
+     "label": "HM 35",
+     "row": 204
+    },
+    {
+     "label": "HM 36",
+     "row": 205
+    },
+    {
+     "label": "HM 37",
+     "row": 206
+    },
+    {
+     "label": "HM 38",
+     "row": 207
+    },
+    {
+     "label": "HM 39",
+     "row": 208
+    },
+    {
+     "label": "HM 40",
+     "row": 209
+    },
+    {
+     "label": "HM 41",
+     "row": 210
+    },
+    {
+     "label": "HM 42",
+     "row": 211
+    },
+    {
+     "label": "HM 43",
+     "row": 212
+    },
+    {
+     "label": "HM 44",
+     "row": 213
+    },
+    {
+     "label": "HM 45",
+     "row": 214
+    },
+    {
+     "label": "HM 46",
+     "row": 215
+    },
+    {
+     "label": "HM 47",
+     "row": 216
+    },
+    {
+     "label": "HM 48",
+     "row": 217
+    },
+    {
+     "label": "HM 49",
+     "row": 218
+    },
+    {
+     "label": "HM 50 A",
+     "row": 219
+    },
+    {
+     "label": "HM 51",
+     "row": 220
+    },
+    {
+     "label": "HM 52",
+     "row": 221
+    },
+    {
+     "label": "HM 53",
+     "row": 222
+    },
+    {
+     "label": "**C/H",
+     "row": 223
+    },
+    {
+     "label": "**Staff Quarter",
+     "row": 224
+    },
+    {
+     "label": "**33 Storeroom",
+     "row": 225
+    },
+    {
+     "label": "**44 Storeroom",
+     "row": 226
+    },
+    {
+     "label": "Bulk 1",
+     "row": 227
+    }
+   ]
+  },
+  "L'Montagne": {
+   "sheet": "L'Montagne",
+   "electricity": [
+    {
+     "label": "LM 01A",
+     "row": 18
+    },
+    {
+     "label": "LM 02A",
+     "row": 19
+    },
+    {
+     "label": "LM 03",
+     "row": 20
+    },
+    {
+     "label": "LM 04",
+     "row": 21
+    },
+    {
+     "label": "LM 05",
+     "row": 22
+    },
+    {
+     "label": "LM 06",
+     "row": 23
+    },
+    {
+     "label": "LM 07A",
+     "row": 24
+    },
+    {
+     "label": "LM 08",
+     "row": 25
+    },
+    {
+     "label": "LM 09A",
+     "row": 26
+    },
+    {
+     "label": "LM 10A",
+     "row": 27
+    },
+    {
+     "label": "LM 11A",
+     "row": 28
+    },
+    {
+     "label": "LM 12",
+     "row": 29
+    },
+    {
+     "label": "LM 13",
+     "row": 30
+    },
+    {
+     "label": "LM 14",
+     "row": 31
+    },
+    {
+     "label": "LM 15",
+     "row": 32
+    },
+    {
+     "label": "LM 16",
+     "row": 33
+    },
+    {
+     "label": "LM 17A",
+     "row": 34
+    },
+    {
+     "label": "LM 18",
+     "row": 35
+    },
+    {
+     "label": "LM 19",
+     "row": 36
+    },
+    {
+     "label": "LM 20",
+     "row": 37
+    },
+    {
+     "label": "LM 21",
+     "row": 38
+    },
+    {
+     "label": "LM 22",
+     "row": 39
+    },
+    {
+     "label": "LM 23",
+     "row": 40
+    },
+    {
+     "label": "LM 24",
+     "row": 41
+    },
+    {
+     "label": "LM 25",
+     "row": 42
+    },
+    {
+     "label": "LM 26",
+     "row": 43
+    },
+    {
+     "label": "LM 27",
+     "row": 44
+    },
+    {
+     "label": "LM 28A",
+     "row": 45
+    },
+    {
+     "label": "LM 29",
+     "row": 46
+    },
+    {
+     "label": "LM 30A",
+     "row": 47
+    },
+    {
+     "label": "LM 31",
+     "row": 48
+    },
+    {
+     "label": "LM 32",
+     "row": 49
+    },
+    {
+     "label": "LM 33A",
+     "row": 50
+    },
+    {
+     "label": "LM 34",
+     "row": 51
+    },
+    {
+     "label": "LM 35",
+     "row": 52
+    },
+    {
+     "label": "LM 36",
+     "row": 53
+    },
+    {
+     "label": "LM 37B",
+     "row": 54
+    },
+    {
+     "label": "LM 38",
+     "row": 55
+    },
+    {
+     "label": "LM 39",
+     "row": 56
+    },
+    {
+     "label": "LM 40",
+     "row": 57
+    },
+    {
+     "label": "LM 41",
+     "row": 58
+    },
+    {
+     "label": "LM 42",
+     "row": 59
+    },
+    {
+     "label": "LM 43",
+     "row": 60
+    },
+    {
+     "label": "LM 44",
+     "row": 61
+    },
+    {
+     "label": "LM 45",
+     "row": 62
+    },
+    {
+     "label": "LM 46",
+     "row": 63
+    },
+    {
+     "label": "LM 47A",
+     "row": 64
+    },
+    {
+     "label": "LM 48A",
+     "row": 65
+    },
+    {
+     "label": "LM 49",
+     "row": 66
+    },
+    {
+     "label": "LM 50",
+     "row": 67
+    },
+    {
+     "label": "Bulk 1",
+     "row": 68
+    }
+   ],
+   "water": [
+    {
+     "label": "Bulk 1",
+     "row": 70
+    },
+    {
+     "label": "LM 01A",
+     "row": 71
+    },
+    {
+     "label": "LM 02",
+     "row": 72
+    },
+    {
+     "label": "LM 03",
+     "row": 73
+    },
+    {
+     "label": "LM 04",
+     "row": 74
+    },
+    {
+     "label": "LM 05",
+     "row": 75
+    },
+    {
+     "label": "LM 07A",
+     "row": 76
+    },
+    {
+     "label": "LM 06",
+     "row": 77
+    },
+    {
+     "label": "LM 08",
+     "row": 78
+    },
+    {
+     "label": "LM 09",
+     "row": 79
+    },
+    {
+     "label": "LM 10A",
+     "row": 80
+    },
+    {
+     "label": "LM 11",
+     "row": 81
+    },
+    {
+     "label": "LM 12",
+     "row": 82
+    },
+    {
+     "label": "LM 13",
+     "row": 83
+    },
+    {
+     "label": "LM 15",
+     "row": 84
+    },
+    {
+     "label": "LM 14",
+     "row": 85
+    },
+    {
+     "label": "LM 16",
+     "row": 86
+    },
+    {
+     "label": "LM 17",
+     "row": 87
+    },
+    {
+     "label": "LM 18",
+     "row": 88
+    },
+    {
+     "label": "LM 19",
+     "row": 89
+    },
+    {
+     "label": "LM 20",
+     "row": 90
+    },
+    {
+     "label": "LM 21",
+     "row": 91
+    },
+    {
+     "label": "LM 22",
+     "row": 92
+    },
+    {
+     "label": "LM 23",
+     "row": 93
+    },
+    {
+     "label": "LM 24",
+     "row": 94
+    },
+    {
+     "label": "LM 25",
+     "row": 95
+    },
+    {
+     "label": "LM 26",
+     "row": 96
+    },
+    {
+     "label": "LM 27",
+     "row": 97
+    },
+    {
+     "label": "LM 28A",
+     "row": 98
+    },
+    {
+     "label": "LM 29",
+     "row": 99
+    },
+    {
+     "label": "LM 30A",
+     "row": 100
+    },
+    {
+     "label": "LM 31",
+     "row": 101
+    },
+    {
+     "label": "LM 32",
+     "row": 102
+    },
+    {
+     "label": "LM 33A",
+     "row": 103
+    },
+    {
+     "label": "LM 34",
+     "row": 104
+    },
+    {
+     "label": "LM 35",
+     "row": 105
+    },
+    {
+     "label": "LM 36",
+     "row": 106
+    },
+    {
+     "label": "LM 37A",
+     "row": 107
+    },
+    {
+     "label": "LM 38",
+     "row": 108
+    },
+    {
+     "label": "LM 39",
+     "row": 109
+    },
+    {
+     "label": "LM 40",
+     "row": 110
+    },
+    {
+     "label": "LM 41",
+     "row": 111
+    },
+    {
+     "label": "LM 42",
+     "row": 112
+    },
+    {
+     "label": "LM 43",
+     "row": 113
+    },
+    {
+     "label": "LM 44",
+     "row": 114
+    },
+    {
+     "label": "LM 45",
+     "row": 115
+    },
+    {
+     "label": "LM 46",
+     "row": 116
+    },
+    {
+     "label": "LM 47A",
+     "row": 117
+    },
+    {
+     "label": "LM 48A",
+     "row": 118
+    },
+    {
+     "label": "LM 49",
+     "row": 119
+    },
+    {
+     "label": "LM 50",
+     "row": 120
+    },
+    {
+     "label": "Staff Rooms",
+     "row": 121
+    },
+    {
+     "label": "Clubhouse",
+     "row": 122
+    }
+   ]
+  },
+  "Queensgate": {
+   "sheet": "Queensgate",
+   "electricity": [
+    {
+     "label": "QG 01",
+     "row": 18
+    },
+    {
+     "label": "QG 02A",
+     "row": 19
+    },
+    {
+     "label": "QG 03A",
+     "row": 20
+    },
+    {
+     "label": "QG 04",
+     "row": 21
+    },
+    {
+     "label": "QG 05",
+     "row": 22
+    },
+    {
+     "label": "QG 06",
+     "row": 23
+    },
+    {
+     "label": "QG 07",
+     "row": 24
+    },
+    {
+     "label": "QG 08",
+     "row": 25
+    },
+    {
+     "label": "QG 09",
+     "row": 26
+    },
+    {
+     "label": "QG 10",
+     "row": 27
+    },
+    {
+     "label": "QG 11",
+     "row": 28
+    },
+    {
+     "label": "QG 12",
+     "row": 29
+    },
+    {
+     "label": "QG 13",
+     "row": 30
+    },
+    {
+     "label": "QG 14A",
+     "row": 31
+    },
+    {
+     "label": "QG 15",
+     "row": 32
+    },
+    {
+     "label": "QG 16",
+     "row": 33
+    },
+    {
+     "label": "QG 17",
+     "row": 34
+    },
+    {
+     "label": "QG 18",
+     "row": 35
+    },
+    {
+     "label": "QG 19",
+     "row": 36
+    },
+    {
+     "label": "QG 20",
+     "row": 37
+    },
+    {
+     "label": "QG 21A",
+     "row": 38
+    },
+    {
+     "label": "QG 22A",
+     "row": 39
+    },
+    {
+     "label": "QG 23",
+     "row": 40
+    },
+    {
+     "label": "QG 24",
+     "row": 41
+    },
+    {
+     "label": "QG 25",
+     "row": 42
+    },
+    {
+     "label": "QG 26",
+     "row": 43
+    },
+    {
+     "label": "QG 27",
+     "row": 44
+    },
+    {
+     "label": "QG 28",
+     "row": 45
+    },
+    {
+     "label": "QG 29",
+     "row": 46
+    },
+    {
+     "label": "QG 30A",
+     "row": 47
+    },
+    {
+     "label": "QG 31",
+     "row": 48
+    },
+    {
+     "label": "QG 32",
+     "row": 49
+    },
+    {
+     "label": "QG 33",
+     "row": 50
+    },
+    {
+     "label": "QG 34",
+     "row": 51
+    },
+    {
+     "label": "QG 35",
+     "row": 52
+    },
+    {
+     "label": "QG 36",
+     "row": 53
+    },
+    {
+     "label": "QG 37",
+     "row": 54
+    },
+    {
+     "label": "QG  38A",
+     "row": 55
+    },
+    {
+     "label": "QG 39",
+     "row": 56
+    },
+    {
+     "label": "QG 40",
+     "row": 57
+    },
+    {
+     "label": "QG 41",
+     "row": 58
+    },
+    {
+     "label": "QG 42",
+     "row": 59
+    },
+    {
+     "label": "QG 43",
+     "row": 60
+    },
+    {
+     "label": "QG 44",
+     "row": 61
+    },
+    {
+     "label": "QG 45",
+     "row": 62
+    },
+    {
+     "label": "QG 46",
+     "row": 63
+    },
+    {
+     "label": "QG 47",
+     "row": 64
+    },
+    {
+     "label": "QG 48",
+     "row": 65
+    },
+    {
+     "label": "QG 49",
+     "row": 66
+    },
+    {
+     "label": "QG 50",
+     "row": 67
+    },
+    {
+     "label": "QG 51",
+     "row": 68
+    },
+    {
+     "label": "QG 52",
+     "row": 69
+    },
+    {
+     "label": "QG 53",
+     "row": 70
+    },
+    {
+     "label": "Bulk 1",
+     "row": 71
+    }
+   ],
+   "water": [
+    {
+     "label": "Bulk 1",
+     "row": 73
+    },
+    {
+     "label": "Bulk 2",
+     "row": 74
+    },
+    {
+     "label": "QG 01",
+     "row": 75
+    },
+    {
+     "label": "QG 02",
+     "row": 76
+    },
+    {
+     "label": "QG 03",
+     "row": 77
+    },
+    {
+     "label": "QG 04",
+     "row": 78
+    },
+    {
+     "label": "QG 05",
+     "row": 79
+    },
+    {
+     "label": "QG 06",
+     "row": 80
+    },
+    {
+     "label": "QG 07",
+     "row": 81
+    },
+    {
+     "label": "QG 08",
+     "row": 82
+    },
+    {
+     "label": "QG 09",
+     "row": 83
+    },
+    {
+     "label": "QG 10",
+     "row": 84
+    },
+    {
+     "label": "QG 11",
+     "row": 85
+    },
+    {
+     "label": "QG 12",
+     "row": 86
+    },
+    {
+     "label": "QG 13",
+     "row": 87
+    },
+    {
+     "label": "QG 14",
+     "row": 88
+    },
+    {
+     "label": "QG 15",
+     "row": 89
+    },
+    {
+     "label": "QG 16",
+     "row": 90
+    },
+    {
+     "label": "QG 17",
+     "row": 91
+    },
+    {
+     "label": "QG 18",
+     "row": 92
+    },
+    {
+     "label": "QG 19",
+     "row": 93
+    },
+    {
+     "label": "QG 20",
+     "row": 94
+    },
+    {
+     "label": "QG 21",
+     "row": 95
+    },
+    {
+     "label": "QG 22A",
+     "row": 96
+    },
+    {
+     "label": "QG 23",
+     "row": 97
+    },
+    {
+     "label": "QG 24",
+     "row": 98
+    },
+    {
+     "label": "QG 25",
+     "row": 99
+    },
+    {
+     "label": "QG 26",
+     "row": 100
+    },
+    {
+     "label": "QG 27",
+     "row": 101
+    },
+    {
+     "label": "QG 28",
+     "row": 102
+    },
+    {
+     "label": "QG 29",
+     "row": 103
+    },
+    {
+     "label": "QG 30A",
+     "row": 104
+    },
+    {
+     "label": "QG 31",
+     "row": 105
+    },
+    {
+     "label": "QG 32",
+     "row": 106
+    },
+    {
+     "label": "QG 33",
+     "row": 107
+    },
+    {
+     "label": "QG 34",
+     "row": 108
+    },
+    {
+     "label": "QG 35",
+     "row": 109
+    },
+    {
+     "label": "QG 36",
+     "row": 110
+    },
+    {
+     "label": "QG 37",
+     "row": 111
+    },
+    {
+     "label": "QG  38A",
+     "row": 112
+    },
+    {
+     "label": "QG 39",
+     "row": 113
+    },
+    {
+     "label": "QG 40",
+     "row": 114
+    },
+    {
+     "label": "QG 41",
+     "row": 115
+    },
+    {
+     "label": "QG 42",
+     "row": 116
+    },
+    {
+     "label": "QG 43",
+     "row": 117
+    },
+    {
+     "label": "QG 44",
+     "row": 118
+    },
+    {
+     "label": "QG 45",
+     "row": 119
+    },
+    {
+     "label": "QG 46",
+     "row": 120
+    },
+    {
+     "label": "QG 47",
+     "row": 121
+    },
+    {
+     "label": "QG 48",
+     "row": 122
+    },
+    {
+     "label": "QG 49",
+     "row": 123
+    },
+    {
+     "label": "QG 50",
+     "row": 124
+    },
+    {
+     "label": "QG 51",
+     "row": 125
+    },
+    {
+     "label": "QG 52",
+     "row": 126
+    },
+    {
+     "label": "QG 53",
+     "row": 127
+    }
+   ]
+  },
+  "Rivonia Gate": {
+   "sheet": "Rivonia Gate",
+   "electricity": [
+    {
+     "label": "RG 01",
+     "row": 18
+    },
+    {
+     "label": "RG 02A",
+     "row": 19
+    },
+    {
+     "label": "RG 03",
+     "row": 20
+    },
+    {
+     "label": "RG 04",
+     "row": 21
+    },
+    {
+     "label": "RG 05",
+     "row": 22
+    },
+    {
+     "label": "RG 06",
+     "row": 23
+    },
+    {
+     "label": "RG 07A",
+     "row": 24
+    },
+    {
+     "label": "RG 08",
+     "row": 25
+    },
+    {
+     "label": "RG 09",
+     "row": 26
+    },
+    {
+     "label": "RG 10A",
+     "row": 27
+    },
+    {
+     "label": "RG 11",
+     "row": 28
+    },
+    {
+     "label": "RG 12",
+     "row": 29
+    },
+    {
+     "label": "RG 13",
+     "row": 30
+    },
+    {
+     "label": "RG 14",
+     "row": 31
+    },
+    {
+     "label": "RG 15 A",
+     "row": 32
+    },
+    {
+     "label": "RG 16",
+     "row": 33
+    },
+    {
+     "label": "Bulk 1",
+     "row": 34
+    }
+   ],
+   "water": [
+    {
+     "label": "Bulk 1",
+     "row": 36
+    },
+    {
+     "label": "Bulk 2",
+     "row": 37
+    }
+   ]
+  },
+  "Taragona": {
+   "sheet": "Taragona",
+   "electricity": [
+    {
+     "label": "TG 01",
+     "row": 18
+    },
+    {
+     "label": "TG 02",
+     "row": 19
+    },
+    {
+     "label": "TG 03A",
+     "row": 20
+    },
+    {
+     "label": "TG 04A",
+     "row": 21
+    },
+    {
+     "label": "TG 05A",
+     "row": 22
+    },
+    {
+     "label": "TG 06A",
+     "row": 23
+    },
+    {
+     "label": "TG 07A",
+     "row": 24
+    },
+    {
+     "label": "TG 08",
+     "row": 25
+    },
+    {
+     "label": "TG 09",
+     "row": 26
+    },
+    {
+     "label": "TG 10A",
+     "row": 27
+    },
+    {
+     "label": "TG 11",
+     "row": 28
+    },
+    {
+     "label": "TG 12",
+     "row": 29
+    },
+    {
+     "label": "TG 13A",
+     "row": 30
+    },
+    {
+     "label": "TG 14",
+     "row": 31
+    },
+    {
+     "label": "TG 15",
+     "row": 32
+    },
+    {
+     "label": "TG 16A",
+     "row": 33
+    },
+    {
+     "label": "TG 17A",
+     "row": 34
+    },
+    {
+     "label": "TG 18A",
+     "row": 35
+    },
+    {
+     "label": "TG 19A",
+     "row": 36
+    },
+    {
+     "label": "TG 20",
+     "row": 37
+    },
+    {
+     "label": "TG 21A",
+     "row": 38
+    },
+    {
+     "label": "TG 22A",
+     "row": 39
+    },
+    {
+     "label": "TG 23",
+     "row": 40
+    },
+    {
+     "label": "TG 24",
+     "row": 41
+    },
+    {
+     "label": "TG 25",
+     "row": 42
+    },
+    {
+     "label": "TG 26B",
+     "row": 43
+    },
+    {
+     "label": "TG 27",
+     "row": 44
+    },
+    {
+     "label": "TG 28",
+     "row": 45
+    },
+    {
+     "label": "TG 29",
+     "row": 46
+    },
+    {
+     "label": "TG 30",
+     "row": 47
+    },
+    {
+     "label": "TG 31",
+     "row": 48
+    },
+    {
+     "label": "TG 32",
+     "row": 49
+    },
+    {
+     "label": "TG 33A",
+     "row": 50
+    },
+    {
+     "label": "TG 34A",
+     "row": 51
+    },
+    {
+     "label": "Com B/Room",
+     "row": 52
+    },
+    {
+     "label": "** TG36 (Unit5) R1",
+     "row": 53
+    },
+    {
+     "label": "** TG35 Gardner R2",
+     "row": 54
+    },
+    {
+     "label": "** TG39 R3",
+     "row": 55
+    },
+    {
+     "label": "** TG38 (unit7) R4",
+     "row": 56
+    },
+    {
+     "label": "Com Block A",
+     "row": 57
+    },
+    {
+     "label": "Com Block B",
+     "row": 58
+    },
+    {
+     "label": "Com S/Quarters",
+     "row": 59
+    },
+    {
+     "label": "Bulk01",
+     "row": 60
+    }
+   ],
+   "water": [
+    {
+     "label": "Bulk",
+     "row": 62
+    }
+   ]
+  },
+  "Transvalia": {
+   "sheet": "Transvalia",
+   "electricity": [
+    {
+     "label": "TV01",
+     "row": 18
+    },
+    {
+     "label": "TV02A",
+     "row": 19
+    },
+    {
+     "label": "TV03",
+     "row": 20
+    },
+    {
+     "label": "TV04A",
+     "row": 21
+    },
+    {
+     "label": "TV05",
+     "row": 22
+    },
+    {
+     "label": "TV06",
+     "row": 23
+    },
+    {
+     "label": "TV07",
+     "row": 24
+    },
+    {
+     "label": "TV08A",
+     "row": 25
+    },
+    {
+     "label": "TV09",
+     "row": 26
+    },
+    {
+     "label": "TV10A",
+     "row": 27
+    },
+    {
+     "label": "TV11",
+     "row": 28
+    },
+    {
+     "label": "TV12",
+     "row": 29
+    },
+    {
+     "label": "TV13",
+     "row": 30
+    },
+    {
+     "label": "TV14",
+     "row": 31
+    },
+    {
+     "label": "TV15",
+     "row": 32
+    },
+    {
+     "label": "TV16",
+     "row": 33
+    },
+    {
+     "label": "TV17A",
+     "row": 34
+    },
+    {
+     "label": "TV18",
+     "row": 35
+    },
+    {
+     "label": "TV19",
+     "row": 36
+    },
+    {
+     "label": "TV20",
+     "row": 37
+    },
+    {
+     "label": "BULK01",
+     "row": 38
+    }
+   ],
+   "water": [
+    {
+     "label": "TV01",
+     "row": 40
+    },
+    {
+     "label": "TV02",
+     "row": 41
+    },
+    {
+     "label": "TV03",
+     "row": 42
+    },
+    {
+     "label": "TV04",
+     "row": 43
+    },
+    {
+     "label": "TV05",
+     "row": 44
+    },
+    {
+     "label": "TV06",
+     "row": 45
+    },
+    {
+     "label": "TV07",
+     "row": 46
+    },
+    {
+     "label": "TV08",
+     "row": 47
+    },
+    {
+     "label": "TV09",
+     "row": 48
+    },
+    {
+     "label": "TV10",
+     "row": 49
+    },
+    {
+     "label": "TV11",
+     "row": 50
+    },
+    {
+     "label": "TV12",
+     "row": 51
+    },
+    {
+     "label": "TV13",
+     "row": 52
+    },
+    {
+     "label": "TV14",
+     "row": 53
+    },
+    {
+     "label": "TV15",
+     "row": 54
+    },
+    {
+     "label": "TV16",
+     "row": 55
+    },
+    {
+     "label": "TV17",
+     "row": 56
+    },
+    {
+     "label": "TV18",
+     "row": 57
+    },
+    {
+     "label": "TV19",
+     "row": 58
+    },
+    {
+     "label": "TV20",
+     "row": 59
+    },
+    {
+     "label": "BULK01",
+     "row": 60
+    }
+   ]
+  },
+  "Villino Glen": {
+   "sheet": "Vilino Glen",
+   "electricity": [
+    {
+     "label": "VG 01",
+     "row": 18
+    },
+    {
+     "label": "VG 02",
+     "row": 19
+    },
+    {
+     "label": "VG 03",
+     "row": 20
+    },
+    {
+     "label": "VG 04",
+     "row": 21
+    },
+    {
+     "label": "VG 05",
+     "row": 22
+    },
+    {
+     "label": "VG 06",
+     "row": 23
+    },
+    {
+     "label": "VG 07",
+     "row": 24
+    },
+    {
+     "label": "VG 08A",
+     "row": 25
+    },
+    {
+     "label": "VG 09",
+     "row": 26
+    },
+    {
+     "label": "VG 10",
+     "row": 27
+    },
+    {
+     "label": "VG 11",
+     "row": 28
+    },
+    {
+     "label": "VG 12",
+     "row": 29
+    },
+    {
+     "label": "VG 13",
+     "row": 30
+    },
+    {
+     "label": "VG 14A",
+     "row": 31
+    },
+    {
+     "label": "VG 15",
+     "row": 32
+    },
+    {
+     "label": "VG 16",
+     "row": 33
+    },
+    {
+     "label": "VG 17",
+     "row": 34
+    },
+    {
+     "label": "VG 18",
+     "row": 35
+    },
+    {
+     "label": "VG 19 A",
+     "row": 36
+    },
+    {
+     "label": "VG 20A",
+     "row": 37
+    },
+    {
+     "label": "VG 21",
+     "row": 38
+    },
+    {
+     "label": "VG 22",
+     "row": 39
+    },
+    {
+     "label": "VG 23",
+     "row": 40
+    },
+    {
+     "label": "VG 24",
+     "row": 41
+    },
+    {
+     "label": "VG 25",
+     "row": 42
+    },
+    {
+     "label": "VG 26",
+     "row": 43
+    },
+    {
+     "label": "VG 27",
+     "row": 44
+    },
+    {
+     "label": "VG 28",
+     "row": 45
+    },
+    {
+     "label": "VG 29",
+     "row": 46
+    },
+    {
+     "label": "VG 30",
+     "row": 47
+    },
+    {
+     "label": "VG 31",
+     "row": 48
+    },
+    {
+     "label": "VG 32",
+     "row": 49
+    },
+    {
+     "label": "VG 33",
+     "row": 50
+    },
+    {
+     "label": "VG 34",
+     "row": 51
+    },
+    {
+     "label": "VG 35",
+     "row": 52
+    },
+    {
+     "label": "VG 36",
+     "row": 53
+    },
+    {
+     "label": "VG 37",
+     "row": 54
+    },
+    {
+     "label": "VG 38",
+     "row": 55
+    },
+    {
+     "label": "** Gate",
+     "row": 56
+    },
+    {
+     "label": "Bulk 1",
+     "row": 57
+    }
+   ],
+   "water": [
+    {
+     "label": "Bulk 1",
+     "row": 59
+    },
+    {
+     "label": "Bulk 2",
+     "row": 60
+    },
+    {
+     "label": "VG 01",
+     "row": 61
+    },
+    {
+     "label": "VG 02",
+     "row": 62
+    },
+    {
+     "label": "VG 03",
+     "row": 63
+    },
+    {
+     "label": "VG 04",
+     "row": 64
+    },
+    {
+     "label": "VG 05",
+     "row": 65
+    },
+    {
+     "label": "VG 06",
+     "row": 66
+    },
+    {
+     "label": "VG 07",
+     "row": 67
+    },
+    {
+     "label": "VG 08A",
+     "row": 68
+    },
+    {
+     "label": "VG 12",
+     "row": 69
+    },
+    {
+     "label": "VG 10",
+     "row": 70
+    },
+    {
+     "label": "VG 11",
+     "row": 71
+    },
+    {
+     "label": "VG 09",
+     "row": 72
+    },
+    {
+     "label": "VG 13",
+     "row": 73
+    },
+    {
+     "label": "VG 14A",
+     "row": 74
+    },
+    {
+     "label": "VG 15",
+     "row": 75
+    },
+    {
+     "label": "VG 16",
+     "row": 76
+    },
+    {
+     "label": "VG 17",
+     "row": 77
+    },
+    {
+     "label": "VG 18",
+     "row": 78
+    },
+    {
+     "label": "VG 19 A",
+     "row": 79
+    },
+    {
+     "label": "VG 20A",
+     "row": 80
+    },
+    {
+     "label": "VG 21",
+     "row": 81
+    },
+    {
+     "label": "VG 22",
+     "row": 82
+    },
+    {
+     "label": "VG 23",
+     "row": 83
+    },
+    {
+     "label": "VG 24",
+     "row": 84
+    },
+    {
+     "label": "VG 25",
+     "row": 85
+    },
+    {
+     "label": "VG 26",
+     "row": 86
+    },
+    {
+     "label": "VG 27",
+     "row": 87
+    },
+    {
+     "label": "VG 28",
+     "row": 88
+    },
+    {
+     "label": "VG 29",
+     "row": 89
+    },
+    {
+     "label": "VG 30",
+     "row": 90
+    },
+    {
+     "label": "VG 31",
+     "row": 91
+    },
+    {
+     "label": "VG 32",
+     "row": 92
+    },
+    {
+     "label": "VG 33",
+     "row": 93
+    },
+    {
+     "label": "VG 34",
+     "row": 94
+    },
+    {
+     "label": "VG 35",
+     "row": 95
+    },
+    {
+     "label": "VG 36",
+     "row": 96
+    },
+    {
+     "label": "VG 37",
+     "row": 97
+    },
+    {
+     "label": "VG 38",
+     "row": 98
+    }
+   ]
+  },
+  "Phanda Lodge": {
+   "sheet": "Phanda Lodge",
+   "electricity": [
+    {
+     "label": "PH 01",
+     "row": 18
+    },
+    {
+     "label": "PH 02",
+     "row": 19
+    },
+    {
+     "label": "PH 03",
+     "row": 20
+    },
+    {
+     "label": "PH 04",
+     "row": 21
+    },
+    {
+     "label": "PH 05",
+     "row": 22
+    },
+    {
+     "label": "PH 06",
+     "row": 23
+    },
+    {
+     "label": "PH 07",
+     "row": 24
+    },
+    {
+     "label": "PH 08",
+     "row": 25
+    },
+    {
+     "label": "PH 09",
+     "row": 26
+    },
+    {
+     "label": "PH 10",
+     "row": 27
+    },
+    {
+     "label": "PH 11",
+     "row": 28
+    },
+    {
+     "label": "PH 12",
+     "row": 29
+    },
+    {
+     "label": "PH 13",
+     "row": 30
+    },
+    {
+     "label": "PH 14",
+     "row": 31
+    },
+    {
+     "label": "PH 15",
+     "row": 32
+    },
+    {
+     "label": "PH 16",
+     "row": 33
+    },
+    {
+     "label": "PH 17",
+     "row": 34
+    },
+    {
+     "label": "PH 18",
+     "row": 35
+    },
+    {
+     "label": "PH 19",
+     "row": 36
+    },
+    {
+     "label": "PH 20",
+     "row": 37
+    },
+    {
+     "label": "PH 21",
+     "row": 38
+    },
+    {
+     "label": "PH 22",
+     "row": 39
+    },
+    {
+     "label": "PH 23",
+     "row": 40
+    },
+    {
+     "label": "PH 24",
+     "row": 41
+    },
+    {
+     "label": "PH 25",
+     "row": 42
+    },
+    {
+     "label": "PH 26",
+     "row": 43
+    },
+    {
+     "label": "PH 27",
+     "row": 44
+    },
+    {
+     "label": "PH 28",
+     "row": 45
+    },
+    {
+     "label": "PH 29",
+     "row": 46
+    },
+    {
+     "label": "PH 30",
+     "row": 47
+    },
+    {
+     "label": "PH 31",
+     "row": 48
+    },
+    {
+     "label": "PH 32",
+     "row": 49
+    },
+    {
+     "label": "PH 33",
+     "row": 50
+    },
+    {
+     "label": "PH 34",
+     "row": 51
+    },
+    {
+     "label": "PH 35",
+     "row": 52
+    },
+    {
+     "label": "PH 36",
+     "row": 53
+    },
+    {
+     "label": "PH 37",
+     "row": 54
+    },
+    {
+     "label": "PH 38",
+     "row": 55
+    },
+    {
+     "label": "PH 39",
+     "row": 56
+    },
+    {
+     "label": "PH 40",
+     "row": 57
+    },
+    {
+     "label": "PH 41",
+     "row": 58
+    },
+    {
+     "label": "PH 42",
+     "row": 59
+    },
+    {
+     "label": "PH 43",
+     "row": 60
+    },
+    {
+     "label": "PH 44",
+     "row": 61
+    },
+    {
+     "label": "PH 45",
+     "row": 62
+    },
+    {
+     "label": "PH 46",
+     "row": 63
+    },
+    {
+     "label": "PH 47",
+     "row": 64
+    },
+    {
+     "label": "PH 48",
+     "row": 65
+    },
+    {
+     "label": "Bulk 1",
+     "row": 66
+    }
+   ],
+   "water": [
+    {
+     "label": "PH 01",
+     "row": 68
+    },
+    {
+     "label": "PH 02",
+     "row": 69
+    },
+    {
+     "label": "PH 03",
+     "row": 70
+    },
+    {
+     "label": "PH 04",
+     "row": 71
+    },
+    {
+     "label": "PH 05",
+     "row": 72
+    },
+    {
+     "label": "PH 06",
+     "row": 73
+    },
+    {
+     "label": "PH 07",
+     "row": 74
+    },
+    {
+     "label": "PH 08",
+     "row": 75
+    },
+    {
+     "label": "PH 09",
+     "row": 76
+    },
+    {
+     "label": "PH 10",
+     "row": 77
+    },
+    {
+     "label": "PH 11",
+     "row": 78
+    },
+    {
+     "label": "PH 12",
+     "row": 79
+    },
+    {
+     "label": "PH 13",
+     "row": 80
+    },
+    {
+     "label": "PH 14",
+     "row": 81
+    },
+    {
+     "label": "PH 15",
+     "row": 82
+    },
+    {
+     "label": "PH 16",
+     "row": 83
+    },
+    {
+     "label": "PH 17",
+     "row": 84
+    },
+    {
+     "label": "PH 18",
+     "row": 85
+    },
+    {
+     "label": "PH 19",
+     "row": 86
+    },
+    {
+     "label": "PH 20",
+     "row": 87
+    },
+    {
+     "label": "PH 21",
+     "row": 88
+    },
+    {
+     "label": "PH 22",
+     "row": 89
+    },
+    {
+     "label": "PH 23",
+     "row": 90
+    },
+    {
+     "label": "PH 24",
+     "row": 91
+    },
+    {
+     "label": "PH 25",
+     "row": 92
+    },
+    {
+     "label": "PH 26",
+     "row": 93
+    },
+    {
+     "label": "PH 27",
+     "row": 94
+    },
+    {
+     "label": "PH 28",
+     "row": 95
+    },
+    {
+     "label": "PH 29",
+     "row": 96
+    },
+    {
+     "label": "PH 30",
+     "row": 97
+    },
+    {
+     "label": "PH 31",
+     "row": 98
+    },
+    {
+     "label": "PH 32",
+     "row": 99
+    },
+    {
+     "label": "PH 33",
+     "row": 100
+    },
+    {
+     "label": "PH 34",
+     "row": 101
+    },
+    {
+     "label": "PH 35",
+     "row": 102
+    },
+    {
+     "label": "PH 36",
+     "row": 103
+    },
+    {
+     "label": "PH 37",
+     "row": 104
+    },
+    {
+     "label": "PH 38",
+     "row": 105
+    },
+    {
+     "label": "PH 39",
+     "row": 106
+    },
+    {
+     "label": "PH 40",
+     "row": 107
+    },
+    {
+     "label": "PH 41",
+     "row": 108
+    },
+    {
+     "label": "PH 42",
+     "row": 109
+    },
+    {
+     "label": "PH 43",
+     "row": 110
+    },
+    {
+     "label": "PH 44",
+     "row": 111
+    },
+    {
+     "label": "PH 45",
+     "row": 112
+    },
+    {
+     "label": "PH 46",
+     "row": 113
+    },
+    {
+     "label": "PH 47",
+     "row": 114
+    },
+    {
+     "label": "PH 48",
+     "row": 115
+    },
+    {
+     "label": "Bulk 1",
+     "row": 116
+    }
+   ]
+  },
+  "Vista Del Monte": {
+   "sheet": "Vista Del Monte",
+   "electricity": [
+    {
+     "label": "VD 01",
+     "row": 18
+    },
+    {
+     "label": "VD 02",
+     "row": 19
+    },
+    {
+     "label": "VD 03",
+     "row": 20
+    },
+    {
+     "label": "VD 04",
+     "row": 21
+    },
+    {
+     "label": "VD 05",
+     "row": 22
+    },
+    {
+     "label": "VD 06",
+     "row": 23
+    },
+    {
+     "label": "VD 07",
+     "row": 24
+    },
+    {
+     "label": "VD 08",
+     "row": 25
+    },
+    {
+     "label": "VD 09",
+     "row": 26
+    },
+    {
+     "label": "VD 10",
+     "row": 27
+    },
+    {
+     "label": "VD 11",
+     "row": 28
+    },
+    {
+     "label": "VD 12",
+     "row": 29
+    },
+    {
+     "label": "VD 13",
+     "row": 30
+    },
+    {
+     "label": "VD 14",
+     "row": 31
+    },
+    {
+     "label": "VD 15",
+     "row": 32
+    },
+    {
+     "label": "VD 16",
+     "row": 33
+    },
+    {
+     "label": "VD 17",
+     "row": 34
+    },
+    {
+     "label": "VD 18",
+     "row": 35
+    },
+    {
+     "label": "VD 19",
+     "row": 36
+    },
+    {
+     "label": "VD 20",
+     "row": 37
+    },
+    {
+     "label": "VD 21",
+     "row": 38
+    },
+    {
+     "label": "VD 22",
+     "row": 39
+    },
+    {
+     "label": "VD 23",
+     "row": 40
+    },
+    {
+     "label": "VD 24",
+     "row": 41
+    },
+    {
+     "label": "VD 25",
+     "row": 42
+    },
+    {
+     "label": "VD 26",
+     "row": 43
+    },
+    {
+     "label": "VD 27",
+     "row": 44
+    },
+    {
+     "label": "VD 28",
+     "row": 45
+    },
+    {
+     "label": "VD 29",
+     "row": 46
+    },
+    {
+     "label": "VD 30",
+     "row": 47
+    },
+    {
+     "label": "VD 31",
+     "row": 48
+    },
+    {
+     "label": "VD 32",
+     "row": 49
+    },
+    {
+     "label": "VD 33",
+     "row": 50
+    },
+    {
+     "label": "VD 34",
+     "row": 51
+    },
+    {
+     "label": "VD 35",
+     "row": 52
+    },
+    {
+     "label": "VD 36",
+     "row": 53
+    },
+    {
+     "label": "VD 37",
+     "row": 54
+    },
+    {
+     "label": "VD 38",
+     "row": 55
+    },
+    {
+     "label": "VD 39",
+     "row": 56
+    },
+    {
+     "label": "VD 40",
+     "row": 57
+    },
+    {
+     "label": "VD 41",
+     "row": 58
+    },
+    {
+     "label": "VD 42",
+     "row": 59
+    },
+    {
+     "label": "Bulk 1",
+     "row": 60
+    }
+   ],
+   "water": [
+    {
+     "label": "Bulk 1",
+     "row": 62
+    }
+   ]
+  },
+  "Bonifay": {
+   "sheet": "Bonifay Court",
+   "electricity": [
+    {
+     "label": "BC 01",
+     "row": 18
+    },
+    {
+     "label": "BC 02",
+     "row": 19
+    },
+    {
+     "label": "BC 03",
+     "row": 20
+    },
+    {
+     "label": "BC 04",
+     "row": 21
+    },
+    {
+     "label": "BC 05",
+     "row": 22
+    },
+    {
+     "label": "BC 06",
+     "row": 23
+    },
+    {
+     "label": "BC 07",
+     "row": 24
+    },
+    {
+     "label": "BC 08",
+     "row": 25
+    },
+    {
+     "label": "BC 09",
+     "row": 26
+    },
+    {
+     "label": "BC 10",
+     "row": 27
+    },
+    {
+     "label": "BC 11",
+     "row": 28
+    },
+    {
+     "label": "BC 12",
+     "row": 29
+    },
+    {
+     "label": "BC 13",
+     "row": 30
+    },
+    {
+     "label": "BC 14",
+     "row": 31
+    },
+    {
+     "label": "BC 15",
+     "row": 32
+    },
+    {
+     "label": "BC 16",
+     "row": 33
+    },
+    {
+     "label": "BC 17",
+     "row": 34
+    },
+    {
+     "label": "BC 18",
+     "row": 35
+    },
+    {
+     "label": "BC 19",
+     "row": 36
+    },
+    {
+     "label": "BC 20",
+     "row": 37
+    },
+    {
+     "label": "BC 21",
+     "row": 38
+    },
+    {
+     "label": "BC 22",
+     "row": 39
+    },
+    {
+     "label": "BC 23",
+     "row": 40
+    },
+    {
+     "label": "BC 24",
+     "row": 41
+    },
+    {
+     "label": "Com Storeroom",
+     "row": 42
+    },
+    {
+     "label": "Com Staff Room 1 (Willie)",
+     "row": 43
+    },
+    {
+     "label": "Com Staff Room 2 (unit 16)",
+     "row": 44
+    },
+    {
+     "label": "Bulk 1",
+     "row": 45
+    }
+   ],
+   "water": [
+    {
+     "label": "BC 01",
+     "row": 47
+    },
+    {
+     "label": "BC 02",
+     "row": 48
+    },
+    {
+     "label": "BC 03",
+     "row": 49
+    },
+    {
+     "label": "BC 04",
+     "row": 50
+    },
+    {
+     "label": "BC 05",
+     "row": 51
+    },
+    {
+     "label": "BC 06",
+     "row": 52
+    },
+    {
+     "label": "BC 07",
+     "row": 53
+    },
+    {
+     "label": "BC 08",
+     "row": 54
+    },
+    {
+     "label": "BC 09",
+     "row": 55
+    },
+    {
+     "label": "BC 10",
+     "row": 56
+    },
+    {
+     "label": "BC 11",
+     "row": 57
+    },
+    {
+     "label": "BC 12",
+     "row": 58
+    },
+    {
+     "label": "BC 13",
+     "row": 59
+    },
+    {
+     "label": "BC 14",
+     "row": 60
+    },
+    {
+     "label": "BC 15",
+     "row": 61
+    },
+    {
+     "label": "BC 16",
+     "row": 62
+    },
+    {
+     "label": "BC 17",
+     "row": 63
+    },
+    {
+     "label": "BC 18",
+     "row": 64
+    },
+    {
+     "label": "BC 19",
+     "row": 65
+    },
+    {
+     "label": "BC 20",
+     "row": 66
+    },
+    {
+     "label": "BC 21",
+     "row": 67
+    },
+    {
+     "label": "BC 22",
+     "row": 68
+    },
+    {
+     "label": "BC 23",
+     "row": 69
+    },
+    {
+     "label": "BC 24",
+     "row": 70
+    },
+    {
+     "label": "Bulk 1",
+     "row": 71
+    }
+   ]
+  },
+  "Akasia": {
+   "sheet": "Akasia",
+   "electricity": [
+    {
+     "label": "AK 01 / FL 16",
+     "row": 18
+    },
+    {
+     "label": "AK 02 / FL 15",
+     "row": 19
+    },
+    {
+     "label": "AK 03 / FL 14",
+     "row": 20
+    },
+    {
+     "label": "AK 04 / FL 13",
+     "row": 21
+    },
+    {
+     "label": "AK 05 / FL 12",
+     "row": 22
+    },
+    {
+     "label": "AK 06 / FL 11",
+     "row": 23
+    },
+    {
+     "label": "AK 07 / FL 116",
+     "row": 24
+    },
+    {
+     "label": "AK 08 / FL 117",
+     "row": 25
+    },
+    {
+     "label": "AK 09 / FL 118",
+     "row": 26
+    },
+    {
+     "label": "AK 10 / FL 119",
+     "row": 27
+    },
+    {
+     "label": "AK 11 / FL 120",
+     "row": 28
+    },
+    {
+     "label": "AK 12 / FL 112",
+     "row": 29
+    },
+    {
+     "label": "AK 13 / FL 113",
+     "row": 30
+    },
+    {
+     "label": "AK 14 / FL 114",
+     "row": 31
+    },
+    {
+     "label": "AK 15 / FL 115",
+     "row": 32
+    },
+    {
+     "label": "AK 16 / FL 26",
+     "row": 33
+    },
+    {
+     "label": "AK 17 / FL 25",
+     "row": 34
+    },
+    {
+     "label": "AK 18 / FL 24",
+     "row": 35
+    },
+    {
+     "label": "AK 19 / FL 23",
+     "row": 36
+    },
+    {
+     "label": "AK 20 / FL 22",
+     "row": 37
+    },
+    {
+     "label": "AK 21 / FL 21",
+     "row": 38
+    },
+    {
+     "label": "AK 22 / FL 216",
+     "row": 39
+    },
+    {
+     "label": "AK 23 / FL 217",
+     "row": 40
+    },
+    {
+     "label": "AK 24 / FL 218",
+     "row": 41
+    },
+    {
+     "label": "AK 25 / FL 219",
+     "row": 42
+    },
+    {
+     "label": "AK 26 / FL 220",
+     "row": 43
+    },
+    {
+     "label": "AK 27 / FL 212",
+     "row": 44
+    },
+    {
+     "label": "AK 28 / FL 213",
+     "row": 45
+    },
+    {
+     "label": "AK 29 / FL 214",
+     "row": 46
+    },
+    {
+     "label": "AK 30 / FL 215",
+     "row": 47
+    },
+    {
+     "label": "AK 31 / FL 36",
+     "row": 48
+    },
+    {
+     "label": "AK 32 / FL 35",
+     "row": 49
+    },
+    {
+     "label": "AK 33 FL 34",
+     "row": 50
+    },
+    {
+     "label": "AK 34 / FL 33",
+     "row": 51
+    },
+    {
+     "label": "AK 35 / FL 32",
+     "row": 52
+    },
+    {
+     "label": "AK 36 / FL 31",
+     "row": 53
+    },
+    {
+     "label": "AK 37 / FL 316",
+     "row": 54
+    },
+    {
+     "label": "AK 38 / FL 317",
+     "row": 55
+    },
+    {
+     "label": "AK 39 / FL 318",
+     "row": 56
+    },
+    {
+     "label": "AK 40 / FL 319",
+     "row": 57
+    },
+    {
+     "label": "AK 41 / FL 320",
+     "row": 58
+    },
+    {
+     "label": "AK 42 / FL 312",
+     "row": 59
+    },
+    {
+     "label": "AK 43 / FL 313",
+     "row": 60
+    },
+    {
+     "label": "AK 44 / FL 314",
+     "row": 61
+    },
+    {
+     "label": "AK 45 / FL 315",
+     "row": 62
+    },
+    {
+     "label": "AK 46 / FL 46",
+     "row": 63
+    },
+    {
+     "label": "AK 47 / FL 45",
+     "row": 64
+    },
+    {
+     "label": "AK 48 / FL 44",
+     "row": 65
+    },
+    {
+     "label": "AK 49 / FL 43",
+     "row": 66
+    },
+    {
+     "label": "AK 50 / FL 42",
+     "row": 67
+    },
+    {
+     "label": "AK 51 / FL 41",
+     "row": 68
+    },
+    {
+     "label": "AK 52 / FL 416",
+     "row": 69
+    },
+    {
+     "label": "AK 53 / FL 417",
+     "row": 70
+    },
+    {
+     "label": "AK 54 / FL 418",
+     "row": 71
+    },
+    {
+     "label": "AK 55 / FL 419",
+     "row": 72
+    },
+    {
+     "label": "AK 56 / FL 420",
+     "row": 73
+    },
+    {
+     "label": "AK 57 / FL 412",
+     "row": 74
+    },
+    {
+     "label": "AK 58 / FL 413",
+     "row": 75
+    },
+    {
+     "label": "AK 59 / FL 414",
+     "row": 76
+    },
+    {
+     "label": "AK 60 / FL 415",
+     "row": 77
+    },
+    {
+     "label": "AK 61 / FL 56",
+     "row": 78
+    },
+    {
+     "label": "AK 62 / FL 55",
+     "row": 79
+    },
+    {
+     "label": "AK 63 / FL 54",
+     "row": 80
+    },
+    {
+     "label": "AK 64 / FL 53",
+     "row": 81
+    },
+    {
+     "label": "AK 65 / FL 52",
+     "row": 82
+    },
+    {
+     "label": "AK 66 / FL 51",
+     "row": 83
+    },
+    {
+     "label": "AK 67 / FL 516",
+     "row": 84
+    },
+    {
+     "label": "AK 68 / FL 517",
+     "row": 85
+    },
+    {
+     "label": "AK 69 / FL 518",
+     "row": 86
+    },
+    {
+     "label": "AK 70 / FL 519",
+     "row": 87
+    },
+    {
+     "label": "AK 71 / FL 520",
+     "row": 88
+    },
+    {
+     "label": "AK 72 / FL 512",
+     "row": 89
+    },
+    {
+     "label": "AK 73 / FL 513",
+     "row": 90
+    },
+    {
+     "label": "AK 74 / FL 514",
+     "row": 91
+    },
+    {
+     "label": "AK 75 / FL 515",
+     "row": 92
+    },
+    {
+     "label": "AK 76 / FL 66",
+     "row": 93
+    },
+    {
+     "label": "AK 77 / FL 65",
+     "row": 94
+    },
+    {
+     "label": "AK 78 / FL 64",
+     "row": 95
+    },
+    {
+     "label": "AK 79 / FL 63",
+     "row": 96
+    },
+    {
+     "label": "AK 80A / FL 62",
+     "row": 97
+    },
+    {
+     "label": "AK 80B / FL 61",
+     "row": 98
+    },
+    {
+     "label": "AK 81 / FL 616",
+     "row": 99
+    },
+    {
+     "label": "AK 82 / FL 617",
+     "row": 100
+    },
+    {
+     "label": "AK 83 / FL 618",
+     "row": 101
+    },
+    {
+     "label": "AK 84 / FL 619",
+     "row": 102
+    },
+    {
+     "label": "AK 85 / FL 620",
+     "row": 103
+    },
+    {
+     "label": "AK 86 / FL 612",
+     "row": 104
+    },
+    {
+     "label": "AK 87 / FL 613",
+     "row": 105
+    },
+    {
+     "label": "AK 88 / FL 614",
+     "row": 106
+    },
+    {
+     "label": "AK 89 / FL 615",
+     "row": 107
+    },
+    {
+     "label": "Tower",
+     "row": 108
+    },
+    {
+     "label": "Bulk 1",
+     "row": 109
+    }
+   ],
+   "water": [
+    {
+     "label": "AK 01",
+     "row": 111
+    },
+    {
+     "label": "AK 02",
+     "row": 112
+    },
+    {
+     "label": "AK 03",
+     "row": 113
+    },
+    {
+     "label": "AK 04",
+     "row": 114
+    },
+    {
+     "label": "AK 05",
+     "row": 115
+    },
+    {
+     "label": "AK 06",
+     "row": 116
+    },
+    {
+     "label": "AK 07",
+     "row": 117
+    },
+    {
+     "label": "AK 08",
+     "row": 118
+    },
+    {
+     "label": "AK 09",
+     "row": 119
+    },
+    {
+     "label": "AK 10",
+     "row": 120
+    },
+    {
+     "label": "AK 11",
+     "row": 121
+    },
+    {
+     "label": "AK 12",
+     "row": 122
+    },
+    {
+     "label": "AK 13",
+     "row": 123
+    },
+    {
+     "label": "AK 14",
+     "row": 124
+    },
+    {
+     "label": "AK 15",
+     "row": 125
+    },
+    {
+     "label": "AK 16",
+     "row": 126
+    },
+    {
+     "label": "AK 17",
+     "row": 127
+    },
+    {
+     "label": "AK 18",
+     "row": 128
+    },
+    {
+     "label": "AK 19",
+     "row": 129
+    },
+    {
+     "label": "AK 20",
+     "row": 130
+    },
+    {
+     "label": "AK 21",
+     "row": 131
+    },
+    {
+     "label": "AK 22",
+     "row": 132
+    },
+    {
+     "label": "AK 23",
+     "row": 133
+    },
+    {
+     "label": "AK 24",
+     "row": 134
+    },
+    {
+     "label": "AK 25",
+     "row": 135
+    },
+    {
+     "label": "AK 26",
+     "row": 136
+    },
+    {
+     "label": "AK 27",
+     "row": 137
+    },
+    {
+     "label": "AK 28",
+     "row": 138
+    },
+    {
+     "label": "AK 29",
+     "row": 139
+    },
+    {
+     "label": "AK 30",
+     "row": 140
+    },
+    {
+     "label": "AK 31",
+     "row": 141
+    },
+    {
+     "label": "AK 32",
+     "row": 142
+    },
+    {
+     "label": "AK 33",
+     "row": 143
+    },
+    {
+     "label": "AK 34",
+     "row": 144
+    },
+    {
+     "label": "AK 35",
+     "row": 145
+    },
+    {
+     "label": "AK 36",
+     "row": 146
+    },
+    {
+     "label": "AK 37",
+     "row": 147
+    },
+    {
+     "label": "AK 38",
+     "row": 148
+    },
+    {
+     "label": "AK 39",
+     "row": 149
+    },
+    {
+     "label": "AK 40",
+     "row": 150
+    },
+    {
+     "label": "AK 41",
+     "row": 151
+    },
+    {
+     "label": "AK 42",
+     "row": 152
+    },
+    {
+     "label": "AK 43",
+     "row": 153
+    },
+    {
+     "label": "AK 44",
+     "row": 154
+    },
+    {
+     "label": "AK 45",
+     "row": 155
+    },
+    {
+     "label": "AK 46",
+     "row": 156
+    },
+    {
+     "label": "AK 47",
+     "row": 157
+    },
+    {
+     "label": "AK 48",
+     "row": 158
+    },
+    {
+     "label": "AK 49",
+     "row": 159
+    },
+    {
+     "label": "AK 50",
+     "row": 160
+    },
+    {
+     "label": "AK 51",
+     "row": 161
+    },
+    {
+     "label": "AK 52",
+     "row": 162
+    },
+    {
+     "label": "AK 53",
+     "row": 163
+    },
+    {
+     "label": "AK 54",
+     "row": 164
+    },
+    {
+     "label": "AK 55",
+     "row": 165
+    },
+    {
+     "label": "AK 56",
+     "row": 166
+    },
+    {
+     "label": "AK 57",
+     "row": 167
+    },
+    {
+     "label": "AK 58",
+     "row": 168
+    },
+    {
+     "label": "AK 59",
+     "row": 169
+    },
+    {
+     "label": "AK 60",
+     "row": 170
+    },
+    {
+     "label": "AK 61",
+     "row": 171
+    },
+    {
+     "label": "AK 62",
+     "row": 172
+    },
+    {
+     "label": "AK 63",
+     "row": 173
+    },
+    {
+     "label": "AK 64",
+     "row": 174
+    },
+    {
+     "label": "AK 65",
+     "row": 175
+    },
+    {
+     "label": "AK 66",
+     "row": 176
+    },
+    {
+     "label": "AK 67",
+     "row": 177
+    },
+    {
+     "label": "AK 68",
+     "row": 178
+    },
+    {
+     "label": "AK 69",
+     "row": 179
+    },
+    {
+     "label": "AK 70",
+     "row": 180
+    },
+    {
+     "label": "AK 71",
+     "row": 181
+    },
+    {
+     "label": "AK 72",
+     "row": 182
+    },
+    {
+     "label": "AK 73",
+     "row": 183
+    },
+    {
+     "label": "AK 74",
+     "row": 184
+    },
+    {
+     "label": "AK 75",
+     "row": 185
+    },
+    {
+     "label": "AK 76",
+     "row": 186
+    },
+    {
+     "label": "AK 77",
+     "row": 187
+    },
+    {
+     "label": "AK 78",
+     "row": 188
+    },
+    {
+     "label": "AK 79",
+     "row": 189
+    },
+    {
+     "label": "AK 80",
+     "row": 190
+    },
+    {
+     "label": "AK 81",
+     "row": 191
+    },
+    {
+     "label": "AK 82",
+     "row": 192
+    },
+    {
+     "label": "AK 83",
+     "row": 193
+    },
+    {
+     "label": "AK 84",
+     "row": 194
+    },
+    {
+     "label": "AK 85",
+     "row": 195
+    },
+    {
+     "label": "AK 86",
+     "row": 196
+    },
+    {
+     "label": "AK 87",
+     "row": 197
+    },
+    {
+     "label": "AK 88",
+     "row": 198
+    },
+    {
+     "label": "AK 89",
+     "row": 199
+    },
+    {
+     "label": "Bulk 1",
+     "row": 200
+    }
+   ]
+  }
+ }
+}
