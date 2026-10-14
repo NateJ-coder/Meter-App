@@ -24,6 +24,15 @@ import 'package:fuzio_meter_reader/main.dart';
 Future<void> _primeMeterRegistry(WidgetTester tester) =>
     tester.runAsync(() => MeterRegistry.forBuilding('Genesis'));
 
+/// A snackbar only starts its 4 s timer once it has fully slid in, and a
+/// second toast queues behind it; make sure the first is gone before the
+/// test expects the next one.
+Future<void> _expireToast(WidgetTester tester) async {
+  await tester.pumpAndSettle();
+  await tester.pump(const Duration(seconds: 5));
+  await tester.pumpAndSettle();
+}
+
 void main() {
   testWidgets('Capture is saved only after the reader confirms the summary', (tester) async {
     SharedPreferences.setMockInitialValues({});
@@ -52,8 +61,19 @@ void main() {
     await tester.tap(find.text('Capture'));
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextFormField).first, '# 44');
+    await tester.pump();
+    // Not on the Hazelmere list: a reason is required before the summary.
+    expect(find.text('Why is this meter not on the list?'), findsOneWidget);
     await tester.enterText(find.byType(TextFormField).last, '123');
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Review and Save'));
+    await tester.pump();
+    expect(find.text('Confirm meter and reading'), findsNothing);
+    await tester.enterText(find.byType(TextFormField).at(1), 'Sticker on the meter says 44');
+    await tester.pumpAndSettle();
     await tester.ensureVisible(find.text('Take Photo'));
+    await tester.pumpAndSettle();
     await tester.runAsync(() async {
       await tester.tap(find.text('Take Photo'));
       for (var attempt = 0; attempt < 100; attempt++) {
@@ -64,10 +84,11 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Retake Photo'), findsOneWidget);
     await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Review and Save'));
     await tester.pumpAndSettle();
     expect(find.text('Confirm meter and reading'), findsOneWidget);
-    expect(find.textContaining('Not on the registered meter list'), findsOneWidget);
+    expect(find.textContaining('Not on the registered meter list (Sticker on the meter says 44)'), findsOneWidget);
     expect(saved, isNull);
     await tester.tap(find.text('Change'));
     await tester.pumpAndSettle();
@@ -75,6 +96,7 @@ void main() {
     expect((await CaptureStore.loadAll()), isEmpty);
     await tester.enterText(find.byType(TextFormField).last, '124');
     await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Review and Save'));
     await tester.pumpAndSettle();
     expect(find.text('Reading: 124'), findsOneWidget);
@@ -84,7 +106,84 @@ void main() {
     expect(saved?.label, '# 44');
     expect(saved?.readingValue, '124');
     expect(saved?.reviewAcknowledged, isFalse);
+    expect(saved?.reviewNote, 'Label not on list: Sticker on the meter says 44');
+    expect(saved?.noPhoto, isFalse);
     expect((await CaptureStore.loadAll()).single.id, saved?.id);
+  });
+
+  testWidgets('A reading without a photo needs a reason, which is saved for the office', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    await _primeMeterRegistry(tester);
+    Capture? saved;
+    await tester.pumpWidget(MaterialApp(home: Builder(builder: (context) => Scaffold(
+      body: TextButton(onPressed: () async {
+        saved = await Navigator.of(context).push<Capture>(MaterialPageRoute(
+            builder: (_) => const AddCaptureScreen(building: 'Queensgate')));
+      }, child: const Text('Capture')),
+    ))));
+    await tester.tap(find.text('Capture'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).first, 'QG 05');
+    await tester.pump();
+    expect(find.text('Why is this meter not on the list?'), findsNothing);
+    await tester.enterText(find.byType(TextFormField).last, '4410');
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Review and Save'));
+    await tester.pump();
+    expect(find.textContaining('Please take a photo of the meter, or tick "No photo possible"'), findsOneWidget);
+    await _expireToast(tester);
+    await tester.ensureVisible(find.text('No photo possible'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('No photo possible'));
+    await tester.pumpAndSettle();
+    expect(find.text('Why could no photo be taken?'), findsOneWidget);
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Review and Save'));
+    await tester.pump();
+    expect(find.text('Please choose why no photo could be taken.'), findsOneWidget);
+    await _expireToast(tester);
+    await tester.ensureVisible(find.text('Why could no photo be taken?'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Why could no photo be taken?'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Other').last);
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Review and Save'));
+    await tester.pump();
+    expect(find.text('Please add a note explaining why no photo could be taken.'), findsOneWidget);
+    await _expireToast(tester);
+    await tester.enterText(find.byType(TextFormField).last, 'Meter is inside the ceiling');
+    await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Review and Save'));
+    await tester.pumpAndSettle();
+    expect(find.text('Confirm meter and reading'), findsOneWidget);
+    expect(find.text('No photo: Other (Meter is inside the ceiling)'), findsOneWidget);
+    await tester.tap(find.text('Confirm and save'));
+    await tester.pumpAndSettle();
+    expect(saved?.noPhoto, isTrue);
+    expect(saved?.noPhotoReason, 'Other');
+    expect(saved?.noPhotoNote, 'Meter is inside the ceiling');
+    expect(saved?.photoPath, '');
+    expect(saved?.labelConfirmed, isTrue);
+  });
+
+  testWidgets('Typing a unit number offers the registered meter as a chip', (tester) async {
+    await _primeMeterRegistry(tester);
+    await tester.pumpWidget(const MaterialApp(home: AddCaptureScreen(building: 'Queensgate')));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).first, 'unit 5');
+    await tester.pump();
+    expect(find.text('Did you mean:'), findsOneWidget);
+    await tester.tap(find.widgetWithText(ActionChip, 'QG 05'));
+    await tester.pump();
+    expect(find.text('Matched to the registered meter list'), findsOneWidget);
+    expect(find.text('Did you mean:'), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
   });
 
   testWidgets('Malformed readings are rejected before saving', (tester) async {
@@ -95,6 +194,7 @@ void main() {
     await tester.enterText(find.byType(TextFormField).first, 'GEN 01');
     await tester.enterText(find.byType(TextFormField).last, '123.4.5');
     await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Review and Save'));
     await tester.pump();
     expect(find.text('Enter digits and one decimal point (or comma) only.'), findsOneWidget);
@@ -115,11 +215,12 @@ void main() {
     await tester.enterText(find.byType(TextFormField).first, 'qg 05');
     await tester.enterText(find.byType(TextFormField).last, '49950');
     await tester.ensureVisible(find.text('Review and Save'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Review and Save'));
     await tester.pump();
     // No photo yet, so the photo prompt comes first; the duplicate guard
     // runs before the confirmation summary is shown.
-    expect(find.text('Please take a photo of the meter.'), findsOneWidget);
+    expect(find.textContaining('Please take a photo of the meter'), findsOneWidget);
     expect(find.text('Confirm meter and reading'), findsNothing);
     final earlierWater = Capture(id: 'w', building: 'Queensgate', label: 'QG 05',
         meterType: 'Water', readingValue: '153', photoPath: '/w.jpg', capturedAt: DateTime.now());
@@ -143,6 +244,7 @@ void main() {
   });
 
   testWidgets('App shows building selection screen', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({}); // nothing queued, so no upload attempt
     await tester.pumpWidget(const FuzioMeterReaderApp());
 
     expect(find.text('Fuzio Meter Reader'), findsOneWidget);

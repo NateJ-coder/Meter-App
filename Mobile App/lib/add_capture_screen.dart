@@ -18,15 +18,30 @@ const List<String> _unreadableReasons = [
   'Other',
 ];
 
+/// Why a reading was saved without a photo. Shown to the office under
+/// "Missing photos" on the dashboard, so keep the wording plain.
+const List<String> noPhotoReasons = [
+  'Meter behind glass / in a locked box',
+  'Too dark or no light to photograph',
+  'Meter too high or out of reach',
+  'Camera not working on this phone',
+  'Other',
+];
+
 /// Capture one meter reading, or edit one that has not been submitted yet.
 ///
-/// Guards added in v1.0.6 (Oct 2026 cycle lessons):
+/// Guards (Oct 2026 cycle lessons):
 ///  - the meter list only offers registered meters of the chosen type that
 ///    have NOT been captured yet this month, so the same meter cannot be
 ///    captured twice. A unit with an electricity and a water meter is
 ///    offered once under each type.
 ///  - a free-typed label that repeats an earlier capture this month (same
 ///    label and type) is refused with a pointer to the earlier reading.
+///  - a label that is not on the building's list shows "Did you mean" chips
+///    for the registered meter it probably is, and otherwise needs a short
+///    reason so the office knows why a new name appeared.
+///  - a reading needs a photo unless the reader records why none could be
+///    taken (a photo is optional for an "unable to read" meter).
 ///  - nothing is saved until the reader confirms a summary of the meter,
 ///    type, reading and photo, and can go back to change any of them.
 class AddCaptureScreen extends StatefulWidget {
@@ -56,6 +71,8 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   final _labelController = TextEditingController();
   final _readingController = TextEditingController();
   final _unreadableNoteController = TextEditingController();
+  final _noPhotoNoteController = TextEditingController();
+  final _labelNoteController = TextEditingController();
   // Autocomplete requires a focus node whenever it is given a controller.
   final _labelFocusNode = FocusNode();
   String _meterType = 'Electricity';
@@ -74,6 +91,9 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   bool _isUnreadable = false;
   String? _unreadableReason;
 
+  bool _noPhoto = false;
+  String? _noPhotoReason;
+
   bool get _editing => widget.existing != null;
 
   @override
@@ -84,15 +104,27 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       _labelController.text = existing.label;
       _readingController.text = existing.readingValue;
       _meterType = existing.meterType;
-      _photoPath = existing.photoPath;
+      _photoPath = existing.hasPhotoFile ? existing.photoPath : null;
       _isUnreadable = existing.isUnreadable;
       _unreadableReason = existing.isUnreadable && existing.unreadableReason.isNotEmpty
           ? existing.unreadableReason
           : null;
       _unreadableNoteController.text = existing.unreadableNote;
+      _noPhoto = existing.noPhoto;
+      _noPhotoReason = existing.noPhoto && noPhotoReasons.contains(existing.noPhotoReason)
+          ? existing.noPhotoReason
+          : (existing.noPhoto && existing.noPhotoReason.isNotEmpty ? 'Other' : null);
+      _noPhotoNoteController.text = existing.noPhotoNote;
+      _labelNoteController.text = _labelNoteFrom(existing.reviewNote);
     }
+    _labelController.addListener(_onLabelChanged);
     _loadOptions();
   }
+
+  static const _labelNotePrefix = 'Label not on list: ';
+
+  static String _labelNoteFrom(String reviewNote) =>
+      reviewNote.startsWith(_labelNotePrefix) ? reviewNote.substring(_labelNotePrefix.length) : '';
 
   Future<void> _loadOptions() async {
     final registry = await MeterRegistry.forBuilding(widget.building);
@@ -115,6 +147,33 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       );
 
   int get _registeredOfType => _registry.where((m) => m.type == _meterType).length;
+
+  /// Registered meters the typed label probably means, offered as chips.
+  /// Outstanding meters come first; a meter already captured this month
+  /// is still suggested so the reader learns it is a duplicate now rather
+  /// than at the office.
+  List<MeterOption> get _suggestions {
+    if (_matchedMeter != null || _registry.isEmpty) return const [];
+    final typed = _labelController.text;
+    if (typed.trim().isEmpty) return const [];
+    final ofType = _registry.where((m) => m.type == _meterType);
+    return CycleRules.suggestions(typed, [..._options, ...ofType.where((m) => !_options.contains(m))]);
+  }
+
+  bool get _labelNeedsReason =>
+      _registry.isNotEmpty && _matchedMeter == null && _labelController.text.trim().isNotEmpty;
+
+  /// Typing a registered label in full counts as picking it, so the
+  /// reader is not asked why "QG 05" is not on the list.
+  void _onLabelChanged() {
+    final typed = _labelController.text;
+    if (_matchedMeter != null &&
+        CycleRules.labelKey(_matchedMeter!.number) != CycleRules.labelKey(typed)) {
+      _matchedMeter = null;
+    }
+    _matchedMeter ??= _matchTyped(typed);
+    if (mounted) setState(() {});
+  }
 
   void _onMeterTypeChanged(String? value) {
     setState(() {
@@ -147,10 +206,13 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
 
   @override
   void dispose() {
+    _labelController.removeListener(_onLabelChanged);
     _labelController.dispose();
     _labelFocusNode.dispose();
     _readingController.dispose();
     _unreadableNoteController.dispose();
+    _noPhotoNoteController.dispose();
+    _labelNoteController.dispose();
     super.dispose();
   }
 
@@ -167,7 +229,15 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       final dir = await getApplicationDocumentsDirectory();
       final savedPath = '${dir.path}/capture_${const Uuid().v4()}.jpg';
       await File(shot.path).copy(savedPath);
-      if (mounted) setState(() => _photoPath = savedPath);
+      if (mounted) {
+        setState(() {
+          _photoPath = savedPath;
+          // A photo settles the question of why there was none.
+          _noPhoto = false;
+          _noPhotoReason = null;
+          _noPhotoNoteController.clear();
+        });
+      }
     } catch (error) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -202,6 +272,11 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 
+  String get _noPhotoSummary {
+    final note = _noPhotoNoteController.text.trim();
+    return '${_noPhotoReason ?? ''}${note.isNotEmpty ? ' ($note)' : ''}';
+  }
+
   /// Summary the reader must confirm before anything is stored. Returns
   /// true to save, false to go back and change something.
   Future<bool> _confirm(String label, MeterOption? matched) async {
@@ -209,6 +284,11 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
         ? 'Unable to read: ${_unreadableReason ?? ''}'
             '${_unreadableNoteController.text.trim().isNotEmpty ? ' (${_unreadableNoteController.text.trim()})' : ''}'
         : _readingController.text.trim();
+    final photoLine = _photoPath != null
+        ? null
+        : _noPhoto
+            ? 'No photo: $_noPhotoSummary'
+            : 'No photo (meter could not be accessed)';
     final result = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -219,11 +299,12 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Meter: $label', style: const TextStyle(fontWeight: FontWeight.w600)),
-              if (matched == null)
-                const Padding(
-                  padding: EdgeInsets.only(top: 2, bottom: 6),
-                  child: Text('Not on the registered meter list - the office will be asked to check it.',
-                      style: TextStyle(color: Color(0xFFB45309), fontSize: 13)),
+              if (matched == null && _registry.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 2, bottom: 6),
+                  child: Text(
+                      'Not on the registered meter list (${_labelNoteController.text.trim()}) - the office will be asked to check it.',
+                      style: const TextStyle(color: Color(0xFFB45309), fontSize: 13)),
                 ),
               Text('Type: $_meterType'),
               Text('Reading: $reading'),
@@ -233,9 +314,15 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
                   borderRadius: BorderRadius.circular(8),
                   child: Image.file(File(_photoPath!), height: 160, fit: BoxFit.cover),
                 ),
+              if (photoLine != null)
+                Text(photoLine,
+                    style: const TextStyle(color: Color(0xFFB91C1C), fontWeight: FontWeight.w600)),
               const SizedBox(height: 8),
-              const Text('Check the digits against the photo. You cannot change this reading after it is submitted.',
-                  style: TextStyle(fontSize: 13)),
+              Text(
+                  _photoPath != null
+                      ? 'Check the digits against the photo. You cannot change this reading after it is submitted.'
+                      : 'Without a photo the office cannot check the digits. You cannot change this reading after it is submitted.',
+                  style: const TextStyle(fontSize: 13)),
             ],
           ),
         ),
@@ -254,8 +341,15 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   Future<void> _save() async {
     if (_saving || _takingPhoto) return;
     if (!_formKey.currentState!.validate()) return;
-    if (_photoPath == null) {
-      _toast('Please take a photo of the meter.');
+    final photoProblem = CycleRules.photoProblem(
+      hasPhoto: _photoPath != null,
+      noPhoto: _noPhoto,
+      noPhotoReason: _noPhotoReason ?? '',
+      noPhotoNote: _noPhotoNoteController.text,
+      isUnreadable: _isUnreadable,
+    );
+    if (photoProblem != null) {
+      _toast(photoProblem);
       return;
     }
     if (_isUnreadable && _unreadableReason == null) {
@@ -265,6 +359,10 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
 
     final label = _labelController.text.trim();
     final matched = _matchedMeter ?? _matchTyped(label);
+    if (matched == null && _registry.isNotEmpty && _labelNoteController.text.trim().isEmpty) {
+      _toast('$label is not on the meter list for ${widget.building}. Pick the meter it is, or say why it is not on the list.');
+      return;
+    }
 
     // Duplicate guard: one capture per meter per type per month.
     final earlier = CycleRules.duplicateOf(label, _meterType, widget.cycleCaptures,
@@ -303,14 +401,27 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     }
 
     final existing = widget.existing;
-    final photoChanged = existing != null && existing.photoPath != _photoPath;
+    final photoChanged = existing != null && existing.photoPath != (_photoPath ?? '');
+    // An unreadable meter saved without a photo: the no-access reason is
+    // also why there is no photo, so the office sees one explanation.
+    final noPhoto = _photoPath == null;
+    final noPhotoReason = !noPhoto
+        ? ''
+        : _noPhoto
+            ? (_noPhotoReason ?? '')
+            : 'Unable to read: ${_unreadableReason ?? ''}';
+    final noPhotoNote = !noPhoto
+        ? ''
+        : _noPhoto
+            ? _noPhotoNoteController.text.trim()
+            : _unreadableNoteController.text.trim();
     final capture = Capture(
       id: existing?.id ?? const Uuid().v4(),
       building: widget.building,
       label: label,
       meterType: _meterType,
       readingValue: _isUnreadable ? '' : _readingController.text.trim(),
-      photoPath: _photoPath!,
+      photoPath: _photoPath ?? '',
       capturedAt: existing?.capturedAt ?? DateTime.now(),
       // An edited capture goes back through upload so the server copy is
       // replaced; the photo is only re-sent when it was retaken.
@@ -319,10 +430,16 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       readingSynced: false,
       labelConfirmed: matched != null,
       meterRole: matched?.role ?? '',
+      reviewNote: matched == null && _registry.isNotEmpty
+          ? '$_labelNotePrefix${_labelNoteController.text.trim()}'
+          : '',
       reviewWarnings: warnings,
       isUnreadable: _isUnreadable,
       unreadableReason: _isUnreadable ? (_unreadableReason ?? '') : '',
       unreadableNote: _isUnreadable ? _unreadableNoteController.text.trim() : '',
+      noPhoto: noPhoto,
+      noPhotoReason: noPhotoReason,
+      noPhotoNote: noPhotoNote,
     );
 
     try {
@@ -382,12 +499,6 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
           controller: controller,
           focusNode: focusNode,
           textCapitalization: TextCapitalization.characters,
-          onChanged: (value) {
-            if (_matchedMeter != null &&
-                CycleRules.labelKey(_matchedMeter!.number) != CycleRules.labelKey(value)) {
-              setState(() => _matchedMeter = null);
-            }
-          },
           decoration: InputDecoration(
             labelText: 'Meter Label',
             hintText: 'Start typing to search the outstanding meters',
@@ -401,6 +512,52 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
           validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
         );
       },
+    );
+  }
+
+  /// "Did you mean" chips plus the reason field for a label that is not on
+  /// the list. Shown only for buildings with a registry.
+  Widget _unlistedLabelSection() {
+    if (!_labelNeedsReason) return const SizedBox.shrink();
+    final suggestions = _suggestions;
+    final captured = widget.cycleCaptures;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: 12),
+        if (suggestions.isNotEmpty) ...[
+          const Text('Did you mean:', style: TextStyle(fontWeight: FontWeight.w500)),
+          const SizedBox(height: 6),
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            children: suggestions.map((option) {
+              final alreadyDone = CycleRules.isCaptured(option, captured, excludeId: widget.existing?.id);
+              return ActionChip(
+                avatar: Icon(alreadyDone ? Icons.check : Icons.bolt, size: 18),
+                label: Text(alreadyDone ? '${option.number} (already captured)' : option.number),
+                onPressed: alreadyDone
+                    ? () => _toast('${option.number} $_meterType was already captured this month. '
+                        'Open it from the list to change it.')
+                    : () => _onLabelSelected(option),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 12),
+        ],
+        TextFormField(
+          controller: _labelNoteController,
+          textCapitalization: TextCapitalization.sentences,
+          decoration: const InputDecoration(
+            labelText: 'Why is this meter not on the list?',
+            hintText: 'e.g. new meter fitted, label on the meter says this',
+            border: OutlineInputBorder(),
+            helperText: 'Required for a meter that is not on the list. The office checks these.',
+            helperMaxLines: 2,
+          ),
+          validator: (v) => _labelNeedsReason && (v == null || v.trim().isEmpty) ? 'Required' : null,
+        ),
+      ],
     );
   }
 
@@ -445,6 +602,74 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     );
   }
 
+  Widget _photoSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (_photoPath != null)
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.file(
+              File(_photoPath!),
+              height: 220,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => const SizedBox(
+                height: 80,
+                child: Center(child: Icon(Icons.image_not_supported)),
+              ),
+            ),
+          ),
+        const SizedBox(height: 12),
+        OutlinedButton.icon(
+          onPressed: _saving || _takingPhoto ? null : _takePhoto,
+          icon: const Icon(Icons.camera_alt),
+          label: Text(_photoPath == null ? 'Take Photo' : 'Retake Photo'),
+        ),
+        if (_photoPath == null) ...[
+          const SizedBox(height: 8),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('No photo possible'),
+            subtitle: Text(_isUnreadable
+                ? 'Optional for a meter that could not be read - a photo of the locked gate or fault still helps the office'
+                : 'Only when the meter really cannot be photographed. Say why, so the office does not have to ask.'),
+            value: _noPhoto,
+            onChanged: (v) => setState(() {
+              _noPhoto = v;
+              if (!v) {
+                _noPhotoReason = null;
+                _noPhotoNoteController.clear();
+              }
+            }),
+          ),
+          if (_noPhoto) ...[
+            const SizedBox(height: 8),
+            DropdownButtonFormField<String>(
+              initialValue: _noPhotoReason,
+              decoration: const InputDecoration(
+                labelText: 'Why could no photo be taken?',
+                border: OutlineInputBorder(),
+              ),
+              items: noPhotoReasons.map((r) => DropdownMenuItem(value: r, child: Text(r))).toList(),
+              onChanged: (v) => setState(() => _noPhotoReason = v),
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: _noPhotoNoteController,
+              textCapitalization: TextCapitalization.sentences,
+              decoration: InputDecoration(
+                labelText: _noPhotoReason == 'Other' ? 'Note (required)' : 'Note (optional)',
+                hintText: 'e.g. box key with the caretaker, meter in the ceiling',
+                border: const OutlineInputBorder(),
+              ),
+              maxLines: 2,
+            ),
+          ],
+        ],
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -462,6 +687,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
                   child: Text('This reading has not been submitted yet. Change what is wrong and confirm again.'),
                 ),
               _labelField(),
+              _unlistedLabelSection(),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 initialValue: _meterType,
@@ -486,25 +712,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
               const SizedBox(height: 8),
               _readingSection(),
               const SizedBox(height: 20),
-              if (_photoPath != null)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.file(
-                    File(_photoPath!),
-                    height: 220,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => const SizedBox(
-                      height: 80,
-                      child: Center(child: Icon(Icons.image_not_supported)),
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 12),
-              OutlinedButton.icon(
-                onPressed: _saving || _takingPhoto ? null : _takePhoto,
-                icon: const Icon(Icons.camera_alt),
-                label: Text(_photoPath == null ? 'Take Photo' : 'Retake Photo'),
-              ),
+              _photoSection(),
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: _saving || _takingPhoto ? null : _save,

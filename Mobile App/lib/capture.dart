@@ -10,7 +10,9 @@ class Capture {
   String label;
   String meterType; // Electricity | Water
   String readingValue;
-  String photoPath; // local file path
+  // Local file path of the meter photo; empty when the reader recorded why
+  // no photo could be taken (see [noPhoto]).
+  String photoPath;
   DateTime capturedAt;
   CaptureStatus status;
   String? photoUrl; // set once uploaded
@@ -43,6 +45,15 @@ class Capture {
   final String unreadableReason;
   final String unreadableNote;
 
+  // "No photo" outcome (Oct 2026 cycle): many readings arrived at the office
+  // without a photo and nobody knew why - the photo was never taken, was
+  // still waiting on the phone, or the file had been lost. A capture may now
+  // be saved without a photo only when the reader records the reason, which
+  // the dashboard lists under "Missing photos" so the office can follow up.
+  bool noPhoto;
+  String noPhotoReason;
+  String noPhotoNote;
+
   Capture({
     required this.id,
     required this.building,
@@ -63,7 +74,15 @@ class Capture {
     this.isUnreadable = false,
     this.unreadableReason = '',
     this.unreadableNote = '',
+    this.noPhoto = false,
+    this.noPhotoReason = '',
+    this.noPhotoNote = '',
   });
+
+  /// True when a photo still has to be taken or uploaded; false once it is
+  /// on the server or the reader has recorded why there is none.
+  bool get hasPhotoFile => photoPath.isNotEmpty;
+  bool get photoPending => !noPhoto && photoUrl == null;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -85,6 +104,9 @@ class Capture {
         'isUnreadable': isUnreadable,
         'unreadableReason': unreadableReason,
         'unreadableNote': unreadableNote,
+        'noPhoto': noPhoto,
+        'noPhotoReason': noPhotoReason,
+        'noPhotoNote': noPhotoNote,
       };
 
   factory Capture.fromJson(Map<String, dynamic> json) => Capture(
@@ -93,7 +115,7 @@ class Capture {
         label: json['label'] as String,
         meterType: json['meterType'] as String,
         readingValue: json['readingValue'] as String,
-        photoPath: json['photoPath'] as String,
+        photoPath: json['photoPath'] as String? ?? '',
         capturedAt: DateTime.parse(json['capturedAt'] as String),
         status: CaptureStatus.values.firstWhere(
           (s) => s.name == json['status'],
@@ -110,6 +132,9 @@ class Capture {
         isUnreadable: json['isUnreadable'] as bool? ?? false,
         unreadableReason: json['unreadableReason'] as String? ?? '',
         unreadableNote: json['unreadableNote'] as String? ?? '',
+        noPhoto: json['noPhoto'] as bool? ?? false,
+        noPhotoReason: json['noPhotoReason'] as String? ?? '',
+        noPhotoNote: json['noPhotoNote'] as String? ?? '',
       );
 
   static String encodeList(List<Capture> items) =>

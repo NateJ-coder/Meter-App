@@ -7,8 +7,8 @@ import 'add_capture_screen.dart';
 import 'capture.dart';
 import 'capture_store.dart';
 import 'cycle_rules.dart';
-import 'firebase_upload_service.dart';
 import 'meter_registry.dart';
+import 'upload_queue.dart';
 
 class CaptureScreen extends StatefulWidget {
   final String building;
@@ -25,7 +25,6 @@ class _CaptureScreenState extends State<CaptureScreen> {
   bool _loading = true;
   String? _loadError;
   bool _retrying = false;
-  static final Set<String> _activeUploads = {};
   String? _selectedMonth; // null = show all
 
   List<Capture> get _buildingCaptures => _all
@@ -78,24 +77,32 @@ class _CaptureScreenState extends State<CaptureScreen> {
   void initState() {
     super.initState();
     _load();
+    UploadQueue.version.addListener(_onQueueChanged);
     _retryTimer = Timer.periodic(const Duration(seconds: 20), (_) => _retryPending());
   }
 
   @override
   void dispose() {
     _retryTimer?.cancel();
+    UploadQueue.version.removeListener(_onQueueChanged);
     super.dispose();
+  }
+
+  Future<void> _onQueueChanged() async {
+    if (!mounted || _loading || _loadError != null) return;
+    try {
+      final items = await CaptureStore.loadAll();
+      if (mounted) setState(() => _all = items);
+    } catch (_) {
+      // The periodic retry reports load problems; a refresh miss is harmless.
+    }
   }
 
   Future<void> _load() async {
     try {
       final registry = await MeterRegistry.forBuilding(widget.building);
       final items = await CaptureStore.loadAll();
-      for (final capture in items) {
-        if (capture.status == CaptureStatus.uploading && !_activeUploads.contains(capture.id)) {
-          capture.status = CaptureStatus.pending;
-        }
-      }
+      UploadQueue.repairInterrupted(items);
       if (!mounted) return;
       setState(() { _all = items; _registry = registry; _loading = false; _loadError = null; });
       unawaited(_retryPending());
@@ -105,46 +112,15 @@ class _CaptureScreenState extends State<CaptureScreen> {
     }
   }
 
-  Future<void> _upload(Capture capture) async {
-    if (!_activeUploads.add(capture.id)) return;
-    try {
-      final saved = await CaptureStore.loadAll();
-      capture = saved.firstWhere((item) => item.id == capture.id);
-      final index = _all.indexWhere((item) => item.id == capture.id);
-      if (index >= 0) _all[index] = capture;
-      if (capture.status == CaptureStatus.done) return;
-      capture.status = CaptureStatus.uploading;
-      if (mounted) setState(() {});
-      await CaptureStore.saveCapture(capture);
-      try {
-        await FirebaseUploadService.uploadCapture(capture);
-        capture.status = CaptureStatus.done;
-        capture.error = null;
-      } catch (error) {
-        capture.status = CaptureStatus.failed;
-        capture.error = error.toString();
-      }
-      await CaptureStore.saveCapture(capture);
-    } catch (error) {
-      capture.status = CaptureStatus.failed;
-      capture.error = 'Local save failed: $error';
-    } finally {
-      _activeUploads.remove(capture.id);
-      if (mounted) setState(() {});
-    }
-  }
+  Future<void> _upload(Capture capture) => UploadQueue.upload(capture);
 
   Future<void> _retryPending() async {
     if (_retrying || _loading || _loadError != null || !mounted) return;
     _retrying = true;
     try {
+      await UploadQueue.retryPending();
       final items = await CaptureStore.loadAll();
-      if (!mounted) return;
-      setState(() => _all = items);
-      for (final capture in items) {
-        if (!mounted) break;
-        if (capture.status != CaptureStatus.done) await _upload(capture);
-      }
+      if (mounted) setState(() => _all = items);
     } catch (error) {
       if (mounted) setState(() => _loadError = 'Could not reload saved readings. Nothing has been overwritten. $error');
     } finally {
@@ -175,7 +151,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
       ));
       return;
     }
-    if (_activeUploads.contains(capture.id)) {
+    if (UploadQueue.isUploading(capture.id)) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('This reading is being submitted right now. Try again in a moment.'),
       ));
@@ -260,8 +236,9 @@ class _CaptureScreenState extends State<CaptureScreen> {
     final items = _mine;
     final synced = items.where((c) => c.status == CaptureStatus.done).length;
     final photosPending = items
-        .where((c) => c.readingSynced && c.photoUrl == null)
+        .where((c) => c.readingSynced && c.photoPending)
         .length;
+    final noPhoto = items.where((c) => c.noPhoto).length;
     final months = _availableMonths;
     final progress = _loading || _loadError != null ? null : _progress;
     final canLeave = progress == null || progress.complete;
@@ -357,10 +334,9 @@ class _CaptureScreenState extends State<CaptureScreen> {
                   color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                   child: Text(
-                    photosPending > 0
-                        ? '$synced of ${items.length} meters synced to server '
-                            '($photosPending photo${photosPending == 1 ? '' : 's'} pending — reading value already saved)'
-                        : '$synced of ${items.length} meters synced to server',
+                    '$synced of ${items.length} meters synced to server'
+                    '${photosPending > 0 ? ' ($photosPending photo${photosPending == 1 ? '' : 's'} still uploading - keep the app open with signal)' : ''}'
+                    '${noPhoto > 0 ? ' - $noPhoto without a photo' : ''}',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
@@ -382,22 +358,26 @@ class _CaptureScreenState extends State<CaptureScreen> {
                             final dateStr = '${c.capturedAt.day}/${c.capturedAt.month}/${c.capturedAt.year} ${c.capturedAt.hour.toString().padLeft(2, '0')}:${c.capturedAt.minute.toString().padLeft(2, '0')}';
                             final editable = !c.readingSynced && c.status != CaptureStatus.done;
                             return ListTile(
-                              leading: ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Image.file(
-                                  File(c.photoPath),
-                                  width: 48,
-                                  height: 48,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) =>
-                                      const Icon(Icons.image_not_supported),
-                                ),
-                              ),
+                              leading: c.hasPhotoFile
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(6),
+                                      child: Image.file(
+                                        File(c.photoPath),
+                                        width: 48,
+                                        height: 48,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (context, error, stackTrace) =>
+                                            const Icon(Icons.image_not_supported),
+                                      ),
+                                    )
+                                  : const Icon(Icons.no_photography, color: Color(0xFFB45309)),
                               title: Text('${c.label} · ${c.meterType}'),
                               subtitle: Text(
                                   '${c.isUnreadable ? 'Unable to read: ${c.unreadableReason}' : 'Reading: ${c.readingValue}'}\n$dateStr'
                                   '${!c.labelConfirmed ? '\nLabel not matched to registry' : ''}'
                                   '${c.unreadableNote.isNotEmpty ? '\nNote: ${c.unreadableNote}' : ''}'
+                                  '${c.noPhoto ? '\nNo photo: ${c.noPhotoReason}${c.noPhotoNote.isNotEmpty ? ' - ${c.noPhotoNote}' : ''}' : ''}'
+                                  '${c.reviewNote.isNotEmpty ? '\n${c.reviewNote}' : ''}'
                                   '${editable ? '\nTap to change before it is submitted' : ''}'
                                   '${c.error != null ? '\n${c.error}' : ''}'),
                               isThreeLine: true,

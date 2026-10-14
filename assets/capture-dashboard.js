@@ -12,6 +12,7 @@ import {
     getDocs,
     query,
     runTransaction,
+    Timestamp,
     updateDoc,
     where
 } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
@@ -24,6 +25,9 @@ import { firebaseAuth, firebaseDb } from './firebase.js';
 import { createCorrectionPatch, assertCaptureUnchanged, getCaptureHistoryWarnings } from './capture-corrections.mjs';
 import { prepareCaptureExport } from './capture-export.mjs';
 import { captureMonth, filterCaptures, normalizeUnit, readNavigation } from './capture-navigation.mjs';
+import {
+    groupMissingPhotos, missingPhotoLink, missingPhotoSheet, missingPhotosSince, photoStatus
+} from './capture-photos.mjs';
 
 const OFFICE_EMAILS = new Set([
     'nathan@sectionalts.co',
@@ -54,6 +58,11 @@ const downloadPhotosBtn = document.getElementById('download-photos-btn');
 const statusText = document.getElementById('status-text');
 const capturesBody = document.getElementById('captures-body');
 const signOutLink = document.getElementById('sign-out-link');
+const missingPhotosCard = document.getElementById('missing-photos-card');
+const missingPhotosTitle = document.getElementById('missing-photos-title');
+const missingPhotosSummary = document.getElementById('missing-photos-summary');
+const missingPhotosBody = document.getElementById('missing-photos-body');
+const missingPhotosExportBtn = document.getElementById('missing-photos-export-btn');
 
 let currentRows = [];
 let allRows = []; // Store all loaded rows
@@ -62,7 +71,10 @@ let editingRowId = null;
 let requestedMonth = '';
 let loadRequest = 0;
 const AUTO_REFRESH_MS = 15000;
+const MISSING_PHOTOS_REFRESH_MS = 60000;
 const METER_TYPES = ['Electricity', 'Water'];
+let missingPhotoRowsLoaded = [];
+let missingPhotosTimer = null;
 
 function formatDate(date) {
     const dd = String(date.getDate()).padStart(2, '0');
@@ -169,6 +181,124 @@ function applyMonthFilter() {
     history.replaceState(null, '', url);
 }
 
+function captureFromDoc(doc) {
+    const data = doc.data();
+    const capturedAtDate = toDate(data.capturedAt);
+    const isUnreadable = data.isUnreadable === true;
+    const labelConfirmed = data.labelConfirmed !== false; // default true for older docs
+    const readerWarnings = Array.isArray(data.readerWarnings) ? data.readerWarnings : [];
+    const flagAcknowledged = data.flagAcknowledged === true;
+    const noPhoto = data.noPhoto === true;
+    // A row needs attention if it has silent review warnings, couldn't
+    // be read at all, has no photo, or its label wasn't matched to the
+    // canonical meter list - unless office has already acknowledged it.
+    const needsAttention = !flagAcknowledged &&
+        (readerWarnings.length > 0 || isUnreadable || !labelConfirmed || noPhoto);
+    return {
+        id: doc.id,
+        building: data.building || '',
+        label: data.label || '',
+        meterType: data.meterType || '',
+        readingValue: data.readingValue || '',
+        rawReadingValue: data.rawReadingValue ?? data.readingValue ?? '',
+        readerNote: data.readerNote || '',
+        readerWarnings,
+        officeWarnings: Array.isArray(data.officeWarnings) ? data.officeWarnings : [],
+        officeCorrections: Array.isArray(data.officeCorrections) ? data.officeCorrections : [],
+        originalLabel: data.originalLabel ?? data.label ?? '',
+        readerAcknowledged: data.readerAcknowledged === true,
+        isUnreadable,
+        unreadableReason: data.unreadableReason || '',
+        unreadableNote: data.unreadableNote || '',
+        labelConfirmed,
+        flagAcknowledged,
+        flagAcknowledgedNote: data.flagAcknowledgedNote || '',
+        needsAttention,
+        photoUrl: data.photoUrl || '',
+        noPhoto,
+        noPhotoReason: data.noPhotoReason || '',
+        noPhotoNote: data.noPhotoNote || '',
+        capturedAtDate
+    };
+}
+
+// "Missing photos" panel: every capture since the start of last month, in
+// any building, that has no photo on the server - with the reader's reason
+// where one was recorded, or a note that the phone still has to upload it.
+async function loadMissingPhotos() {
+    const since = missingPhotosSince(new Date());
+    try {
+        const q = query(collection(firebaseDb, 'mobile_captures'),
+            where('capturedAt', '>=', Timestamp.fromDate(since)));
+        const snapshot = await getDocs(q);
+        missingPhotoRowsLoaded = snapshot.docs.map(captureFromDoc);
+        renderMissingPhotos(since);
+    } catch (err) {
+        console.error('Missing photos could not be loaded', err);
+        missingPhotosCard.hidden = false;
+        missingPhotosTitle.textContent = 'Missing photos';
+        missingPhotosSummary.textContent = `Could not load the missing-photo list: ${err.message}`;
+        missingPhotosBody.innerHTML = '';
+        missingPhotosExportBtn.disabled = true;
+    }
+    if (!missingPhotosTimer) {
+        missingPhotosTimer = setInterval(loadMissingPhotos, MISSING_PHOTOS_REFRESH_MS);
+    }
+}
+
+function renderMissingPhotos(since) {
+    const now = new Date();
+    const groups = groupMissingPhotos(missingPhotoRowsLoaded, now);
+    const total = groups.reduce((sum, group) => sum + group.entries.length, 0);
+    const none = groups.reduce((sum, group) => sum + group.none, 0);
+    const pending = total - none;
+    const sinceLabel = since.toLocaleDateString('en-ZA', { day: 'numeric', month: 'long', year: 'numeric' });
+    missingPhotosCard.hidden = false;
+    missingPhotosExportBtn.disabled = total === 0;
+    if (total === 0) {
+        missingPhotosTitle.textContent = 'Missing photos: none';
+        missingPhotosSummary.textContent = `Every reading captured since ${sinceLabel} has its photo.`;
+        missingPhotosBody.innerHTML = '';
+        return;
+    }
+    missingPhotosTitle.textContent = `Missing photos: ${total} reading${total === 1 ? '' : 's'} since ${sinceLabel}`;
+    missingPhotosSummary.textContent = [
+        none ? `${none} saved without a photo (reader gave a reason or the photo was lost)` : '',
+        pending ? `${pending} still to be uploaded from a phone` : ''
+    ].filter(Boolean).join(' · ') + '. Click a building to show or hide its list; "View" opens the reading.';
+    missingPhotosBody.innerHTML = groups.map((group) => `
+        <details class="missing-photos-group" ${groups.length === 1 ? 'open' : ''}>
+            <summary><strong>${escapeHtml(group.building)}</strong> - ${group.entries.length} missing
+                ${group.none ? `<span class="badge badge-danger">${group.none} no photo</span>` : ''}
+                ${group.pending ? `<span class="badge badge-warning">${group.pending} pending</span>` : ''}
+            </summary>
+            <table class="data-table">
+                <thead><tr><th>Meter</th><th>Type</th><th>Reading</th><th>Captured</th><th>Why no photo</th><th></th></tr></thead>
+                <tbody>${group.entries.map(({ row, photo }) => `
+                    <tr>
+                        <td>${escapeHtml(row.label)}</td>
+                        <td>${escapeHtml(row.meterType)}</td>
+                        <td>${row.isUnreadable ? `<strong style="color:#b91c1c;">No access</strong>` : escapeHtml(row.readingValue)}</td>
+                        <td>${row.capturedAtDate.toLocaleString()}</td>
+                        <td style="color:${photo.state === 'none' ? '#b91c1c' : (photo.stale ? '#b45309' : '#6b7280')};">${escapeHtml(photo.text)}</td>
+                        <td><a class="btn btn-secondary btn-sm" href="${escapeHtml(missingPhotoLink(row))}">View</a></td>
+                    </tr>`).join('')}
+                </tbody>
+            </table>
+        </details>`).join('');
+}
+
+async function exportMissingPhotos() {
+    if (missingPhotoRowsLoaded.length === 0) return;
+    await loadSheetJS();
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.aoa_to_sheet(missingPhotoSheet(missingPhotoRowsLoaded, new Date()));
+    worksheet['!cols'] = [{ wch: 16 }, { wch: 18 }, { wch: 12 }, { wch: 14 }, { wch: 24 }, { wch: 18 }, { wch: 40 }, { wch: 40 }, { wch: 38 }];
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Missing Photos');
+    XLSX.writeFile(workbook, `Missing Photos ${formatDate(new Date())}.xlsx`);
+    statusText.textContent = 'Exported the missing-photo list.';
+}
+
 async function loadCaptures(isAutoRefresh = false) {
     const building = buildingSelect.value.trim();
     if (!building) return;
@@ -187,42 +317,7 @@ async function loadCaptures(isAutoRefresh = false) {
         const snapshot = await getDocs(q);
         if (requestId !== loadRequest) return;
 
-        currentRows = snapshot.docs.map((doc) => {
-            const data = doc.data();
-            const capturedAtDate = toDate(data.capturedAt);
-            const isUnreadable = data.isUnreadable === true;
-            const labelConfirmed = data.labelConfirmed !== false; // default true for older docs
-            const readerWarnings = Array.isArray(data.readerWarnings) ? data.readerWarnings : [];
-            const flagAcknowledged = data.flagAcknowledged === true;
-            // A row needs attention if it has silent review warnings, couldn't
-            // be read at all, or its label wasn't matched to the canonical
-            // meter list - unless office has already acknowledged it.
-            const needsAttention = !flagAcknowledged &&
-                (readerWarnings.length > 0 || isUnreadable || !labelConfirmed);
-            return {
-                id: doc.id,
-                building: data.building || '',
-                label: data.label || '',
-                meterType: data.meterType || '',
-                readingValue: data.readingValue || '',
-                rawReadingValue: data.rawReadingValue ?? data.readingValue ?? '',
-                readerNote: data.readerNote || '',
-                readerWarnings,
-                officeWarnings: Array.isArray(data.officeWarnings) ? data.officeWarnings : [],
-                officeCorrections: Array.isArray(data.officeCorrections) ? data.officeCorrections : [],
-                originalLabel: data.originalLabel ?? data.label ?? '',
-                readerAcknowledged: data.readerAcknowledged === true,
-                isUnreadable,
-                unreadableReason: data.unreadableReason || '',
-                unreadableNote: data.unreadableNote || '',
-                labelConfirmed,
-                flagAcknowledged,
-                flagAcknowledgedNote: data.flagAcknowledgedNote || '',
-                needsAttention,
-                photoUrl: data.photoUrl || '',
-                capturedAtDate
-            };
-        });
+        currentRows = snapshot.docs.map(captureFromDoc);
         const historyWarnings = getCaptureHistoryWarnings(currentRows);
         for (const row of currentRows) {
             row.officeWarnings = [...new Set([...row.officeWarnings, ...historyWarnings.get(row.id)])];
@@ -412,7 +507,9 @@ function renderRows() {
 
         return `
         <tr data-row-id="${row.id}"${row.needsAttention ? ' style="background:#fff7ed;"' : ''}>
-            <td>${row.photoUrl ? `<a href="${row.photoUrl}" target="_blank" rel="noopener"><img src="${row.photoUrl}" alt="${safeLabel}" style="width:64px;height:64px;object-fit:cover;border-radius:4px;"></a>` : '—'}</td>
+            <td>${row.photoUrl
+                ? `<a href="${row.photoUrl}" target="_blank" rel="noopener"><img src="${row.photoUrl}" alt="${safeLabel}" style="width:64px;height:64px;object-fit:cover;border-radius:4px;"></a>`
+                : (() => { const photo = photoStatus(row); return `<small style="color:${photo.state === 'none' ? '#b91c1c' : (photo.stale ? '#b45309' : '#6b7280')};">${escapeHtml(photo.text)}</small>`; })()}</td>
             <td>${labelCell}</td>
             <td>${typeCell}</td>
             <td>${readingCell}</td>
@@ -494,11 +591,11 @@ async function exportToExcel() {
     }
     const reviewRows = [
         ['Capture ID', 'Building', 'Meter Label', 'Label Matched', 'Type', 'Admin Reading', 'Raw Reading',
-            'Unreadable', 'Unreadable Reason', 'Unreadable Note', 'Reader Note', 'Warnings',
+            'Unreadable', 'Unreadable Reason', 'Unreadable Note', 'Photo', 'Reader Note', 'Warnings',
             'Needs Attention', 'Acknowledged Note', 'Captured At', 'Original Label', 'Office Warnings', 'Correction History'],
         ...sortedRows.map((row) => [row.id, row.building, row.label, row.labelConfirmed, row.meterType,
             row.readingValue, row.rawReadingValue, row.isUnreadable, row.unreadableReason, row.unreadableNote,
-            row.readerNote, row.readerWarnings.join('\n'), row.needsAttention,
+            photoStatus(row).text, row.readerNote, row.readerWarnings.join('\n'), row.needsAttention,
             row.flagAcknowledged ? row.flagAcknowledgedNote || 'yes' : '',
             row.capturedAtDate.toISOString(), row.originalLabel, row.officeWarnings.join('\n'),
             JSON.stringify(row.officeCorrections)])
@@ -611,8 +708,9 @@ async function downloadAllPhotos() {
     }
 }
 
-loadBtn.addEventListener('click', () => loadCaptures());
+loadBtn.addEventListener('click', () => { loadCaptures(); loadMissingPhotos(); });
 exportBtn.addEventListener('click', exportToExcel);
+missingPhotosExportBtn.addEventListener('click', exportMissingPhotos);
 downloadPhotosBtn.addEventListener('click', downloadAllPhotos);
 signOutLink.addEventListener('click', async (event) => {
     event.preventDefault();
@@ -661,3 +759,6 @@ try {
 } catch (error) {
     statusText.textContent = error.message;
 }
+// The missing-photo list is the first thing the office needs after signing
+// in, whatever building the link opened.
+loadMissingPhotos();

@@ -1,5 +1,39 @@
 # APK Update Quick Reference
 
+## Pending Update - 2026-10-14 (source only, APK not yet built)
+
+Version 1.0.7 (build 8) answers the October 2026 reconciliation: readings
+arriving without photos and nobody knowing why, plus more duplicate and
+mislabelled captures.
+
+- A reading can be saved without a photo only when the reader ticks "No
+  photo possible" and picks a reason (behind glass / locked box, too dark,
+  out of reach, camera not working, Other with a required note). The
+  reason is written to the reading record and shown on the dashboard.
+- A photo is optional for an "Unable to read" meter; its no-access reason
+  is recorded as the reason for the missing photo.
+- A photo file that disappears from the phone before it uploads is reported
+  once ("Photo lost on the phone before upload") instead of retrying every
+  20 seconds forever with the office none the wiser.
+- Pending uploads now retry from the home screen as well, which shows
+  "N readings and M photos still to upload" until everything is on the
+  server. Until now retries only ran while a building's list was open.
+- A label that is not on the building's list shows "Did you mean" chips
+  for the registered meter it probably is (typing "5", "unit 05" or "qg5"
+  offers "QG 05"; a meter already captured this month is marked as such),
+  and otherwise needs a short reason, saved as the reader note.
+- Dashboard (deploys with `npm run deploy:hosting`, no APK needed for this
+  part): a "Missing photos" panel at sign-in lists every capture since the
+  start of last month, in any building, that has no photo, with the
+  reader's reason or "waiting for the phone to upload it" (overdue after
+  24 hours), a "View" link per reading and an "Export list" button. The
+  photo column and the Excel export say why a photo is missing.
+
+Release steps are unchanged (Mobile App/APP_UPDATE_GUIDE.md): build and sign
+with the existing key, copy the APK to `downloads/`, then raise
+`version.json` to build 8 only once the APK is hosted. 31 Flutter tests and
+`npm run test:captures` pass.
+
 ## Available Update - 2026-10-13
 
 Version 1.0.6 (build 7) closes the gaps found while reconciling the October

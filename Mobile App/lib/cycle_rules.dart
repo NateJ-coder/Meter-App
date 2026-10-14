@@ -74,6 +74,65 @@ class CycleRules {
     return null;
   }
 
+  /// Registered meters that a free-typed [label] probably meant, so a reader
+  /// who types "5", "unit 05" or "qg5" is offered "QG 05" instead of the
+  /// office later finding two captures for one meter under different names.
+  /// An exact match ignores case, spacing, punctuation and leading zeros
+  /// ("qg5" is "QG 05"); a unit meter also matches on its unit number alone
+  /// ("5", "UNIT 05", "No 5") when nothing matches exactly. Bulk and common
+  /// meters never match on a bare number, so "1" does not suggest "Bulk 1".
+  static List<MeterOption> suggestions(String label, Iterable<MeterOption> options, {int limit = 3}) {
+    final identity = _identityKey(label);
+    if (identity.isEmpty) return const [];
+    final unit = _unitKey(label);
+    final exact = <MeterOption>[];
+    final loose = <MeterOption>[];
+    for (final option in options) {
+      if (_identityKey(option.number) == identity) {
+        exact.add(option);
+      } else if (unit.isNotEmpty && option.role == 'unit' && _unitKey(option.number) == unit) {
+        loose.add(option);
+      }
+    }
+    return (exact.isNotEmpty ? exact : loose).take(limit).toList();
+  }
+
+  /// "QG 05" -> "QG5", "GEN UNIT 030" -> "GENUNIT30", "Bulk 1" -> "BULK1".
+  static String _identityKey(String label) => labelKey(label)
+      .replaceAll(RegExp(r'[^A-Z0-9]'), '')
+      .replaceAllMapped(RegExp(r'(^|[A-Z])0+(?=\d)'), (m) => m.group(1)!);
+
+  /// Unit number and suffix of a unit-style label: "QG 05" -> "5",
+  /// "HM 28 A" -> "28A", "unit 7" -> "7", "5" -> "5"; empty for anything
+  /// else ("Bulk 1", "Com Store 1", "G3 Garage").
+  static String _unitKey(String label) {
+    final match = RegExp(r'^(?:[A-Z]{1,4}\s*)?(?:(?:UNIT|NO|FLAT)\s*)?0*(\d+)\s*([A-Z]?)$')
+        .firstMatch(labelKey(label));
+    return match == null ? '' : '${match.group(1)}${match.group(2)}';
+  }
+
+  /// Whether a capture can be saved as it stands. A reading needs a photo
+  /// unless the reader has recorded why none could be taken; an "unable to
+  /// read" meter may be saved without one (there is often nothing to
+  /// photograph behind a locked gate), the reason for no access doubles
+  /// as the reason for no photo.
+  static String? photoProblem({
+    required bool hasPhoto,
+    required bool noPhoto,
+    required String noPhotoReason,
+    required String noPhotoNote,
+    required bool isUnreadable,
+  }) {
+    if (hasPhoto) return null;
+    if (isUnreadable) return null;
+    if (!noPhoto) return 'Please take a photo of the meter, or tick "No photo possible" and say why.';
+    if (noPhotoReason.trim().isEmpty) return 'Please choose why no photo could be taken.';
+    if (noPhotoReason == 'Other' && noPhotoNote.trim().isEmpty) {
+      return 'Please add a note explaining why no photo could be taken.';
+    }
+    return null;
+  }
+
   /// Progress of [building] for the cycle containing [now].
   static CycleProgress progress({
     required List<MeterOption> registry,

@@ -16,6 +16,7 @@ const publicFiles = [
     'assets/capture-corrections.mjs',
     'assets/capture-export.mjs',
     'assets/capture-navigation.mjs',
+    'assets/capture-photos.mjs',
     'assets/export-layouts.json',
     'assets/capture-login.js',
     'assets/firebase.js',

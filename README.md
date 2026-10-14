@@ -39,6 +39,25 @@ voice navigation. This feature requires no Android APK update. Run the isolated
 navigation/correction checks with `npm run test:captures`; they do not access
 production Firebase.
 
+### Missing photos at sign-in
+
+The dashboard opens with a "Missing photos" panel listing every capture since
+the first day of last month, in any building, that has no photo on the server.
+Each row says why: the reason the reader recorded in the app ("No photo:
+Meter behind glass / in a locked box - key with caretaker"), the no-access
+reason of an unreadable meter, "Photo lost on the phone before upload", or
+"Waiting for the phone to upload it" (marked overdue after 24 hours; ask the
+reader to open the app where there is signal). "View" opens that reading in
+its building and month; "Export list" writes the same rows to Excel. The
+photo column of the main table and the `Reader Review` sheet carry the same
+status. The panel refreshes every minute. The pure logic lives in
+`assets/capture-photos.mjs` and is checked by `npm run test:captures`.
+
+App 1.0.7 (build 8) is what lets a reader save a reading without a photo:
+only with a reason, and the office sees it here. Older app versions still
+upload readings first and photos afterwards, which this panel shows as
+pending.
+
 ### Export to Excel in Utility Dash order
 
 "Export to Excel" writes a `Readings` sheet laid out like the building's

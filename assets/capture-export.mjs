@@ -101,6 +101,13 @@ function readingCellValue(row) {
 function captureNote(row) {
     const notes = [];
     if (row.labelConfirmed === false) notes.push('label not on meter list');
+    if (row.noPhoto === true || String(row.noPhotoReason ?? '').trim()) {
+        const reason = String(row.noPhotoReason ?? '').trim() || 'reason not recorded';
+        const note = String(row.noPhotoNote ?? '').trim();
+        notes.push(`no photo: ${reason}${note ? ` (${note})` : ''}`);
+    } else if (!row.photoUrl && !row.isUnreadable && 'photoUrl' in row) {
+        notes.push('photo not received from phone');
+    }
     if (row.needsAttention) notes.push('needs office review');
     return notes.join('; ');
 }

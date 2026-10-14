@@ -81,6 +81,20 @@ assert.deepEqual(full.readingSheets[0].rows[0], ['Meter Label', 'Reading', 'Note
 assert.equal(full.readingSheets[0].unmatched, 1);
 assert.equal(full.readingSheets[0].duplicates, 1);
 
+// Photo status is written into the note column so the sheet says why a photo is missing.
+const photoNotes = organizeCaptures([
+    { label: 'PH 01', meterType: 'Electricity', readingValue: '10', photoUrl: '', noPhoto: true, noPhotoReason: 'Other', noPhotoNote: 'in the ceiling' },
+    { label: 'PH 02', meterType: 'Electricity', readingValue: '11', photoUrl: '' },
+    { label: 'PH 03', meterType: 'Electricity', readingValue: '12', photoUrl: 'https://x/3.jpg' },
+    { label: 'PH 01', meterType: 'Water', readingValue: '', isUnreadable: true, unreadableReason: 'Locked gate', photoUrl: '' }
+], 'Phanda Lodge', layout);
+assert.deepEqual(photoNotes.rows.slice(1, 4), [
+    ['PH 01', 10, 'no photo: Other (in the ceiling)'],
+    ['PH 02', 11, 'photo not received from phone'],
+    ['PH 03', 12, '']
+]);
+assert.deepEqual(photoNotes.rows[6], ['PH 01', 'NO ACCESS: Locked gate', '']);
+
 // Two identical captures of one meter are not a conflict.
 const twin = organizeCaptures([
     { label: 'PH 01', meterType: 'Electricity', readingValue: '10' },

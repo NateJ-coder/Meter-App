@@ -3216,3 +3216,9 @@ body.modal-open {
         border: 1px solid var(--border);
     }
 }
+
+/* Missing photos panel (capture dashboard sign-in) */
+.missing-photos-group { margin-top: 0.5rem; border: 1px solid #e5e7eb; border-radius: 6px; padding: 0.25rem 0.75rem; }
+.missing-photos-group summary { cursor: pointer; padding: 0.5rem 0; }
+.missing-photos-group summary .badge { margin-left: 0.35rem; }
+.missing-photos-group .data-table { margin: 0.25rem 0 0.75rem; }

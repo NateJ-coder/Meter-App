@@ -20,10 +20,18 @@ class FirebaseUploadService {
         await _writeReadingDoc(capture, connection);
         capture.readingSynced = true;
       }
+      if (capture.noPhoto) return; // the reason is already on the reading doc
       if (capture.photoUrl == null) {
-        final file = File(capture.photoPath);
-        if (!await file.exists()) {
-          throw StateError('Reading synced, photo file missing on device');
+        final file = capture.hasPhotoFile ? File(capture.photoPath) : null;
+        if (file == null || !await file.exists()) {
+          // The photo cannot be recovered on this device (the file was
+          // removed before it uploaded). Record that on the server instead
+          // of retrying every 20 seconds forever and leaving the office to
+          // guess; it shows under "Missing photos" on the dashboard.
+          capture.noPhoto = true;
+          capture.noPhotoReason = 'Photo lost on the phone before upload';
+          await _patchFields(capture.id, _noPhotoFields(capture), connection);
+          return;
         }
         capture.photoUrl = await _uploadPhoto(capture, file, connection);
       }
@@ -83,7 +91,8 @@ class FirebaseUploadService {
     // top, rather than the reader ever seeing a blocking prompt on-device.
     final flagged = capture.reviewWarnings.isNotEmpty ||
         capture.isUnreadable ||
-        !capture.labelConfirmed;
+        !capture.labelConfirmed ||
+        capture.noPhoto;
 
     final fields = {
       'building': {'stringValue': capture.building},
@@ -105,10 +114,20 @@ class FirebaseUploadService {
       'unreadableReason': {'stringValue': capture.unreadableReason},
       'unreadableNote': {'stringValue': capture.unreadableNote},
       'flagged': {'booleanValue': flagged},
+      ..._noPhotoFields(capture),
     };
 
     await _patchFields(capture.id, fields, client);
   }
+
+  /// Why there is no photo for this reading, as the dashboard reads it.
+  /// Written with the reading so the office sees the reason as soon as the
+  /// value arrives, and again if the photo file is later found missing.
+  static Map<String, dynamic> _noPhotoFields(Capture capture) => {
+        'noPhoto': {'booleanValue': capture.noPhoto},
+        'noPhotoReason': {'stringValue': capture.noPhotoReason},
+        'noPhotoNote': {'stringValue': capture.noPhotoNote},
+      };
 
   static Future<void> _patchFields(String id, Map<String, dynamic> fields, http.Client client) async {
     final docUri = Uri.parse(

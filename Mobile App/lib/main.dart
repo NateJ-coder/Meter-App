@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'app_updater.dart';
@@ -5,6 +7,7 @@ import 'capture_screen.dart';
 import 'capture_store.dart';
 import 'cycle_rules.dart';
 import 'meter_registry.dart';
+import 'upload_queue.dart';
 
 void main() {
   runApp(const FuzioMeterReaderApp());
@@ -36,6 +39,9 @@ class BuildingScreen extends StatefulWidget {
 
 class _BuildingScreenState extends State<BuildingScreen> {
   String _selectedBuilding = 'Genesis';
+  PendingSummary _pending = const PendingSummary(readings: 0, photos: 0, failed: 0);
+  Timer? _retryTimer;
+  bool _retrying = false;
   static const buildings = {
     'Azores': 'The Azores',
     'Carissa Lane': 'Carissa Lane',
@@ -56,6 +62,42 @@ class _BuildingScreenState extends State<BuildingScreen> {
   void initState() {
     super.initState();
     _checkForUpdates();
+    UploadQueue.version.addListener(_refreshPending);
+    _refreshPending();
+    // Keep pushing whatever is still waiting, whichever screen the reader
+    // is on: until v1.0.6 photos only uploaded while a building's list was
+    // open, which is how readings reached the office without their photo.
+    _retryTimer = Timer.periodic(const Duration(seconds: 20), (_) => _retryPending());
+    unawaited(_retryPending());
+  }
+
+  @override
+  void dispose() {
+    _retryTimer?.cancel();
+    UploadQueue.version.removeListener(_refreshPending);
+    super.dispose();
+  }
+
+  Future<void> _refreshPending() async {
+    try {
+      final pending = await UploadQueue.pending();
+      if (mounted) setState(() => _pending = pending);
+    } catch (error) {
+      debugPrint('Pending summary skipped: $error');
+    }
+  }
+
+  Future<void> _retryPending() async {
+    if (_retrying || !mounted) return;
+    _retrying = true;
+    try {
+      await UploadQueue.retryPending();
+    } catch (error) {
+      debugPrint('Retry skipped: $error');
+    } finally {
+      _retrying = false;
+      if (mounted) unawaited(_refreshPending());
+    }
   }
 
   Future<void> _checkForUpdates() async {
@@ -170,7 +212,22 @@ class _BuildingScreenState extends State<BuildingScreen> {
                 }
               },
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
+            if (!_pending.isEmpty)
+              Card(
+                color: _pending.failed > 0
+                    ? Theme.of(context).colorScheme.errorContainer
+                    : Theme.of(context).colorScheme.tertiaryContainer,
+                child: ListTile(
+                  leading: Icon(_retrying ? Icons.cloud_sync : Icons.cloud_upload_outlined),
+                  title: Text('${_pending.describe()} still to upload'),
+                  subtitle: Text(_pending.failed > 0
+                      ? 'The last attempt failed. Keep the app open where there is signal; it retries on its own. Tap to retry now.'
+                      : 'Keep the app open where there is signal until this disappears, so the office gets every photo.'),
+                  onTap: _retrying ? null : _retryPending,
+                ),
+              ),
+            const SizedBox(height: 8),
             FilledButton(
               onPressed: _start,
               child: const Padding(
