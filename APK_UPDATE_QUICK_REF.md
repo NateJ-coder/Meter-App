@@ -1,5 +1,16 @@
 # APK Update Quick Reference
 
+## Available Update - 2026-11-06
+
+Version 1.0.7 (build 8) keeps the decimal on Genesis unit electricity
+readings (GEN 1-63). Since 2026-09 the app dropped everything after the
+point on those meters (`081649.6` was saved as `81649`); it now only strips
+leading zeros and keeps a typed decimal, never inventing one. The raw entry
+was always stored as `rawReadingValue`, so the September and November
+Genesis captures were restored from it on the server with an office
+correction entry each. Same release key (SHA-256 `8938876e...`), so 1.0.3 and
+later update in place. 22 Flutter tests passed.
+
 ## Available Update - 2026-10-13
 
 Version 1.0.6 (build 7) closes the gaps found while reconciling the October
