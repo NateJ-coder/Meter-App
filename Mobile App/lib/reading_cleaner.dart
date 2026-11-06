@@ -139,14 +139,20 @@ class ReadingCleaner {
     return cleaned;
   }
 
-  /// Genesis building-specific cleaning rules
+  /// Genesis building-specific cleaning rules.
+  ///
+  /// The unit electricity meters (GEN 1..63) show a tenths digit and
+  /// Genesis readings carry it (e.g. August 2026: 083018.5). This rule
+  /// used to drop everything after the point, silently losing that digit
+  /// (fixed 2026-11). Now only leading zeros are stripped; a decimal is
+  /// kept exactly as typed and never invented.
   static String _cleanGenesis(String label, String meterType, String value) {
     final match = RegExp(r'^GEN\s*(?:UNIT\s*)?0*(\d{1,2})$',
             caseSensitive: false)
         .firstMatch(label.trim());
     final unit = match == null ? null : int.tryParse(match.group(1)!);
     if (meterType == 'Electricity' && unit != null && unit >= 1 && unit <= 63) {
-      return value.trim().split('.').first.replaceFirst(RegExp(r'^0+(?=\d)'), '');
+      return value.trim().replaceFirst(RegExp(r'^0+(?=\d)'), '');
     }
     return value.trim();
   }

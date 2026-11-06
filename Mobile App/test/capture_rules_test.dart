@@ -59,7 +59,7 @@ void main() {
     final fields = (jsonDecode(requests.first.body) as Map<String, dynamic>)['fields'];
     expect(fields['readerNote']['stringValue'], 'Checked the display');
     expect(fields['rawReadingValue']['stringValue'], '123.4');
-    expect(fields['readingValue']['stringValue'], '123');
+    expect(fields['readingValue']['stringValue'], '123.4');
     expect(requests.first.url.queryParametersAll['updateMask.fieldPaths'], isNot(contains('photoUrl')));
     expect(capture.readingSynced, isTrue);
     requests.clear();
@@ -134,12 +134,13 @@ void main() {
       ReadingCleaner.clean(building: building, label: label,
           meterType: type, rawValue: value);
 
-  test('Genesis unit policy truncates fractions without guessing decimals', () {
-    expect(clean('Genesis', 'GEN UNIT 47', '059240.6'), '59240');
-    expect(clean('Genesis', 'GEN 01', '00000.9'), '0');
-    expect(clean('Genesis', 'GEN 01', '58773.7'), '58773');
-    expect(clean('Genesis', 'GEN 02', '58538.3'), '58538');
-    expect(clean('Genesis', 'GEN 03', '50446.9'), '50446');
+  test('Genesis unit policy keeps the typed decimal without guessing one', () {
+    expect(clean('Genesis', 'GEN UNIT 47', '059240.6'), '59240.6');
+    expect(clean('Genesis', 'GEN 61', '081649.6'), '81649.6');
+    expect(clean('Genesis', 'GEN 01', '00000.9'), '0.9');
+    expect(clean('Genesis', 'GEN 01', '58773.7'), '58773.7');
+    expect(clean('Genesis', 'GEN 02', '58538.3'), '58538.3');
+    expect(clean('Genesis', 'GEN 03', '50446.9'), '50446.9');
     expect(clean('Genesis', 'GEN 01', '0592406'), '592406');
     expect(clean('Genesis', 'Com 3', '8320.8'), '8320.8');
     expect(clean('Genesis', 'GEN E1922', '105.80'), '105.80');
