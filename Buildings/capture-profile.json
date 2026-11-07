@@ -1,0 +1,95 @@
+{
+  "_about": [
+    "What field readers actually capture per building, applied on top of Buildings/app-database by scripts/generate-mobile-meter-registry.mjs.",
+    "skip: registered meters readers are NOT asked for (removed from the app list and from the 'finish the building' check). 'pattern' is a case-insensitive regex on the meter number.",
+    "aka: what is physically written on the meter, shown next to the Utility Dash name so the reader picks the right row.",
+    "extra: meters read on site that are missing from app-database (bulk registers, staff sub-meters).",
+    "Evidence: November 2026 captures, the Utility Dash's last three reading columns, and Nate's notes of 2026-11-07. Buildings not listed keep their full app-database list."
+  ],
+  "Genesis": {
+    "skip": [
+      { "type": "Water", "pattern": "^GEN \\d+$", "reason": "Unit water meters are not read individually" },
+      { "type": "Water", "numbers": ["Com 1", "Com 2"], "reason": "No common-property water readings in the Utility Dash" },
+      { "type": "Electricity", "numbers": ["Bulk 1"], "reason": "No bulk electricity reading since 2021" },
+      { "type": "Electricity", "numbers": ["Com 5", "Com 6", "Com 7", "Com 8", "Com 9", "Com 10", "Com 11"], "reason": "No readings in the Utility Dash" }
+    ],
+    "aka": {
+      "Electricity|Com 1": "E1822",
+      "Electricity|Com 2": "E1922 from main",
+      "Electricity|Com 3": "RES1 common area",
+      "Electricity|Com 4": "E1923",
+      "Water|Bulk 1": "JHB water metre 2",
+      "Water|Bulk 2": "JHB water (main)"
+    },
+    "extra": [
+      { "number": "Borehole Water", "type": "Water", "role": "common_property", "aka": "Borehole" },
+      { "number": "Mezzanine Water", "type": "Water", "role": "common_property", "aka": "Mezzanine floor" }
+    ]
+  },
+  "Hazelmere": {
+    "skip": [
+      { "type": "Electricity", "numbers": ["G1", "G2", "G4", "G19", "G90", "G91", "G106", "G110", "G116", "G119", "ST10", "ST12"],
+        "reason": "Retired - no longer captured (Nate, 2026-11-07)" }
+    ],
+    "extra": [
+      { "number": "** HM 17", "type": "Electricity", "role": "unit", "aka": "Meter staff 1,1 - Room 1 is unit 17" },
+      { "number": "** HM 51", "type": "Electricity", "role": "unit", "aka": "Room 2 is unit 51" },
+      { "number": "** HM 39", "type": "Electricity", "role": "unit", "aka": "Meter staff 3,1 - Room 3 is unit 39" },
+      { "number": "kVA", "type": "Electricity", "role": "bulk", "aka": "Check meter kVA register" },
+      { "number": "kWh", "type": "Electricity", "role": "bulk", "aka": "Check meter kWh register" }
+    ]
+  },
+  "Phanda Lodge": {
+    "skip": [
+      { "type": "Water", "pattern": "^PH \\d+$", "reason": "Unit water is not metered per unit - the Dash uses the bulk water reading" }
+    ],
+    "extra": [
+      { "number": "kVA", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kVA register" },
+      { "number": "kVArh", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kvarh register" }
+    ]
+  },
+  "Bonifay": {
+    "skip": [
+      { "type": "Water", "pattern": "^BC \\d+$", "reason": "Unit water meters are not read (no readings in the Utility Dash)" }
+    ],
+    "extra": [
+      { "number": "kVA", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kVA register" },
+      { "number": "kVArh", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kvarh register" }
+    ]
+  },
+  "Rivonia Gate": {
+    "skip": [
+      { "type": "Electricity", "numbers": ["RG 05", "RG 08", "RG 14"],
+        "reason": "Shares one meter with RG 01 / RG 04 / RG 13 - the combined reading is captured there" }
+    ],
+    "aka": {
+      "Electricity|RG 01": "shared meter with RG 05",
+      "Electricity|RG 04": "shared meter with RG 08",
+      "Electricity|RG 13": "shared meter with RG 14"
+    }
+  },
+  "Villino Glen": {
+    "skip": [
+      { "type": "Electricity", "pattern": ".*", "reason": "Only water is captured with the app at Villino Glen" }
+    ]
+  },
+  "Azores": {
+    "extra": [
+      { "number": "kVA", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kVA register" },
+      { "number": "kVArh", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kvarh register" }
+    ]
+  },
+  "Queensgate": {
+    "extra": [
+      { "number": "kVA", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kVA register" },
+      { "number": "kVArh", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kvarh register" }
+    ]
+  },
+  "L'Montagne": {
+    "extra": [
+      { "number": "kVA", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kVA register" },
+      { "number": "kVArh", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kvarh register" },
+      { "number": "kWh", "type": "Electricity", "role": "bulk", "aka": "Bulk meter kWh register" }
+    ]
+  }
+}

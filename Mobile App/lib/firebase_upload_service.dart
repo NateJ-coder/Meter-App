@@ -20,6 +20,10 @@ class FirebaseUploadService {
         await _writeReadingDoc(capture, connection);
         capture.readingSynced = true;
       }
+      // An "unable to read" / "not read" record may have no photo at all:
+      // the reason is the evidence (readers used to photograph a car seat
+      // just to get past the photo requirement).
+      if (capture.photoPath.isEmpty) return;
       if (capture.photoUrl == null) {
         final file = File(capture.photoPath);
         if (!await file.exists()) {

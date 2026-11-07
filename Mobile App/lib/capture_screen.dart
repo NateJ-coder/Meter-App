@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 import 'add_capture_screen.dart';
 import 'capture.dart';
@@ -217,16 +218,118 @@ class _CaptureScreenState extends State<CaptureScreen> {
                     .map((m) => ListTile(
                           dense: true,
                           leading: Icon(m.type == 'Water' ? Icons.water_drop : Icons.bolt),
-                          title: Text(m.number),
+                          title: Text(m.display),
                           subtitle: Text(m.type),
                         ))
                     .toList(),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+              child: OutlinedButton.icon(
+                icon: const Icon(Icons.report_outlined),
+                label: const Text('Record meters as not read'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _recordNotRead(progress);
+                },
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  /// Record outstanding meters as "not read" with one reason and note, so a
+  /// missed meter always reaches the office with a reason instead of a
+  /// silent gap (Nov 2026: Genesis, Villino unit 23, Phanda unit 40).
+  Future<void> _recordNotRead(CycleProgress progress) async {
+    final selected = progress.missing.toSet();
+    String? reason;
+    final note = TextEditingController();
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setDialog) {
+          final needsNote = reasonNeedsNote(reason);
+          final ready = selected.isNotEmpty && reason != null && (!needsNote || note.text.trim().isNotEmpty);
+          return AlertDialog(
+            title: const Text('Record meters as not read'),
+            content: SizedBox(
+              width: double.maxFinite,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  DropdownButtonFormField<String>(
+                    isExpanded: true,
+                    initialValue: reason,
+                    decoration: const InputDecoration(labelText: 'Why were these not read?', border: OutlineInputBorder()),
+                    items: notReadReasons.map((r) => DropdownMenuItem(value: r, child: Text(r))).toList(),
+                    onChanged: (v) => setDialog(() => reason = v),
+                  ),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: note,
+                    onChanged: (_) => setDialog(() {}),
+                    decoration: InputDecoration(
+                      labelText: needsNote ? 'Note (required)' : 'Note (optional)',
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text('${selected.length} of ${progress.missing.length} selected',
+                      style: Theme.of(context).textTheme.bodySmall),
+                  Flexible(
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: progress.missing
+                          .map((m) => CheckboxListTile(
+                                dense: true,
+                                value: selected.contains(m),
+                                title: Text(m.display),
+                                subtitle: Text(m.type),
+                                onChanged: (v) => setDialog(() => v == true ? selected.add(m) : selected.remove(m)),
+                              ))
+                          .toList(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
+              FilledButton(
+                onPressed: ready ? () => Navigator.of(context).pop(true) : null,
+                child: const Text('Record as not read'),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+    final noteText = note.text;
+    note.dispose();
+    if (confirmed != true || reason == null || !mounted) return;
+    final records = CycleRules.notReadRecords(
+      meters: progress.missing.where(selected.contains).toList(),
+      building: widget.building,
+      reason: reason!,
+      note: noteText,
+      at: DateTime.now(),
+      newId: () => const Uuid().v4(),
+    );
+    try {
+      for (final record in records) {
+        await CaptureStore.saveCapture(record);
+      }
+    } catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Not all were saved. Try again: $error')));
+      }
+    }
+    await _load();
   }
 
   /// Leaving is only allowed once every registered meter has a reading or
@@ -239,9 +342,16 @@ class _CaptureScreenState extends State<CaptureScreen> {
         content: Text(
           '${progress.missing.length} of ${progress.registered} registered meters still have no reading this month: '
           '${progress.describeMissing()}.\n\n'
-          'Capture each one, or record it as "Unable to read" with the reason, before leaving this building.',
+          'Capture each one, or record the ones you cannot read with the reason, before leaving this building.',
         ),
         actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _recordNotRead(progress);
+            },
+            child: const Text('Record as not read'),
+          ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();

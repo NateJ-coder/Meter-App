@@ -11,13 +11,6 @@ import 'cycle_rules.dart';
 import 'meter_registry.dart';
 import 'reading_cleaner.dart';
 
-const List<String> _unreadableReasons = [
-  'Locked / no access',
-  'Meter faulty or damaged',
-  'Meter obscured or hidden',
-  'Other',
-];
-
 /// Capture one meter reading, or edit one that has not been submitted yet.
 ///
 /// Guards added in v1.0.6 (Oct 2026 cycle lessons):
@@ -84,7 +77,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       _labelController.text = existing.label;
       _readingController.text = existing.readingValue;
       _meterType = existing.meterType;
-      _photoPath = existing.photoPath;
+      _photoPath = existing.photoPath.isEmpty ? null : existing.photoPath;
       _isUnreadable = existing.isUnreadable;
       _unreadableReason = existing.isUnreadable && existing.unreadableReason.isNotEmpty
           ? existing.unreadableReason
@@ -99,6 +92,9 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
     if (!mounted) return;
     setState(() {
       _registry = registry;
+      // A water-only building (Villino Glen) starts on water.
+      final types = MeterRegistry.typesIn(registry);
+      if (!_editing && !types.contains(_meterType)) _meterType = types.first;
       _options = _availableOptions();
       _loadingOptions = false;
       if (_editing && _matchedMeter == null) {
@@ -254,12 +250,18 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
   Future<void> _save() async {
     if (_saving || _takingPhoto) return;
     if (!_formKey.currentState!.validate()) return;
-    if (_photoPath == null) {
+    // A photo is the evidence for a reading. A meter that cannot be read
+    // needs a reason instead; a photo is optional.
+    if (_photoPath == null && !_isUnreadable) {
       _toast('Please take a photo of the meter.');
       return;
     }
     if (_isUnreadable && _unreadableReason == null) {
       _toast('Please choose a reason this meter could not be read.');
+      return;
+    }
+    if (_isUnreadable && reasonNeedsNote(_unreadableReason) && _unreadableNoteController.text.trim().isEmpty) {
+      _toast('Please add a short note explaining "$_unreadableReason".');
       return;
     }
 
@@ -300,6 +302,12 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
         cleanedPreview,
         previousReading: previous,
       );
+      final twin = CycleRules.sameReadingElsewhere(label, _meterType, _readingController.text,
+          widget.cycleCaptures, excludeId: widget.existing?.id);
+      if (twin != null) {
+        warnings = [...warnings,
+          'Same reading as ${twin.label} captured this month (${twin.readingValue}). Check the right meter was photographed.'];
+      }
     }
 
     final existing = widget.existing;
@@ -310,7 +318,7 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       label: label,
       meterType: _meterType,
       readingValue: _isUnreadable ? '' : _readingController.text.trim(),
-      photoPath: _photoPath!,
+      photoPath: _photoPath ?? '',
       capturedAt: existing?.capturedAt ?? DateTime.now(),
       // An edited capture goes back through upload so the server copy is
       // replaced; the photo is only re-sent when it was retaken.
@@ -370,11 +378,13 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
       // below is guaranteed to be this same instance.
       textEditingController: _labelController,
       focusNode: _labelFocusNode,
-      displayStringForOption: (option) => option.number,
+      // The list shows the Dash name and what is written on the meter
+      // ("Com 1 - E1822"); the field keeps just the Dash name once picked.
+      displayStringForOption: (option) => option.display,
       optionsBuilder: (textEditingValue) {
-        final query = textEditingValue.text.trim().toLowerCase();
+        final query = textEditingValue.text.trim();
         if (query.isEmpty) return _options;
-        return _options.where((o) => o.number.toLowerCase().contains(query));
+        return _options.where((o) => o.matches(query));
       },
       onSelected: _onLabelSelected,
       fieldViewBuilder: (context, controller, focusNode, onSubmitted) {
@@ -411,11 +421,12 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
         children: [
           DropdownButtonFormField<String>(
             initialValue: _unreadableReason,
+            isExpanded: true,
             decoration: const InputDecoration(
               labelText: 'Why couldn\'t this meter be read?',
               border: OutlineInputBorder(),
             ),
-            items: _unreadableReasons
+            items: notReadReasons
                 .map((r) => DropdownMenuItem(value: r, child: Text(r)))
                 .toList(),
             onChanged: (v) => setState(() => _unreadableReason = v),
@@ -423,10 +434,10 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
           const SizedBox(height: 16),
           TextFormField(
             controller: _unreadableNoteController,
-            decoration: const InputDecoration(
-              labelText: 'Note (optional)',
+            decoration: InputDecoration(
+              labelText: reasonNeedsNote(_unreadableReason) ? 'Note (required)' : 'Note (optional)',
               hintText: 'e.g. gate locked, no one available',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
             ),
             maxLines: 2,
           ),
@@ -464,22 +475,25 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
               _labelField(),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
+                // Rebuild once the building's list has loaded, so a
+                // water-only building shows Water.
+                key: ValueKey('type-${_registry.length}-$_meterType'),
                 initialValue: _meterType,
                 decoration: const InputDecoration(
                   labelText: 'Type',
                   border: OutlineInputBorder(),
                 ),
-                items: const [
-                  DropdownMenuItem(value: 'Electricity', child: Text('Electricity')),
-                  DropdownMenuItem(value: 'Water', child: Text('Water')),
-                ],
+                // Only the services read at this building.
+                items: MeterRegistry.typesIn(_registry)
+                    .map((t) => DropdownMenuItem(value: t, child: Text(t)))
+                    .toList(),
                 onChanged: _onMeterTypeChanged,
               ),
               const SizedBox(height: 16),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Unable to read this meter'),
-                subtitle: const Text('Locked, faulty, obscured, or otherwise inaccessible'),
+                subtitle: const Text('Locked, faulty, obscured or missing. Give the reason - a photo is optional.'),
                 value: _isUnreadable,
                 onChanged: (v) => setState(() => _isUnreadable = v),
               ),

@@ -9,14 +9,29 @@ class MeterOption {
   final String number; // canonical label, e.g. "GEN 47", "Bulk 1"
   final String type; // 'Electricity' | 'Water'
   final String role; // 'unit' | 'bulk' | 'common'
+  // What is physically written on the meter when it differs from the
+  // Utility Dash name, e.g. "E1822" for Genesis "Com 1". Readers see the
+  // name on the wall, not the Dash row, so both are shown and searchable
+  // (Buildings/capture-profile.json).
+  final String aka;
 
-  const MeterOption({required this.number, required this.type, required this.role});
+  const MeterOption({required this.number, required this.type, required this.role, this.aka = ''});
 
   factory MeterOption.fromJson(Map<String, dynamic> json) => MeterOption(
         number: json['number'] as String? ?? '',
         type: json['type'] as String? ?? 'Electricity',
         role: json['role'] as String? ?? 'unit',
+        aka: json['aka'] as String? ?? '',
       );
+
+  /// "Com 1 - E1822", or just the number when there is no on-meter name.
+  String get display => aka.isEmpty ? number : '$number - $aka';
+
+  /// Search on the Dash name and the on-meter name.
+  bool matches(String query) {
+    final q = query.trim().toLowerCase();
+    return number.toLowerCase().contains(q) || aka.toLowerCase().contains(q);
+  }
 }
 
 /// Loads and caches the bundled canonical meter list so field staff can
@@ -57,5 +72,13 @@ class MeterRegistry {
     final meters = all[building] ?? const [];
     if (meterType == null) return meters;
     return meters.where((m) => m.type == meterType).toList();
+  }
+
+  /// Meter types read at a building ("Electricity", "Water"), in that
+  /// order. A building whose list has only water meters (Villino Glen)
+  /// offers only water. Both are offered when the building has no list yet.
+  static List<String> typesIn(List<MeterOption> meters) {
+    if (meters.isEmpty) return const ['Electricity', 'Water'];
+    return ['Electricity', 'Water'].where((t) => meters.any((m) => m.type == t)).toList();
   }
 }

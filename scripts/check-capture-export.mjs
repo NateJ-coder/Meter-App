@@ -32,7 +32,7 @@ const plain = prepareCaptureExport(rows);
 assert.equal(plain.organized, false);
 assert.deepEqual(plain.readingSheets, [
     { name: 'Electricity Readings', rows: [['GEN 2', 0], ['GEN 3', 'unverified']] },
-    { name: 'Water Readings', rows: [['GEN 1', 'NO ACCESS: Locked'], ['GEN 10', 12.5]] },
+    { name: 'Water Readings', rows: [['GEN 1', 'NOT READ: Locked'], ['GEN 10', 12.5]] },
     { name: 'Unclassified Readings', rows: [['GEN 4', 44]] }
 ]);
 assert.deepEqual(plain.sortedRows.map((row) => row.label), ['GEN 1', 'GEN 2', 'GEN 3', 'GEN 4', 'GEN 10']);
@@ -65,7 +65,7 @@ assert.deepEqual(organized.rows, [
     ['PH 03', 4190, 'captured as "UNIT 3"'],
     ['Bulk 1', 3107338, 'captured as "KWH"'],
     ['WATER', '', ''],
-    ['PH 01', 'NO ACCESS: Locked gate', ''],
+    ['PH 01', 'NOT READ: Locked gate', ''],
     ['Bulk 1', 4555, 'captured as "BULK WATER"'],
     ['UNMATCHED CAPTURES', '', 'not on the Utility Dash sheet - check the label'],
     ['KVA', 95.9, 'Electricity']

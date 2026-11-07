@@ -87,7 +87,7 @@ export function labelKey(label, building) {
 function readingCellValue(row) {
     if (row.isUnreadable) {
         const reason = String(row.unreadableReason ?? '').trim() || 'Reason not recorded';
-        return `NO ACCESS: ${reason}`;
+        return `NOT READ: ${reason}`;
     }
 
     const value = String(row.readingValue ?? '').trim();

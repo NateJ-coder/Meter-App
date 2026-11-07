@@ -1,6 +1,22 @@
 import 'capture.dart';
 import 'meter_registry.dart';
 
+/// Why a meter has no reading. Used for a single "unable to read" capture
+/// and for recording every outstanding meter at once before leaving a
+/// building, so a missed meter always reaches the office with a reason.
+const List<String> notReadReasons = [
+  'Locked / no access',
+  'Meter faulty or damaged',
+  'Meter obscured or hidden',
+  'Meter removed or replaced',
+  'Could not find the meter',
+  'Ran out of time - will return',
+  'Other',
+];
+
+/// Reasons that need a note before they are accepted.
+bool reasonNeedsNote(String? reason) => reason == 'Other' || reason == 'Could not find the meter';
+
 /// Rules for one reading cycle (a calendar month) of one building:
 /// which registered meters are still outstanding, and whether a label has
 /// already been captured. Pure functions so they can be unit-tested.
@@ -72,6 +88,57 @@ class CycleRules {
       }
     }
     return null;
+  }
+
+  /// Another meter of the same type already captured this cycle with exactly
+  /// the same reading. Two different meters almost never read the same, so
+  /// this usually means the same meter was photographed twice under two
+  /// labels (Phanda Nov 2026: "PHA 40" was a second shot of meter 42).
+  /// Stored as a silent review warning, never a blocking prompt.
+  static Capture? sameReadingElsewhere(
+    String label,
+    String meterType,
+    String reading,
+    Iterable<Capture> cycle, {
+    String? excludeId,
+  }) {
+    final value = double.tryParse(reading.trim().replaceAll(',', '.'));
+    if (value == null || value == 0) return null;
+    final key = labelKey(label);
+    for (final c in cycle) {
+      if (c.id == excludeId || c.isUnreadable || c.meterType != meterType || labelKey(c.label) == key) continue;
+      if (double.tryParse(c.readingValue.trim().replaceAll(',', '.')) == value) return c;
+    }
+    return null;
+  }
+
+  /// "Not read" records for [meters]: one unreadable capture per meter, with
+  /// the reason and note and no photo, so the office sees why each one is
+  /// missing instead of a silent gap.
+  static List<Capture> notReadRecords({
+    required List<MeterOption> meters,
+    required String building,
+    required String reason,
+    String note = '',
+    required DateTime at,
+    required String Function() newId,
+  }) {
+    return meters
+        .map((m) => Capture(
+              id: newId(),
+              building: building,
+              label: m.number,
+              meterType: m.type,
+              readingValue: '',
+              photoPath: '',
+              capturedAt: at,
+              labelConfirmed: true,
+              meterRole: m.role,
+              isUnreadable: true,
+              unreadableReason: reason,
+              unreadableNote: note.trim(),
+            ))
+        .toList();
   }
 
   /// Progress of [building] for the cycle containing [now].
