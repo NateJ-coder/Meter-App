@@ -9,19 +9,21 @@ class MeterOption {
   final String number; // canonical label, e.g. "GEN 47", "Bulk 1"
   final String type; // 'Electricity' | 'Water'
   final String role; // 'unit' | 'bulk' | 'common'
+  final bool requiredForCycle;
   // What is physically written on the meter when it differs from the
   // Utility Dash name, e.g. "E1822" for Genesis "Com 1". Readers see the
   // name on the wall, not the Dash row, so both are shown and searchable
   // (Buildings/capture-profile.json).
   final String aka;
 
-  const MeterOption({required this.number, required this.type, required this.role, this.aka = ''});
+  const MeterOption({required this.number, required this.type, required this.role, this.aka = '', this.requiredForCycle = true});
 
   factory MeterOption.fromJson(Map<String, dynamic> json) => MeterOption(
         number: json['number'] as String? ?? '',
         type: json['type'] as String? ?? 'Electricity',
         role: json['role'] as String? ?? 'unit',
         aka: json['aka'] as String? ?? '',
+        requiredForCycle: json['requiredForCycle'] as bool? ?? true,
       );
 
   /// "Com 1 - E1822", or just the number when there is no on-meter name.

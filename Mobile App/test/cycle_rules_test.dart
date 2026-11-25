@@ -76,6 +76,24 @@ void main() {
     expect(progress.complete, isTrue);
   });
 
+  test('optional meters remain available but do not block completion', () async {
+    const mixed = [
+      MeterOption(number: 'Required', type: 'Electricity', role: 'unit'),
+      MeterOption(number: 'Optional', type: 'Water', role: 'bulk', requiredForCycle: false),
+    ];
+    final all = [cap('a', 'Vista Del Monte', 'Required', 'Electricity')];
+    final progress = CycleRules.progress(registry: mixed, all: all, building: 'Vista Del Monte', now: now);
+    expect(progress.registered, 1);
+    expect(progress.complete, isTrue);
+    expect(CycleRules.availableMeters(mixed, 'Water', all).single.number, 'Optional');
+    final unfinished = await CycleRules.unfinishedBuildings(
+      registries: {'Vista Del Monte': mixed}, all: all, now: now);
+    expect(unfinished, isEmpty);
+
+    final missing = CycleRules.progress(registry: mixed, all: const [], building: 'Vista Del Monte', now: now);
+    expect(missing.missing.map((m) => m.number), ['Required']);
+  });
+
   test('unfinished buildings exclude the one being opened and complete ones', () async {
     final all = [
       cap('a', 'Queensgate', 'QG 01', 'Electricity'),

@@ -25,7 +25,7 @@ bool reasonNeedsNote(String? reason) => reason == 'Other' || reason == 'Could no
 /// L'Montagne 50) and others were captured twice under different labels
 /// ("QG 41" for unit 25's water meter), which the office only discovered
 /// while reconciling the workbook. The app now refuses to leave a building
-/// until every registered meter has a reading (or an "unable to read"), and
+/// until every required meter has a reading (or an "unable to read"), and
 /// never offers a meter that was already captured this month.
 class CycleRules {
   /// The cycle a capture belongs to: its calendar month, e.g. "2026-10".
@@ -149,10 +149,11 @@ class CycleRules {
     required DateTime now,
   }) {
     final cycle = cycleCaptures(all, building, now);
-    final missing = registry.where((m) => !isCaptured(m, cycle)).toList();
+    final required = registry.where((m) => m.requiredForCycle).toList();
+    final missing = required.where((m) => !isCaptured(m, cycle)).toList();
     return CycleProgress(
       building: building,
-      registered: registry.length,
+      registered: required.length,
       captured: cycle.length,
       missing: missing,
     );
@@ -198,8 +199,8 @@ class CycleProgress {
     required this.missing,
   });
 
-  /// True when the building has no registry to check against, or every
-  /// registered meter has a capture (or an "unable to read") this cycle.
+  /// True when the building has no required meters, or every required meter
+  /// has a capture (or an "unable to read") this cycle.
   bool get complete => registered == 0 || missing.isEmpty;
 
   int get done => registered - missing.length;

@@ -1,7 +1,7 @@
 {
-  "version": "1.0.7",
-  "buildNumber": 8,
-  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.0.7.apk",
-  "message": "Genesis unit electricity readings now keep the decimal you type (e.g. 81649.6). Previously the app dropped it after saving. Version 1.0.2 uses an older signing key and cannot install this update in place; contact the administrator before uninstalling.",
+  "version": "1.0.8",
+  "buildNumber": 9,
+  "apkUrl": "https://meter-app-36307.web.app/downloads/fuzio-meter-reader-v1.0.8.apk",
+  "message": "Updated meter lists and building completion rules: Genesis does not require unit water readings, and Vista Del Monte readings are optional for completion. Version 1.0.2 uses an older signing key and cannot install this update in place; contact the administrator before uninstalling.",
   "required": false
 }

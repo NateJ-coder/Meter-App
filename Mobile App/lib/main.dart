@@ -76,7 +76,7 @@ class _BuildingScreenState extends State<BuildingScreen> {
   }
 
   /// A reader may only move on to another building once the one they
-  /// started this month is complete (every registered meter has a reading
+  /// started this month is complete (every required meter has a reading
   /// or an "unable to read"). Re-opening the unfinished building itself is
   /// always allowed.
   Future<void> _start() async {
@@ -106,9 +106,9 @@ class _BuildingScreenState extends State<BuildingScreen> {
         builder: (context) => AlertDialog(
           title: Text('Finish ${first.building} first'),
           content: Text(
-            '${first.building} still has ${first.missing.length} of ${first.registered} registered meters without a reading this month: '
+            '${first.building} still has ${first.missing.length} of ${first.registered} required meters without a reading this month: '
             '${first.describeMissing()}.\n\n'
-            'Every meter must have a reading, or be recorded as "Unable to read", before another building can be started.',
+            'Every required meter must have a reading, or be recorded as "Unable to read", before another building can be started.',
           ),
           actions: [
             TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
@@ -170,6 +170,16 @@ class _BuildingScreenState extends State<BuildingScreen> {
                 }
               },
             ),
+            if (_selectedBuilding == 'Transvalia')
+              const Padding(
+                padding: EdgeInsets.only(top: 12),
+                child: Text('Transvalia readings have stopped; electricity and water are billed as fixed amounts.'),
+              ),
+            if (_selectedBuilding == 'Vista Del Monte')
+              const Padding(
+                padding: EdgeInsets.only(top: 12),
+                child: Text('Vista Del Monte readings also come from the utility company. Meters here are optional for completion.'),
+              ),
             const SizedBox(height: 24),
             FilledButton(
               onPressed: _start,

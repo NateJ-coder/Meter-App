@@ -109,6 +109,7 @@ void main() {
     expect(of('Villino Glen').every((m) => m['type'] == 'Water'), isTrue, reason: 'Villino Glen is water only');
     expect(of('Genesis').where((m) => m['type'] == 'Water').map((m) => m['number']).toSet(),
         {'Bulk 1', 'Bulk 2', 'Borehole Water', 'Mezzanine Water'});
+    expect(of('Genesis').where((m) => m['type'] == 'Water').every((m) => m['requiredForCycle'] != false), isTrue);
     expect(of('Genesis').firstWhere((m) => m['number'] == 'Com 1' && m['type'] == 'Electricity')['aka'], 'E1822');
     expect(has('Genesis', 'Com 5', 'Electricity'), isFalse);
     expect(has('Hazelmere', 'G1', 'Electricity'), isFalse, reason: 'retired G/ST meters are not asked for');
@@ -120,5 +121,28 @@ void main() {
     expect(has('Rivonia Gate', 'RG 05', 'Electricity'), isFalse);
     expect(has('Rivonia Gate', 'RG 01', 'Electricity'), isTrue);
     expect(has('Queensgate', 'kVA', 'Electricity'), isTrue);
+    expect(of('Vista Del Monte').length, 44);
+    expect(of('Vista Del Monte').every((m) => m['requiredForCycle'] == false), isTrue);
+    expect(MeterOption.fromJson(of('Vista Del Monte').first).requiredForCycle, isFalse);
+  });
+
+  test('Genesis completion requires only its real water meters', () {
+    final registry = (jsonDecode(File('assets/meter_registry.json').readAsStringSync())
+        as Map<String, dynamic>)['Genesis'] as List;
+    final meters = registry.map((m) => MeterOption.fromJson(m as Map<String, dynamic>)).toList();
+    final now = DateTime(2026, 11, 6);
+    final electricity = meters.where((m) => m.type == 'Electricity').map((m) => Capture(
+      id: m.number, building: 'Genesis', label: m.number, meterType: m.type,
+      readingValue: '1', photoPath: '/photo.jpg', capturedAt: now,
+    )).toList();
+    final progress = CycleRules.progress(registry: meters, all: electricity, building: 'Genesis', now: now);
+    expect(progress.missing.map((m) => m.number).toSet(),
+        {'Bulk 1', 'Bulk 2', 'Borehole Water', 'Mezzanine Water'});
+    final water = CycleRules.notReadRecords(
+      meters: progress.missing, building: 'Genesis', reason: 'Locked / no access',
+      at: now, newId: () => 'water',
+    );
+    expect(CycleRules.progress(registry: meters, all: [...electricity, ...water],
+        building: 'Genesis', now: now).complete, isTrue);
   });
 }

@@ -80,7 +80,10 @@ export function applyProfile(meters, profile = {}) {
         kept.push({ number: extra.number, type: extra.type, role: extra.role || 'unit', ...(extra.aka ? { aka: extra.aka } : {}) });
     }
     kept.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
-    return { meters: kept, skipped };
+    return {
+        meters: profile.optionalForCycle ? kept.map((meter) => ({ ...meter, requiredForCycle: false })) : kept,
+        skipped
+    };
 }
 
 function buildRegistry() {

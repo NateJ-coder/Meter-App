@@ -332,7 +332,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
     await _load();
   }
 
-  /// Leaving is only allowed once every registered meter has a reading or
+  /// Leaving is only allowed once every required meter has a reading or
   /// an "unable to read" this month.
   Future<void> _onLeaveBlocked(CycleProgress progress) async {
     await showDialog<void>(
@@ -340,7 +340,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
       builder: (context) => AlertDialog(
         title: Text('${widget.building} is not finished'),
         content: Text(
-          '${progress.missing.length} of ${progress.registered} registered meters still have no reading this month: '
+          '${progress.missing.length} of ${progress.registered} required meters still have no reading this month: '
           '${progress.describeMissing()}.\n\n'
           'Capture each one, or record the ones you cannot read with the reason, before leaving this building.',
         ),
@@ -415,8 +415,8 @@ class _CaptureScreenState extends State<CaptureScreen> {
                             Expanded(
                               child: Text(
                                 progress.complete
-                                    ? 'All ${progress.registered} registered meters captured this month. You can leave this building.'
-                                    : '${progress.done} of ${progress.registered} registered meters captured this month. '
+                                    ? 'All ${progress.registered} required meters captured this month. You can leave this building.'
+                                    : '${progress.done} of ${progress.registered} required meters captured this month. '
                                         '${progress.missing.length} outstanding - tap to see which.',
                                 style: const TextStyle(fontWeight: FontWeight.w500),
                               ),

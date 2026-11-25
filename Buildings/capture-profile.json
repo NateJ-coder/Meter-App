@@ -4,7 +4,8 @@
     "skip: registered meters readers are NOT asked for (removed from the app list and from the 'finish the building' check). 'pattern' is a case-insensitive regex on the meter number.",
     "aka: what is physically written on the meter, shown next to the Utility Dash name so the reader picks the right row.",
     "extra: meters read on site that are missing from app-database (bulk registers, staff sub-meters).",
-    "Evidence: November 2026 captures, the Utility Dash's last three reading columns, and Nate's notes of 2026-11-07. Buildings not listed keep their full app-database list."
+    "optionalForCycle: keep the meters available for capture without requiring them to finish the building.",
+    "Evidence: Fuzio Meter Database (24-25 November 2026), November 2026 captures, the Utility Dash's last three reading columns, and Nate's notes of 2026-11-07. Buildings not listed keep their full app-database list."
   ],
   "Genesis": {
     "skip": [
@@ -72,6 +73,9 @@
     "skip": [
       { "type": "Electricity", "pattern": ".*", "reason": "Only water is captured with the app at Villino Glen" }
     ]
+  },
+  "Vista Del Monte": {
+    "optionalForCycle": true
   },
   "Azores": {
     "extra": [

@@ -142,6 +142,15 @@ void main() {
     expect(field.initialValue, 'Electricity');
   });
 
+  testWidgets('Vista meter suggestions are identified as optional', (tester) async {
+    await _primeMeterRegistry(tester);
+    await tester.pumpWidget(const MaterialApp(
+      home: AddCaptureScreen(building: 'Vista Del Monte'),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('optional for completion'), findsOneWidget);
+  });
+
   testWidgets('App shows building selection screen', (WidgetTester tester) async {
     await tester.pumpWidget(const FuzioMeterReaderApp());
 
@@ -158,6 +167,23 @@ void main() {
       'Queensgate', 'Rivonia Gate', 'Taragona', 'Transvalia', 'Villino Glen',
       'Phanda Lodge', 'Vista Del Monte', 'Bonifay',
     ]);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
+  });
+
+  testWidgets('Building selection explains stopped and optional readings', (tester) async {
+    await tester.pumpWidget(const FuzioMeterReaderApp());
+    await tester.tap(find.byType(DropdownButtonFormField<String>));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Transvalia').last);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Transvalia readings have stopped'), findsOneWidget);
+
+    await tester.tap(find.byType(DropdownButtonFormField<String>));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Vista Del Monte').last);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Meters here are optional for completion'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));
   });

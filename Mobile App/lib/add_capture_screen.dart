@@ -365,10 +365,13 @@ class _AddCaptureScreenState extends State<AddCaptureScreen> {
 
     final outstanding = _options.length;
     final total = _registeredOfType;
+    final allOptional = _registry.where((m) => m.type == _meterType).every((m) => !m.requiredForCycle);
     final helper = _matchedMeter != null
         ? 'Matched to the registered meter list'
         : outstanding == 0 && total > 0
             ? 'Every registered $_meterType meter is captured this month - only type a label for a meter that is not on the list'
+            : allOptional && total > 0
+                ? '$outstanding of $total $_meterType meters available to capture (optional for completion). Pick a suggestion, or this entry will be flagged for office review'
             : '$outstanding of $total $_meterType meters still to capture. Pick a suggestion, or this entry will be flagged for office review';
 
     return Autocomplete<MeterOption>(
